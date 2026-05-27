@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 28" width="42" height="28">
+  <!-- 13 stripes, each 28/13 ≈ 2.154px tall -->
+  <!-- Red background (stripes 1,3,5,7,9,11,13) -->
+  <rect width="42" height="28" fill="#B22234"/>
+  <!-- White stripes (2,4,6,8,10,12) -->
+  <rect y="2.154"  width="42" height="2.154" fill="#FFFFFF"/>
+  <rect y="6.461"  width="42" height="2.154" fill="#FFFFFF"/>
+  <rect y="10.769" width="42" height="2.154" fill="#FFFFFF"/>
+  <rect y="15.077" width="42" height="2.154" fill="#FFFFFF"/>
+  <rect y="19.385" width="42" height="2.154" fill="#FFFFFF"/>
+  <rect y="23.692" width="42" height="2.154" fill="#FFFFFF"/>
+  <!-- Blue canton: 7 stripes tall = 15.077px, width = 40% -->
+  <rect width="16.8" height="15.077" fill="#3C3B6E"/>
+  <!-- Stars: 9 rows alternating 6/5, simplified as circles -->
+  <!-- Row 1 (y=1.0): 6 stars -->
+  <circle cx="1.6"  cy="1.05" r="0.72" fill="#FFF"/>
+  <circle cx="4.4"  cy="1.05" r="0.72" fill="#FFF"/>
+  <circle cx="7.2"  cy="1.05" r="0.72" fill="#FFF"/>
+  <circle cx="10.0" cy="1.05" r="0.72" fill="#FFF"/>
+  <circle cx="12.8" cy="1.05" r="0.72" fill="#FFF"/>
+  <circle cx="15.6" cy="1.05" r="0.72" fill="#FFF"/>
+  <!-- Row 2: 5 stars (offset) -->
+  <circle cx="3.0"  cy="2.72" r="0.72" fill="#FFF"/>
+  <circle cx="5.8"  cy="2.72" r="0.72" fill="#FFF"/>
+  <circle cx="8.6"  cy="2.72" r="0.72" fill="#FFF"/>
+  <circle cx="11.4" cy="2.72" r="0.72" fill="#FFF"/>
+  <circle cx="14.2" cy="2.72" r="0.72" fill="#FFF"/>
+  <!-- Row 3: 6 stars -->
+  <circle cx="1.6"  cy="4.38" r="0.72" fill="#FFF"/>
+  <circle cx="4.4"  cy="4.38" r="0.72" fill="#FFF"/>
+  <circle cx="7.2"  cy="4.38" r="0.72" fill="#FFF"/>
+  <circle cx="10.0" cy="4.38" r="0.72" fill="#FFF"/>
+  <circle cx="12.8" cy="4.38" r="0.72" fill="#FFF"/>
+  <circle cx="15.6" cy="4.38" r="0.72" fill="#FFF"/>
+  <!-- Row 4: 5 stars -->
+  <circle cx="3.0"  cy="6.05" r="0.72" fill="#FFF"/>
+  <circle cx="5.8"  cy="6.05" r="0.72" fill="#FFF"/>
+  <circle cx="8.6"  cy="6.05" r="0.72" fill="#FFF"/>
+  <circle cx="11.4" cy="6.05" r="0.72" fill="#FFF"/>
+  <circle cx="14.2" cy="6.05" r="0.72" fill="#FFF"/>
+  <!-- Row 5: 6 stars -->
+  <circle cx="1.6"  cy="7.72" r="0.72" fill="#FFF"/>
+  <circle cx="4.4"  cy="7.72" r="0.72" fill="#FFF"/>
+  <circle cx="7.2"  cy="7.72" r="0.72" fill="#FFF"/>
+  <circle cx="10.0" cy="7.72" r="0.72" fill="#FFF"/>
+  <circle cx="12.8" cy="7.72" r="0.72" fill="#FFF"/>
+  <circle cx="15.6" cy="7.72" r="0.72" fill="#FFF"/>
+  <!-- Row 6: 5 stars -->
+  <circle cx="3.0"  cy="9.38" r="0.72" fill="#FFF"/>
+  <circle cx="5.8"  cy="9.38" r="0.72" fill="#FFF"/>
+  <circle cx="8.6"  cy="9.38" r="0.72" fill="#FFF"/>
+  <circle cx="11.4" cy="9.38" r="0.72" fill="#FFF"/>
+  <circle cx="14.2" cy="9.38" r="0.72" fill="#FFF"/>
+  <!-- Row 7: 6 stars -->
+  <circle cx="1.6"  cy="11.05" r="0.72" fill="#FFF"/>
+  <circle cx="4.4"  cy="11.05" r="0.72" fill="#FFF"/>
+  <circle cx="7.2"  cy="11.05" r="0.72" fill="#FFF"/>
+  <circle cx="10.0" cy="11.05" r="0.72" fill="#FFF"/>
+  <circle cx="12.8" cy="11.05" r="0.72" fill="#FFF"/>
+  <circle cx="15.6" cy="11.05" r="0.72" fill="#FFF"/>
+  <!-- Row 8: 5 stars -->
+  <circle cx="3.0"  cy="12.72" r="0.72" fill="#FFF"/>
+  <circle cx="5.8"  cy="12.72" r="0.72" fill="#FFF"/>
+  <circle cx="8.6"  cy="12.72" r="0.72" fill="#FFF"/>
+  <circle cx="11.4" cy="12.72" r="0.72" fill="#FFF"/>
+  <circle cx="14.2" cy="12.72" r="0.72" fill="#FFF"/>
+  <!-- Row 9: 6 stars -->
+  <circle cx="1.6"  cy="14.38" r="0.72" fill="#FFF"/>
+  <circle cx="4.4"  cy="14.38" r="0.72" fill="#FFF"/>
+  <circle cx="7.2"  cy="14.38" r="0.72" fill="#FFF"/>
+  <circle cx="10.0" cy="14.38" r="0.72" fill="#FFF"/>
+  <circle cx="12.8" cy="14.38" r="0.72" fill="#FFF"/>
+  <circle cx="15.6" cy="14.38" r="0.72" fill="#FFF"/>
+</svg>

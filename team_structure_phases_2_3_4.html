@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power & Data · Команда — Этапы 2, 3, 4</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1629; --navy2: #112240; --navy3: #1C3461;
+  --blue: #2563EB; --gold: #D4A843; --green: #16A34A;
+  --amber: #B45309; --purple: #6D28D9; --red: #DC2626;
+  --border: rgba(255,255,255,0.08); --text: #F8FAFC;
+  --text-muted: #94A3B8; --bg: #0B1629; --card-bg: #112240;
+  --card-border: rgba(255,255,255,0.07);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+body::after { content: ''; position: fixed; bottom: -200px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(109,40,217,0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+
+.nav { position: relative; z-index: 10; display: flex; align-items: center; max-width: 900px; margin: 0 auto; padding: 20px 24px 0; gap: 6px; }
+.nav-logo { font-family: var(--serif); font-size: 15px; color: var(--text); margin-right: 16px; text-decoration: none; }
+.nav-logo em { font-style: italic; color: var(--gold); }
+.nav-link { font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; padding: 6px 14px; border-radius: 100px; border: 0.5px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+.nav-link:hover { color: var(--text); background: rgba(255,255,255,0.05); border-color: var(--card-border); }
+.nav-link.active { color: var(--text); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+
+.hero { position: relative; z-index: 1; padding: 40px 24px 40px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); background: rgba(212,168,67,0.1); border: 0.5px solid rgba(212,168,67,0.25); padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.hero h1 { font-family: var(--serif); font-size: clamp(28px, 4vw, 46px); font-weight: 400; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-desc { font-size: 15px; color: var(--text-muted); max-width: 560px; margin-bottom: 36px; line-height: 1.7; }
+.stats { display: flex; gap: 12px; flex-wrap: wrap; }
+.stat { background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: 12px; padding: 14px 20px; flex: 1; min-width: 120px; }
+.stat-val { font-family: var(--serif); font-size: 22px; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; margin-top: 8px; }
+.section-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.section-line { flex: 1; height: 0.5px; background: var(--card-border); }
+
+.phase-block { margin-bottom: 48px; }
+.phase-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.phase-tag { font-size: 11px; font-weight: 500; padding: 5px 14px; border-radius: 100px; letter-spacing: 0.05em; }
+.phase-2 { background: rgba(37,99,235,0.18); color: #93C5FD; border: 0.5px solid rgba(37,99,235,0.3); }
+.phase-3 { background: rgba(109,40,217,0.15); color: #C4B5FD; border: 0.5px solid rgba(109,40,217,0.25); }
+.phase-4 { background: rgba(212,168,67,0.12); color: #D4A843; border: 0.5px solid rgba(212,168,67,0.25); }
+.phase-title-text { font-size: 16px; font-weight: 500; color: var(--text); }
+.phase-div { flex: 1; height: 0.5px; background: var(--card-border); }
+
+.banner { display: flex; align-items: flex-start; gap: 12px; border-radius: 12px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; }
+.banner-amber { background: rgba(180,83,9,0.12); border: 0.5px solid rgba(212,168,67,0.2); color: #FCD34D; }
+.banner-red { background: rgba(220,38,38,0.1); border: 0.5px solid rgba(220,38,38,0.2); color: #FCA5A5; }
+.banner-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.banner strong { color: var(--text); }
+
+.sub-divider { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin: 16px 0 12px; }
+.sub-divider::after { content: ''; flex: 1; height: 0.5px; background: var(--card-border); }
+
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+
+.card { background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: 14px; padding: 16px; transition: border-color 0.2s; }
+.card:hover { border-color: rgba(255,255,255,0.14); }
+.card.hire { background: rgba(255,255,255,0.02); border: 0.5px solid rgba(255,255,255,0.05); }
+.card.card-warning { border-color: rgba(220,38,38,0.3); background: rgba(220,38,38,0.05); }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.card-person { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.av-blue { background: rgba(37,99,235,0.2); color: #93C5FD; }
+.av-purple { background: rgba(109,40,217,0.2); color: #C4B5FD; }
+.av-gray { background: rgba(100,116,139,0.2); color: #94A3B8; }
+.av-red { background: rgba(220,38,38,0.15); color: #FCA5A5; }
+.card-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+.card-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.dot-active { background: #16A34A; box-shadow: 0 0 0 2px rgba(22,163,74,0.2); }
+
+.badge { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.badge-critical { background: rgba(220,38,38,0.15); color: #FCA5A5; border: 0.5px solid rgba(220,38,38,0.25); }
+.badge-urgent { background: rgba(220,38,38,0.1); color: #FCA5A5; border: 0.5px solid rgba(220,38,38,0.15); }
+.badge-soon { background: rgba(180,83,9,0.15); color: #FCD34D; border: 0.5px solid rgba(180,83,9,0.2); }
+
+.gap-note { font-size: 12px; color: var(--text-muted); padding-top: 10px; margin-top: 10px; border-top: 0.5px solid var(--card-border); line-height: 1.6; }
+.gap-note strong { color: var(--text); font-weight: 500; }
+.timeline { display: inline-block; margin-top: 6px; font-size: 11px; color: #93C5FD; background: rgba(37,99,235,0.1); border: 0.5px solid rgba(37,99,235,0.2); padding: 2px 8px; border-radius: 100px; }
+.timeline-red { display: inline-block; margin-top: 6px; font-size: 11px; color: #FCA5A5; background: rgba(220,38,38,0.1); border: 0.5px solid rgba(220,38,38,0.2); padding: 2px 8px; border-radius: 100px; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.skill { font-size: 11px; padding: 3px 9px; border-radius: 100px; background: rgba(255,255,255,0.04); color: var(--text-muted); border: 0.5px solid var(--card-border); }
+
+.summary-card { background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: 14px; padding: 20px 24px; margin-top: 8px; }
+.summary-table { width: 100%; border-collapse: collapse; }
+.summary-table th { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); text-align: left; padding-bottom: 10px; border-bottom: 0.5px solid var(--card-border); }
+.summary-table td { font-size: 13px; padding: 9px 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.summary-table tr:last-child td { border-bottom: none; }
+.td-role { color: var(--text); }
+.td-time { font-weight: 500; white-space: nowrap; padding-right: 20px; }
+.td-time-red { color: #FCA5A5; }
+.td-time-amber { color: #FCD34D; }
+.td-time-gray { color: var(--text-muted); }
+.phase-pill { font-size: 11px; padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+
+.legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--card-border); }
+.leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.footer { position: relative; z-index: 1; text-align: center; padding: 0 24px 40px; font-size: 12px; color: rgba(148,163,184,0.4); }
+
+@media (max-width: 600px) {
+  .nav { padding: 16px 16px 0; }
+  .hero { padding: 28px 16px 28px; }
+  .container { padding: 0 16px 60px; }
+  .stats { gap: 8px; }
+  .stat { min-width: calc(50% - 4px); padding: 12px 14px; }
+  .stat-val { font-size: 18px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .phase-title-text { font-size: 14px; }
+  .badge { font-size: 10px; padding: 3px 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="transformer_factory_roadmap.html" class="nav-logo">Power &amp; <em>Data</em></a>
+  <a href="transformer_factory_roadmap.html" class="nav-link">Проект</a>
+  <a href="team_structure_phases_2_3_4.html" class="nav-link active">Команда</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <div class="hero-dot"></div>
+    Внутренний документ · Power &amp; Data Project
+  </div>
+  <h1>Команда на <em>активной фазе</em><br>привлечения инвестиций</h1>
+  <p class="hero-desc">Текущий состав, зоны риска и приоритеты найма<br>Этапы 2 · 3 · 4 · Актуально на май 2025</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-val">9</div><div class="stat-label">Ролей в найме</div></div>
+    <div class="stat"><div class="stat-val">4</div><div class="stat-label">Критичных — сейчас</div></div>
+    <div class="stat"><div class="stat-val">$120M</div><div class="stat-label">Co-funding · цель</div></div>
+    <div class="stat"><div class="stat-val">90 дн.</div><div class="stat-label">Due diligence · идут</div></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <span class="section-title">Структура команды</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-tag phase-2">Этап 2</span>
+      <span class="phase-title-text">Привлечение инвестиций</span>
+      <div class="phase-div"></div>
+    </div>
+    <div class="banner banner-amber">
+      <span class="banner-icon">⚡</span>
+      <span><strong>Перегруз:</strong> Игорь одновременно ведёт Qatar, Family Office, BlackRock, Illuminate — и параллельно здание. Физически невозможно делать всё качественно без усиления команды.</span>
+    </div>
+    <div class="sub-divider">В команде</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-blue">ИЛ</div>
+            <div><div class="card-name">Игорь Лён</div><div class="card-role">CEO · Инвестиции + Здание</div></div>
+          </div>
+          <div class="status-dot dot-active"></div>
+        </div>
+        <div class="skills"><span class="skill">Переговоры с инвесторами</span><span class="skill">Стратегия</span><span class="skill">Сеть контактов</span></div>
+        <div class="gap-note"><strong>Зона риска:</strong> ведёт все переговоры одновременно — инвесторы + здание + команда. Нет правой руки на сделках.</div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-blue">AN</div>
+            <div><div class="card-name">Alina Natagach</div><div class="card-role">Finance & Investment</div></div>
+          </div>
+          <div class="status-dot dot-active"></div>
+        </div>
+        <div class="skills"><span class="skill">Финансовые модели</span><span class="skill">Инвест. презентации</span><span class="skill">SPV структуры</span><span class="skill">Стратегия роста</span></div>
+        <div class="gap-note"><strong>Зона риска:</strong> подготовка финмоделей под каждую встречу с инвесторами — высокая нагрузка без поддержки IR.</div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-blue">NS</div>
+            <div><div class="card-name">Nigora Salikhova</div><div class="card-role">CFO · Банки и переговоры</div></div>
+          </div>
+          <div class="status-dot dot-active"></div>
+        </div>
+        <div class="skills"><span class="skill">Переговоры с банками</span><span class="skill">CAPEX/OPEX</span><span class="skill">Гос. гранты</span><span class="skill">Compliance</span></div>
+        <div class="gap-note"><strong>Зона риска:</strong> ведёт переговоры с JP Morgan, Goldman Sachs, Morgan Stanley — без юридической поддержки в штате.</div>
+      </div>
+    </div>
+    <div class="sub-divider">Нужно нанять</div>
+    <div class="cards-grid">
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">BD</div>
+            <div><div class="card-name">Deal Manager / BD</div><div class="card-role">Правая рука Игоря на сделках</div></div>
+          </div>
+          <span class="badge badge-critical">Критично</span>
+        </div>
+        <div class="skills"><span class="skill">Привлечение капитала</span><span class="skill">Английский C2</span><span class="skill">Project finance</span><span class="skill">Pipeline / CRM</span></div>
+        <div class="gap-note">Готовит материалы под каждого инвестора, ведёт follow-up, контролирует pipeline. Без него встречи проходят — сделки не закрываются.<br><span class="timeline">⏱ Найти за 2–4 нед.</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">US</div>
+            <div><div class="card-name">US Investment Advisor</div><div class="card-role">Placement Agent · Американец</div></div>
+          </div>
+          <span class="badge badge-critical">Критично</span>
+        </div>
+        <div class="skills"><span class="skill">US capital markets</span><span class="skill">Institutional sales</span><span class="skill">Family office</span><span class="skill">PE / инфраструктура</span></div>
+        <div class="gap-note">Украинская команда не знает неписаных правил американского рынка — как питчить family offices и BlackRock. Это может стоить сделки.<br><span class="timeline">⏱ Искать 4–8 нед., лучше через рекомендацию</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">JD</div>
+            <div><div class="card-name">Legal Counsel (US)</div><div class="card-role">Корпоративный юрист в штате</div></div>
+          </div>
+          <span class="badge badge-urgent">Срочно</span>
+        </div>
+        <div class="skills"><span class="skill">US corporate law</span><span class="skill">Project finance</span><span class="skill">SPV / SAFE</span><span class="skill">M&A</span></div>
+        <div class="gap-note">SPV документы, convertible note, due diligence от инвесторов — без юриста в штате всё тормозит или делается с ошибками.<br><span class="timeline">⏱ Найти за 2–3 нед., параллельно с Taite McDonald</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">IR</div>
+            <div><div class="card-name">Investor Relations Manager</div><div class="card-role">Системная работа с инвесторами</div></div>
+          </div>
+          <span class="badge badge-urgent">Срочно</span>
+        </div>
+        <div class="skills"><span class="skill">IR / investment banking</span><span class="skill">Английский C1+</span><span class="skill">Data room</span><span class="skill">Питчинг</span></div>
+        <div class="gap-note">Follow-up, data room, отчётность инвесторам, материалы под встречи. Сейчас вся нагрузка на Алину поверх финмоделирования.<br><span class="timeline">⏱ Найти за 3–5 нед.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-tag phase-3">Этап 3</span>
+      <span class="phase-title-text">Государственные контракты + первые заказы</span>
+      <div class="phase-div"></div>
+    </div>
+    <div class="banner banner-amber">
+      <span class="banner-icon">🎯</span>
+      <span><strong>Новый приоритет:</strong> первые заказы и letter of intent от покупателей — это инструмент привлечения Qatar прямо сейчас. Без продавца с американскими контактами этот инструмент не работает.</span>
+    </div>
+    <div class="sub-divider">В команде</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-purple">VK</div>
+            <div><div class="card-name">Vladimir Kyslyanko</div><div class="card-role">Government Affairs</div></div>
+          </div>
+          <div class="status-dot dot-active"></div>
+        </div>
+        <div class="skills"><span class="skill">DOE / DOD</span><span class="skill">Congress</span><span class="skill">Разрешения</span><span class="skill">Федеральные программы</span></div>
+        <div class="gap-note"><strong>Зона риска:</strong> один на весь федеральный трек — Вашингтон + штат + гранты одновременно.</div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-purple">TM</div>
+            <div><div class="card-name">Taite McDonald</div><div class="card-role">Holland & Knight · External</div></div>
+          </div>
+          <div class="status-dot dot-active"></div>
+        </div>
+        <div class="skills"><span class="skill">$5B+ DOE грантов</span><span class="skill">$12B+ loan</span><span class="skill">Fortune 100</span></div>
+        <div class="gap-note"><strong>Зона риска:</strong> внешний консультант, не в штате — реальной работы по грантам изнутри никто не делает.</div>
+      </div>
+    </div>
+    <div class="sub-divider">Нужно нанять</div>
+    <div class="cards-grid">
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">SM</div>
+            <div><div class="card-name">Sales Manager</div><div class="card-role">Трансформаторы · US рынок</div></div>
+          </div>
+          <span class="badge badge-critical">Критично · Новая роль</span>
+        </div>
+        <div class="skills"><span class="skill">Продажи трансформаторов US</span><span class="skill">Utilities / EPC</span><span class="skill">DOD тендеры</span><span class="skill">Контракты LOI</span></div>
+        <div class="gap-note">Идёт к utilities, EPC-подрядчикам, DOD — получает letter of intent и advance orders. Это подтверждает спрос для Qatar. Без американца с контактами не работает.<br><span class="timeline">⏱ Искать 4–8 нед. через отраслевые связи</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">GW</div>
+            <div><div class="card-name">Grant Writer</div><div class="card-role">Federal Programs Specialist</div></div>
+          </div>
+          <span class="badge badge-urgent">Срочно</span>
+        </div>
+        <div class="skills"><span class="skill">Federal grants DOE/SBA</span><span class="skill">Section 303</span><span class="skill">IRA программы</span><span class="skill">Tech English</span></div>
+        <div class="gap-note">Заявка на DOE / IRA грант — отдельная полноценная работа. Без специалиста деньги не придут, даже если право на грант есть.<br><span class="timeline">⏱ Найти за 3–4 нед. · процесс подачи 3–6 мес.</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">SR</div>
+            <div><div class="card-name">State Relations Manager</div><div class="card-role">South Carolina</div></div>
+          </div>
+          <span class="badge badge-soon">Скоро</span>
+        </div>
+        <div class="skills"><span class="skill">Гос. переговоры SC</span><span class="skill">Cherokee County</span><span class="skill">Лоббирование</span></div>
+        <div class="gap-note">$10M от штата — отдельные переговоры с Cherokee County и губернатором. Нужен человек который знает как работает поддержка штата изнутри.<br><span class="timeline">⏱ Найти за 4–6 нед. · переговоры со штатом 2–4 мес.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-tag phase-4">Этап 4</span>
+      <span class="phase-title-text">Площадка и недвижимость</span>
+      <div class="phase-div"></div>
+    </div>
+    <div class="banner banner-red">
+      <span class="banner-icon">⚠️</span>
+      <span><strong>Критический риск:</strong> сделка на $85M ведётся без профильного человека. Украинская команда не знает нормы commercial real estate due diligence в США. 90 дней due diligence идут уже сейчас.</span>
+    </div>
+    <div class="sub-divider">В команде</div>
+    <div class="cards-grid">
+      <div class="card card-warning">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-red">!</div>
+            <div><div class="card-name">Игорь Лён (дополнительно)</div><div class="card-role">Переговоры по зданию — поверх всего</div></div>
+          </div>
+        </div>
+        <div class="gap-note" style="color:#FCA5A5;border-color:rgba(220,38,38,0.2);">Ведёт сделку параллельно с инвесторами. Нет времени на глубокий due diligence. Нет опыта с американским промышленным real estate.</div>
+      </div>
+    </div>
+    <div class="sub-divider">Нужно нанять</div>
+    <div class="cards-grid">
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">RE</div>
+            <div><div class="card-name">Real Estate Advisor (US)</div><div class="card-role">Industrial · Transaction Manager</div></div>
+          </div>
+          <span class="badge badge-critical">Критично · Сейчас</span>
+        </div>
+        <div class="skills"><span class="skill">Industrial real estate US</span><span class="skill">Due diligence</span><span class="skill">Переговоры $50M+</span><span class="skill">South Carolina рынок</span></div>
+        <div class="gap-note">Сопровождает сделку $85M до закрытия. Знает местный рынок SC, умеет торговаться с продавцом, знает что проверять при due diligence промышленного объекта.<br><span class="timeline-red">⏱ Нужен немедленно — 90 дней due diligence уже идут</span></div>
+      </div>
+      <div class="card hire">
+        <div class="card-top">
+          <div class="card-person">
+            <div class="avatar av-gray">TI</div>
+            <div><div class="card-name">Technical Site Inspector</div><div class="card-role">Промышленная инженерная экспертиза</div></div>
+          </div>
+          <span class="badge badge-urgent">Срочно · 1–2 нед.</span>
+        </div>
+        <div class="skills"><span class="skill">Пром. строительство US</span><span class="skill">Электротехника HV</span><span class="skill">Американские нормы</span><span class="skill">Экологические проверки</span></div>
+        <div class="gap-note">Оценивает здание под трансформаторное производство: электромощности, несущие конструкции под краны, экология, зонирование по американским нормам.<br><span class="timeline-red">⏱ Нанять за 1–2 нед. · инспекция 2–4 нед.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section-header">
+    <span class="section-title">Сводный план найма</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="summary-card">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="width:40%">Роль</th>
+          <th style="width:25%">Найти за</th>
+          <th style="width:15%">Этап</th>
+          <th style="width:20%">Приоритет</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-role">Real Estate Advisor (US)</td><td class="td-time td-time-red">Немедленно</td><td><span class="phase-pill phase-4">4</span></td><td><span class="badge badge-critical">Критично</span></td></tr>
+        <tr><td class="td-role">Deal Manager / BD</td><td class="td-time td-time-red">2–4 нед.</td><td><span class="phase-pill phase-2">2</span></td><td><span class="badge badge-critical">Критично</span></td></tr>
+        <tr><td class="td-role">Legal Counsel (US)</td><td class="td-time td-time-red">2–3 нед.</td><td><span class="phase-pill phase-2">2</span></td><td><span class="badge badge-urgent">Срочно</span></td></tr>
+        <tr><td class="td-role">Technical Site Inspector</td><td class="td-time td-time-red">1–2 нед.</td><td><span class="phase-pill phase-4">4</span></td><td><span class="badge badge-urgent">Срочно</span></td></tr>
+        <tr><td class="td-role">Investor Relations Manager</td><td class="td-time td-time-amber">3–5 нед.</td><td><span class="phase-pill phase-2">2</span></td><td><span class="badge badge-urgent">Срочно</span></td></tr>
+        <tr><td class="td-role">Sales Manager (US Transformers)</td><td class="td-time td-time-amber">4–8 нед.</td><td><span class="phase-pill phase-3">3</span></td><td><span class="badge badge-critical">Критично</span></td></tr>
+        <tr><td class="td-role">US Investment Advisor</td><td class="td-time td-time-amber">4–8 нед.</td><td><span class="phase-pill phase-2">2</span></td><td><span class="badge badge-critical">Критично</span></td></tr>
+        <tr><td class="td-role">Grant Writer</td><td class="td-time td-time-amber">3–4 нед.</td><td><span class="phase-pill phase-3">3</span></td><td><span class="badge badge-urgent">Срочно</span></td></tr>
+        <tr><td class="td-role">State Relations Manager (SC)</td><td class="td-time td-time-gray">4–6 нед.</td><td><span class="phase-pill phase-3">3</span></td><td><span class="badge badge-soon">Скоро</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#16A34A"></div> В команде — активен</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FCA5A5"></div> Нанять — критично / немедленно</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FCD34D"></div> Нанять — скоро</div>
+  </div>
+</div>
+
+<div class="footer">Power &amp; Data Project · Внутренний документ · 2025</div>
+</body>
+</html>

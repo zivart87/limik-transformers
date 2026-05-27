@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMIK International — Where America's Power Begins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+
+    /* ════════════════════════════════
+       LIMIK DESIGN SYSTEM v1.0
+    ════════════════════════════════ */
+    :root {
+      --navy-dark:  #09193B;
+      --navy-mid:   #0F2656;
+      --blue:       #206CB9;
+      --blue-lt:    #4A8FD4;
+      --gold:       #FFCF0B;
+      --gold-hover: #DDB800;
+      --white:      #FFFFFF;
+      --off-white:  #F4F6FA;
+      --text-1:     #C4D4E8;
+      --text-2:     #7090B0;
+      --border-d:   rgba(255,255,255,0.12);
+      --border-l:   rgba(9,25,59,0.14);
+      --font:       'REM', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--navy-dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── ICON PLACEHOLDER ── */
+    .icon-sq {
+      width: 48px; height: 48px;
+      background: #B0B8C8;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .icon-sq-sm {
+      width: 36px; height: 36px;
+      background: #B0B8C8;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .icon-sq-lg {
+      width: 64px; height: 64px;
+      background: #B0B8C8;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    /* on dark sections — slightly brighter grey */
+    .bg-dark .icon-sq,
+    .bg-dark .icon-sq-sm,
+    .bg-dark .icon-sq-lg { background: #3A5570; }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* ── SECTION BACKGROUNDS ── */
+    .bg-dark {
+      background: var(--navy-dark);
+      color: var(--white);
+    }
+    .bg-mid {
+      background: var(--navy-mid);
+      color: var(--white);
+    }
+    .bg-white {
+      background: var(--white);
+      color: var(--navy-dark);
+    }
+    .bg-offwhite {
+      background: var(--off-white);
+      color: var(--navy-dark);
+    }
+
+    /* ── SECTION PADDING ── */
+    .section    { padding: 80px 0; }
+    .section-lg { padding: 120px 0; }
+    .section-sm { padding: 48px 0; }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid;
+    }
+    .bg-dark .tag-accent { color: var(--gold); border-color: rgba(255,207,11,0.4); background: rgba(255,207,11,0.08); }
+    .bg-mid  .tag-accent { color: var(--gold); border-color: rgba(255,207,11,0.4); background: rgba(255,207,11,0.08); }
+    .bg-white .tag-accent,
+    .bg-offwhite .tag-accent { color: var(--blue); border-color: rgba(32,108,185,0.4); background: rgba(32,108,185,0.08); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 32px; height: 48px;
+      border: 2px solid transparent;
+      border-radius: 2px;
+      cursor: pointer; transition: all 0.18s; line-height: 1;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy-dark);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover { background: var(--gold-hover); border-color: var(--gold-hover); }
+
+    .btn-outline-white {
+      background: transparent; color: var(--white);
+      border-color: rgba(255,255,255,0.55);
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+
+    .btn-outline-dark {
+      background: transparent; color: var(--navy-dark);
+      border-color: rgba(9,25,59,0.45);
+    }
+    .btn-outline-dark:hover { border-color: var(--navy-dark); }
+
+    .btn-lg { font-size: 15px; padding: 16px 40px; height: 52px; }
+
+    /* ── SECTION HEADER ── */
+    .sec-header { margin-bottom: 56px; }
+    .sec-header h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-top: 16px; margin-bottom: 16px;
+    }
+    .sec-header p {
+      font-size: 16px; line-height: 1.6; max-width: 520px;
+    }
+    .bg-dark .sec-header p,
+    .bg-mid  .sec-header p { color: var(--text-1); }
+    .bg-white .sec-header p,
+    .bg-offwhite .sec-header p { color: #3A5570; }
+
+    /* ─────────────────────────────────
+       1. NAV  (white)
+    ───────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-l);
+    }
+    .nav-inner {
+      width: 100%; padding: 0 60px;
+      height: 92px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo-name {
+      font-size: 18px; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-dark);
+    }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--navy-dark);
+      padding: 8px 16px; letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--blue); background: transparent; }
+    /* Два CTA блока в навбаре */
+    .nav-actions {
+      display: flex; align-items: center; gap: 8px; margin-left: 8px;
+    }
+
+    /* Кнопка телефона — outline */
+    .nav-phone {
+      display: flex; align-items: center;
+      height: 48px; padding: 0 20px;
+      border: 2px solid var(--navy-dark); color: var(--navy-dark);
+      background: transparent;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
+      white-space: nowrap; transition: background 0.18s, color 0.18s;
+      border-radius: 2px;
+    }
+    .nav-phone:hover { background: var(--navy-dark) !important; color: var(--white) !important; }
+
+    .nav-cta {
+      background: var(--gold) !important; color: var(--navy-dark) !important;
+      font-weight: 800 !important; font-size: 13px !important;
+      height: 48px !important; display: flex !important; align-items: center !important;
+      letter-spacing: 0.1em !important; text-transform: uppercase !important;
+      padding: 0 24px !important; margin-left: 0 !important;
+      border-radius: 2px !important;
+    }
+    .nav-cta:hover { background: var(--gold-hover) !important; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--navy-dark); border-radius: 0; transition: 0.25s; }
+    .nav-mobile {
+      display: none; flex-direction: column;
+      background: var(--white); border-top: 1px solid var(--border-l);
+      padding: 16px 20px 24px;
+    }
+    .nav-mobile a {
+      font-size: 15px; color: var(--navy-dark); padding: 12px 0;
+      border-bottom: 1px solid var(--border-l); font-weight: 500;
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile.open { display: flex; }
+
+    /* ─────────────────────────────────
+       2. HERO SLIDER
+    ───────────────────────────────── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 128px); /* 36px top + 92px white nav */
+      min-height: 580px;
+      overflow: hidden;
+      background: var(--navy-dark);
+    }
+
+    /* ── Slides ── */
+    .hero-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+      display: flex; align-items: flex-end;
+      pointer-events: none;
+    }
+    .hero-slide.active { opacity: 1; pointer-events: auto; }
+
+    /* ── Slide backgrounds ── */
+    .hero-slide-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      background-color: #0A1628;
+    }
+    .hero-slide-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(9,25,59,0.92) 0%,
+        rgba(9,25,59,0.65) 55%,
+        rgba(9,25,59,0.22) 100%
+      );
+    }
+
+    /* ── Slide content — flex row: text left / button right ── */
+    .hero-slide-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 60px 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    .hero-slide-text  { flex: 1; max-width: 860px; }
+    .hero-slide-action { flex-shrink: 0; padding-bottom: 4px; }
+
+    /* ── Animate-in: блочные элементы ── */
+    @keyframes heroUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-slide-text > * { opacity: 0; }
+    .hero-slide-text > h1 { opacity: 1; } /* h1 видим — слова анимируются сами */
+    .hero-slide-action { opacity: 0; }
+
+    .hero-slide.active .hero-sub          { animation: heroUp 0.70s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
+    .hero-slide.active .hero-badges       { animation: heroUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.65s; }
+    .hero-slide.active .hero-slide-action { animation: heroUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
+
+    /* ── Word clip-reveal (как у T3) ── */
+    @keyframes wordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .hero-slide.active .split-word {
+      animation: wordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* ── Label ── */
+    .hero-label {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+    }
+    .hero-label-line { width: 40px; height: 2px; background: var(--gold); flex-shrink: 0; }
+    .hero-label-text {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    /* ── Heading ── */
+    .hero h1 {
+      font-size: clamp(40px, 5vw, 76px);
+      font-weight: 600; line-height: 0.90;
+      text-transform: uppercase; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--white); }
+
+    /* ── Subtext ── */
+    .hero-sub {
+      font-size: 17px; font-weight: 400; color: var(--text-1);
+      line-height: 1.65; max-width: 500px; margin-bottom: 0;
+    }
+
+    /* ── Badges ── */
+    .hero-badges { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 36px; }
+    .hero-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; color: var(--text-2);
+      letter-spacing: 0.03em;
+    }
+    .hero-badge-dot { width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; }
+
+    /* ── Dots ── */
+    .hero-dots {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      z-index: 10; display: flex; gap: 10px; align-items: center;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none; cursor: pointer; padding: 0;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .hero-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ─────────────────────────────────
+       3. TRUST BAR  (white)
+    ───────────────────────────────── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-l);
+    }
+    .trust-bar-inner {
+      max-width: 1360px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .trust-stat {
+      padding: 40px 48px;
+      border-right: 1px solid var(--border-l);
+    }
+    .trust-stat:last-child { border-right: none; }
+    .trust-stat-number {
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 900; color: var(--blue);
+      line-height: 1; letter-spacing: -0.03em; margin-bottom: 8px;
+    }
+    .trust-stat-label {
+      font-size: 15px; font-weight: 400;
+      color: #3A5570; line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────
+       4. PAIN POINT  (dark)
+    ───────────────────────────────── */
+    .pain-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .pain-left h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 16px 0 24px;
+    }
+    .pain-left p { font-size: 16px; color: var(--text-1); line-height: 1.7; margin-bottom: 14px; }
+    .pain-right { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pain-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-d);
+      padding: 24px 20px;
+    }
+    .pain-card-num {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; line-height: 1; margin-bottom: 8px;
+    }
+    .pain-card-label { font-size: 13px; color: var(--text-1); line-height: 1.4; }
+
+    /* ─────────────────────────────────
+       5. PRODUCTS  (white)
+    ───────────────────────────────── */
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .product-card {
+      border: 1px solid var(--border-l);
+      padding: 32px 28px 28px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 24px rgba(32,108,185,0.12);
+    }
+    .product-card-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .product-card h3 {
+      font-size: 22px; font-weight: 800;
+      color: var(--navy-dark); margin-bottom: 10px;
+    }
+    .product-card p { font-size: 14px; color: #3A5570; line-height: 1.6; margin-bottom: 24px; }
+    .product-specs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 28px;
+    }
+    .spec-item { background: var(--off-white); padding: 10px 12px; }
+    .spec-val { font-size: 15px; font-weight: 800; color: var(--navy-dark); line-height: 1; }
+    .spec-lbl { font-size: 11px; color: #7090B0; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .product-link {
+      font-size: 12px; font-weight: 700; color: var(--blue);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 6px; transition: gap 0.15s;
+    }
+    .product-link:hover { gap: 10px; }
+
+    /* ─────────────────────────────────
+       6. INDUSTRIES  (dark)
+    ───────────────────────────────── */
+    .industries-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    }
+    .industry-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-d);
+      padding: 28px 20px 24px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .industry-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.22);
+    }
+    .industry-card h3 {
+      font-size: 14px; font-weight: 700;
+      margin: 14px 0 8px; line-height: 1.3;
+    }
+    .industry-card p { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+    /* ─────────────────────────────────
+       7. TIMELINE  (white)
+    ───────────────────────────────── */
+    .timeline-track {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      position: relative; margin-top: 56px;
+    }
+    /* horizontal connector */
+    .timeline-track::before {
+      content: '';
+      position: absolute; top: 27px; left: 28px; right: 28px;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        var(--gold) 0%, var(--gold) 25%,
+        var(--blue) 25%, var(--blue) 50%,
+        var(--border-l) 50%, var(--border-l) 100%
+      );
+      z-index: 0;
+    }
+    .timeline-step { padding: 0 16px; position: relative; z-index: 1; }
+    .timeline-dot {
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 24px; border: 2px solid;
+    }
+    .dot-done  { background: var(--gold);  border-color: var(--gold);  color: var(--navy-dark); }
+    .dot-now   { background: var(--blue);  border-color: var(--blue);  color: var(--white); }
+    .dot-next  { background: var(--white); border-color: var(--border-l); color: #B0B8C8; }
+    .timeline-year {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #7090B0; margin-bottom: 8px;
+    }
+    .timeline-step h3 {
+      font-size: 16px; font-weight: 800;
+      color: var(--navy-dark); margin-bottom: 8px;
+    }
+    .timeline-step p { font-size: 13px; color: #3A5570; line-height: 1.5; }
+    .timeline-step .tag { margin-top: 14px; font-size: 10px; }
+    .tag-done { color: var(--gold); border-color: rgba(255,207,11,0.5); background: rgba(255,207,11,0.08); }
+    .tag-now  { color: var(--blue); border-color: rgba(32,108,185,0.5); background: rgba(32,108,185,0.08); }
+    .tag-plan { color: #7090B0; border-color: var(--border-l); background: transparent; }
+
+    /* ─────────────────────────────────
+       8. CTA BAND  (dark mid)
+    ───────────────────────────────── */
+    .cta-band { text-align: center; position: relative; overflow: hidden; }
+    .cta-band h2 {
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .cta-band h2 span { color: var(--gold); }
+    .cta-band p {
+      font-size: 17px; color: var(--text-1);
+      max-width: 460px; margin: 0 auto 40px; line-height: 1.6;
+    }
+    .cta-band-note { font-size: 12px; color: var(--text-2); margin-top: 20px; }
+
+    /* ─────────────────────────────────
+       9. FOOTER  (dark)
+    ───────────────────────────────── */
+    .footer { border-top: 1px solid var(--border-d); padding: 64px 0 40px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand img { height: 40px; width: auto; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; color: var(--text-2); line-height: 1.7; max-width: 260px; }
+    .footer-col h4 {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-2); margin-bottom: 18px;
+    }
+    .footer-col a { display: block; font-size: 14px; color: var(--text-1); margin-bottom: 10px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid var(--border-d); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: var(--text-2);
+    }
+
+    /* ─────────────────────────────────
+       FOOTER T3-STYLE
+       Левая колонка (full height) + Правая (верх=фото, низ=ссылки)
+    ───────────────────────────────── */
+    /* ══════════════════════════════════════════
+       FOOTER — flex-wrap как T3.tech:
+       Строка 1: [58% тёмный бренд] [42% фото]
+       Строка 2: [25% тёмный пустой] [75% белые ссылки]
+    ══════════════════════════════════════════ */
+    .footer-t3 {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--navy-dark);
+    }
+
+    /* Строка 1, блок A — тёмная панель (58%): два столбца внутри */
+    .footer-left {
+      flex: 0 0 58.33%;
+      height: 364px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 44px 48px;
+      gap: 40px;
+    }
+
+    /* Левый столбец: логотип + текст */
+    .footer-brand-col {
+      display: flex; flex-direction: column;
+      gap: 16px;
+    }
+    .footer-logo { height: 38px; width: auto; align-self: flex-start; }
+    .footer-tagline {
+      font-size: 13px; color: var(--text-1); line-height: 1.7; font-weight: 300;
+    }
+    .footer-contact-link {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 13px; color: var(--text-1); font-weight: 400;
+      transition: color 0.15s;
+    }
+    .footer-contact-link svg { color: var(--blue-lt); flex-shrink: 0; }
+    .footer-contact-link:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 11px; color: var(--text-2); font-weight: 400; line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    /* Правый столбец: Get in touch + иконки */
+    .footer-social-col {
+      display: flex; flex-direction: column;
+      align-items: flex-start; gap: 14px;
+      padding-top: 4px; flex-shrink: 0;
+    }
+    .footer-social-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-2);
+    }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border-d);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--text-1);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .footer-social a:hover { border-color: var(--white); color: var(--white); }
+
+    /* Строка 1, блок B — фото (42%) */
+    .footer-photo {
+      flex: 0 0 41.67%;
+      height: 364px;
+      position: relative; overflow: hidden;
+    }
+    .footer-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      display: block;
+    }
+    .footer-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to left,
+        rgba(9,25,59,0.0) 60%,
+        rgba(9,25,59,0.4) 100%
+      );
+    }
+
+    /* Строка 2, блок A — тёмный spacer (25%) */
+    .footer-spacer {
+      flex: 0 0 25%;
+    }
+
+    /* Строка 2, блок B — белый блок со ссылками (75%) */
+    .footer-right {
+      flex: 0 0 75%;
+      background: var(--off-white);
+      padding: 56px 60px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      border-top: 4px solid var(--gold);
+    }
+    .footer-cols {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    }
+    .footer-col h4 {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy-dark); margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 13px; color: #3A5570;
+      margin-bottom: 9px; transition: color 0.15s; font-weight: 300;
+    }
+    .footer-col a:hover { color: var(--navy-dark); }
+    .footer-certifications {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      padding-top: 24px; border-top: 1px solid var(--border-l);
+      margin-top: 32px;
+    }
+    .footer-certifications span {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .footer-left  { flex: 0 0 55%; padding: 48px 36px; }
+      .footer-photo { flex: 0 0 45%; }
+      .footer-spacer { flex: 0 0 20%; }
+      .footer-right  { flex: 0 0 80%; padding: 48px 40px; }
+      .footer-cols  { grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+    @media (max-width: 768px) {
+      .footer-left   { flex: 0 0 100%; min-height: 260px; padding: 48px 32px; }
+      .footer-photo  { flex: 0 0 100%; min-height: 220px; }
+      .footer-spacer { display: none; }
+      .footer-right  { flex: 0 0 100%; padding: 40px 24px; }
+    }
+    @media (max-width: 480px) {
+      .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .pain-inner      { grid-template-columns: 1fr; gap: 48px; }
+      .products-grid   { grid-template-columns: 1fr 1fr; }
+      .industries-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid     { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links  { display: none; }
+      .nav-burger { display: flex; }
+      .nav-inner  { padding: 0 20px; }
+      .trust-bar-inner    { grid-template-columns: 1fr; }
+      .trust-stat         { border-right: none; border-bottom: 1px solid var(--border-l); padding: 28px 20px; }
+      .trust-stat:last-child { border-bottom: none; }
+      .products-grid      { grid-template-columns: 1fr; }
+      .industries-grid    { grid-template-columns: 1fr 1fr; }
+      .timeline-track     { grid-template-columns: 1fr; gap: 32px; }
+      .timeline-track::before { display: none; }
+      .footer-grid        { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom      { flex-direction: column; gap: 10px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions    { flex-direction: column; }
+      .btn             { justify-content: center; }
+      .industries-grid { grid-template-columns: 1fr 1fr; }
+      .pain-right      { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────
+       TYPOGRAPHY — 700 / 300 contrast
+    ───────────────────────────────── */
+    p, .sec-header p, .why-col p, .how-step p,
+    .industry-card p, .footer-brand p, .footer-col a {
+      font-weight: 300;
+    }
+    .hero-sub { font-weight: 300; }
+
+    /* ─────────────────────────────────
+       NAV FLAG — Made in USA
+    ───────────────────────────────── */
+    .nav-flag {
+      display: flex; align-items: center; gap: 7px;
+      margin-left: 14px; padding-left: 14px;
+      border-left: 1px solid var(--border-l);
+      flex-shrink: 0;
+    }
+    .nav-flag-img { width: 36px; height: auto; display: block; border: 1px solid rgba(0,0,0,0.1); }
+    .nav-flag-text {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy-dark); line-height: 1.3;
+    }
+    @media (max-width: 1100px) { .nav-flag { display: none; } }
+
+    /* ─────────────────────────────────
+       WHY LIMIK — light bg overrides
+    ───────────────────────────────── */
+    .bg-white .why-col {
+      background: var(--off-white);
+      border-color: var(--border-l);
+    }
+    .bg-white .why-col h3 { color: var(--navy-dark); }
+    .bg-white .why-col p  { color: #3A5570; }
+    .bg-white .why-stats  { margin-top: 16px; }
+    .bg-white .why-stat {
+      background: var(--off-white);
+      border-color: var(--border-l);
+    }
+    .bg-white .why-stat-num   { color: var(--blue); }
+    .bg-white .why-stat-label { color: #3A5570; }
+    .bg-white .sec-header h2  { color: var(--navy-dark); }
+
+    /* ─────────────────────────────────
+       INDUSTRIES — offwhite bg overrides
+    ───────────────────────────────── */
+    .bg-offwhite .industry-card {
+      background: var(--white);
+      border-color: var(--border-l);
+    }
+    .bg-offwhite .industry-card:hover {
+      background: var(--white);
+      border-color: var(--blue);
+      box-shadow: 0 4px 20px rgba(32,108,185,0.10);
+    }
+    .bg-offwhite .industry-card h3 { color: var(--navy-dark); }
+    .bg-offwhite .industry-card p  { color: #3A5570; }
+    .bg-offwhite .icon-sq-sm { background: #D0DAE8; }
+
+    /* ─────────────────────────────────
+       NAV TOP STRIP
+    ───────────────────────────────── */
+    .nav-top-strip {
+      background: #206CB9;
+      height: 36px;
+      display: flex; align-items: center;
+    }
+    .nav-top-inner {
+      max-width: 1360px; margin: 0 auto; padding: 0 40px;
+      display: flex; justify-content: flex-end; width: 100%;
+    }
+    .nav-top-inner a {
+      font-size: 13px; font-weight: 500;
+      color: var(--white); padding: 0 14px;
+      letter-spacing: 0.05em; transition: color 0.15s;
+    }
+    .nav-top-inner a:hover { color: rgba(255,255,255,0.7); }
+    @media (max-width: 768px) { .nav-top-strip { display: none; } }
+
+    /* ─────────────────────────────────
+       NAV DROPDOWN
+    ───────────────────────────────── */
+    .nav-dropdown { position: relative; display: flex; align-items: center; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute; top: calc(100% + 12px); left: 0;
+      background: var(--white);
+      border: 1px solid var(--border-l);
+      box-shadow: 0 8px 24px rgba(9,25,59,0.12);
+      min-width: 230px; z-index: 200; padding: 8px 0;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; font-size: 14px; color: var(--navy-dark);
+      padding: 10px 20px; font-weight: 500;
+      text-transform: none; letter-spacing: 0;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-menu a:hover { background: transparent; color: var(--blue); }
+
+    /* ─────────────────────────────────
+       PARTNERS
+    ───────────────────────────────── */
+    .partners { padding: 48px 0; }
+    .partners-title {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-2); margin-bottom: 28px;
+    }
+    .partners-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border-l);
+    }
+    .partner-item {
+      padding: 32px 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800;
+      color: #7090B0; border-right: 1px solid var(--border-l);
+      text-align: center; letter-spacing: 0.02em;
+    }
+    .partner-item:last-child { border-right: none; }
+    @media (max-width: 768px) {
+      .partners-grid { grid-template-columns: 1fr 1fr; }
+      .partner-item:nth-child(2) { border-right: none; }
+      .partner-item:nth-child(3) { border-right: 1px solid var(--border-l); }
+    }
+
+    /* ─────────────────────────────────
+       WHY LIMIK
+    ───────────────────────────────── */
+    .why-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 16px;
+    }
+    .why-col {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-d);
+      padding: 32px 28px;
+    }
+    .why-col h3 {
+      font-size: 20px; font-weight: 800;
+      color: var(--white); margin: 16px 0 12px;
+    }
+    .why-col p { font-size: 15px; color: var(--text-1); line-height: 1.7; }
+    .why-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .why-stat {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-d);
+      padding: 24px 20px;
+    }
+    .why-stat-num {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; line-height: 1; margin-bottom: 8px;
+      color: var(--gold);
+    }
+    .why-stat-label { font-size: 13px; color: var(--text-1); line-height: 1.4; }
+    @media (max-width: 1024px) {
+      .why-cols { grid-template-columns: 1fr; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─────────────────────────────────
+       HOW TO GET A QUOTE
+    ───────────────────────────────── */
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; position: relative; margin-top: 56px;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute; top: 27px; left: 28px; right: 28px;
+      height: 2px; background: var(--border-l); z-index: 0;
+    }
+    .how-step { position: relative; z-index: 1; padding: 0 16px; }
+    .how-step-num {
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.06em;
+      background: var(--navy-dark); color: var(--white);
+      margin-bottom: 24px;
+    }
+    .how-step h3 {
+      font-size: 17px; font-weight: 800;
+      color: var(--navy-dark); margin-bottom: 10px;
+    }
+    .how-step p { font-size: 14px; color: #3A5570; line-height: 1.6; }
+    @media (max-width: 768px) {
+      .how-steps { grid-template-columns: 1fr; gap: 24px; }
+      .how-steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+   NAV
+══════════════════════════════ -->
+<nav class="nav">
+  <!-- Верхняя полоска — вторичные ссылки -->
+  <div class="nav-top-strip">
+    <div class="nav-top-inner">
+      <a href="company/">Company</a>
+      <a href="careers/">Careers</a>
+      <a href="news/">News</a>
+      <a href="contact/">Contact</a>
+    </div>
+  </div>
+  <!-- Главная плашка — для инженеров -->
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="assets/images/logo.svg" alt="LIMIK International">
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a href="transformers/" class="nav-dropdown-trigger">Transformers ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="transformers/power/">Power Transformers</a>
+          <a href="transformers/autotransformers/">Autotransformers</a>
+          <a href="transformers/gsu/">Generator Step-Up (GSU)</a>
+        </div>
+      </div>
+      <a href="industries/">Industries</a>
+      <div class="nav-dropdown">
+        <a href="support/" class="nav-dropdown-trigger">Support ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="support/documentation/">Technical Documentation</a>
+          <a href="support/certifications/">Certifications</a>
+          <a href="support/calculator/">kVA / Load Calculator</a>
+          <a href="support/faq/">FAQ</a>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <!-- PHONE BTN: раскомментировать чтобы вернуть кнопку телефона в меню
+        <a href="tel:+18645550100" class="nav-phone">+1 (864) 555-0100</a>
+        -->
+        <a href="request-quote/" class="nav-cta">Get a Quote</a>
+      </div>
+      <div class="nav-flag">
+        <img src="assets/images/flag-usa.svg" alt="USA Flag" class="nav-flag-img">
+        <span class="nav-flag-text">Made<br>in USA</span>
+      </div>
+    </div>
+    <div class="nav-burger" id="nav-burger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <!-- Мобильное меню -->
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="transformers/">Transformers</a>
+    <a href="transformers/power/" style="padding-left:20px;font-size:13px;color:#7090B0">Power Transformers</a>
+    <a href="transformers/autotransformers/" style="padding-left:20px;font-size:13px;color:#7090B0">Autotransformers</a>
+    <a href="transformers/gsu/" style="padding-left:20px;font-size:13px;color:#7090B0">Generator Step-Up (GSU)</a>
+    <a href="industries/">Industries</a>
+    <a href="support/">Support</a>
+    <a href="company/">Company</a>
+    <a href="contact/">Contact</a>
+    <a href="request-quote/">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+   1. HERO  ← ВИДЕО / тёмный
+══════════════════════════════ -->
+<section class="hero bg-dark">
+
+  <!-- ═══ SLIDE 1: Headline — тёмный фон (заглушка видео) ═══ -->
+  <div class="hero-slide active">
+    <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="hero-slide-overlay"></div>
+    <div class="hero-slide-content">
+      <div class="hero-slide-text">
+        <h1>Where America's<br>Power Begins</h1>
+        <p class="hero-sub">Custom-engineered transformers. Up to 600 MVA.<br>U.S.-manufactured for utilities, defense, and data centers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2: Трансформатор ═══ -->
+  <div class="hero-slide">
+    <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="hero-slide-overlay"></div>
+    <div class="hero-slide-content">
+      <div class="hero-slide-text">
+        <h1>Built for the<br>American Grid</h1>
+        <p class="hero-sub">IEEE C57, ANSI, NEMA and IEC certified.<br>DOE and DOD procurement qualified.</p>
+      </div>
+      <div class="hero-slide-action">
+        <a href="transformers/" class="btn btn-gold btn-lg">View Transformers</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3: Производство / команда ═══ -->
+  <div class="hero-slide">
+    <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="hero-slide-overlay"></div>
+    <div class="hero-slide-content">
+      <div class="hero-slide-text">
+        <h1>U.S. Engineering.<br>No Delays.</h1>
+        <p class="hero-sub">No 2–4 year foreign queues.<br>American-made, American-delivered.</p>
+      </div>
+      <div class="hero-slide-action">
+        <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Dot navigation ═══ -->
+  <div class="hero-dots">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+    <button class="hero-dot" data-slide="2"></button>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════
+   2. TRUST BAR  ← БЕЛЫЙ
+══════════════════════════════ -->
+<div class="trust-bar bg-white">
+  <div class="trust-bar-inner">
+    <div class="trust-stat">
+      <div class="trust-stat-number">15+</div>
+      <div class="trust-stat-label">Years of Engineering Experience</div>
+    </div>
+    <div class="trust-stat">
+      <div class="trust-stat-number">120+</div>
+      <div class="trust-stat-label">Completed Transformer Projects</div>
+    </div>
+    <div class="trust-stat">
+      <div class="trust-stat-number">35+</div>
+      <div class="trust-stat-label">Specialists on Our Team</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+   PARTNERS
+══════════════════════════════ -->
+<div class="partners bg-offwhite">
+  <div class="container">
+    <p class="partners-title">Trusted by America's Leading Manufacturers</p>
+    <div class="partners-grid">
+      <div class="partner-item">Mondelēz<br>International</div>
+      <div class="partner-item">PepsiCo</div>
+      <div class="partner-item">JDE Jacobs<br>Douwe Egberts</div>
+      <div class="partner-item">Danone</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+   WHY LIMIK  ← БЕЛЫЙ
+══════════════════════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-header bg-white">
+      <h2>American Power.<br>No Foreign Delays.</h2>
+      <p>Over 80% of U.S. large power transformers come from abroad. LIMIK delivers from American soil.</p>
+    </div>
+    <div class="why-cols">
+      <div class="why-col">
+        <div class="icon-sq-lg"></div>
+        <h3>U.S.-Manufactured</h3>
+        <p>IRA-eligible. DOD and Section 303 Defense Production Act qualified. No foreign supply chain dependency. Proudly owned and operated in Spartanburg, SC.</p>
+      </div>
+      <div class="why-col">
+        <div class="icon-sq-lg"></div>
+        <h3>Domestic Supply</h3>
+        <p>Over 80% of U.S. large power transformers come from abroad. LIMIK delivers from American soil — faster and with full engineering support.</p>
+      </div>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat">
+        <div class="why-stat-num">80%</div>
+        <div class="why-stat-label">Foreign supply dependency in U.S.</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">$1B+</div>
+        <div class="why-stat-label">Annual U.S. LPT demand</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">600<span style="font-size:20px">MVA</span></div>
+        <div class="why-stat-label">Max capacity per unit</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">§303</div>
+        <div class="why-stat-label">Defense Production Act Eligible</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;text-align:center">
+      <a href="request-quote/" class="btn btn-gold">Request a Quote →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   4. PRODUCTS  ← БЕЛЫЙ
+══════════════════════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-header bg-white">
+      <h2>Built for the<br>American Grid</h2>
+      <p>Three core product lines. Built to IEEE C57, ANSI, NEMA and IEC standards. DOE and DOD procurement qualified.</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-card-top">
+          <div class="icon-sq"></div>
+        </div>
+        <h3>Power Transformers</h3>
+        <p>Core grid infrastructure for utilities, industrial facilities, and defense applications. Single and three-phase configurations.</p>
+        <div class="product-specs">
+          <div class="spec-item"><div class="spec-val">600</div><div class="spec-lbl">Max MVA</div></div>
+          <div class="spec-item"><div class="spec-val">525kV</div><div class="spec-lbl">HV Rating</div></div>
+          <div class="spec-item"><div class="spec-val">69kV</div><div class="spec-lbl">LV Rating</div></div>
+          <div class="spec-item"><div class="spec-val">1 / 3φ</div><div class="spec-lbl">Phase</div></div>
+        </div>
+        <a href="products/" class="product-link">View Specifications →</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-top">
+          <div class="icon-sq"></div>
+        </div>
+        <h3>Autotransformers</h3>
+        <p>High-voltage interconnection between grid systems. Essential for transmission network stability across voltage levels.</p>
+        <div class="product-specs">
+          <div class="spec-item"><div class="spec-val">525kV</div><div class="spec-lbl">HV Rating</div></div>
+          <div class="spec-item"><div class="spec-val">345kV</div><div class="spec-lbl">LV Rating</div></div>
+        </div>
+        <a href="products/" class="product-link">View Specifications →</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-top">
+          <div class="icon-sq"></div>
+        </div>
+        <h3>Generator Step-Up (GSU)</h3>
+        <p>For power plants, wind farms, and solar installations. Critical for data center and renewables infrastructure through 2032.</p>
+        <div class="product-specs">
+          <div class="spec-item"><div class="spec-val">Wind</div><div class="spec-lbl">Renewables</div></div>
+          <div class="spec-item"><div class="spec-val">Solar</div><div class="spec-lbl">Generation</div></div>
+          <div class="spec-item"><div class="spec-val">35kV</div><div class="spec-lbl">Max LV</div></div>
+          <div class="spec-item"><div class="spec-val">Data</div><div class="spec-lbl">Centers</div></div>
+        </div>
+        <a href="products/" class="product-link">View Specifications →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   5. INDUSTRIES  ← СВЕТЛО-СЕРЫЙ
+══════════════════════════════ -->
+<section class="section bg-offwhite">
+  <div class="container">
+    <div class="sec-header bg-offwhite">
+      <h2>Who We Build For</h2>
+      <p>Five core market segments — all facing the same shortage of domestic transformer supply.</p>
+    </div>
+    <div class="industries-grid">
+
+      <div class="industry-card">
+        <div class="icon-sq-sm"></div>
+        <h3>Utilities &amp; Grid</h3>
+        <p>Duke Energy, Dominion, and Southeast utilities need domestic supply now.</p>
+      </div>
+      <div class="industry-card">
+        <div class="icon-sq-sm"></div>
+        <h3>Data Centers</h3>
+        <p>AWS, Azure, Google building hyperscale in the Carolinas. GSU supply critical.</p>
+      </div>
+      <div class="industry-card">
+        <div class="icon-sq-sm"></div>
+        <h3>Defense / DOD</h3>
+        <p>Section 303 eligible. Only new LPT manufacturer qualified for DOD procurement.</p>
+      </div>
+      <div class="industry-card">
+        <div class="icon-sq-sm"></div>
+        <h3>Renewables</h3>
+        <p>Wind, solar, BESS projects need IRA-eligible, U.S.-made GSU transformers.</p>
+      </div>
+      <div class="industry-card">
+        <div class="icon-sq-sm"></div>
+        <h3>EPC Contractors</h3>
+        <p>Bechtel, Fluor, Kiewit plan procurement 5+ years out. Add LIMIK to your spec.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   HOW TO GET A QUOTE  ← БЕЛЫЙ
+══════════════════════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-header bg-white">
+      <h2>How to Get a Quote</h2>
+      <p>No obligation. Just tell us what you need.</p>
+    </div>
+    <div class="how-steps">
+
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h3>Describe Your Project</h3>
+        <p>Submit your technical requirements: application, load, voltage, and delivery needs.</p>
+      </div>
+
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h3>Engineering Review</h3>
+        <p>Our team reviews specs, voltage, MVA, and application. We follow up with questions if needed.</p>
+      </div>
+
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h3>Receive Your Quote</h3>
+        <p>You get a full commercial proposal within 2 business days.</p>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   7. CTA BAND  ← ТЁМНЫЙ MID
+══════════════════════════════ -->
+<section class="section-lg cta-band bg-mid">
+  <div class="container">
+    <h2>Ready to Discuss<br><span>Your Project?</span></h2>
+    <p>No obligation. Tell us what you need and we'll get back within 2 business days.</p>
+    <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
+    <div class="cta-band-note">No obligation · Your information is never shared</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   8. FOOTER  ← T3-STYLE
+══════════════════════════════ -->
+<footer class="footer-t3">
+
+  <!-- Левая тёмная панель — два столбца: бренд + соцсети -->
+  <div class="footer-left">
+
+    <!-- Левый столбец: логотип, текст, email, copyright -->
+    <div class="footer-brand-col">
+      <img src="assets/images/logo-white.svg" alt="LIMIK International" class="footer-logo">
+      <p class="footer-tagline">U.S.-owned large power transformer manufacturer.<br>Spartanburg, SC.</p>
+      <a href="tel:+18645550100" class="footer-contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.27.2 2.48.57 3.61.1.34.01.72-.25.99L6.6 10.8z"/>
+        </svg>
+        +1 (864) 555-0100
+      </a>
+      <a href="mailto:info@limik.com" class="footer-contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        info@limik.com
+      </a>
+      <p class="footer-copy">© 2026 LIMIK International LLC<br>All rights reserved.</p>
+    </div>
+
+    <!-- Правый столбец: Get in touch + соцсети -->
+    <div class="footer-social-col">
+      <p class="footer-social-label">Get in touch</p>
+      <div class="footer-social">
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Twitter">𝕏</a>
+        <a href="#" title="Facebook">f</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Средний блок — фото -->
+  <div class="footer-photo">
+    <img
+      src="https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?auto=format&fit=crop&w=640&q=80"
+      alt="Power substation — LIMIK International"
+      loading="lazy"
+    >
+    <div class="footer-photo-overlay"></div>
+  </div>
+
+  <!-- Тёмный spacer строка 2 (25%) — как в T3 -->
+  <div class="footer-spacer"></div>
+
+  <!-- Правая светлая панель — навигация (75%) -->
+  <div class="footer-right">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Transformers</h4>
+        <a href="transformers/power/">Power Transformers</a>
+        <a href="transformers/autotransformers/">Autotransformers</a>
+        <a href="transformers/gsu/">Generator Step-Up (GSU)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="industries/">Utilities &amp; Grid</a>
+        <a href="industries/">Data Centers</a>
+        <a href="industries/">Defense / DOD</a>
+        <a href="industries/">Renewables</a>
+        <a href="industries/">EPC Contractors</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="support/documentation/">Technical Documentation</a>
+        <a href="support/certifications/">Certifications</a>
+        <a href="support/calculator/">kVA Calculator</a>
+        <a href="support/faq/">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="company/">About LIMIK</a>
+        <a href="company/team/">Our Team</a>
+        <a href="news/">News</a>
+        <a href="careers/">Careers</a>
+        <a href="request-quote/">Request a Quote</a>
+        <a href="contact/">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-certifications">
+      <span>IEEE C57</span>
+      <span>ANSI</span>
+      <span>NEMA</span>
+      <span>IEC</span>
+      <span>Section 303 Defense Production Act Eligible</span>
+      <span>DOE &amp; DOD Procurement Qualified</span>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  // ── Nav burger ──
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+  if (burger && mobile) {
+    burger.addEventListener('click', () => mobile.classList.toggle('open'));
+  }
+
+  // ── Hero: разбивка h1 на слова (clip-reveal как у T3) ──
+  (function () {
+    document.querySelectorAll('.hero-slide h1').forEach(h1 => {
+      const nodes = Array.from(h1.childNodes);
+      h1.innerHTML = '';
+      let wordIndex = 0;
+
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          // Текстовый узел — делим на слова
+          const parts = node.textContent.split(/(\s+)/);
+          parts.forEach(part => {
+            if (/^\s+$/.test(part)) {
+              h1.appendChild(document.createTextNode(part));
+            } else if (part) {
+              const wrap = document.createElement('span');
+              wrap.className = 'word-wrap';
+              const span = document.createElement('span');
+              span.className = 'split-word';
+              span.style.animationDelay = (wordIndex * 0.09) + 's';
+              span.textContent = part;
+              wordIndex++;
+              wrap.appendChild(span);
+              h1.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeName === 'BR') {
+          h1.appendChild(document.createElement('br'));
+        }
+      });
+    });
+  })();
+
+  // ── Hero slider ──
+  (function () {
+    const slides  = document.querySelectorAll('.hero-slide');
+    const dots    = document.querySelectorAll('.hero-dot');
+    let current   = 0;
+    let timer;
+
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 14000);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goTo(+dot.dataset.slide));
+    });
+
+    resetTimer();
+  })();
+</script>
+</body>
+</html>

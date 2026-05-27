@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIMIK — Стратегия приёма заказов до открытия завода</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #09111F;
+  --navy2:  #0D1B2E;
+  --navy3:  #132340;
+  --blue:   #1D5DC1;
+  --blue2:  #2E72E0;
+  --acc:    #F5C200;
+  --acc2:   #FFD740;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --amber:  #F59E0B;
+  --t0:     #F8FAFC;
+  --t1:     #CBD5E1;
+  --t2:     #94A3B8;
+  --t3:     #475569;
+  --line:   rgba(255,255,255,0.07);
+  --serif:  'DM Serif Display', Georgia, serif;
+  --sans:   'DM Sans', sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--navy);
+  color:var(--t1);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+
+/* ── GLOW ORBS ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+.orb-1{width:700px;height:700px;top:-200px;right:-200px;background:radial-gradient(circle,rgba(29,93,193,0.15) 0%,transparent 70%)}
+.orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(245,194,0,0.06) 0%,transparent 70%)}
+
+/* ── LAYOUT ── */
+main{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 28px 100px}
+
+/* ── HERO ── */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--acc);background:rgba(245,194,0,.08);
+  border:1px solid rgba(245,194,0,.2);border-radius:100px;
+  padding:5px 14px;margin-bottom:28px;
+}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(36px,5vw,58px);
+  font-weight:400;line-height:1.1;
+  color:var(--t0);margin-bottom:18px;
+}
+.hero h1 em{font-style:italic;color:var(--acc)}
+.hero-sub{font-size:16px;color:var(--t2);max-width:620px;line-height:1.75;margin-bottom:36px}
+
+.hero-stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{
+  background:var(--navy2);border:1px solid var(--line);border-radius:12px;
+  padding:14px 20px;flex:1;min-width:130px;
+}
+.stat-v{font-family:var(--serif);font-size:22px;color:var(--t0);line-height:1;margin-bottom:4px}
+.stat-l{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+
+/* ── SECTION HEADER ── */
+.sh{display:flex;align-items:center;gap:14px;margin:56px 0 28px}
+.sh-num{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  color:var(--acc);background:rgba(245,194,0,.08);
+  border:1px solid rgba(245,194,0,.2);border-radius:6px;
+  padding:3px 9px;white-space:nowrap;
+}
+.sh-title{font-family:var(--serif);font-size:22px;color:var(--t0);font-weight:400}
+.sh-line{flex:1;height:1px;background:var(--line)}
+
+/* ── CASE BLOCK ── */
+.case{
+  background:var(--navy2);border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;margin-bottom:12px;
+}
+.case-header{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+  padding:18px 22px;cursor:pointer;transition:background .15s;
+}
+.case-header:hover{background:rgba(255,255,255,.03)}
+.case-tag{
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.06em;
+  padding:3px 9px;border-radius:5px;white-space:nowrap;
+}
+.tag-good{background:rgba(34,197,94,.1);color:#4ADE80;border:1px solid rgba(34,197,94,.2)}
+.tag-diff{background:rgba(245,194,0,.1);color:var(--acc);border:1px solid rgba(245,194,0,.2)}
+.tag-bad{background:rgba(239,68,68,.1);color:#F87171;border:1px solid rgba(239,68,68,.2)}
+.case-name{font-size:15px;font-weight:600;color:var(--t0)}
+.case-sub{font-size:12px;color:var(--t3);margin-top:2px}
+.case-arr{
+  font-size:18px;color:var(--t3);transition:transform .2s;
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+}
+.case.open .case-arr{transform:rotate(180deg)}
+.case-body{display:none;padding:0 22px 22px}
+.case.open .case-body{display:block}
+
+.case-body p{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:12px}
+.case-body strong{color:var(--t0);font-weight:600}
+
+.key-point{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--navy3);border-radius:10px;padding:14px 16px;margin-bottom:8px;
+}
+.kp-ico{font-size:16px;flex-shrink:0;margin-top:1px}
+.kp-text{font-size:13px;color:var(--t2);line-height:1.65}
+.kp-text strong{color:var(--t0)}
+
+/* ── DIVIDER ── */
+.vs{
+  text-align:center;position:relative;margin:28px 0;
+}
+.vs::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line)}
+.vs span{
+  position:relative;font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--t3);
+  background:var(--navy);padding:0 14px;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare{
+  background:var(--navy2);border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;margin-bottom:24px;
+}
+.compare-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.compare-row:last-child{border-bottom:none}
+.compare-row.header{background:rgba(255,255,255,.03)}
+.compare-cell{
+  padding:14px 18px;font-size:13px;color:var(--t2);line-height:1.6;
+  border-right:1px solid var(--line);
+}
+.compare-cell:last-child{border-right:none}
+.compare-cell.header{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3)}
+.compare-cell.good strong{color:#4ADE80}
+.compare-cell.bad strong{color:#F87171}
+.compare-cell strong{color:var(--t0)}
+
+/* ── FLOW DIAGRAM ── */
+.flow{display:flex;flex-direction:column;gap:0;margin-bottom:24px}
+.flow-step{
+  display:grid;grid-template-columns:40px 1fr;gap:0;
+}
+.flow-left{display:flex;flex-direction:column;align-items:center}
+.flow-dot{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  flex-shrink:0;margin-bottom:0;
+}
+.flow-line{flex:1;width:2px;background:var(--line);margin:4px 0}
+.flow-content{
+  background:var(--navy2);border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px;margin-left:12px;margin-bottom:10px;
+}
+.flow-step:last-child .flow-line{display:none}
+.flow-title{font-size:14px;font-weight:700;color:var(--t0);margin-bottom:6px}
+.flow-desc{font-size:12px;color:var(--t2);line-height:1.65}
+.flow-note{
+  font-family:var(--mono);font-size:11px;color:var(--acc);
+  background:rgba(245,194,0,.06);border:1px solid rgba(245,194,0,.15);
+  border-radius:5px;padding:4px 10px;display:inline-block;margin-top:8px;
+}
+
+/* ── LOI BOX ── */
+.loi-box{
+  background:var(--navy3);border:1px solid rgba(29,93,193,.3);border-radius:16px;
+  padding:28px;margin-bottom:24px;position:relative;overflow:hidden;
+}
+.loi-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--acc),var(--blue));
+}
+.loi-title{font-family:var(--serif);font-size:20px;color:var(--t0);margin-bottom:6px}
+.loi-sub{font-size:13px;color:var(--t3);margin-bottom:20px}
+.loi-body{
+  background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;
+  padding:18px 20px;font-family:var(--mono);font-size:12px;color:var(--t2);line-height:1.9;
+}
+.loi-body .field{color:var(--acc2)}
+.loi-body .comment{color:var(--t3);font-style:italic}
+.loi-uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.loi-use{
+  background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+}
+.loi-use-t{font-size:12px;font-weight:700;color:var(--t0);margin-bottom:4px}
+.loi-use-d{font-size:11px;color:var(--t3);line-height:1.5}
+
+/* ── LIMIK ADVANTAGE ── */
+.advantage{
+  background:linear-gradient(135deg,rgba(29,93,193,.1) 0%,rgba(245,194,0,.06) 100%);
+  border:1px solid rgba(29,93,193,.25);border-radius:16px;padding:28px;margin-bottom:24px;
+}
+.advantage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px}
+.adv{
+  background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+}
+.adv-num{font-family:var(--mono);font-size:10px;color:var(--acc);font-weight:600;margin-bottom:6px}
+.adv-t{font-size:13px;font-weight:700;color:var(--t0);margin-bottom:5px}
+.adv-d{font-size:12px;color:var(--t2);line-height:1.55}
+
+/* ── ACTION BOX ── */
+.action{
+  background:var(--navy2);border:1px solid rgba(34,197,94,.2);border-radius:16px;
+  padding:28px;margin-bottom:12px;
+}
+.action-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.action-icon{font-size:24px}
+.action-title{font-family:var(--serif);font-size:20px;color:var(--t0)}
+.action-steps{display:flex;flex-direction:column;gap:8px}
+.action-step{
+  display:flex;gap:12px;align-items:flex-start;
+  background:rgba(255,255,255,.03);border-radius:8px;padding:12px 14px;
+}
+.step-n{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  color:#4ADE80;background:rgba(34,197,94,.1);
+  border-radius:5px;padding:2px 7px;white-space:nowrap;flex-shrink:0;margin-top:1px;
+}
+.step-t{font-size:13px;color:var(--t1);line-height:1.6}
+.step-t strong{color:var(--t0)}
+
+/* ── BUTTON ── */
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--acc);color:#000;font-weight:700;font-size:14px;
+  border:none;border-radius:10px;padding:14px 28px;cursor:pointer;
+  font-family:var(--sans);text-decoration:none;transition:all .15s;margin-top:12px;
+}
+.cta-btn:hover{background:var(--acc2);transform:translateY(-1px)}
+
+/* ── QUOTE ── */
+.quote{
+  border-left:3px solid var(--acc);padding:14px 20px;
+  background:rgba(245,194,0,.04);border-radius:0 10px 10px 0;margin:16px 0;
+}
+.quote-text{font-family:var(--serif);font-size:16px;color:var(--t1);font-style:italic;line-height:1.65}
+.quote-src{font-size:11px;color:var(--t3);margin-top:6px}
+
+/* ── BADGE PILL ── */
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;
+  vertical-align:middle;margin:0 3px;
+}
+.pill-green{background:rgba(34,197,94,.12);color:#4ADE80;border:1px solid rgba(34,197,94,.2)}
+.pill-blue{background:rgba(29,93,193,.15);color:#93C5FD;border:1px solid rgba(59,130,246,.2)}
+.pill-amber{background:rgba(245,158,11,.12);color:#FCD34D;border:1px solid rgba(245,158,11,.2)}
+
+/* ── CONCLUSION ── */
+.conclusion{
+  background:linear-gradient(135deg,var(--navy3) 0%,rgba(29,93,193,.12) 100%);
+  border:1px solid rgba(29,93,193,.3);border-radius:20px;padding:36px;margin-top:48px;
+  position:relative;overflow:hidden;text-align:center;
+}
+.conclusion::after{
+  content:'';position:absolute;bottom:-60px;right:-60px;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(245,194,0,.1) 0%,transparent 70%);
+}
+.conclusion h2{font-family:var(--serif);font-size:28px;color:var(--t0);margin-bottom:12px}
+.conclusion p{font-size:14px;color:var(--t2);max-width:560px;margin:0 auto 24px;line-height:1.75}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:600px){
+  .compare-row{grid-template-columns:1fr}
+  .compare-cell{border-right:none;border-bottom:1px solid var(--line)}
+  .compare-cell:last-child{border-bottom:none}
+  .hero h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<main>
+
+<!-- ── HERO ── -->
+<div class="hero fade-in">
+  <div class="hero-badge"><div class="pulse"></div>Внутренний стратегический документ · LIMIK</div>
+  <h1>Как принимать заказы<br>до открытия <em>завода</em></h1>
+  <p class="hero-sub">Анализ рыночных прецедентов, доказательная база и конкретная схема которая работает в отрасли силовых трансформаторов.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-v">2–4 года</div><div class="stat-l">Очередь у лидеров рынка</div></div>
+    <div class="stat"><div class="stat-v">LOI</div><div class="stat-l">Инструмент фиксации</div></div>
+    <div class="stat"><div class="stat-v">3</div><div class="stat-l">Рыночных прецедента</div></div>
+    <div class="stat"><div class="stat-v">2029+</div><div class="stat-l">Первая поставка LIMIK</div></div>
+  </div>
+</div>
+
+<!-- ── SECTION 1: ПРЕЦЕДЕНТЫ ── -->
+<div class="sh fade-in">
+  <div class="sh-num">01</div>
+  <div class="sh-title">Как это делали другие</div>
+  <div class="sh-line"></div>
+</div>
+
+<p style="font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:20px" class="fade-in">
+  Прежде чем выстраивать стратегию — важно понять что реально работало на рынке. Три случая с разным уровнем применимости к ситуации LIMIK.
+</p>
+
+<!-- CASE 1: NORTHERN -->
+<div class="case fade-in" id="c1">
+  <div class="case-header" onclick="toggle('c1')">
+    <div class="case-tag tag-diff">Частичный аналог</div>
+    <div>
+      <div class="case-name">Northern Transformer — Innisfil, Ontario</div>
+      <div class="case-sub">$207 млн · Groundbreaking сентябрь 2025 · Старт операций 2028</div>
+    </div>
+    <div class="case-arr">⌄</div>
+  </div>
+  <div class="case-body">
+    <div class="quote">
+      <div class="quote-text">«Мы глубоко благодарны нашим клиентам: Hydro One за их долгосрочное видение и раннюю приверженность, OPG и Bruce Power за сотрудничество»</div>
+      <div class="quote-src">— CEO Алексей Мечниковский, Groundbreaking, сентябрь 2025</div>
+    </div>
+    <p>Northern Transformer объявили о заводе в Innisfil в сентябре 2025. Завод откроется в 2028. Но <strong>Hydro One подписал обязательство до groundbreaking</strong> — то есть клиент пришёл первым, и именно под него строится завод.</p>
+    <div class="key-point">
+      <div class="kp-ico">✅</div>
+      <div class="kp-text"><strong>Что сработало:</strong> Клиенты — Hydro One, OPG, Bruce Power — это <em>существующие</em> партнёры с 1981 года. Новый завод — расширение под уже проверенных покупателей, а не поиск новых.</div>
+    </div>
+    <div class="key-point">
+      <div class="kp-ico">⚠️</div>
+      <div class="kp-text"><strong>Почему это не прямой аналог для LIMIK:</strong> У Northern Transformer было 40+ лет репутации и действующий завод. Они расширяли бизнес, а не создавали с нуля. У них не было проблемы «нам не доверяют».</div>
+    </div>
+    <div class="key-point">
+      <div class="kp-ico">💡</div>
+      <div class="kp-text"><strong>Что взять:</strong> Государственная поддержка как сигнал доверия — Ontario $10.5 млн + FedDev $6 млн. Это «одобрено государством». Для LIMIK эквивалент — Qatar Fund LOI ($540M) + Section 303 документ Трампа. Это <em>мощнее</em>, чем $16M канадских грантов.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE 2: HICO -->
+<div class="case fade-in" id="c2">
+  <div class="case-header" onclick="toggle('c2')">
+    <div class="case-tag tag-good">Ближайший аналог</div>
+    <div>
+      <div class="case-name">Hyosung HICO — Memphis, Tennessee</div>
+      <div class="case-sub">Корейская компания · Завода в США не было · Построили под контракт TVA</div>
+    </div>
+    <div class="case-arr">⌄</div>
+  </div>
+  <div class="case-body">
+    <p>HICO — это самый близкий прецедент к ситуации LIMIK. Корейская Hyosung Heavy Industries не имела производства в США. Они <strong>сначала получили LOI от Tennessee Valley Authority (TVA)</strong> — крупнейшей федеральной utility — и только потом построили завод в Мемфисе под этот контракт.</p>
+    <div class="key-point">
+      <div class="kp-ico">✅</div>
+      <div class="kp-text"><strong>Что сработало:</strong> Иностранная компания без US репутации. Но контракт с TVA (федеральная utility с бюджетом $14B/год) снял все риски. Инвесторы и клиенты видят: «Если TVA доверяет — можно доверять и нам».</div>
+    </div>
+    <div class="key-point">
+      <div class="kp-ico">🎯</div>
+      <div class="kp-text"><strong>Применимость к LIMIK:</strong> Один LOI от Duke Energy, NextEra или DOD — и ситуация кардинально меняется. Это не просто «заказ», это <em>верификация</em> для всех остальных клиентов и инвесторов одновременно.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE 3: SIEMENS -->
+<div class="case fade-in" id="c3">
+  <div class="case-header" onclick="toggle('c3')">
+    <div class="case-tag tag-diff">Частичный аналог</div>
+    <div>
+      <div class="case-name">Siemens Energy — Charlotte, North Carolina</div>
+      <div class="case-sub">$421 млн расширение · US LPT производство старт 2027 · Заказы принимают уже сейчас</div>
+    </div>
+    <div class="case-arr">⌄</div>
+  </div>
+  <div class="case-body">
+    <p>Siemens объявили расширение Charlotte до $421 млн и сразу написали на сайте: «US LPT производство — старт 2027». Клиенты ставят себя в очередь, зная что завод не готов. Это работает потому что <strong>бренд Siemens снимает риск ожидания</strong>.</p>
+    <div class="key-point">
+      <div class="kp-ico">⚠️</div>
+      <div class="kp-text"><strong>Почему частичный аналог:</strong> Siemens использует 150-летнюю репутацию как залог. «Siemens не исчезнет пока ты ждёшь 2 года» — это очевидно всем. LIMIK должен создать аналогичный сигнал надёжности другими средствами.</div>
+    </div>
+    <div class="key-point">
+      <div class="kp-ico">💡</div>
+      <div class="kp-text"><strong>Что взять:</strong> Открытость о таймлайне. Siemens не скрывает «завод не готов» — они превращают это в позиционирование: «резервируйте место в очереди сейчас». Честность + конкретная дата = доверие.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 2: ПОЧЕМУ ЭТО РАБОТАЕТ ── -->
+<div class="sh fade-in">
+  <div class="sh-num">02</div>
+  <div class="sh-title">Почему клиенты готовы ждать</div>
+  <div class="sh-line"></div>
+</div>
+
+<div class="compare fade-in">
+  <div class="compare-row header">
+    <div class="compare-cell header">Рынок трансформаторов сейчас</div>
+    <div class="compare-cell header">Что это означает для LIMIK</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-cell bad"><strong>Очередь 2–4 года</strong> у VTC, PTT, Delta Star. Utility компании не могут получить трансформаторы даже если готовы платить прямо сейчас.</div>
+    <div class="compare-cell good"><strong>LIMIK не конкурирует с теми кто «быстрее»</strong> — все медленные. Клиент всё равно ждёт. Вопрос только у кого.</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-cell bad"><strong>Дефицит LPT критический</strong> — США строит data centers, переходит на возобновляемую энергию, модернизирует grid. Спрос опережает предложение на годы вперёд.</div>
+    <div class="compare-cell good"><strong>Место в очереди — это ценность</strong>. Клиент который подпишет LOI с LIMIK сейчас — гарантирует себе поставщика на 2029–2031, когда конкурентов у него будет ещё меньше.</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-cell bad"><strong>Проекты планируются за 3–5 лет</strong>. Utility, EPC-подрядчики, data center operators — все знают свои потребности на 2029–2032 прямо сейчас.</div>
+    <div class="compare-cell good"><strong>LOI сейчас = страховка для клиента</strong>. Зафиксировать поставщика без обязательства купить — это разумный risk management, а не авантюра.</div>
+  </div>
+</div>
+
+<div class="quote fade-in">
+  <div class="quote-text">«Клиент который видит очередь в 3 года у действующих производителей — с радостью подпишет LOI с новым заводом который откроется через 4 года. Потому что разница всего в 12 месяцев, а поставщик на 30+ лет вперёд.»</div>
+</div>
+
+<!-- ── SECTION 3: ТРИ УРОВНЯ ── -->
+<div class="sh fade-in">
+  <div class="sh-num">03</div>
+  <div class="sh-title">Три уровня честности на сайте</div>
+  <div class="sh-line"></div>
+</div>
+
+<p style="font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:20px" class="fade-in">
+  Главный страх: «Если сказать что завода нет — клиент уйдёт». На самом деле проблема не в отсутствии завода, а в том <em>как это подать</em>.
+</p>
+
+<div class="flow fade-in">
+
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="flow-dot" style="background:rgba(239,68,68,.15);color:#F87171;border:1px solid rgba(239,68,68,.2)">✗</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-content" style="border-color:rgba(239,68,68,.2)">
+      <div class="flow-title" style="color:#F87171">Уровень 1 — Скрывать</div>
+      <div class="flow-desc">«Мы производим трансформаторы» — без уточнений. Клиент приезжает на завод или делает due diligence → обнаруживает что завода нет → доверие потеряно навсегда. <strong style="color:#F87171">Смертельно для репутации.</strong></div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="flow-dot" style="background:rgba(245,194,0,.1);color:var(--acc);border:1px solid rgba(245,194,0,.2)">~</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-content" style="border-color:rgba(245,194,0,.2)">
+      <div class="flow-title" style="color:var(--acc)">Уровень 2 — Умалчивать</div>
+      <div class="flow-desc">Говорить о продуктах, команде, технологиях — но молчать о статусе строительства. Создаёт неловкость при первом серьёзном разговоре. Клиент сам докопается до правды — и будет чувствовать что его обманули. <strong style="color:var(--acc)">Допустимо, но рискованно.</strong></div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="flow-dot" style="background:rgba(34,197,94,.12);color:#4ADE80;border:1px solid rgba(34,197,94,.2)">✓</div>
+      <div class="flow-line" style="opacity:0"></div>
+    </div>
+    <div class="flow-content" style="border-color:rgba(34,197,94,.25)">
+      <div class="flow-title" style="color:#4ADE80">Уровень 3 — Превращать в УТП ✓</div>
+      <div class="flow-desc">«Завод строится — именно поэтому вы получаете лучшие условия, прямой контакт с основателями и место в первой очереди». Честность + конкретика + выгода для клиента = доверие и конверсия. <strong style="color:#4ADE80">Это работает. Это правда. Это LIMIK.</strong></div>
+      <div class="flow-note">«Reserve Your Delivery Slot — 2029 Production Queue»</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── SECTION 4: LOI ── -->
+<div class="sh fade-in">
+  <div class="sh-num">04</div>
+  <div class="sh-title">Инструмент: Letter of Intent (LOI)</div>
+  <div class="sh-line"></div>
+</div>
+
+<div class="loi-box fade-in">
+  <div class="loi-title">Что такое LOI и как он работает</div>
+  <div class="loi-sub">Стандартный инструмент отрасли. Не обязательство купить — намерение рассмотреть.</div>
+
+  <div class="loi-body">
+    <span style="color:var(--t3)">// Типовая структура LOI от клиента LIMIK</span><br><br>
+    <span class="field">Компания:</span> [Duke Energy / NextEra / EPC Contractor / DOD]<br>
+    <span class="field">Намерение:</span> Рассмотреть приобретение трансформаторов у LIMIK<br>
+    <span class="field">Параметры:</span> [X] ед. · [MVA range] · [kV class] · [применение]<br>
+    <span class="field">Условие:</span> При условии запуска завода LIMIK не позднее [Q2 2029]<br>
+    <span class="field">Обязательство:</span> <span style="color:#4ADE80">Нет</span> — <span style="color:var(--t3)">намерение, не контракт</span><br>
+    <span class="field">Предоплата:</span> <span style="color:#4ADE80">Нет</span><br><br>
+    <span class="comment">// Клиент ничем не рискует. Подписание LOI = разумный risk management.</span>
+  </div>
+
+  <div class="loi-uses">
+    <div class="loi-use">
+      <div class="loi-use-t">💰 Для инвесторов</div>
+      <div class="loi-use-d">«У нас уже X клиентов в очереди» — конкретный аргумент для BlackRock и Family Office на встречах</div>
+    </div>
+    <div class="loi-use">
+      <div class="loi-use-t">🏦 Для банков</div>
+      <div class="loi-use-d">LOI от utility = подтверждённый спрос = основание для кредитной линии под недвижимость</div>
+    </div>
+    <div class="loi-use">
+      <div class="loi-use-t">🏛️ Для государства</div>
+      <div class="loi-use-d">«Есть покупатели американской продукции» = аргумент для DOE/DOD грантов и Section 303</div>
+    </div>
+    <div class="loi-use">
+      <div class="loi-use-t">📋 Для Qatar Fund</div>
+      <div class="loi-use-d">LOI закрывает вопрос «а есть ли спрос» — снимает главное сомнение co-investors</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 5: ПРЕИМУЩЕСТВА LIMIK ── -->
+<div class="sh fade-in">
+  <div class="sh-num">05</div>
+  <div class="sh-title">Что у LIMIK уже есть — и это сильнее чем кажется</div>
+  <div class="sh-line"></div>
+</div>
+
+<p style="font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:20px" class="fade-in">
+  Сравним с Northern Transformer в момент когда они только анонсировали Innisfil завод:
+</p>
+
+<div class="advantage fade-in">
+  <div style="font-family:var(--serif);font-size:18px;color:var(--t0);margin-bottom:4px">LIMIK vs Northern Transformer на старте</div>
+  <div style="font-size:12px;color:var(--t3);margin-bottom:0">Что есть у LIMIK чего не было у Northern когда они только объявили о новом заводе</div>
+  <div class="advantage-grid">
+    <div class="adv">
+      <div class="adv-num">АКТИВ 01</div>
+      <div class="adv-t">Qatar Fund LOI — $540M</div>
+      <div class="adv-d">Northern получила $10.5M от Онтарио и $6M от федералов. Суверенный фонд на $540M — это в 33× мощнее как сигнал финансовой надёжности.</div>
+    </div>
+    <div class="adv">
+      <div class="adv-num">АКТИВ 02</div>
+      <div class="adv-t">Section 303 — Трамп</div>
+      <div class="adv-d">Юридическое право государства заключать долгосрочные контракты. Это прямой канал к DOD/DOE заказам. У Northern ничего подобного не было.</div>
+    </div>
+    <div class="adv">
+      <div class="adv-num">АКТИВ 03</div>
+      <div class="adv-t">Команда с US опытом</div>
+      <div class="adv-d">Женя — 4 года PTI (США, Power трансформаторы). 15 инженеров Delta Star. Реальные имена которые клиент может проверить — это не «планируем нанять».</div>
+    </div>
+    <div class="adv">
+      <div class="adv-num">АКТИВ 04</div>
+      <div class="adv-t">Spartanburg SC — конкретная локация</div>
+      <div class="adv-d">1M+ кв.фт, рядом BMW завод, F-16, highway. Rail-accessible. Это не «выбираем локацию» — это конкретный адрес который клиент может посетить.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 6: СХЕМА ── -->
+<div class="sh fade-in">
+  <div class="sh-num">06</div>
+  <div class="sh-title">Практическая схема — шаг за шагом</div>
+  <div class="sh-line"></div>
+</div>
+
+<div class="action fade-in">
+  <div class="action-header">
+    <div class="action-icon">🌐</div>
+    <div class="action-title">Что должно быть на сайте LIMIK прямо сейчас</div>
+  </div>
+  <div class="action-steps">
+    <div class="action-step">
+      <div class="step-n">Hero</div>
+      <div class="step-t"><strong>Конкретный месседж, не слоган.</strong> «U.S.-owned Power Transformer Manufacturer. Spartanburg, South Carolina. Factory under construction — Production starts 2029. Reserve your delivery slot.»</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">Факты</div>
+      <div class="step-t"><strong>Три цифры под Hero:</strong> $1B Project · Qatar Fund backed · Production 2029. Суверенный фонд — это верификация которую конкуренты не имеют.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">Команда</div>
+      <div class="step-t"><strong>Реальные люди с LinkedIn.</strong> Женя — PTI USA (Power Transformers, 4 years). Инженеры Delta Star. Алина — Finance. Имена + фото + проверяемые профили. Это главный доверительный сигнал.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">Timeline</div>
+      <div class="step-t"><strong>Открытый roadmap:</strong> Q3 2025 — Site acquisition · Q1 2026 — Groundbreaking · Q4 2027 — Equipment installation · Q1 2029 — First transformer. Честность о сроках = доверие.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">CTA</div>
+      <div class="step-t"><strong>Не «Buy Now» — а «Register Interest».</strong> Форма: Компания / Контакт / Проект / MVA-kV / Ожидаемый год поставки. Каждая заполненная форма → звонок → LOI.</div>
+    </div>
+  </div>
+</div>
+
+<div class="action fade-in" style="border-color:rgba(245,194,0,.2);margin-top:12px">
+  <div class="action-header">
+    <div class="action-icon">🎯</div>
+    <div class="action-title">Кто первые целевые клиенты для LOI</div>
+  </div>
+  <div class="action-steps">
+    <div class="action-step">
+      <div class="step-n">01</div>
+      <div class="step-t"><strong>Utilities с проектами на 2029–2031:</strong> Duke Energy (Carolinas — рядом с Spartanburg), Dominion Energy, NextEra Energy. У них есть grid modernization планы и им нужны поставщики уже сейчас.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">02</div>
+      <div class="step-t"><strong>DOD/DOE через Кена Каварда и Джереда Эгена:</strong> Section 303 открывает прямой путь к военным контрактам. Один LOI от Пентагона — и история LIMIK кардинально меняется.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">03</div>
+      <div class="step-t"><strong>Hyperscale Data Centers:</strong> Amazon AWS, Microsoft Azure, Google — все строят в Carolinas. Им нужны GSU трансформаторы для 2029–2032 проектов. «Местный производитель» = стратегический партнёр.</div>
+    </div>
+    <div class="action-step">
+      <div class="step-n">04</div>
+      <div class="step-t"><strong>EPC-подрядчики:</strong> Bechtel, Fluor, Kiewit. Они проектируют объекты на 5+ лет вперёд и включают поставщиков трансформаторов в проектную документацию на стадии проектирования.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONCLUSION ── -->
+<div class="conclusion fade-in">
+  <h2>Главный вывод</h2>
+  <p>Отсутствие завода — это не слабость которую нужно скрывать. Это <em>контекст</em> который правильно поданный становится конкурентным преимуществом: ранний клиент получает лучшие условия, прямой контакт с основателями и фиксированное место в очереди при остром дефиците.</p>
+  <p style="margin-bottom:20px">Один LOI от Duke Energy, NextEra или DOD меняет всё — для инвесторов, банков и остальных клиентов одновременно.</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <span class="pill pill-green">✓ Честность работает</span>
+    <span class="pill pill-blue">✓ LOI — стандарт отрасли</span>
+    <span class="pill pill-amber">✓ Дефицит — это наш аргумент</span>
+  </div>
+</div>
+
+</main>
+
+<script>
+// Toggle cases
+function toggle(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Intersection observer for fade-in
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Auto-open first case
+document.getElementById('c2').classList.add('open');
+</script>
+</body>
+</html>

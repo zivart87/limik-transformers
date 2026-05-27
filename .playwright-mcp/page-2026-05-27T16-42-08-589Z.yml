@@ -1,0 +1,343 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link "T3 by EquipmentShare" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic: T3 by EquipmentShare
+      - generic [ref=e13]:
+        - button "solutions" [ref=e15] [cursor=pointer]:
+          - generic [ref=e16]: solutions
+          - generic:
+            - img
+        - link "Industries" [ref=e17] [cursor=pointer]:
+          - /url: /industries
+        - link "Support" [ref=e18] [cursor=pointer]:
+          - /url: /support
+        - link "events" [ref=e19] [cursor=pointer]:
+          - /url: /events
+      - generic [ref=e20]:
+        - link "Login" [ref=e21] [cursor=pointer]:
+          - /url: https://auth.estrack.com/login?state=hKFo2SA3cjFJd0tCZkdSekVTTDRmSlVTbmZSb1I4dFhaMktxeqFupWxvZ2luo3RpZNkgejhqNDh0SDE1bDlKa2w2RUZEaVNPbnhydlZuOXlQMVKjY2lk2SBZVTc5MkRLdDBtZUwwMFcwbG8zbHZhY0FSSDdmMkl2RA&client=YU792DKt0meL00W0lo3lvacARH7f2IvD&protocol=oauth2&audience=https%3A%2F%2Fapi.equipmentshare.com&redirect_uri=https%3A%2F%2Fapp.estrack.com%2F&scope=openid%20profile%20email&response_type=code&response_mode=query&nonce=WEhOX01EVWxQdXlweGJBZ2ExbVNCSGNwRnlveDRmV2tVMGJWTERYNExHcw%3D%3D&code_challenge=K0GKhk3QkbhQv3HPkkwqpc7xh4XVaSCuBLY-Mb6I7uI&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtcmVhY3QiLCJ2ZXJzaW9uIjoiMS45LjAifQ%3D%3D&__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+        - link "Request Demo" [ref=e22] [cursor=pointer]:
+          - /url: /demo
+          - generic [ref=e23]: Request Demo
+  - main [ref=e24]:
+    - generic [ref=e30]:
+      - generic "Built by EquipmentShare" [ref=e31]
+      - heading "Optimize your fleet with T3" [level=1] [ref=e35]
+      - heading "Real-world solutions for modern day fleet managers." [level=2] [ref=e41]
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - img [ref=e55]
+        - img [ref=e57]
+        - img [ref=e59]
+        - img [ref=e61]
+      - heading "T3 works with all vehicles, all equipment types, and any OEM" [level=2] [ref=e63]
+    - generic [ref=e66]:
+      - heading "Why we were built" [level=2] [ref=e68]
+      - paragraph [ref=e70]:
+        - generic [ref=e72]:
+          - generic [ref=e73]: T3
+          - generic [ref=e74]: was
+          - generic [ref=e75]: built
+          - generic [ref=e76]: by
+          - generic [ref=e77]: contractors
+          - generic [ref=e78]: who
+          - generic [ref=e79]: lived
+          - generic [ref=e80]: the
+          - generic [ref=e81]: same
+          - generic [ref=e82]: challenges
+          - generic [ref=e83]: fleet
+        - generic [ref=e85]:
+          - generic [ref=e86]: managers
+          - generic [ref=e87]: face
+          - generic [ref=e88]: every
+          - generic [ref=e89]: day.
+          - generic [ref=e90]: Founded
+          - generic [ref=e91]: in
+          - generic [ref=e92]: 2015,
+          - generic [ref=e93]: EquipmentShare
+          - generic [ref=e94]: set
+          - generic [ref=e95]: out
+          - generic [ref=e96]: to
+        - generic [ref=e98]:
+          - generic [ref=e99]: create
+          - generic [ref=e100]: technology
+          - generic [ref=e101]: that
+          - generic [ref=e102]: removes
+          - generic [ref=e103]: industry
+          - generic [ref=e104]: roadblocks
+          - generic [ref=e105]: and
+          - generic [ref=e106]: helps
+          - generic [ref=e107]: fleets
+        - generic [ref=e109]:
+          - generic [ref=e110]: run
+          - generic [ref=e111]: smarter
+          - generic [ref=e112]: and
+          - generic [ref=e113]: more
+          - generic [ref=e114]: profitably.
+    - generic [ref=e117]:
+      - paragraph [ref=e121]: Today, EquipmentShare operates one of the nation’s largest and most complex mixed fleets with over 349,000 connected assets across 380+ locations.
+      - paragraph [ref=e127]: We push T3 to the limit. If it can handle our scale, it can handle yours, bringing control, clarity, and better decisions to fleets of any size.
+    - generic [ref=e130]:
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - heading "All-In-One Platform" [level=2] [ref=e135]
+          - heading "What to expect with T3" [level=3] [ref=e136]:
+            - generic [ref=e138]:
+              - generic [ref=e139]: What
+              - generic [ref=e140]: to
+              - generic [ref=e141]: expect
+              - generic [ref=e142]: with
+              - generic [ref=e143]: T3
+        - paragraph [ref=e144]:
+          - generic [ref=e146]:
+            - generic [ref=e147]: T3
+            - generic [ref=e148]: replaces
+            - generic [ref=e149]: the
+            - generic [ref=e150]: clutter
+            - generic [ref=e151]: of
+            - generic [ref=e152]: multiple
+            - generic [ref=e153]: systems
+            - generic [ref=e154]: with
+            - generic [ref=e155]: a
+            - generic [ref=e156]: single,
+            - generic [ref=e157]: powerful
+            - generic [ref=e158]: solution
+            - generic [ref=e159]: for
+            - generic [ref=e160]: tracking,
+          - generic [ref=e162]:
+            - generic [ref=e163]: managing,
+            - generic [ref=e164]: and
+            - generic [ref=e165]: optimizing
+            - generic [ref=e166]: your
+            - generic [ref=e167]: fleet.
+      - link "Explore solutions" [ref=e168] [cursor=pointer]:
+        - /url: /solutions
+        - generic [ref=e169]: Explore solutions
+    - generic [ref=e174]:
+      - list [ref=e176]:
+        - group "1 / 8" [ref=e177]:
+          - generic [ref=e178]:
+            - heading "Millis Equipment" [level=3] [ref=e181]
+            - generic [ref=e183]:
+              - blockquote [ref=e184]: “Because of the T3 Dash Cam, we avoided having our guy tied up in a courtroom for a day and out of the shop. My mechanic didn’t have to spend a day testifying and it saved us time and money.”
+              - generic [ref=e185]:
+                - heading "Chade Dickey" [level=4] [ref=e186]
+                - heading "Fleet Manager" [level=5] [ref=e187]
+        - group "2 / 8" [ref=e188]:
+          - generic [ref=e189]:
+            - heading "JE Dunn" [level=3] [ref=e192]
+            - generic [ref=e194]:
+              - blockquote [ref=e195]: “They offer a smarter system that helps us better manage our equipment and rentals. It provides better visibility on the work started to the work completed, including record keeping and from a risk and safety management perspective, their technology helps us check off multiple boxes.”
+              - generic [ref=e196]:
+                - heading "Patrick Leis" [level=4] [ref=e197]
+                - heading "Director of Logistics Operations" [level=5] [ref=e198]
+        - group "3 / 8" [ref=e199]:
+          - generic [ref=e200]:
+            - heading "South Texas Frac" [level=3] [ref=e203]
+            - generic [ref=e205]:
+              - blockquote [ref=e206]: “By using T3 technology, I can pinpoint which machine is causing problems and ask questions to the team in the field or request some service for that machine. That helps us avoid emergencies and prevent breakdowns. I can see what the machine is working on, where it’s going and which facility it’s on from states away.”
+              - generic [ref=e207]:
+                - heading "Shawn Wildt" [level=4] [ref=e208]
+                - heading "Purchasing Agent" [level=5] [ref=e209]
+        - group "4 / 8" [ref=e210]:
+          - generic [ref=e211]:
+            - heading "IES Communications" [level=3] [ref=e214]
+            - generic [ref=e216]:
+              - blockquote [ref=e217]: “We’re impressed by how durable the T3 Dash Cams are. They’ve stood up to everything we’ve thrown at them.”
+              - generic [ref=e218]:
+                - heading "Jessica Freeman" [level=4] [ref=e219]
+                - heading "Fleet Manager" [level=5] [ref=e220]
+        - group "5 / 8" [ref=e221]:
+          - generic [ref=e222]:
+            - heading "Capital Construction" [level=3] [ref=e225]
+            - generic [ref=e227]:
+              - blockquote [ref=e228]: “It was the first time I’ve ever had anything stolen, and we recovered the same day. We saved about $200,000 worth of equipment.”
+              - generic [ref=e229]:
+                - heading "Aaron Miller" [level=4] [ref=e230]
+                - heading "Shop Manager" [level=5] [ref=e231]
+        - group "6 / 8" [ref=e232]:
+          - generic [ref=e233]:
+            - heading "IES Communications" [level=3] [ref=e236]
+            - generic [ref=e238]:
+              - blockquote [ref=e239]: “With T3, we’re able to scan through the alerts we want to look at, like cell phone usage and following distance alerts. I can just hit the pause button, take a screenshot of a driver on a cell phone and send it to their manager for immediate corrective action - quickly and electronically”
+              - generic [ref=e240]:
+                - heading "Jessica Freeman" [level=4] [ref=e241]
+                - heading "Fleet Manager" [level=5] [ref=e242]
+        - group "7 / 8" [ref=e243]:
+          - generic [ref=e244]:
+            - heading "Flintco" [level=3] [ref=e247]
+            - generic [ref=e249]:
+              - blockquote [ref=e250]: "“It’s a system of checks and balances. As we grow and try to do different things to be more profitable with our projects, we can go back and check our work. Before, there were no checks and balances with our old system. But now, everything is digital, so there’s a digital trail that we can track to help us learn and improve. That’s one of the primary benefits of T3: checks and balances.”"
+              - generic [ref=e251]:
+                - heading "Ryan Simmons" [level=4] [ref=e252]
+                - heading "Fleet & Purchasing Manager" [level=5] [ref=e253]
+        - group "8 / 8" [ref=e254]:
+          - generic [ref=e255]:
+            - heading "Millis Equipment" [level=3] [ref=e258]
+            - generic [ref=e260]:
+              - blockquote [ref=e261]: “At least two drivers have become more cautious now there are dash cams in their vehicles. The camera talks to them and tells them ‘hard breaking’ or ‘excessive acceleration.’ I’ve watched footage of the guys when the camera talks to them and you can see them cut their eyes toward the camera and give it a smirk. We have a CDL driver who was always pretty cautious anyway, but the cameras have made him even more aware of what’s going on and safer in general.”
+              - generic [ref=e262]:
+                - heading "Chade Dickey" [level=4] [ref=e263]
+                - heading "Fleet Manager" [level=5] [ref=e264]
+      - generic [ref=e265]:
+        - button "Previous slide" [ref=e266] [cursor=pointer]:
+          - generic:
+            - img
+        - button "Next slide" [ref=e267] [cursor=pointer]:
+          - generic:
+            - img
+    - generic [ref=e270]:
+      - generic [ref=e271]:
+        - generic [ref=e273]:
+          - heading "how t3 works" [level=2] [ref=e274]
+          - heading "Connect every asset giving you total fleet visibility" [level=3] [ref=e275]:
+            - generic [ref=e277]:
+              - generic [ref=e278]: Connect
+              - generic [ref=e279]: every
+              - generic [ref=e280]: asset
+              - generic [ref=e281]: giving
+            - generic [ref=e283]:
+              - generic [ref=e284]: you
+              - generic [ref=e285]: total
+              - generic [ref=e286]: fleet
+              - generic [ref=e287]: visibility
+        - paragraph [ref=e289]: Data flows seamlessly between the field and office, so you can make smarter, faster decisions.
+      - img [ref=e291]
+      - generic [ref=e297]:
+        - generic [ref=e299]:
+          - img [ref=e301]
+          - generic [ref=e307]:
+            - heading "Seamless hardware & connectivity" [level=4] [ref=e308]
+            - paragraph [ref=e309]: Outfit your machines with T3’s hardware and connect to any asset. Whether it’s powered, non-powered, yellow iron, trucks, or trailers, T3 keeps your fleet online and in sync.
+        - generic [ref=e311]:
+          - img [ref=e313]
+          - generic [ref=e322]:
+            - heading "Data-driven decisions" [level=4] [ref=e323]
+            - paragraph [ref=e324]: T3 turns raw data into real insights helping you boost utilization, prevent downtime, improve security, and cut costs.
+        - generic [ref=e326]:
+          - img [ref=e328]
+          - generic [ref=e332]:
+            - heading "Simple onboarding & ongoing support" [level=4] [ref=e333]
+            - paragraph [ref=e334]: Getting started is easy. From hardware setup to hands-on training, our team ensures a smooth transition. Need help? We’re always here.
+  - contentinfo [ref=e335]:
+    - generic [ref=e337]:
+      - heading "Discover how T3 reduces downtime and maximizes fleet efficiency." [level=2] [ref=e339]:
+        - generic [ref=e341]:
+          - generic [ref=e342]: Discover
+          - generic [ref=e343]: how
+          - generic [ref=e344]: T3
+          - generic [ref=e345]: reduces
+          - generic [ref=e346]: downtime
+        - generic [ref=e348]:
+          - generic [ref=e349]: and
+          - generic [ref=e350]: maximizes
+          - generic [ref=e351]: fleet
+          - generic [ref=e352]: efficiency.
+      - link "book personalized demo" [ref=e353] [cursor=pointer]:
+        - /url: /demo
+        - generic [ref=e354]: book personalized demo
+    - generic [ref=e355]:
+      - generic [ref=e358]:
+        - generic [ref=e359]:
+          - generic [ref=e360]:
+            - img [ref=e361]
+            - generic: T3 by EquipmentShare
+          - generic [ref=e380]:
+            - link:
+              - /url: https://www.linkedin.com/company/t3-by-equipmentshare
+            - link:
+              - /url: https://www.instagram.com/t3byequipmentshare
+            - link:
+              - /url: https://www.facebook.com/t3byequipmentshare
+            - link:
+              - /url: https://x.com/t3tech_
+          - generic [ref=e381]: © 2026 T3. All rights reserved.
+        - generic [ref=e382]:
+          - img [ref=e383]
+          - generic [ref=e385]:
+            - link "Download on the App Store":
+              - /url: https://apps.apple.com/us/app/es-link/id1342372997
+              - generic: Download on the App Store
+            - link "Get it on Google Play":
+              - /url: https://play.google.com/store/apps/details?id=com.estrackmobile
+              - generic: Get it on Google Play
+      - generic [ref=e388]:
+        - img [ref=e391]
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - heading "Solutions" [level=3] [ref=e398]
+              - list [ref=e399]:
+                - listitem [ref=e400]:
+                  - link "Fleet Management" [ref=e401] [cursor=pointer]:
+                    - /url: /solutions/fleet-management
+                - listitem [ref=e402]:
+                  - link "T3 Dash Cams" [ref=e403] [cursor=pointer]:
+                    - /url: /solutions/dash-cams
+                - listitem [ref=e404]:
+                  - link "Safety & Accountability" [ref=e405] [cursor=pointer]:
+                    - /url: /solutions/safety-accountability
+                - listitem [ref=e406]:
+                  - link "Service & Maintenance" [ref=e407] [cursor=pointer]:
+                    - /url: /solutions/service-maintenance
+                - listitem [ref=e408]:
+                  - link "T3 Mobile App" [ref=e409] [cursor=pointer]:
+                    - /url: /solutions/mobile-app
+                - listitem [ref=e410]:
+                  - link "Compliance & Reporting" [ref=e411] [cursor=pointer]:
+                    - /url: /solutions/compliance-reporting
+                - listitem [ref=e412]:
+                  - link "Security & Theft Prevention" [ref=e413] [cursor=pointer]:
+                    - /url: /solutions/security-theft-prevention
+                - listitem [ref=e414]:
+                  - link "Integrations" [ref=e415] [cursor=pointer]:
+                    - /url: /solutions/integrations
+            - generic [ref=e416]:
+              - heading "Industries" [level=3] [ref=e417]
+              - list [ref=e418]:
+                - listitem [ref=e419]:
+                  - link "Industries & Roles" [ref=e420] [cursor=pointer]:
+                    - /url: /industries
+                - listitem [ref=e421]:
+                  - link "Real World Successes" [ref=e422] [cursor=pointer]:
+                    - /url: /industries#successes
+            - generic [ref=e423]:
+              - heading "Support" [level=3] [ref=e424]
+              - list [ref=e425]:
+                - listitem [ref=e426]:
+                  - link "Onboarding Guide" [ref=e427] [cursor=pointer]:
+                    - /url: /support
+                - listitem [ref=e428]:
+                  - link "Customer Support" [ref=e429] [cursor=pointer]:
+                    - /url: /support
+                - listitem [ref=e430]:
+                  - link "T3 Help Center" [ref=e431] [cursor=pointer]:
+                    - /url: https://help.estrack.com/en/?__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+                - listitem [ref=e432]:
+                  - link "FAQs" [ref=e433] [cursor=pointer]:
+                    - /url: /support#faqs
+            - generic [ref=e434]:
+              - heading "Company" [level=3] [ref=e435]
+              - list [ref=e436]:
+                - listitem [ref=e437]:
+                  - link "Privacy Policy" [ref=e438] [cursor=pointer]:
+                    - /url: https://www.equipmentshare.com/privacy-policy?__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+                - listitem [ref=e439]:
+                  - link "Terms of Use" [ref=e440] [cursor=pointer]:
+                    - /url: https://www.equipmentshare.com/terms?__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+                - listitem [ref=e441]:
+                  - link "Subscription Terms of Service" [ref=e442] [cursor=pointer]:
+                    - /url: /subscription-terms-of-service
+                - listitem [ref=e443]:
+                  - link "Careers" [ref=e444] [cursor=pointer]:
+                    - /url: https://www.equipmentshare.com/careers?__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+                - listitem [ref=e445]:
+                  - link "Product Updates" [ref=e446] [cursor=pointer]:
+                    - /url: https://www.equipmentshare.com/t3-release-updates?__hstc=125184533.52fd10048ea5be2f5a4647ae54a88cd7.1779898083476.1779898083476.1779899029577.2&__hssc=125184533.3.1779899029577&__hsfp=b0c3042de7c922eb87d631b01c9652f4
+          - generic [ref=e447]:
+            - link "Site by NOOON" [ref=e448] [cursor=pointer]:
+              - /url: https://www.nooon.studio/
+            - img [ref=e449]

@@ -241,10 +241,19 @@
     .hero-slide.active { opacity: 1; pointer-events: auto; }
 
     /* ── Slide backgrounds ── */
+    @keyframes bgEnter {
+      0%   { opacity: 0; transform: scale(1.07); }
+      100% { opacity: 1; transform: scale(1.0); }
+    }
     .hero-slide-bg {
       position: absolute; inset: 0; z-index: 0;
       background-size: cover; background-position: center;
       background-color: #0A1628;
+      opacity: 0;
+      transform: scale(1.07);
+    }
+    .hero-slide.active .hero-slide-bg {
+      animation: bgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
     .hero-slide-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -334,18 +343,28 @@
     }
     .hero-badge-dot { width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; }
 
-    /* ── Dots ── */
-    .hero-dots {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      z-index: 10; display: flex; gap: 10px; align-items: center;
+    /* ── Progress bars ── */
+    .hero-bars {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      z-index: 10; display: flex; gap: 8px; align-items: center;
     }
-    .hero-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.35);
-      border: none; cursor: pointer; padding: 0;
-      transition: background 0.25s, transform 0.25s;
+    .hero-bar {
+      width: 56px; height: 2px;
+      background: rgba(255,255,255,0.25);
+      position: relative; overflow: hidden;
+      cursor: pointer; border: none; padding: 0;
     }
-    .hero-dot.active { background: var(--gold); transform: scale(1.3); }
+    .hero-bar-fill {
+      position: absolute; top: 0; left: 0;
+      height: 100%; width: 0%;
+      background: #4A8FD4;
+    }
+    @keyframes barFill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+    .hero-bar.active .hero-bar-fill { animation: barFill 12s linear forwards; }
+    .hero-bar.done .hero-bar-fill   { width: 100%; }
 
     /* ─────────────────────────────────
        3. TRUST BAR  (white)
@@ -1025,11 +1044,11 @@
     </div>
   </div>
 
-  <!-- ═══ Dot navigation ═══ -->
-  <div class="hero-dots">
-    <button class="hero-dot active" data-slide="0"></button>
-    <button class="hero-dot" data-slide="1"></button>
-    <button class="hero-dot" data-slide="2"></button>
+  <!-- ═══ Progress bars ═══ -->
+  <div class="hero-bars">
+    <button class="hero-bar active" data-slide="0"><div class="hero-bar-fill"></div></button>
+    <button class="hero-bar" data-slide="1"><div class="hero-bar-fill"></div></button>
+    <button class="hero-bar" data-slide="2"><div class="hero-bar-fill"></div></button>
   </div>
 
 </section>
@@ -1402,29 +1421,49 @@
 
   // ── Hero slider ──
   (function () {
-    const slides  = document.querySelectorAll('.hero-slide');
-    const dots    = document.querySelectorAll('.hero-dot');
-    let current   = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const bars   = document.querySelectorAll('.hero-bar');
+    let current  = 0;
     let timer;
 
+    function activateBar(bar) {
+      const fill = bar.querySelector('.hero-bar-fill');
+      bar.classList.remove('done', 'active');
+      fill.style.animation = 'none';
+      fill.offsetHeight; // force reflow → перезапуск анимации
+      fill.style.animation = '';
+      bar.classList.add('active');
+    }
+
     function goTo(n) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
+      const prev = current;
       current = (n + slides.length) % slides.length;
+
+      // Если переходим вперёд — помечаем пройденные как done
+      // Если переходим в начало — сбрасываем все
+      if (current === 0) {
+        bars.forEach(b => { b.classList.remove('active', 'done'); b.querySelector('.hero-bar-fill').style.animation = 'none'; });
+      } else {
+        bars[prev].classList.remove('active');
+        bars[prev].classList.add('done');
+      }
+
+      slides.forEach(s => s.classList.remove('active'));
       slides[current].classList.add('active');
-      dots[current].classList.add('active');
+      activateBar(bars[current]);
       resetTimer();
     }
 
     function resetTimer() {
       clearInterval(timer);
-      timer = setInterval(() => goTo(current + 1), 14000);
+      timer = setInterval(() => goTo(current + 1), 12000);
     }
 
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => goTo(+dot.dataset.slide));
+    bars.forEach(bar => {
+      bar.addEventListener('click', () => goTo(+bar.dataset.slide));
     });
 
+    activateBar(bars[0]);
     resetTimer();
   })();
 </script>

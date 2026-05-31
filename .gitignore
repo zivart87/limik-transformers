@@ -1,0 +1,13 @@
+# Временные файлы
+*.png
+*.jpg
+*.jpeg
+
+# Playwright логи
+.playwright-mcp/
+
+# Claude
+.claude/
+
+# VS Code
+.vscode/

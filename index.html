@@ -321,7 +321,7 @@
 
     /* ── Heading ── */
     .hero h1 {
-      font-size: clamp(40px, 5vw, 76px);
+      font-size: clamp(40px, 5.5vw, 84px);
       font-weight: 600; line-height: 0.90;
       text-transform: uppercase; letter-spacing: -0.02em;
       color: var(--white); margin-bottom: 24px;
@@ -367,30 +367,122 @@
     .hero-bar.done .hero-bar-fill   { width: 100%; }
 
     /* ─────────────────────────────────
-       3. TRUST BAR  (white)
+       3. WHY WE EXIST  (T3 style)
     ───────────────────────────────── */
-    .trust-bar {
+    .about-section {
       background: var(--white);
-      border-bottom: 1px solid var(--border-l);
+      padding: 88px 0 0;
     }
-    .trust-bar-inner {
-      max-width: 1360px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3, 1fr);
+    .about-container {
+      max-width: 1360px; margin: 0 auto; padding: 0 60px;
     }
-    .trust-stat {
-      padding: 40px 48px;
-      border-right: 1px solid var(--border-l);
+    /* Строка 1: метка + крупный текст */
+    .about-row-top {
+      display: flex; gap: 40px; margin-bottom: 88px; align-items: flex-start;
     }
-    .trust-stat:last-child { border-right: none; }
-    .trust-stat-number {
-      font-size: clamp(48px, 5vw, 72px);
-      font-weight: 900; color: var(--blue);
-      line-height: 1; letter-spacing: -0.03em; margin-bottom: 8px;
+    .about-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-2); margin: 0;
     }
-    .trust-stat-label {
-      font-size: 15px; font-weight: 400;
-      color: #3A5570; line-height: 1.4;
+    .about-lead {
+      font-size: 38px;
+      font-weight: 500; line-height: 1.6;
+      color: var(--navy-dark); margin: 0;
+      opacity: 0.15;
+      transform: translateY(80px);
+      will-change: opacity, transform, line-height;
     }
+    .about-lead .highlight-word {
+      color: #206CB9;
+    }
+    /* Строка 1.5: Stats grid */
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 56px;
+      border-top: 1px solid rgba(9,25,59,0.12);
+    }
+    .about-stat-item {
+      padding: 36px 0 36px;
+      border-bottom: 1px solid rgba(9,25,59,0.12);
+    }
+    .about-stat-item:nth-child(odd) {
+      padding-right: 60px;
+      border-right: 1px solid rgba(9,25,59,0.12);
+    }
+    .about-stat-item:nth-child(even) {
+      padding-left: 60px;
+    }
+    .about-stat-num {
+      font-size: 96px; font-weight: 500;
+      line-height: 1; letter-spacing: -0.02em;
+      color: var(--navy-dark); margin: 0 0 14px;
+    }
+    .about-stat-desc {
+      font-size: 18px; font-weight: 400;
+      color: var(--navy-dark); line-height: 1.4; margin: 0;
+    }
+
+    /* Строка 2: 3 колонки */
+    .about-row-cols {
+      display: flex; gap: 24px; align-items: stretch;
+    }
+    .about-col-side   { flex: 0 0 calc(25% - 12px); display: flex; flex-direction: column; gap: 20px; }
+    .about-col-center { flex: 1; }
+    .about-img-wrap { overflow: hidden; }
+    .about-img-wrap img { width: 100%; display: block; object-fit: cover; }
+    /* ── Фирменный срез сверху слева (как i в логотипе) ── */
+    .clip-tl {
+      clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px);
+    }
+    .about-col-center .about-img-wrap img { height: 520px; }
+    .about-col-side   .about-img-wrap img { height: 300px; }
+    /* Картинка в конце колонки растягивается до низа центральной */
+    .about-col-side .about-img-wrap:last-child { flex: 1; min-height: 0; }
+    .about-col-side .about-img-wrap:last-child img { height: 100%; }
+    .about-col-text {
+      font-size: 14px; font-weight: 400; line-height: 1.75;
+      color: var(--navy-dark); margin: 0;
+    }
+    /* ── ВАРИАНТ A: картинка + тёмная плашка поверх, выступает снизу ── */
+    .about-overlay {
+      position: relative; overflow: visible;
+      margin-bottom: 64px;
+    }
+    .about-overlay-img {
+      width: 100%; height: 548px; object-fit: cover; display: block;
+    }
+    .about-overlay-card {
+      position: absolute;
+      right: 64px;
+      bottom: -64px;
+      width: 50%;
+      background: var(--navy-dark);
+      padding: 52px 48px;
+    }
+    .about-overlay-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-2); margin: 0 0 16px;
+    }
+    .about-split-heading {
+      font-size: clamp(22px, 2.4vw, 36px);
+      font-weight: 700; letter-spacing: -0.01em;
+      color: var(--white);
+      margin: 0 0 24px; line-height: 1.1;
+    }
+    .about-split-body {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: var(--text-1); margin: 0 0 36px;
+    }
+    .about-split-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--white);
+      transition: gap 0.2s;
+    }
+    .about-split-link:hover { gap: 18px; }
 
     /* ─────────────────────────────────
        4. PAIN POINT  (dark)
@@ -836,31 +928,8 @@
     .nav-dropdown-menu a:hover { background: transparent; color: var(--blue); }
 
     /* ─────────────────────────────────
-       PARTNERS
+       (partners CSS removed — replaced by about-section)
     ───────────────────────────────── */
-    .partners { padding: 48px 0; }
-    .partners-title {
-      text-align: center; font-size: 11px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text-2); margin-bottom: 28px;
-    }
-    .partners-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--border-l);
-    }
-    .partner-item {
-      padding: 32px 24px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 800;
-      color: #7090B0; border-right: 1px solid var(--border-l);
-      text-align: center; letter-spacing: 0.02em;
-    }
-    .partner-item:last-child { border-right: none; }
-    @media (max-width: 768px) {
-      .partners-grid { grid-template-columns: 1fr 1fr; }
-      .partner-item:nth-child(2) { border-right: none; }
-      .partner-item:nth-child(3) { border-right: 1px solid var(--border-l); }
-    }
 
     /* ─────────────────────────────────
        WHY LIMIK
@@ -1054,39 +1123,74 @@
 </section>
 
 <!-- ══════════════════════════════
-   2. TRUST BAR  ← БЕЛЫЙ
+   WHY WE EXIST  (T3 style)
 ══════════════════════════════ -->
-<div class="trust-bar bg-white">
-  <div class="trust-bar-inner">
-    <div class="trust-stat">
-      <div class="trust-stat-number">15+</div>
-      <div class="trust-stat-label">Years of Engineering Experience</div>
-    </div>
-    <div class="trust-stat">
-      <div class="trust-stat-number">120+</div>
-      <div class="trust-stat-label">Completed Transformer Projects</div>
-    </div>
-    <div class="trust-stat">
-      <div class="trust-stat-number">35+</div>
-      <div class="trust-stat-label">Specialists on Our Team</div>
-    </div>
-  </div>
-</div>
+<section class="about-section">
+  <div class="about-container">
 
-<!-- ══════════════════════════════
-   PARTNERS
-══════════════════════════════ -->
-<div class="partners bg-offwhite">
-  <div class="container">
-    <p class="partners-title">Trusted by America's Leading Manufacturers</p>
-    <div class="partners-grid">
-      <div class="partner-item">Mondelēz<br>International</div>
-      <div class="partner-item">PepsiCo</div>
-      <div class="partner-item">JDE Jacobs<br>Douwe Egberts</div>
-      <div class="partner-item">Danone</div>
+    <!-- Строка 1: крупный абзац на всю ширину -->
+    <div class="about-row-top">
+      <p class="about-lead">LIMIK was <span class="highlight-word" style="color:#206CB9">built by engineers</span> who understood what the grid demands. Every transformer we manufacture is custom-engineered from the ground up — because America's energy infrastructure doesn't tolerate shortcuts.</p>
     </div>
+
+    <!-- Строка 1.5: Stats -->
+    <div class="about-stats">
+      <div class="about-stat-item">
+        <p class="about-stat-num"><span class="count-up" data-target="25">0</span> <span style="font-size:40px">yrs</span></p>
+        <p class="about-stat-desc">Of engineering experience</p>
+      </div>
+      <div class="about-stat-item">
+        <p class="about-stat-num">20–<span class="count-up" data-target="600">0</span> <span style="font-size:40px">MVA</span></p>
+        <p class="about-stat-desc">Custom power range</p>
+      </div>
+      <div class="about-stat-item">
+        <p class="about-stat-num"><span class="count-up" data-target="525">0</span> <span style="font-size:40px">kV</span></p>
+        <p class="about-stat-desc">Maximum voltage class</p>
+      </div>
+      <div class="about-stat-item">
+        <p class="about-stat-num"><span class="count-up" data-target="48">0</span> <span style="font-size:40px">wks</span></p>
+        <p class="about-stat-desc">Typical lead time vs. 2–4 years abroad</p>
+      </div>
+    </div>
+
+    <!-- ВАРИАНТ A: картинка + белая плашка поверх -->
+    <div class="about-overlay">
+      <img class="about-overlay-img" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=80" alt="LIMIK Manufacturing">
+      <div class="about-overlay-card clip-tl">
+        <p class="about-overlay-eyebrow">About Us</p>
+        <h2 class="about-split-heading">Engineering That Powers the Grid</h2>
+        <p class="about-split-body">Founded in 1994, LIMIK designs and manufactures large power transformers — Power Transformers, Autotransformers, and Generator Step-Up units — for utilities, independent power producers, and EPC contractors across the Americas. Every unit is custom-engineered from 20 to 600 MVA, up to 525 kV.</p>
+        <a href="company/" class="about-split-link">
+          Learn More
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ВАРИАНТ B: 3 колонки (сохранён) -->
+    <!--
+    <div class="about-row-cols">
+      <div class="about-col about-col-side">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80" alt="American Power Grid">
+        </div>
+        <p class="about-col-text">The American grid is being rebuilt. New transmission, utility-scale renewables, data centers drawing loads no substation was designed for. That's today's project queue. LIMIK delivers the transformers that keep it moving.</p>
+      </div>
+      <div class="about-col about-col-center">
+        <div class="about-img-wrap clip-tl">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80" alt="Power Transformer Manufacturing">
+        </div>
+      </div>
+      <div class="about-col about-col-side">
+        <p class="about-col-text">LIMIK manufactures in the USA. That means no ocean freight, no import delays, no currency exposure. From signed specification to factory floor — every step happens on American soil, under American quality standards.</p>
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80" alt="LIMIK Engineering">
+        </div>
+      </div>
+    </div>
+    -->
   </div>
-</div>
+</section>
 
 <!-- ══════════════════════════════
    WHY LIMIK  ← БЕЛЫЙ
@@ -1465,6 +1569,73 @@
 
     activateBar(bars[0]);
     resetTimer();
+  })();
+
+  // ── Scroll-linked анимация about-lead (lerp / scrub как Palantir) ──
+  (function () {
+    const lead = document.querySelector('.about-lead');
+    if (!lead) return;
+
+    let current = 0;
+    let target  = 0;
+    let rafId   = null;
+
+    function getTarget() {
+      const rect = lead.getBoundingClientRect();
+      const vh   = window.innerHeight;
+      let p = (vh - rect.top) / (vh * 0.5); // заканчивается на середине экрана
+      return Math.max(0, Math.min(1, p));
+    }
+
+    function apply(p) {
+      lead.style.opacity    = 0.12 + 0.88 * p;
+      lead.style.transform  = `translateY(${80 * (1 - p)}px)`;
+      lead.style.lineHeight = 1.6 - 0.3 * p;
+    }
+
+    function tick() {
+      target  = getTarget();
+      current += (target - current) * 0.07; // lerp — скорость «догонялки»
+      apply(current);
+      if (Math.abs(target - current) > 0.001) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        apply(target);
+        rafId = null;
+      }
+    }
+
+    function onScroll() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    tick(); // начальное состояние
+  })();
+
+  // ── Count-up анимация для stats ──
+  (function () {
+    const els = document.querySelectorAll('.count-up');
+    if (!els.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1800;
+        const start = performance.now();
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(update);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(update);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    els.forEach(el => observer.observe(el));
   })();
 </script>
 </body>

@@ -1,7 +1,21 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.hyosunghico.com)"
+      "Bash(git clone *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git fetch *)",
+      "Bash(git reset *)",
+      "Bash(git branch *)",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(Get-Command python -ErrorAction SilentlyContinue)",
+      "PowerShell(python3 --version)",
+      "PowerShell(python --version)",
+      "PowerShell(py --version)",
+      "Bash(claude doctor *)",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script"
     ]
   }
 }

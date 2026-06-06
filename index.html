@@ -356,15 +356,18 @@
     }
     .hero-bar-fill {
       position: absolute; top: 0; left: 0;
-      height: 100%; width: 0%;
+      height: 100%; width: 100%;
       background: #4A8FD4;
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
     }
     @keyframes barFill {
-      from { width: 0%; }
-      to   { width: 100%; }
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
     }
-    .hero-bar.active .hero-bar-fill { animation: barFill 12s linear forwards; }
-    .hero-bar.done .hero-bar-fill   { width: 100%; }
+    .hero-bar.active .hero-bar-fill { animation: barFill 10s linear forwards; }
+    .hero-bar.done .hero-bar-fill   { transform: scaleX(1); }
 
     /* ─────────────────────────────────
        3. WHY WE EXIST  (T3 style)
@@ -450,8 +453,12 @@
       position: relative; overflow: visible;
       margin-bottom: 64px;
     }
+    .about-img-parallax-wrap {
+      position: relative; overflow: hidden; height: 548px;
+    }
     .about-overlay-img {
-      width: 100%; height: 548px; object-fit: cover; display: block;
+      width: 100%; height: 110%; object-fit: cover; display: block;
+      will-change: transform;
     }
     .about-overlay-card {
       position: absolute;
@@ -1155,7 +1162,9 @@
 
     <!-- ВАРИАНТ A: картинка + белая плашка поверх -->
     <div class="about-overlay">
-      <img class="about-overlay-img" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=80" alt="LIMIK Manufacturing">
+      <div class="about-img-parallax-wrap">
+        <img class="about-overlay-img" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=80" alt="LIMIK Manufacturing">
+      </div>
       <div class="about-overlay-card clip-tl">
         <p class="about-overlay-eyebrow">About Us</p>
         <h2 class="about-split-heading">Engineering That Powers the Grid</h2>
@@ -1534,8 +1543,10 @@
       const fill = bar.querySelector('.hero-bar-fill');
       bar.classList.remove('done', 'active');
       fill.style.animation = 'none';
+      fill.style.transform = 'scaleX(0)';
       fill.offsetHeight; // force reflow → перезапуск анимации
       fill.style.animation = '';
+      fill.style.transform = '';
       bar.classList.add('active');
     }
 
@@ -1546,7 +1557,7 @@
       // Если переходим вперёд — помечаем пройденные как done
       // Если переходим в начало — сбрасываем все
       if (current === 0) {
-        bars.forEach(b => { b.classList.remove('active', 'done'); b.querySelector('.hero-bar-fill').style.animation = 'none'; });
+        bars.forEach(b => { b.classList.remove('active', 'done'); const f = b.querySelector('.hero-bar-fill'); f.style.animation = 'none'; f.style.transform = 'scaleX(0)'; });
       } else {
         bars[prev].classList.remove('active');
         bars[prev].classList.add('done');
@@ -1560,7 +1571,7 @@
 
     function resetTimer() {
       clearInterval(timer);
-      timer = setInterval(() => goTo(current + 1), 12000);
+      timer = setInterval(() => goTo(current + 1), 10000);
     }
 
     bars.forEach(bar => {
@@ -1637,6 +1648,37 @@
     }, { threshold: 0.4 });
     els.forEach(el => observer.observe(el));
   })();
+</script>
+
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Lenis smooth scroll — synced with GSAP (как на t3.tech)
+  const lenis = new Lenis();
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  // Parallax About section
+  const aboutImg = document.querySelector('.about-overlay-img');
+  if (aboutImg) {
+    gsap.fromTo(aboutImg,
+      { yPercent: -8 },
+      {
+        yPercent: 8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.about-img-parallax-wrap',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  }
 </script>
 </body>
 </html>

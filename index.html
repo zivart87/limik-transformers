@@ -595,8 +595,20 @@
       color: #3A5570; font-weight: 300;
     }
     .industries-featured {
+      position: relative;
+      min-height: 560px;
+    }
+    .ind-slide {
       display: grid; grid-template-columns: 1fr 1fr;
       min-height: 560px;
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .ind-slide.active {
+      opacity: 1;
+      pointer-events: auto;
     }
     .industries-panel {
       background: var(--navy-dark);
@@ -608,7 +620,7 @@
       text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
     }
     .industries-panel h3 {
-      font-size: clamp(26px, 3vw, 44px); font-weight: 800;
+      font-size: 36px; font-weight: 800;
       color: var(--white); line-height: 1.05; margin-bottom: 24px;
     }
     .industries-panel p {
@@ -1435,17 +1447,47 @@
     </div>
 
     <div class="industries-featured">
-      <div class="industries-panel">
-        <div>
-          <h3 id="ind-title">Powering America's Transmission Network</h3>
-          <p id="ind-desc">Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p>
+
+      <div class="ind-slide active">
+        <div class="industries-panel">
+          <div><h3>Powering America's Transmission Network</h3><p>Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p></div>
+          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <a href="industries/" class="industries-panel-link">
-          <span class="industries-panel-link-text">View Industry</span>
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?w=900&h=600&fit=crop&auto=format&q=80')"></div>
       </div>
-      <div class="industries-image" id="ind-image"></div>
+
+      <div class="ind-slide">
+        <div class="industries-panel">
+          <div><h3>Critical Power for Hyperscale Infrastructure</h3><p>AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.</p></div>
+          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+      </div>
+
+      <div class="ind-slide">
+        <div class="industries-panel">
+          <div><h3>Section 303 Qualified. DOD-Ready.</h3><p>LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.</p></div>
+          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1650043996692-a51e3d749766?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+      </div>
+
+      <div class="ind-slide">
+        <div class="industries-panel">
+          <div><h3>IRA-Eligible GSU for Wind, Solar &amp; BESS</h3><p>Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.</p></div>
+          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+      </div>
+
+      <div class="ind-slide">
+        <div class="industries-panel">
+          <div><h3>Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec</h3><p>Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.</p></div>
+          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1527335988388-b40ee248d80c?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+      </div>
+
     </div>
 
     <div class="industries-tabs">
@@ -1819,65 +1861,15 @@
 
   // ── Industries tabs ──
   (function () {
-    const BASE = 'https://images.unsplash.com/';
-    const data = [
-      {
-        title: "Powering America's Transmission Network",
-        desc: 'Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.',
-        img: BASE + 'photo-1509390673020-a5b2450e33f1?w=900&h=600&fit=crop&auto=format&q=80'
-      },
-      {
-        title: 'Critical Power for Hyperscale Infrastructure',
-        desc: 'AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.',
-        img: BASE + 'photo-1558494949-ef010cbdcc31?w=900&h=600&fit=crop&auto=format&q=80'
-      },
-      {
-        title: 'Section 303 Qualified. DOD-Ready.',
-        desc: 'LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.',
-        img: BASE + 'photo-1650043996692-a51e3d749766?w=900&h=600&fit=crop&auto=format&q=80'
-      },
-      {
-        title: 'IRA-Eligible GSU for Wind, Solar & BESS',
-        desc: 'Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.',
-        img: BASE + 'photo-1466611653911-95081537e5b7?w=900&h=600&fit=crop&auto=format&q=80'
-      },
-      {
-        title: "Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec",
-        desc: 'Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.',
-        img: BASE + 'photo-1527335988388-b40ee248d80c?w=900&h=600&fit=crop&auto=format&q=80'
-      }
-    ];
-
-    const tabs = document.querySelectorAll('.industry-tab');
-    const title = document.getElementById('ind-title');
-    const desc = document.getElementById('ind-desc');
-    const image = document.getElementById('ind-image');
-    const panel = document.querySelector('.industries-panel');
+    const tabs   = document.querySelectorAll('.industry-tab');
+    const slides = document.querySelectorAll('.ind-slide');
 
     function activate(i) {
-      tabs.forEach(t => t.classList.remove('active'));
-      tabs[i].classList.add('active');
-      const d = data[i];
-      panel.style.opacity = '0';
-      image.style.opacity = '0';
-      setTimeout(() => {
-        title.textContent = d.title;
-        desc.textContent = d.desc;
-        image.style.backgroundImage = 'url(' + d.img + ')';
-        panel.style.opacity = '1';
-        image.style.opacity = '1';
-      }, 180);
+      tabs.forEach((t, idx)   => t.classList.toggle('active', idx === i));
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
     }
 
-    image.style.transition = 'opacity 0.18s';
-    panel.style.transition = 'opacity 0.18s';
     tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
-
-    // Preload all images
-    data.forEach(d => { const img = new Image(); img.src = d.img; });
-
-    // Set first image immediately
-    image.style.backgroundImage = 'url(' + data[0].img + ')';
   })();
 
   // ── Count-up анимация для stats ──

@@ -17,7 +17,29 @@ LIMIK позиционируется как **U.S.-производитель с
 
 ---
 
-## Структура страницы
+## Page Structure (updated 2026-06-21)
+
+| # | Section | Background | Notes |
+|---|---------|------------|-------|
+| 0 | NAV | White | Two-level: top strip + main bar with dropdowns |
+| 1 | Hero | Dark | Video placeholder, slider, main CTA |
+| 2 | Mission + Stats | White/Off-white | Key numbers, value proposition |
+| 3 | About Us | Dark | Who we are, parallax effect |
+| 4 | Products (Solutions) | White | 3 transformer lines, no tags |
+| 5 | Industries | Off-white | 5 industry cards |
+| 6 | Contact CTA | Dark | Light CTA banner — headline + 1–2 buttons, no form fields |
+| 7 | Why LIMIK | White | 2 columns + 4 stat cards |
+| 8 | Founder Quote | Dark | Photo + quote, personal credibility |
+| 9 | Contact Form | White | Inline mini-form (name, email, message) or link to /request-quote/ |
+| 10 | Footer | Dark | T3-style, 3-column |
+
+> Full quote request form lives at `/request-quote/` — separate page with sections: Project Info, Contact Info, Technical Requirements.
+
+---
+
+## Previous structure (2026-05-27)
+
+> Replaced by the table above. Kept for reference.
 
 ### 1. NAV — двухуровневый
 

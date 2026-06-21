@@ -1,7 +1,12 @@
-# Временные файлы
+# Временные файлы (скриншоты в корне)
 *.png
 *.jpg
 *.jpeg
+
+# Исключение: production assets
+!assets/images/*.png
+!assets/images/*.jpg
+!assets/images/*.jpeg
 
 # Playwright логи
 .playwright-mcp/

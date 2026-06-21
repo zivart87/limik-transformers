@@ -112,7 +112,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--font); font-weight: 700;
       font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 14px 32px; height: 48px;
+      padding: 15px 32px;
       border: 2px solid transparent;
       border-radius: 2px;
       cursor: pointer; transition: all 0.18s; line-height: 1;
@@ -133,9 +133,9 @@
       background: transparent; color: var(--navy-dark);
       border-color: rgba(9,25,59,0.45);
     }
-    .btn-outline-dark:hover { border-color: var(--navy-dark); }
+    .btn-outline-dark:hover { border-color: var(--navy-dark); background: var(--navy-dark); color: var(--white); }
 
-    .btn-lg { font-size: 15px; padding: 16px 40px; height: 52px; }
+    .btn-lg { padding: 15px 40px; }
 
     /* ── SECTION HEADER ── */
     .sec-header { margin-bottom: 56px; }
@@ -374,7 +374,7 @@
     ───────────────────────────────── */
     .about-section {
       background: var(--white);
-      padding: 88px 0 88px;
+      padding: 88px 0 120px;
     }
     .about-container {
       max-width: 1360px; margin: 0 auto; padding: 0 60px;
@@ -520,8 +520,14 @@
     /* ─────────────────────────────────
        5. PRODUCTS  (dark)
     ───────────────────────────────── */
-    .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    /* shutter reveal */
+    .section-transition {
+      pointer-events: none;
+      position: relative;
+    }
+
+.products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
     .product-card {
       background: #FFFFFF;
@@ -596,14 +602,13 @@
     }
     .industries-featured {
       position: relative;
-      min-height: 560px;
+      min-height: 480px;
     }
     .ind-slide {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 560px;
+      min-height: 480px;
       position: absolute; inset: 0;
       opacity: 0;
-      transition: opacity 0.35s ease;
       pointer-events: none;
     }
     .ind-slide.active {
@@ -635,30 +640,47 @@
     .industries-panel-link:hover { gap: 20px; }
     .industries-panel-link:hover .industries-panel-link-text { text-decoration: underline; text-underline-offset: 3px; }
     .industries-image {
-      background: #4A6070 center/cover no-repeat;
       overflow: hidden;
-      transition: opacity 0.18s;
-      min-height: 560px;
+      min-height: 480px;
+      position: relative;
+    }
+    .industries-image img {
+      position: absolute; inset: 0;
+      width: 100%; height: 120%;
+      object-fit: cover;
+      top: -10%;
+      will-change: transform;
     }
     .industries-tabs {
       display: grid; grid-template-columns: repeat(5, 1fr);
       margin-top: 48px;
-      border-top: 1px solid rgba(9,25,59,0.12);
     }
     .industry-tab {
-      padding: 24px 0 20px 28px;
+      padding: 16px 0 16px 28px;
       border-left: 2px solid rgba(9,25,59,0.15);
       cursor: pointer;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: color 0.2s, border-left-color 0.2s;
+    }
+    .industry-tab-icon {
+      width: 28px; height: 28px;
+      color: var(--text-2);
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+    .industry-tab-label {
       font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--text-2);
-      transition: color 0.2s, border-left-color 0.2s;
+      transition: color 0.2s;
       line-height: 1.5;
     }
-    .industry-tab.active {
+    .industry-tab.active .industry-tab-icon,
+    .industry-tab.active .industry-tab-label {
       color: var(--navy-dark);
-      border-left-color: var(--navy-dark);
     }
-    .industry-tab:hover:not(.active) { color: var(--navy-dark); }
+    .industry-tab.active { border-left-color: var(--navy-dark); }
+    .industry-tab:hover:not(.active) .industry-tab-icon,
+    .industry-tab:hover:not(.active) .industry-tab-label { color: var(--navy-dark); }
 
     /* ─────────────────────────────────
        7. TIMELINE  (white)
@@ -730,63 +752,76 @@
     /* ─────────────────────────────────
        7. WHY LIMIK  (white)
     ───────────────────────────────── */
-    .why-intro { margin-bottom: 56px; }
+    .why-intro {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 48px;
+      margin-bottom: 64px;
+    }
     .why-intro h2 {
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 700; line-height: 0.95;
       letter-spacing: -0.02em; color: var(--navy-dark);
     }
     .why-cols {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; margin-bottom: 64px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .why-col {
+      padding: 48px 48px 0 0;
+    }
+    .why-col:last-child { padding-right: 0; }
+    .why-col + .why-col { padding-left: 48px; }
+    .why-col-icon {
+      width: 64px; height: 64px;
+      color: #206CB9;
+      margin-bottom: 28px;
     }
     .why-col h3 {
-      font-size: 18px; font-weight: 800;
+      font-size: 22px; font-weight: 700;
       color: var(--navy-dark); margin-bottom: 16px;
-      text-transform: uppercase; letter-spacing: 0.04em;
+      line-height: 1.2;
     }
-    .why-col p { font-size: 16px; color: #3A5570; line-height: 1.75; font-weight: 300; }
-    .why-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid rgba(9,25,59,0.12);
+    .why-col p {
+      font-size: 15px; color: #3A5570;
+      line-height: 1.75; font-weight: 300;
     }
-    .why-stat {
-      padding: 40px 0 0; border-right: 1px solid rgba(9,25,59,0.12);
-    }
-    .why-stat:last-child { border-right: none; }
-    .why-stat-num {
-      font-size: clamp(32px, 4vw, 52px); font-weight: 800;
-      color: var(--navy-dark); line-height: 1; margin-bottom: 12px;
-    }
-    .why-stat-label { font-size: 13px; color: #3A5570; line-height: 1.5; font-weight: 300; }
 
     /* ─────────────────────────────────
        8. FOUNDER QUOTE  (dark)
     ───────────────────────────────── */
     .founder-inner {
-      display: grid; grid-template-columns: 280px 1fr;
-      gap: 80px; align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      min-height: 560px;
+      gap: 0;
+    }
+    .founder-content {
+      padding: 80px 80px 80px 0;
+      display: flex; flex-direction: column; justify-content: center;
     }
     .founder-photo {
-      width: 280px; height: 360px;
-      background: #1E3059;
-      flex-shrink: 0;
+      overflow: hidden; position: relative;
+    }
+    .founder-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
     }
     .founder-eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
     }
     .founder-quote {
-      font-size: clamp(20px, 2.5vw, 30px);
-      font-weight: 300; color: var(--white);
-      line-height: 1.5; margin: 0 0 36px;
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 300; color: var(--navy-dark);
+      line-height: 1.45; margin: 0 0 48px;
       font-style: italic;
     }
     .founder-quote::before { content: '\201C'; }
     .founder-quote::after  { content: '\201D'; }
     .founder-credit { display: flex; flex-direction: column; gap: 4px; }
-    .founder-credit strong { font-size: 15px; font-weight: 700; color: var(--white); }
-    .founder-credit span { font-size: 13px; color: var(--text-2); }
+    .founder-credit strong { font-size: 15px; font-weight: 700; color: var(--navy-dark); }
+    .founder-credit span { font-size: 13px; color: #3A5570; }
 
     /* ─────────────────────────────────
        9. CONTACT FORM  (white)
@@ -1080,8 +1115,8 @@
       display: flex; align-items: center;
     }
     .nav-top-inner {
-      max-width: 1360px; margin: 0 auto; padding: 0 40px;
-      display: flex; justify-content: flex-end; width: 100%;
+      width: 100%; padding: 0 60px;
+      display: flex; justify-content: flex-end;
     }
     .nav-top-inner a {
       font-size: 13px; font-weight: 500;
@@ -1353,10 +1388,12 @@
 <!-- ══════════════════════════════
    4. PRODUCTS  ← ТЁМНЫЙ
 ══════════════════════════════ -->
-<section class="section bg-dark">
+<div class="section-transition" data-color-to="#09193B" data-height="140"></div>
+<section class="section bg-dark" id="products-section" style="padding-top: 56px;">
   <div class="container">
-    <div class="sec-header" style="text-align:center;">
-      <h2>Large-Scale Power Solutions.<br>Custom-Engineered.</h2>
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:48px; margin-bottom:48px;">
+      <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered.</h2>
+      <a href="request-quote/" class="btn btn-gold" style="flex-shrink:0;">Request a Quote</a>
     </div>
     <div class="products-grid">
 
@@ -1453,7 +1490,7 @@
           <div><h3>Powering America's Transmission Network</h3><p>Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p></div>
           <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+        <div class="industries-image"><img src="https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?w=900&h=700&fit=crop&auto=format&q=80" alt="Utilities"></div>
       </div>
 
       <div class="ind-slide">
@@ -1461,7 +1498,7 @@
           <div><h3>Critical Power for Hyperscale Infrastructure</h3><p>AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.</p></div>
           <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+        <div class="industries-image"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=700&fit=crop&auto=format&q=80" alt="Data Centers"></div>
       </div>
 
       <div class="ind-slide">
@@ -1469,7 +1506,7 @@
           <div><h3>Section 303 Qualified. DOD-Ready.</h3><p>LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.</p></div>
           <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1650043996692-a51e3d749766?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+        <div class="industries-image"><img src="https://images.unsplash.com/photo-1650043996692-a51e3d749766?w=900&h=700&fit=crop&auto=format&q=80" alt="Defense"></div>
       </div>
 
       <div class="ind-slide">
@@ -1477,7 +1514,7 @@
           <div><h3>IRA-Eligible GSU for Wind, Solar &amp; BESS</h3><p>Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.</p></div>
           <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+        <div class="industries-image"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&h=700&fit=crop&auto=format&q=80" alt="Renewables"></div>
       </div>
 
       <div class="ind-slide">
@@ -1485,17 +1522,47 @@
           <div><h3>Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec</h3><p>Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.</p></div>
           <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="industries-image" style="background-image:url('https://images.unsplash.com/photo-1527335988388-b40ee248d80c?w=900&h=600&fit=crop&auto=format&q=80')"></div>
+        <div class="industries-image"><img src="https://images.unsplash.com/photo-1527335988388-b40ee248d80c?w=900&h=700&fit=crop&auto=format&q=80" alt="EPC Contractors"></div>
       </div>
 
     </div>
 
     <div class="industries-tabs">
-      <div class="industry-tab active" data-index="0">Utilities &amp; Grid</div>
-      <div class="industry-tab" data-index="1">Data Centers</div>
-      <div class="industry-tab" data-index="2">Defense / DOD</div>
-      <div class="industry-tab" data-index="3">Renewables</div>
-      <div class="industry-tab" data-index="4">EPC Contractors</div>
+      <div class="industry-tab active" data-index="0">
+        <svg class="industry-tab-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20V10l10-6 10 6v10"/><rect x="10" y="14" width="8" height="6"/><line x1="14" y1="14" x2="14" y2="20"/><line x1="2" y1="20" x2="26" y2="20"/><line x1="7" y1="10" x2="7" y2="20"/><line x1="21" y1="10" x2="21" y2="20"/>
+        </svg>
+        <span class="industry-tab-label">Utilities &amp; Grid</span>
+      </div>
+      <div class="industry-tab" data-index="1">
+        <svg class="industry-tab-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="22" height="5" rx="1"/><rect x="3" y="12" width="22" height="5" rx="1"/><rect x="3" y="19" width="22" height="4" rx="1"/>
+          <circle cx="22" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="21" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="industry-tab-label">Data Centers</span>
+      </div>
+      <div class="industry-tab" data-index="2">
+        <svg class="industry-tab-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 3l10 4v7c0 5-4 9-10 11C8 23 4 19 4 14V7l10-4z"/>
+          <polyline points="10,14 13,17 19,11"/>
+        </svg>
+        <span class="industry-tab-label">Defense / DOD</span>
+      </div>
+      <div class="industry-tab" data-index="3">
+        <svg class="industry-tab-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="14" cy="10" r="3"/><line x1="14" y1="3" x2="14" y2="7"/><line x1="14" y1="13" x2="14" y2="25"/>
+          <line x1="14" y1="10" x2="20" y2="6.5"/><line x1="14" y1="10" x2="8" y2="6.5"/><line x1="14" y1="10" x2="20" y2="13.5"/><line x1="14" y1="10" x2="8" y2="13.5"/>
+          <line x1="10" y1="25" x2="18" y2="25"/>
+        </svg>
+        <span class="industry-tab-label">Renewables</span>
+      </div>
+      <div class="industry-tab" data-index="4">
+        <svg class="industry-tab-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 24V13l10-9 10 9v11H4z"/><rect x="10" y="16" width="8" height="8"/><line x1="14" y1="16" x2="14" y2="24"/>
+          <path d="M1 13h4M23 13h4"/><line x1="14" y1="4" x2="14" y2="2"/>
+        </svg>
+        <span class="industry-tab-label">EPC Contractors</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1521,35 +1588,41 @@
 <section class="section bg-white">
   <div class="container">
     <div class="why-intro">
-      <h2>American Power.<br>No Foreign Delays.</h2>
+      <h2>The LIMIK Difference</h2>
+      <a href="company/" class="btn btn-outline-dark">Learn More About LIMIK</a>
     </div>
     <div class="why-cols">
+
       <div class="why-col">
-        <h3>U.S.-Manufactured</h3>
-        <p>IRA-eligible. DOD/Section 303 qualified. No foreign supply chain dependency. Proudly owned and operated in Spartanburg, SC — with full engineering and production on American soil.</p>
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="32" r="24"/>
+          <polyline points="32,16 32,32 42,38"/>
+        </svg>
+        <h3>25 Years of Engineering</h3>
+        <p>Since 1994, LIMIK has designed and delivered large power transformers for utilities, power producers, and EPC contractors. Every project starts with your specification — not our catalog.</p>
       </div>
+
       <div class="why-col">
-        <h3>Domestic Supply</h3>
-        <p>Over 80% of U.S. large power transformers come from abroad — with lead times stretching 2–4 years. LIMIK delivers from American soil, faster, with full engineering support and no import risk.</p>
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="16" width="44" height="34" rx="1"/>
+          <path d="M22 16v-5M42 16v-5"/>
+          <path d="M10 27h44"/>
+          <polyline points="22,40 28,46 44,30"/>
+        </svg>
+        <h3>Made in the USA</h3>
+        <p>Every transformer is designed, engineered, and built on American soil. That means Buy American compliance by default — and a supply chain you can actually track.</p>
       </div>
-    </div>
-    <div class="why-stats">
-      <div class="why-stat">
-        <div class="why-stat-num">80%</div>
-        <div class="why-stat-label">Foreign supply dependency<br>in U.S. transformer market</div>
+
+      <div class="why-col">
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="8,40 20,18 30,30 40,12 56,40"/>
+          <line x1="8" y1="52" x2="56" y2="52"/>
+          <line x1="32" y1="40" x2="32" y2="52"/>
+        </svg>
+        <h3>48 Weeks. Not 4 Years.</h3>
+        <p>While overseas suppliers quote 2–4 year lead times, LIMIK delivers in 48 weeks. When your project schedule is at stake, that difference is everything.</p>
       </div>
-      <div class="why-stat">
-        <div class="why-stat-num">$1B+</div>
-        <div class="why-stat-label">Annual U.S. large power<br>transformer demand</div>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num">600 MVA</div>
-        <div class="why-stat-label">Maximum capacity<br>per unit</div>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num">§303</div>
-        <div class="why-stat-label">Defense Production Act<br>Eligible</div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1557,17 +1630,19 @@
 <!-- ══════════════════════════════
    8. FOUNDER QUOTE  ← ТЁМНЫЙ
 ══════════════════════════════ -->
-<section class="section bg-dark founder-section">
-  <div class="container">
+<section class="founder-section" style="background:var(--white); overflow:hidden;">
+  <div class="container" style="padding-right:0; max-width:none; margin:0 auto; max-width:1360px;">
     <div class="founder-inner">
-      <div class="founder-photo"></div>
       <div class="founder-content">
         <p class="founder-eyebrow">From the Founder</p>
         <blockquote class="founder-quote">We built LIMIK to solve America's transformer dependency problem. When a grid failure happens, there's no time to wait 3 years for an overseas shipment. The U.S. needs domestic capacity — and we're building it.</blockquote>
         <div class="founder-credit">
-          <strong>Vitaly Ziva</strong>
+          <strong>Igor Lon</strong>
           <span>Founder &amp; CEO, LIMIK International</span>
         </div>
+      </div>
+      <div class="founder-photo">
+        <img src="assets/images/Igor.png" alt="Igor Lon — Founder & CEO, LIMIK International">
       </div>
     </div>
   </div>
@@ -1910,7 +1985,92 @@
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
 
+  // Shutter reveal — section transitions
+  (function () {
+    const transitions = document.querySelectorAll('.section-transition');
+    if (!transitions.length) return;
+
+    transitions.forEach(el => {
+      const colorTo = el.dataset.colorTo || '#09193B';
+      const h       = parseInt(el.dataset.height || '160');
+
+      Object.assign(el.style, {
+        backgroundColor: 'var(--white)',
+        height:          h + 'px',
+        position:        'relative',
+        zIndex:          '10'
+      });
+
+      const grid = document.createElement('div');
+      Object.assign(grid.style, {
+        position: 'absolute', inset: '0',
+        width: '100%', height: '100%', overflow: 'hidden'
+      });
+      el.appendChild(grid);
+
+      const ROWS = 2, BLOCKS = 25;
+      for (let r = 0; r < ROWS; r++) {
+        const row = document.createElement('div');
+        Object.assign(row.style, {
+          display: 'flex', width: '100%',
+          height: '51%', marginTop: r > 0 ? '-1px' : '0'
+        });
+
+        for (let b = 0; b < BLOCKS; b++) {
+          const block = document.createElement('div');
+          Object.assign(block.style, {
+            backgroundColor: colorTo,
+            flex: '1', height: '100%', marginLeft: '-1px'
+          });
+          gsap.set(block, {
+            scaleX: 0,
+            transformOrigin: r === 0 ? 'right center' : 'left center'
+          });
+          row.appendChild(block);
+        }
+        grid.appendChild(row);
+      }
+
+      const rows = grid.querySelectorAll('div');
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          end:   'top 0%',
+          scrub: 2
+        }
+      });
+
+      rows.forEach((row, i) => {
+        const blocks = row.querySelectorAll('div');
+        tl.to(blocks, {
+          scaleX: 1.05,
+          force3D: true,
+          ease: 'power1.inOut',
+          stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' }
+        }, 0);
+      });
+    });
+  })();
+
   // Parallax About section
+  // Parallax — Industries images
+  document.querySelectorAll('.industries-image img').forEach(img => {
+    gsap.fromTo(img,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.industries-featured',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  });
+
   const aboutImg = document.querySelector('.about-overlay-img');
   if (aboutImg) {
     gsap.fromTo(aboutImg,

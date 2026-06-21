@@ -90,9 +90,9 @@
     }
 
     /* ── SECTION PADDING ── */
-    .section    { padding: 80px 0; }
-    .section-lg { padding: 120px 0; }
-    .section-sm { padding: 48px 0; }
+    .section    { padding: 120px 0; }
+    .section-lg { padding: 160px 0; }
+    .section-sm { padding: 64px 0; }
 
     /* ── TAGS ── */
     .tag {
@@ -374,7 +374,7 @@
     ───────────────────────────────── */
     .about-section {
       background: var(--white);
-      padding: 88px 0 0;
+      padding: 88px 0 88px;
     }
     .about-container {
       max-width: 1360px; margin: 0 auto; padding: 0 60px;
@@ -518,64 +518,142 @@
     .pain-card-label { font-size: 13px; color: var(--text-1); line-height: 1.4; }
 
     /* ─────────────────────────────────
-       5. PRODUCTS  (white)
+       5. PRODUCTS  (dark)
     ───────────────────────────────── */
     .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
     }
     .product-card {
-      border: 1px solid var(--border-l);
-      padding: 32px 28px 28px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #E8ECF4;
+      clip-path: polygon(32px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 32px);
+      display: flex; flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-    .product-card:hover {
-      border-color: var(--blue);
-      box-shadow: 0 4px 24px rgba(32,108,185,0.12);
+    .product-card:hover { transform: translateY(-4px); }
+    .product-card:hover .product-link { gap: 20px; }
+    .product-card:hover .product-link-text {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
-    .product-card-top {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 16px;
-      margin-bottom: 20px;
+    .product-card-name {
+      font-size: 20px; font-weight: 800;
+      color: var(--navy-dark);
+      padding: 28px 28px 20px;
     }
-    .product-card h3 {
-      font-size: 22px; font-weight: 800;
-      color: var(--navy-dark); margin-bottom: 10px;
+    .product-card-image {
+      margin: 0 28px;
+      min-height: 260px;
+      background: #C8D0DC;
+      flex-shrink: 0;
     }
-    .product-card p { font-size: 14px; color: #3A5570; line-height: 1.6; margin-bottom: 24px; }
-    .product-specs {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 28px;
+    .product-card-specs {
+      padding: 0 28px;
+      margin-top: 20px;
+      flex: 1;
     }
-    .spec-item { background: var(--off-white); padding: 10px 12px; }
-    .spec-val { font-size: 15px; font-weight: 800; color: var(--navy-dark); line-height: 1; }
-    .spec-lbl { font-size: 11px; color: #7090B0; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .spec-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(9,25,59,0.1);
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-lbl {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #7090B0;
+    }
+    .spec-val {
+      font-size: 13px; font-weight: 700;
+      color: var(--navy-dark);
+    }
     .product-link {
-      font-size: 12px; font-weight: 700; color: var(--blue);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 6px; transition: gap 0.15s;
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 24px 28px 40px;
+      font-size: 12px; font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      transition: gap 0.2s;
     }
-    .product-link:hover { gap: 10px; }
 
     /* ─────────────────────────────────
-       6. INDUSTRIES  (dark)
+       6. INDUSTRIES  (Jacobs-style)
     ───────────────────────────────── */
-    .industries-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    .industries-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: end;
+      margin-bottom: 48px;
     }
-    .industry-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border-d);
-      padding: 28px 20px 24px;
-      transition: background 0.2s, border-color 0.2s;
+    .industries-intro h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--navy-dark);
     }
-    .industry-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.22);
+    .industries-intro p {
+      font-size: 16px; line-height: 1.7;
+      color: #3A5570; font-weight: 300;
     }
-    .industry-card h3 {
-      font-size: 14px; font-weight: 700;
-      margin: 14px 0 8px; line-height: 1.3;
+    .industries-featured {
+      display: grid; grid-template-columns: 5fr 7fr;
+      min-height: 560px;
     }
-    .industry-card p { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+    .industries-panel {
+      background: var(--navy-dark);
+      padding: 64px 72px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .industries-panel-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+    }
+    .industries-panel h3 {
+      font-size: clamp(26px, 3vw, 44px); font-weight: 800;
+      color: var(--white); line-height: 1.05; margin-bottom: 24px;
+    }
+    .industries-panel p {
+      font-size: 16px; color: var(--text-1); line-height: 1.75; font-weight: 300;
+    }
+    .industries-panel-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--white); margin-top: 48px;
+      transition: gap 0.2s;
+    }
+    .industries-panel-link:hover { gap: 20px; }
+    .industries-panel-link:hover .industries-panel-link-text { text-decoration: underline; text-underline-offset: 3px; }
+    .industries-image {
+      background: #6A7F96;
+      overflow: hidden;
+      transition: background 0.4s;
+      min-height: 560px;
+      position: relative;
+    }
+    .industries-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(9,25,59,0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .industries-tabs {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      margin-top: 48px;
+      border-top: 1px solid rgba(9,25,59,0.12);
+    }
+    .industry-tab {
+      padding: 24px 0 20px 28px;
+      border-left: 2px solid rgba(9,25,59,0.15);
+      cursor: pointer;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-2);
+      transition: color 0.2s, border-left-color 0.2s;
+      line-height: 1.5;
+    }
+    .industry-tab.active {
+      color: var(--navy-dark);
+      border-left-color: var(--navy-dark);
+    }
+    .industry-tab:hover:not(.active) { color: var(--navy-dark); }
 
     /* ─────────────────────────────────
        7. TIMELINE  (white)
@@ -637,9 +715,118 @@
       max-width: 460px; margin: 0 auto 40px; line-height: 1.6;
     }
     .cta-band-note { font-size: 12px; color: var(--text-2); margin-top: 20px; }
+    .cta-band-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline-white {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
 
     /* ─────────────────────────────────
-       9. FOOTER  (dark)
+       7. WHY LIMIK  (white)
+    ───────────────────────────────── */
+    .why-intro { margin-bottom: 56px; }
+    .why-intro h2 {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em; color: var(--navy-dark);
+    }
+    .why-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; margin-bottom: 64px;
+    }
+    .why-col h3 {
+      font-size: 18px; font-weight: 800;
+      color: var(--navy-dark); margin-bottom: 16px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .why-col p { font-size: 16px; color: #3A5570; line-height: 1.75; font-weight: 300; }
+    .why-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(9,25,59,0.12);
+    }
+    .why-stat {
+      padding: 40px 0 0; border-right: 1px solid rgba(9,25,59,0.12);
+    }
+    .why-stat:last-child { border-right: none; }
+    .why-stat-num {
+      font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+      color: var(--navy-dark); line-height: 1; margin-bottom: 12px;
+    }
+    .why-stat-label { font-size: 13px; color: #3A5570; line-height: 1.5; font-weight: 300; }
+
+    /* ─────────────────────────────────
+       8. FOUNDER QUOTE  (dark)
+    ───────────────────────────────── */
+    .founder-inner {
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 80px; align-items: center;
+    }
+    .founder-photo {
+      width: 280px; height: 360px;
+      background: #1E3059;
+      flex-shrink: 0;
+    }
+    .founder-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+    }
+    .founder-quote {
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 300; color: var(--white);
+      line-height: 1.5; margin: 0 0 36px;
+      font-style: italic;
+    }
+    .founder-quote::before { content: '\201C'; }
+    .founder-quote::after  { content: '\201D'; }
+    .founder-credit { display: flex; flex-direction: column; gap: 4px; }
+    .founder-credit strong { font-size: 15px; font-weight: 700; color: var(--white); }
+    .founder-credit span { font-size: 13px; color: var(--text-2); }
+
+    /* ─────────────────────────────────
+       9. CONTACT FORM  (white)
+    ───────────────────────────────── */
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+    .contact-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .contact-left h2 {
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em; color: var(--navy-dark);
+      margin-bottom: 20px;
+    }
+    .contact-left > p { font-size: 16px; color: #3A5570; line-height: 1.75; font-weight: 300; margin-bottom: 40px; }
+    .contact-details { display: flex; flex-direction: column; gap: 10px; }
+    .contact-detail-link { font-size: 15px; color: var(--blue); font-weight: 600; }
+    .contact-detail-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .contact-location { font-size: 13px; color: #7090B0; margin-top: 4px; }
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-row { margin-bottom: 20px; }
+    .form-label {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--navy-dark); margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%; padding: 14px 16px;
+      border: 1.5px solid rgba(9,25,59,0.2);
+      background: var(--white); color: var(--navy-dark);
+      font-size: 15px; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .form-input:focus { border-color: var(--blue); }
+    .form-input::placeholder { color: #A0B0C0; }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-note { font-size: 12px; color: #7090B0; text-align: center; margin-top: 16px; font-weight: 300; }
+
+    /* ─────────────────────────────────
+       FOOTER  (dark)
     ───────────────────────────────── */
     .footer { border-top: 1px solid var(--border-d); padding: 64px 0 40px; }
     .footer-grid {
@@ -859,22 +1046,6 @@
     }
     @media (max-width: 1100px) { .nav-flag { display: none; } }
 
-    /* ─────────────────────────────────
-       WHY LIMIK — light bg overrides
-    ───────────────────────────────── */
-    .bg-white .why-col {
-      background: var(--off-white);
-      border-color: var(--border-l);
-    }
-    .bg-white .why-col h3 { color: var(--navy-dark); }
-    .bg-white .why-col p  { color: #3A5570; }
-    .bg-white .why-stats  { margin-top: 16px; }
-    .bg-white .why-stat {
-      background: var(--off-white);
-      border-color: var(--border-l);
-    }
-    .bg-white .why-stat-num   { color: var(--blue); }
-    .bg-white .why-stat-label { color: #3A5570; }
     .bg-white .sec-header h2  { color: var(--navy-dark); }
 
     /* ─────────────────────────────────
@@ -899,6 +1070,8 @@
     .nav-top-strip {
       background: #206CB9;
       height: 36px;
+      overflow: hidden;
+      transition: height 0.3s ease;
       display: flex; align-items: center;
     }
     .nav-top-inner {
@@ -911,6 +1084,7 @@
       letter-spacing: 0.05em; transition: color 0.15s;
     }
     .nav-top-inner a:hover { color: rgba(255,255,255,0.7); }
+    .nav--strip-hidden .nav-top-strip { height: 0; }
     @media (max-width: 768px) { .nav-top-strip { display: none; } }
 
     /* ─────────────────────────────────
@@ -938,37 +1112,6 @@
        (partners CSS removed — replaced by about-section)
     ───────────────────────────────── */
 
-    /* ─────────────────────────────────
-       WHY LIMIK
-    ───────────────────────────────── */
-    .why-cols {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin-bottom: 16px;
-    }
-    .why-col {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border-d);
-      padding: 32px 28px;
-    }
-    .why-col h3 {
-      font-size: 20px; font-weight: 800;
-      color: var(--white); margin: 16px 0 12px;
-    }
-    .why-col p { font-size: 15px; color: var(--text-1); line-height: 1.7; }
-    .why-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-    }
-    .why-stat {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border-d);
-      padding: 24px 20px;
-    }
-    .why-stat-num {
-      font-size: clamp(28px, 3vw, 40px);
-      font-weight: 900; line-height: 1; margin-bottom: 8px;
-      color: var(--gold);
-    }
-    .why-stat-label { font-size: 13px; color: var(--text-1); line-height: 1.4; }
     @media (max-width: 1024px) {
       .why-cols { grid-template-columns: 1fr; }
       .why-stats { grid-template-columns: 1fr 1fr; }
@@ -1201,195 +1344,238 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════
-   WHY LIMIK  ← БЕЛЫЙ
-══════════════════════════════ -->
-<section class="section bg-white">
-  <div class="container">
-    <div class="sec-header bg-white">
-      <h2>American Power.<br>No Foreign Delays.</h2>
-      <p>Over 80% of U.S. large power transformers come from abroad. LIMIK delivers from American soil.</p>
-    </div>
-    <div class="why-cols">
-      <div class="why-col">
-        <div class="icon-sq-lg"></div>
-        <h3>U.S.-Manufactured</h3>
-        <p>IRA-eligible. DOD and Section 303 Defense Production Act qualified. No foreign supply chain dependency. Proudly owned and operated in Spartanburg, SC.</p>
-      </div>
-      <div class="why-col">
-        <div class="icon-sq-lg"></div>
-        <h3>Domestic Supply</h3>
-        <p>Over 80% of U.S. large power transformers come from abroad. LIMIK delivers from American soil — faster and with full engineering support.</p>
-      </div>
-    </div>
-    <div class="why-stats">
-      <div class="why-stat">
-        <div class="why-stat-num">80%</div>
-        <div class="why-stat-label">Foreign supply dependency in U.S.</div>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num">$1B+</div>
-        <div class="why-stat-label">Annual U.S. LPT demand</div>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num">600<span style="font-size:20px">MVA</span></div>
-        <div class="why-stat-label">Max capacity per unit</div>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num">§303</div>
-        <div class="why-stat-label">Defense Production Act Eligible</div>
-      </div>
-    </div>
-    <div style="margin-top:40px;text-align:center">
-      <a href="request-quote/" class="btn btn-gold">Request a Quote →</a>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════
-   4. PRODUCTS  ← БЕЛЫЙ
+   4. PRODUCTS  ← ТЁМНЫЙ
 ══════════════════════════════ -->
-<section class="section bg-white">
+<section class="section bg-dark">
   <div class="container">
-    <div class="sec-header bg-white">
-      <h2>Built for the<br>American Grid</h2>
-      <p>Three core product lines. Built to IEEE C57, ANSI, NEMA and IEC standards. DOE and DOD procurement qualified.</p>
+    <div class="sec-header" style="text-align:center;">
+      <h2>Large-Scale Power Solutions.<br>Custom-Engineered.</h2>
     </div>
     <div class="products-grid">
 
-      <div class="product-card">
-        <div class="product-card-top">
-          <div class="icon-sq"></div>
+      <a href="transformers/power/" class="product-card">
+        <div class="product-card-name">Power Transformers</div>
+        <div class="product-card-image"></div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">69 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Phase</span>
+            <span class="spec-val">1φ &amp; 3φ</span>
+          </div>
         </div>
-        <h3>Power Transformers</h3>
-        <p>Core grid infrastructure for utilities, industrial facilities, and defense applications. Single and three-phase configurations.</p>
-        <div class="product-specs">
-          <div class="spec-item"><div class="spec-val">600</div><div class="spec-lbl">Max MVA</div></div>
-          <div class="spec-item"><div class="spec-val">525kV</div><div class="spec-lbl">HV Rating</div></div>
-          <div class="spec-item"><div class="spec-val">69kV</div><div class="spec-lbl">LV Rating</div></div>
-          <div class="spec-item"><div class="spec-val">1 / 3φ</div><div class="spec-lbl">Phase</div></div>
-        </div>
-        <a href="products/" class="product-link">View Specifications →</a>
-      </div>
+        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
 
-      <div class="product-card">
-        <div class="product-card-top">
-          <div class="icon-sq"></div>
+      <a href="transformers/autotransformers/" class="product-card">
+        <div class="product-card-name">Autotransformers</div>
+        <div class="product-card-image"></div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">345 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Application</span>
+            <span class="spec-val">Grid Interconnect</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Standard</span>
+            <span class="spec-val">IEEE C57</span>
+          </div>
         </div>
-        <h3>Autotransformers</h3>
-        <p>High-voltage interconnection between grid systems. Essential for transmission network stability across voltage levels.</p>
-        <div class="product-specs">
-          <div class="spec-item"><div class="spec-val">525kV</div><div class="spec-lbl">HV Rating</div></div>
-          <div class="spec-item"><div class="spec-val">345kV</div><div class="spec-lbl">LV Rating</div></div>
-        </div>
-        <a href="products/" class="product-link">View Specifications →</a>
-      </div>
+        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
 
-      <div class="product-card">
-        <div class="product-card-top">
-          <div class="icon-sq"></div>
+      <a href="transformers/gsu/" class="product-card">
+        <div class="product-card-name">Generator Step-Up (GSU)</div>
+        <div class="product-card-image"></div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max LV</span>
+            <span class="spec-val">35 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Applications</span>
+            <span class="spec-val">Wind, Solar, Data</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Procurement</span>
+            <span class="spec-val">IRA-Eligible</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">Standard</span>
+            <span class="spec-val">IEEE C57 / ANSI</span>
+          </div>
         </div>
-        <h3>Generator Step-Up (GSU)</h3>
-        <p>For power plants, wind farms, and solar installations. Critical for data center and renewables infrastructure through 2032.</p>
-        <div class="product-specs">
-          <div class="spec-item"><div class="spec-val">Wind</div><div class="spec-lbl">Renewables</div></div>
-          <div class="spec-item"><div class="spec-val">Solar</div><div class="spec-lbl">Generation</div></div>
-          <div class="spec-item"><div class="spec-val">35kV</div><div class="spec-lbl">Max LV</div></div>
-          <div class="spec-item"><div class="spec-val">Data</div><div class="spec-lbl">Centers</div></div>
-        </div>
-        <a href="products/" class="product-link">View Specifications →</a>
-      </div>
+        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
 
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-   5. INDUSTRIES  ← СВЕТЛО-СЕРЫЙ
+   5. INDUSTRIES  ← Jacobs-style
 ══════════════════════════════ -->
 <section class="section bg-offwhite">
   <div class="container">
-    <div class="sec-header bg-offwhite">
+    <div class="industries-intro">
       <h2>Who We Build For</h2>
-      <p>Five core market segments — all facing the same shortage of domestic transformer supply.</p>
+      <p>From utilities and defense to data centers and renewables — LIMIK supplies U.S.-manufactured large power transformers to the industries that power America.</p>
     </div>
-    <div class="industries-grid">
 
-      <div class="industry-card">
-        <div class="icon-sq-sm"></div>
-        <h3>Utilities &amp; Grid</h3>
-        <p>Duke Energy, Dominion, and Southeast utilities need domestic supply now.</p>
+    <div class="industries-featured">
+      <div class="industries-panel">
+        <div>
+          <p class="industries-panel-eyebrow" id="ind-eyebrow">Utilities &amp; Grid</p>
+          <h3 id="ind-title">Powering America's Transmission Network</h3>
+          <p id="ind-desc">Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p>
+        </div>
+        <a href="industries/" class="industries-panel-link">
+          <span class="industries-panel-link-text">View Industry</span>
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
-      <div class="industry-card">
-        <div class="icon-sq-sm"></div>
-        <h3>Data Centers</h3>
-        <p>AWS, Azure, Google building hyperscale in the Carolinas. GSU supply critical.</p>
-      </div>
-      <div class="industry-card">
-        <div class="icon-sq-sm"></div>
-        <h3>Defense / DOD</h3>
-        <p>Section 303 eligible. Only new LPT manufacturer qualified for DOD procurement.</p>
-      </div>
-      <div class="industry-card">
-        <div class="icon-sq-sm"></div>
-        <h3>Renewables</h3>
-        <p>Wind, solar, BESS projects need IRA-eligible, U.S.-made GSU transformers.</p>
-      </div>
-      <div class="industry-card">
-        <div class="icon-sq-sm"></div>
-        <h3>EPC Contractors</h3>
-        <p>Bechtel, Fluor, Kiewit plan procurement 5+ years out. Add LIMIK to your spec.</p>
-      </div>
+      <div class="industries-image" id="ind-image"></div>
+    </div>
 
+    <div class="industries-tabs">
+      <div class="industry-tab active" data-index="0">Utilities &amp; Grid</div>
+      <div class="industry-tab" data-index="1">Data Centers</div>
+      <div class="industry-tab" data-index="2">Defense / DOD</div>
+      <div class="industry-tab" data-index="3">Renewables</div>
+      <div class="industry-tab" data-index="4">EPC Contractors</div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-   HOW TO GET A QUOTE  ← БЕЛЫЙ
-══════════════════════════════ -->
-<section class="section bg-white">
-  <div class="container">
-    <div class="sec-header bg-white">
-      <h2>How to Get a Quote</h2>
-      <p>No obligation. Just tell us what you need.</p>
-    </div>
-    <div class="how-steps">
-
-      <div class="how-step">
-        <div class="how-step-num">01</div>
-        <h3>Describe Your Project</h3>
-        <p>Submit your technical requirements: application, load, voltage, and delivery needs.</p>
-      </div>
-
-      <div class="how-step">
-        <div class="how-step-num">02</div>
-        <h3>Engineering Review</h3>
-        <p>Our team reviews specs, voltage, MVA, and application. We follow up with questions if needed.</p>
-      </div>
-
-      <div class="how-step">
-        <div class="how-step-num">03</div>
-        <h3>Receive Your Quote</h3>
-        <p>You get a full commercial proposal within 2 business days.</p>
-      </div>
-
-    </div>
-    <div style="text-align:center;margin-top:48px">
-      <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-   7. CTA BAND  ← ТЁМНЫЙ MID
+   6. CONTACT CTA  ← ТЁМНЫЙ MID
 ══════════════════════════════ -->
 <section class="section-lg cta-band bg-mid">
   <div class="container">
     <h2>Ready to Discuss<br><span>Your Project?</span></h2>
     <p>No obligation. Tell us what you need and we'll get back within 2 business days.</p>
-    <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
-    <div class="cta-band-note">No obligation · Your information is never shared</div>
+    <div class="cta-band-actions">
+      <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
+      <a href="mailto:info@limik.com" class="btn btn-outline-white btn-lg">Email Us Directly</a>
+    </div>
+    <div class="cta-band-note">No commitment required · Response within 2 business days</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   7. WHY LIMIK  ← БЕЛЫЙ
+══════════════════════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="why-intro">
+      <h2>American Power.<br>No Foreign Delays.</h2>
+    </div>
+    <div class="why-cols">
+      <div class="why-col">
+        <h3>U.S.-Manufactured</h3>
+        <p>IRA-eligible. DOD/Section 303 qualified. No foreign supply chain dependency. Proudly owned and operated in Spartanburg, SC — with full engineering and production on American soil.</p>
+      </div>
+      <div class="why-col">
+        <h3>Domestic Supply</h3>
+        <p>Over 80% of U.S. large power transformers come from abroad — with lead times stretching 2–4 years. LIMIK delivers from American soil, faster, with full engineering support and no import risk.</p>
+      </div>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat">
+        <div class="why-stat-num">80%</div>
+        <div class="why-stat-label">Foreign supply dependency<br>in U.S. transformer market</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">$1B+</div>
+        <div class="why-stat-label">Annual U.S. large power<br>transformer demand</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">600 MVA</div>
+        <div class="why-stat-label">Maximum capacity<br>per unit</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">§303</div>
+        <div class="why-stat-label">Defense Production Act<br>Eligible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   8. FOUNDER QUOTE  ← ТЁМНЫЙ
+══════════════════════════════ -->
+<section class="section bg-dark founder-section">
+  <div class="container">
+    <div class="founder-inner">
+      <div class="founder-photo"></div>
+      <div class="founder-content">
+        <p class="founder-eyebrow">From the Founder</p>
+        <blockquote class="founder-quote">We built LIMIK to solve America's transformer dependency problem. When a grid failure happens, there's no time to wait 3 years for an overseas shipment. The U.S. needs domestic capacity — and we're building it.</blockquote>
+        <div class="founder-credit">
+          <strong>Vitaly Ziva</strong>
+          <span>Founder &amp; CEO, LIMIK International</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   9. CONTACT FORM  ← БЕЛЫЙ
+══════════════════════════════ -->
+<section class="section bg-white contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <p class="contact-eyebrow">Get in Touch</p>
+        <h2>Tell Us About<br>Your Project</h2>
+        <p>Our engineering team reviews every inquiry personally. We typically respond within 2 business days with a preliminary assessment and next steps.</p>
+        <div class="contact-details">
+          <a href="mailto:info@limik.com" class="contact-detail-link">info@limik.com</a>
+          <a href="tel:+18645550100" class="contact-detail-link">+1 (864) 555-0100</a>
+          <p class="contact-location">Spartanburg, SC · United States</p>
+        </div>
+      </div>
+      <form class="contact-form" action="request-quote/" method="get">
+        <div class="form-row">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" placeholder="John Smith" name="name">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Company &amp; Title</label>
+          <input type="text" class="form-input" placeholder="Acme Energy / Project Engineer" name="company">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="john@acmeenergy.com" name="email">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Project Description</label>
+          <textarea class="form-input form-textarea" placeholder="MVA rating, voltage class, application, delivery timeline…" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Request a Quote →</button>
+        <p class="form-note">No commitment required. We'll review and respond within 2 business days.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -1622,6 +1808,81 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     tick(); // начальное состояние
+  })();
+
+  // ── Nav top strip: скрыть при скролле вниз, показать при скролле вверх ──
+  (function () {
+    const nav = document.querySelector('.nav');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', function () {
+      const y = window.scrollY;
+      if (y > lastY && y > 60) {
+        nav.classList.add('nav--strip-hidden');
+      } else {
+        nav.classList.remove('nav--strip-hidden');
+      }
+      lastY = y;
+    }, { passive: true });
+  })();
+
+  // ── Industries tabs ──
+  (function () {
+    const data = [
+      {
+        eyebrow: 'Utilities & Grid',
+        title: "Powering America's Transmission Network",
+        desc: 'Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.',
+        bg: '#6A7F99'
+      },
+      {
+        eyebrow: 'Data Centers',
+        title: 'Critical Power for Hyperscale Infrastructure',
+        desc: 'AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.',
+        bg: '#5A7A8A'
+      },
+      {
+        eyebrow: 'Defense / DOD',
+        title: 'Section 303 Qualified. DOD-Ready.',
+        desc: 'LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.',
+        bg: '#4A6070'
+      },
+      {
+        eyebrow: 'Renewables',
+        title: 'IRA-Eligible GSU for Wind, Solar & BESS',
+        desc: 'Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.',
+        bg: '#5A7060'
+      },
+      {
+        eyebrow: 'EPC Contractors',
+        title: "Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec",
+        desc: 'Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.',
+        bg: '#6A6A80'
+      }
+    ];
+
+    const tabs = document.querySelectorAll('.industry-tab');
+    const eyebrow = document.getElementById('ind-eyebrow');
+    const title = document.getElementById('ind-title');
+    const desc = document.getElementById('ind-desc');
+    const image = document.getElementById('ind-image');
+    const panel = document.querySelector('.industries-panel');
+
+    function activate(i) {
+      tabs.forEach(t => t.classList.remove('active'));
+      tabs[i].classList.add('active');
+      const d = data[i];
+      panel.style.opacity = '0';
+      setTimeout(() => {
+        eyebrow.textContent = d.eyebrow;
+        title.textContent = d.title;
+        desc.textContent = d.desc;
+        image.style.background = d.bg;
+        panel.style.opacity = '1';
+      }, 180);
+    }
+
+    panel.style.transition = 'opacity 0.18s';
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
   })();
 
   // ── Count-up анимация для stats ──

@@ -7,6 +7,8 @@
 !assets/images/*.png
 !assets/images/*.jpg
 !assets/images/*.jpeg
+!hero.mp4
+!*.jpg
 
 # Playwright логи
 .playwright-mcp/

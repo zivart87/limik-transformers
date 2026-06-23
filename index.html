@@ -1216,7 +1216,9 @@
       border-bottom-color: transparent !important;
     }
 
-    .nav--transparent .nav-logo img { filter: brightness(0) invert(1); }
+    .nav-logo .logo-light { display: none; }
+    .nav--transparent .nav-logo .logo-dark { display: none; }
+    .nav--transparent .nav-logo .logo-light { display: block; }
     .nav--transparent .nav-logo-name { color: var(--white); }
     .nav--transparent .nav-links > a,
     .nav--transparent .nav-dropdown-trigger { color: rgba(255,255,255,0.9); }
@@ -1305,7 +1307,8 @@
   <!-- Главная плашка — для инженеров -->
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <img src="assets/images/logo.svg" alt="LIMIK International">
+      <img src="assets/images/logo.svg" alt="LIMIK International" class="logo-dark">
+      <img src="logo%20for%20bg.svg" alt="LIMIK International" class="logo-light">
     </a>
     <div class="nav-links">
       <div class="nav-dropdown">
@@ -1843,7 +1846,7 @@
 
     <!-- Левый столбец: логотип, текст, email, copyright -->
     <div class="footer-brand-col">
-      <img src="assets/images/logo-white.svg" alt="LIMIK International" class="footer-logo">
+      <img src="logo%20for%20bg.svg" alt="LIMIK International" class="footer-logo">
       <p class="footer-tagline">U.S.-owned large power transformer manufacturer.<br>Spartanburg, SC.</p>
       <a href="tel:+18645550100" class="footer-contact-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">

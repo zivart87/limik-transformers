@@ -28,7 +28,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--font);
       background: var(--white);
@@ -111,7 +111,7 @@
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--font); font-weight: 700;
-      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 15px 32px;
       border: 2px solid transparent;
       border-radius: 2px;
@@ -157,16 +157,17 @@
        1. NAV  (white)
     ───────────────────────────────── */
     .nav {
-      position: sticky; top: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--white);
       border-bottom: 1px solid var(--border-l);
+      transition: background 0.35s ease, border-color 0.35s ease;
     }
     .nav-inner {
       width: 100%; padding: 0 60px;
       height: 92px; display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
-    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo img { height: 44px; width: auto; transition: filter 0.35s ease; }
     .nav-logo-name {
       font-size: 18px; font-weight: 900;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-dark);
@@ -224,7 +225,7 @@
     ───────────────────────────────── */
     .hero {
       position: relative;
-      height: calc(100vh - 128px); /* 36px top + 92px white nav */
+      height: 100vh;
       min-height: 580px;
       overflow: hidden;
       background: var(--navy-dark);
@@ -239,6 +240,14 @@
       pointer-events: none;
     }
     .hero-slide.active { opacity: 1; pointer-events: auto; }
+
+    /* ── Video background ── */
+    .hero-video-bg {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      animation: bgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
 
     /* ── Slide backgrounds ── */
     @keyframes bgEnter {
@@ -284,7 +293,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .hero-slide-text > * { opacity: 0; }
-    .hero-slide-text > h1 { opacity: 1; } /* h1 видим — слова анимируются сами */
+    .hero-slide-text > h1 { opacity: 1; }
     .hero-slide-action { opacity: 0; }
 
     .hero-slide.active .hero-sub          { animation: heroUp 0.70s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
@@ -366,7 +375,7 @@
       from { transform: scaleX(0); }
       to   { transform: scaleX(1); }
     }
-    .hero-bar.active .hero-bar-fill { animation: barFill 10s linear forwards; }
+    .hero-bar.active .hero-bar-fill { animation: barFill 8s linear forwards; }
     .hero-bar.done .hero-bar-fill   { transform: scaleX(1); }
 
     /* ─────────────────────────────────
@@ -403,7 +412,7 @@
     .about-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      margin-bottom: 56px;
+      margin-bottom: 80px;
       border-top: 1px solid rgba(9,25,59,0.12);
     }
     .about-stat-item {
@@ -439,6 +448,9 @@
     .clip-tl {
       clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px);
     }
+    .clip-tr {
+      clip-path: polygon(0% 0%, calc(100% - 64px) 0%, 100% 64px, 100% 100%, 0% 100%);
+    }
     .about-col-center .about-img-wrap img { height: 520px; }
     .about-col-side   .about-img-wrap img { height: 300px; }
     /* Картинка в конце колонки растягивается до низа центральной */
@@ -448,48 +460,106 @@
       font-size: 14px; font-weight: 400; line-height: 1.75;
       color: var(--navy-dark); margin: 0;
     }
-    /* ── ВАРИАНТ A: картинка + тёмная плашка поверх, выступает снизу ── */
+    /* ── About: карточка + фото ── */
     .about-overlay {
-      position: relative; overflow: visible;
-      margin-bottom: 64px;
-    }
-    .about-img-parallax-wrap {
-      position: relative; overflow: hidden; height: 548px;
-    }
-    .about-overlay-img {
-      width: 100%; height: 110%; object-fit: cover; display: block;
-      will-change: transform;
+      position: relative;
+      margin-bottom: 96px;
+      overflow: visible;
     }
     .about-overlay-card {
-      position: absolute;
-      right: 64px;
-      bottom: -64px;
-      width: 50%;
+      position: relative;
+      width: 80%;
       background: var(--navy-dark);
-      padding: 52px 48px;
+      padding: 120px calc(29% + 72px) 120px 72px;
+      z-index: 1;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
-    .about-overlay-eyebrow {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--text-2); margin: 0 0 16px;
+    .about-overlay-photo {
+      position: absolute;
+      right: calc(-12px - max(0px, (100vw - 1360px) / 2));
+      bottom: -96px;
+      width: calc(49% + 12px + max(0px, (100vw - 1360px) / 2));
+      height: 420px;
+      z-index: 2;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .about-overlay-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 120%;
+      object-fit: cover;
+      object-position: center 90%;
+      top: -10%;
+      will-change: transform;
     }
     .about-split-heading {
-      font-size: clamp(22px, 2.4vw, 36px);
+      font-size: 52px;
       font-weight: 700; letter-spacing: -0.01em;
       color: var(--white);
-      margin: 0 0 24px; line-height: 1.1;
+      margin: 0 0 28px; line-height: 1.1;
+      max-width: 500px;
     }
     .about-split-body {
       font-size: 16px; font-weight: 400; line-height: 1.75;
-      color: var(--text-1); margin: 0 0 36px;
+      color: rgba(255,255,255,0.72); margin: 0 0 40px;
+      max-width: 500px;
     }
     .about-split-link {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
       text-transform: uppercase; color: var(--white);
-      transition: gap 0.2s;
+      align-self: flex-start;
     }
-    .about-split-link:hover { gap: 18px; }
+    .about-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold);
+      color: var(--navy-dark);
+      border-radius: 2px;
+    }
+    .about-link-icon svg { transition: transform 0.1s ease; }
+    .about-split-link:hover .about-link-icon svg { transform: rotate(-45deg); }
+    @media (max-width: 900px) {
+      .about-overlay { height: auto; margin-bottom: 0; }
+      .about-overlay-card { position: relative; width: 100%; height: auto; padding: 48px 32px 56px; }
+      .about-overlay-photo { position: relative; top: unset; right: unset; width: 100%; height: 260px; margin-top: 24px; }
+    }
+
+    /* ── About: зеркальный блок (фото слева, карточка справа) ── */
+    .about-overlay-card-r {
+      position: relative;
+      width: calc(80% + 12px + max(0px, (100vw - 1360px) / 2));
+      margin-left: auto;
+      margin-right: calc(-12px - max(0px, (100vw - 1360px) / 2));
+      background: var(--navy-dark);
+      padding: 120px 72px 120px calc(29% + 72px);
+      z-index: 1;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    .about-overlay-photo-l {
+      position: absolute;
+      left: -20px;
+      bottom: -96px;
+      width: calc(49% + 20px);
+      height: 420px;
+      z-index: 2;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .about-overlay-photo-l img {
+      position: absolute; inset: 0;
+      width: 100%; height: 120%;
+      object-fit: cover; object-position: center;
+      top: -10%; will-change: transform;
+    }
+    @media (max-width: 900px) {
+      .about-overlay-card-r { width: 100%; margin-left: 0; padding: 48px 32px 56px; }
+      .about-overlay-photo-l { position: relative; top: unset; left: unset; width: 100%; height: 260px; margin-bottom: 24px; }
+    }
 
     /* ─────────────────────────────────
        4. PAIN POINT  (dark)
@@ -531,17 +601,12 @@
     }
     .product-card {
       background: #FFFFFF;
-      clip-path: polygon(32px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 32px);
+      border-radius: 2px;
       display: flex; flex-direction: column;
       cursor: pointer;
       transition: transform 0.2s;
     }
     .product-card:hover { transform: translateY(-4px); }
-    .product-card:hover .product-link { gap: 20px; }
-    .product-card:hover .product-link-text {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
     .product-card-name {
       font-size: 20px; font-weight: 800;
       color: var(--navy-dark);
@@ -574,13 +639,21 @@
       color: var(--navy-dark);
     }
     .product-link {
-      display: inline-flex; align-items: center; gap: 12px;
+      display: inline-flex; align-items: center; gap: 16px;
       padding: 24px 28px 40px;
-      font-size: 12px; font-weight: 700;
+      font-size: 13px; font-weight: 800;
       color: var(--navy-dark);
-      letter-spacing: 0.12em; text-transform: uppercase;
-      transition: gap 0.2s;
+      letter-spacing: 0.07em; text-transform: uppercase;
     }
+    .product-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold);
+      color: var(--navy-dark);
+      border-radius: 2px;
+    }
+    .product-link-icon svg { transition: transform 0.1s ease; }
+    .product-card:hover .product-link-icon svg { transform: rotate(-45deg); }
 
     /* ─────────────────────────────────
        6. INDUSTRIES  (Jacobs-style)
@@ -632,13 +705,19 @@
       font-size: 16px; color: var(--text-1); line-height: 1.75; font-weight: 300;
     }
     .industries-panel-link {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
       text-transform: uppercase; color: var(--white); margin-top: 48px;
-      transition: gap 0.2s;
+      align-self: flex-start;
     }
-    .industries-panel-link:hover { gap: 20px; }
-    .industries-panel-link:hover .industries-panel-link-text { text-decoration: underline; text-underline-offset: 3px; }
+    .industries-panel-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark);
+      border-radius: 2px;
+    }
+    .industries-panel-link-icon svg { transition: transform 0.1s ease; }
+    .industries-panel-link:hover .industries-panel-link-icon svg { transform: rotate(-45deg); }
     .industries-image {
       overflow: hidden;
       min-height: 480px;
@@ -664,8 +743,8 @@
     }
     .industry-tab-icon {
       width: 28px; height: 28px;
-      color: var(--text-2);
-      transition: color 0.2s;
+      color: var(--blue); opacity: 0.4;
+      transition: opacity 0.2s;
       flex-shrink: 0;
     }
     .industry-tab-label {
@@ -674,12 +753,10 @@
       transition: color 0.2s;
       line-height: 1.5;
     }
-    .industry-tab.active .industry-tab-icon,
-    .industry-tab.active .industry-tab-label {
-      color: var(--navy-dark);
-    }
+    .industry-tab.active .industry-tab-icon { opacity: 1; }
+    .industry-tab.active .industry-tab-label { color: var(--navy-dark); }
     .industry-tab.active { border-left-color: var(--navy-dark); }
-    .industry-tab:hover:not(.active) .industry-tab-icon,
+    .industry-tab:hover:not(.active) .industry-tab-icon { opacity: 1; }
     .industry-tab:hover:not(.active) .industry-tab-label { color: var(--navy-dark); }
 
     /* ─────────────────────────────────
@@ -728,19 +805,25 @@
     .tag-plan { color: #7090B0; border-color: var(--border-l); background: transparent; }
 
     /* ─────────────────────────────────
-       8. CTA BAND  (dark mid)
+       8. CTA BAND  (blue bar)
     ───────────────────────────────── */
-    .cta-band { text-align: center; position: relative; overflow: hidden; }
+    .cta-band { background: var(--blue); position: relative; }
+    .cta-band-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 48px;
+      padding: 88px 0;
+    }
     .cta-band h2 {
-      font-size: clamp(28px, 4vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.02em; margin-bottom: 16px;
+      font-size: 52px; font-weight: 700;
+      letter-spacing: -0.01em; line-height: 1.1;
+      color: var(--white); margin: 0 0 28px;
     }
-    .cta-band h2 span { color: var(--gold); }
     .cta-band p {
-      font-size: 17px; color: var(--text-1);
-      max-width: 460px; margin: 0 auto 40px; line-height: 1.6;
+      font-size: 16px; font-weight: 300;
+      line-height: 1.75; color: rgba(255,255,255,0.72);
+      margin: 0;
     }
+
     .cta-band-note { font-size: 12px; color: var(--text-2); margin-top: 20px; }
     .cta-band-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn-outline-white {
@@ -767,7 +850,7 @@
       gap: 0;
     }
     .why-col {
-      padding: 48px 48px 0 0;
+      padding: 0 48px 0 0;
     }
     .why-col:last-child { padding-right: 0; }
     .why-col + .why-col { padding-left: 48px; }
@@ -796,7 +879,7 @@
       gap: 0;
     }
     .founder-content {
-      padding: 80px 80px 80px 0;
+      padding: 0 80px 80px 0;
       display: flex; flex-direction: column; justify-content: center;
     }
     .founder-photo {
@@ -808,7 +891,7 @@
       display: block;
     }
     .founder-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
       text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
     }
     .founder-quote {
@@ -820,8 +903,8 @@
     .founder-quote::before { content: '\201C'; }
     .founder-quote::after  { content: '\201D'; }
     .founder-credit { display: flex; flex-direction: column; gap: 4px; }
-    .founder-credit strong { font-size: 15px; font-weight: 700; color: var(--navy-dark); }
-    .founder-credit span { font-size: 13px; color: #3A5570; }
+    .founder-credit strong { font-size: 16px; font-weight: 700; color: var(--navy-dark); }
+    .founder-credit span { font-size: 16px; color: #3A5570; }
 
     /* ─────────────────────────────────
        9. CONTACT FORM  (white)
@@ -1127,6 +1210,22 @@
     .nav--strip-hidden .nav-top-strip { height: 0; }
     @media (max-width: 768px) { .nav-top-strip { display: none; } }
 
+    /* ─── Прозрачный nav поверх hero ─── */
+    .nav--transparent {
+      background: transparent !important;
+      border-bottom-color: transparent !important;
+    }
+
+    .nav--transparent .nav-logo img { filter: brightness(0) invert(1); }
+    .nav--transparent .nav-logo-name { color: var(--white); }
+    .nav--transparent .nav-links > a,
+    .nav--transparent .nav-dropdown-trigger { color: rgba(255,255,255,0.9); }
+    .nav--transparent .nav-links > a:hover,
+    .nav--transparent .nav-dropdown-trigger:hover { color: var(--white); }
+    .nav--transparent .nav-flag-text { color: rgba(255,255,255,0.85); }
+    .nav--transparent .nav-flag-img { border-color: rgba(255,255,255,0.3); }
+    .nav--transparent .nav-burger span { background: var(--white); }
+
     /* ─────────────────────────────────
        NAV DROPDOWN
     ───────────────────────────────── */
@@ -1261,9 +1360,11 @@
 ══════════════════════════════ -->
 <section class="hero bg-dark">
 
-  <!-- ═══ SLIDE 1: Headline — тёмный фон (заглушка видео) ═══ -->
+  <!-- ═══ SLIDE 1: Headline — видео фон ═══ -->
   <div class="hero-slide active">
-    <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1920&q=80');"></div>
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4">
+    </video>
     <div class="hero-slide-overlay"></div>
     <div class="hero-slide-content">
       <div class="hero-slide-text">
@@ -1343,19 +1444,20 @@
       </div>
     </div>
 
-    <!-- ВАРИАНТ A: картинка + белая плашка поверх -->
+    <!-- About: тёмная карточка + фото -->
     <div class="about-overlay">
-      <div class="about-img-parallax-wrap">
-        <img class="about-overlay-img" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1600&q=80" alt="LIMIK Manufacturing">
-      </div>
       <div class="about-overlay-card clip-tl">
-        <p class="about-overlay-eyebrow">About Us</p>
-        <h2 class="about-split-heading">Engineering That Powers the Grid</h2>
+        <h2 class="about-split-heading">Engineering That<br>Powers the Grid</h2>
         <p class="about-split-body">Founded in 1994, LIMIK designs and manufactures large power transformers — Power Transformers, Autotransformers, and Generator Step-Up units — for utilities, independent power producers, and EPC contractors across the Americas. Every unit is custom-engineered from 20 to 600 MVA, up to 525 kV.</p>
         <a href="company/" class="about-split-link">
+          <span class="about-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
           Learn More
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+      </div>
+      <div class="about-overlay-photo">
+        <img src="%D0%BE%20%D0%BD%D0%B0%D1%81.jpg" alt="LIMIK Manufacturing">
       </div>
     </div>
 
@@ -1389,8 +1491,9 @@
    4. PRODUCTS  ← ТЁМНЫЙ
 ══════════════════════════════ -->
 <div class="section-transition" data-color-to="#09193B" data-height="140"></div>
-<section class="section bg-dark" id="products-section" style="padding-top: 56px;">
-  <div class="container">
+<section class="section bg-dark" id="products-section" style="padding-top: 56px; position: relative; overflow: hidden;">
+  <img src="logo%20for%20prodact.svg" aria-hidden="true" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
+  <div class="container" style="position:relative; z-index:1;">
     <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:48px; margin-bottom:48px;">
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered.</h2>
       <a href="request-quote/" class="btn btn-gold" style="flex-shrink:0;">Request a Quote</a>
@@ -1418,7 +1521,10 @@
             <span class="spec-val">1φ &amp; 3φ</span>
           </div>
         </div>
-        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
       </a>
 
       <a href="transformers/autotransformers/" class="product-card">
@@ -1442,7 +1548,10 @@
             <span class="spec-val">IEEE C57</span>
           </div>
         </div>
-        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
       </a>
 
       <a href="transformers/gsu/" class="product-card">
@@ -1466,7 +1575,10 @@
             <span class="spec-val">IEEE C57 / ANSI</span>
           </div>
         </div>
-        <div class="product-link"><span class="product-link-text">Learn More</span> <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
       </a>
 
     </div>
@@ -1488,7 +1600,10 @@
       <div class="ind-slide active">
         <div class="industries-panel">
           <div><h3>Powering America's Transmission Network</h3><p>Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p></div>
-          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="industries/" class="industries-panel-link">
+            <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            View Industry
+          </a>
         </div>
         <div class="industries-image"><img src="https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?w=900&h=700&fit=crop&auto=format&q=80" alt="Utilities"></div>
       </div>
@@ -1496,7 +1611,10 @@
       <div class="ind-slide">
         <div class="industries-panel">
           <div><h3>Critical Power for Hyperscale Infrastructure</h3><p>AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.</p></div>
-          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="industries/" class="industries-panel-link">
+            <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            View Industry
+          </a>
         </div>
         <div class="industries-image"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=700&fit=crop&auto=format&q=80" alt="Data Centers"></div>
       </div>
@@ -1504,7 +1622,10 @@
       <div class="ind-slide">
         <div class="industries-panel">
           <div><h3>Section 303 Qualified. DOD-Ready.</h3><p>LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.</p></div>
-          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="industries/" class="industries-panel-link">
+            <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            View Industry
+          </a>
         </div>
         <div class="industries-image"><img src="https://images.unsplash.com/photo-1650043996692-a51e3d749766?w=900&h=700&fit=crop&auto=format&q=80" alt="Defense"></div>
       </div>
@@ -1512,7 +1633,10 @@
       <div class="ind-slide">
         <div class="industries-panel">
           <div><h3>IRA-Eligible GSU for Wind, Solar &amp; BESS</h3><p>Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.</p></div>
-          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="industries/" class="industries-panel-link">
+            <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            View Industry
+          </a>
         </div>
         <div class="industries-image"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&h=700&fit=crop&auto=format&q=80" alt="Renewables"></div>
       </div>
@@ -1520,7 +1644,10 @@
       <div class="ind-slide">
         <div class="industries-panel">
           <div><h3>Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec</h3><p>Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.</p></div>
-          <a href="industries/" class="industries-panel-link"><span class="industries-panel-link-text">View Industry</span><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M13 1L19 7M19 7L13 13M19 7H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="industries/" class="industries-panel-link">
+            <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            View Industry
+          </a>
         </div>
         <div class="industries-image"><img src="https://images.unsplash.com/photo-1527335988388-b40ee248d80c?w=900&h=700&fit=crop&auto=format&q=80" alt="EPC Contractors"></div>
       </div>
@@ -1568,17 +1695,25 @@
 </section>
 
 <!-- ══════════════════════════════
-   6. CONTACT CTA  ← ТЁМНЫЙ MID
+   ABOUT MIRROR  ← фото слева
 ══════════════════════════════ -->
-<section class="section-lg cta-band bg-mid">
-  <div class="container">
-    <h2>Ready to Discuss<br><span>Your Project?</span></h2>
-    <p>No obligation. Tell us what you need and we'll get back within 2 business days.</p>
-    <div class="cta-band-actions">
-      <a href="request-quote/" class="btn btn-gold btn-lg">Request a Quote →</a>
-      <a href="mailto:info@limik.com" class="btn btn-outline-white btn-lg">Email Us Directly</a>
+<section class="about-section" style="padding-top: 0; padding-bottom: 0;">
+  <div class="about-container" style="padding-top: 120px; padding-bottom: 96px;">
+    <div class="about-overlay" style="margin-bottom: 0;">
+      <div class="about-overlay-card-r clip-tl">
+        <h2 class="about-split-heading">Built for the<br>American Grid</h2>
+        <p class="about-split-body">From utility-scale substations to DOD facilities, every LIMIK transformer is engineered to specification — IEEE C57, ANSI, NEMA and IEC certified, with full Buy American compliance built in.</p>
+        <a href="transformers/" class="about-split-link">
+          <span class="about-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          View Products
+        </a>
+      </div>
+      <div class="about-overlay-photo-l">
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80" alt="LIMIK Manufacturing">
+      </div>
     </div>
-    <div class="cta-band-note">No commitment required · Response within 2 business days</div>
   </div>
 </section>
 
@@ -1587,10 +1722,6 @@
 ══════════════════════════════ -->
 <section class="section bg-white">
   <div class="container">
-    <div class="why-intro">
-      <h2>The LIMIK Difference</h2>
-      <a href="company/" class="btn btn-outline-dark">Learn More About LIMIK</a>
-    </div>
     <div class="why-cols">
 
       <div class="why-col">
@@ -1651,7 +1782,7 @@
 <!-- ══════════════════════════════
    9. CONTACT FORM  ← БЕЛЫЙ
 ══════════════════════════════ -->
-<section class="section bg-white contact-section">
+<section class="section bg-white contact-section" style="display:none;">
   <div class="container">
     <div class="contact-inner">
       <div class="contact-left">
@@ -1684,6 +1815,20 @@
         <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Request a Quote →</button>
         <p class="form-note">No commitment required. We'll review and respond within 2 business days.</p>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   CTA BAND
+══════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Ready to Power Your<br>Next Project?</h2>
+      </div>
+      <a href="request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
     </div>
   </div>
 </section>
@@ -1866,7 +2011,7 @@
 
     function resetTimer() {
       clearInterval(timer);
-      timer = setInterval(() => goTo(current + 1), 10000);
+      timer = setInterval(() => goTo(current + 1), 8000);
     }
 
     bars.forEach(bar => {
@@ -1919,19 +2064,32 @@
     tick(); // начальное состояние
   })();
 
-  // ── Nav top strip: скрыть при скролле вниз, показать при скролле вверх ──
+  // ── Nav: прозрачный на hero, белый при скролле + скрыть strip при скролле вниз ──
   (function () {
     const nav = document.querySelector('.nav');
+    const TRANSPARENT_THRESHOLD = 80;
     let lastY = window.scrollY;
-    window.addEventListener('scroll', function () {
+
+    function updateNav() {
       const y = window.scrollY;
-      if (y > lastY && y > 60) {
-        nav.classList.add('nav--strip-hidden');
-      } else {
+      // Прозрачность — только на самом верху страницы
+      if (y < TRANSPARENT_THRESHOLD) {
+        nav.classList.add('nav--transparent');
         nav.classList.remove('nav--strip-hidden');
+      } else {
+        nav.classList.remove('nav--transparent');
+        // Скрыть strip при скролле вниз
+        if (y > lastY && y > 60) {
+          nav.classList.add('nav--strip-hidden');
+        } else {
+          nav.classList.remove('nav--strip-hidden');
+        }
       }
       lastY = y;
-    }, { passive: true });
+    }
+
+    updateNav(); // начальное состояние
+    window.addEventListener('scroll', updateNav, { passive: true });
   })();
 
   // ── Industries tabs ──
@@ -2035,7 +2193,7 @@
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: 'top 90%',
+          start: 'top 95%',
           end:   'top 0%',
           scrub: 2
         }
@@ -2053,7 +2211,42 @@
     });
   })();
 
-  // Parallax About section
+  // Parallax — About photo
+  const aboutPhoto = document.querySelector('.about-overlay-photo img');
+  if (aboutPhoto) {
+    gsap.fromTo(aboutPhoto,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.about-overlay-photo',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  }
+
+  // Parallax — About mirror photo (left)
+  const aboutPhotoL = document.querySelector('.about-overlay-photo-l img');
+  if (aboutPhotoL) {
+    gsap.fromTo(aboutPhotoL,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.about-overlay-photo-l',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  }
+
   // Parallax — Industries images
   document.querySelectorAll('.industries-image img').forEach(img => {
     gsap.fromTo(img,
@@ -2071,22 +2264,6 @@
     );
   });
 
-  const aboutImg = document.querySelector('.about-overlay-img');
-  if (aboutImg) {
-    gsap.fromTo(aboutImg,
-      { yPercent: -8 },
-      {
-        yPercent: 8,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.about-img-parallax-wrap',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5
-        }
-      }
-    );
-  }
 </script>
 </body>
 </html>

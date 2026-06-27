@@ -172,6 +172,24 @@
       font-size: 18px; font-weight: 900;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-dark);
     }
+    .nav-links { display: flex; align-items: stretch; gap: 2px; align-self: stretch; }
+    .nav-links > a, .nav-dropdown-trigger {
+      font-size: 14px; font-weight: 500; color: var(--navy-dark);
+      padding: 0 16px; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: color 0.15s; background: none; border: none; cursor: pointer;
+      font-family: var(--font);
+      position: relative; display: inline-flex; align-items: center;
+    }
+    .nav-links > a::after, .nav-dropdown-trigger::after {
+      content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+      height: 4px; background: var(--blue);
+      transform: scaleX(0); transition: transform 0.2s ease;
+    }
+    .nav-links > a:hover, .nav-dropdown-trigger:hover { color: var(--blue); }
+    .nav-links > a:hover::after, .nav-dropdown-trigger:hover::after { transform: scaleX(1); }
+    .nav-links .nav-dropdown { align-self: stretch; display: flex; align-items: stretch; }
+    .nav-arrow { display: inline-block; transition: transform 0.2s ease; }
+    .nav-dropdown:hover .nav-arrow { transform: rotate(180deg); }
     /* Два CTA блока в навбаре */
     .nav-actions {
       display: flex; align-items: center; gap: 8px; margin-left: 8px;

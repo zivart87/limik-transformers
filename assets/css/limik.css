@@ -218,6 +218,7 @@ img { display: block; max-width: 100%; }
 
 /* links */
 .nav-links { display: flex; align-items: stretch; gap: 2px; align-self: stretch; }
+.nav-links .nav-dropdown { align-self: stretch; display: flex; align-items: stretch; }
 .nav-links > a, .nav-dropdown-trigger {
   font-size: 14px; font-weight: 500; color: var(--navy-dark);
   padding: 0 16px; letter-spacing: 0.05em; text-transform: uppercase;

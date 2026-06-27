@@ -7,8 +7,9 @@
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: var(--white);
   border-bottom: 1px solid var(--border-l);
-  transition: background 0.35s ease, border-color 0.35s ease;
+  transition: background 0.35s ease, border-color 0.35s ease, opacity 0.15s ease;
 }
+.nav--hidden { opacity: 0; }
 
 /* ── Top strip ── */
 .nav-top-strip {

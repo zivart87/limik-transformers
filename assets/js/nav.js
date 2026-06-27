@@ -46,6 +46,8 @@
         updateNav();
         window.addEventListener('scroll', updateNav, { passive: true });
       }
+
+      if (nav) nav.classList.remove('nav--hidden');
     }
   }
 

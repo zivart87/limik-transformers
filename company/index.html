@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About LIMIK International — U.S. Power Transformer Manufacturer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/limik.css">
+  <style>
+
+    /* ═══════════════════════════════
+       HERO — page-specific
+    ═══════════════════════════════ */
+    .co-hero {
+      position: relative;
+      min-height: 88vh;
+      background: var(--navy-dark);
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+      padding-top: 128px;
+    }
+    @keyframes bgEnter {
+      0%   { opacity: 0; transform: scale(1.07); }
+      100% { opacity: 1; transform: scale(1.0); }
+    }
+    @keyframes wordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .co-hero .split-word {
+      animation: wordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .co-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+      animation: bgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .co-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(9,25,59,0.92) 0%,
+        rgba(9,25,59,0.65) 50%,
+        rgba(9,25,59,0.20) 100%
+      );
+    }
+    .co-hero-content {
+      position: relative; z-index: 2;
+      width: 100%; padding: 0 72px 152px;
+    }
+    .co-hero-eyebrow {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+    }
+    .co-hero-line { width: 40px; height: 2px; background: var(--gold); flex-shrink: 0; }
+    .co-hero-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .co-hero h1 {
+      font-size: 72px;
+      font-weight: 800; line-height: 0.90;
+      text-transform: uppercase; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 0; max-width: 960px;
+    }
+    .co-hero-meta {
+      display: flex; gap: 32px; flex-wrap: wrap; margin-top: 48px;
+    }
+    .co-hero-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-2); letter-spacing: 0.03em;
+    }
+    .co-hero-dot { width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .co-hero-content { padding: 0 24px 60px; }
+      .co-hero h1 { font-size: clamp(36px, 10vw, 60px); }
+    }
+
+    /* ═══════════════════════════════
+       INTRO PANEL
+    ═══════════════════════════════ */
+    .co-intro {
+      position: relative; z-index: 5;
+      margin-top: -96px;
+      overflow: visible;
+      margin-bottom: 320px;
+    }
+    .co-intro::before {
+      content: '';
+      position: absolute; inset: 0;
+      right: 38%;
+      background: var(--navy-dark);
+      z-index: 0;
+    }
+    .co-intro .container {
+      position: relative; z-index: 1;
+    }
+    .co-intro-photo {
+      position: absolute;
+      right: 48px;
+      left: 52%;
+      bottom: -320px;
+      height: 560px;
+      z-index: 2;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+    }
+    .co-intro-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 120%;
+      object-fit: cover; object-position: center;
+      top: -10%;
+    }
+    .co-intro-inner {
+      width: 62%;
+      padding: 132px 0;
+    }
+    .co-intro-inner h2 {
+      font-size: 52px; font-weight: 700;
+      letter-spacing: -0.01em; line-height: 1.1;
+      color: var(--white); margin: 0 0 28px;
+      max-width: 500px;
+    }
+    .co-intro-inner p {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.72); margin: 0 0 40px;
+      max-width: 500px;
+    }
+    .co-intro-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .co-intro-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark);
+      border-radius: 2px;
+    }
+    .co-intro-link-icon svg { transition: transform 0.1s ease; }
+    .co-intro-link:hover .co-intro-link-icon svg { transform: rotate(-45deg); }
+    @media (max-width: 900px) {
+      .co-intro::before { right: 0; }
+      .co-intro-inner { width: 100%; padding: 48px 0; }
+    }
+
+    /* ═══════════════════════════════
+       STORY SPLIT
+    ═══════════════════════════════ */
+    .co-story {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+    .co-story-img { position: relative; overflow: hidden; min-height: 480px; }
+    .co-story-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+    }
+    .co-story-text {
+      background: var(--white);
+      padding: 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .co-story-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .co-story-text h2 {
+      font-size: clamp(26px, 2.8vw, 42px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 28px;
+    }
+    .co-story-text p {
+      font-size: 16px; line-height: 1.78;
+      color: #3A5570; margin-bottom: 18px;
+    }
+    .co-story-text p:last-of-type { margin-bottom: 0; }
+    .co-story-text strong { color: var(--navy-dark); }
+
+    @media (max-width: 900px) {
+      .co-story { grid-template-columns: 1fr; }
+      .co-story-img { min-height: 320px; }
+      .co-story-text { padding: 60px 40px; }
+    }
+    @media (max-width: 600px) { .co-story-text { padding: 48px 24px; } }
+
+    /* ═══════════════════════════════
+       STATS BAR
+    ═══════════════════════════════ */
+    .co-stats { background: var(--navy-dark); }
+    .co-stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border-d);
+    }
+    .co-stat {
+      padding: 56px 40px;
+      border-right: 1px solid var(--border-d);
+    }
+    .co-stat:last-child { border-right: none; }
+    .co-stat-num {
+      font-size: clamp(36px, 4vw, 60px); font-weight: 800;
+      line-height: 1; color: var(--white);
+      letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    .co-stat-num em { color: var(--gold); font-style: normal; }
+    .co-stat-label {
+      font-size: 13px; font-weight: 400;
+      color: var(--text-2); line-height: 1.55;
+    }
+    @media (max-width: 900px) {
+      .co-stats-grid { grid-template-columns: 1fr 1fr; }
+      .co-stat { border-right: none; border-bottom: 1px solid var(--border-d); }
+      .co-stat:nth-child(odd) { border-right: 1px solid var(--border-d); }
+    }
+    @media (max-width: 500px) {
+      .co-stats-grid { grid-template-columns: 1fr; }
+      .co-stat:nth-child(odd) { border-right: none; }
+    }
+
+    /* ═══════════════════════════════
+       STATEMENT BAND
+    ═══════════════════════════════ */
+    .co-statement {
+      background: var(--navy-mid);
+      padding: 100px 0;
+    }
+    .co-statement-inner { max-width: 860px; }
+    .co-statement h2 {
+      font-size: clamp(26px, 3.5vw, 50px); font-weight: 700;
+      line-height: 1.12; color: var(--white);
+      margin-bottom: 28px; letter-spacing: -0.01em;
+    }
+    .co-statement h2 em { color: var(--gold); font-style: normal; }
+    .co-statement p {
+      font-size: 17px; line-height: 1.75;
+      color: var(--text-1); max-width: 700px;
+    }
+
+    /* ═══════════════════════════════
+       THREE PILLARS
+    ═══════════════════════════════ */
+    .co-pillars { background: var(--off-white); padding: 120px 0; }
+    .co-pillars-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-2); margin-bottom: 16px;
+    }
+    .co-pillars > .container > h2 {
+      font-size: clamp(26px, 3.5vw, 48px); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.0;
+      color: var(--navy-dark); margin-bottom: 64px;
+    }
+    .co-pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; outline: 1px solid var(--border-l);
+    }
+    .co-pillar {
+      padding: 52px 48px;
+      border-right: 1px solid var(--border-l);
+    }
+    .co-pillar:last-child { border-right: none; }
+    .co-pillar-icon {
+      width: 40px; height: 40px; margin-bottom: 32px;
+      color: var(--blue); display: block;
+    }
+    .co-pillar h3 {
+      font-size: 20px; font-weight: 700; color: var(--navy-dark);
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .co-pillar p { font-size: 15px; line-height: 1.78; color: #3A5570; }
+
+    @media (max-width: 900px) {
+      .co-pillars-grid { grid-template-columns: 1fr; }
+      .co-pillar { border-right: none; border-bottom: 1px solid var(--border-l); }
+      .co-pillar:last-child { border-bottom: none; }
+      .co-pillar { padding: 44px 32px; }
+    }
+
+    /* ═══════════════════════════════
+       §303 — SIGNATURE SECTION
+    ═══════════════════════════════ */
+    .co-303 {
+      background: var(--navy-dark);
+      padding: 120px 0;
+      position: relative; overflow: hidden;
+    }
+    .co-303-bg {
+      position: absolute; right: -60px; top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(120px, 18vw, 260px);
+      font-weight: 900; letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.035);
+      line-height: 1; pointer-events: none;
+      user-select: none; white-space: nowrap;
+      font-family: var(--font);
+    }
+    .co-303-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 96px; align-items: start;
+    }
+    .co-303-tag { margin-bottom: 24px; }
+    .co-303-left h2 {
+      font-size: clamp(26px, 3.2vw, 48px); font-weight: 700;
+      line-height: 1.05; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .co-303-left h2 em { color: var(--gold); font-style: normal; }
+    .co-303-left p {
+      font-size: 16px; line-height: 1.78;
+      color: var(--text-1); margin-bottom: 40px;
+    }
+    .co-303-items { display: flex; flex-direction: column; gap: 28px; }
+    .co-303-item {
+      border-left: 2px solid var(--gold);
+      padding: 2px 0 2px 24px;
+    }
+    .co-303-item-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .co-303-item p {
+      font-size: 14px; line-height: 1.65; color: var(--text-2); margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .co-303-inner { grid-template-columns: 1fr; gap: 56px; }
+      .co-303-bg { display: none; }
+    }
+
+    /* ═══════════════════════════════
+       LEADERSHIP TEASER
+    ═══════════════════════════════ */
+    .co-team { background: var(--white); padding: 120px 0; }
+    .co-team-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 40px;
+      margin-bottom: 64px;
+    }
+    .co-team-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-2); margin-bottom: 12px;
+    }
+    .co-team-header h2 {
+      font-size: clamp(26px, 3.5vw, 48px); font-weight: 700;
+      line-height: 1.0; letter-spacing: -0.02em; color: var(--navy-dark);
+    }
+    .co-team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      outline: 1px solid var(--border-l);
+    }
+    .co-team-card {
+      border-right: 1px solid var(--border-l);
+      display: flex; flex-direction: column;
+    }
+    .co-team-card:last-child { border-right: none; }
+    .co-team-photo {
+      aspect-ratio: 4/5; overflow: hidden;
+      background: var(--off-white);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .co-team-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    }
+    .co-team-photo-placeholder { color: #C4D4E8; }
+    .co-team-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+    .co-team-name {
+      font-size: 20px; font-weight: 700;
+      color: var(--navy-dark); margin-bottom: 4px;
+    }
+    .co-team-role {
+      font-size: 13px; color: var(--text-2);
+      margin-bottom: 20px; font-weight: 400; line-height: 1.4;
+    }
+    .co-team-bio {
+      font-size: 14px; line-height: 1.72; color: #3A5570; flex: 1;
+    }
+    .co-team-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 24px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue); border-bottom: 1px solid rgba(32,108,185,0.3);
+      padding-bottom: 1px; align-self: flex-start;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .co-team-link:hover { color: var(--navy-dark); border-color: var(--navy-dark); }
+
+    @media (max-width: 900px) {
+      .co-team-grid { grid-template-columns: 1fr; outline: none; }
+      .co-team-card { border-right: none; border-bottom: 1px solid var(--border-l); }
+      .co-team-card:last-child { border-bottom: none; }
+      .co-team-header { flex-direction: column; align-items: flex-start; }
+      .co-team-photo { aspect-ratio: 16/9; }
+    }
+
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+   NAV
+══════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-top-strip">
+    <div class="nav-top-inner">
+      <a href="../company/" class="active">Company</a>
+      <a href="../careers/">Careers</a>
+      <a href="../news/">News</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </div>
+  <div class="nav-inner">
+    <a href="../" class="nav-logo">
+      <img src="../assets/images/logo.svg"       alt="LIMIK International" class="logo-dark">
+      <img src="../logo%20for%20bg.svg" alt="LIMIK International" class="logo-light">
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a href="../transformers/" class="nav-dropdown-trigger">Transformers ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="../transformers/power/">Power Transformers</a>
+          <a href="../transformers/autotransformers/">Autotransformers</a>
+          <a href="../transformers/gsu/">Generator Step-Up (GSU)</a>
+        </div>
+      </div>
+      <a href="../industries/">Industries</a>
+      <div class="nav-dropdown">
+        <a href="../support/" class="nav-dropdown-trigger">Support ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="../support/documentation/">Technical Documentation</a>
+          <a href="../support/certifications/">Certifications</a>
+          <a href="../support/calculator/">kVA Calculator</a>
+          <a href="../support/faq/">FAQ</a>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="../request-quote/" class="nav-cta">Get a Quote</a>
+      </div>
+      <div class="nav-flag">
+        <img src="../assets/images/flag-usa.svg" alt="USA Flag" class="nav-flag-img">
+        <span class="nav-flag-text">Made<br>in USA</span>
+      </div>
+    </div>
+    <div class="nav-burger" id="nav-burger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../transformers/">Transformers</a>
+    <a href="../industries/">Industries</a>
+    <a href="../support/">Support</a>
+    <a href="../company/" style="color:var(--blue);font-weight:700">Company</a>
+    <a href="../contact/">Contact</a>
+    <a href="../request-quote/">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+   1. HERO
+══════════════════════════════ -->
+<section class="co-hero">
+  <img
+    class="co-hero-img"
+    src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1800&q=80"
+    alt="High-voltage power substation at dusk"
+  >
+  <div class="co-hero-overlay"></div>
+  <div class="co-hero-content">
+    <h1>Built for the Grid.<br>Built in America</h1>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   INTRO PANEL — нахлёст на баннер
+══════════════════════════════ -->
+<div class="co-intro">
+  <div class="container">
+    <div class="co-intro-inner">
+      <h2>Engineering That<br>Powers the Grid</h2>
+      <p>Founded in 1994, LIMIK designs and manufactures large power transformers for utilities, independent power producers, and EPC contractors across the Americas. Every unit is custom-engineered from 20 to 600 MVA, up to 525 kV.</p>
+      <a href="../company/" class="co-intro-link">
+        <span class="co-intro-link-icon">
+          <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Learn More
+      </a>
+    </div>
+  </div>
+  <div class="co-intro-photo clip-tl">
+    <img src="../%D0%BE%20%D0%BD%D0%B0%D1%81.jpg" alt="LIMIK Manufacturing Facility">
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+   2. STORY SPLIT
+══════════════════════════════ -->
+<section class="co-story">
+  <div class="co-story-img">
+    <img
+      src="https://images.unsplash.com/photo-1565514158740-064f34bd5cfd?auto=format&fit=crop&w=900&q=80"
+      alt="Industrial manufacturing facility"
+    >
+  </div>
+  <div class="co-story-text">
+    <p class="co-story-eyebrow">Our Story</p>
+    <h2>A Company Founded for One Specific Problem</h2>
+    <p>The United States imports over 80% of its large power transformers — a strategic vulnerability that drives lead times to 2–4 years and leaves critical grid infrastructure dependent on foreign supply chains.</p>
+    <p>LIMIK was founded to build the factory America's grid needs: 100% focused on large power transformers, engineered from 20 to 600 MVA, manufactured in Spartanburg, South Carolina.</p>
+    <p><strong>Every transformer we build will carry a U.S. nameplate.</strong> That's not a marketing claim — it's the entire reason we exist.</p>
+    <a href="../request-quote/" class="btn btn-outline-dark" style="margin-top:40px;align-self:flex-start;">Register Interest</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   3. STATS BAR
+══════════════════════════════ -->
+<section class="co-stats bg-dark">
+  <div class="container">
+    <div class="co-stats-grid">
+      <div class="co-stat">
+        <div class="co-stat-num">$<em>540</em>M</div>
+        <div class="co-stat-label">Qatar Investment Authority anchor commitment</div>
+      </div>
+      <div class="co-stat">
+        <div class="co-stat-num"><em>600</em> MVA</div>
+        <div class="co-stat-label">Maximum transformer capacity, custom-engineered per spec</div>
+      </div>
+      <div class="co-stat">
+        <div class="co-stat-num"><em>525</em> kV</div>
+        <div class="co-stat-label">Highest voltage class — HV up to 525 kV, LV up to 69 kV</div>
+      </div>
+      <div class="co-stat">
+        <div class="co-stat-num"><em>2029</em></div>
+        <div class="co-stat-label">First transformer delivery from Spartanburg, SC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   4. STATEMENT BAND
+══════════════════════════════ -->
+<section class="co-statement bg-mid">
+  <div class="container">
+    <div class="co-statement-inner">
+      <h2>The U.S. imports <em>80%</em> of its large power transformers.<br>We're building the factory that changes that.</h2>
+      <p>Every utility outage, every delayed grid upgrade, every defense infrastructure project that waits years for a critical transformer — these are the consequences of a supply chain that depends on foreign manufacturers. LIMIK is the answer: a purpose-built American factory with the engineering talent, financial backing, and regulatory standing to deliver at scale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   5. THREE PILLARS
+══════════════════════════════ -->
+<section class="co-pillars bg-offwhite">
+  <div class="container">
+    <p class="co-pillars-eyebrow">Why LIMIK</p>
+    <h2>Three Reasons We're Different</h2>
+    <div class="co-pillars-grid">
+
+      <div class="co-pillar">
+        <svg class="co-pillar-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="20" cy="20" r="16"/>
+          <path d="M20 10v10l7 7"/>
+        </svg>
+        <h3>100% Power Transformer Specialization</h3>
+        <p>We build one product: large power transformers. No distribution units, no switchgear, no diversified lines. That depth of focus drives faster engineering cycles, tighter quality control, and a team whose entire expertise is large power transformers — 20 to 600 MVA.</p>
+      </div>
+
+      <div class="co-pillar">
+        <svg class="co-pillar-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 4L4 13v14l16 9 16-9V13L20 4z"/>
+          <path d="M4 13l16 9 16-9M20 13v13"/>
+        </svg>
+        <h3>Spartanburg, SC — Built for Scale</h3>
+        <p>Direct rail access, I-85 corridor logistics, proximity to BMW's manufacturing campus, and a precision-trained regional workforce. Over 1 million sq ft of capacity, planned from the ground up for transformer production — not retrofitted from another industry.</p>
+      </div>
+
+      <div class="co-pillar">
+        <svg class="co-pillar-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="28" height="28"/>
+          <path d="M14 20h12M20 14v12"/>
+        </svg>
+        <h3>Engineering Pedigree from Day One</h3>
+        <p>LIMIK's founding engineering team brings direct experience from PTI and Delta Star — two of the most respected names in U.S. transformer manufacturing. This isn't a startup learning on the job. It's a team that has designed and delivered transformers for American utilities for decades.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   6. §303 DEFENSE — SIGNATURE
+══════════════════════════════ -->
+<section class="co-303 bg-dark">
+  <div class="co-303-bg">§ 303</div>
+  <div class="container">
+    <div class="co-303-inner">
+
+      <div class="co-303-left">
+        <div class="co-303-tag">
+          <span class="tag tag-gold">Defense Production Act · Section 303</span>
+        </div>
+        <h2>The One Designation<br>No Other New Entrant<br><em>Can Match</em></h2>
+        <p>Section 303 of the Defense Production Act authorizes the U.S. government to prioritize domestic production of materials critical to national security. LIMIK holds §303 eligibility — meaning DOD and DOE agencies can award transformer contracts directly to LIMIK, bypassing the standard multi-year competitive procurement cycle.</p>
+        <a href="../request-quote/" class="btn btn-gold btn-lg">Schedule a Defense Briefing</a>
+      </div>
+
+      <div class="co-303-items">
+        <div class="co-303-item">
+          <div class="co-303-item-title">DOD &amp; DOE Direct Procurement</div>
+          <p>Defense and energy agencies can source LIMIK transformers under sole-source authority — bypassing the 2–4 year standard procurement cycle for qualifying critical infrastructure projects.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">National Security Supply Chain</div>
+          <p>Military bases, DOE facilities, and critical grid interconnects qualify for §303 procurement. LIMIK is one of very few transformer suppliers eligible for this designation.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">Buy American Compliance — By Default</div>
+          <p>Every LIMIK transformer is designed, engineered, and manufactured in the United States — satisfying Buy American Act and Berry Amendment requirements automatically on every order.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">Defense Channel — Ken Caward</div>
+          <p>LIMIK's defense business is led by Ken Caward, with direct relationships across DOD procurement offices and U.S. Army Corps of Engineers infrastructure programs.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   7. LEADERSHIP TEASER
+══════════════════════════════ -->
+<section class="co-team bg-white">
+  <div class="container">
+    <div class="co-team-header">
+      <div>
+        <p class="co-team-eyebrow">Leadership</p>
+        <h2>The Team Behind<br>the Factory</h2>
+      </div>
+      <a href="team/" class="btn btn-outline-dark">Meet the Full Team</a>
+    </div>
+
+    <div class="co-team-grid">
+
+      <!-- Igor Lon -->
+      <div class="co-team-card">
+        <div class="co-team-photo">
+          <img src="../assets/images/Igor.png" alt="Igor Lon — Founder & CEO">
+        </div>
+        <div class="co-team-body">
+          <div class="co-team-name">Igor Lon</div>
+          <div class="co-team-role">Founder &amp; CEO, LIMIK International</div>
+          <p class="co-team-bio">Initiated LIMIK with a precise thesis: the U.S. grid cannot sustain 2–4 year transformer lead times from overseas suppliers. Structured the $540M Qatar Fund commitment, secured the Spartanburg site, and assembled the founding engineering team with direct PTI and Delta Star pedigree.</p>
+          <a href="#" class="co-team-link">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <!-- Chief Engineer placeholder -->
+      <div class="co-team-card">
+        <div class="co-team-photo co-team-photo-placeholder">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#7090B0" stroke-width="1.5">
+            <circle cx="36" cy="28" r="16"/>
+            <path d="M8 66c0-15.464 12.536-28 28-28s28 12.536 28 28"/>
+          </svg>
+        </div>
+        <div class="co-team-body">
+          <div class="co-team-name">VP Engineering</div>
+          <div class="co-team-role">Chief Engineering Officer, LIMIK International</div>
+          <p class="co-team-bio">Brings 20+ years of large power transformer design experience from PTI and Delta Star. Responsible for all transformer design standards, IEEE C57 compliance, and engineering specifications across LIMIK's full product line from 20 to 600 MVA, up to 525 kV.</p>
+          <a href="team/" class="co-team-link">Full Profile →</a>
+        </div>
+      </div>
+
+      <!-- Ken Caward placeholder -->
+      <div class="co-team-card">
+        <div class="co-team-photo co-team-photo-placeholder">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#7090B0" stroke-width="1.5">
+            <circle cx="36" cy="28" r="16"/>
+            <path d="M8 66c0-15.464 12.536-28 28-28s28 12.536 28 28"/>
+          </svg>
+        </div>
+        <div class="co-team-body">
+          <div class="co-team-name">Ken Caward</div>
+          <div class="co-team-role">Defense &amp; Government Relations</div>
+          <p class="co-team-bio">Leads LIMIK's Section 303 and DOD/DOE procurement channel. Direct relationships with Army Corps of Engineers and defense infrastructure program officers. Architect of LIMIK's Defense Production Act positioning and sole-source procurement strategy.</p>
+          <a href="team/" class="co-team-link">Full Profile →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   8. CTA BAND
+══════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Reserve Your<br>Delivery Slot</h2>
+      </div>
+      <a href="../request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Register Interest</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   9. FOOTER
+══════════════════════════════ -->
+<footer class="footer-t3">
+
+  <div class="footer-left">
+    <div class="footer-brand-col">
+      <img src="../logo%20for%20bg.svg" alt="LIMIK International" class="footer-logo">
+      <p class="footer-tagline">U.S.-owned large power transformer manufacturer. Spartanburg, SC.</p>
+      <a href="../tel:+18645550100" class="footer-contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.27.2 2.48.57 3.61.1.34.01.72-.25.99L6.6 10.8z"/></svg>
+        +1 (864) 555-0100
+      </a>
+      <a href="../mailto:info@limik.com" class="footer-contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        info@limik.com
+      </a>
+      <p class="footer-copy">© 2026 LIMIK International LLC<br>All rights reserved.</p>
+    </div>
+    <div class="footer-social-col">
+      <p class="footer-social-label">Get in touch</p>
+      <div class="footer-social">
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Twitter">𝕏</a>
+        <a href="#" title="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-photo">
+    <img src="https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?auto=format&fit=crop&w=640&q=80" alt="Power substation" loading="lazy">
+    <div class="footer-photo-overlay"></div>
+  </div>
+
+  <div class="footer-spacer"></div>
+
+  <div class="footer-right">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Transformers</h4>
+        <a href="../transformers/power/">Power Transformers</a>
+        <a href="../transformers/autotransformers/">Autotransformers</a>
+        <a href="../transformers/gsu/">Generator Step-Up (GSU)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="../industries/">Utilities &amp; Grid</a>
+        <a href="../industries/">Data Centers</a>
+        <a href="../industries/">Defense / DOD</a>
+        <a href="../industries/">Renewables</a>
+        <a href="../industries/">EPC Contractors</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="../support/documentation/">Technical Documentation</a>
+        <a href="../support/certifications/">Certifications</a>
+        <a href="../support/calculator/">kVA Calculator</a>
+        <a href="../support/faq/">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../company/" style="color:var(--navy-dark);font-weight:500">About LIMIK</a>
+        <a href="team/">Our Team</a>
+        <a href="../news/">News</a>
+        <a href="../careers/">Careers</a>
+        <a href="../request-quote/">Request a Quote</a>
+        <a href="../contact/">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-certifications">
+      <span>IEEE C57</span>
+      <span>ANSI</span>
+      <span>NEMA</span>
+      <span>IEC</span>
+      <span>Section 303 Defense Production Act Eligible</span>
+      <span>DOE &amp; DOD Procurement Qualified</span>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  // Hero h1 word clip-reveal
+  (function () {
+    document.querySelectorAll('.co-hero h1').forEach(h1 => {
+      const nodes = Array.from(h1.childNodes);
+      h1.innerHTML = '';
+      let wordIndex = 0;
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach(part => {
+            if (/^\s+$/.test(part)) {
+              h1.appendChild(document.createTextNode(part));
+            } else if (part) {
+              const wrap = document.createElement('span');
+              wrap.className = 'word-wrap';
+              const span = document.createElement('span');
+              span.className = 'split-word';
+              span.style.animationDelay = (wordIndex * 0.09) + 's';
+              span.textContent = part;
+              wordIndex++;
+              wrap.appendChild(span);
+              h1.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeName === 'BR') {
+          h1.appendChild(document.createElement('br'));
+        }
+      });
+    });
+  })();
+
+  // Nav burger
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+  if (burger && mobile) {
+    burger.addEventListener('click', () => mobile.classList.toggle('open'));
+  }
+
+  // Transparent nav over hero, hide top strip on scroll
+  (function () {
+    const nav  = document.getElementById('nav');
+    const hero = document.querySelector('.co-hero');
+    if (!nav || !hero) return;
+
+    nav.classList.add('nav--transparent');
+
+    function update() {
+      const scrolled = window.scrollY > 60;
+      nav.classList.toggle('nav--transparent', !scrolled);
+      nav.classList.toggle('nav--strip-hidden', scrolled);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
+
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const lenis = new Lenis();
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  // Parallax — intro photo
+  const introPhoto = document.querySelector('.co-intro-photo img');
+  if (introPhoto) {
+    gsap.fromTo(introPhoto,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.co-intro-photo',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  }
+</script>
+
+</body>
+</html>

@@ -11,6 +11,10 @@
   <script src="../../assets/js/nav.js"></script>
   <style>
 
+    /* overflow-x: clip не создаёт новый scroll container
+       в отличие от hidden — позволяет position: sticky работать */
+    html, body { overflow-x: clip; }
+
     /* ═══════════════════════════════
        HERO
     ═══════════════════════════════ */

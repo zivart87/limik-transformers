@@ -223,11 +223,11 @@
       font-weight: 700; line-height: 1.05;
       letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 28px;
     }
-    .co-story-text p {
+    .co-story-text p:not(.eyebrow) {
       font-size: 16px; line-height: 1.78;
       color: #3A5570; margin-bottom: 18px;
     }
-    .co-story-text p:last-of-type { margin-bottom: 0; }
+    .co-story-text p:not(.eyebrow):last-of-type { margin-bottom: 0; }
     .co-story-text strong { color: var(--navy-dark); }
 
     @media (max-width: 900px) {
@@ -353,7 +353,7 @@
       color: var(--white); margin-bottom: 24px;
     }
     .co-303-left h2 em { color: var(--blue); font-style: normal; }
-    .co-303-left p {
+    .co-303-left p:not(.eyebrow) {
       font-size: 16px; line-height: 1.78;
       color: var(--text-1); margin-bottom: 40px;
     }

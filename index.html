@@ -6,6 +6,8 @@
   <title>LIMIK International — Where America's Power Begins</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <script src="assets/js/nav.js"></script>
   <style>
 
     /* ════════════════════════════════
@@ -153,82 +155,7 @@
     .bg-white .sec-header p,
     .bg-offwhite .sec-header p { color: #3A5570; }
 
-    /* ─────────────────────────────────
-       1. NAV  (white)
-    ───────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--border-l);
-      transition: background 0.35s ease, border-color 0.35s ease;
-    }
-    .nav-inner {
-      width: 100%; padding: 0 60px;
-      height: 92px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 12px; }
-    .nav-logo img { height: 44px; width: auto; transition: filter 0.35s ease; }
-    .nav-logo-name {
-      font-size: 18px; font-weight: 900;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-dark);
-    }
-    .nav-links { display: flex; align-items: stretch; gap: 2px; align-self: stretch; }
-    .nav-links > a, .nav-dropdown-trigger {
-      font-size: 14px; font-weight: 500; color: var(--navy-dark);
-      padding: 0 16px; letter-spacing: 0.05em; text-transform: uppercase;
-      transition: color 0.15s; background: none; border: none; cursor: pointer;
-      font-family: var(--font);
-      position: relative; display: inline-flex; align-items: center;
-    }
-    .nav-links > a::after, .nav-dropdown-trigger::after {
-      content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
-      height: 4px; background: var(--blue);
-      transform: scaleX(0); transition: transform 0.2s ease;
-    }
-    .nav-links > a:hover, .nav-dropdown-trigger:hover { color: var(--blue); }
-    .nav-links > a:hover::after, .nav-dropdown-trigger:hover::after { transform: scaleX(1); }
-    .nav-links .nav-dropdown { align-self: stretch; display: flex; align-items: stretch; }
-    .nav-arrow { display: inline-block; transition: transform 0.2s ease; }
-    .nav-dropdown:hover .nav-arrow { transform: rotate(180deg); }
-    /* Два CTA блока в навбаре */
-    .nav-actions {
-      display: flex; align-items: center; gap: 8px; margin-left: 8px;
-    }
-
-    /* Кнопка телефона — outline */
-    .nav-phone {
-      display: flex; align-items: center;
-      height: 48px; padding: 0 20px;
-      border: 2px solid var(--navy-dark); color: var(--navy-dark);
-      background: transparent;
-      font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
-      white-space: nowrap; transition: background 0.18s, color 0.18s;
-      border-radius: 2px;
-    }
-    .nav-phone:hover { background: var(--navy-dark) !important; color: var(--white) !important; }
-
-    .nav-cta {
-      background: var(--gold) !important; color: var(--navy-dark) !important;
-      font-weight: 800 !important; font-size: 13px !important;
-      height: 48px !important; display: flex !important; align-items: center !important;
-      letter-spacing: 0.1em !important; text-transform: uppercase !important;
-      padding: 0 24px !important; margin-left: 0 !important;
-      border-radius: 2px !important;
-    }
-    .nav-cta:hover { background: var(--gold-hover) !important; }
-    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
-    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--navy-dark); border-radius: 0; transition: 0.25s; }
-    .nav-mobile {
-      display: none; flex-direction: column;
-      background: var(--white); border-top: 1px solid var(--border-l);
-      padding: 16px 20px 24px;
-    }
-    .nav-mobile a {
-      font-size: 15px; color: var(--navy-dark); padding: 12px 0;
-      border-bottom: 1px solid var(--border-l); font-weight: 500;
-    }
-    .nav-mobile a:last-child { border-bottom: none; }
-    .nav-mobile.open { display: flex; }
+    /* Nav стили перенесены в assets/css/nav.css */
 
     /* ─────────────────────────────────
        2. HERO SLIDER
@@ -1146,9 +1073,6 @@
       .footer-grid     { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 768px) {
-      .nav-links  { display: none; }
-      .nav-burger { display: flex; }
-      .nav-inner  { padding: 0 20px; }
       .trust-bar-inner    { grid-template-columns: 1fr; }
       .trust-stat         { border-right: none; border-bottom: 1px solid var(--border-l); padding: 28px 20px; }
       .trust-stat:last-child { border-bottom: none; }
@@ -1178,21 +1102,7 @@
     /* ─────────────────────────────────
        NAV FLAG — Made in USA
     ───────────────────────────────── */
-    .nav-flag {
-      display: flex; align-items: center; gap: 7px;
-      margin-left: 14px; padding-left: 14px;
-      border-left: 1px solid var(--border-l);
-      flex-shrink: 0;
-    }
-    .nav-flag-img { width: 36px; height: auto; display: block; border: 1px solid rgba(0,0,0,0.1); }
-    .nav-flag-text {
-      font-size: 9px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--navy-dark); line-height: 1.3;
-    }
-    @media (max-width: 1100px) { .nav-flag { display: none; } }
-
-    .bg-white .sec-header h2  { color: var(--navy-dark); }
+.bg-white .sec-header h2  { color: var(--navy-dark); }
 
     /* ─────────────────────────────────
        INDUSTRIES — offwhite bg overrides
@@ -1210,67 +1120,6 @@
     .bg-offwhite .industry-card p  { color: #3A5570; }
     .bg-offwhite .icon-sq-sm { background: #D0DAE8; }
 
-    /* ─────────────────────────────────
-       NAV TOP STRIP
-    ───────────────────────────────── */
-    .nav-top-strip {
-      background: #206CB9;
-      height: 36px;
-      overflow: hidden;
-      transition: height 0.3s ease;
-      display: flex; align-items: center;
-    }
-    .nav-top-inner {
-      width: 100%; padding: 0 60px;
-      display: flex; justify-content: flex-end;
-    }
-    .nav-top-inner a {
-      font-size: 13px; font-weight: 500;
-      color: var(--white); padding: 0 14px;
-      letter-spacing: 0.05em; transition: color 0.15s;
-    }
-    .nav-top-inner a:hover { color: rgba(255,255,255,0.7); }
-    .nav--strip-hidden .nav-top-strip { height: 0; }
-    @media (max-width: 768px) { .nav-top-strip { display: none; } }
-
-    /* ─── Прозрачный nav поверх hero ─── */
-    .nav--transparent {
-      background: transparent !important;
-      border-bottom-color: transparent !important;
-    }
-
-    .nav-logo .logo-light { display: none; }
-    .nav--transparent .nav-logo .logo-dark { display: none; }
-    .nav--transparent .nav-logo .logo-light { display: block; }
-    .nav--transparent .nav-logo-name { color: var(--white); }
-    .nav--transparent .nav-links > a,
-    .nav--transparent .nav-dropdown-trigger { color: rgba(255,255,255,0.9); }
-    .nav--transparent .nav-links > a:hover,
-    .nav--transparent .nav-dropdown-trigger:hover { color: var(--white); }
-    .nav--transparent .nav-flag-text { color: rgba(255,255,255,0.85); }
-    .nav--transparent .nav-flag-img { border-color: rgba(255,255,255,0.3); }
-    .nav--transparent .nav-burger span { background: var(--white); }
-
-    /* ─────────────────────────────────
-       NAV DROPDOWN
-    ───────────────────────────────── */
-    .nav-dropdown { position: relative; display: flex; align-items: stretch; }
-    .nav-dropdown-menu {
-      display: none;
-      position: absolute; top: calc(100% + 12px); left: 0;
-      background: var(--white);
-      border: 1px solid var(--border-l);
-      box-shadow: 0 8px 24px rgba(9,25,59,0.12);
-      min-width: 230px; z-index: 200; padding: 8px 0;
-    }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown-menu a {
-      display: block; font-size: 14px; color: var(--navy-dark);
-      padding: 10px 20px; font-weight: 500;
-      text-transform: none; letter-spacing: 0;
-      transition: color 0.15s;
-    }
-    .nav-dropdown-menu a:hover { background: transparent; color: var(--blue); }
 
     /* ─────────────────────────────────
        (partners CSS removed — replaced by about-section)
@@ -1314,72 +1163,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════
-   NAV
-══════════════════════════════ -->
-<nav class="nav">
-  <!-- Верхняя полоска — вторичные ссылки -->
-  <div class="nav-top-strip">
-    <div class="nav-top-inner">
-      <a href="company/">Company</a>
-      <a href="careers/">Careers</a>
-      <a href="news/">News</a>
-      <a href="contact/">Contact</a>
-    </div>
-  </div>
-  <!-- Главная плашка — для инженеров -->
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <img src="assets/images/logo.svg" alt="LIMIK International" class="logo-dark">
-      <img src="assets/images/logo-bg.svg" alt="LIMIK International" class="logo-light">
-    </a>
-    <div class="nav-links">
-      <div class="nav-dropdown">
-        <a href="transformers/" class="nav-dropdown-trigger">Transformers <span class="nav-arrow">▾</span></a>
-        <div class="nav-dropdown-menu">
-          <a href="transformers/power/">Power Transformers</a>
-          <a href="transformers/autotransformers/">Autotransformers</a>
-          <a href="transformers/gsu/">Generator Step-Up (GSU)</a>
-        </div>
-      </div>
-      <a href="industries/">Industries</a>
-      <div class="nav-dropdown">
-        <a href="support/" class="nav-dropdown-trigger">Support <span class="nav-arrow">▾</span></a>
-        <div class="nav-dropdown-menu">
-          <a href="support/documentation/">Technical Documentation</a>
-          <a href="support/certifications/">Certifications</a>
-          <a href="support/calculator/">kVA / Load Calculator</a>
-          <a href="support/faq/">FAQ</a>
-        </div>
-      </div>
-      <div class="nav-actions">
-        <!-- PHONE BTN: раскомментировать чтобы вернуть кнопку телефона в меню
-        <a href="tel:+18645550100" class="nav-phone">+1 (864) 555-0100</a>
-        -->
-        <a href="request-quote/" class="nav-cta">Get a Quote</a>
-      </div>
-      <div class="nav-flag">
-        <img src="assets/images/flag-usa.svg" alt="USA Flag" class="nav-flag-img">
-        <span class="nav-flag-text">Made<br>in USA</span>
-      </div>
-    </div>
-    <div class="nav-burger" id="nav-burger">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-  <!-- Мобильное меню -->
-  <div class="nav-mobile" id="nav-mobile">
-    <a href="transformers/">Transformers</a>
-    <a href="transformers/power/" style="padding-left:20px;font-size:13px;color:#7090B0">Power Transformers</a>
-    <a href="transformers/autotransformers/" style="padding-left:20px;font-size:13px;color:#7090B0">Autotransformers</a>
-    <a href="transformers/gsu/" style="padding-left:20px;font-size:13px;color:#7090B0">Generator Step-Up (GSU)</a>
-    <a href="industries/">Industries</a>
-    <a href="support/">Support</a>
-    <a href="company/">Company</a>
-    <a href="contact/">Contact</a>
-    <a href="request-quote/">Request a Quote</a>
-  </div>
-</nav>
+<div id="nav-placeholder" data-hero=".hero"></div>
 
 <!-- ══════════════════════════════
    1. HERO  ← ВИДЕО / тёмный
@@ -1958,13 +1742,6 @@
 </footer>
 
 <script>
-  // ── Nav burger ──
-  const burger = document.getElementById('nav-burger');
-  const mobile = document.getElementById('nav-mobile');
-  if (burger && mobile) {
-    burger.addEventListener('click', () => mobile.classList.toggle('open'));
-  }
-
   // ── Hero: разбивка h1 на слова (clip-reveal как у T3) ──
   (function () {
     document.querySelectorAll('.hero-slide h1').forEach(h1 => {
@@ -2090,33 +1867,6 @@
     tick(); // начальное состояние
   })();
 
-  // ── Nav: прозрачный на hero, белый при скролле + скрыть strip при скролле вниз ──
-  (function () {
-    const nav = document.querySelector('.nav');
-    const TRANSPARENT_THRESHOLD = 80;
-    let lastY = window.scrollY;
-
-    function updateNav() {
-      const y = window.scrollY;
-      // Прозрачность — только на самом верху страницы
-      if (y < TRANSPARENT_THRESHOLD) {
-        nav.classList.add('nav--transparent');
-        nav.classList.remove('nav--strip-hidden');
-      } else {
-        nav.classList.remove('nav--transparent');
-        // Скрыть strip при скролле вниз
-        if (y > lastY && y > 60) {
-          nav.classList.add('nav--strip-hidden');
-        } else {
-          nav.classList.remove('nav--strip-hidden');
-        }
-      }
-      lastY = y;
-    }
-
-    updateNav(); // начальное состояние
-    window.addEventListener('scroll', updateNav, { passive: true });
-  })();
 
   // ── Industries tabs ──
   (function () {

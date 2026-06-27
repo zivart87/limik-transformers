@@ -69,6 +69,14 @@ img { display: block; max-width: 100%; }
 .clip-tr { clip-path: polygon(0% 0%, calc(100% - 64px) 0%, 100% 64px, 100% 100%, 0% 100%); }
 
 /* ════════════════════════════════
+   EYEBROW
+════════════════════════════════ */
+.eyebrow {
+  font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
+}
+
+/* ════════════════════════════════
    TAGS
 ════════════════════════════════ */
 .tag {

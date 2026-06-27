@@ -258,12 +258,7 @@
     }
 
     /* ── RIGHT: photo + sidebar form ── */
-    .pt-sidebar {
-      display: flex; flex-direction: column; gap: 24px;
-      position: sticky;
-      top: 100px;
-      align-self: start;
-    }
+    .pt-sidebar { display: flex; flex-direction: column; gap: 24px; }
     .pt-sidebar-photo {
       width: 100%;
       aspect-ratio: 4/3;
@@ -278,6 +273,8 @@
     .pt-sidebar-form {
       background: var(--navy-dark);
       padding: 36px 32px;
+      position: sticky;
+      top: 100px;
     }
     .pt-sidebar-form h3 {
       font-size: 32px;

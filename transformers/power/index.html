@@ -199,6 +199,193 @@
       .pt-card { padding: 36px 24px; }
     }
 
+    /* ═══════════════════════════════
+       CONTENT + SIDEBAR
+    ═══════════════════════════════ */
+    .pt-content {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    .pt-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ── LEFT: description + features ── */
+    .pt-desc h2 {
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .pt-desc p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: #3A5570;
+      margin-bottom: 18px;
+    }
+    .pt-desc p:last-of-type { margin-bottom: 0; }
+
+    .pt-features { margin-top: 56px; }
+    .pt-features h3 {
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-feature {
+      padding: 20px 0;
+      border-top: 1px solid rgba(9,25,59,0.1);
+    }
+    .pt-feature:last-child { border-bottom: 1px solid rgba(9,25,59,0.1); }
+    .pt-feature-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+    }
+    .pt-feature p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #3A5570;
+      margin: 0;
+    }
+
+    /* ── RIGHT: photo + sidebar form ── */
+    .pt-sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .pt-sidebar-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .pt-sidebar-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    .pt-sidebar-form {
+      background: var(--navy-dark);
+      padding: 36px 32px;
+    }
+    .pt-sidebar-form h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .pt-sidebar-form p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+    .pt-sidebar-form .sf-field {
+      margin-bottom: 10px;
+    }
+    .pt-sidebar-form input,
+    .pt-sidebar-form textarea {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--navy-dark);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 2px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      width: 100%;
+      box-sizing: border-box;
+      color: var(--white);
+    }
+    .pt-sidebar-form input::placeholder,
+    .pt-sidebar-form textarea::placeholder { color: rgba(255,255,255,0.38); }
+    .pt-sidebar-form input:focus,
+    .pt-sidebar-form textarea:focus {
+      border-color: var(--blue);
+      background: rgba(255,255,255,0.12);
+    }
+    .pt-sidebar-form textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
+    .pt-sidebar-form .btn {
+      width: 100%; justify-content: center;
+      font-size: 13px; letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════
+       TECH SPECS TABLE
+    ═══════════════════════════════ */
+    .pt-specs-section {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+    .pt-specs-section h2 {
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+    .pt-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .pt-spec-table thead tr {
+      background: var(--navy-dark);
+    }
+    .pt-spec-table thead th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      padding: 14px 24px;
+    }
+    .pt-spec-table tbody tr {
+      border-bottom: 1px solid rgba(9,25,59,0.1);
+    }
+    .pt-spec-table tbody tr:last-child { border-bottom: none; }
+    .pt-spec-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.55;
+      vertical-align: top;
+    }
+    .pt-spec-table td:first-child {
+      color: var(--navy-dark);
+      font-weight: 500;
+      white-space: nowrap;
+      width: 220px;
+    }
+    .pt-spec-table tbody tr:nth-child(even) td {
+      background: rgba(255,255,255,0.6);
+    }
+
+    @media (max-width: 1000px) {
+      .pt-content-grid { grid-template-columns: 1fr; }
+      .pt-sidebar { flex-direction: row; flex-wrap: wrap; }
+      .pt-sidebar-photo { flex: 1; min-width: 280px; }
+      .pt-sidebar-form { flex: 1; min-width: 280px; }
+    }
+    @media (max-width: 768px) {
+      .pt-content { padding: 64px 0; }
+      .pt-specs-section { padding: 64px 0; }
+      .pt-sidebar { flex-direction: column; }
+      .pt-spec-table td:first-child { white-space: normal; width: auto; }
+    }
+
   </style>
 </head>
 <body data-hero=".pt-hero">
@@ -340,6 +527,128 @@
       </form>
     </div>
 
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   CONTENT + SIDEBAR
+══════════════════════════════ -->
+<section class="pt-content">
+  <div class="container">
+    <div class="pt-content-grid">
+
+      <!-- LEFT: description + key features -->
+      <div class="pt-desc">
+        <h2>LIMIK Power Transformer Platform</h2>
+        <p>LIMIK large power transformers are custom-engineered, liquid-immersed, oil-insulated units designed for transmission interconnection, bulk substation, and generation applications. Available from 20 to 600 MVA at voltage classes up to 525 kV — every unit is engineered to your specification. No catalog selections, no compromises.</p>
+        <p>Each transformer is designed to IEEE C57.12.00 and IEEE C57.12.10 standards with full ANSI compliance. Winding configurations include two-winding and three-winding designs, with on-load tap changers (OLTC) standard on all transmission-class units. Cooling systems are specified per load profile — ONAN base rating with ONAF and OFAF stages available for units above 100 MVA.</p>
+        <p>Built and tested in Spartanburg, SC. Every unit factory-tested to IEEE C57.12.90 with full test reports provided. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
+
+        <div class="pt-features">
+          <h3>Key Features</h3>
+
+          <div class="pt-feature">
+            <div class="pt-feature-title">Custom Engineering — 20 to 600 MVA</div>
+            <p>No standard catalog units. Every transformer is engineered to your specification: MVA rating, voltage class, impedance, tap range, and cooling configuration.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">High-Voltage Classes up to 525 kV</div>
+            <p>HV windings rated at 115 kV, 138 kV, 230 kV, 345 kV, 500 kV, and 525 kV classes. LV windings up to 69 kV.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">Two-Winding and Three-Winding Designs</div>
+            <p>Supports complex substation configurations, autotransformer applications, and generator step-up requirements across all voltage classes.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">Flexible Cooling — ONAN / ONAF / OFAF / ODAF</div>
+            <p>ONAN base rating standard. ONAF and OFAF stages for units above 100 MVA. ODAF available for high-duty-cycle and forced-oil installations.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">On-Load Tap Changer (OLTC) Standard</div>
+            <p>OLTC standard on all transmission-class units for continuous voltage regulation under load. De-energized tap changer (DETC) available on distribution-interface units.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">Copper Windings — No Substitutions</div>
+            <p>High-conductivity copper windings standard on all LIMIK units. No aluminum substitutions.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">IEEE C57 / ANSI / NEMA Factory Tested</div>
+            <p>Routine and type tests per IEEE C57.12.90. Full factory test report provided with every unit.</p>
+          </div>
+          <div class="pt-feature">
+            <div class="pt-feature-title">Buy American &amp; §303 DPA Compliant</div>
+            <p>Manufactured in Spartanburg, SC. Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: photo + contact form -->
+      <div class="pt-sidebar">
+        <div class="pt-sidebar-photo">
+          <img
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80"
+            alt="LIMIK large power transformer"
+          >
+        </div>
+        <div class="pt-sidebar-form">
+          <h3>Get Started<br>Today</h3>
+          <p>Our engineering team will help you select the right MVA rating, voltage class, and cooling configuration for your project.</p>
+          <form action="#" method="post">
+            <div class="sf-field">
+              <input type="text" name="name" placeholder="Name *" required>
+            </div>
+            <div class="sf-field">
+              <input type="text" name="company" placeholder="Company *" required>
+            </div>
+            <div class="sf-field">
+              <input type="email" name="email" placeholder="Email *" required>
+            </div>
+            <div class="sf-field">
+              <input type="tel" name="phone" placeholder="Phone *" required>
+            </div>
+            <div class="sf-field">
+              <textarea name="message" placeholder="Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold">Send Message</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   TECHNICAL SPECS TABLE
+══════════════════════════════ -->
+<section class="pt-specs-section">
+  <div class="container">
+    <p class="eyebrow">Specifications</p>
+    <h2>Technical Specifications Summary</h2>
+    <table class="pt-spec-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Specification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Capacity Range</td><td>20–600 MVA</td></tr>
+        <tr><td>Phases</td><td>Three-phase</td></tr>
+        <tr><td>HV Winding Voltage</td><td>115 kV, 138 kV, 230 kV, 345 kV, 500 kV, 525 kV classes</td></tr>
+        <tr><td>LV Winding Voltage</td><td>Up to 69 kV</td></tr>
+        <tr><td>Winding Configurations</td><td>Two-winding; Three-winding; Autotransformer</td></tr>
+        <tr><td>Tap Changer</td><td>On-Load Tap Changer (OLTC) standard; De-Energized (DETC) available</td></tr>
+        <tr><td>Cooling Methods</td><td>ONAN / ONAF / OFAF / ODAF</td></tr>
+        <tr><td>Winding Material</td><td>High-conductivity copper (standard)</td></tr>
+        <tr><td>Insulation Medium</td><td>Liquid-immersed mineral oil</td></tr>
+        <tr><td>Standards</td><td>IEEE C57.12.00, IEEE C57.12.10, IEEE C57.12.90, ANSI, NEMA</td></tr>
+        <tr><td>Compliance</td><td>Buy American Act (BAA), BABA, §303 Defense Production Act</td></tr>
+        <tr><td>Factory Testing</td><td>IEEE C57.12.90 routine and type tests; full test report included</td></tr>
+        <tr><td>Lead Time</td><td>48 weeks</td></tr>
+        <tr><td>Manufacturing</td><td>Spartanburg, SC, USA</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 

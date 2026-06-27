@@ -1,65 +1,156 @@
-# LIMIK International — Инструкция для разработки страниц
+# LIMIK International — Инструкция по разработке сайта
 
-## Главное правило сессии
+## Мета-правило
 
-Как только в процессе работы зафиксировано новое правило, соглашение или решение — **сразу обновить этот файл**. Не откладывать на конец сессии. Обновление CLAUDE.md + `git push` — часть каждого зафиксированного изменения.
+Как только в процессе работы зафиксировано новое правило, соглашение или решение — **сразу обновить этот файл** и запушить. Не откладывать. CLAUDE.md — живой документ, он отражает текущее состояние проекта.
 
 ---
 
-## Перед созданием любой новой страницы
+## О проекте
 
-**Шаг 1 — Активировать скил дизайна**
+**LIMIK International** — американский производитель силовых трансформаторов (20–600 MVA, до 525 kV).  
+Сайт: `https://www.limiktransformers.com`
 
-Обязательно вызови скил `frontend-design` перед тем как писать любую разметку или стили:
+**Стек:** статический HTML + CSS + ванильный JS. Никакого билда, фреймворков, npm.  
+**Анимации:** GSAP 3.12.5 + ScrollTrigger + Lenis 1.3.4 (подключаются через CDN).  
+**Хостинг:** Vercel, автодеплой из GitHub (`zivart87/limik-transformers`, ветка `main`).
+
+---
+
+## Рабочий процесс
+
+### После каждого изменения — сразу пушить:
+```bash
+git add <файлы>
+git commit -m "краткое описание"
+git push origin main
+```
+Vercel деплоит автоматически. Вручную `vercel deploy` не нужен.
+
+### Перед созданием новой страницы:
+1. Вызвать скил дизайна: `/frontend-design`
+2. Прочитать `assets/css/limik.css` — единственный источник правды по дизайн-системе
+
+---
+
+## Структура файлов
 
 ```
-/frontend-design
+assets/
+  css/limik.css        — дизайн-система (не дублировать стили отсюда в страницах)
+  images/              — все логотипы, фото, SVG иконки
+  video/               — hero.mp4, banner.mp4
+company/index.html     — страница «О компании»
+index.html             — главная страница
+vercel.json            — конфиг Vercel (clean URLs)
+CLAUDE.md              — этот файл
 ```
 
-**Шаг 2 — Прочитать файл стилей**
+---
 
-Прочитай [`assets/css/limik.css`](assets/css/limik.css) — это единственный источник правды по дизайн-системе.
+## Дизайн-система (`assets/css/limik.css`)
 
-В нём содержится:
-- CSS-переменные цветов и шрифтов (`--navy-dark`, `--blue`, `--gold` и др.)
-- Контейнер: `max-width: 1360px; padding: 0 40px`
-- Классы bg-helpers: `.bg-dark`, `.bg-mid`, `.bg-white`, `.bg-offwhite`
-- Паддинги секций: `.section` (120px), `.section-lg` (160px), `.section-sm` (64px)
-- Теги: `.tag`, `.tag-gold`, `.tag-blue`, `.tag-done`, `.tag-now`, `.tag-plan`
-- Кнопки: `.btn`, `.btn-gold`, `.btn-outline-white`, `.btn-outline-dark`, `.btn-lg`
-- Заголовок секции: `.sec-header`
-- Навигация (полная): `.nav`, `.nav-top-strip`, прозрачное состояние `.nav--transparent`
-- CTA-полоса: `.cta-band`, `.cta-band-inner`
-- Футер T3: `.footer-t3`, `.footer-left`, `.footer-right`, `.footer-cols`
+### Цвета
+| Переменная | Hex | Применение |
+|---|---|---|
+| `--navy-dark` | `#09193B` | Основной тёмный фон, текст |
+| `--navy-mid` | `#0F2656` | Средний тёмный фон |
+| `--blue` | `#206CB9` | Акцент, верхняя полоса nav, подчёркивание |
+| `--gold` | `#FFCF0B` | CTA-кнопки, иконки, акцент |
+| `--white` | `#FFFFFF` | Светлый фон, текст на тёмном |
+| `--off-white` | `#F4F6FA` | Светло-серый фон секций |
 
-## Структура новой страницы
+### Контейнер
+```css
+.container { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+```
+**Правило:** весь контент внутри `.container`. Исключения — только hero-секции и футер.
 
-Каждая новая страница подключает общий файл стилей:
+### Секции
+- `.section` — padding 120px верх/низ
+- `.section-lg` — 160px
+- `.section-sm` — 64px
 
+### Кнопки
+- `.btn.btn-gold` — золотая (основной CTA)
+- `.btn.btn-outline-white` — обводка белая (на тёмном фоне)
+- `.btn.btn-outline-dark` — обводка тёмная (на светлом фоне)
+- `.btn-lg` — увеличенный размер
+
+---
+
+## Правила вёрстки
+
+### Текст на тёмном фоне
+`body` имеет `color: var(--navy-dark)`. Если фон задаётся через `::before` или CSS без класса `bg-dark`/`bg-mid` — **обязательно** задавать цвет текста явно:
+```css
+color: var(--white);           /* для заголовков и основного текста */
+color: rgba(255,255,255,0.72); /* для параграфов */
+```
+Никогда не полагаться на наследование, если bg-класс отсутствует.
+
+### Частичный тёмный фон (паттерн ::before)
+Для секций где тёмный фон покрывает только часть ширины:
+```css
+.section::before {
+  content: ''; position: absolute; inset: 0;
+  right: 38%; /* покрывает левые 62% */
+  background: var(--navy-dark); z-index: 0;
+}
+.section .container { position: relative; z-index: 1; }
+```
+
+### Фото с нахлестом
+```css
+.photo-block {
+  position: absolute;
+  bottom: -320px; /* нахлест вниз */
+  height: 560px;
+}
+/* margin-bottom родителя ВСЕГДА = значению bottom фото */
+.parent { margin-bottom: 320px; }
+```
+
+### Параллакс (GSAP)
+Паттерн для фото-блоков — подключать Lenis + GSAP + ScrollTrigger:
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Название страницы — LIMIK International</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/limik.css">
-  <style>
-    /* Только стили, специфичные для этой страницы */
-  </style>
-</head>
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+```
+```javascript
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis();
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
+gsap.fromTo(photoImg,
+  { yPercent: -6 },
+  { yPercent: 6, ease: 'none',
+    scrollTrigger: { trigger: photoEl, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  }
+);
 ```
 
-> Для страниц в корне (не в подпапке): `href="assets/css/limik.css"`
+### Clip-path утилиты (в limik.css)
+```css
+.clip-tl { clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px); }
+.clip-tr { clip-path: polygon(0% 0%, calc(100% - 64px) 0%, 100% 64px, 100% 100%, 0% 100%); }
+```
+
+---
 
 ## Логотипы
 
-- **Тёмный фон (nav в прозрачном состоянии, футер):** `assets/images/logo-bg.svg`
-- **Светлый фон (nav обычный):** `assets/images/logo.svg` с классами `logo-dark` / `logo-light`
+| Контекст | Файл |
+|---|---|
+| Светлый nav (обычное состояние) | `assets/images/logo.svg` + класс `logo-dark` |
+| Тёмный nav (прозрачный над hero) | `assets/images/logo-bg.svg` + класс `logo-light` |
+| Футер | `assets/images/logo-bg.svg` |
+| Декоративный в секциях | `assets/images/logo-product.svg` |
 
-Пример из `company/index.html`:
+Пример nav-логотипа (из подпапки):
 ```html
 <a href="../" class="nav-logo">
   <img class="logo-dark" src="../assets/images/logo.svg" alt="LIMIK">
@@ -67,29 +158,25 @@
 </a>
 ```
 
-## Деплой — автоматический через GitHub
+---
 
-Vercel подключён к GitHub репозиторию `zivart87/limik-transformers`.  
-**Каждый `git push` автоматически деплоит на `www.limiktransformers.com`.**
+## Навигация
 
-После каждого изменения файлов обязательно выполни:
+Полные стили в `limik.css`. Ключевые классы:
+- `.nav` — фиксированный хедер
+- `.nav-top-strip` — верхняя синяя полоса (цвет `--blue`)
+- `.nav--transparent` — прозрачное состояние над hero (JS переключает)
+- `.nav--strip-hidden` — верхняя полоса скрыта при скролле
+- `.nav-arrow` — стрелка дропдауна, вращается на 180° при hover
 
-```bash
-git add <изменённые файлы>
-git commit -m "описание изменений"
-git push origin main
-```
+**Правило dropdown:** стрелка оборачивается в `<span class="nav-arrow">▾</span>`.
 
-Вручную `vercel deploy` больше не нужен.
+---
 
-## Структура файлов
+## Запреты
 
-```
-assets/
-  css/limik.css        — дизайн-система (единственный источник правды)
-  images/              — все логотипы, фото, SVG
-  video/               — видео (hero.mp4, banner.mp4)
-company/index.html     — страница о компании
-index.html             — главная страница
-vercel.json
-```
+- **Не трогать `index.html` (главная)** без явной просьбы пользователя
+- **Не дублировать стили** из `limik.css` в инлайн-стили страниц
+- **Не использовать `vercel deploy`** — деплой только через `git push`
+- **Не создавать новые CSS-переменные** не добавив их в `limik.css`
+- **Не размещать медиафайлы в корне** — только в `assets/images/` или `assets/video/`

@@ -12,30 +12,49 @@
   <style>
 
     /* ═══════════════════════════════
-       PRODUCT HERO — split layout
+       HERO
     ═══════════════════════════════ */
     .pt-hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 480px;
-      padding-top: 128px;
       position: relative;
-    }
-
-    /* ── LEFT: product pitch ── */
-    .pt-left {
+      min-height: 100vh;
       background: var(--navy-dark);
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding: 80px 64px 80px 60px;
+      padding-top: 128px;
+      padding-bottom: 80px;
     }
-    .pt-left-inner {
-      max-width: 600px;
+    .pt-hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+    }
+    .pt-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(9,25,59,0.96) 0%,
+        rgba(9,25,59,0.82) 45%,
+        rgba(9,25,59,0.55) 100%
+      );
+    }
+
+    /* ── inner grid ── */
+    .pt-hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 60px;
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 80px;
+      align-items: center;
     }
-    .pt-left h1 {
-      font-size: clamp(40px, 4.5vw, 68px);
+
+    /* ── LEFT: pitch ── */
+    .pt-pitch h1 {
+      font-size: clamp(40px, 4.5vw, 64px);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.02em;
@@ -43,38 +62,38 @@
       color: var(--white);
       margin-bottom: 28px;
     }
-    .pt-left p {
+    .pt-pitch > p {
       font-size: 16px;
       font-weight: 400;
       line-height: 1.75;
       color: rgba(255,255,255,0.72);
-      max-width: 520px;
+      max-width: 500px;
       margin-bottom: 56px;
     }
 
-    /* ── Specs grid ── */
+    /* specs grid */
     .pt-specs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      max-width: 520px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      max-width: 480px;
     }
     .pt-spec {
-      padding: 28px 40px 28px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 24px 32px 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
     }
     .pt-spec:nth-child(even) {
-      padding-left: 40px;
+      padding-left: 32px;
       padding-right: 0;
-      border-left: 1px solid rgba(255,255,255,0.12);
+      border-left: 1px solid rgba(255,255,255,0.14);
     }
     .pt-spec-num {
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(24px, 2.5vw, 36px);
       font-weight: 800;
       color: var(--white);
       letter-spacing: -0.02em;
       line-height: 1;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .pt-spec-num em { color: var(--blue); font-style: normal; }
     .pt-spec-label {
@@ -82,42 +101,39 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.38);
     }
 
-    /* ── RIGHT: form ── */
-    .pt-right {
+    /* ── RIGHT: floating form card ── */
+    .pt-card {
       background: var(--white);
-      display: flex;
-      align-items: center;
-      padding: 80px 48px;
-      border-left: 1px solid rgba(9,25,59,0.1);
+      padding: 48px 40px 44px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.30);
     }
-    .pt-form-wrap { width: 100%; }
-    .pt-form-title {
-      font-size: 26px;
+    .pt-card-title {
+      font-size: 24px;
       font-weight: 800;
       color: var(--navy-dark);
       letter-spacing: -0.01em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .pt-form-sub {
+    .pt-card-sub {
       font-size: 14px;
       color: #7090B0;
-      line-height: 1.55;
-      margin-bottom: 32px;
+      line-height: 1.5;
+      margin-bottom: 28px;
     }
     .pt-form {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
     .pt-form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
-    .pt-field { display: flex; flex-direction: column; gap: 5px; }
+    .pt-field { display: flex; flex-direction: column; gap: 4px; }
     .pt-field label {
       font-size: 10px;
       font-weight: 800;
@@ -132,9 +148,9 @@
       font-weight: 400;
       color: var(--navy-dark);
       background: var(--off-white);
-      border: 1.5px solid rgba(9,25,59,0.12);
+      border: 1.5px solid rgba(9,25,59,0.14);
       border-radius: 2px;
-      padding: 11px 14px;
+      padding: 10px 13px;
       outline: none;
       transition: border-color 0.15s, background 0.15s;
       width: 100%;
@@ -149,11 +165,11 @@
     .pt-field textarea::placeholder { color: #A8B8CC; }
     .pt-field textarea {
       resize: vertical;
-      min-height: 96px;
+      min-height: 88px;
       line-height: 1.55;
     }
-    .pt-submit {
-      margin-top: 4px;
+    .pt-form .btn {
+      margin-top: 6px;
       width: 100%;
       justify-content: center;
       font-size: 13px;
@@ -164,20 +180,23 @@
       font-size: 11px;
       color: #A0B0C0;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 8px;
       line-height: 1.6;
     }
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
-      .pt-hero { grid-template-columns: 1fr; padding-top: 80px; }
-      .pt-left { justify-content: flex-start; padding: 80px 40px; }
-      .pt-right { padding: 64px 40px; border-left: none; border-top: 1px solid rgba(9,25,59,0.08); }
+      .pt-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 56px;
+        padding: 0 40px;
+      }
+      .pt-hero { padding-bottom: 64px; }
     }
     @media (max-width: 768px) {
-      .pt-left { padding: 60px 24px; }
-      .pt-right { padding: 48px 24px; }
+      .pt-hero-inner { padding: 0 24px; }
       .pt-form-row { grid-template-columns: 1fr; }
+      .pt-card { padding: 36px 24px; }
     }
 
   </style>
@@ -185,7 +204,6 @@
 <body data-hero=".pt-hero">
 
 <nav id="nav" class="nav nav--transparent">
-
   <div class="nav-top-strip">
     <div class="nav-top-inner">
       <a href="/company/">Company</a>
@@ -220,11 +238,9 @@
           <a href="/support/faq/">FAQ</a>
         </div>
       </div>
-
       <div class="nav-actions">
         <a href="/request-quote/" class="nav-cta">Get a Quote</a>
       </div>
-
       <div class="nav-flag">
         <img src="/assets/images/flag-usa.svg" alt="USA Flag" class="nav-flag-img">
         <span class="nav-flag-text">Made<br>in USA</span>
@@ -247,20 +263,27 @@
     <a href="/contact/">Contact</a>
     <a href="/request-quote/">Request a Quote</a>
   </div>
-
 </nav>
 
 <!-- ══════════════════════════════
-   PRODUCT HERO
+   HERO
 ══════════════════════════════ -->
 <section class="pt-hero">
 
-  <!-- LEFT: pitch + specs -->
-  <div class="pt-left">
-    <div class="pt-left-inner">
+  <img
+    class="pt-hero-bg"
+    src="https://images.unsplash.com/photo-1529066792305-5e3a27b97218?auto=format&fit=crop&w=1800&q=80"
+    alt="High-voltage power transformer facility"
+  >
+  <div class="pt-hero-overlay"></div>
+
+  <div class="pt-hero-inner">
+
+    <!-- LEFT: pitch + specs -->
+    <div class="pt-pitch">
       <p class="eyebrow">Power Transformers</p>
       <h1>Large Power<br>Transformers</h1>
-      <p>Custom-engineered from 20 to 600 MVA, up to 525 kV. Built to IEEE C57, ANSI, and NEMA standards — designed for utilities, independent power producers, EPC contractors, and defense infrastructure. Manufactured in Spartanburg, SC.</p>
+      <p>Custom-engineered from 20 to 600 MVA, up to 525 kV. Built to IEEE C57, ANSI, and NEMA standards — for utilities, independent power producers, EPC contractors, and defense infrastructure. Manufactured in Spartanburg, SC.</p>
 
       <div class="pt-specs">
         <div class="pt-spec">
@@ -281,61 +304,58 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- RIGHT: quote form -->
-  <div class="pt-right">
-    <div class="pt-form-wrap">
-      <h2 class="pt-form-title">Request a Quote</h2>
-      <p class="pt-form-sub">Our engineering team responds within one business day.</p>
+    <!-- RIGHT: floating form card -->
+    <div class="pt-card">
+      <h2 class="pt-card-title">Request a Quote</h2>
+      <p class="pt-card-sub">Our engineering team responds within one business day.</p>
 
       <form class="pt-form" action="#" method="post">
         <div class="pt-form-row">
           <div class="pt-field">
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="name" placeholder="John Smith" required>
+            <label for="pt-name">Name *</label>
+            <input type="text" id="pt-name" name="name" placeholder="John Smith" required>
           </div>
           <div class="pt-field">
-            <label for="company">Company *</label>
-            <input type="text" id="company" name="company" placeholder="ACME Utilities" required>
+            <label for="pt-company">Company *</label>
+            <input type="text" id="pt-company" name="company" placeholder="ACME Utilities" required>
           </div>
         </div>
         <div class="pt-form-row">
           <div class="pt-field">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+            <label for="pt-email">Email *</label>
+            <input type="email" id="pt-email" name="email" placeholder="john@company.com" required>
           </div>
           <div class="pt-field">
-            <label for="phone">Phone *</label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+            <label for="pt-phone">Phone *</label>
+            <input type="tel" id="pt-phone" name="phone" placeholder="+1 (555) 000-0000" required>
           </div>
         </div>
         <div class="pt-field">
-          <label for="message">Project Details</label>
-          <textarea id="message" name="message" placeholder="MVA rating, voltage class, delivery timeline, project type…"></textarea>
+          <label for="pt-message">Message</label>
+          <textarea id="pt-message" name="message" placeholder="MVA rating, voltage class, delivery timeline…"></textarea>
         </div>
-        <button type="submit" class="btn btn-gold btn-lg pt-submit">Request a Quote</button>
-        <p class="pt-form-note">No commitment required. Every inquiry is reviewed by our engineering team personally.</p>
+        <button type="submit" class="btn btn-gold btn-lg">Request a Quote</button>
+        <p class="pt-form-note">No commitment required. Every inquiry reviewed by our engineering team personally.</p>
       </form>
     </div>
-  </div>
 
+  </div>
 </section>
 
 <!-- ══════════════════════════════
    FOOTER
 ══════════════════════════════ -->
 <footer class="footer-t3">
-
   <div class="footer-left">
     <div class="footer-brand-col">
       <img src="../../assets/images/logo-bg.svg" alt="LIMIK International" class="footer-logo">
       <p class="footer-tagline">U.S.-owned large power transformer manufacturer. Spartanburg, SC.</p>
-      <a href="../../tel:+18645550100" class="footer-contact-link">
+      <a href="tel:+18645550100" class="footer-contact-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.27.2 2.48.57 3.61.1.34.01.72-.25.99L6.6 10.8z"/></svg>
         +1 (864) 555-0100
       </a>
-      <a href="../../mailto:info@limik.com" class="footer-contact-link">
+      <a href="mailto:info@limik.com" class="footer-contact-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         info@limik.com
       </a>
@@ -400,7 +420,6 @@
       <span>DOE &amp; DOD Procurement Qualified</span>
     </div>
   </div>
-
 </footer>
 
 </body>

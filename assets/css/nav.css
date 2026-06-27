@@ -27,6 +27,11 @@
   letter-spacing: 0.05em; transition: color 0.15s;
 }
 .nav-top-inner a:hover { color: rgba(255,255,255,0.7); }
+.nav-top-inner a.active {
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 2px;
+}
 .nav--strip-hidden .nav-top-strip { height: 0; }
 @media (max-width: 768px) { .nav-top-strip { display: none; } }
 

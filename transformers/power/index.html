@@ -510,7 +510,7 @@
           </div>
           <div class="pt-field">
             <label for="pt-phone">Phone *</label>
-            <input type="tel" id="pt-phone" name="phone" placeholder="+1 (555) 000-0000" required>
+            <input type="tel" id="pt-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'')" required>
           </div>
         </div>
         <div class="pt-field">
@@ -628,7 +628,7 @@
               <input type="email" name="email" placeholder="Email *" required>
             </div>
             <div class="sf-field">
-              <input type="tel" name="phone" placeholder="Phone *" required>
+              <input type="tel" name="phone" placeholder="Phone *" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'')" required>
             </div>
             <div class="sf-field">
               <textarea name="message" placeholder="Message"></textarea>

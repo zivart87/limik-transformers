@@ -162,6 +162,39 @@
     }
 
     /* ═══════════════════════════════
+       FACTS BAR
+    ═══════════════════════════════ */
+    .co-facts { background: var(--off-white); padding: 80px 0; }
+    .co-facts-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .co-fact {
+      padding: 0 48px;
+      border-right: 1px solid rgba(9,25,59,0.12);
+    }
+    .co-fact:first-child { padding-left: 0; }
+    .co-fact:last-child { border-right: none; }
+    .co-fact-num {
+      font-size: clamp(42px, 5vw, 72px); font-weight: 800;
+      line-height: 1; color: var(--navy-dark);
+      letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .co-fact-unit {
+      font-size: clamp(18px, 2vw, 28px); font-weight: 600;
+      color: var(--blue); margin-left: 6px;
+    }
+    .co-fact-label {
+      font-size: 15px; font-weight: 400;
+      color: rgba(9,25,59,0.55); line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .co-facts-grid { grid-template-columns: 1fr; }
+      .co-fact { padding: 32px 0; border-right: none; border-bottom: 1px solid rgba(9,25,59,0.12); }
+      .co-fact:first-child { padding-top: 0; }
+      .co-fact:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+
+    /* ═══════════════════════════════
        STORY SPLIT
     ═══════════════════════════════ */
     .co-story-section { background: var(--white); padding: 120px 0; }
@@ -519,7 +552,29 @@
 </div>
 
 <!-- ══════════════════════════════
-   2. STORY SPLIT
+   2. FACTS BAR
+══════════════════════════════ -->
+<section class="co-facts">
+  <div class="container">
+    <div class="co-facts-grid">
+      <div class="co-fact">
+        <div class="co-fact-num">25 <span class="co-fact-unit">yrs</span></div>
+        <p class="co-fact-label">Engineering Experience</p>
+      </div>
+      <div class="co-fact">
+        <div class="co-fact-num">600 <span class="co-fact-unit">MVA</span></div>
+        <p class="co-fact-label">Maximum Unit Capacity</p>
+      </div>
+      <div class="co-fact">
+        <div class="co-fact-num">100<span class="co-fact-unit">%</span></div>
+        <p class="co-fact-label">U.S. Manufactured</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   3. STORY SPLIT
 ══════════════════════════════ -->
 <section class="co-story-section">
   <div class="container">

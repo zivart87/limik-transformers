@@ -167,15 +167,22 @@
     .co-facts { background: var(--white); padding: 120px 0 0; }
     .co-facts-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
+      column-gap: 80px;
       border-top: 1px solid rgba(9,25,59,0.12);
       border-bottom: 1px solid rgba(9,25,59,0.12);
     }
     .co-fact {
-      padding: 48px 60px;
-      border-right: 1px solid rgba(9,25,59,0.12);
+      padding: 48px 0;
+      position: relative;
     }
-    .co-fact:first-child { padding-left: 0; }
-    .co-fact:last-child { border-right: none; padding-right: 0; }
+    .co-fact:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(9,25,59,0.12);
+    }
     .co-fact-num {
       font-size: 96px; font-weight: 500;
       line-height: 1; color: var(--navy-dark);

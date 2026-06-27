@@ -121,24 +121,28 @@ CLAUDE.md              — этот файл
 - `.section-lg` — `padding: 160px 0`
 - `.section-sm` — `padding: 64px 0`
 
-### Кнопки — два типа, разное назначение
+### Кнопки — строго два типа
 
-#### 1. Primary CTA — форма заявки (только одна цель на всём сайте)
-- `.btn.btn-gold` — сплошная золотая кнопка
-- Используется **только** для перехода на форму заявки (Get a Quote / Request a Quote)
+#### 1. Primary CTA — форма заявки (`.btn.btn-gold`)
+- Сплошная золотая кнопка
+- Используется **только** для перехода на форму заявки ("Get a Quote", "Request a Quote")
 - Встречается в nav и в hero-секциях
-- `.btn-lg` — увеличенный размер (в nav и крупных hero)
+- `.btn-lg` — увеличенный размер
 
 #### 2. Icon-link — переход на другие страницы
-- Визуально: квадратная иконка-стрелка (`--blue` фон) + текст-лейбел капсом рядом
-- Используется для навигации: "Learn More", "View Industry" и т.п.
-- **Не** `.btn` — это отдельный компонент с иконкой и лейблом
+- Визуально: синий квадрат со стрелкой + текст рядом
+- HTML-паттерн:
+```html
+<a href="..." class="co-intro-link">
+  <span class="co-intro-link-icon">
+    <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  Текст ссылки
+</a>
+```
+- Используется везде кроме формы заявки: "Learn More", "View Industry", "Meet the Full Team" и т.п.
 
-#### Вспомогательные (outline-кнопки)
-- `.btn.btn-outline-white` — обводка белая (на тёмном фоне)
-- `.btn.btn-outline-dark` — обводка тёмная (на светлом фоне)
-
-**Правило:** золотая кнопка = только заявка. Всё остальное = icon-link или outline.
+**Запрещено:** outline-кнопки (`.btn-outline-white`, `.btn-outline-dark`) — не использовать. На сайте только два типа кнопок.
 
 ---
 

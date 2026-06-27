@@ -28,9 +28,15 @@
 }
 .nav-top-inner a:hover { color: rgba(255,255,255,0.7); }
 .nav-top-inner a.active {
-  color: var(--gold);
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 2px;
+  color: var(--white);
+  position: relative;
+}
+.nav-top-inner a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 14px; right: 14px;
+  height: 2px;
+  background: var(--white);
 }
 .nav--strip-hidden .nav-top-strip { height: 0; }
 @media (max-width: 768px) { .nav-top-strip { display: none; } }

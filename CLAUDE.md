@@ -121,6 +121,16 @@ CLAUDE.md              — этот файл
 - `.section-lg` — `padding: 160px 0`
 - `.section-sm` — `padding: 64px 0`
 
+### Надзаголовки (eyebrow/label над заголовком секции)
+Единый стандарт для всего сайта:
+```css
+font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+```
+- Цвет всегда `--blue` (синий = акцент). На тёмном фоне — тоже синий, он читается.
+- Не использовать `--text-2`, `--gold` или другие цвета для eyebrow без явного запроса.
+- `margin-bottom: 20px` — стандартный отступ до заголовка.
+
 ### Кнопки — строго два типа
 
 #### 1. Primary CTA — форма заявки (`.btn.btn-gold`)

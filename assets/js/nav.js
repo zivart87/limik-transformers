@@ -6,6 +6,15 @@
 
     if (!nav) return;
 
+    // Автоматически подсвечивает активный пункт верхней полосы по URL
+    var path = window.location.pathname;
+    document.querySelectorAll('.nav-top-inner a').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (href && href !== '/' && path.startsWith(href)) {
+        a.classList.add('active');
+      }
+    });
+
     // Бургер-меню
     if (burger && mobile) {
       burger.addEventListener('click', function () {
@@ -13,8 +22,8 @@
       });
     }
 
-    // Прозрачность над hero
-    var heroSelector = nav.getAttribute('data-hero');
+    // Прозрачность над hero — читаем data-hero с <body>
+    var heroSelector = document.body.getAttribute('data-hero');
     if (heroSelector && document.querySelector(heroSelector)) {
       var THRESHOLD = 80;
       var lastY = window.scrollY;
@@ -37,6 +46,9 @@
 
       updateNav();
       window.addEventListener('scroll', updateNav, { passive: true });
+    } else {
+      // Страница без hero — nav всегда белый
+      nav.classList.remove('nav--transparent');
     }
   }
 

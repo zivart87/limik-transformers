@@ -15,7 +15,10 @@
       "PowerShell(python --version)",
       "PowerShell(py --version)",
       "Bash(claude doctor *)",
-      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script"
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script",
+      "WebFetch(domain:myrgroup.com)",
+      "mcp__plugin_vercel_vercel__list_teams",
+      "mcp__plugin_vercel_vercel__deploy_to_vercel"
     ]
   }
 }

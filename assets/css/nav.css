@@ -74,11 +74,12 @@
 .nav-dropdown { position: relative; display: flex; align-items: stretch; }
 .nav-dropdown-menu {
   display: none;
-  position: absolute; top: calc(100% + 12px); left: 0;
+  position: absolute; top: 100%; left: 0;
   background: var(--white);
   border: 1px solid var(--border-l);
   box-shadow: 0 8px 24px rgba(9,25,59,0.12);
-  min-width: 230px; z-index: 200; padding: 8px 0;
+  min-width: 230px; z-index: 200;
+  padding: 20px 0 8px;
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {

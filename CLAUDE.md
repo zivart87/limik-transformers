@@ -50,21 +50,40 @@
 
 ## Логотипы
 
-- **Тёмный фон (nav в прозрачном состоянии, футер):** `logo%20for%20bg.svg` (корень проекта)
-- **Светлый фон (nav обычный):** используй `logo-dark` / `logo-light` классы из `limik.css`
+- **Тёмный фон (nav в прозрачном состоянии, футер):** `assets/images/logo-bg.svg`
+- **Светлый фон (nav обычный):** `assets/images/logo.svg` с классами `logo-dark` / `logo-light`
 
 Пример из `company/index.html`:
 ```html
-<div class="nav-logo">
-  <img class="logo-dark" src="../logo%20for%20bg.svg" alt="LIMIK">
-  <img class="logo-light" src="../logo%20for%20bg.svg" alt="LIMIK">
-</div>
+<a href="../" class="nav-logo">
+  <img class="logo-dark" src="../assets/images/logo.svg" alt="LIMIK">
+  <img class="logo-light" src="../assets/images/logo-bg.svg" alt="LIMIK">
+</a>
 ```
 
-## Деплой
+## Деплой — автоматический через GitHub
+
+Vercel подключён к GitHub репозиторию `zivart87/limik-transformers`.  
+**Каждый `git push` автоматически деплоит на `www.limiktransformers.com`.**
+
+После каждого изменения файлов обязательно выполни:
 
 ```bash
-vercel deploy --yes
+git add <изменённые файлы>
+git commit -m "описание изменений"
+git push origin main
 ```
 
-Сайт живёт на `https://www.limiktransformers.com`.
+Вручную `vercel deploy` больше не нужен.
+
+## Структура файлов
+
+```
+assets/
+  css/limik.css        — дизайн-система (единственный источник правды)
+  images/              — все логотипы, фото, SVG
+  video/               — видео (hero.mp4, banner.mp4)
+company/index.html     — страница о компании
+index.html             — главная страница
+vercel.json
+```

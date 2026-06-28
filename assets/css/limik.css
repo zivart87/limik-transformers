@@ -224,10 +224,10 @@ h4 {
 }
 .footer-brand-col { display: flex; flex-direction: column; gap: 16px; }
 .footer-logo { height: 38px; width: auto; align-self: flex-start; }
-.footer-tagline { font-size: 13px; color: var(--text-1); line-height: 1.7; font-weight: 300; }
+.footer-tagline { font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400; }
 .footer-contact-link {
   display: flex; align-items: center; gap: 9px;
-  font-size: 13px; color: var(--text-1); font-weight: 400; transition: color 0.15s;
+  font-size: 24px; color: var(--text-1); font-weight: 400; transition: color 0.15s;
 }
 .footer-contact-link svg { color: var(--blue-lt); flex-shrink: 0; }
 .footer-contact-link:hover { color: var(--white); }

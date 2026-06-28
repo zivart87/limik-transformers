@@ -60,8 +60,16 @@
       justify-content: center;
     }
     @keyframes pt-drop-in {
-      from { transform: translateY(-80px); opacity: 0; }
-      to   { transform: translateY(0);     opacity: 1; }
+      0%   { transform: translateY(-100px); opacity: 0; }
+      52%  { transform: translateY(0);      opacity: 1; }
+      57%  { transform: translateY(-5px) translateX(-2px); }
+      62%  { transform: translateY(2px)  translateX(2px);  }
+      67%  { transform: translateY(-3px) translateX(-1px); }
+      72%  { transform: translateY(1px)  translateX(1px);  }
+      78%  { transform: translateY(-2px) translateX(0);    }
+      85%  { transform: translateY(1px);                   }
+      92%  { transform: translateY(-1px);                  }
+      100% { transform: translateY(0);                     }
     }
     .pt-product-img img {
       width: 100%;
@@ -69,7 +77,7 @@
       max-height: 65vh;
       object-fit: contain;
       display: block;
-      animation: pt-drop-in 1s cubic-bezier(0.34, 1.4, 0.64, 1) 0.2s both;
+      animation: pt-drop-in 0.7s ease-in 0.1s both;
     }
 
     /* ── inner grid ── */

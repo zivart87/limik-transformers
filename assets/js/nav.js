@@ -47,8 +47,18 @@
       updateNav();
       window.addEventListener('scroll', updateNav, { passive: true });
     } else {
-      // Страница без hero — nav всегда белый
+      // Страница без hero — nav всегда белый, полоса скрывается при скролле вниз
       nav.classList.remove('nav--transparent');
+      var lastY2 = window.scrollY;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        if (y > lastY2 && y > 60) {
+          nav.classList.add('nav--strip-hidden');
+        } else {
+          nav.classList.remove('nav--strip-hidden');
+        }
+        lastY2 = y;
+      }, { passive: true });
     }
   }
 

@@ -126,6 +126,21 @@
     .ty-actions {
       display: flex; align-items: center; justify-content: center;
     }
+    .ty-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--navy-dark);
+      transition: gap 0.18s;
+    }
+    .ty-link:hover { gap: 18px; }
+    .ty-link-icon {
+      width: 40px; height: 40px;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ty-link-icon svg { color: var(--navy-dark); }
 
     @media (max-width: 600px) {
       .ty-page { padding: 140px 20px 80px; }
@@ -238,7 +253,12 @@
     </div>
 
     <div class="ty-actions">
-      <a href="/" class="btn btn-gold btn-lg">Back to Homepage</a>
+      <a href="/" class="ty-link">
+        <span class="ty-link-icon">
+          <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Back to Homepage
+      </a>
     </div>
 
   </div>

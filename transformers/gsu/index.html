@@ -280,9 +280,77 @@
       margin-top: 72px;
       padding-top: 56px;
     }
+    .pt-specs-wrap--first {
+      margin-top: 0;
+      padding-top: 0;
+    }
     .pt-specs-wrap h2 {
       color: var(--navy-dark);
       margin-bottom: 40px;
+    }
+
+    /* ═══════════════════════════════
+       APPLICATIONS 2×2
+    ═══════════════════════════════ */
+    .pt-apps { margin-top: 72px; }
+    .pt-apps h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .pt-app-card {
+      background: var(--off-white);
+      padding: 28px 32px;
+    }
+    .pt-app-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-app-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════
+       KEY FEATURES VERTICAL LIST
+    ═══════════════════════════════ */
+    .pt-features-new { margin-top: 72px; }
+    .pt-features-new h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-feat-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pt-feat-card { padding: 0; }
+    .pt-feat-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-feat-card p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+      margin: 0;
     }
     .pt-spec-table {
       width: 100%;
@@ -451,48 +519,12 @@
   <div class="container">
     <div class="pt-content-grid">
 
-      <!-- LEFT: description + key features -->
+      <!-- LEFT: content -->
       <div class="pt-desc">
-        <h2>LIMIK Generator Step-Up Platform</h2>
-        <p>LIMIK GSU transformers are custom-engineered, liquid-immersed units designed to connect generators directly to the transmission grid. Built for wind farms, utility-scale solar, gas-fired and nuclear generation, and large data center backup power — every unit is engineered to your exact generator terminal voltage, MVA output, and grid interconnection requirement.</p>
-        <p>Available from 20 to 600 MVA with LV (generator-side) windings up to 35 kV and HV (grid-side) windings at 115 kV, 138 kV, 230 kV, 345 kV, 500 kV, and 525 kV classes. Delta LV winding configurations standard on wind and solar applications; wye configurations available for gas and nuclear units.</p>
-        <p>All units designed to IEEE C57.12.00 and IEEE C57.12.10 with full ANSI compliance. Factory-tested to IEEE C57.12.90. IRA-eligible under domestic content requirements. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
 
-        <div class="pt-features">
-          <h3>Key Features</h3>
-
-          <div class="pt-feature">
-            <div class="pt-feature-title">Purpose-Built for Generator Interconnection</div>
-            <p>LV winding matched to your generator terminal voltage — standard ratings from 4.16 kV through 35 kV. HV winding engineered to your grid interconnection point: 115 kV through 525 kV.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Wind &amp; Solar Ready — Delta LV Standard</div>
-            <p>Delta-connected LV winding standard on renewable applications for harmonic isolation and ground fault protection. Wye-connected LV available for gas-fired and conventional generation.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">IRA-Eligible — Domestic Content Compliant</div>
-            <p>Manufactured in the United States and eligible for IRA domestic content bonus credits under 26 U.S.C. §48. Documentation provided for project compliance filings.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Flexible Tap Range for Voltage Optimization</div>
-            <p>De-energized tap changer (DETC) standard. On-load tap changer (OLTC) available for applications requiring continuous voltage regulation under varying generation output.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Flexible Cooling — ONAN / ONAF / OFAF / ODAF</div>
-            <p>ONAN base rating standard. ONAF and OFAF stages available for units above 100 MVA. ODAF for high-duty-cycle applications with forced oil and air cooling.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Copper Windings — No Substitutions</div>
-            <p>High-conductivity copper windings standard on all LIMIK units. No aluminum substitutions.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Buy American &amp; §303 DPA Compliant</div>
-            <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
-          </div>
-        </div>
-
-        <div class="pt-specs-wrap">
-          <h2>Technical Specifications Summary</h2>
+        <!-- BLOCK 2: Technical Specifications — первым -->
+        <div class="pt-specs-wrap pt-specs-wrap--first">
+          <h2>Technical Specifications</h2>
           <table class="pt-spec-table">
             <thead>
               <tr>
@@ -520,6 +552,61 @@
             </tbody>
           </table>
         </div>
+
+        <!-- BLOCK 3: Platform Description -->
+        <div style="margin-top: 72px;">
+          <h2>LIMIK Generator Step-Up Platform</h2>
+          <p>LIMIK GSU transformers are custom-engineered, liquid-immersed units designed to connect generators directly to the transmission grid. Built for wind farms, utility-scale solar, gas-fired and nuclear generation, and large data center backup power — every unit is engineered to your exact generator terminal voltage, MVA output, and grid interconnection requirement.</p>
+          <p>Available from 20 to 600 MVA with LV (generator-side) windings up to 35 kV and HV (grid-side) windings at 115 kV, 138 kV, 230 kV, 345 kV, 500 kV, and 525 kV classes. Delta LV winding configurations standard on wind and solar applications; wye configurations available for gas and nuclear units.</p>
+          <p>All units designed to IEEE C57.12.00 and IEEE C57.12.10 with full ANSI compliance. Factory-tested to IEEE C57.12.90. IRA-eligible under domestic content requirements. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
+        </div>
+
+        <!-- BLOCK 4: Applications -->
+        <div class="pt-apps">
+          <h3>Where LIMIK GSU Transformers Are Specified</h3>
+          <div class="pt-app-grid">
+            <div class="pt-app-card">
+              <div class="pt-app-title">Wind Energy</div>
+              <p class="pt-app-body">Utility-scale wind farms requiring step-up from generator terminal voltage to transmission grid — with delta LV winding standard for harmonic isolation.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Utility-Scale Solar</div>
+              <p class="pt-app-body">Solar PV and CSP plant interconnection. Delta LV winding for ground fault protection and harmonic isolation in variable-output generation environments.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Gas &amp; Nuclear Generation</div>
+              <p class="pt-app-body">Combined-cycle gas turbines, peaker plants, and nuclear generation facilities requiring direct grid interconnection at 115 kV through 525 kV.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Data Centers</div>
+              <p class="pt-app-body">Hyperscale and mission-critical data center facilities requiring dedicated grid interconnection for large on-site generation and backup power systems.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 5: Key Features vertical list -->
+        <div class="pt-features-new">
+          <h3>What Sets LIMIK GSU Units Apart</h3>
+          <div class="pt-feat-grid">
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Purpose-Built for Generator Interconnection</div>
+              <p>LV winding matched to your generator terminal voltage — standard ratings from 4.16 kV through 35 kV. HV winding engineered to your grid interconnection point: 115 kV through 525 kV.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Wind &amp; Solar Ready — Delta LV Standard</div>
+              <p>Delta-connected LV winding standard on renewable applications for harmonic isolation and ground fault protection. Wye-connected LV available for gas-fired and conventional generation.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">IRA-Eligible — Domestic Content Compliant</div>
+              <p>Manufactured in the United States and eligible for IRA domestic content bonus credits under 26 U.S.C. §48. Documentation provided for project compliance filings.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Buy American &amp; §303 DPA Compliant</div>
+              <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT: photo + contact form -->

@@ -280,9 +280,77 @@
       margin-top: 72px;
       padding-top: 56px;
     }
+    .pt-specs-wrap--first {
+      margin-top: 0;
+      padding-top: 0;
+    }
     .pt-specs-wrap h2 {
       color: var(--navy-dark);
       margin-bottom: 40px;
+    }
+
+    /* ═══════════════════════════════
+       APPLICATIONS 2×2
+    ═══════════════════════════════ */
+    .pt-apps { margin-top: 72px; }
+    .pt-apps h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .pt-app-card {
+      background: var(--off-white);
+      padding: 28px 32px;
+    }
+    .pt-app-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-app-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════
+       KEY FEATURES VERTICAL LIST
+    ═══════════════════════════════ */
+    .pt-features-new { margin-top: 72px; }
+    .pt-features-new h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-feat-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pt-feat-card { padding: 0; }
+    .pt-feat-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-feat-card p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+      margin: 0;
     }
     .pt-spec-table {
       width: 100%;
@@ -457,48 +525,12 @@
   <div class="container">
     <div class="pt-content-grid">
 
-      <!-- LEFT: description + key features -->
+      <!-- LEFT: content -->
       <div class="pt-desc">
-        <h2>LIMIK Autotransformer Platform</h2>
-        <p>LIMIK autotransformers are custom-engineered, liquid-immersed units designed for bulk transmission interconnection between EHV voltage levels. Built on a shared series/common winding architecture, they deliver higher efficiency and lower losses compared to two-winding designs — making them the preferred choice for 345/500 kV, 230/345 kV, and 115/230 kV interconnections across transmission networks.</p>
-        <p>Available from 100 to 600 MVA at HV classes up to 525 kV and LV classes up to 345 kV — every unit is engineered to your specification. Neutral grounding, tertiary winding configurations, and reactive compensation arrangements are integrated at the design stage.</p>
-        <p>All units designed to IEEE C57.12.00 and IEEE C57.12.10 with on-load tap changers standard on transmission-class units. Factory-tested to IEEE C57.12.90. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
 
-        <div class="pt-features">
-          <h3>Key Features</h3>
-
-          <div class="pt-feature">
-            <div class="pt-feature-title">Single-Winding Design — Lower Losses, Higher Efficiency</div>
-            <p>Autotransformer topology reduces copper and core losses versus equivalent two-winding units, resulting in lower lifecycle operating costs for high-capacity interconnection projects.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">EHV Interconnection up to 525/345 kV</div>
-            <p>Standard configurations for 345/500 kV, 230/345 kV, 138/230 kV, and 115/230 kV interconnections. Custom voltage ratios engineered per project specification.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Tertiary Winding — Reactive Compensation Ready</div>
-            <p>Delta-connected tertiary winding available for reactive compensation (capacitor banks, reactors), harmonic suppression, and station auxiliary power supply.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">On-Load Tap Changer (OLTC) Standard</div>
-            <p>OLTC standard on all transmission-class units for continuous voltage regulation under load. De-energized tap changer (DETC) available for fixed-ratio applications.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Neutral Grounding — Solidly Grounded Standard</div>
-            <p>Solidly grounded neutral standard on all autotransformer designs. Neutral grounding resistor (NGR) and neutral current transformer provisions available.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Copper Windings — No Substitutions</div>
-            <p>High-conductivity copper windings standard on all LIMIK units. No aluminum substitutions.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Buy American &amp; §303 DPA Compliant</div>
-            <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
-          </div>
-        </div>
-
-        <div class="pt-specs-wrap">
-          <h2>Technical Specifications Summary</h2>
+        <!-- BLOCK 2: Technical Specifications — первым -->
+        <div class="pt-specs-wrap pt-specs-wrap--first">
+          <h2>Technical Specifications</h2>
           <table class="pt-spec-table">
             <thead>
               <tr>
@@ -526,6 +558,61 @@
             </tbody>
           </table>
         </div>
+
+        <!-- BLOCK 3: Platform Description -->
+        <div style="margin-top: 72px;">
+          <h2>LIMIK Autotransformer Platform</h2>
+          <p>LIMIK autotransformers are custom-engineered, liquid-immersed units designed for bulk transmission interconnection between EHV voltage levels. Built on a shared series/common winding architecture, they deliver higher efficiency and lower losses compared to two-winding designs — making them the preferred choice for 345/500 kV, 230/345 kV, and 115/230 kV interconnections across transmission networks.</p>
+          <p>Available from 100 to 600 MVA at HV classes up to 525 kV and LV classes up to 345 kV — every unit is engineered to your specification. Neutral grounding, tertiary winding configurations, and reactive compensation arrangements are integrated at the design stage.</p>
+          <p>All units designed to IEEE C57.12.00 and IEEE C57.12.10 with on-load tap changers standard on transmission-class units. Factory-tested to IEEE C57.12.90. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
+        </div>
+
+        <!-- BLOCK 4: Applications -->
+        <div class="pt-apps">
+          <h3>Where LIMIK Autotransformers Are Specified</h3>
+          <div class="pt-app-grid">
+            <div class="pt-app-card">
+              <div class="pt-app-title">Transmission Voltage Tie Points</div>
+              <p class="pt-app-body">Interconnecting 345 kV, 500 kV, and 765 kV systems across regional transmission networks — PJM, MISO, SPP, WECC, and SERC.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Grid Voltage Transformation</div>
+              <p class="pt-app-body">Step-up and step-down between EHV voltage levels: 115/230 kV, 138/230 kV, 230/345 kV, and 345/500 kV configurations.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Transmission Network Expansion</div>
+              <p class="pt-app-body">New substation builds and capacity expansions requiring bulk EHV interconnection with tertiary winding provisions for reactive compensation.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Defense &amp; Critical Infrastructure</div>
+              <p class="pt-app-body">Mission-critical EHV interconnection for DOD and DOE installations. §303 Defense Production Act and Berry Amendment compliant.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 5: Key Features vertical list -->
+        <div class="pt-features-new">
+          <h3>What Sets LIMIK Autotransformers Apart</h3>
+          <div class="pt-feat-grid">
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Single-Winding Design — Lower Losses, Higher Efficiency</div>
+              <p>Autotransformer topology reduces copper and core losses versus equivalent two-winding units, resulting in lower lifecycle operating costs for high-capacity interconnection projects.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">EHV Interconnection up to 525/345 kV</div>
+              <p>Standard configurations for 345/500 kV, 230/345 kV, 138/230 kV, and 115/230 kV interconnections. Custom voltage ratios engineered per project specification.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Tertiary Winding — Reactive Compensation Ready</div>
+              <p>Delta-connected tertiary winding available for reactive compensation (capacitor banks, reactors), harmonic suppression, and station auxiliary power supply.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Buy American &amp; §303 DPA Compliant</div>
+              <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT: photo + contact form -->

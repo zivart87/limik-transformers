@@ -651,6 +651,30 @@
       addErrSpan(field);
       el.addEventListener('input', function() { clearFieldError(field); });
       el.addEventListener('change', function() { clearFieldError(field); });
+
+      // Blur: проверяем формат email и телефона как только пользователь уходит из поля
+      if (el.type === 'email') {
+        el.addEventListener('blur', function() {
+          var val = el.value.trim();
+          if (!val) return; // пустое — не трогаем (сработает на submit)
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+            markFieldError(field, 'Enter a valid email address.');
+          } else {
+            clearFieldError(field);
+          }
+        });
+      }
+      if (el.type === 'tel') {
+        el.addEventListener('blur', function() {
+          var val = el.value.trim();
+          if (!val) return;
+          if (val.replace(/\D/g, '').length < 7) {
+            markFieldError(field, 'Enter at least 7 digits.');
+          } else {
+            clearFieldError(field);
+          }
+        });
+      }
     });
 
     form.addEventListener('submit', function(e) {

@@ -815,7 +815,23 @@ function initFormValidation(formEl, itiKey, fieldClass, errClass, errMsgClass, h
     });
     e.preventDefault();
     if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    else window.location.href = '/thank-you/';
+    else {
+      var iti = window[itiKey];
+      var payload = {
+        firstName:   (formEl.querySelector('[name=name]')    || {}).value || '',
+        companyName: (formEl.querySelector('[name=company]') || {}).value || '',
+        email:       (formEl.querySelector('[name=email]')   || {}).value || '',
+        phone:       iti ? iti.getNumber() : ((formEl.querySelector('[type=tel]') || {}).value || ''),
+        message:     (formEl.querySelector('[name=message]') || {}).value || '',
+        formSource:  'Power Transformers — Get Started Today'
+      };
+      fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/956fd1a5-cf12-4c3d-b369-1b388ca93b49', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function() { window.location.href = '/thank-you/'; })
+        .catch(function() { window.location.href = '/thank-you/'; });
+    }
   });
   function addErrSpan(field) {
     if (!field.querySelector('.' + errMsgClass)) {

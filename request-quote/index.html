@@ -802,7 +802,34 @@
         // Форма валидна — редирект на страницу благодарности
         // (сработает после отправки на сервер; пока action="#" — редиректим вручную)
         e.preventDefault();
-        window.location.href = '/thank-you/';
+        var rqIti = window._iti;
+        var productType = '';
+        form.querySelectorAll('[name=product_type]').forEach(function(r) { if (r.checked) productType = r.value; });
+        var payload = {
+          firstName:   (document.getElementById('rq-fn')      || {}).value || '',
+          lastName:    (document.getElementById('rq-ln')      || {}).value || '',
+          companyName: (document.getElementById('rq-company') || {}).value || '',
+          phone:       rqIti ? rqIti.getNumber() : ((document.getElementById('rq-phone') || {}).value || ''),
+          email:       (document.getElementById('rq-email')   || {}).value || '',
+          city:        (document.getElementById('rq-city')    || {}).value || '',
+          state:       (document.getElementById('rq-state')   || {}).value || '',
+          productType: productType,
+          application: (document.getElementById('rq-app')     || {}).value || '',
+          quantity:    (document.getElementById('rq-qty')     || {}).value || '',
+          mvaRange:    (document.getElementById('rq-mva')     || {}).value || '',
+          hvVoltage:   (document.getElementById('rq-hv')      || {}).value || '',
+          lvVoltage:   (document.getElementById('rq-lv')      || {}).value || '',
+          cooling:     (document.getElementById('rq-cooling') || {}).value || '',
+          message:     (document.getElementById('rq-message') || {}).value || '',
+          source:      (document.getElementById('rq-source')  || {}).value || '',
+          formSource:  'Request a Quote Page'
+        };
+        fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/956fd1a5-cf12-4c3d-b369-1b388ca93b49', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function() { window.location.href = '/thank-you/'; })
+          .catch(function() { window.location.href = '/thank-you/'; });
       }
     });
   });

@@ -158,6 +158,7 @@
 .nav--transparent .nav-dropdown-trigger::after { background: var(--white); }
 .nav--transparent .nav-flag-text  { color: rgba(255,255,255,0.85); }
 .nav--transparent .nav-flag-img   { border-color: rgba(255,255,255,0.3); }
+.nav--transparent .nav-flag       { border-left-color: transparent; }
 .nav--transparent .nav-burger span { background: var(--white); }
 
 /* ── Responsive ── */

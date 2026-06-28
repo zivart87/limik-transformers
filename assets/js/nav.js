@@ -15,6 +15,11 @@
       }
     });
 
+    // Dropdown-триггеры не навигируют при клике — только hover открывает меню
+    document.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function (e) { e.preventDefault(); });
+    });
+
     // Бургер-меню
     if (burger && mobile) {
       burger.addEventListener('click', function () {

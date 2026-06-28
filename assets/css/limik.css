@@ -79,8 +79,8 @@ img { display: block; max-width: 100%; }
   .eyebrow    { margin-bottom: 20px; }
 }
 @media (max-width: 479px) {
-  .section    { padding: 48px 0; }
-  .section-lg { padding: 56px 0; }
+  .section    { padding: 64px 0; }
+  .section-lg { padding: 72px 0; }
 }
 
 .clip-tl { clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px); }

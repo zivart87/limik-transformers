@@ -944,12 +944,11 @@
       flex: 0 0 58.33%;
       height: 364px;
       display: flex;
-      flex-direction: column;
+      align-items: flex-start;
       justify-content: space-between;
-      padding: 44px 60px 24px;
-      gap: 0;
+      padding: 44px 60px;
+      gap: 40px;
     }
-    .footer-left-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
 
     /* Левый столбец: логотип + текст */
     .footer-brand-col {
@@ -1013,9 +1012,11 @@
       );
     }
 
-    /* Строка 2, блок A — тёмный spacer (25%) */
+    /* Строка 2, блок A — тёмный spacer (25%) с copyright внизу */
     .footer-spacer {
       flex: 0 0 25%;
+      display: flex; align-items: flex-end;
+      padding: 0 0 24px 60px;
     }
 
     /* Строка 2, блок B — белый блок со ссылками (75%) */

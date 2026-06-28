@@ -218,11 +218,12 @@ h4 {
 /* Row 1 — left dark panel */
 .footer-left {
   flex: 0 0 58.33%; height: 364px;
-  display: flex; align-items: stretch; justify-content: space-between;
-  padding: 44px 60px; gap: 40px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 44px 60px 24px; gap: 0;
   background: var(--navy-dark);
 }
-.footer-brand-col { display: flex; flex-direction: column; gap: 16px; align-self: stretch; }
+.footer-left-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+.footer-brand-col { display: flex; flex-direction: column; gap: 16px; }
 .footer-logo { height: 44px; width: auto; align-self: flex-start; }
 .footer-contacts { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
 .footer-tagline { font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400; }
@@ -232,7 +233,7 @@ h4 {
 }
 .footer-contact-link svg { color: var(--blue-lt); flex-shrink: 0; }
 .footer-contact-link:hover { opacity: 0.75; }
-.footer-copy { font-size: 14px; color: var(--text-2); font-weight: 400; line-height: 1.7; margin-top: auto; padding-bottom: 24px; }
+.footer-copy { font-size: 14px; color: var(--text-2); font-weight: 400; line-height: 1.4; }
 
 /* social column */
 .footer-social-col {

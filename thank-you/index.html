@@ -127,20 +127,19 @@
       display: flex; align-items: center; justify-content: center;
     }
     .ty-link {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.07em; text-transform: uppercase;
       color: var(--navy-dark);
-      transition: gap 0.18s;
     }
-    .ty-link:hover { gap: 18px; }
     .ty-link-icon {
-      width: 40px; height: 40px;
-      background: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark);
+      border-radius: 2px;
     }
-    .ty-link-icon svg { color: var(--navy-dark); }
+    .ty-link-icon svg { transition: transform 0.1s ease; }
+    .ty-link:hover .ty-link-icon svg { transform: rotate(-45deg); }
 
     @media (max-width: 600px) {
       .ty-page { padding: 140px 20px 80px; }

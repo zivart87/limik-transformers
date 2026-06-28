@@ -222,7 +222,7 @@ h4 {
   padding: 44px 60px; gap: 40px;
   background: var(--navy-dark);
 }
-.footer-brand-col { display: flex; flex-direction: column; gap: 16px; }
+.footer-brand-col { display: flex; flex-direction: column; gap: 24px; }
 .footer-logo { height: 38px; width: auto; align-self: flex-start; }
 .footer-tagline { font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400; }
 .footer-contact-link {

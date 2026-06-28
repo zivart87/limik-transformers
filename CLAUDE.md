@@ -362,6 +362,56 @@ grep -n "font-size" файл.html
 
 Запрещено: `14px`, `15px`, `1.6`, `1.65` для контентного текста. Таблицы — тот же стандарт что и параграфы.
 
+## Формы — стандарт оформления полей
+
+Образец: `request-quote/index.html` (страница заявки).
+
+### Label (подпись над полем)
+```css
+font-size: 10px; font-weight: 800;
+letter-spacing: 0.09em; text-transform: uppercase;
+color: var(--navy-dark);
+```
+Обязательная пометка `*` — цвет `var(--blue)` через `<span class="req">*</span>`.
+
+### Input / Select / Textarea (само поле)
+```css
+font-family: var(--font);
+font-size: 14px; font-weight: 400;
+color: var(--navy-dark);
+background: var(--white);
+border: 1.5px solid rgba(9,25,59,0.15);
+border-radius: 2px;
+padding: 11px 14px;
+outline: none;
+width: 100%; box-sizing: border-box;
+transition: border-color 0.15s, box-shadow 0.15s;
+```
+
+### Focus-состояние
+```css
+border-color: var(--blue);
+box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
+```
+
+### Placeholder
+```css
+color: #A8B8CC;
+```
+
+### Обёртка поля
+```css
+.rq-field { display: flex; flex-direction: column; gap: 6px; }
+```
+
+**Правила:**
+- `border-radius: 2px` — всегда, без скруглений
+- Граница по умолчанию — полупрозрачная `rgba(9,25,59,0.15)`, не серый hex
+- Focus — синий бордер + мягкая тень синего цвета, никаких outline
+- Select — всегда кастомная стрелка (синяя SVG), `appearance: none`
+
+---
+
 ## Запреты
 
 - **`var(--gold)` — ТОЛЬКО `.btn-gold` и `.nav-cta`**. Иконки, линии, рамки, галочки, стрелки, декоративные элементы — никогда gold. Перед любым `var(--gold)` в новом коде спросить: "это кнопка CTA?" Если нет — заменить на `var(--blue)` или `var(--white)`. При исправлении нарушения gold — **обязательно grep по всему файлу на `var(--gold)` и проверить каждое вхождение**.

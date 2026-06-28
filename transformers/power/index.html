@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <link rel="stylesheet" href="../../assets/css/limik.css">
   <link rel="stylesheet" href="../../assets/css/nav.css">
   <script src="../../assets/js/nav.js"></script>
@@ -409,6 +410,43 @@
       .pt-spec-table td:first-child { white-space: normal; width: auto; }
     }
 
+    /* ── Validation: error states ── */
+    .pt-field input.pt-error,
+    .pt-field textarea.pt-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.04);
+      box-shadow: none;
+    }
+    .pt-field input.pt-error:focus,
+    .pt-field textarea.pt-error:focus {
+      border-color: #D93025;
+      box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+    }
+    .pt-err-msg {
+      font-size: 11px; font-weight: 500;
+      color: #D93025; margin-top: 2px; display: none;
+    }
+    .pt-field.pt-has-error .pt-err-msg { display: block; }
+    .pt-field.pt-has-error .iti__selected-country { border-right-color: #D93025; }
+    .req { color: var(--blue); }
+
+    /* ── intl-tel-input overrides ── */
+    .iti { display: block; width: 100%; }
+    .iti__selected-country {
+      background: transparent;
+      border-right: 1.5px solid rgba(9,25,59,0.15);
+      padding: 0 10px 0 12px; gap: 6px;
+    }
+    .iti__selected-country:hover,
+    .iti__selected-country[aria-expanded="true"] { background: rgba(9,25,59,0.04); }
+    .iti__selected-dial-code { font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--navy-dark); }
+    .iti__arrow { border-top-color: var(--blue); }
+    .iti__arrow--up { border-bottom-color: var(--blue); }
+    .iti__dropdown-content { border: 1.5px solid rgba(9,25,59,0.15); border-radius: 2px; box-shadow: 0 8px 24px rgba(9,25,59,0.10); }
+    .iti__search-input { font-family: var(--font); font-size: 13px; border-bottom: 1.5px solid rgba(9,25,59,0.10); padding: 8px 12px; outline: none; }
+    .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
+    .iti__country-name, .iti__dial-code { font-family: var(--font); font-size: 13px; }
+
   </style>
 </head>
 <body data-hero=".pt-hero">
@@ -518,25 +556,25 @@
       <h2 class="pt-card-title">Request a Quote</h2>
       <p class="pt-card-sub">Our engineering team responds within one business day.</p>
 
-      <form class="pt-form" action="#" method="post">
+      <form class="pt-form" action="#" method="post" novalidate>
         <div class="pt-form-row">
           <div class="pt-field">
-            <label for="pt-name">Name *</label>
+            <label for="pt-name">Name <span class="req">*</span></label>
             <input type="text" id="pt-name" name="name" placeholder="John Smith" required>
           </div>
           <div class="pt-field">
-            <label for="pt-company">Company *</label>
+            <label for="pt-company">Company <span class="req">*</span></label>
             <input type="text" id="pt-company" name="company" placeholder="ACME Utilities" required>
           </div>
         </div>
         <div class="pt-form-row">
           <div class="pt-field">
-            <label for="pt-email">Email *</label>
+            <label for="pt-email">Email <span class="req">*</span></label>
             <input type="email" id="pt-email" name="email" placeholder="john@company.com" required>
           </div>
           <div class="pt-field">
-            <label for="pt-phone">Phone *</label>
-            <input type="tel" id="pt-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
+            <label for="pt-phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="pt-phone" name="phone" inputmode="tel" required>
           </div>
         </div>
         <div class="pt-field">
@@ -712,6 +750,127 @@
     h1.querySelectorAll('.pt-split-word').forEach(function(s) {
       s.classList.add('pt-reveal');
     });
+  });
+})();
+</script>
+
+<!-- intl-tel-input -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
+<script>
+(function() {
+  var phoneEl = document.getElementById('pt-phone');
+  if (!phoneEl || !window.intlTelInput) return;
+  window._pt_iti = window.intlTelInput(phoneEl, {
+    initialCountry: 'us',
+    countryOrder: ['us', 'ca', 'gb', 'de', 'au', 'ae', 'sa', 'jp', 'kr', 'in'],
+    showSelectedDialCode: true,
+    countrySearch: true,
+    onlyCountries: [
+      'us','ca','mx','gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
+      'co','ve','ec','pe','br','bo','py','uy','ar','cl',
+      'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
+      'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
+      'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
+      'ge','am','az',
+      'il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
+      'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
+      'kz','uz','tm','kg','tj',
+      'in','pk','bd','lk','np',
+      'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
+      'au','nz','pg','fj','ru'
+    ]
+  });
+})();
+</script>
+
+<script>
+/* ── Validation hero form ── */
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('.pt-form');
+    if (!form) return;
+
+    form.querySelectorAll('[required]').forEach(function(el) {
+      var field = el.closest('.pt-field');
+      if (!field) return;
+      addErrSpan(field);
+      el.addEventListener('input', function() { clearErr(field); });
+
+      if (el.type === 'email') {
+        el.addEventListener('blur', function() {
+          var v = el.value.trim();
+          if (!v) return;
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) markErr(field, 'Enter a valid email address.');
+          else clearErr(field);
+        });
+      }
+      if (el.type === 'tel') {
+        el.addEventListener('blur', function() {
+          var v = el.value.trim();
+          if (!v) return;
+          var iti = window._pt_iti;
+          if (iti && !iti.isValidNumber()) markErr(field, 'Enter a valid phone number.');
+          else clearErr(field);
+        });
+      }
+    });
+
+    form.addEventListener('submit', function(e) {
+      var valid = true;
+      var first = null;
+
+      form.querySelectorAll('[required]').forEach(function(el) {
+        var field = el.closest('.pt-field');
+        if (!field) return;
+        var v = el.value.trim();
+
+        if (el.type === 'email' && v) {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+            markErr(field, 'Enter a valid email address.');
+            valid = false; if (!first) first = field; return;
+          }
+        }
+        if (el.type === 'tel') {
+          var iti = window._pt_iti;
+          if (iti) {
+            if (!v) { markErr(field); valid = false; if (!first) first = field; return; }
+            if (!iti.isValidNumber()) { markErr(field, 'Enter a valid phone number.'); valid = false; if (!first) first = field; }
+            else { clearErr(field); el.value = iti.getNumber(); }
+            return;
+          }
+        }
+        if (!v) { markErr(field); valid = false; if (!first) first = field; }
+        else clearErr(field);
+      });
+
+      e.preventDefault();
+      if (!valid) {
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.location.href = '/thank-you/';
+      }
+    });
+
+    function addErrSpan(field) {
+      if (!field.querySelector('.pt-err-msg')) {
+        var s = document.createElement('span');
+        s.className = 'pt-err-msg';
+        s.textContent = 'This field is required.';
+        field.appendChild(s);
+      }
+    }
+    function markErr(field, msg) {
+      field.classList.add('pt-has-error');
+      var inp = field.querySelector('input, textarea');
+      if (inp) inp.classList.add('pt-error');
+      if (msg) { var s = field.querySelector('.pt-err-msg'); if (s) s.textContent = msg; }
+    }
+    function clearErr(field) {
+      field.classList.remove('pt-has-error');
+      field.querySelectorAll('.pt-error').forEach(function(el) { el.classList.remove('pt-error'); });
+      var s = field.querySelector('.pt-err-msg');
+      if (s) s.textContent = 'This field is required.';
+    }
   });
 })();
 </script>

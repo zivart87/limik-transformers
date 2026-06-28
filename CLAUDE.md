@@ -172,6 +172,12 @@ text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
 - Запрещено писать `.container p { }` или `.card p { }` — это захватывает eyebrow и другие не-параграфные элементы.
 - Параграфам давать явный класс: `<p class="section-body">` и стилизовать `.section-body { }`.
 
+### Иконки — стандартный размер
+
+Декоративные контентные иконки (SVG без фона): **64×64px**, `color: var(--blue)`, `margin-bottom: 28px`.  
+Образец: `.why-col-icon` на главной странице (блок "25 Years of Engineering / Made in USA / 48 Weeks").  
+Иконки внутри цветного круга/квадрата — тот же размер контейнера 64×64px.
+
 ### Кнопки — строго два типа
 
 #### 1. Primary CTA — форма заявки (`.btn.btn-gold`)

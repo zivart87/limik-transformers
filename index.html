@@ -604,7 +604,17 @@
       position: relative;
     }
 
-.products-grid {
+.products-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .products-bottom-cta { display: none; }
+    @media (max-width: 768px) {
+      .products-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+      .products-header-cta { display: none; }
+      .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
+    }
+    .products-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
     .product-card {
@@ -1434,9 +1444,9 @@
 <section class="section bg-dark" id="products-section" style="padding-top: 56px; position: relative; overflow: hidden;">
   <img src="assets/images/logo-product.svg" aria-hidden="true" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
   <div class="container" style="position:relative; z-index:1;">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:48px; margin-bottom:48px;">
+    <div class="products-header">
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered.</h2>
-      <a href="request-quote/" class="btn btn-gold" style="flex-shrink:0;">Request a Quote</a>
+      <a href="request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
     <div class="products-grid">
 
@@ -1528,6 +1538,7 @@
       </a>
 
     </div>
+    <a href="request-quote/" class="btn btn-gold products-bottom-cta">Request a Quote</a>
   </div>
 </section>
 

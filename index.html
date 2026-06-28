@@ -412,6 +412,17 @@
       font-size: 18px; font-weight: 400;
       color: var(--navy-dark); line-height: 1.4; margin: 0;
     }
+    @media (max-width: 768px) {
+      .about-stat-num { font-size: 56px; }
+      .about-stat-num span[style] { font-size: 22px !important; }
+      .about-stat-desc { font-size: 15px; }
+      .about-stat-item:nth-child(odd) { padding-right: 16px; }
+      .about-stat-item:nth-child(even) { padding-left: 16px; }
+    }
+    @media (max-width: 479px) {
+      .about-stat-num { font-size: 48px; }
+      .about-stat-num span[style] { font-size: 20px !important; }
+    }
 
     /* Строка 2: 3 колонки */
     .about-row-cols {

@@ -259,6 +259,28 @@
     }
     .rq-file-item svg { color: var(--blue); flex-shrink: 0; }
 
+    /* ── Validation: error state ── */
+    .rq-field input.rq-error,
+    .rq-field select.rq-error,
+    .rq-field textarea.rq-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.04);
+      box-shadow: none;
+    }
+    .rq-field input.rq-error:focus,
+    .rq-field select.rq-error:focus,
+    .rq-field textarea.rq-error:focus {
+      border-color: #D93025;
+      box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+    }
+    .rq-err-msg {
+      font-size: 11px; font-weight: 500;
+      color: #D93025;
+      margin-top: 4px;
+      display: none;
+    }
+    .rq-field.rq-has-error .rq-err-msg { display: block; }
+
     /* ── Submit area ── */
     .rq-submit {
       margin-top: 44px;
@@ -595,6 +617,64 @@
 </div><!-- /rq-page -->
 
 <script>
+/* ── Validation ── */
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+    if (!form) return;
+
+    // Добавляем span ошибки под каждый required input/select/textarea
+    form.querySelectorAll('[required]').forEach(function(el) {
+      var field = el.closest('.rq-field');
+      if (!field) return;
+      if (!field.querySelector('.rq-err-msg')) {
+        var span = document.createElement('span');
+        span.className = 'rq-err-msg';
+        span.textContent = 'This field is required.';
+        field.appendChild(span);
+      }
+      // Убираем ошибку при вводе
+      el.addEventListener('input', function() { clearError(el); });
+      el.addEventListener('change', function() { clearError(el); });
+    });
+
+    form.addEventListener('submit', function(e) {
+      var valid = true;
+      form.querySelectorAll('[required]').forEach(function(el) {
+        var val = el.value.trim();
+        // radio/checkbox — проверяем группу
+        if (el.type === 'radio') {
+          var group = form.querySelectorAll('input[name="' + el.name + '"]');
+          var checked = Array.from(group).some(function(r) { return r.checked; });
+          if (!checked) { markError(el); valid = false; }
+          return;
+        }
+        if (!val) { markError(el); valid = false; }
+        else clearError(el);
+      });
+      if (!valid) {
+        e.preventDefault();
+        // Скроллим к первой ошибке
+        var first = form.querySelector('.rq-error');
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  function markError(el) {
+    el.classList.add('rq-error');
+    var field = el.closest('.rq-field');
+    if (field) field.classList.add('rq-has-error');
+  }
+
+  function clearError(el) {
+    el.classList.remove('rq-error');
+    var field = el.closest('.rq-field');
+    if (field) field.classList.remove('rq-has-error');
+  }
+})();
+
+/* ── File upload ── */
 function rqFileChange(input) {
   var list = document.getElementById('rq-file-list');
   list.innerHTML = '';

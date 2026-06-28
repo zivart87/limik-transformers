@@ -1986,6 +1986,7 @@
     if (!transitions.length) return;
 
     transitions.forEach(el => {
+      if (window.getComputedStyle(el).display === 'none') return;
       const colorTo = el.dataset.colorTo || '#09193B';
       const h       = parseInt(el.dataset.height || '160');
 

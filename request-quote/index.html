@@ -825,9 +825,36 @@ function rqFileChange(input) {
   if (!phoneEl || !window.intlTelInput) return;
   window._iti = window.intlTelInput(phoneEl, {
     initialCountry: 'us',
-    preferredCountries: ['us', 'ca', 'gb', 'de', 'au'],
+    countryOrder: ['us', 'ca', 'gb', 'de', 'au', 'ae', 'sa', 'jp', 'kr', 'in'],
     showSelectedDialCode: true,
-    countrySearch: true
+    countrySearch: true,
+    onlyCountries: [
+      // North America
+      'us','ca','mx',
+      // Central America & Caribbean
+      'gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
+      // South America
+      'co','ve','ec','pe','br','bo','py','uy','ar','cl',
+      // Europe
+      'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
+      'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
+      'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
+      'ge','am','az',
+      // Middle East & North Africa
+      'il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
+      // Sub-Saharan Africa
+      'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
+      // Central Asia
+      'kz','uz','tm','kg','tj',
+      // South Asia
+      'in','pk','bd','lk','np',
+      // East & Southeast Asia
+      'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
+      // Oceania
+      'au','nz','pg','fj',
+      // Russia
+      'ru'
+    ]
   });
 })();
 </script>

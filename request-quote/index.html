@@ -259,7 +259,11 @@
     }
     .rq-file-item svg { color: var(--blue); flex-shrink: 0; }
 
-    /* ── Validation: error state ── */
+    /* ── Validation: error states ── */
+    .rq-pill.rq-pill-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.05);
+    }
     .rq-field input.rq-error,
     .rq-field select.rq-error,
     .rq-field textarea.rq-error {
@@ -409,7 +413,7 @@
       <p class="rq-form-sub">Share your project requirements and our engineering team will prepare a preliminary technical and commercial proposal.</p>
     </div>
 
-    <form action="#" method="post">
+    <form action="#" method="post" novalidate>
 
       <!-- 1. Contact Information -->
       <div class="rq-section">
@@ -433,7 +437,7 @@
           </div>
           <div class="rq-field">
             <label for="rq-phone">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
+            <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'')" required>
           </div>
         </div>
 
@@ -623,54 +627,104 @@
     var form = document.querySelector('form');
     if (!form) return;
 
-    // Добавляем span ошибки под каждый required input/select/textarea
+    // Поля которые уже обработаны (radio-группы — один раз)
+    var processedRadioGroups = {};
+
     form.querySelectorAll('[required]').forEach(function(el) {
       var field = el.closest('.rq-field');
       if (!field) return;
-      if (!field.querySelector('.rq-err-msg')) {
-        var span = document.createElement('span');
-        span.className = 'rq-err-msg';
-        span.textContent = 'This field is required.';
-        field.appendChild(span);
+
+      // Для radio — добавляем span ошибки на группу один раз
+      if (el.type === 'radio') {
+        if (processedRadioGroups[el.name]) return;
+        processedRadioGroups[el.name] = true;
+        addErrSpan(field);
+        form.querySelectorAll('input[name="' + el.name + '"]').forEach(function(r) {
+          r.addEventListener('change', function() { clearFieldError(field); });
+        });
+        return;
       }
-      // Убираем ошибку при вводе
-      el.addEventListener('input', function() { clearError(el); });
-      el.addEventListener('change', function() { clearError(el); });
+
+      addErrSpan(field);
+      el.addEventListener('input', function() { clearFieldError(field); });
+      el.addEventListener('change', function() { clearFieldError(field); });
     });
 
     form.addEventListener('submit', function(e) {
       var valid = true;
+      var firstErrorField = null;
+      var seenRadio = {};
+
       form.querySelectorAll('[required]').forEach(function(el) {
-        var val = el.value.trim();
-        // radio/checkbox — проверяем группу
+        var field = el.closest('.rq-field');
+        if (!field) return;
+
+        // Radio-группы
         if (el.type === 'radio') {
-          var group = form.querySelectorAll('input[name="' + el.name + '"]');
-          var checked = Array.from(group).some(function(r) { return r.checked; });
-          if (!checked) { markError(el); valid = false; }
+          if (seenRadio[el.name]) return;
+          seenRadio[el.name] = true;
+          var checked = Array.from(form.querySelectorAll('input[name="' + el.name + '"]')).some(function(r) { return r.checked; });
+          if (!checked) { markFieldError(field); valid = false; if (!firstErrorField) firstErrorField = field; }
+          else clearFieldError(field);
           return;
         }
-        if (!val) { markError(el); valid = false; }
-        else clearError(el);
+
+        var val = el.value.trim();
+
+        // Email — проверяем формат
+        if (el.type === 'email' && val) {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+            markFieldError(field, 'Enter a valid email address.');
+            valid = false; if (!firstErrorField) firstErrorField = field;
+            return;
+          }
+        }
+
+        // Телефон — минимум 7 цифр
+        if (el.type === 'tel' && val) {
+          var digits = val.replace(/\D/g, '').length;
+          if (digits < 7) {
+            markFieldError(field, 'Enter at least 7 digits.');
+            valid = false; if (!firstErrorField) firstErrorField = field;
+            return;
+          }
+        }
+
+        if (!val) { markFieldError(field); valid = false; if (!firstErrorField) firstErrorField = field; }
+        else clearFieldError(field);
       });
+
       if (!valid) {
         e.preventDefault();
-        // Скроллим к первой ошибке
-        var first = form.querySelector('.rq-error');
-        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (firstErrorField) firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
   });
 
-  function markError(el) {
-    el.classList.add('rq-error');
-    var field = el.closest('.rq-field');
-    if (field) field.classList.add('rq-has-error');
+  function addErrSpan(field) {
+    if (!field.querySelector('.rq-err-msg')) {
+      var span = document.createElement('span');
+      span.className = 'rq-err-msg';
+      span.textContent = 'This field is required.';
+      field.appendChild(span);
+    }
   }
 
-  function clearError(el) {
-    el.classList.remove('rq-error');
-    var field = el.closest('.rq-field');
-    if (field) field.classList.remove('rq-has-error');
+  function markFieldError(field, msg) {
+    field.classList.add('rq-has-error');
+    var input = field.querySelector('input:not([type=radio]):not([type=checkbox]), select, textarea');
+    if (input) input.classList.add('rq-error');
+    // Radio-группа: подсвечиваем все пилюли
+    field.querySelectorAll('.rq-pill').forEach(function(p) { p.classList.add('rq-pill-error'); });
+    if (msg) { var span = field.querySelector('.rq-err-msg'); if (span) span.textContent = msg; }
+  }
+
+  function clearFieldError(field) {
+    field.classList.remove('rq-has-error');
+    field.querySelectorAll('.rq-error').forEach(function(el) { el.classList.remove('rq-error'); });
+    field.querySelectorAll('.rq-pill-error').forEach(function(p) { p.classList.remove('rq-pill-error'); });
+    var span = field.querySelector('.rq-err-msg');
+    if (span) span.textContent = 'This field is required.';
   }
 })();
 

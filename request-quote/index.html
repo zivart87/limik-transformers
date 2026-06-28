@@ -41,9 +41,21 @@
       from { opacity: 0; transform: scale(1.07); }
       to   { opacity: 1; transform: scale(1.0); }
     }
-    @keyframes rqTextUp {
-      from { opacity: 0; transform: translateY(32px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes rqWordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .rq-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .rq-split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .rq-split-word.rq-reveal {
+      animation: rqWordReveal 0.80s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     @keyframes rqOverlayIn {
       from { opacity: 0; }
@@ -78,9 +90,7 @@
     .rq-left-title {
       font-size: clamp(24px, 2vw, 32px);
       font-weight: 800; color: var(--white);
-      line-height: 1.15; letter-spacing: -0.025em;
-      opacity: 0;
-      animation: rqTextUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+      line-height: 1.4; letter-spacing: -0.025em;
     }
     .rq-left-stats {
       display: flex;
@@ -888,6 +898,39 @@
       list.appendChild(item);
     });
   }
+})();
+
+/* ── Left panel: clip-reveal заголовка по словам (как на главной) ── */
+(function() {
+  var title = document.querySelector('.rq-left-title');
+  if (!title) return;
+
+  var words = title.textContent.split(/(\s+)/);
+  title.innerHTML = '';
+  var wordIdx = 0;
+
+  words.forEach(function(part) {
+    if (/^\s+$/.test(part)) {
+      title.appendChild(document.createTextNode(part));
+    } else if (part) {
+      var wrap = document.createElement('span');
+      wrap.className = 'rq-word-wrap';
+      var span = document.createElement('span');
+      span.className = 'rq-split-word';
+      span.style.animationDelay = (0.55 + wordIdx * 0.09) + 's';
+      span.textContent = part;
+      wordIdx++;
+      wrap.appendChild(span);
+      title.appendChild(wrap);
+    }
+  });
+
+  // Запускаем анимацию после первого frame — даём браузеру отрисовать начальное состояние
+  requestAnimationFrame(function() {
+    title.querySelectorAll('.rq-split-word').forEach(function(s) {
+      s.classList.add('rq-reveal');
+    });
+  });
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>

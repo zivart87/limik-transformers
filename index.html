@@ -496,13 +496,15 @@
       .about-overlay { margin-bottom: 0; }
       .about-overlay-card {
         width: 100%;
-        padding: 60px 32px;
+        padding: 60px 32px 100px;
       }
       .about-overlay-photo {
         position: relative;
         right: auto; bottom: auto;
-        width: 100%;
+        width: calc(100% - 48px);
         height: 260px;
+        margin: -64px auto 0;
+        z-index: 2;
       }
     }
     .about-split-body {

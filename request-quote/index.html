@@ -423,21 +423,21 @@
           </div>
         </div>
 
-        <div class="rq-row rq-col-1">
+        <div class="rq-row rq-col-2">
           <div class="rq-field">
-            <label for="rq-company">Company <span class="req">*</span></label>
+            <label for="rq-company">Company Name <span class="req">*</span></label>
             <input type="text" id="rq-company" name="company" placeholder="ACME Utilities" required>
+          </div>
+          <div class="rq-field">
+            <label for="rq-phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
           </div>
         </div>
 
-        <div class="rq-row rq-col-2">
+        <div class="rq-row rq-col-1">
           <div class="rq-field">
             <label for="rq-email">Email <span class="req">*</span></label>
             <input type="email" id="rq-email" name="email" placeholder="john@company.com" required>
-          </div>
-          <div class="rq-field">
-            <label for="rq-phone">Phone <span class="req">*</span></label>
-            <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
           </div>
         </div>
 

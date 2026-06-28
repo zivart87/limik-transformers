@@ -603,6 +603,11 @@
       pointer-events: none;
       position: relative;
     }
+    .section-transition--mobile { display: none; }
+    @media (max-width: 767px) {
+      .section-transition--desktop { display: none; }
+      .section-transition--mobile  { display: block; }
+    }
 
 .products-header {
       display: flex; align-items: flex-end; justify-content: space-between;
@@ -1440,7 +1445,8 @@
 <!-- ══════════════════════════════
    4. PRODUCTS  ← ТЁМНЫЙ
 ══════════════════════════════ -->
-<div class="section-transition" data-color-to="#09193B" data-height="140"></div>
+<div class="section-transition section-transition--desktop" data-color-to="#09193B" data-height="140" data-blocks="25"></div>
+<div class="section-transition section-transition--mobile" data-color-to="#09193B" data-height="140" data-blocks="10"></div>
 <section class="section bg-dark" id="products-section" style="padding-top: 56px; position: relative; overflow: hidden;">
   <img src="assets/images/logo-product.svg" aria-hidden="true" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
   <div class="container" style="position:relative; z-index:1;">
@@ -1997,7 +2003,7 @@
       });
       el.appendChild(grid);
 
-      const ROWS = 2, BLOCKS = window.innerWidth < 768 ? 6 : 25;
+      const ROWS = 2, BLOCKS = parseInt(el.dataset.blocks || '25');
       for (let r = 0; r < ROWS; r++) {
         const row = document.createElement('div');
         Object.assign(row.style, {

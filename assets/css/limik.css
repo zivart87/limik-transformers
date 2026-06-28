@@ -49,6 +49,7 @@ img { display: block; max-width: 100%; }
   padding: 0 40px;
 }
 @media (max-width: 768px) { .container { padding: 0 20px; } }
+@media (max-width: 479px) { .container { padding: 0 16px; } }
 
 /* ════════════════════════════════
    BG HELPERS
@@ -64,6 +65,23 @@ img { display: block; max-width: 100%; }
 .section    { padding: 120px 0; }
 .section-lg { padding: 160px 0; }
 .section-sm { padding: 64px 0; }
+
+@media (max-width: 991px) {
+  .section    { padding: 80px 0; }
+  .section-lg { padding: 100px 0; }
+  .section-sm { padding: 48px 0; }
+  .sec-header { margin-bottom: 40px; }
+}
+@media (max-width: 768px) {
+  .section    { padding: 60px 0; }
+  .section-lg { padding: 72px 0; }
+  .section-sm { padding: 40px 0; }
+  .eyebrow    { margin-bottom: 20px; }
+}
+@media (max-width: 479px) {
+  .section    { padding: 48px 0; }
+  .section-lg { padding: 56px 0; }
+}
 
 .clip-tl { clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px); }
 .clip-tr { clip-path: polygon(0% 0%, calc(100% - 64px) 0%, 100% 64px, 100% 100%, 0% 100%); }
@@ -201,6 +219,9 @@ h4 {
 .cta-band p {
   font-size: 16px; font-weight: 300;
   line-height: 1.75; color: rgba(255,255,255,0.72); margin: 0;
+}
+@media (max-width: 991px) {
+  .cta-band-inner { padding: 72px 0 72px 48px; }
 }
 @media (max-width: 768px) {
   .cta-band-inner { flex-direction: column; align-items: flex-start; padding: 60px 0 60px 24px; }

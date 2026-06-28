@@ -182,6 +182,7 @@ text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
 
 #### 2. Icon-link — переход на другие страницы
 - Визуально: **золотой квадрат** со стрелкой (`--gold` фон, `--navy-dark` стрелка) + текст рядом
+- Используется везде кроме формы заявки: "Learn More", "View Industry", "Meet the Full Team" и т.п.
 - HTML-паттерн:
 ```html
 <a href="..." class="co-intro-link">
@@ -191,7 +192,22 @@ text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
   Текст ссылки
 </a>
 ```
-- Используется везде кроме формы заявки: "Learn More", "View Industry", "Meet the Full Team" и т.п.
+- CSS — точные значения (не менять):
+```css
+.co-intro-link {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--white); /* или --navy-dark на светлом фоне */
+}
+.co-intro-link-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+}
+.co-intro-link-icon svg { transition: transform 0.1s ease; }
+.co-intro-link:hover .co-intro-link-icon svg { transform: rotate(-45deg); }
+```
+- **Анимация:** стрелка поворачивается на -45° при hover. Не придумывать другую анимацию.
 
 **Запрещено:** outline-кнопки (`.btn-outline-white`, `.btn-outline-dark`) — не использовать. На сайте только два типа кнопок.
 

@@ -423,14 +423,10 @@
           </div>
         </div>
 
-        <div class="rq-row rq-col-2">
+        <div class="rq-row rq-col-1">
           <div class="rq-field">
             <label for="rq-company">Company <span class="req">*</span></label>
             <input type="text" id="rq-company" name="company" placeholder="ACME Utilities" required>
-          </div>
-          <div class="rq-field">
-            <label for="rq-title">Job Title</label>
-            <input type="text" id="rq-title" name="job_title" placeholder="VP of Engineering">
           </div>
         </div>
 
@@ -442,6 +438,17 @@
           <div class="rq-field">
             <label for="rq-phone">Phone <span class="req">*</span></label>
             <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
+          </div>
+        </div>
+
+        <div class="rq-row rq-col-2">
+          <div class="rq-field">
+            <label for="rq-city">City <span class="req">*</span></label>
+            <input type="text" id="rq-city" name="city" placeholder="Spartanburg" required>
+          </div>
+          <div class="rq-field">
+            <label for="rq-state">State / Region <span class="req">*</span></label>
+            <input type="text" id="rq-state" name="state" placeholder="South Carolina" required>
           </div>
         </div>
 

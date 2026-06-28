@@ -286,8 +286,8 @@ h4 {
   color: var(--navy-dark); margin-bottom: 16px;
 }
 .footer-col a {
-  display: block; font-size: 13px; color: #3A5570;
-  margin-bottom: 9px; transition: color 0.15s; font-weight: 300;
+  display: block; font-size: 14px; color: #3A5570;
+  margin-bottom: 9px; transition: color 0.15s; font-weight: 400;
 }
 .footer-col a:hover { color: var(--navy-dark); }
 .footer-certifications {

@@ -163,11 +163,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .pt-field { display: flex; flex-direction: column; gap: 4px; }
+    .pt-field { display: flex; flex-direction: column; gap: 6px; }
     .pt-field label {
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--navy-dark);
     }
@@ -177,19 +177,19 @@
       font-size: 14px;
       font-weight: 400;
       color: var(--navy-dark);
-      background: var(--off-white);
-      border: 1.5px solid rgba(9,25,59,0.14);
+      background: var(--white);
+      border: 1.5px solid rgba(9,25,59,0.15);
       border-radius: 2px;
-      padding: 10px 13px;
+      padding: 11px 14px;
       outline: none;
-      transition: border-color 0.15s, background 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s;
       width: 100%;
       box-sizing: border-box;
     }
     .pt-field input:focus,
     .pt-field textarea:focus {
       border-color: var(--blue);
-      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
     }
     .pt-field input::placeholder,
     .pt-field textarea::placeholder { color: #A8B8CC; }

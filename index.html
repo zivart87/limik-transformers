@@ -794,6 +794,43 @@
     .industry-tab:hover:not(.active) .industry-tab-icon { opacity: 1; }
     .industry-tab:hover:not(.active) .industry-tab-label { color: var(--navy-dark); }
 
+    /* ── Industries accordion (mobile-only) ── */
+    .industries-accordion { display: none; }
+    @media (max-width: 768px) {
+      .industries-intro { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; }
+      .industries-featured { display: none; }
+      .industries-tabs { display: none; }
+      .industries-accordion { display: block; }
+      .ind-acc-item { border-top: 1px solid rgba(9,25,59,0.12); }
+      .ind-acc-item:last-child { border-bottom: 1px solid rgba(9,25,59,0.12); }
+      .ind-acc-header {
+        width: 100%; display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 0; background: none; border: none; cursor: pointer; text-align: left;
+        font-family: var(--font); font-size: 13px; font-weight: 800;
+        letter-spacing: 0.07em; text-transform: uppercase; color: var(--navy-dark);
+      }
+      .ind-acc-toggle {
+        width: 36px; height: 36px; flex-shrink: 0;
+        background: var(--navy-dark); color: var(--white);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 22px; line-height: 1; font-weight: 300;
+      }
+      .ind-acc-body { display: none; }
+      .ind-acc-item.active .ind-acc-body { display: block; }
+      .ind-acc-body-img { width: 100%; height: 240px; object-fit: cover; display: block; }
+      .ind-acc-content {
+        background: var(--navy-dark); padding: 32px 24px 40px;
+      }
+      .ind-acc-content h3 {
+        font-size: 24px; font-weight: 800; line-height: 1.1;
+        color: var(--white); margin-bottom: 16px;
+      }
+      .ind-acc-content p {
+        font-size: 16px; line-height: 1.75; font-weight: 400;
+        color: rgba(255,255,255,0.72); margin-bottom: 32px;
+      }
+    }
+
     /* ─────────────────────────────────
        7. TIMELINE  (white)
     ───────────────────────────────── */
@@ -1656,6 +1693,102 @@
         <span class="industry-tab-label">EPC Contractors</span>
       </div>
     </div>
+
+    <!-- accordion — mobile only, desktop hidden via CSS -->
+    <div class="industries-accordion">
+
+      <div class="ind-acc-item active">
+        <button class="ind-acc-header">
+          <span>Utilities &amp; Grid</span>
+          <span class="ind-acc-toggle">−</span>
+        </button>
+        <div class="ind-acc-body">
+          <img class="ind-acc-body-img" src="https://images.unsplash.com/photo-1509390673020-a5b2450e33f1?w=900&h=480&fit=crop&auto=format&q=80" alt="Utilities">
+          <div class="ind-acc-content">
+            <h3>Powering America's Transmission Network</h3>
+            <p>Duke Energy, Dominion, and Southeast utilities depend on reliable domestic transformer supply. LIMIK delivers large power transformers built to IEEE C57 standards, engineered for the toughest grid conditions.</p>
+            <a href="industries/" class="industries-panel-link">
+              <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              View Industry
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-acc-item">
+        <button class="ind-acc-header">
+          <span>Data Centers</span>
+          <span class="ind-acc-toggle">+</span>
+        </button>
+        <div class="ind-acc-body">
+          <img class="ind-acc-body-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=480&fit=crop&auto=format&q=80" alt="Data Centers">
+          <div class="ind-acc-content">
+            <h3>Critical Power for Hyperscale Infrastructure</h3>
+            <p>AWS, Azure, and Google are building hyperscale campuses across the Carolinas. GSU transformers are on the critical path — LIMIK delivers IRA-eligible, U.S.-made units with engineering support.</p>
+            <a href="industries/" class="industries-panel-link">
+              <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              View Industry
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-acc-item">
+        <button class="ind-acc-header">
+          <span>Defense / DOD</span>
+          <span class="ind-acc-toggle">+</span>
+        </button>
+        <div class="ind-acc-body">
+          <img class="ind-acc-body-img" src="https://images.unsplash.com/photo-1650043996692-a51e3d749766?w=900&h=480&fit=crop&auto=format&q=80" alt="Defense">
+          <div class="ind-acc-content">
+            <h3>Section 303 Qualified. DOD-Ready</h3>
+            <p>LIMIK is Section 303 Defense Production Act eligible and qualified for Department of Defense procurement. No foreign supply chain dependency — built on American soil for national security requirements.</p>
+            <a href="industries/" class="industries-panel-link">
+              <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              View Industry
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-acc-item">
+        <button class="ind-acc-header">
+          <span>Renewables</span>
+          <span class="ind-acc-toggle">+</span>
+        </button>
+        <div class="ind-acc-body">
+          <img class="ind-acc-body-img" src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&h=480&fit=crop&auto=format&q=80" alt="Renewables">
+          <div class="ind-acc-content">
+            <h3>IRA-Eligible GSU for Wind, Solar &amp; BESS</h3>
+            <p>Wind farms, solar installations, and battery storage projects need domestic GSU transformers to qualify for IRA incentives. LIMIK delivers — engineered up to 35 kV LV, IEEE C57 and ANSI certified.</p>
+            <a href="industries/" class="industries-panel-link">
+              <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              View Industry
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-acc-item">
+        <button class="ind-acc-header">
+          <span>EPC Contractors</span>
+          <span class="ind-acc-toggle">+</span>
+        </button>
+        <div class="ind-acc-body">
+          <img class="ind-acc-body-img" src="https://images.unsplash.com/photo-1527335988388-b40ee248d80c?w=900&h=480&fit=crop&auto=format&q=80" alt="EPC Contractors">
+          <div class="ind-acc-content">
+            <h3>Bechtel, Fluor, Kiewit — Add LIMIK to Your Spec</h3>
+            <p>Major EPC contractors plan transformer procurement 5+ years out. LIMIK offers domestic sourcing, full engineering documentation, and a dedicated procurement team for long-lead project planning.</p>
+            <a href="industries/" class="industries-panel-link">
+              <span class="industries-panel-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              View Industry
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /industries-accordion -->
+
   </div>
 </section>
 
@@ -1942,6 +2075,24 @@
     }
 
     tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
+  })();
+
+  // ── Industries accordion (mobile) ──
+  (function () {
+    const items = document.querySelectorAll('.ind-acc-item');
+    items.forEach(item => {
+      item.querySelector('.ind-acc-header').addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        items.forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.ind-acc-toggle').textContent = '+';
+        });
+        if (!isActive) {
+          item.classList.add('active');
+          item.querySelector('.ind-acc-toggle').textContent = '−';
+        }
+      });
+    });
   })();
 
   // ── Count-up анимация для stats ──

@@ -218,7 +218,7 @@ h4 {
 /* Row 1 — left dark panel */
 .footer-left {
   flex: 0 0 58.33%; height: 364px;
-  display: flex; align-items: flex-start; justify-content: space-between;
+  display: flex; align-items: stretch; justify-content: space-between;
   padding: 44px 60px; gap: 40px;
   background: var(--navy-dark);
 }

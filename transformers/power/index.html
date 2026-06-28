@@ -341,13 +341,33 @@
     .pt-sidebar-form input::placeholder,
     .pt-sidebar-form textarea::placeholder { color: #A8B8CC; }
     .pt-sidebar-form input:focus,
-    .pt-sidebar-form textarea:focus { border-color: var(--blue); }
+    .pt-sidebar-form textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
+    }
     .pt-sidebar-form textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
     .pt-sidebar-form .btn {
       width: 100%; justify-content: center;
       font-size: 13px; letter-spacing: 0.1em;
       margin-top: 4px;
     }
+    .sf-field input.sf-error,
+    .sf-field textarea.sf-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.04);
+      box-shadow: none;
+    }
+    .sf-field input.sf-error:focus,
+    .sf-field textarea.sf-error:focus {
+      border-color: #D93025;
+      box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+    }
+    .sf-err-msg {
+      font-size: 11px; font-weight: 500;
+      color: #D93025; margin-top: 3px; display: none;
+    }
+    .sf-field.sf-has-error .sf-err-msg { display: block; }
+    .sf-field.sf-has-error .iti__selected-country { border-right-color: #D93025; }
 
     /* ═══════════════════════════════
        TECH SPECS TABLE
@@ -681,21 +701,21 @@
         <div class="pt-sidebar-form">
           <h3>Get Started<br>Today</h3>
           <p>Our engineering team will help you select the right MVA rating, voltage class, and cooling configuration for your project.</p>
-          <form action="#" method="post">
+          <form id="sf-form" action="#" method="post" novalidate>
             <div class="sf-field">
-              <input type="text" name="name" placeholder="Name *" required>
+              <input type="text" id="sf-name" name="name" placeholder="Name *" required>
             </div>
             <div class="sf-field">
-              <input type="text" name="company" placeholder="Company *" required>
+              <input type="text" id="sf-company" name="company" placeholder="Company *" required>
             </div>
             <div class="sf-field">
-              <input type="email" name="email" placeholder="Email *" required>
+              <input type="email" id="sf-email" name="email" placeholder="Email *" required>
             </div>
             <div class="sf-field">
-              <input type="tel" name="phone" placeholder="Phone *" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'');var n=this.value.replace(/\D/g,'').length;this.setCustomValidity(n<7?'Enter at least 7 digits':n>15?'Enter no more than 15 digits':'')" required>
+              <input type="tel" id="sf-phone" name="phone" inputmode="tel" placeholder="Phone *" required>
             </div>
             <div class="sf-field">
-              <textarea name="message" placeholder="Message"></textarea>
+              <textarea id="sf-message" name="message" placeholder="Message"></textarea>
             </div>
             <button type="submit" class="btn btn-gold">Send Message</button>
           </form>
@@ -757,122 +777,107 @@
 <!-- intl-tel-input -->
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
 <script>
+var _itiCountries = [
+  'us','ca','mx','gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
+  'co','ve','ec','pe','br','bo','py','uy','ar','cl',
+  'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
+  'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
+  'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
+  'ge','am','az','il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
+  'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
+  'kz','uz','tm','kg','tj','in','pk','bd','lk','np',
+  'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
+  'au','nz','pg','fj','ru'
+];
+var _itiOpts = {
+  initialCountry: 'us',
+  countryOrder: ['us','ca','gb','de','au','ae','sa','jp','kr','in'],
+  showSelectedDialCode: true,
+  countrySearch: true,
+  onlyCountries: _itiCountries
+};
+// Hero form phone
 (function() {
-  var phoneEl = document.getElementById('pt-phone');
-  if (!phoneEl || !window.intlTelInput) return;
-  window._pt_iti = window.intlTelInput(phoneEl, {
-    initialCountry: 'us',
-    countryOrder: ['us', 'ca', 'gb', 'de', 'au', 'ae', 'sa', 'jp', 'kr', 'in'],
-    showSelectedDialCode: true,
-    countrySearch: true,
-    onlyCountries: [
-      'us','ca','mx','gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
-      'co','ve','ec','pe','br','bo','py','uy','ar','cl',
-      'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
-      'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
-      'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
-      'ge','am','az',
-      'il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
-      'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
-      'kz','uz','tm','kg','tj',
-      'in','pk','bd','lk','np',
-      'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
-      'au','nz','pg','fj','ru'
-    ]
-  });
+  var el = document.getElementById('pt-phone');
+  if (el && window.intlTelInput) window._pt_iti = window.intlTelInput(el, _itiOpts);
+})();
+// Sidebar form phone
+(function() {
+  var el = document.getElementById('sf-phone');
+  if (el && window.intlTelInput) window._sf_iti = window.intlTelInput(el, _itiOpts);
 })();
 </script>
 
 <script>
-/* ── Validation hero form ── */
-(function() {
-  document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('.pt-form');
-    if (!form) return;
-
-    form.querySelectorAll('[required]').forEach(function(el) {
-      var field = el.closest('.pt-field');
-      if (!field) return;
-      addErrSpan(field);
-      el.addEventListener('input', function() { clearErr(field); });
-
-      if (el.type === 'email') {
-        el.addEventListener('blur', function() {
-          var v = el.value.trim();
-          if (!v) return;
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) markErr(field, 'Enter a valid email address.');
-          else clearErr(field);
-        });
-      }
-      if (el.type === 'tel') {
-        el.addEventListener('blur', function() {
-          var v = el.value.trim();
-          if (!v) return;
-          var iti = window._pt_iti;
-          if (iti && !iti.isValidNumber()) markErr(field, 'Enter a valid phone number.');
-          else clearErr(field);
-        });
-      }
-    });
-
-    form.addEventListener('submit', function(e) {
-      var valid = true;
-      var first = null;
-
-      form.querySelectorAll('[required]').forEach(function(el) {
-        var field = el.closest('.pt-field');
-        if (!field) return;
-        var v = el.value.trim();
-
-        if (el.type === 'email' && v) {
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-            markErr(field, 'Enter a valid email address.');
-            valid = false; if (!first) first = field; return;
-          }
-        }
-        if (el.type === 'tel') {
-          var iti = window._pt_iti;
-          if (iti) {
-            if (!v) { markErr(field); valid = false; if (!first) first = field; return; }
-            if (!iti.isValidNumber()) { markErr(field, 'Enter a valid phone number.'); valid = false; if (!first) first = field; }
-            else { clearErr(field); el.value = iti.getNumber(); }
-            return;
-          }
-        }
-        if (!v) { markErr(field); valid = false; if (!first) first = field; }
+/* ── Shared form validation factory ── */
+function initFormValidation(formEl, itiKey, fieldClass, errClass, errMsgClass, hasErrClass) {
+  if (!formEl) return;
+  formEl.querySelectorAll('[required]').forEach(function(el) {
+    var field = el.closest('.' + fieldClass);
+    if (!field) return;
+    addErrSpan(field);
+    el.addEventListener('input', function() { clearErr(field); });
+    if (el.type === 'email') {
+      el.addEventListener('blur', function() {
+        var v = el.value.trim(); if (!v) return;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) markErr(field, 'Enter a valid email address.');
         else clearErr(field);
       });
-
-      e.preventDefault();
-      if (!valid) {
-        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        window.location.href = '/thank-you/';
-      }
-    });
-
-    function addErrSpan(field) {
-      if (!field.querySelector('.pt-err-msg')) {
-        var s = document.createElement('span');
-        s.className = 'pt-err-msg';
-        s.textContent = 'This field is required.';
-        field.appendChild(s);
-      }
     }
-    function markErr(field, msg) {
-      field.classList.add('pt-has-error');
-      var inp = field.querySelector('input, textarea');
-      if (inp) inp.classList.add('pt-error');
-      if (msg) { var s = field.querySelector('.pt-err-msg'); if (s) s.textContent = msg; }
-    }
-    function clearErr(field) {
-      field.classList.remove('pt-has-error');
-      field.querySelectorAll('.pt-error').forEach(function(el) { el.classList.remove('pt-error'); });
-      var s = field.querySelector('.pt-err-msg');
-      if (s) s.textContent = 'This field is required.';
+    if (el.type === 'tel') {
+      el.addEventListener('blur', function() {
+        var v = el.value.trim(); if (!v) return;
+        var iti = window[itiKey];
+        if (iti && !iti.isValidNumber()) markErr(field, 'Enter a valid phone number.');
+        else clearErr(field);
+      });
     }
   });
-})();
+  formEl.addEventListener('submit', function(e) {
+    var valid = true, first = null;
+    formEl.querySelectorAll('[required]').forEach(function(el) {
+      var field = el.closest('.' + fieldClass); if (!field) return;
+      var v = el.value.trim();
+      if (el.type === 'email' && v) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { markErr(field, 'Enter a valid email address.'); valid = false; if (!first) first = field; return; }
+      }
+      if (el.type === 'tel') {
+        var iti = window[itiKey];
+        if (iti) {
+          if (!v) { markErr(field); valid = false; if (!first) first = field; return; }
+          if (!iti.isValidNumber()) { markErr(field, 'Enter a valid phone number.'); valid = false; if (!first) first = field; }
+          else { clearErr(field); el.value = iti.getNumber(); }
+          return;
+        }
+      }
+      if (!v) { markErr(field); valid = false; if (!first) first = field; }
+      else clearErr(field);
+    });
+    e.preventDefault();
+    if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    else window.location.href = '/thank-you/';
+  });
+  function addErrSpan(field) {
+    if (!field.querySelector('.' + errMsgClass)) {
+      var s = document.createElement('span'); s.className = errMsgClass; s.textContent = 'This field is required.'; field.appendChild(s);
+    }
+  }
+  function markErr(field, msg) {
+    field.classList.add(hasErrClass);
+    var inp = field.querySelector('input, textarea'); if (inp) inp.classList.add(errClass);
+    if (msg) { var s = field.querySelector('.' + errMsgClass); if (s) s.textContent = msg; }
+  }
+  function clearErr(field) {
+    field.classList.remove(hasErrClass);
+    field.querySelectorAll('.' + errClass).forEach(function(el) { el.classList.remove(errClass); });
+    var s = field.querySelector('.' + errMsgClass); if (s) s.textContent = 'This field is required.';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initFormValidation(document.querySelector('.pt-form'),  '_pt_iti', 'pt-field', 'pt-error', 'pt-err-msg', 'pt-has-error');
+  initFormValidation(document.getElementById('sf-form'), '_sf_iti', 'sf-field', 'sf-error', 'sf-err-msg', 'sf-has-error');
+});
 </script>
 </body>
 </html>

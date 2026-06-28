@@ -222,17 +222,17 @@ h4 {
   padding: 44px 60px; gap: 40px;
   background: var(--navy-dark);
 }
-.footer-brand-col { display: flex; flex-direction: column; gap: 24px; }
+.footer-brand-col { display: flex; flex-direction: column; gap: 16px; align-self: stretch; }
 .footer-logo { height: 44px; width: auto; align-self: flex-start; }
-.footer-contacts { display: flex; flex-direction: column; gap: 16px; }
+.footer-contacts { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
 .footer-tagline { font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400; }
 .footer-contact-link {
   display: flex; align-items: center; gap: 9px;
-  font-size: 24px; color: var(--text-1); font-weight: 400; transition: color 0.15s;
+  font-size: 24px; color: var(--white); font-weight: 400; transition: opacity 0.15s;
 }
 .footer-contact-link svg { color: var(--blue-lt); flex-shrink: 0; }
-.footer-contact-link:hover { color: var(--white); }
-.footer-copy { font-size: 11px; color: var(--text-2); font-weight: 400; line-height: 1.7; margin-top: 8px; }
+.footer-contact-link:hover { opacity: 0.75; }
+.footer-copy { font-size: 14px; color: var(--text-2); font-weight: 400; line-height: 1.7; margin-top: auto; padding-bottom: 24px; }
 
 /* social column */
 .footer-social-col {

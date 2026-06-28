@@ -1256,6 +1256,11 @@
       .why-cols { grid-template-columns: 1fr; }
       .why-stats { grid-template-columns: 1fr 1fr; }
     }
+    @media (max-width: 768px) {
+      .why-cols { gap: 40px; }
+      .why-col { padding: 0; }
+      .why-col + .why-col { padding-left: 0; }
+    }
 
     /* ─────────────────────────────────
        HOW TO GET A QUOTE

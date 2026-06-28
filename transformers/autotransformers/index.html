@@ -53,12 +53,25 @@
       align-items: flex-end;
       justify-content: center;
     }
+    @keyframes pt-drop-in {
+      0%   { transform: translateY(-100px); opacity: 0; }
+      52%  { transform: translateY(0);      opacity: 1; }
+      57%  { transform: translateY(-5px) translateX(-2px); }
+      62%  { transform: translateY(2px)  translateX(2px);  }
+      67%  { transform: translateY(-3px) translateX(-1px); }
+      72%  { transform: translateY(1px)  translateX(1px);  }
+      78%  { transform: translateY(-2px) translateX(0);    }
+      85%  { transform: translateY(1px);                   }
+      92%  { transform: translateY(-1px);                  }
+      100% { transform: translateY(0);                     }
+    }
     .pt-product-img img {
       width: 100%;
       height: auto;
       max-height: 65vh;
       object-fit: contain;
       display: block;
+      animation: pt-drop-in 0.7s ease-in 0.1s both;
     }
 
     /* ── inner grid ── */

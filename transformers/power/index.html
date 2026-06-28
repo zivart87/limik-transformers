@@ -53,20 +53,20 @@
       animation: ptWordReveal 0.80s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    .pt-hero-bg {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 55%;
-      animation: ptBgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    /* ── right: product image ── */
+    .pt-product-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
-    .pt-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        100deg,
-        rgba(9,25,59,0.96) 0%,
-        rgba(9,25,59,0.82) 45%,
-        rgba(9,25,59,0.55) 100%
-      );
+    .pt-product-img img {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 40px 100px rgba(9,25,59,0.8));
     }
 
     /* ── inner grid ── */
@@ -537,13 +537,6 @@
 ══════════════════════════════ -->
 <section class="pt-hero">
 
-  <img
-    class="pt-hero-bg"
-    src="/assets/images/transformer-hero.webp"
-    alt="High-voltage power transformer facility"
-  >
-  <div class="pt-hero-overlay"></div>
-
   <div class="pt-hero-inner">
 
     <!-- LEFT: pitch + specs -->
@@ -571,39 +564,13 @@
       </div>
     </div>
 
-    <!-- RIGHT: floating form card -->
-    <div class="pt-card">
-      <h2 class="pt-card-title">Request a Quote</h2>
-      <p class="pt-card-sub">Our engineering team responds within one business day.</p>
-
-      <form class="pt-form" action="#" method="post" novalidate>
-        <div class="pt-form-row">
-          <div class="pt-field">
-            <label for="pt-name">Name <span class="req">*</span></label>
-            <input type="text" id="pt-name" name="name" placeholder="John Smith" required>
-          </div>
-          <div class="pt-field">
-            <label for="pt-company">Company <span class="req">*</span></label>
-            <input type="text" id="pt-company" name="company" placeholder="ACME Utilities" required>
-          </div>
-        </div>
-        <div class="pt-form-row">
-          <div class="pt-field">
-            <label for="pt-email">Email <span class="req">*</span></label>
-            <input type="email" id="pt-email" name="email" placeholder="john@company.com" required>
-          </div>
-          <div class="pt-field">
-            <label for="pt-phone">Phone <span class="req">*</span></label>
-            <input type="tel" id="pt-phone" name="phone" inputmode="tel" required>
-          </div>
-        </div>
-        <div class="pt-field">
-          <label for="pt-message">Message</label>
-          <textarea id="pt-message" name="message" placeholder="MVA rating, voltage class, delivery timeline…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-gold btn-lg">Request a Quote</button>
-        <p class="pt-form-note">No commitment required. Every inquiry reviewed by our engineering team personally.</p>
-      </form>
+    <!-- RIGHT: product photo -->
+    <div class="pt-product-img">
+      <img
+        src="/assets/images/transformer-product.png"
+        alt="LIMIK Large Power Transformer — 20 to 600 MVA"
+        loading="eager"
+      >
     </div>
 
   </div>
@@ -796,11 +763,6 @@ var _itiOpts = {
   countrySearch: true,
   onlyCountries: _itiCountries
 };
-// Hero form phone
-(function() {
-  var el = document.getElementById('pt-phone');
-  if (el && window.intlTelInput) window._pt_iti = window.intlTelInput(el, _itiOpts);
-})();
 // Sidebar form phone
 (function() {
   var el = document.getElementById('sf-phone');
@@ -875,7 +837,6 @@ function initFormValidation(formEl, itiKey, fieldClass, errClass, errMsgClass, h
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  initFormValidation(document.querySelector('.pt-form'),  '_pt_iti', 'pt-field', 'pt-error', 'pt-err-msg', 'pt-has-error');
   initFormValidation(document.getElementById('sf-form'), '_sf_iti', 'sf-field', 'sf-error', 'sf-err-msg', 'sf-has-error');
 });
 </script>

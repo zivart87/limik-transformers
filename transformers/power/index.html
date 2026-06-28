@@ -31,10 +31,32 @@
       padding-top: 220px;
       padding-bottom: 120px;
     }
+    @keyframes ptBgEnter {
+      from { opacity: 0; transform: scale(1.07); }
+      to   { opacity: 1; transform: scale(1.0); }
+    }
+    @keyframes ptWordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .pt-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .pt-split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .pt-split-word.pt-reveal {
+      animation: ptWordReveal 0.80s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
     .pt-hero-bg {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 40%;
+      object-fit: cover; object-position: center 55%;
+      animation: ptBgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
     .pt-hero-overlay {
       position: absolute; inset: 0;
@@ -457,7 +479,7 @@
 
   <img
     class="pt-hero-bg"
-    src="/assets/images/substation-quote.webp"
+    src="/assets/images/transformer-hero.webp"
     alt="High-voltage power transformer facility"
   >
   <div class="pt-hero-overlay"></div>
@@ -725,5 +747,44 @@
   </div>
 </footer>
 
+<script>
+(function() {
+  var h1 = document.querySelector('.pt-pitch h1');
+  if (!h1) return;
+
+  // Разбиваем h1 по словам с учётом <br>
+  var nodes = Array.from(h1.childNodes);
+  h1.innerHTML = '';
+  var wordIdx = 0;
+
+  nodes.forEach(function(node) {
+    if (node.nodeType === 3) {
+      node.textContent.split(/(\s+)/).forEach(function(part) {
+        if (/^\s+$/.test(part)) {
+          h1.appendChild(document.createTextNode(part));
+        } else if (part) {
+          var wrap = document.createElement('span');
+          wrap.className = 'pt-word-wrap';
+          var span = document.createElement('span');
+          span.className = 'pt-split-word';
+          span.style.animationDelay = (0.3 + wordIdx * 0.09) + 's';
+          span.textContent = part;
+          wordIdx++;
+          wrap.appendChild(span);
+          h1.appendChild(wrap);
+        }
+      });
+    } else if (node.nodeName === 'BR') {
+      h1.appendChild(document.createElement('br'));
+    }
+  });
+
+  requestAnimationFrame(function() {
+    h1.querySelectorAll('.pt-split-word').forEach(function(s) {
+      s.classList.add('pt-reveal');
+    });
+  });
+})();
+</script>
 </body>
 </html>

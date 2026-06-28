@@ -799,6 +799,11 @@
       if (!valid) {
         e.preventDefault();
         if (firstErrorField) firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        // Форма валидна — редирект на страницу благодарности
+        // (сработает после отправки на сервер; пока action="#" — редиректим вручную)
+        e.preventDefault();
+        window.location.href = '/thank-you/';
       }
     });
   });

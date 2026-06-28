@@ -220,6 +220,45 @@
       background: rgba(32,108,185,0.07);
     }
 
+    /* ── File upload zone ── */
+    .rq-file-zone {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 32px 24px;
+      background: var(--white);
+      border: 1.5px dashed rgba(9,25,59,0.22);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      color: #7090B0;
+      text-align: center;
+    }
+    .rq-file-zone:hover {
+      border-color: var(--blue);
+      background: rgba(32,108,185,0.04);
+      color: var(--blue);
+    }
+    .rq-file-text {
+      font-size: 14px; font-weight: 600; color: var(--navy-dark);
+    }
+    .rq-file-zone:hover .rq-file-text { color: var(--blue); }
+    .rq-file-hint {
+      font-size: 11px; font-weight: 400; color: #A0B4C8;
+    }
+    .rq-file-list {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-top: 8px;
+    }
+    .rq-file-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--navy-dark);
+      background: var(--white);
+      border: 1px solid rgba(9,25,59,0.12);
+      border-radius: 2px;
+      padding: 7px 12px;
+    }
+    .rq-file-item svg { color: var(--blue); flex-shrink: 0; }
+
     /* ── Submit area ── */
     .rq-submit {
       margin-top: 44px;
@@ -546,66 +585,9 @@
         </div>
       </div>
 
-      <!-- 4. Compliance & Timeline -->
+      <!-- 4. Additional Information -->
       <div class="rq-section">
-        <div class="rq-section-label" data-n="4">Compliance &amp; Timeline</div>
-
-        <div class="rq-row rq-col-1">
-          <div class="rq-field">
-            <label>Compliance Requirements</label>
-            <div class="rq-check-group">
-              <label class="rq-pill">
-                <input type="checkbox" name="compliance[]" value="baa">
-                Buy American Act (BAA)
-              </label>
-              <label class="rq-pill">
-                <input type="checkbox" name="compliance[]" value="baba">
-                BABA
-              </label>
-              <label class="rq-pill">
-                <input type="checkbox" name="compliance[]" value="dpa303">
-                §303 Defense Production Act
-              </label>
-              <label class="rq-pill">
-                <input type="checkbox" name="compliance[]" value="iec">
-                IEC Standards
-              </label>
-              <label class="rq-pill">
-                <input type="checkbox" name="compliance[]" value="none">
-                None / Unknown
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-delivery">Required Delivery</label>
-            <select id="rq-delivery" name="delivery">
-              <option value="" disabled selected>Select timeline…</option>
-              <option>Less than 12 months</option>
-              <option>12–18 months</option>
-              <option>18–24 months</option>
-              <option>More than 24 months</option>
-              <option>Flexible</option>
-            </select>
-          </div>
-          <div class="rq-field">
-            <label for="rq-status">Project Status</label>
-            <select id="rq-status" name="project_status">
-              <option value="" disabled selected>Select status…</option>
-              <option>Feasibility / Early Design</option>
-              <option>Active RFQ</option>
-              <option>Funded &amp; Procurement-Ready</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Additional Information -->
-      <div class="rq-section">
-        <div class="rq-section-label" data-n="5">Additional Information</div>
+        <div class="rq-section-label" data-n="4">Additional Information</div>
 
         <div class="rq-row rq-col-1">
           <div class="rq-field">
@@ -628,6 +610,19 @@
             </select>
           </div>
         </div>
+
+        <div class="rq-row rq-col-1">
+          <div class="rq-field">
+            <label for="rq-file">Attach Documents <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#7090B0">(optional — spec sheets, single-line diagrams, RFQs)</span></label>
+            <label class="rq-file-zone" for="rq-file">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="rq-file-text">Click to upload or drag &amp; drop</span>
+              <span class="rq-file-hint">PDF, DWG, DOCX, XLS — up to 20 MB per file</span>
+              <input type="file" id="rq-file" name="attachments[]" multiple accept=".pdf,.dwg,.doc,.docx,.xls,.xlsx,.png,.jpg" style="display:none" onchange="rqFileChange(this)">
+            </label>
+            <div id="rq-file-list" class="rq-file-list"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Submit -->
@@ -642,5 +637,19 @@
 
 </div><!-- /rq-page -->
 
+<script>
+function rqFileChange(input) {
+  var list = document.getElementById('rq-file-list');
+  list.innerHTML = '';
+  Array.from(input.files).forEach(function(f) {
+    var item = document.createElement('div');
+    item.className = 'rq-file-item';
+    item.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
+      + '<span>' + f.name + '</span>'
+      + '<span style="margin-left:auto;color:#A0B4C8">' + (f.size > 1048576 ? (f.size/1048576).toFixed(1)+' MB' : Math.round(f.size/1024)+' KB') + '</span>';
+    list.appendChild(item);
+  });
+}
+</script>
 </body>
 </html>

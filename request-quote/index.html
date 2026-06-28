@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <link rel="stylesheet" href="../assets/css/limik.css">
   <link rel="stylesheet" href="../assets/css/nav.css">
   <script src="../assets/js/nav.js"></script>
@@ -293,6 +294,46 @@
     }
     .rq-field.rq-has-error .rq-err-msg { display: block; }
 
+    /* ── intl-tel-input overrides ── */
+    .iti { display: block; width: 100%; }
+    .iti__selected-country {
+      background: transparent;
+      border-right: 1.5px solid rgba(9,25,59,0.15);
+      padding: 0 10px 0 12px;
+      gap: 6px;
+    }
+    .iti__selected-country:hover,
+    .iti__selected-country[aria-expanded="true"] {
+      background: rgba(9,25,59,0.04);
+    }
+    .iti__selected-dial-code {
+      font-family: var(--font);
+      font-size: 14px; font-weight: 500;
+      color: var(--navy-dark);
+    }
+    .iti__arrow { border-top-color: var(--blue); }
+    .iti__arrow--up { border-bottom-color: var(--blue); }
+    /* Dropdown */
+    .iti__dropdown-content {
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      box-shadow: 0 8px 24px rgba(9,25,59,0.10);
+    }
+    .iti__search-input {
+      font-family: var(--font);
+      font-size: 13px;
+      border-bottom: 1.5px solid rgba(9,25,59,0.10);
+      padding: 8px 12px;
+      outline: none;
+    }
+    .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
+    .iti__country-name { font-family: var(--font); font-size: 13px; }
+    .iti__dial-code { font-family: var(--font); font-size: 13px; }
+    /* Error state на враппере */
+    .rq-field.rq-has-error .iti__selected-country {
+      border-right-color: #D93025;
+    }
+
     /* ── Submit area ── */
     .rq-submit {
       margin-top: 44px;
@@ -440,7 +481,7 @@
           </div>
           <div class="rq-field">
             <label for="rq-phone">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="rq-phone" name="phone" placeholder="+1 (555) 000-0000" inputmode="tel" oninput="this.value=this.value.replace(/[^0-9+\-\(\)\s]/g,'')" required>
+            <input type="tel" id="rq-phone" name="phone" inputmode="tel" required>
           </div>
         </div>
 
@@ -668,8 +709,9 @@
         el.addEventListener('blur', function() {
           var val = el.value.trim();
           if (!val) return;
-          if (val.replace(/\D/g, '').length < 7) {
-            markFieldError(field, 'Enter at least 7 digits.');
+          var iti = window._iti;
+          if (iti && !iti.isValidNumber()) {
+            markFieldError(field, 'Enter a valid phone number.');
           } else {
             clearFieldError(field);
           }
@@ -707,12 +749,19 @@
           }
         }
 
-        // Телефон — минимум 7 цифр
-        if (el.type === 'tel' && val) {
-          var digits = val.replace(/\D/g, '').length;
-          if (digits < 7) {
-            markFieldError(field, 'Enter at least 7 digits.');
-            valid = false; if (!firstErrorField) firstErrorField = field;
+        // Телефон — через intl-tel-input
+        if (el.type === 'tel') {
+          var iti = window._iti;
+          if (iti) {
+            if (!val) { markFieldError(field); valid = false; if (!firstErrorField) firstErrorField = field; return; }
+            if (!iti.isValidNumber()) {
+              markFieldError(field, 'Enter a valid phone number.');
+              valid = false; if (!firstErrorField) firstErrorField = field;
+            } else {
+              clearFieldError(field);
+              // Записываем полный номер E.164 в поле перед отправкой
+              el.value = iti.getNumber();
+            }
             return;
           }
         }
@@ -768,6 +817,19 @@ function rqFileChange(input) {
     list.appendChild(item);
   });
 }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
+<script>
+(function() {
+  var phoneEl = document.getElementById('rq-phone');
+  if (!phoneEl || !window.intlTelInput) return;
+  window._iti = window.intlTelInput(phoneEl, {
+    initialCountry: 'us',
+    preferredCountries: ['us', 'ca', 'gb', 'de', 'au'],
+    showSelectedDialCode: true,
+    countrySearch: true
+  });
+})();
 </script>
 </body>
 </html>

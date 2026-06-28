@@ -374,9 +374,83 @@
       margin-top: 72px;
       padding-top: 56px;
     }
+    .pt-specs-wrap--first {
+      margin-top: 0;
+      padding-top: 0;
+    }
     .pt-specs-wrap h2 {
       color: var(--navy-dark);
       margin-bottom: 40px;
+    }
+
+    /* ═══════════════════════════════
+       APPLICATIONS 2×2
+    ═══════════════════════════════ */
+    .pt-apps { margin-top: 72px; }
+    .pt-apps h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(9,25,59,0.10);
+    }
+    .pt-app-card {
+      background: var(--off-white);
+      padding: 28px 32px;
+    }
+    .pt-app-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-app-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════
+       KEY FEATURES 2×2 CARDS
+    ═══════════════════════════════ */
+    .pt-features-new { margin-top: 72px; }
+    .pt-features-new h3 {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .pt-feat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(9,25,59,0.10);
+    }
+    .pt-feat-card {
+      background: var(--white);
+      padding: 28px 32px;
+      border-left: 3px solid var(--blue);
+    }
+    .pt-feat-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+    }
+    .pt-feat-card p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3A5570;
+      line-height: 1.75;
+      margin: 0;
     }
     .pt-spec-table {
       width: 100%;
@@ -581,53 +655,12 @@
   <div class="container">
     <div class="pt-content-grid">
 
-      <!-- LEFT: description + key features -->
+      <!-- LEFT: content -->
       <div class="pt-desc">
-        <h2>LIMIK Power Transformer Platform</h2>
-        <p>LIMIK large power transformers are custom-engineered, liquid-immersed, oil-insulated units designed for transmission interconnection, bulk substation, and generation applications. Available from 20 to 600 MVA at voltage classes up to 525 kV — every unit is engineered to your specification. No catalog selections, no compromises.</p>
-        <p>Each transformer is designed to IEEE C57.12.00 and IEEE C57.12.10 standards with full ANSI compliance. Winding configurations include two-winding and three-winding designs, with on-load tap changers (OLTC) standard on all transmission-class units. Cooling systems are specified per load profile — ONAN base rating with ONAF and OFAF stages available for units above 100 MVA.</p>
-        <p>Every unit factory-tested to IEEE C57.12.90 with full test reports provided. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order.</p>
 
-        <div class="pt-features">
-          <h3>Key Features</h3>
-
-          <div class="pt-feature">
-            <div class="pt-feature-title">Custom Engineering — 20 to 600 MVA</div>
-            <p>No standard catalog units. Every transformer is engineered to your specification: MVA rating, voltage class, impedance, tap range, and cooling configuration.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">High-Voltage Classes up to 525 kV</div>
-            <p>HV windings rated at 115 kV, 138 kV, 230 kV, 345 kV, 500 kV, and 525 kV classes. LV windings up to 69 kV.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Two-Winding and Three-Winding Designs</div>
-            <p>Supports complex substation configurations, autotransformer applications, and generator step-up requirements across all voltage classes.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Flexible Cooling — ONAN / ONAF / OFAF / ODAF</div>
-            <p>ONAN base rating standard. ONAF and OFAF stages for units above 100 MVA. ODAF available for high-duty-cycle and forced-oil installations.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">On-Load Tap Changer (OLTC) Standard</div>
-            <p>OLTC standard on all transmission-class units for continuous voltage regulation under load. De-energized tap changer (DETC) available on distribution-interface units.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Copper Windings — No Substitutions</div>
-            <p>High-conductivity copper windings standard on all LIMIK units. No aluminum substitutions.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">IEEE C57 / ANSI / NEMA Factory Tested</div>
-            <p>Routine and type tests per IEEE C57.12.90. Full factory test report provided with every unit.</p>
-          </div>
-          <div class="pt-feature">
-            <div class="pt-feature-title">Buy American &amp; §303 DPA Compliant</div>
-            <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
-          </div>
-        </div>
-
-        <!-- TECH SPECS — та же ширина что и текст выше -->
-        <div class="pt-specs-wrap">
-          <h2>Technical Specifications Summary</h2>
+        <!-- BLOCK 2: Technical Specifications — первым -->
+        <div class="pt-specs-wrap pt-specs-wrap--first">
+          <h2>Technical Specifications</h2>
           <table class="pt-spec-table">
             <thead>
               <tr>
@@ -637,12 +670,13 @@
             </thead>
             <tbody>
               <tr><td>Capacity Range</td><td>20–600 MVA</td></tr>
-              <tr><td>Phases</td><td>Three-phase</td></tr>
+              <tr><td>Phases</td><td>Single-phase and three-phase</td></tr>
               <tr><td>HV Winding Voltage</td><td>115 kV, 138 kV, 230 kV, 345 kV, 500 kV, 525 kV classes</td></tr>
               <tr><td>LV Winding Voltage</td><td>Up to 69 kV</td></tr>
-              <tr><td>Winding Configurations</td><td>Two-winding; Three-winding; Autotransformer</td></tr>
+              <tr><td>Impedance</td><td>4% to 16% (custom per system configuration)</td></tr>
+              <tr><td>Winding Configurations</td><td>Two-winding; Three-winding</td></tr>
               <tr><td>Tap Changer</td><td>On-Load Tap Changer (OLTC) standard; De-Energized (DETC) available</td></tr>
-              <tr><td>Cooling Methods</td><td>ONAN / ONAF / OFAF / ODAF</td></tr>
+              <tr><td>Cooling Methods</td><td>ONAN / ONAF / OFAF (specified per load profile)</td></tr>
               <tr><td>Winding Material</td><td>High-conductivity copper (standard)</td></tr>
               <tr><td>Insulation Medium</td><td>Liquid-immersed mineral oil</td></tr>
               <tr><td>Standards</td><td>IEEE C57.12.00, IEEE C57.12.10, IEEE C57.12.90, ANSI, NEMA</td></tr>
@@ -653,6 +687,61 @@
             </tbody>
           </table>
         </div>
+
+        <!-- BLOCK 3: Platform Description -->
+        <div style="margin-top: 72px;">
+          <h2>LIMIK Power Transformer Platform</h2>
+          <p>LIMIK large power transformers are custom-engineered, liquid-immersed, oil-insulated units designed for transmission interconnection, bulk substation, and generation applications. Available from 20 to 600 MVA at voltage classes up to 525 kV — every unit is engineered to your specification. No catalog selections. No compromises.</p>
+          <p>Each transformer is designed to IEEE C57.12.00 and IEEE C57.12.10 standards with full ANSI compliance. Winding configurations include two-winding and three-winding designs. On-load tap changers (OLTC) are standard on all transmission-class units. Cooling systems are specified per load profile — ONAN base rating with ONAF and OFAF stages available for units above 100 MVA.</p>
+          <p>Every unit is factory-tested to IEEE C57.12.90 with full test reports provided. Buy American Act (BAA), BABA, and §303 Defense Production Act compliant on every order. Typical lead time: 48 weeks from signed specification to shipment.</p>
+        </div>
+
+        <!-- BLOCK 4: Applications -->
+        <div class="pt-apps">
+          <h3>Where LIMIK Power Transformers Are Specified</h3>
+          <div class="pt-app-grid">
+            <div class="pt-app-card">
+              <div class="pt-app-title">Utility Substations</div>
+              <p class="pt-app-body">Bulk power delivery and transmission-to-distribution step-down for investor-owned utilities, cooperatives, and municipal power providers.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Transmission Interconnections</div>
+              <p class="pt-app-body">High-voltage tie points and inter-substation connections across regional transmission systems including PJM, MISO, SPP, and WECC.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Industrial Tie-Points</div>
+              <p class="pt-app-body">Large industrial facilities requiring direct interconnection to the transmission grid — refineries, data centers, and heavy manufacturing.</p>
+            </div>
+            <div class="pt-app-card">
+              <div class="pt-app-title">Defense Infrastructure</div>
+              <p class="pt-app-body">Mission-critical power delivery for DOD and DOE facilities. §303 Defense Production Act and Berry Amendment compliant.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 5: Key Features 2×2 -->
+        <div class="pt-features-new">
+          <h3>What Sets LIMIK Units Apart</h3>
+          <div class="pt-feat-grid">
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Custom Engineering — Every Unit</div>
+              <p>No standard catalog units. Every transformer is engineered to your specification: MVA rating, voltage class, impedance, tap range, and cooling configuration.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Copper Windings — No Substitutions</div>
+              <p>High-conductivity copper windings standard on all LIMIK units. No aluminum substitutions — ever.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">OLTC Standard on Transmission-Class Units</div>
+              <p>On-load tap changer standard for continuous voltage regulation under load. De-energized tap changer (DETC) available on distribution-interface units.</p>
+            </div>
+            <div class="pt-feat-card">
+              <div class="pt-feat-card-title">Buy American &amp; §303 DPA Compliant</div>
+              <p>Satisfies BAA, BABA, and Berry Amendment requirements. Eligible for DOD/DOE direct procurement under §303 Defense Production Act.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT: photo + contact form -->

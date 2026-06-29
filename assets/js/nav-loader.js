@@ -29,12 +29,14 @@
         burger.classList.add('is-open');
         if (overlay) overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
       }
       function closeMenu() {
         mobile.classList.remove('open');
         burger.classList.remove('is-open');
         if (overlay) overlay.classList.remove('open');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
       }
 
       burger.addEventListener('click', function () {

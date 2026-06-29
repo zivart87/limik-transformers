@@ -162,6 +162,8 @@
     @media (max-width: 900px) {
       .co-intro::before { right: 0; }
       .co-intro-inner { width: 100%; padding: 48px 0; }
+      .co-intro-photo { display: none; }
+      .co-intro { margin-bottom: 0; }
     }
 
     /* ═══════════════════════════════
@@ -235,8 +237,9 @@
 
     @media (max-width: 900px) {
       .co-story { grid-template-columns: 1fr; }
-      .co-story-img { min-height: 320px; }
+      .co-story-img { height: auto; min-height: 320px; }
       .co-story-text { padding: 60px 40px; }
+      .co-story-section { padding-bottom: 60px; }
     }
     @media (max-width: 600px) { .co-story-text { padding: 48px 24px; } }
 
@@ -288,10 +291,8 @@
     .co-pillar p { font-size: 16px; line-height: 1.75; color: #3A5570; }
 
     @media (max-width: 900px) {
-      .co-pillars-grid { grid-template-columns: 1fr; }
-      .co-pillar { border-right: none; border-bottom: 1px solid var(--border-l); }
-      .co-pillar:last-child { border-bottom: none; }
-      .co-pillar { padding: 44px 32px; }
+      .co-pillars { padding: 80px 0; }
+      .co-pillars > .container > h2 { margin-bottom: 32px; }
     }
 
     /* ═══════════════════════════════
@@ -557,74 +558,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════
-   7. LEADERSHIP TEASER
-══════════════════════════════ -->
-<section class="co-team bg-white">
-  <div class="container">
-    <div class="co-team-header">
-      <div>
-        <p class="eyebrow">Leadership</p>
-        <h2>The Team Behind<br>the Factory</h2>
-      </div>
-      <a href="team/" class="co-intro-link">
-        <span class="co-intro-link-icon">
-          <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        Meet the Full Team
-      </a>
-    </div>
-
-    <div class="co-team-grid">
-
-      <!-- Igor Lon -->
-      <div class="co-team-card">
-        <div class="co-team-photo">
-          <img src="../assets/images/Igor.png" alt="Igor Lon — Founder & CEO">
-        </div>
-        <div class="co-team-body">
-          <div class="co-team-name">Igor Lon</div>
-          <div class="co-team-role">Founder &amp; CEO, LIMIK International</div>
-          <p class="co-team-bio">Initiated LIMIK with a precise thesis: the U.S. grid cannot sustain 2–4 year transformer lead times from overseas suppliers. Structured the $540M Qatar Fund commitment, secured the Spartanburg site, and assembled the founding engineering team with direct PTI and Delta Star pedigree.</p>
-          <a href="#" class="co-team-link">LinkedIn ↗</a>
-        </div>
-      </div>
-
-      <!-- Chief Engineer placeholder -->
-      <div class="co-team-card">
-        <div class="co-team-photo co-team-photo-placeholder">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#7090B0" stroke-width="1.5">
-            <circle cx="36" cy="28" r="16"/>
-            <path d="M8 66c0-15.464 12.536-28 28-28s28 12.536 28 28"/>
-          </svg>
-        </div>
-        <div class="co-team-body">
-          <div class="co-team-name">VP Engineering</div>
-          <div class="co-team-role">Chief Engineering Officer, LIMIK International</div>
-          <p class="co-team-bio">Brings 20+ years of large power transformer design experience from PTI and Delta Star. Responsible for all transformer design standards, IEEE C57 family compliance, and engineering specifications across LIMIK's full product line from 20 to 600 MVA, up to 525 kV.</p>
-          <a href="team/" class="co-team-link">Full Profile →</a>
-        </div>
-      </div>
-
-      <!-- Ken Caward placeholder -->
-      <div class="co-team-card">
-        <div class="co-team-photo co-team-photo-placeholder">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#7090B0" stroke-width="1.5">
-            <circle cx="36" cy="28" r="16"/>
-            <path d="M8 66c0-15.464 12.536-28 28-28s28 12.536 28 28"/>
-          </svg>
-        </div>
-        <div class="co-team-body">
-          <div class="co-team-name">Ken Caward</div>
-          <div class="co-team-role">Defense &amp; Government Relations</div>
-          <p class="co-team-bio">Leads LIMIK's Section 303 and DOD/DOE procurement channel. Direct relationships with Army Corps of Engineers and defense infrastructure program officers. Architect of LIMIK's Defense Production Act positioning and sole-source procurement strategy.</p>
-          <a href="team/" class="co-team-link">Full Profile →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════
    8. CTA BAND

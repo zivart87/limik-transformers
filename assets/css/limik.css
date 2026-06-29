@@ -339,3 +339,37 @@ h4 {
 @media (max-width: 480px) {
   .footer-cols { grid-template-columns: 1fr 1fr; column-gap: 32px; row-gap: 24px; }
 }
+
+/* ════════════════════════════════
+   WHY-BLOCK — универсальный блок преимуществ
+════════════════════════════════ */
+.why-cols {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; outline: 1px solid var(--border-l);
+}
+.why-col {
+  padding: 52px 48px;
+  border-right: 1px solid var(--border-l);
+}
+.why-col:last-child { border-right: none; }
+.why-col-icon {
+  width: 40px; height: 40px;
+  color: var(--blue); display: block;
+  margin-bottom: 32px;
+}
+.why-col h3 {
+  font-size: 20px; font-weight: 700;
+  color: var(--navy-dark); margin-bottom: 16px;
+  line-height: 1.2;
+}
+.why-col p {
+  font-size: 16px; color: #3A5570;
+  line-height: 1.75; font-weight: 400;
+}
+@media (max-width: 900px) {
+  .why-cols { grid-template-columns: 1fr; }
+  .why-col { border-right: none; border-bottom: 1px solid var(--border-l); }
+  .why-col:last-child { border-bottom: none; }
+  .why-col { padding: 44px 32px; }
+  .why-col-icon { margin-bottom: 18px; }
+}

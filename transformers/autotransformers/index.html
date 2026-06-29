@@ -63,7 +63,7 @@
       78%  { transform: translateY(-2px) translateX(0);    }
       85%  { transform: translateY(1px);                   }
       92%  { transform: translateY(-1px);                  }
-      100% { transform: translateY(0);                     }
+      100% { transform: translateY(0); opacity: 1;          }
     }
     .pt-product-img img {
       width: 100%;
@@ -149,16 +149,14 @@
       }
       .pt-hero { padding-bottom: 64px; }
 
-      /* Изображение скрыто при загрузке — появляется при скролле */
+      /* Изображение скрыто при загрузке — падение при скролле */
       .pt-product-img img {
         animation: none;
         opacity: 0;
-        transform: translateY(-60px);
-        transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(-100px);
       }
       .pt-product-img.pt-in-view img {
-        opacity: 1;
-        transform: translateY(0);
+        animation: pt-drop-in 0.7s ease-in 0.1s both;
       }
     }
     @media (max-width: 768px) {

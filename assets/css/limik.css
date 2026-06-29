@@ -337,5 +337,5 @@ h4 {
   .footer-contact-link { font-size: 18px; }
 }
 @media (max-width: 480px) {
-  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; column-gap: 32px; row-gap: 24px; }
 }

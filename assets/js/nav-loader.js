@@ -24,7 +24,10 @@
       var overlay  = document.getElementById('nav-mobile-overlay');
       var closeBtn = document.getElementById('nav-mobile-close');
 
-      function blockTouch(e) { e.preventDefault(); }
+      function blockTouch(e) {
+        // Дозволяємо скрол всередині панелі меню, блокуємо на сторінці
+        if (!mobile.contains(e.target)) e.preventDefault();
+      }
 
       function openMenu() {
         mobile.classList.add('open');

@@ -135,7 +135,7 @@
 .nav-mobile {
   display: none;
   flex-direction: column;
-  position: fixed; top: 64px; left: 0; right: 0; bottom: 72px;
+  position: fixed; top: 64px; left: 0; right: 0; bottom: 80px;
   z-index: 200;
   background: var(--navy-dark);
   overflow-y: auto;

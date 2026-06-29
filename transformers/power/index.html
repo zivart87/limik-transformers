@@ -236,6 +236,8 @@
         padding: 0 40px;
       }
       .pt-hero { padding-bottom: 64px; }
+      .pt-pitch, .pt-product-img { min-width: 0; }
+      .pt-product-img img { max-width: 100%; }
 
       /* Изображение скрыто при загрузке — падение при скролле */
       .pt-product-img img {
@@ -326,6 +328,7 @@
       position: sticky;
       top: 116px;
     }
+    .pt-sidebar-form h2,
     .pt-sidebar-form h3 {
       font-size: clamp(20px, 2.5vw, 32px);
       font-weight: 800;
@@ -517,12 +520,15 @@
     }
     @media (max-width: 768px) {
       /* Hero */
-      .pt-hero { padding-top: 160px; padding-bottom: 0; }
+      .pt-hero { padding-top: 160px; padding-bottom: 40px; }
       .pt-hero-inner { padding: 0 24px; gap: 36px; }
       .pt-pitch > p { margin-bottom: 36px; }
+      .pt-spec { padding: 16px 12px 16px 0; }
+      .pt-spec:nth-child(even) { padding-left: 12px; padding-right: 0; }
+      .pt-spec-num { white-space: normal; }
 
       /* Content */
-      .pt-content { padding: 60px 0; }
+      .pt-content { padding: 20px 0 60px; }
       .pt-sidebar { flex-direction: column; }
 
       /* Table — горизонтальный скролл */
@@ -795,7 +801,7 @@
           >
         </div>
         <div class="pt-sidebar-form">
-          <h3>Get Started<br>Today</h3>
+          <h2>Get Started<br>Today</h2>
           <p>Our engineering team will help you select the right MVA rating, voltage class, and cooling configuration for your project.</p>
           <form id="sf-form" action="#" method="post" novalidate>
             <div class="sf-field">

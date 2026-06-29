@@ -182,9 +182,18 @@
 .nav-mobile-cta { padding: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
 .nav-mobile-cta .btn { width: 100%; justify-content: center; }
 
+/* Nav bar — белый при открытом мобильном меню */
+.nav.menu-open {
+  background: var(--white) !important;
+  border-bottom-color: rgba(9,25,59,0.10) !important;
+}
+.nav.menu-open .logo-dark  { display: block !important; }
+.nav.menu-open .logo-light { display: none  !important; }
+.nav.menu-open .nav-burger span { background: var(--navy-dark) !important; }
+
 /* Dim overlay — затемнення + click-to-close */
 .nav-mobile-overlay {
-  position: fixed; inset: 0;
+  position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
   background: rgba(9,25,59,0.55);
   z-index: 99;
   cursor: pointer;

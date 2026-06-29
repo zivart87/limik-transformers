@@ -24,19 +24,25 @@
       var overlay  = document.getElementById('nav-mobile-overlay');
       var closeBtn = document.getElementById('nav-mobile-close');
 
+      function blockTouch(e) { e.preventDefault(); }
+
       function openMenu() {
         mobile.classList.add('open');
         burger.classList.add('is-open');
+        nav.classList.add('menu-open');
         if (overlay) overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
+        document.body.addEventListener('touchmove', blockTouch, { passive: false });
       }
       function closeMenu() {
         mobile.classList.remove('open');
         burger.classList.remove('is-open');
+        nav.classList.remove('menu-open');
         if (overlay) overlay.classList.remove('open');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
+        document.body.removeEventListener('touchmove', blockTouch);
       }
 
       burger.addEventListener('click', function () {

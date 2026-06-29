@@ -401,8 +401,32 @@
       .pt-content-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
-      .pt-content { padding: 64px 0; }
-      .pt-spec-table td:first-child { white-space: normal; width: auto; }
+      /* Hero */
+      .pt-hero { padding-top: 160px; padding-bottom: 60px; }
+      .pt-hero-inner { padding: 0 24px; gap: 36px; }
+      .pt-pitch > p { margin-bottom: 36px; }
+
+      /* Content */
+      .pt-content { padding: 60px 0; }
+      .pt-sidebar { flex-direction: column; }
+
+      /* Table — горизонтальный скролл */
+      .pt-specs-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .pt-spec-table td { font-size: 14px; padding: 12px 16px; }
+      .pt-spec-table thead th { padding: 12px 16px; }
+      .pt-spec-table td:first-child { white-space: normal; width: 130px; min-width: 130px; }
+
+      /* Секционные отступы */
+      .pt-specs-wrap { margin-top: 48px; }
+      .pt-apps { margin-top: 48px; }
+      .pt-features-new { margin-top: 48px; }
+      .pt-features { margin-top: 40px; }
+
+      /* App grid — 1 колонка */
+      .pt-app-grid { grid-template-columns: 1fr; }
+
+      /* Platform description block */
+      .pt-platform-block { margin-top: 48px !important; }
     }
 
     /* ── intl-tel-input overrides ── */
@@ -567,7 +591,7 @@
         </div>
 
         <!-- BLOCK 3: Platform Description -->
-        <div style="margin-top: 72px;">
+        <div class="pt-platform-block" style="margin-top: 72px;">
           <h2>LIMIK Generator Step-Up Platform</h2>
           <p>LIMIK GSU transformers are custom-engineered, liquid-immersed units designed to connect generators directly to the transmission grid. Built for wind farms, utility-scale solar, gas-fired and nuclear generation, and large data center backup power — every unit is engineered to your exact generator terminal voltage, MVA output, and grid interconnection requirement.</p>
           <p>Available from 20 to 600 MVA with LV (generator-side) windings up to 35 kV and HV (grid-side) windings at 115 kV, 138 kV, 230 kV, 345 kV, 500 kV, and 525 kV classes. Delta LV winding configurations standard on wind and solar applications; wye configurations available for gas and nuclear units.</p>

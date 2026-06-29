@@ -506,9 +506,32 @@
       .pt-sidebar-form { flex: 1; min-width: 280px; }
     }
     @media (max-width: 768px) {
-      .pt-content { padding: 64px 0; }
+      /* Hero */
+      .pt-hero { padding-top: 160px; padding-bottom: 60px; }
+      .pt-hero-inner { padding: 0 24px; gap: 36px; }
+      .pt-pitch > p { margin-bottom: 36px; }
+
+      /* Content */
+      .pt-content { padding: 60px 0; }
       .pt-sidebar { flex-direction: column; }
-      .pt-spec-table td:first-child { white-space: normal; width: auto; }
+
+      /* Table — горизонтальный скролл */
+      .pt-specs-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .pt-spec-table td { font-size: 14px; padding: 12px 16px; }
+      .pt-spec-table thead th { padding: 12px 16px; }
+      .pt-spec-table td:first-child { white-space: normal; width: 130px; min-width: 130px; }
+
+      /* Секционные отступы */
+      .pt-specs-wrap { margin-top: 48px; }
+      .pt-apps { margin-top: 48px; }
+      .pt-features-new { margin-top: 48px; }
+      .pt-features { margin-top: 40px; }
+
+      /* App grid — 1 колонка */
+      .pt-app-grid { grid-template-columns: 1fr; }
+
+      /* Platform description block */
+      .pt-platform-block { margin-top: 48px !important; }
     }
 
     /* ── Validation: error states ── */
@@ -698,7 +721,7 @@
         </div>
 
         <!-- BLOCK 3: Platform Description -->
-        <div style="margin-top: 72px;">
+        <div class="pt-platform-block" style="margin-top: 72px;">
           <h2>LIMIK Power Transformer Platform</h2>
           <p>LIMIK large power transformers are custom-engineered, liquid-immersed, oil-insulated units designed for transmission interconnection, bulk substation, and generation applications. Available from 20 to 600 MVA at voltage classes up to 525 kV — every unit is engineered to your specification. No catalog selections. No compromises.</p>
           <p>Each transformer is designed to IEEE C57.12.00 and IEEE C57.12.10 standards with full ANSI compliance. Winding configurations include two-winding and three-winding designs. On-load tap changers (OLTC) are standard on all transmission-class units. Cooling systems are specified per load profile — ONAN base rating with ONAF and OFAF stages available for units above 100 MVA.</p>

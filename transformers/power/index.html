@@ -236,6 +236,18 @@
         padding: 0 40px;
       }
       .pt-hero { padding-bottom: 64px; }
+
+      /* Изображение скрыто при загрузке — появляется при скролле */
+      .pt-product-img img {
+        animation: none;
+        opacity: 0;
+        transform: translateY(-60px);
+        transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .pt-product-img.pt-in-view img {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     @media (max-width: 768px) {
       .pt-hero-inner { padding: 0 24px; }
@@ -974,6 +986,21 @@ function initFormValidation(formEl, itiKey, fieldClass, errClass, errMsgClass, h
 document.addEventListener('DOMContentLoaded', function() {
   initFormValidation(document.getElementById('sf-form'), '_sf_iti', 'sf-field', 'sf-error', 'sf-err-msg', 'sf-has-error');
 });
+</script>
+
+<script>
+/* Scroll-triggered drop-in animation for product image on mobile */
+(function() {
+  if (window.innerWidth > 1100) return;
+  var wrap = document.querySelector('.pt-product-img');
+  if (!wrap) return;
+  new IntersectionObserver(function(entries, obs) {
+    if (entries[0].isIntersecting) {
+      wrap.classList.add('pt-in-view');
+      obs.disconnect();
+    }
+  }, { threshold: 0.3 }).observe(wrap);
+})();
 </script>
 </body>
 </html>

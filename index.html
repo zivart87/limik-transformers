@@ -939,34 +939,25 @@
     .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
 
     /* ─────────────────────────────────
-       7. WHY LIMIK  (white)
+       7. WHY LIMIK  (off-white)
     ───────────────────────────────── */
-    .why-intro {
-      display: flex; align-items: flex-end;
-      justify-content: space-between; gap: 48px;
-      margin-bottom: 64px;
-    }
-    .why-intro h2 {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 700; line-height: 0.95;
-      letter-spacing: -0.02em; color: var(--navy-dark);
-    }
+    .why-section { background: var(--off-white); }
     .why-cols {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 0;
     }
     .why-col {
-      padding: 0 48px 0 0;
+      padding: 52px 48px;
+      border-right: 1px solid var(--border-l);
     }
-    .why-col:last-child { padding-right: 0; }
-    .why-col + .why-col { padding-left: 48px; }
+    .why-col:last-child { border-right: none; }
     .why-col-icon {
-      width: 64px; height: 64px;
+      width: 40px; height: 40px;
       color: #206CB9;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .why-col h3 {
-      font-size: 22px; font-weight: 700;
+      font-size: 20px; font-weight: 700;
       color: var(--navy-dark); margin-bottom: 16px;
       line-height: 1.2;
     }
@@ -1306,15 +1297,14 @@
 
     @media (max-width: 1024px) {
       .why-cols { grid-template-columns: 1fr; }
+      .why-col { border-right: none; border-bottom: 1px solid var(--border-l); }
+      .why-col:last-child { border-bottom: none; }
       .why-stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .why-cols { gap: 32px; }
-      .why-col { padding: 0; }
-      .why-col + .why-col { padding-left: 0; }
-      .why-col h3 { font-size: 20px; }
-      .why-col p { margin-bottom: 0; }
+      .why-col { padding: 44px 32px; }
       .why-col-icon { margin-bottom: 18px; }
+      .why-col p { margin-bottom: 0; }
     }
 
     /* ─────────────────────────────────
@@ -1815,12 +1805,12 @@
 <!-- ══════════════════════════════
    7. WHY LIMIK  ← БЕЛЫЙ
 ══════════════════════════════ -->
-<section class="section bg-white why-section">
+<section class="section why-section">
   <div class="container">
     <div class="why-cols">
 
       <div class="why-col">
-        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="32" cy="32" r="24"/>
           <polyline points="32,16 32,32 42,38"/>
         </svg>
@@ -1829,7 +1819,7 @@
       </div>
 
       <div class="why-col">
-        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round">
           <rect x="10" y="16" width="44" height="34" rx="1"/>
           <path d="M22 16v-5M42 16v-5"/>
           <path d="M10 27h44"/>
@@ -1840,7 +1830,7 @@
       </div>
 
       <div class="why-col">
-        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="why-col-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="8,40 20,18 30,30 40,12 56,40"/>
           <line x1="8" y1="52" x2="56" y2="52"/>
           <line x1="32" y1="40" x2="32" y2="52"/>

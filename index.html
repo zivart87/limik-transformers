@@ -365,7 +365,12 @@
     .about-container {
       max-width: 1360px; margin: 0 auto; padding: 0 60px;
     }
-    @media (max-width: 768px) { .about-container { padding: 64px 24px 0 !important; } }
+    @media (max-width: 768px) {
+      .about-section { padding: 48px 0; }
+      .about-container { padding: 0 24px; }
+      .about-row-top { margin-bottom: 48px !important; }
+      .about-stats { margin-bottom: 48px !important; }
+    }
     /* Строка 1: метка + крупный текст */
     .about-row-top {
       display: flex; gap: 40px; margin-bottom: 88px; align-items: flex-start;
@@ -568,6 +573,10 @@
     @media (max-width: 900px) {
       .about-overlay-card-r { position: relative; width: 100%; height: auto; margin-left: 0; padding: 60px 32px 112px; clip-path: polygon(48px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 48px); }
       .about-overlay-photo-l { position: relative; top: unset; left: unset; bottom: unset; width: calc(100% - 8px); margin-left: 32px; height: 380px; margin-top: -72px; margin-bottom: 0; z-index: 2; }
+    }
+    @media (max-width: 768px) {
+      .about-mirror-wrap { padding-top: 60px !important; padding-bottom: 0 !important; }
+      .why-section { padding-top: 48px !important; }
     }
 
     /* ─────────────────────────────────
@@ -998,10 +1007,33 @@
     .founder-credit span { font-size: 16px; color: #3A5570; }
 
     @media (max-width: 768px) {
+      .founder-section { padding: 0 0 60px; }
       .founder-inner { grid-template-columns: 1fr; min-height: auto; }
-      .founder-photo { height: 320px; }
-      .founder-content { padding: 40px 0 0; }
-      .founder-quote { font-size: 24px; margin-bottom: 32px; }
+      .founder-photo {
+        height: 276px;
+        order: -1;
+        background: var(--navy-dark);
+        margin-right: 24px;
+      }
+      .founder-photo img { object-position: center -55px; }
+      .founder-content {
+        position: relative;
+      }
+      .founder-content::before {
+        content: '\201C';
+        position: absolute;
+        top: -22px;
+        right: 48px;
+        font-size: 160px;
+        line-height: 0.75;
+        font-weight: 800;
+        color: var(--blue);
+        z-index: 10;
+        pointer-events: none;
+      }
+      .founder-content { padding: 40px 24px 0 0; }
+      .founder-eyebrow { margin-bottom: 18px; }
+      .founder-quote { font-size: 22px; margin-bottom: 32px; }
     }
 
     /* ─────────────────────────────────
@@ -1270,9 +1302,10 @@
       .why-stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .why-cols { gap: 40px; }
+      .why-cols { gap: 48px; }
       .why-col { padding: 0; }
       .why-col + .why-col { padding-left: 0; }
+      .why-col p { margin-bottom: 0; }
     }
 
     /* ─────────────────────────────────
@@ -1814,7 +1847,7 @@
    ABOUT MIRROR  ← фото слева
 ══════════════════════════════ -->
 <section class="about-section" style="padding-top: 0; padding-bottom: 0;">
-  <div class="about-container" style="padding-top: 120px; padding-bottom: 96px;">
+  <div class="about-container about-mirror-wrap" style="padding-top: 120px; padding-bottom: 96px;">
     <div class="about-overlay" style="margin-bottom: 0;">
       <div class="about-overlay-card-r clip-tl">
         <h2 class="about-split-heading">Built for the<br>American Grid</h2>
@@ -1836,7 +1869,7 @@
 <!-- ══════════════════════════════
    7. WHY LIMIK  ← БЕЛЫЙ
 ══════════════════════════════ -->
-<section class="section bg-white">
+<section class="section bg-white why-section">
   <div class="container">
     <div class="why-cols">
 

@@ -419,6 +419,9 @@
       color: var(--navy-dark); line-height: 1.4; margin: 0;
     }
     @media (max-width: 768px) {
+      .products-bg-logo { width: 88% !important; bottom: 0 !important; right: 0 !important; }
+    }
+    @media (max-width: 768px) {
       .about-stat-num {
         font-size: 52px;
         display: flex; align-items: baseline; flex-wrap: wrap; gap: 0;
@@ -1033,7 +1036,7 @@
       }
       .founder-content { padding: 40px 24px 0 0; }
       .founder-eyebrow { margin-bottom: 18px; }
-      .founder-quote { font-size: 22px; margin-bottom: 32px; }
+      .founder-quote { font-size: 22px; margin-bottom: 24px; }
     }
 
     /* ─────────────────────────────────
@@ -1302,10 +1305,11 @@
       .why-stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .why-cols { gap: 48px; }
+      .why-cols { gap: 32px; }
       .why-col { padding: 0; }
       .why-col + .why-col { padding-left: 0; }
       .why-col p { margin-bottom: 0; }
+      .why-col-icon { margin-bottom: 18px; }
     }
 
     /* ─────────────────────────────────
@@ -1538,7 +1542,7 @@
 <div class="section-transition section-transition--desktop" data-color-to="#09193B" data-height="140" data-blocks="25"></div>
 <div class="section-transition section-transition--mobile" data-color-to="#09193B" data-height="140" data-blocks="10"></div>
 <section class="section bg-dark" id="products-section" style="padding-top: 56px; position: relative; overflow: hidden;">
-  <img src="assets/images/logo-product.svg" aria-hidden="true" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
+  <img src="assets/images/logo-product.svg" aria-hidden="true" class="products-bg-logo" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
   <div class="container" style="position:relative; z-index:1;">
     <div class="products-header">
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>

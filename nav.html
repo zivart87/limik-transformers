@@ -16,7 +16,7 @@
 
     <div class="nav-links">
       <div class="nav-dropdown">
-        <a href="/transformers/" class="nav-dropdown-trigger">Transformers <span class="nav-arrow">▾</span></a>
+        <a href="/transformers/" class="nav-dropdown-trigger">Transformers <span class="nav-arrow">&#9662;</span></a>
         <div class="nav-dropdown-menu">
           <a href="/transformers/power/">Power Transformers</a>
           <a href="/transformers/autotransformers/">Autotransformers</a>
@@ -25,7 +25,7 @@
       </div>
       <a href="/industries/">Industries</a>
       <div class="nav-dropdown">
-        <a href="/support/" class="nav-dropdown-trigger">Support <span class="nav-arrow">▾</span></a>
+        <a href="/support/" class="nav-dropdown-trigger">Support <span class="nav-arrow">&#9662;</span></a>
         <div class="nav-dropdown-menu">
           <a href="/support/documentation/">Technical Documentation</a>
           <a href="/support/certifications/">Certifications</a>
@@ -50,15 +50,43 @@
   </div>
 
   <div class="nav-mobile" id="nav-mobile">
-    <a href="/transformers/">Transformers</a>
-    <a href="/transformers/power/" style="padding-left:20px;font-size:13px;color:#7090B0">Power Transformers</a>
-    <a href="/transformers/autotransformers/" style="padding-left:20px;font-size:13px;color:#7090B0">Autotransformers</a>
-    <a href="/transformers/gsu/" style="padding-left:20px;font-size:13px;color:#7090B0">Generator Step-Up (GSU)</a>
-    <a href="/industries/">Industries</a>
-    <a href="/support/">Support</a>
-    <a href="/company/">Company</a>
-    <a href="/contact/">Contact</a>
-    <a href="/request-quote/">Request a Quote</a>
+    <div class="nav-mobile-links">
+      <div class="nav-mobile-group">
+        <a href="/transformers/" class="nav-mobile-link">
+          Transformers
+          <span class="nav-mobile-chevron"></span>
+        </a>
+        <div class="nav-mobile-sub">
+          <a href="/transformers/power/">Power Transformers</a>
+          <a href="/transformers/autotransformers/">Autotransformers</a>
+          <a href="/transformers/gsu/">Generator Step-Up (GSU)</a>
+        </div>
+      </div>
+
+      <a href="/industries/" class="nav-mobile-link">Industries</a>
+
+      <div class="nav-mobile-group">
+        <a href="/support/" class="nav-mobile-link">
+          Support
+          <span class="nav-mobile-chevron"></span>
+        </a>
+        <div class="nav-mobile-sub">
+          <a href="/support/documentation/">Technical Documentation</a>
+          <a href="/support/certifications/">Certifications</a>
+          <a href="/support/calculator/">kVA Calculator</a>
+          <a href="/support/faq/">FAQ</a>
+        </div>
+      </div>
+
+      <a href="/company/" class="nav-mobile-link">Company</a>
+      <a href="/contact/" class="nav-mobile-link">Contact</a>
+    </div>
+
+    <div class="nav-mobile-cta">
+      <a href="/request-quote/" class="btn btn-gold btn-lg">Get a Quote</a>
+    </div>
   </div>
+
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay"></div>
 
 </nav>

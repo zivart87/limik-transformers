@@ -2168,7 +2168,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           trigger: el,
           start: 'top 95%',
           end:   'top 0%',
-          scrub: 2
+          scrub: true
         }
       });
 
@@ -2196,7 +2196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           trigger: '.about-overlay-photo',
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 1.5
+          scrub: true
         }
       }
     );
@@ -2214,7 +2214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           trigger: '.about-overlay-photo-l',
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 1.5
+          scrub: true
         }
       }
     );
@@ -2225,7 +2225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gsap.fromTo(img,
       { yPercent: -6 },
       { yPercent: 6, ease: 'none',
-        scrollTrigger: { trigger: '.industries-featured', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+        scrollTrigger: { trigger: '.industries-featured', start: 'top bottom', end: 'bottom top', scrub: true }
       }
     );
   });

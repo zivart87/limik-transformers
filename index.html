@@ -2241,7 +2241,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const nav = document.getElementById('nav');
       const navH = nav ? nav.offsetHeight : 128;
       lenis.scrollTo(target.getBoundingClientRect().top - navH, { immediate: true, force: true });
-      document.documentElement.classList.remove('ind-nav');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          document.documentElement.classList.remove('ind-nav');
+        });
+      });
     }
   })();
 

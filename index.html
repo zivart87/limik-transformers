@@ -2230,18 +2230,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   });
 
-  // Скролл к industries — после полной инициализации Lenis и всех GSAP анимаций
+  // Скролл к industries — оверлей скрывает артефакты инициализации Lenis
   (function () {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
       const target = document.getElementById('industries');
-      if (target) {
-        requestAnimationFrame(() => {
-          const nav = document.getElementById('nav');
-          const navH = nav ? nav.offsetHeight : 128;
-          lenis.scrollTo(target.getBoundingClientRect().top - navH, { immediate: true, force: true });
-        });
-      }
+      if (!target) return;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:#F4F6FA;z-index:99999;';
+      document.body.appendChild(overlay);
+      const nav = document.getElementById('nav');
+      const navH = nav ? nav.offsetHeight : 128;
+      lenis.scrollTo(target.getBoundingClientRect().top - navH, { immediate: true, force: true });
+      setTimeout(function () { overlay.remove(); }, 250);
     }
   })();
 

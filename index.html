@@ -2052,11 +2052,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const urlScroll = urlParams.get('scroll');
     if (urlTab && tabMap[urlTab] !== undefined) activate(tabMap[urlTab]);
     if (urlTab || urlScroll === 'industries') {
-      window.addEventListener('load', function () {
-        setTimeout(function () {
-          const target = document.getElementById('industries');
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 200);
+      document.addEventListener('DOMContentLoaded', function () {
+        const target = document.getElementById('industries');
+        if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
       });
     }
   })();

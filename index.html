@@ -2114,138 +2114,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   const _indNav = document.documentElement.classList.contains('ind-nav');
 
-  // Lenis — не запускать при навигации к industries (вызывает дрожание на mid-page load)
-  let lenis;
-  if (!_indNav) {
-    lenis = new Lenis();
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-  }
-
-  // Shutter reveal — section transitions
-  (function () {
-    const transitions = document.querySelectorAll('.section-transition');
-    if (!transitions.length) return;
-
-    transitions.forEach(el => {
-      if (window.getComputedStyle(el).display === 'none') return;
-      const colorTo = el.dataset.colorTo || '#09193B';
-      const h       = parseInt(el.dataset.height || '160');
-
-      Object.assign(el.style, {
-        backgroundColor: 'var(--white)',
-        height:          h + 'px',
-        position:        'relative',
-        zIndex:          '10'
-      });
-
-      const grid = document.createElement('div');
-      Object.assign(grid.style, {
-        position: 'absolute', inset: '0',
-        width: '100%', height: '100%', overflow: 'hidden'
-      });
-      el.appendChild(grid);
-
-      const ROWS = 2, BLOCKS = parseInt(el.dataset.blocks || '25');
-      for (let r = 0; r < ROWS; r++) {
-        const row = document.createElement('div');
-        Object.assign(row.style, {
-          display: 'flex', width: '100%',
-          height: '51%', marginTop: r > 0 ? '-1px' : '0'
-        });
-
-        for (let b = 0; b < BLOCKS; b++) {
-          const block = document.createElement('div');
-          Object.assign(block.style, {
-            backgroundColor: colorTo,
-            flex: '1', height: '100%', marginLeft: '-1px'
-          });
-          gsap.set(block, {
-            scaleX: 0,
-            transformOrigin: r === 0 ? 'right center' : 'left center'
-          });
-          row.appendChild(block);
-        }
-        grid.appendChild(row);
-      }
-
-      const rows = grid.querySelectorAll('div');
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 95%',
-          end:   'top 0%',
-          scrub: true
-        }
-      });
-
-      rows.forEach((row, i) => {
-        const blocks = row.querySelectorAll('div');
-        tl.to(blocks, {
-          scaleX: 1.05,
-          force3D: true,
-          ease: 'power1.inOut',
-          stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' }
-        }, 0);
-      });
-    });
-  })();
-
-  // Parallax — About photo
-  const aboutPhoto = document.querySelector('.about-overlay-photo img');
-  if (aboutPhoto) {
-    gsap.fromTo(aboutPhoto,
-      { yPercent: -6 },
-      {
-        yPercent: 6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.about-overlay-photo',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-  }
-
-  // Parallax — About mirror photo (left)
-  const aboutPhotoL = document.querySelector('.about-overlay-photo-l img');
-  if (aboutPhotoL) {
-    gsap.fromTo(aboutPhotoL,
-      { yPercent: -6 },
-      {
-        yPercent: 6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.about-overlay-photo-l',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-  }
-
-  // Parallax — Industries images
-  document.querySelectorAll('.industries-image img').forEach(img => {
-    gsap.fromTo(img,
-      { yPercent: -6 },
-      { yPercent: 6, ease: 'none',
-        scrollTrigger: { trigger: '.industries-featured', start: 'top bottom', end: 'bottom top', scrub: true }
-      }
-    );
-  });
-
-  // Позиционирование к industries: мгновенный прыжок без Lenis
   if (_indNav) {
+    // Industry-навигация: никакого GSAP/Lenis — они вызывают дрожание на mid-page load
     const target = document.getElementById('industries');
     if (target) {
       window.scrollTo({ top: target.getBoundingClientRect().top - 128, behavior: 'instant' });
     }
-    ScrollTrigger.refresh();
     document.documentElement.classList.remove('ind-nav');
+  } else {
+    // Обычная загрузка: полный опыт с Lenis + GSAP
+    const lenis = new Lenis();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    // Shutter reveal — section transitions
+    (function () {
+      const transitions = document.querySelectorAll('.section-transition');
+      if (!transitions.length) return;
+      transitions.forEach(el => {
+        if (window.getComputedStyle(el).display === 'none') return;
+        const colorTo = el.dataset.colorTo || '#09193B';
+        const h = parseInt(el.dataset.height || '160');
+        Object.assign(el.style, { backgroundColor: 'var(--white)', height: h + 'px', position: 'relative', zIndex: '10' });
+        const grid = document.createElement('div');
+        Object.assign(grid.style, { position: 'absolute', inset: '0', width: '100%', height: '100%', overflow: 'hidden' });
+        el.appendChild(grid);
+        const ROWS = 2, BLOCKS = parseInt(el.dataset.blocks || '25');
+        for (let r = 0; r < ROWS; r++) {
+          const row = document.createElement('div');
+          Object.assign(row.style, { display: 'flex', width: '100%', height: '51%', marginTop: r > 0 ? '-1px' : '0' });
+          for (let b = 0; b < BLOCKS; b++) {
+            const block = document.createElement('div');
+            Object.assign(block.style, { backgroundColor: colorTo, flex: '1', height: '100%', marginLeft: '-1px' });
+            gsap.set(block, { scaleX: 0, transformOrigin: r === 0 ? 'right center' : 'left center' });
+            row.appendChild(block);
+          }
+          grid.appendChild(row);
+        }
+        const rows = grid.querySelectorAll('div');
+        const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 0%', scrub: true } });
+        rows.forEach((row, i) => {
+          tl.to(row.querySelectorAll('div'), { scaleX: 1.05, force3D: true, ease: 'power1.inOut', stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' } }, 0);
+        });
+      });
+    })();
+
+    // Parallax — About photo
+    const aboutPhoto = document.querySelector('.about-overlay-photo img');
+    if (aboutPhoto) {
+      gsap.fromTo(aboutPhoto, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.about-overlay-photo', start: 'top bottom', end: 'bottom top', scrub: true } });
+    }
+
+    // Parallax — About mirror photo (left)
+    const aboutPhotoL = document.querySelector('.about-overlay-photo-l img');
+    if (aboutPhotoL) {
+      gsap.fromTo(aboutPhotoL, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.about-overlay-photo-l', start: 'top bottom', end: 'bottom top', scrub: true } });
+    }
+
+    // Parallax — Industries images
+    document.querySelectorAll('.industries-image img').forEach(img => {
+      gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.industries-featured', start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
   }
 
 </script>

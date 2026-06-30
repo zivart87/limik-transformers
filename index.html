@@ -2109,20 +2109,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
+  // Скролл к industries ДО инициализации Lenis/GSAP — без дрожания
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
+      const target = document.getElementById('industries');
+      if (target) window.scrollTo(0, target.offsetTop);
+    }
+  })();
+
   // Lenis smooth scroll — synced with GSAP (как на t3.tech)
   const lenis = new Lenis();
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
-
-  // Скролл к секции industries через Lenis (без конфликта с браузерным якорем)
-  (function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
-      const target = document.getElementById('industries');
-      if (target) lenis.scrollTo(target, { immediate: true });
-    }
-  })();
 
   // Shutter reveal — section transitions
   (function () {

@@ -2109,15 +2109,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // Скролл к industries ДО инициализации Lenis/GSAP — без дрожания
-  (function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
-      const target = document.getElementById('industries');
-      if (target) window.scrollTo({ top: target.offsetTop, behavior: 'instant' });
-    }
-  })();
-
   // Lenis smooth scroll — synced with GSAP (как на t3.tech)
   const lenis = new Lenis();
   lenis.on('scroll', ScrollTrigger.update);
@@ -2229,6 +2220,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   }
 
+  // Parallax — Industries images
+  document.querySelectorAll('.industries-image img').forEach(img => {
+    gsap.fromTo(img,
+      { yPercent: -6 },
+      { yPercent: 6, ease: 'none',
+        scrollTrigger: { trigger: '.industries-featured', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+      }
+    );
+  });
+
+  // Скролл к industries — после полной инициализации Lenis и всех GSAP анимаций
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
+      const target = document.querySelector('.industries-featured') || document.getElementById('industries');
+      if (target) {
+        requestAnimationFrame(() => {
+          lenis.scrollTo(target, { immediate: true, force: true });
+        });
+      }
+    }
+  })();
 
 </script>
 </body>

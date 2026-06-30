@@ -2046,17 +2046,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
 
     // Активация таба и скролл по URL-параметрам
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlTab = new URLSearchParams(window.location.search).get('tab');
     const tabMap = { 'utilities': 0, 'data-centers': 1, 'defense': 2, 'renewables': 3, 'epc': 4 };
-    const urlTab = urlParams.get('tab');
-    const urlScroll = urlParams.get('scroll');
     if (urlTab && tabMap[urlTab] !== undefined) activate(tabMap[urlTab]);
-    if (urlTab || urlScroll === 'industries') {
-      document.addEventListener('DOMContentLoaded', function () {
-        const target = document.getElementById('industries');
-        if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
-      });
-    }
   })();
 
   // ── Industries accordion (mobile) ──
@@ -2122,6 +2114,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
+
+  // Скролл к секции industries через Lenis (без конфликта с браузерным якорем)
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
+      const target = document.getElementById('industries');
+      if (target) lenis.scrollTo(target, { immediate: true });
+    }
+  })();
 
   // Shutter reveal — section transitions
   (function () {

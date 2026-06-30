@@ -10,7 +10,18 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIMIK International — Where America's Power Begins</title>
+  <script>
+    if (location.hash === '#industries' || new URLSearchParams(location.search).get('tab')) {
+      document.documentElement.classList.add('ind-nav');
+      var _indFb = setTimeout(function(){ document.documentElement.classList.remove('ind-nav'); }, 3000);
+      window.addEventListener('load', function(){
+        clearTimeout(_indFb);
+        setTimeout(function(){ document.documentElement.classList.remove('ind-nav'); }, 200);
+      });
+    }
+  </script>
+  <style>html.ind-nav body { visibility: hidden; }</style>
+  <title>LIMIK International — Where America's Power Begins</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">

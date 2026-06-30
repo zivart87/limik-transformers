@@ -2042,6 +2042,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
+
+    // Активация таба по URL-параметру ?tab=
+    const tabMap = { 'utilities': 0, 'data-centers': 1, 'defense': 2, 'renewables': 3, 'epc': 4 };
+    const urlTab = new URLSearchParams(window.location.search).get('tab');
+    if (urlTab && tabMap[urlTab] !== undefined) activate(tabMap[urlTab]);
   })();
 
   // ── Industries accordion (mobile) ──
@@ -2060,6 +2065,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       });
     });
+
+    // Активация по URL-параметру ?tab= (мобайл)
+    const tabMap = { 'utilities': 0, 'data-centers': 1, 'defense': 2, 'renewables': 3, 'epc': 4 };
+    const urlTab = new URLSearchParams(window.location.search).get('tab');
+    if (urlTab && tabMap[urlTab] !== undefined && items[tabMap[urlTab]]) {
+      items[tabMap[urlTab]].classList.add('active');
+      items[tabMap[urlTab]].querySelector('.ind-acc-toggle').textContent = '−';
+    }
   })();
 
   // ── Count-up анимация для stats ──

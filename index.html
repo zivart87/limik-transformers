@@ -10,18 +10,7 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    if (location.hash === '#industries' || new URLSearchParams(location.search).get('tab')) {
-      document.documentElement.classList.add('ind-nav');
-      var _indFb = setTimeout(function(){ document.documentElement.classList.remove('ind-nav'); }, 3000);
-      window.addEventListener('load', function(){
-        clearTimeout(_indFb);
-        setTimeout(function(){ document.documentElement.classList.remove('ind-nav'); }, 200);
-      });
-    }
-  </script>
-  <style>html.ind-nav body { visibility: hidden; }</style>
-  <title>LIMIK International — Where America's Power Begins</title>
+<title>LIMIK International — Where America's Power Begins</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
@@ -1601,7 +1590,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════
    5. INDUSTRIES  ← Jacobs-style
 ══════════════════════════════ -->
-<section id="industries" class="section bg-offwhite">
+<span id="industries" style="display:block;position:relative;top:-160px;visibility:hidden;pointer-events:none;"></span>
+<section class="section bg-offwhite">
   <div class="container">
     <div class="industries-intro">
       <h2>Who We Build For</h2>
@@ -2120,16 +2110,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  const isIndustryNav = location.hash === '#industries' || !!new URLSearchParams(location.search).get('tab');
-
   // Lenis smooth scroll — synced with GSAP (как на t3.tech)
   const lenis = new Lenis();
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
-
-  // Scrub-анимации (параллакс + shutter) — только при обычной загрузке, не при навигации к industries
-  if (!isIndustryNav) {
 
   // Shutter reveal — section transitions
   (function () {
@@ -2246,7 +2231,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   });
 
-  } // end if (!isIndustryNav)
 
 </script>
 </body>

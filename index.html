@@ -2237,7 +2237,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const target = document.querySelector('.industries-featured') || document.getElementById('industries');
       if (target) {
         requestAnimationFrame(() => {
-          lenis.scrollTo(target, { immediate: true, force: true });
+          lenis.scrollTo(target.offsetTop, { immediate: true, force: true });
         });
       }
     }

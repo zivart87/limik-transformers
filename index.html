@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){var p=new URLSearchParams(location.search);if(p.get('tab')||p.get('scroll')==='industries')document.documentElement.classList.add('ind-nav');}());</script>
-  <style>html.ind-nav body{visibility:hidden;}</style>
+  <style>html.ind-nav body{visibility:hidden;}html.ind-nav *{animation:none!important;transition:none!important;}</style>
   <title>LIMIK International — Where America's Power Begins</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
@@ -2075,6 +2075,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const accTabMap = { 'utilities': 0, 'data-centers': 1, 'defense': 2, 'renewables': 3, 'epc': 4 };
     const accUrlTab = new URLSearchParams(window.location.search).get('tab');
     if (accUrlTab && accTabMap[accUrlTab] !== undefined && items[accTabMap[accUrlTab]]) {
+      items.forEach(i => { i.classList.remove('active'); i.querySelector('.ind-acc-toggle').textContent = '+'; });
       items[accTabMap[accUrlTab]].classList.add('active');
       items[accTabMap[accUrlTab]].querySelector('.ind-acc-toggle').textContent = '−';
     }

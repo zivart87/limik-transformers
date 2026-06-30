@@ -635,6 +635,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         -->
       </div>
 
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
       <!-- Submit -->
       <div class="rq-submit">
         <button type="submit" class="btn btn-gold btn-lg">Submit Request</button>
@@ -754,6 +755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         else clearFieldError(field);
       });
 
+      if ((form.querySelector('[name=website]') || {}).value) { e.preventDefault(); return; }
       if (!valid) {
         e.preventDefault();
         if (firstErrorField) firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });

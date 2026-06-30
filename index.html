@@ -10,7 +10,9 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIMIK International — Where America's Power Begins</title>
+  <script>(function(){var p=new URLSearchParams(location.search);if(p.get('tab')||p.get('scroll')==='industries')document.documentElement.classList.add('ind-nav');}());</script>
+  <style>html.ind-nav body{visibility:hidden;}</style>
+  <title>LIMIK International — Where America's Power Begins</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
@@ -2110,11 +2112,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // Lenis smooth scroll — synced with GSAP (как на t3.tech)
-  const lenis = new Lenis();
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-  gsap.ticker.lagSmoothing(0);
+  const _indNav = document.documentElement.classList.contains('ind-nav');
+
+  // Lenis — не запускать при навигации к industries (вызывает дрожание на mid-page load)
+  let lenis;
+  if (!_indNav) {
+    lenis = new Lenis();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
 
   // Shutter reveal — section transitions
   (function () {
@@ -2231,6 +2238,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   });
 
+  // Позиционирование к industries: мгновенный прыжок без Lenis
+  if (_indNav) {
+    const target = document.getElementById('industries');
+    if (target) {
+      window.scrollTo({ top: target.getBoundingClientRect().top - 128, behavior: 'instant' });
+    }
+    ScrollTrigger.refresh();
+    document.documentElement.classList.remove('ind-nav');
+  }
 
 </script>
 </body>

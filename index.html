@@ -10,6 +10,8 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>if(new URLSearchParams(location.search).get('tab')||new URLSearchParams(location.search).get('scroll')==='industries'){document.documentElement.classList.add('ind-nav');}</script>
+  <style>html.ind-nav body{visibility:hidden;}</style>
   <title>LIMIK International — Where America's Power Begins</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
@@ -2236,13 +2238,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
       const target = document.getElementById('industries');
       if (!target) return;
-      const overlay = document.createElement('div');
-      overlay.style.cssText = 'position:fixed;inset:0;background:#F4F6FA;z-index:99999;';
-      document.body.appendChild(overlay);
       const nav = document.getElementById('nav');
       const navH = nav ? nav.offsetHeight : 128;
       lenis.scrollTo(target.getBoundingClientRect().top - navH, { immediate: true, force: true });
-      setTimeout(function () { overlay.remove(); }, 250);
+      document.documentElement.classList.remove('ind-nav');
     }
   })();
 

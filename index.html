@@ -2234,10 +2234,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
-      const target = document.querySelector('.industries-featured') || document.getElementById('industries');
+      const target = document.getElementById('industries');
       if (target) {
         requestAnimationFrame(() => {
-          lenis.scrollTo(target.offsetTop, { immediate: true, force: true });
+          const nav = document.getElementById('nav');
+          const navH = nav ? nav.offsetHeight : 128;
+          lenis.scrollTo(target.getBoundingClientRect().top - navH, { immediate: true, force: true });
         });
       }
     }

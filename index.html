@@ -2120,11 +2120,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
+  const isIndustryNav = location.hash === '#industries' || !!new URLSearchParams(location.search).get('tab');
+
   // Lenis smooth scroll — synced with GSAP (как на t3.tech)
   const lenis = new Lenis();
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
+
+  // Scrub-анимации (параллакс + shutter) — только при обычной загрузке, не при навигации к industries
+  if (!isIndustryNav) {
 
   // Shutter reveal — section transitions
   (function () {
@@ -2241,6 +2246,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   });
 
+  } // end if (!isIndustryNav)
 
 </script>
 </body>

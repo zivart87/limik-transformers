@@ -2114,7 +2114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('tab') || urlParams.get('scroll') === 'industries') {
       const target = document.getElementById('industries');
-      if (target) window.scrollTo({ top: target.offsetTop - 152, behavior: 'instant' });
+      if (target) window.scrollTo({ top: target.offsetTop, behavior: 'instant' });
     }
   })();
 
@@ -2229,22 +2229,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     );
   }
 
-  // Parallax — Industries images
-  document.querySelectorAll('.industries-image img').forEach(img => {
-    gsap.fromTo(img,
-      { yPercent: -6 },
-      {
-        yPercent: 6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.industries-featured',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5
-        }
-      }
-    );
-  });
 
 </script>
 </body>

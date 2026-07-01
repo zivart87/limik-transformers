@@ -168,6 +168,24 @@
     .ct-field textarea { resize: vertical; min-height: 120px; }
     .ct-submit { margin-top: 8px; }
 
+    /* ── Validation ── */
+    .ct-field input.ct-error,
+    .ct-field textarea.ct-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.04);
+      box-shadow: none;
+    }
+    .ct-field input.ct-error:focus,
+    .ct-field textarea.ct-error:focus {
+      border-color: #D93025;
+      box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+    }
+    .ct-err-msg {
+      font-size: 11px; font-weight: 500;
+      color: #D93025; margin-top: 2px; display: none;
+    }
+    .ct-field.ct-has-error .ct-err-msg { display: block; }
+
     .ct-form-photo {
       position: relative;
       height: 520px;
@@ -304,33 +322,84 @@
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>
 <script>
-  document.getElementById('ct-form').addEventListener('submit', function(e) {
+(function() {
+  var formEl = document.getElementById('ct-form');
+  if (!formEl) return;
+
+  function addErrSpan(field) {
+    if (!field.querySelector('.ct-err-msg')) {
+      var s = document.createElement('span');
+      s.className = 'ct-err-msg';
+      s.textContent = 'This field is required.';
+      field.appendChild(s);
+    }
+  }
+  function markErr(field, msg) {
+    field.classList.add('ct-has-error');
+    var inp = field.querySelector('input, textarea');
+    if (inp) inp.classList.add('ct-error');
+    if (msg) { var s = field.querySelector('.ct-err-msg'); if (s) s.textContent = msg; }
+  }
+  function clearErr(field) {
+    field.classList.remove('ct-has-error');
+    field.querySelectorAll('.ct-error').forEach(function(el) { el.classList.remove('ct-error'); });
+    var s = field.querySelector('.ct-err-msg'); if (s) s.textContent = 'This field is required.';
+  }
+
+  formEl.querySelectorAll('[required]').forEach(function(el) {
+    var field = el.closest('.ct-field');
+    if (!field) return;
+    addErrSpan(field);
+    el.addEventListener('input', function() { clearErr(field); });
+    if (el.type === 'email') {
+      el.addEventListener('blur', function() {
+        var v = el.value.trim(); if (!v) return;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) markErr(field, 'Enter a valid email address.');
+        else clearErr(field);
+      });
+    }
+  });
+
+  formEl.addEventListener('submit', function(e) {
     e.preventDefault();
-    if ((this.querySelector('[name=website]') || {}).value) return;
-    var form = this;
-    var btn = form.querySelector('button[type=submit]');
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-    var data = {
-      firstName:   form.querySelector('[name=firstName]').value.trim(),
-      companyName: form.querySelector('[name=companyName]').value.trim(),
-      email:       form.querySelector('[name=email]').value.trim(),
-      phone:       form.querySelector('[name=phone]').value.trim(),
-      message:     form.querySelector('[name=message]').value.trim(),
-      formSource:  'contact'
+    if ((formEl.querySelector('[name=website]') || {}).value) return;
+
+    var valid = true, first = null;
+    formEl.querySelectorAll('[required]').forEach(function(el) {
+      var field = el.closest('.ct-field'); if (!field) return;
+      var v = el.value.trim();
+      if (el.type === 'email' && v) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+          markErr(field, 'Enter a valid email address.'); valid = false; if (!first) first = field; return;
+        }
+      }
+      if (!v) { markErr(field); valid = false; if (!first) first = field; }
+      else clearErr(field);
+    });
+
+    if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+
+    var btn = formEl.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var payload = {
+      firstName:   (formEl.querySelector('[name=firstName]')   || {}).value || '',
+      companyName: (formEl.querySelector('[name=companyName]') || {}).value || '',
+      email:       (formEl.querySelector('[name=email]')       || {}).value || '',
+      phone:       (formEl.querySelector('[name=phone]')       || {}).value || '',
+      message:     (formEl.querySelector('[name=message]')     || {}).value || '',
+      formSource:  'Contact Us'
     };
-    fetch('https://services.leadconnectorhq.com/hooks/dc39a6cd-9d59-4801-9ebe-de45d72cb78f/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
+
+    fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(payload)
     })
     .then(function() { window.location.href = '/thank-you/'; })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'Send Message';
-      alert('Something went wrong. Please try again or email us directly.');
-    });
+    .catch(function() { window.location.href = '/thank-you/'; });
   });
+})();
 </script>
 </body>
 </html>

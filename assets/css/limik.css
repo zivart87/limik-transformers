@@ -302,7 +302,7 @@ h4 {
 .footer-photo img,
 .footer-photo video {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center 40%; display: block;
+  object-fit: cover; object-position: 30% 40%; display: block;
 }
 .footer-photo-overlay {
   position: absolute; inset: 0;

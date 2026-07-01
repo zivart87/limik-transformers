@@ -17,6 +17,11 @@
             if (entry.isIntersecting && !played) {
               played = true;
               observer.disconnect();
+              video.addEventListener('timeupdate', function () {
+                if (video.currentTime >= 7) {
+                  video.pause();
+                }
+              });
               video.play().catch(function () {});
             }
           });

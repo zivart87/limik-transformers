@@ -299,7 +299,8 @@ h4 {
 
 /* Row 1 — right photo */
 .footer-photo { flex: 0 0 41.67%; height: 364px; position: relative; overflow: hidden; }
-.footer-photo img {
+.footer-photo img,
+.footer-photo video {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center 40%; display: block;
 }

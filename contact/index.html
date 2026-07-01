@@ -29,6 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/limik.css">
   <link rel="stylesheet" href="../assets/css/nav.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <script src="../assets/js/nav-loader.js"></script>
   <style>
 
@@ -185,6 +186,23 @@
       color: #D93025; margin-top: 2px; display: none;
     }
     .ct-field.ct-has-error .ct-err-msg { display: block; }
+    .ct-field.ct-has-error .iti__selected-country { border-right-color: #D93025; }
+
+    /* ── intl-tel-input overrides ── */
+    .iti { display: block; width: 100%; }
+    .iti__selected-country {
+      border-right: 1.5px solid rgba(9,25,59,0.15);
+      padding: 0 10px; background: transparent;
+    }
+    .iti__selected-country:hover,
+    .iti__selected-country[aria-expanded="true"] { background: rgba(9,25,59,0.04); }
+    .iti__selected-dial-code { font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--navy-dark); }
+    .iti__arrow { border-top-color: var(--blue); }
+    .iti__arrow--up { border-bottom-color: var(--blue); }
+    .iti__dropdown-content { border: 1.5px solid rgba(9,25,59,0.15); border-radius: 2px; box-shadow: 0 8px 24px rgba(9,25,59,0.10); }
+    .iti__search-input { font-family: var(--font); font-size: 13px; border-bottom: 1.5px solid rgba(9,25,59,0.10); padding: 8px 12px; outline: none; }
+    .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
+    .iti__country-name, .iti__dial-code { font-family: var(--font); font-size: 13px; }
 
     .ct-form-photo {
       position: relative;
@@ -298,7 +316,7 @@
             </div>
             <div class="ct-field">
               <label>Phone</label>
-              <input type="tel" name="phone" placeholder="+1 (000) 000-0000">
+              <input type="tel" id="ct-phone" name="phone" placeholder="+1 (000) 000-0000">
             </div>
             <div class="ct-field ct-field-full">
               <label>Message <span class="req">*</span></label>
@@ -321,10 +339,35 @@
 
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
 <script>
 (function() {
   var formEl = document.getElementById('ct-form');
   if (!formEl) return;
+
+  /* ── ITI phone ── */
+  var _iti = null;
+  var phoneEl = document.getElementById('ct-phone');
+  if (phoneEl && window.intlTelInput) {
+    _iti = window.intlTelInput(phoneEl, {
+      initialCountry: 'us',
+      countryOrder: ['us','ca','gb','de','au','ae','sa','jp','kr','in'],
+      showSelectedDialCode: true,
+      countrySearch: true,
+      onlyCountries: [
+        'us','ca','mx','gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
+        'co','ve','ec','pe','br','bo','py','uy','ar','cl',
+        'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
+        'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
+        'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
+        'ge','am','az','il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
+        'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
+        'kz','uz','tm','kg','tj','in','pk','bd','lk','np',
+        'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
+        'au','nz','pg','fj','ru'
+      ]
+    });
+  }
 
   function addErrSpan(field) {
     if (!field.querySelector('.ct-err-msg')) {
@@ -360,11 +403,25 @@
     }
   });
 
+  /* Phone blur validation (необязательное поле, но если заполнено — проверяем) */
+  if (phoneEl) {
+    var phoneField = phoneEl.closest('.ct-field');
+    if (phoneField) addErrSpan(phoneField);
+    phoneEl.addEventListener('input', function() { if (phoneField) clearErr(phoneField); });
+    phoneEl.addEventListener('blur', function() {
+      if (!phoneEl.value.trim() || !phoneField) return;
+      if (_iti && !_iti.isValidNumber()) markErr(phoneField, 'Enter a valid phone number.');
+      else clearErr(phoneField);
+    });
+  }
+
   formEl.addEventListener('submit', function(e) {
     e.preventDefault();
     if ((formEl.querySelector('[name=website]') || {}).value) return;
 
     var valid = true, first = null;
+
+    /* required fields */
     formEl.querySelectorAll('[required]').forEach(function(el) {
       var field = el.closest('.ct-field'); if (!field) return;
       var v = el.value.trim();
@@ -377,6 +434,12 @@
       else clearErr(field);
     });
 
+    /* phone — если заполнено, проверяем формат */
+    if (phoneEl && phoneEl.value.trim() && _iti && !_iti.isValidNumber()) {
+      var pf = phoneEl.closest('.ct-field');
+      markErr(pf, 'Enter a valid phone number.'); valid = false; if (!first) first = pf;
+    }
+
     if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     var btn = formEl.querySelector('button[type=submit]');
@@ -386,7 +449,7 @@
       firstName:   (formEl.querySelector('[name=firstName]')   || {}).value || '',
       companyName: (formEl.querySelector('[name=companyName]') || {}).value || '',
       email:       (formEl.querySelector('[name=email]')       || {}).value || '',
-      phone:       (formEl.querySelector('[name=phone]')       || {}).value || '',
+      phone:       _iti ? _iti.getNumber() : (phoneEl ? phoneEl.value : ''),
       message:     (formEl.querySelector('[name=message]')     || {}).value || '',
       formSource:  'Contact Us'
     };

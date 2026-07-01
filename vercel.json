@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/transformers", "destination": "/transformers/power", "permanent": true },
+    { "source": "/transformers/", "destination": "/transformers/power", "permanent": true }
+  ]
 }

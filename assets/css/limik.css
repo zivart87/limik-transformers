@@ -164,6 +164,21 @@ h4 {
 
 .btn-lg { padding: 15px 40px; }
 
+/* ── Icon-link (золотой квадрат + стрелка) ── */
+.co-intro-link {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--white);
+  text-decoration: none;
+}
+.co-intro-link-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+}
+.co-intro-link-icon svg { transition: transform 0.1s ease; }
+.co-intro-link:hover .co-intro-link-icon svg { transform: rotate(-45deg); }
+
 /* ════════════════════════════════
    SECTION HEADER
 ════════════════════════════════ */

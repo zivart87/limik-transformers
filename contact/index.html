@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="../assets/css/nav.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <script src="../assets/js/nav-loader.js"></script>
+  <script src="../assets/js/utm.js"></script>
   <style>
 
     /* ═══════════════════════════════
@@ -463,6 +464,7 @@
       message:     (formEl.querySelector('[name=message]')     || {}).value || '',
       formSource:  'Contact Us'
     };
+    Object.assign(payload, window.getUtmPayload ? window.getUtmPayload() : {});
 
     fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
       method: 'POST',

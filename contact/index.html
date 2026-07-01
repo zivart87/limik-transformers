@@ -316,7 +316,7 @@
             </div>
             <div class="ct-field">
               <label>Phone</label>
-              <input type="tel" id="ct-phone" name="phone" placeholder="+1 (000) 000-0000">
+              <input type="tel" id="ct-phone" name="phone" placeholder="+1 (000) 000-0000" required>
             </div>
             <div class="ct-field ct-field-full">
               <label>Message <span class="req">*</span></label>
@@ -403,13 +403,15 @@
     }
   });
 
-  /* Phone blur validation (необязательное поле, но если заполнено — проверяем) */
+  /* Phone blur validation (обязательное поле с ITI) */
   if (phoneEl) {
     var phoneField = phoneEl.closest('.ct-field');
     if (phoneField) addErrSpan(phoneField);
     phoneEl.addEventListener('input', function() { if (phoneField) clearErr(phoneField); });
     phoneEl.addEventListener('blur', function() {
-      if (!phoneEl.value.trim() || !phoneField) return;
+      if (!phoneField) return;
+      var v = phoneEl.value.trim();
+      if (!v) { markErr(phoneField); return; }
       if (_iti && !_iti.isValidNumber()) markErr(phoneField, 'Enter a valid phone number.');
       else clearErr(phoneField);
     });
@@ -434,10 +436,18 @@
       else clearErr(field);
     });
 
-    /* phone — если заполнено, проверяем формат */
-    if (phoneEl && phoneEl.value.trim() && _iti && !_iti.isValidNumber()) {
+    /* phone — обязательное, плюс проверка формата через ITI */
+    if (phoneEl) {
       var pf = phoneEl.closest('.ct-field');
-      markErr(pf, 'Enter a valid phone number.'); valid = false; if (!first) first = pf;
+      var pv = phoneEl.value.trim();
+      if (!pv) {
+        markErr(pf); valid = false; if (!first) first = pf;
+      } else if (_iti && !_iti.isValidNumber()) {
+        markErr(pf, 'Enter a valid phone number.'); valid = false; if (!first) first = pf;
+      } else {
+        clearErr(pf);
+        if (_iti) phoneEl.value = _iti.getNumber();
+      }
     }
 
     if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }

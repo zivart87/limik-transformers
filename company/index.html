@@ -497,10 +497,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="co-story-section">
   <div class="container">
     <div class="co-story">
-      <div class="co-story-img">
+      <div class="co-story-img" id="story-img-wrap">
         <img
-          src="/assets/images/co-aerial.webp"
-          alt="Large industrial manufacturing facility"
+          id="story-img"
+          src="/assets/images/transformer-factory-interior.webp"
+          alt="LIMIK transformer factory interior"
         >
       </div>
       <div class="co-story-text">
@@ -677,6 +678,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ease: 'none',
         scrollTrigger: {
           trigger: '.co-intro-photo',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      }
+    );
+  }
+
+  // Parallax — story photo
+  const storyImg = document.getElementById('story-img');
+  if (storyImg) {
+    gsap.fromTo(storyImg,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#story-img-wrap',
           start: 'top bottom',
           end: 'bottom top',
           scrub: 1.5

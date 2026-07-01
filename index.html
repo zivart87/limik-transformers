@@ -358,16 +358,14 @@
       z-index: 10; display: flex; gap: 8px; align-items: center;
     }
     .hero-bar {
-      width: 56px; height: 2px;
-      background: rgba(255,255,255,0.25);
+      width: 56px; height: 26px;
+      background: linear-gradient(transparent 12px, rgba(255,255,255,0.25) 12px, rgba(255,255,255,0.25) 14px, transparent 14px);
       position: relative; overflow: hidden;
-      cursor: pointer; border: none; padding: 12px 0;
-      margin: -12px 0;
-      box-sizing: content-box;
+      cursor: pointer; border: none; padding: 0;
     }
     .hero-bar-fill {
-      position: absolute; top: 0; left: 0;
-      height: 100%; width: 100%;
+      position: absolute; top: 12px; left: 0;
+      height: 2px; width: 100%;
       background: #4A8FD4;
       transform: scaleX(0);
       transform-origin: left center;

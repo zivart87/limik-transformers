@@ -34,6 +34,26 @@
   <style>
 
     /* ═══════════════════════════════
+       HERO WORD REVEAL
+    ═══════════════════════════════ */
+    @keyframes wordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .co-hero .split-word {
+      animation: wordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* ═══════════════════════════════
        HERO
     ═══════════════════════════════ */
     .co-hero {
@@ -181,6 +201,38 @@
 
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>
+
+<script>
+  // Hero h1 word clip-reveal
+  (function () {
+    document.querySelectorAll('.co-hero h1').forEach(h1 => {
+      const nodes = Array.from(h1.childNodes);
+      h1.innerHTML = '';
+      let wordIndex = 0;
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach(part => {
+            if (/^\s+$/.test(part)) {
+              h1.appendChild(document.createTextNode(part));
+            } else if (part) {
+              const wrap = document.createElement('span');
+              wrap.className = 'word-wrap';
+              const span = document.createElement('span');
+              span.className = 'split-word';
+              span.style.animationDelay = (wordIndex * 0.09) + 's';
+              span.textContent = part;
+              wordIndex++;
+              wrap.appendChild(span);
+              h1.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeName === 'BR') {
+          h1.appendChild(document.createElement('br'));
+        }
+      });
+    });
+  })();
+</script>
 
 <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

@@ -47,22 +47,6 @@
       0%   { opacity: 0; transform: scale(1.07); }
       100% { opacity: 1; transform: scale(1.0); }
     }
-    @keyframes wordReveal {
-      from { transform: translateY(115%); }
-      to   { transform: translateY(0%); }
-    }
-    .word-wrap {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: bottom;
-    }
-    .split-word {
-      display: inline-block;
-      transform: translateY(115%);
-    }
-    .co-hero .split-word {
-      animation: wordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
-    }
     .co-hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
@@ -88,10 +72,122 @@
       text-transform: uppercase; letter-spacing: -0.02em;
       color: var(--white); margin-bottom: 0; max-width: 960px;
     }
-
     @media (max-width: 768px) {
       .co-hero-content { padding: 0 24px 60px; }
       .co-hero h1 { font-size: 46px; }
+    }
+
+    /* ═══════════════════════════════
+       CONTACT CARDS
+    ═══════════════════════════════ */
+    .ct-cards {
+      background: var(--white);
+      padding: 80px 0;
+    }
+    .ct-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ct-card {
+      background: var(--off-white);
+      padding: 40px 28px 36px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .ct-card-icon {
+      width: 40px; height: 40px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .ct-card-label {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--blue);
+    }
+    .ct-card-text {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: #3A5570; margin: 0;
+      flex: 1;
+    }
+
+    /* ═══════════════════════════════
+       FORM SECTION
+    ═══════════════════════════════ */
+    .ct-form-section {
+      background: var(--white);
+      padding: 0 0 120px;
+    }
+    .ct-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .ct-form-left h2 {
+      color: var(--navy-dark);
+      margin: 0 0 40px;
+    }
+    .ct-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .ct-field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .ct-field-full {
+      grid-column: 1 / -1;
+    }
+    .ct-field label {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--navy-dark);
+    }
+    .ct-field label .req { color: var(--blue); }
+    .ct-field input,
+    .ct-field textarea {
+      font-family: var(--font);
+      font-size: 14px; font-weight: 400;
+      color: var(--navy-dark);
+      background: var(--white);
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      padding: 11px 14px;
+      outline: none;
+      width: 100%; box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .ct-field input::placeholder,
+    .ct-field textarea::placeholder { color: #A8B8CC; }
+    .ct-field input:focus,
+    .ct-field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
+    }
+    .ct-field textarea { resize: vertical; min-height: 120px; }
+    .ct-submit { margin-top: 8px; }
+
+    .ct-form-photo {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+    }
+    .ct-form-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+
+    @media (max-width: 900px) {
+      .ct-cards-grid { grid-template-columns: 1fr; }
+      .ct-form-grid { grid-template-columns: 1fr; gap: 48px; }
+      .ct-form-photo { height: 300px; }
+    }
+    @media (max-width: 768px) {
+      .ct-cards { padding: 60px 0; }
+      .ct-form-section { padding: 0 0 80px; }
+      .ct-fields { grid-template-columns: 1fr; }
     }
 
   </style>
@@ -118,8 +214,123 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════
+   CONTACT CARDS
+══════════════════════════════ -->
+<section class="ct-cards">
+  <div class="container">
+    <div class="ct-cards-grid">
+
+      <div class="ct-card">
+        <svg class="ct-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.27.2 2.48.57 3.61.1.34.01.72-.25.99L6.6 10.8z"/>
+        </svg>
+        <div class="ct-card-label">Call Us</div>
+        <p class="ct-card-text">For quick assistance, our engineering and sales team is ready to help with your transformer questions.</p>
+        <a href="tel:+17867676418" class="co-intro-link" style="color: var(--navy-dark);">
+          <span class="co-intro-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          +1 786-767-6418
+        </a>
+      </div>
+
+      <div class="ct-card">
+        <svg class="ct-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <div class="ct-card-label">Email Us</div>
+        <p class="ct-card-text">Prefer email? Reach out to us anytime for quotes, technical inquiries, or general information.</p>
+        <a href="mailto:info@limiktransformers.com" class="co-intro-link" style="color: var(--navy-dark);">
+          <span class="co-intro-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          info@limiktransformers.com
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   FORM + PHOTO
+══════════════════════════════ -->
+<section class="ct-form-section">
+  <div class="container">
+    <div class="ct-form-grid">
+
+      <div class="ct-form-left">
+        <h2>Get in Touch</h2>
+        <form id="ct-form" novalidate>
+          <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
+          <div class="ct-fields">
+            <div class="ct-field">
+              <label>Name <span class="req">*</span></label>
+              <input type="text" name="firstName" placeholder="First name" required>
+            </div>
+            <div class="ct-field">
+              <label>Company <span class="req">*</span></label>
+              <input type="text" name="companyName" placeholder="Company name" required>
+            </div>
+            <div class="ct-field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="ct-field">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="+1 (000) 000-0000">
+            </div>
+            <div class="ct-field ct-field-full">
+              <label>Message <span class="req">*</span></label>
+              <textarea name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+          </div>
+          <div class="ct-submit">
+            <button type="submit" class="btn btn-gold btn-lg">Send Message</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="ct-form-photo">
+        <img src="/assets/images/transformer-unit.webp" alt="LIMIK manufacturing facility" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>
-
+<script>
+  document.getElementById('ct-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if ((this.querySelector('[name=website]') || {}).value) return;
+    var form = this;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    var data = {
+      firstName:   form.querySelector('[name=firstName]').value.trim(),
+      companyName: form.querySelector('[name=companyName]').value.trim(),
+      email:       form.querySelector('[name=email]').value.trim(),
+      phone:       form.querySelector('[name=phone]').value.trim(),
+      message:     form.querySelector('[name=message]').value.trim(),
+      formSource:  'contact'
+    };
+    fetch('https://services.leadconnectorhq.com/hooks/dc39a6cd-9d59-4801-9ebe-de45d72cb78f/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function() { window.location.href = '/thank-you/'; })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      alert('Something went wrong. Please try again or email us directly.');
+    });
+  });
+</script>
 </body>
 </html>

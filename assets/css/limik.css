@@ -262,7 +262,7 @@ h4 {
 .footer-left {
   flex: 0 0 58.33%; height: 364px;
   display: flex; align-items: flex-start; justify-content: space-between;
-  padding: 44px 60px; gap: 40px;
+  padding: 72px 60px; gap: 40px;
   background: var(--navy-dark);
 }
 .footer-brand-col { display: flex; flex-direction: column; gap: 16px; }

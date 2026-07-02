@@ -182,9 +182,16 @@
     .co-intro-link-icon svg { transition: transform 0.1s ease; }
     .co-intro-link:hover .co-intro-link-icon svg { transform: rotate(-45deg); }
     @media (max-width: 900px) {
-      .co-intro::before { right: 0; }
+      .co-intro::before { left: 24px; right: 0; }
       .co-intro-inner { width: 100%; padding: 48px 0; }
-      .co-intro-photo { display: none; }
+      .co-intro-photo {
+        display: block;
+        position: relative;
+        left: auto; right: auto; bottom: auto;
+        width: calc(100% - 24px);
+        height: 260px;
+        margin: -64px 0 0 24px;
+      }
       .co-intro { margin-bottom: 0; }
       .co-intro-inner h2 { font-size: 36px; }
     }

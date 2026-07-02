@@ -182,15 +182,16 @@
     .co-intro-link-icon svg { transition: transform 0.1s ease; }
     .co-intro-link:hover .co-intro-link-icon svg { transform: rotate(-45deg); }
     @media (max-width: 900px) {
-      .co-intro::before { left: 24px; right: 24px; }
-      .co-intro-inner { width: 100%; padding: 48px 28px; }
+      .co-intro::before { display: none; }
+      .co-intro-inner { width: 100%; padding: 48px 28px 112px; background: var(--navy-dark); }
+      .co-intro-inner p { margin-bottom: 0; }
       .co-intro-photo {
         display: block;
         position: relative;
         left: auto; right: auto; bottom: auto;
-        width: calc(100% - 24px);
-        height: 260px;
-        margin: -64px 0 0 24px;
+        width: calc(100% - 52px);
+        height: 380px;
+        margin: -72px 0 0 52px;
       }
       .co-intro { margin-bottom: 0; }
       .co-intro-inner h2 { font-size: 36px; }
@@ -229,6 +230,7 @@
       color: var(--navy-dark); line-height: 1.4; margin: 0;
     }
     @media (max-width: 768px) {
+      .co-facts { padding: 60px 0 0; }
       .co-facts-grid { grid-template-columns: 1fr; border-top: none; }
       .co-fact { padding: 36px 0; border-right: none; border-top: 1px solid rgba(9,25,59,0.12); }
       .co-fact:last-child { padding-left: 0; }
@@ -276,7 +278,7 @@
       .co-story { grid-template-columns: 1fr; }
       .co-story-img { height: auto; min-height: 320px; }
       .co-story-text { padding: 60px 40px; }
-      .co-story-section { padding-bottom: 60px; }
+      .co-story-section { padding: 80px 0; }
     }
     @media (max-width: 600px) { .co-story-text { padding: 48px 24px; } }
 
@@ -380,6 +382,7 @@
     }
 
     @media (max-width: 900px) {
+      .co-303 { padding: 80px 0; }
       .co-303-inner { grid-template-columns: 1fr; gap: 56px; }
       .co-303-bg { display: none; }
     }
@@ -439,6 +442,7 @@
     .co-team-link:hover { color: var(--navy-dark); border-color: var(--navy-dark); }
 
     @media (max-width: 900px) {
+      .co-team { padding: 80px 0; }
       .co-team-grid { grid-template-columns: 1fr; outline: none; }
       .co-team-card { border-right: none; border-bottom: 1px solid var(--border-l); }
       .co-team-card:last-child { border-bottom: none; }

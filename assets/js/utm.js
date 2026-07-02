@@ -6,7 +6,18 @@
     if (params.get(k)) sessionStorage.setItem('limik_' + k, params.get(k));
   });
 
-  function getGaClientId() {
+  function getGaClientIdFromDataLayer() {
+    var dl = window.dataLayer || [];
+    for (var i = dl.length - 1; i >= 0; i--) {
+      var entry = dl[i];
+      if (entry && entry.gtagApiResult && entry.gtagApiResult.client_id) {
+        return entry.gtagApiResult.client_id;
+      }
+    }
+    return '';
+  }
+
+  function getGaClientIdFromCookie() {
     var match = document.cookie.match(/(?:^|;\s*)_ga=([^;]+)/);
     if (!match) return '';
     var parts = match[1].split('.');
@@ -20,7 +31,7 @@
       var val = params.get(k) || sessionStorage.getItem('limik_' + k) || '';
       if (val) result[k] = val;
     });
-    var gaClientId = getGaClientId();
+    var gaClientId = getGaClientIdFromDataLayer() || getGaClientIdFromCookie();
     if (gaClientId) result.ga_client_id = gaClientId;
     return result;
   };

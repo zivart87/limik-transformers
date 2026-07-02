@@ -373,10 +373,25 @@
     .co-303-item p {
       font-size: 14px; line-height: 1.65; color: var(--text-2); margin: 0;
     }
+    .co-303-mark {
+      position: absolute; right: -60px; bottom: -60px;
+      width: 520px; height: 520px;
+      z-index: 0; pointer-events: none;
+    }
+    .co-303-mark img {
+      display: block; width: 100%; height: 100%;
+      object-fit: contain; opacity: 0.16;
+    }
+    .co-303-mark-blocks {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
 
     @media (max-width: 900px) {
       .co-303 { padding: 80px 0; }
       .co-303-inner { grid-template-columns: 1fr; gap: 56px; }
+      .co-303-mark { width: 340px; height: 340px; right: -40px; bottom: -40px; }
     }
 
     /* ═══════════════════════════════
@@ -557,6 +572,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    5. §303 DEFENSE — SIGNATURE
 ══════════════════════════════ -->
 <section class="co-303 bg-dark">
+  <div class="co-303-mark" aria-hidden="true">
+    <img src="/assets/images/mission-mark.png" alt="">
+    <div class="co-303-mark-blocks" data-blocks-reveal></div>
+  </div>
   <div class="container">
     <div class="co-303-inner">
 
@@ -747,6 +766,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     );
   }
+
+  // Block reveal — Mission mark (shutter in reverse: blocks shrink away to reveal the logo)
+  (function () {
+    const wrap = document.querySelector('[data-blocks-reveal]');
+    if (!wrap) return;
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const ROWS = 2, BLOCKS = isMobile ? 10 : 15;
+    for (let r = 0; r < ROWS; r++) {
+      const row = document.createElement('div');
+      Object.assign(row.style, { display: 'flex', width: '100%', height: '51%', marginTop: r > 0 ? '-1px' : '0' });
+      for (let b = 0; b < BLOCKS; b++) {
+        const block = document.createElement('div');
+        Object.assign(block.style, { backgroundColor: '#09193B', flex: '1', height: '100%', marginLeft: '-1px' });
+        gsap.set(block, { scaleX: 1, transformOrigin: r === 0 ? 'right center' : 'left center' });
+        row.appendChild(block);
+      }
+      wrap.appendChild(row);
+    }
+    const rows = wrap.querySelectorAll(':scope > div');
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.co-303-mark', start: 'top 85%', end: 'top 10%', scrub: true } });
+    rows.forEach((row, i) => {
+      tl.to(row.querySelectorAll(':scope > div'), { scaleX: 0, force3D: true, ease: 'power1.inOut', stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' } }, 0);
+    });
+  })();
 </script>
 
 </body>

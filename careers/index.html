@@ -153,9 +153,17 @@
       max-width: 500px;
     }
     @media (max-width: 900px) {
-      .co-intro::before { right: 0; }
-      .co-intro-inner { width: 100%; padding: 48px 0; }
-      .co-intro-photo { display: none; }
+      .co-intro::before { display: none; }
+      .co-intro-inner { width: 100%; padding: 48px 28px 112px; background: var(--navy-dark); }
+      .co-intro-inner p { margin-bottom: 0; }
+      .co-intro-photo {
+        display: block;
+        position: relative;
+        left: auto; right: auto; bottom: auto;
+        width: calc(100% - 52px);
+        height: 380px;
+        margin: -72px 0 0 52px;
+      }
       .co-intro { margin-bottom: 0; }
       .co-intro-inner h2 { font-size: 36px; }
     }

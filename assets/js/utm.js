@@ -10,9 +10,9 @@
     var dl = window.dataLayer || [];
     for (var i = dl.length - 1; i >= 0; i--) {
       var entry = dl[i];
-      if (entry && entry.gtagApiResult && entry.gtagApiResult.client_id) {
-        return entry.gtagApiResult.client_id;
-      }
+      if (!entry) continue;
+      var result = entry.gtagApiResult || (entry.value && entry.value.gtagApiResult);
+      if (result && result.client_id) return result.client_id;
     }
     return '';
   }

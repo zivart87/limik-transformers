@@ -19,7 +19,7 @@
 Сайт: `https://www.limiktransformers.com`
 
 **Стек:** статический HTML + CSS + ванильный JS. Никакого билда, фреймворков, npm.  
-**Анимации:** GSAP 3.12.5 + ScrollTrigger (подключаются через CDN). Плавный инерционный скролл (Lenis) убран 2026-07-05 — на сайте обычный нативный скролл.  
+**Анимации:** GSAP 3.12.5 + ScrollTrigger + Lenis 1.3.4 (подключаются через CDN).  
 **Хостинг:** Vercel, автодеплой из GitHub (`zivart87/limik-transformers`, ветка `main`).
 
 ---
@@ -310,13 +310,18 @@ color: rgba(255,255,255,0.72); /* для параграфов */
 Ширину и правый отступ фото (flush к краю экрана или с отступом) решать по месту — см. конкретный блок.
 
 ### Параллакс (GSAP)
-Плавный инерционный скролл (Lenis) убран со всего сайта 2026-07-05 — по просьбе пользователя вернули обычный нативный скролл. Паттерн для фото-блоков — подключать только GSAP + ScrollTrigger:
+Паттерн для фото-блоков — подключать Lenis + GSAP + ScrollTrigger:
 ```html
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 ```
 ```javascript
 gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis();
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
 
 gsap.fromTo(photoImg,
   { yPercent: -6 },

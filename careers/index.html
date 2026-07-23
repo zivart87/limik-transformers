@@ -27,11 +27,16 @@
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <link rel="stylesheet" href="../assets/css/limik.css">
   <link rel="stylesheet" href="../assets/css/nav.css">
   <script src="../assets/js/nav-loader.js"></script>
   <script src="../assets/js/utm.js"></script>
   <style>
+
+    /* overflow-x: clip не создаёт новый scroll container
+       в отличие от hidden — позволяет position: sticky работать (.caf-left) */
+    html, body { overflow-x: clip; }
 
     /* ═══════════════════════════════
        HERO WORD REVEAL
@@ -149,13 +154,14 @@
     }
     .co-intro-inner p {
       font-size: 16px; font-weight: 400; line-height: 1.75;
-      color: rgba(255,255,255,0.72); margin: 0 0 40px;
+      color: rgba(255,255,255,0.72); margin: 0 0 20px;
       max-width: 500px;
     }
+    .co-intro-inner p:last-of-type { margin-bottom: 40px; }
     @media (max-width: 900px) {
       .co-intro::before { display: none; }
       .co-intro-inner { width: 100%; padding: 48px 28px 112px; background: var(--navy-dark); }
-      .co-intro-inner p { margin-bottom: 28px; }
+      .co-intro-inner p { margin-bottom: 20px; }
       .co-intro-photo {
         display: block;
         position: relative;
@@ -219,6 +225,325 @@
       .job-card:last-child { border-bottom: none; }
     }
 
+    /* ═══════════════════════════════
+       WHAT WE STAND FOR — Mission / Vision / Values
+    ═══════════════════════════════ */
+    .co-303 { padding: 120px 0; }
+    .co-303-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 96px; align-items: start;
+    }
+    .co-303-left h2 {
+      color: var(--white); line-height: 1.05; margin-bottom: 24px;
+    }
+    .co-303-left h2 em { color: var(--blue); font-style: normal; }
+    .co-303-left p {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.72); margin-bottom: 20px;
+    }
+    .co-303-left p:last-of-type { margin-bottom: 40px; }
+    .co-303-items h3 { margin-bottom: 40px; }
+    .co-benefits-list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+    .co-benefits-list li {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .co-benefits-list li img { width: 19px; height: 18px; flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .co-303 { padding: 80px 0; }
+      .co-303-inner { grid-template-columns: 1fr; gap: 56px; }
+    }
+
+    /* ═══════════════════════════════
+       APPLY — application form (adapted from request-quote)
+    ═══════════════════════════════ */
+    .caf-page {
+      display: flex;
+      align-items: flex-start;
+    }
+    .caf-left {
+      width: 560px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: var(--navy-dark);
+      overflow: hidden;
+    }
+    @keyframes cafBgEnter {
+      from { opacity: 0; transform: scale(1.07); }
+      to   { opacity: 1; transform: scale(1.0); }
+    }
+    @keyframes cafOverlayIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes cafWordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .caf-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .caf-split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .caf-split-word.caf-reveal {
+      animation: cafWordReveal 0.80s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .caf-left-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+      opacity: 0; transform: scale(1.07);
+    }
+    .caf-left.caf-in-view .caf-left-photo {
+      animation: cafBgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .caf-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(9,25,59,0.82) 0%,
+        rgba(9,25,59,0.52) 45%,
+        rgba(9,25,59,0.90) 100%
+      );
+      opacity: 0;
+    }
+    .caf-left.caf-in-view .caf-left-overlay {
+      animation: cafOverlayIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    }
+    .caf-left-content {
+      position: relative; z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+    }
+    .caf-left-title {
+      font-size: clamp(24px, 2vw, 32px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.4; letter-spacing: -0.025em;
+    }
+
+    /* ── RIGHT: scrollable form ── */
+    .caf-right {
+      flex: 1;
+      min-width: 0;
+      background: var(--off-white);
+      padding: 120px 80px;
+    }
+    .caf-form-head { margin-bottom: 52px; }
+    .caf-form-title {
+      font-size: clamp(30px, 3vw, 46px);
+      font-weight: 800; color: var(--navy-dark);
+      letter-spacing: -0.025em; line-height: 1.0;
+      margin-bottom: 14px;
+    }
+    .caf-form-sub {
+      font-size: 16px; font-weight: 400;
+      color: #3A5570; line-height: 1.75;
+      max-width: 540px;
+    }
+
+    /* ── Form sections ── */
+    .caf-section { margin-bottom: 44px; }
+    .caf-section-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue);
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(9,25,59,0.12);
+      margin-bottom: 24px;
+    }
+    .caf-section-label::before {
+      content: attr(data-n);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px;
+      background: var(--blue); color: var(--white);
+      font-size: 9px; font-weight: 800;
+      border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── Rows & fields ── */
+    .caf-row { display: grid; gap: 14px; margin-bottom: 14px; }
+    .caf-row:last-child { margin-bottom: 0; }
+    .caf-col-2 { grid-template-columns: 1fr 1fr; }
+    .caf-col-1 { grid-template-columns: 1fr; }
+
+    .caf-field { display: flex; flex-direction: column; gap: 6px; }
+    .caf-field label {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--navy-dark);
+    }
+    .caf-field label .req { color: var(--blue); }
+
+    .caf-field input,
+    .caf-field textarea {
+      font-family: var(--font);
+      font-size: 14px; font-weight: 400;
+      color: var(--navy-dark);
+      background: var(--white);
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      width: 100%; box-sizing: border-box;
+    }
+    .caf-field input:focus,
+    .caf-field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
+    }
+    .caf-field input::placeholder,
+    .caf-field textarea::placeholder { color: #A8B8CC; }
+    .caf-field textarea {
+      resize: vertical; min-height: 104px; line-height: 1.6;
+    }
+
+    /* ── Checkbox pill-buttons ── */
+    .caf-check-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+    .caf-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 13px; font-weight: 500;
+      color: var(--navy-dark);
+      background: var(--white);
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      padding: 9px 14px;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .caf-pill input[type="checkbox"] {
+      width: 14px; height: 14px;
+      padding: 0; border: none; box-shadow: none;
+      accent-color: var(--blue);
+      cursor: pointer; flex-shrink: 0;
+    }
+    .caf-pill:has(input:checked) {
+      border-color: var(--blue);
+      background: rgba(32,108,185,0.07);
+    }
+
+    /* ── File upload zone (визуальный — файл не отправляется на вебхук) ── */
+    .caf-file-zone {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 32px 24px;
+      background: var(--white);
+      border: 1.5px dashed rgba(9,25,59,0.22);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      color: #7090B0;
+      text-align: center;
+    }
+    .caf-file-zone:hover,
+    .caf-file-zone.caf-drag-over {
+      border-color: var(--blue);
+      background: rgba(32,108,185,0.05);
+      color: var(--blue);
+    }
+    .caf-file-zone.caf-drag-over { border-style: solid; }
+    .caf-file-text { font-size: 14px; font-weight: 600; color: var(--navy-dark); }
+    .caf-file-zone:hover .caf-file-text,
+    .caf-file-zone.caf-drag-over .caf-file-text { color: var(--blue); }
+    .caf-file-hint { font-size: 11px; font-weight: 400; color: #A0B4C8; }
+    .caf-file-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .caf-file-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--navy-dark);
+      background: var(--white);
+      border: 1px solid rgba(9,25,59,0.12);
+      border-radius: 2px;
+      padding: 7px 12px;
+    }
+    .caf-file-item svg { color: var(--blue); flex-shrink: 0; }
+    .caf-file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .caf-file-size { color: #A0B4C8; font-size: 11px; flex-shrink: 0; }
+    .caf-file-remove {
+      display: flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; flex-shrink: 0;
+      border: none; background: none; cursor: pointer;
+      color: #A0B4C8; font-size: 18px; line-height: 1; padding: 0;
+      border-radius: 50%;
+      transition: color 0.12s, background 0.12s;
+    }
+    .caf-file-remove:hover { color: #D93025; background: rgba(217,48,37,0.08); }
+
+    /* ── Validation: error states ── */
+    .caf-pill.caf-pill-error { border-color: #D93025; background: rgba(217,48,37,0.05); }
+    .caf-field input.caf-error,
+    .caf-field textarea.caf-error {
+      border-color: #D93025;
+      background: rgba(217,48,37,0.04);
+      box-shadow: none;
+    }
+    .caf-field input.caf-error:focus,
+    .caf-field textarea.caf-error:focus {
+      border-color: #D93025;
+      box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+    }
+    .caf-err-msg { font-size: 11px; font-weight: 500; color: #D93025; margin-top: 4px; display: none; }
+    .caf-field.caf-has-error .caf-err-msg { display: block; }
+
+    /* ── intl-tel-input overrides ── */
+    .caf-right .iti { display: block; width: 100%; }
+    .caf-right .iti__selected-country {
+      background: transparent;
+      border-right: 1.5px solid rgba(9,25,59,0.15);
+      padding: 0 10px 0 12px;
+      gap: 6px;
+    }
+    .caf-right .iti__selected-country:hover,
+    .caf-right .iti__selected-country[aria-expanded="true"] { background: rgba(9,25,59,0.04); }
+    .caf-right .iti__selected-dial-code { font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--navy-dark); }
+    .caf-right .iti__arrow { border-top-color: var(--blue); }
+    .caf-right .iti__arrow--up { border-bottom-color: var(--blue); }
+    .caf-right .iti__dropdown-content {
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      box-shadow: 0 8px 24px rgba(9,25,59,0.10);
+    }
+    .caf-right .iti__search-input {
+      font-family: var(--font); font-size: 13px;
+      border-bottom: 1.5px solid rgba(9,25,59,0.10);
+      padding: 8px 12px; outline: none;
+    }
+    .caf-right .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
+    .caf-right .iti__country-name { font-family: var(--font); font-size: 13px; }
+    .caf-right .iti__dial-code { font-family: var(--font); font-size: 13px; }
+    .caf-field.caf-has-error .iti__selected-country { border-right-color: #D93025; }
+
+    /* ── Submit area ── */
+    .caf-submit { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(9,25,59,0.10); }
+    .caf-submit .btn { font-size: 13px; letter-spacing: 0.12em; padding: 18px 52px; }
+    .caf-submit-note { margin-top: 16px; font-size: 12px; color: #7090B0; line-height: 1.65; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .caf-left { width: 440px; }
+      .caf-left-content { padding: 44px 36px; }
+      .caf-right { padding: 100px 52px; }
+    }
+    @media (max-width: 860px) {
+      .caf-page { flex-direction: column; }
+      .caf-left { position: relative; top: auto; width: 100%; height: 320px; }
+      .caf-left-content { padding: 32px 28px; }
+      .caf-right { padding: 56px 24px 80px; }
+      .caf-col-2 { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body data-hero=".co-hero">
@@ -253,7 +578,10 @@
       <p>At LIMIK International, we're not just hiring — <strong>we're building a team of professionals who want to work on something that matters.</strong> We manufacture high-voltage electrical equipment for the American market: the kind of equipment that keeps the grid running, powers generation facilities, and supports the infrastructure that everything else depends on.</p>
       <p>Why LIMIK? Because here, expertise is respected and the work demands it. Our engineers, manufacturing specialists, and operations teams work on projects where precision isn't optional — it's the baseline. That culture shows up in how we hire, how we work, and how we hold ourselves accountable.</p>
       <p>We're a company of builders and problem-solvers. If you want work where your skills carry real consequence — <strong>you'll feel it from day one.</strong></p>
-      <a href="#open-positions" class="btn btn-gold btn-lg">Apply Now</a>
+      <a href="#open-positions" class="co-intro-link" style="color: var(--white);">
+        <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Apply Now
+      </a>
     </div>
   </div>
   <div class="co-intro-photo clip-tl">
@@ -396,6 +724,148 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════
+   WHAT WE STAND FOR
+══════════════════════════════ -->
+<section class="co-303 bg-dark">
+  <div class="container">
+    <div class="co-303-inner">
+
+      <div class="co-303-left">
+        <div class="eyebrow">People · Culture · Growth</div>
+        <h2>Built for the Long Term</h2>
+        <p>We offer competitive compensation and a work environment where precision is respected, contributions are recognized, and careers are built over time.</p>
+        <p>At LIMIK, professional growth is part of how we operate. We hire people who take their work seriously — and we support them with the resources, structure, and team they need to perform at their best.</p>
+        <a href="#open-positions" class="co-intro-link" style="color: var(--white);">
+          <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Apply Now
+        </a>
+      </div>
+
+      <div class="co-303-items">
+        <h3>Benefits</h3>
+        <ul class="co-benefits-list">
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Competitive compensation package</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Comprehensive medical, dental, and vision insurance</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">401(k) plan with matching contributions</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Paid time off and company holidays</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Paid training and professional development</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Performance-based bonuses</li>
+          <li><img src="/assets/images/icons/icon-completed.svg" alt="">Life &amp; AD&amp;D insurance</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   APPLY NOW — application form
+══════════════════════════════ -->
+<div class="caf-page">
+
+  <!-- LEFT: sticky photo + messaging -->
+  <div class="caf-left">
+    <img class="caf-left-photo" src="/assets/images/transformer-hero.webp" alt="LIMIK manufacturing facility">
+    <div class="caf-left-overlay"></div>
+    <div class="caf-left-content">
+      <h2 class="caf-left-title">Every application reviewed by our hiring team personally</h2>
+    </div>
+  </div>
+
+  <!-- RIGHT: form -->
+  <div class="caf-right">
+
+    <div class="caf-form-head">
+      <h1 class="caf-form-title">Send Us Your Resume</h1>
+      <p class="caf-form-sub">Tell us about yourself and the role you're interested in. Our hiring team reviews every application personally.</p>
+    </div>
+
+    <form action="#" method="post" novalidate>
+
+      <!-- 1. Contact Information -->
+      <div class="caf-section">
+        <div class="caf-section-label" data-n="1">Contact Information</div>
+
+        <div class="caf-row caf-col-2">
+          <div class="caf-field">
+            <label for="caf-fn">First Name <span class="req">*</span></label>
+            <input type="text" id="caf-fn" name="first_name" placeholder="John" required>
+          </div>
+          <div class="caf-field">
+            <label for="caf-ln">Last Name <span class="req">*</span></label>
+            <input type="text" id="caf-ln" name="last_name" placeholder="Smith" required>
+          </div>
+        </div>
+
+        <div class="caf-row caf-col-2">
+          <div class="caf-field">
+            <label for="caf-email">Email <span class="req">*</span></label>
+            <input type="email" id="caf-email" name="email" placeholder="john@email.com" required>
+          </div>
+          <div class="caf-field">
+            <label for="caf-phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="caf-phone" name="phone" inputmode="tel" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Position of Interest -->
+      <div class="caf-section">
+        <div class="caf-section-label" data-n="2">Position of Interest</div>
+
+        <div class="caf-row caf-col-1">
+          <div class="caf-field">
+            <div class="caf-check-group">
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Engineering">Engineering</label>
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Manufacturing &amp; Production">Manufacturing &amp; Production</label>
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Quality &amp; Testing">Quality &amp; Testing</label>
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Supply Chain &amp; Procurement">Supply Chain &amp; Procurement</label>
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Business Development &amp; Sales">Business Development &amp; Sales</label>
+              <label class="caf-pill"><input type="checkbox" name="positions" value="Operations &amp; Administration">Operations &amp; Administration</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Resume & Additional Info -->
+      <div class="caf-section">
+        <div class="caf-section-label" data-n="3">Resume &amp; Additional Info</div>
+
+        <div class="caf-row caf-col-1">
+          <div class="caf-field">
+            <label for="caf-file">Upload Resume <span class="req">*</span></label>
+            <label class="caf-file-zone" for="caf-file">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="caf-file-text">Click to upload or drag &amp; drop</span>
+              <span class="caf-file-hint">.doc, .docx, or .pdf files accepted</span>
+              <input type="file" id="caf-file" name="resume" accept=".pdf,.doc,.docx" style="display:none">
+            </label>
+            <div id="caf-file-list" class="caf-file-list"></div>
+          </div>
+        </div>
+
+        <div class="caf-row caf-col-1">
+          <div class="caf-field">
+            <label for="caf-message">Additional Comments</label>
+            <textarea id="caf-message" name="message" placeholder="Anything else you'd like us to know…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
+      <!-- Submit -->
+      <div class="caf-submit">
+        <button type="submit" class="btn btn-gold btn-lg">Submit Application</button>
+        <p class="caf-submit-note">Your application goes directly to our hiring team in Spartanburg, SC. We review every submission personally.</p>
+      </div>
+
+    </form>
+
+  </div><!-- /caf-right -->
+
+</div><!-- /caf-page -->
+
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>
 
@@ -457,6 +927,273 @@
       }
     );
   }
+</script>
+
+<!-- ══════════════════════════════
+   APPLY NOW — form logic
+══════════════════════════════ -->
+<script>
+/* ── Validation ── */
+(function() {
+  var form = document.querySelector('.caf-right form');
+  if (!form) return;
+
+  form.querySelectorAll('[required]').forEach(function(el) {
+    var field = el.closest('.caf-field');
+    if (!field) return;
+    addErrSpan(field);
+    el.addEventListener('input', function() { clearFieldError(field); });
+    el.addEventListener('change', function() { clearFieldError(field); });
+
+    if (el.type === 'email') {
+      el.addEventListener('blur', function() {
+        var val = el.value.trim();
+        if (!val) return;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          markFieldError(field, 'Enter a valid email address.');
+        } else {
+          clearFieldError(field);
+        }
+      });
+    }
+    if (el.type === 'tel') {
+      el.addEventListener('blur', function() {
+        var val = el.value.trim();
+        if (!val) return;
+        var iti = window._cafIti;
+        if (iti && !iti.isValidNumber()) {
+          markFieldError(field, 'Enter a valid phone number.');
+        } else {
+          clearFieldError(field);
+        }
+      });
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    var valid = true;
+    var firstErrorField = null;
+
+    // Резюме — визуальное поле, в обязательную проверку не включаем
+    // (нет бэкенда для передачи файла на вебхук, см. комментарий в payload ниже)
+    form.querySelectorAll('[required]').forEach(function(el) {
+      if (el.id === 'caf-file') return;
+      var field = el.closest('.caf-field');
+      if (!field) return;
+
+      var val = el.value.trim();
+
+      if (el.type === 'email' && val) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          markFieldError(field, 'Enter a valid email address.');
+          valid = false; if (!firstErrorField) firstErrorField = field;
+          return;
+        }
+      }
+
+      if (el.type === 'tel') {
+        var iti = window._cafIti;
+        if (iti) {
+          if (!val) { markFieldError(field); valid = false; if (!firstErrorField) firstErrorField = field; return; }
+          if (!iti.isValidNumber()) {
+            markFieldError(field, 'Enter a valid phone number.');
+            valid = false; if (!firstErrorField) firstErrorField = field;
+          } else {
+            clearFieldError(field);
+            el.value = iti.getNumber();
+          }
+          return;
+        }
+      }
+
+      if (!val) { markFieldError(field); valid = false; if (!firstErrorField) firstErrorField = field; }
+      else clearFieldError(field);
+    });
+
+    if ((form.querySelector('[name=website]') || {}).value) { e.preventDefault(); return; }
+    if (!valid) {
+      e.preventDefault();
+      if (firstErrorField) firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      e.preventDefault();
+      var cafIti = window._cafIti;
+      var positions = [];
+      form.querySelectorAll('[name="positions"]:checked').forEach(function(cb) { positions.push(cb.value); });
+      var payload = {
+        firstName: (document.getElementById('caf-fn')      || {}).value || '',
+        lastName:  (document.getElementById('caf-ln')      || {}).value || '',
+        email:     (document.getElementById('caf-email')   || {}).value || '',
+        phone:     cafIti ? cafIti.getNumber() : ((document.getElementById('caf-phone') || {}).value || ''),
+        positions: positions.join(', '),
+        message:   (document.getElementById('caf-message') || {}).value || '',
+        // Резюме (attachments) не входит в payload — JSON-вебхук не передаёт файлы.
+        // Нужен отдельный канал (GHL-форма с полем file, или файлхранилище + ссылка в payload).
+        formSource: 'Careers Page'
+      };
+      Object.assign(payload, window.getUtmPayload ? window.getUtmPayload() : {});
+      fetch('REPLACE_WITH_JOB_APPLICATION_WEBHOOK_URL', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function() { window.location.href = '/thank-you/'; })
+        .catch(function() { window.location.href = '/thank-you/'; });
+    }
+  });
+
+  function addErrSpan(field) {
+    if (!field.querySelector('.caf-err-msg')) {
+      var span = document.createElement('span');
+      span.className = 'caf-err-msg';
+      span.textContent = 'This field is required.';
+      field.appendChild(span);
+    }
+  }
+
+  function markFieldError(field, msg) {
+    field.classList.add('caf-has-error');
+    var input = field.querySelector('input:not([type=checkbox]), textarea');
+    if (input) input.classList.add('caf-error');
+    field.querySelectorAll('.caf-pill').forEach(function(p) { p.classList.add('caf-pill-error'); });
+    if (msg) { var span = field.querySelector('.caf-err-msg'); if (span) span.textContent = msg; }
+  }
+
+  function clearFieldError(field) {
+    field.classList.remove('caf-has-error');
+    field.querySelectorAll('.caf-error').forEach(function(el) { el.classList.remove('caf-error'); });
+    field.querySelectorAll('.caf-pill-error').forEach(function(p) { p.classList.remove('caf-pill-error'); });
+    var span = field.querySelector('.caf-err-msg');
+    if (span) span.textContent = 'This field is required.';
+  }
+})();
+
+/* ── File upload (визуальный: выбор/drag&drop файла, без реальной отправки) ── */
+(function() {
+  var zone  = document.querySelector('.caf-file-zone');
+  var input = document.getElementById('caf-file');
+  var list  = document.getElementById('caf-file-list');
+  if (!zone || !input || !list) return;
+
+  var files = [];
+
+  input.addEventListener('change', function() {
+    addFiles(Array.from(input.files));
+    input.value = '';
+  });
+
+  zone.addEventListener('dragover', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    zone.classList.add('caf-drag-over');
+  });
+  zone.addEventListener('dragleave', function(e) {
+    if (!zone.contains(e.relatedTarget)) zone.classList.remove('caf-drag-over');
+  });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    zone.classList.remove('caf-drag-over');
+    addFiles(Array.from(e.dataTransfer.files));
+  });
+
+  function addFiles(newFiles) {
+    // Один файл резюме — новый выбор заменяет предыдущий
+    if (newFiles.length) files = [newFiles[0]];
+    syncInput();
+    render();
+  }
+
+  function removeFile() {
+    files = [];
+    syncInput();
+    render();
+  }
+
+  function syncInput() {
+    var dt = new DataTransfer();
+    files.forEach(function(f) { dt.items.add(f); });
+    input.files = dt.files;
+  }
+
+  function fmtSize(b) {
+    return b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.round(b / 1024) + ' KB';
+  }
+
+  function render() {
+    list.innerHTML = '';
+    var fileIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+    files.forEach(function(f) {
+      var item = document.createElement('div');
+      item.className = 'caf-file-item';
+      item.innerHTML = fileIcon
+        + '<span class="caf-file-name">' + f.name + '</span>'
+        + '<span class="caf-file-size">' + fmtSize(f.size) + '</span>'
+        + '<button type="button" class="caf-file-remove" aria-label="Remove">×</button>';
+      item.querySelector('.caf-file-remove').addEventListener('click', removeFile);
+      list.appendChild(item);
+    });
+  }
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
+<script>
+(function() {
+  var phoneEl = document.getElementById('caf-phone');
+  if (!phoneEl || !window.intlTelInput) return;
+  window._cafIti = window.intlTelInput(phoneEl, {
+    initialCountry: 'us',
+    countryOrder: ['us', 'ca', 'gb', 'de', 'au'],
+    showSelectedDialCode: true,
+    countrySearch: true
+  });
+})();
+</script>
+<script>
+/* ── Left panel: clip-reveal заголовка по словам, запуск при появлении во вьюпорте ── */
+(function() {
+  var left = document.querySelector('.caf-left');
+  var title = document.querySelector('.caf-left-title');
+  if (!left || !title) return;
+
+  var words = title.textContent.split(/(\s+)/);
+  title.innerHTML = '';
+  var wordIdx = 0;
+
+  words.forEach(function(part) {
+    if (/^\s+$/.test(part)) {
+      title.appendChild(document.createTextNode(part));
+    } else if (part) {
+      var wrap = document.createElement('span');
+      wrap.className = 'caf-word-wrap';
+      var span = document.createElement('span');
+      span.className = 'caf-split-word';
+      span.style.animationDelay = (0.55 + wordIdx * 0.09) + 's';
+      span.textContent = part;
+      wordIdx++;
+      wrap.appendChild(span);
+      title.appendChild(wrap);
+    }
+  });
+
+  // .caf-left липкий и высотой в весь экран — как только секция появляется
+  // в вьюпорте, он мгновенно занимает весь экран (intersection ratio сразу ~1).
+  // Поэтому триггерим не по самому фото, а по контенту формы справа: анимация
+  // запускается только когда пользователь реально доскроллил и первая секция
+  // формы («Contact Information») дошла до середины экрана.
+  var trigger = document.querySelector('.caf-right .caf-section') || left;
+
+  var played = false;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !played) {
+        played = true;
+        left.classList.add('caf-in-view');
+        title.querySelectorAll('.caf-split-word').forEach(function(s) {
+          s.classList.add('caf-reveal');
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0, rootMargin: '-40% 0px -40% 0px' });
+  observer.observe(trigger);
+})();
 </script>
 </body>
 </html>

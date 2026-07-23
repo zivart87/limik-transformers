@@ -105,7 +105,7 @@
       position: relative; z-index: 5;
       margin-top: -96px;
       overflow: visible;
-      margin-bottom: 320px;
+      margin-bottom: 80px;
     }
     .co-intro::before {
       content: '';
@@ -121,7 +121,7 @@
       position: absolute;
       right: 48px;
       left: 52%;
-      bottom: -320px;
+      bottom: -80px;
       height: 560px;
       z-index: 2;
       overflow: hidden;
@@ -155,7 +155,7 @@
     @media (max-width: 900px) {
       .co-intro::before { display: none; }
       .co-intro-inner { width: 100%; padding: 48px 28px 112px; background: var(--navy-dark); }
-      .co-intro-inner p { margin-bottom: 0; }
+      .co-intro-inner p { margin-bottom: 28px; }
       .co-intro-photo {
         display: block;
         position: relative;
@@ -166,6 +166,57 @@
       }
       .co-intro { margin-bottom: 0; }
       .co-intro-inner h2 { font-size: 36px; }
+    }
+
+    /* ═══════════════════════════════
+       FIND YOUR PLACE — job cards
+    ═══════════════════════════════ */
+    .jobs-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; outline: 1px solid var(--border-l);
+    }
+    .job-card {
+      display: block; position: relative; overflow: hidden;
+      border-right: 1px solid var(--border-l); border-bottom: 1px solid var(--border-l);
+    }
+    .job-card:nth-child(3n) { border-right: none; }
+    .job-card:nth-child(n+4) { border-bottom: none; }
+    .job-card-img { width: 100%; height: 220px; overflow: hidden; padding: 28px 28px 0; box-sizing: border-box; }
+    .job-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .job-card-body { padding: 28px; }
+    .job-card-body h3 {
+      font-size: 20px; font-weight: 700;
+      color: var(--navy-dark); margin-bottom: 16px; line-height: 1.2;
+    }
+    .job-card-body p {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: #3A5570; margin-bottom: 24px;
+    }
+    /* ── Hover panel — floods up from the bottom ── */
+    .job-card-hover {
+      position: absolute; inset: 0; z-index: 5;
+      background: var(--navy-dark);
+      padding: 28px;
+      display: flex; flex-direction: column; justify-content: center;
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 0.5s cubic-bezier(0.22,1,0.36,1);
+      pointer-events: none;
+    }
+    .job-card:hover .job-card-hover { clip-path: inset(0 0 0 0); pointer-events: auto; }
+    .job-card-hover h3 {
+      font-size: 20px; font-weight: 700;
+      color: var(--white); margin-bottom: 16px; line-height: 1.2;
+    }
+    .job-card-hover p {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.72); margin-bottom: 24px;
+    }
+    .job-card-hover .co-intro-link { color: var(--white); }
+    .job-card:hover .job-card-hover .co-intro-link-icon svg { transform: rotate(-45deg); }
+    @media (max-width: 900px) {
+      .jobs-grid { grid-template-columns: 1fr; }
+      .job-card { border-right: none; border-bottom: 1px solid var(--border-l); }
+      .job-card:last-child { border-bottom: none; }
     }
 
   </style>
@@ -188,7 +239,7 @@
   >
   <div class="co-hero-overlay"></div>
   <div class="co-hero-content">
-    <h1>Build What Powers America</h1>
+    <h1>Where Precision Meets Purpose</h1>
   </div>
 </section>
 
@@ -199,13 +250,151 @@
   <div class="container">
     <div class="co-intro-inner">
       <h2>Join the Team Behind the Grid</h2>
-      <p>We're looking for engineers, specialists, and builders who want to work on large power infrastructure — transformers that move energy across entire regions. Every role at LIMIK is a chance to build something that lasts.</p>
+      <p>At LIMIK International, we're not just hiring — <strong>we're building a team of professionals who want to work on something that matters.</strong> We manufacture high-voltage electrical equipment for the American market: the kind of equipment that keeps the grid running, powers generation facilities, and supports the infrastructure that everything else depends on.</p>
+      <p>Why LIMIK? Because here, expertise is respected and the work demands it. Our engineers, manufacturing specialists, and operations teams work on projects where precision isn't optional — it's the baseline. That culture shows up in how we hire, how we work, and how we hold ourselves accountable.</p>
+      <p>We're a company of builders and problem-solvers. If you want work where your skills carry real consequence — <strong>you'll feel it from day one.</strong></p>
+      <a href="#open-positions" class="btn btn-gold btn-lg">Apply Now</a>
     </div>
   </div>
   <div class="co-intro-photo clip-tl">
     <img src="/assets/images/transformer-installation-site.webp" alt="LIMIK transformer installation">
   </div>
 </div>
+
+<!-- ══════════════════════════════
+   FIND YOUR PLACE AT LIMIK
+══════════════════════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-header">
+      <div class="eyebrow">Careers</div>
+      <h2>Find Your Place at LIMIK</h2>
+    </div>
+    <div class="jobs-grid">
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/substation.webp" alt="Engineering roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Engineering</h3>
+          <p>Design, analysis, and specification of high-voltage electrical equipment built to IEEE, ANSI, and NEMA standards.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Engineering</h3>
+          <p>Our engineering team is responsible for the design, analysis, and technical specification of high-voltage electrical equipment across the full product range. Work spans electromagnetic calculations, thermal modeling, and documentation to IEEE, ANSI, and NEMA standards. Engineers collaborate directly with manufacturing and quality teams from concept through factory acceptance testing.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/transformer-manufacturing-facility.webp" alt="Manufacturing & Production roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Manufacturing &amp; Production</h3>
+          <p>Hands-on production of high-voltage electrical equipment where precision and craft define every unit.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Manufacturing &amp; Production</h3>
+          <p>Our manufacturing team covers the full build process — from core assembly and winding through final integration and test preparation. The work requires technical skill and the discipline to maintain quality at every stage of production. Team members work directly with engineered specifications and are expected to understand what they're building and why it matters.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/transformer-factory-interior.webp" alt="Quality & Testing roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Quality &amp; Testing</h3>
+          <p>Verification, testing, and acceptance of electrical equipment to the standards utilities and industrial clients require.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Quality &amp; Testing</h3>
+          <p>The quality and testing team ensures every unit meets technical and regulatory requirements before it reaches the customer. Work includes in-process quality control and factory acceptance testing to IEEE and ANSI standards. Team members work closely with engineering and production and are expected to maintain rigorous standards without exception.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/transformer-installation-site.webp" alt="Supply Chain & Procurement roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Supply Chain &amp; Procurement</h3>
+          <p>Sourcing and logistics for a demanding production environment — the right materials, on time, to specification.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Supply Chain &amp; Procurement</h3>
+          <p>The supply chain and procurement team sources specialized materials and components for high-voltage electrical equipment manufacturing. The role requires working with technical specifications, evaluating suppliers, and coordinating delivery schedules with production planning. We are looking for professionals with experience in industrial manufacturing or capital goods environments where precision and lead time both matter.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/substation-quote.webp" alt="Business Development & Sales roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Business Development &amp; Sales</h3>
+          <p>Developing relationships with utilities, industrial clients, and project developers across the American market.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Business Development &amp; Sales</h3>
+          <p>Our business development team works with utilities, independent power producers, EPC contractors, and large industrial clients across long procurement cycles. The work requires deep technical understanding and sustained relationship management at the engineering and procurement level. We are looking for professionals with backgrounds in power equipment sales or energy sector business development.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+      <a href="#open-positions" class="job-card">
+        <div class="job-card-img"><img src="/assets/images/engineering-team.webp" alt="Operations & Administration roles at LIMIK"></div>
+        <div class="job-card-body">
+          <h3>Operations &amp; Administration</h3>
+          <p>The operational and administrative foundation that keeps a precision manufacturing company running at full capacity.</p>
+          <span class="co-intro-link" style="color: var(--navy-dark);">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+        <div class="job-card-hover">
+          <h3>Operations &amp; Administration</h3>
+          <p>Operations and administration roles at LIMIK span project management, finance, human resources, and compliance. These teams support the manufacturing and commercial sides of the business and are held to the same standard of precision and accountability. We are looking for professionals who manage complexity well and understand that in a manufacturing company, execution is everything.</p>
+          <span class="co-intro-link">
+            <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Apply Now
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
 
 <div id="site-footer"></div>
 <script src="../assets/js/footer.js"></script>

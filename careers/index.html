@@ -578,7 +578,7 @@
       <p>At LIMIK International, we're not just hiring — <strong>we're building a team of professionals who want to work on something that matters.</strong> We manufacture high-voltage electrical equipment for the American market: the kind of equipment that keeps the grid running, powers generation facilities, and supports the infrastructure that everything else depends on.</p>
       <p>Why LIMIK? Because here, expertise is respected and the work demands it. Our engineers, manufacturing specialists, and operations teams work on projects where precision isn't optional — it's the baseline. That culture shows up in how we hire, how we work, and how we hold ourselves accountable.</p>
       <p>We're a company of builders and problem-solvers. If you want work where your skills carry real consequence — <strong>you'll feel it from day one.</strong></p>
-      <a href="#open-positions" class="co-intro-link" style="color: var(--white);">
+      <a href="#apply-form" class="co-intro-link" style="color: var(--white);">
         <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         Apply Now
       </a>
@@ -600,7 +600,7 @@
     </div>
     <div class="jobs-grid">
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/substation.webp" alt="Engineering roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Engineering</h3>
@@ -620,7 +620,7 @@
         </div>
       </a>
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/transformer-manufacturing-facility.webp" alt="Manufacturing & Production roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Manufacturing &amp; Production</h3>
@@ -640,7 +640,7 @@
         </div>
       </a>
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/transformer-factory-interior.webp" alt="Quality & Testing roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Quality &amp; Testing</h3>
@@ -660,7 +660,7 @@
         </div>
       </a>
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/transformer-installation-site.webp" alt="Supply Chain & Procurement roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Supply Chain &amp; Procurement</h3>
@@ -680,7 +680,7 @@
         </div>
       </a>
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/substation-quote.webp" alt="Business Development & Sales roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Business Development &amp; Sales</h3>
@@ -700,7 +700,7 @@
         </div>
       </a>
 
-      <a href="#open-positions" class="job-card">
+      <a href="#apply-form" class="job-card">
         <div class="job-card-img"><img src="/assets/images/engineering-team.webp" alt="Operations & Administration roles at LIMIK"></div>
         <div class="job-card-body">
           <h3>Operations &amp; Administration</h3>
@@ -736,7 +736,7 @@
         <h2>Built for the Long Term</h2>
         <p>We offer competitive compensation and a work environment where precision is respected, contributions are recognized, and careers are built over time.</p>
         <p>At LIMIK, professional growth is part of how we operate. We hire people who take their work seriously — and we support them with the resources, structure, and team they need to perform at their best.</p>
-        <a href="#open-positions" class="co-intro-link" style="color: var(--white);">
+        <a href="#apply-form" class="co-intro-link" style="color: var(--white);">
           <span class="co-intro-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           Apply Now
         </a>
@@ -762,14 +762,14 @@
 <!-- ══════════════════════════════
    APPLY NOW — application form
 ══════════════════════════════ -->
-<div class="caf-page">
+<div class="caf-page" id="apply-form">
 
   <!-- LEFT: sticky photo + messaging -->
   <div class="caf-left">
-    <img class="caf-left-photo" src="/assets/images/transformer-hero.webp" alt="LIMIK manufacturing facility">
+    <img class="caf-left-photo" src="/assets/images/rq-hero.webp" alt="LIMIK manufacturing facility">
     <div class="caf-left-overlay"></div>
     <div class="caf-left-content">
-      <h2 class="caf-left-title">Every application reviewed by our hiring team personally</h2>
+      <h2 class="caf-left-title">Your expertise deserves a place where it matters</h2>
     </div>
   </div>
 
@@ -910,6 +910,21 @@
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
+
+  // Якорные ссылки (#apply-form и т.п.) — переход через lenis.scrollTo(),
+  // а не нативно: Lenis сам управляет скроллом через RAF, и если ещё
+  // не «доехал» после предыдущего скролла, нативный прыжок браузера
+  // с ним конфликтует и клик будто не срабатывает с первого раза.
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -110 });
+  });
 
   const introPhoto = document.querySelector('.co-intro-photo img');
   if (introPhoto) {

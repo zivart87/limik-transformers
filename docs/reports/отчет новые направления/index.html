@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIMIK — Анализ смежных направлений: Щитовое оборудование + Модульные дата-центры</title>
+<style>
+:root{
+  --navy:#0A1220; --navy2:#0F1A2E; --navy3:#12203A;
+  --line:rgba(148,178,224,.14); --line2:rgba(148,178,224,.22);
+  --t0:#F2F6FC; --t1:#C7D3E6; --t2:#93A5C4; --t3:#66789A;
+  --acc:#F5C200; --blue:#1D5DC1; --blue2:#4D8BE8;
+  --green:#4ADE80; --red:#F87171; --amber:#FBBF24;
+  --serif:Georgia,'Times New Roman',serif;
+  --mono:'SF Mono','Cascadia Code',Consolas,monospace;
+  --sans:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--navy);color:var(--t1);font-family:var(--sans);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+main{max-width:1080px;margin:0 auto;padding:48px 28px 80px}
+em{color:var(--acc);font-style:normal}
+
+/* HERO */
+.hero{text-align:center;padding:56px 0 40px;border-bottom:1px solid var(--line);margin-bottom:48px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--acc);border:1px solid rgba(245,194,0,.25);border-radius:20px;padding:6px 16px;margin-bottom:24px;letter-spacing:.06em;text-transform:uppercase}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--acc);animation:pl 2s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-family:var(--serif);font-size:40px;font-weight:400;color:var(--t0);line-height:1.2;margin-bottom:16px}
+.hero-sub{font-size:15px;color:var(--t2);max-width:640px;margin:0 auto 32px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:820px;margin:0 auto}
+.stat{background:var(--navy2);border:1px solid var(--line);border-radius:12px;padding:18px 12px}
+.stat-v{font-family:var(--serif);font-size:24px;color:var(--acc)}
+.stat-l{font-size:11px;color:var(--t3);margin-top:4px}
+
+/* SECTION HEADERS */
+.sh{display:flex;align-items:center;gap:16px;margin:56px 0 24px}
+.sh-num{font-family:var(--mono);font-size:12px;color:var(--acc);border:1px solid rgba(245,194,0,.3);border-radius:6px;padding:4px 10px}
+.sh-title{font-family:var(--serif);font-size:24px;color:var(--t0);white-space:nowrap}
+.sh-line{flex:1;height:1px;background:var(--line)}
+
+/* VERDICT */
+.verdict{background:linear-gradient(135deg,var(--navy3) 0%,rgba(29,93,193,.14) 100%);border:1px solid rgba(29,93,193,.3);border-radius:16px;padding:28px 32px;margin-bottom:8px}
+.verdict-t{font-family:var(--serif);font-size:19px;color:var(--t0);margin-bottom:12px}
+.verdict p{font-size:13.5px;color:var(--t1);margin-bottom:10px}
+.verdict p:last-child{margin-bottom:0}
+
+/* PILLS */
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;border-radius:16px;padding:4px 12px;margin:2px 4px 2px 0}
+.pill-green{color:var(--green);border:1px solid rgba(74,222,128,.3);background:rgba(74,222,128,.06)}
+.pill-red{color:var(--red);border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.pill-amber{color:var(--amber);border:1px solid rgba(251,191,36,.3);background:rgba(251,191,36,.06)}
+.pill-blue{color:var(--blue2);border:1px solid rgba(77,139,232,.3);background:rgba(77,139,232,.06)}
+
+/* COMPANY CARD */
+.co{background:var(--navy2);border:1px solid var(--line);border-radius:16px;padding:26px 30px;margin-bottom:20px}
+.co-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.co-name{font-family:var(--serif);font-size:22px;color:var(--t0)}
+.co-loc{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.co-what{font-size:13px;color:var(--t2);margin-bottom:16px}
+.co-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.co-cell{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.co-cell-t{font-family:var(--mono);font-size:10px;color:var(--acc);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.co-cell-d{font-size:12px;color:var(--t1);line-height:1.55}
+
+/* MARKET DATA */
+.mkt{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:20px}
+.mkt-card{background:var(--navy3);border:1px solid rgba(29,93,193,.25);border-radius:12px;padding:18px 20px}
+.mkt-v{font-family:var(--serif);font-size:26px;color:var(--t0)}
+.mkt-v span{font-size:14px;color:var(--acc)}
+.mkt-l{font-size:11.5px;color:var(--t2);margin-top:6px;line-height:1.5}
+.mkt-src{font-family:var(--mono);font-size:9.5px;color:var(--t3);margin-top:8px}
+
+/* PRO / CON */
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.pc-col{background:var(--navy2);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.pc-col.good{border-color:rgba(74,222,128,.22)}
+.pc-col.bad{border-color:rgba(248,113,113,.22)}
+.pc-t{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.pc-col.good .pc-t{color:var(--green)}
+.pc-col.bad .pc-t{color:var(--red)}
+.pc-item{display:flex;gap:10px;margin-bottom:12px;font-size:12.5px;color:var(--t1);line-height:1.6}
+.pc-item:last-child{margin-bottom:0}
+.pc-ico{flex-shrink:0;font-size:12px;margin-top:1px}
+.pc-col.good .pc-ico{color:var(--green)}
+.pc-col.bad .pc-ico{color:var(--red)}
+.pc-item strong{color:var(--t0)}
+
+/* RISK TABLE */
+table{width:100%;border-collapse:collapse;margin-bottom:20px;background:var(--navy2);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10.5px;color:var(--acc);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:12px 16px;border-bottom:1px solid var(--line2);background:rgba(0,0,0,.25)}
+td{font-size:12.5px;color:var(--t1);padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--t0)}
+.rk{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:5px;white-space:nowrap}
+.rk-hi{color:var(--red);background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25)}
+.rk-md{color:var(--amber);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25)}
+.rk-lo{color:var(--green);background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25)}
+
+/* SYNERGY */
+.syn{background:linear-gradient(135deg,rgba(245,194,0,.05) 0%,rgba(29,93,193,.08) 100%);border:1px solid rgba(245,194,0,.2);border-radius:16px;padding:26px 30px;margin-bottom:20px}
+.syn-t{font-family:var(--serif);font-size:19px;color:var(--t0);margin-bottom:14px}
+.syn-flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.syn-node{background:var(--navy3);border:1px solid var(--line2);border-radius:10px;padding:14px 18px;text-align:center;min-width:150px}
+.syn-node-t{font-size:13px;font-weight:700;color:var(--t0)}
+.syn-node-d{font-family:var(--mono);font-size:10px;color:var(--acc);margin-top:3px}
+.syn-arr{font-size:18px;color:var(--acc);padding:0 14px}
+.syn p{font-size:13px;color:var(--t1);margin-bottom:8px}
+
+/* STEPS */
+.steps{margin-bottom:20px}
+.step{display:flex;gap:16px;margin-bottom:14px;background:var(--navy2);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.step-n{font-family:var(--mono);font-size:12px;color:var(--acc);border:1px solid rgba(245,194,0,.3);border-radius:8px;padding:6px 12px;height:fit-content;white-space:nowrap}
+.step-t{font-size:13px;color:var(--t1);line-height:1.65}
+.step-t strong{color:var(--t0)}
+
+/* DD CHECKLIST */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.dd-box{background:var(--navy2);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.dd-box-t{font-family:var(--mono);font-size:11px;color:var(--blue2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.dd-i{display:flex;gap:9px;font-size:12px;color:var(--t1);margin-bottom:9px;line-height:1.55}
+.dd-i:last-child{margin-bottom:0}
+.dd-i::before{content:'☐';color:var(--acc);flex-shrink:0}
+
+/* CONCLUSION */
+.conclusion{background:linear-gradient(135deg,var(--navy3) 0%,rgba(29,93,193,.12) 100%);border:1px solid rgba(29,93,193,.3);border-radius:20px;padding:36px;margin-top:48px;text-align:center}
+.conclusion h2{font-family:var(--serif);font-size:26px;color:var(--t0);margin-bottom:14px}
+.conclusion p{font-size:13.5px;color:var(--t1);max-width:640px;margin:0 auto 14px;line-height:1.75}
+
+.note{font-family:var(--mono);font-size:11px;color:var(--t3);border-left:2px solid var(--acc);padding:8px 14px;margin:14px 0;background:rgba(245,194,0,.03)}
+
+@media(max-width:680px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .pc,.dd{grid-template-columns:1fr}
+  .hero h1{font-size:28px}
+  .syn-arr{transform:rotate(90deg);padding:8px 0}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge"><div class="pulse"></div>Внутренний стратегический документ · LIMIK · Июль 2026</div>
+  <h1>Два быстрых направления:<br>щитовое оборудование и <em>модульные дата-центры</em></h1>
+  <p class="hero-sub">Анализ смежных производственных направлений на базе компетенций Extreme LTD (Украина) и ModulEdge (Чехия). Формат — JV, локация — США, цель — выручка до запуска трансформаторного производства.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-v">6–12 мес</div><div class="stat-l">До первой выручки (оценка)</div></div>
+    <div class="stat"><div class="stat-v">$17.3B</div><div class="stat-l">Рынок switchgear США, 2025</div></div>
+    <div class="stat"><div class="stat-v">18.9%</div><div class="stat-l">CAGR модульных ДЦ до 2031</div></div>
+    <div class="stat"><div class="stat-v">70–80 нед</div><div class="stat-l">Лид-тайм LV switchgear у лидеров</div></div>
+  </div>
+</div>
+
+<!-- 00 VERDICT -->
+<div class="sh"><div class="sh-num">00</div><div class="sh-title">Вердикт коротко</div><div class="sh-line"></div></div>
+
+<div class="verdict">
+  <div class="verdict-t">Оба направления стратегически осмысленны — но они не равны по риску и скорости</div>
+  <p><strong style="color:var(--t0)">Направление А (щитовое оборудование / НКУ по компетенциям Extreme)</strong> — попадание точно в тот же дефицит, что и трансформаторы: лид-таймы LV switchgear у Eaton/Schneider/Siemens/ABB достигли 70–80 недель, и рынок буквально ищет новых сборщиков. Порог входа низкий (сборочное производство), но есть один тяжёлый технический риск: продукция Extreme построена на стандартах IEC, а рынок США живёт на UL/ANSI/NEMA — это не перенос линии, а частичный редизайн продукта и обязательная сертификация UL 891.</p>
+  <p><strong style="color:var(--t0)">Направление B (модульные дата-центры по компетенциям ModulEdge)</strong> — рынок растёт на ~19% в год на волне AI, а сегмент 0.1–5 МВт недообслужен гиперскейлерами. ModulEdge уже работает по white-label модели — партнёрская архитектура у них встроена в бизнес. Но конкуренция в США жёстче (Vertiv, Eaton, Fibrebond, IEM), а маржа зависит от компонентов, которые сами в дефиците.</p>
+  <p><strong style="color:var(--acc)">Ключевой стратегический вывод:</strong> направления не конкурируют — они образуют вертикальную цепочку. Щитовое оборудование (А) — это компонент внутри модульного дата-центра (B) и внутри подстанции, где стоит трансформатор LIMIK. Правильная подача для инвестора: не «три разных бизнеса», а <em>одна продуктовая пирамида «от сети до стойки»</em>, где быстрые направления финансируют и де-рискуют длинное.</p>
+  <div style="margin-top:16px">
+    <span class="pill pill-green">✓ А: тот же дефицит, что у трансформаторов</span>
+    <span class="pill pill-green">✓ B: AI-спрос, ниша 0.1–5 МВт свободна</span>
+    <span class="pill pill-amber">⚠ А: IEC → UL редизайн обязателен</span>
+    <span class="pill pill-amber">⚠ Риск расфокуса до закрытия инвестиций</span>
+  </div>
+</div>
+
+<!-- 01 PARTNERS -->
+<div class="sh"><div class="sh-num">01</div><div class="sh-title">Кто партнёры</div><div class="sh-line"></div></div>
+
+<div class="co">
+  <div class="co-head"><div class="co-name">Extreme LTD</div><div class="co-loc">Борисполь, Украина · с 2000 года · extremeltd.ua</div></div>
+  <div class="co-what">Инжиниринговая компания полного цикла: щитовое оборудование, модульные подстанции, дизель-генераторные установки, промышленная автоматизация. Сертифицированный panel builder, включая поставки для атомной и тепловой энергетики Украины.</div>
+  <div class="co-grid">
+    <div class="co-cell"><div class="co-cell-t">Ключевые продукты</div><div class="co-cell-d">НКУ (низковольтные комплектные устройства), щиты постоянного тока для АЭС/ТЭС, установки компенсации реактивной мощности, модульные трансформаторные подстанции, ДГУ 15–3000 кВА</div></div>
+    <div class="co-cell"><div class="co-cell-t">Что даёт LIMIK</div><div class="co-cell-d">25+ лет инженерной практики в щитостроении, отработанные конструкции, люди способные поставить сборочную линию и обучить персонал. Опыт работы с критической инфраструктурой (атомная отрасль)</div></div>
+    <div class="co-cell"><div class="co-cell-t">Главное ограничение</div><div class="co-cell-d">Вся продуктовая база — на стандартах IEC. Американский рынок требует UL 891 / UL 1558, ANSI, NEMA-корпуса. Конструкции придётся адаптировать, а производство — сертифицировать в США</div></div>
+    <div class="co-cell"><div class="co-cell-t">Геополитический контекст</div><div class="co-cell-d">Компания работает в воюющей стране. Это риск непрерывности (персонал, логистика) — но одновременно и мотивация ключевых инженеров к участию в американском проекте</div></div>
+  </div>
+</div>
+
+<div class="co">
+  <div class="co-head"><div class="co-name">ModulEdge</div><div class="co-loc">Кромержиж, Чехия · moduledge.com</div></div>
+  <div class="co-what">Производитель кастомных модульных дата-центров для AI и edge-вычислений. Позиционируется в сегменте глубокой кастомизации малых и средних мощностей — именно там, где гиперскейлерные стандарты не работают.</div>
+  <div class="co-grid">
+    <div class="co-cell"><div class="co-cell-t">Ключевые продукты</div><div class="co-cell-d">Контейнерные и префаб модульные ДЦ, 5–150 кВт на стойку, Tier III/IV, direct-to-chip liquid cooling под NVIDIA B200/GB200, EMP-экранирование, сборка за 3–6 месяцев</div></div>
+    <div class="co-cell"><div class="co-cell-t">Что даёт LIMIK</div><div class="co-cell-d">Готовая white-label / партнёрская модель — они уже строят бизнес через партнёров. Инженерия высокоплотного охлаждения, документация, обучение сборке. Активный контент-маркетинг (их аналитика рынка ранжируется в поиске)</div></div>
+    <div class="co-cell"><div class="co-cell-t">Главное ограничение</div><div class="co-cell-d">Молодой бренд без установленной базы в США. Компоненты (UPS, чиллеры, switchgear) — те же дефицитные позиции. Сервисные обязательства (SLA) требуют полевой команды в США с первого дня</div></div>
+    <div class="co-cell"><div class="co-cell-t">DOD-угол</div><div class="co-cell-d">EMP-экранирование и sovereign/edge compute — прямое попадание в оборонную нишу, которую LIMIK уже разрабатывает через Section 303. Модульный ДЦ с EMP-защитой — продукт, который Пентагон понимает</div></div>
+  </div>
+</div>
+
+<!-- 02 MARKET A -->
+<div class="sh"><div class="sh-num">02</div><div class="sh-title">Направление А — Рынок щитового оборудования США</div><div class="sh-line"></div></div>
+
+<div class="mkt">
+  <div class="mkt-card"><div class="mkt-v">$17.3B <span>→ $22.8B</span></div><div class="mkt-l">Рынок switchgear США: 2025 → 2031, CAGR 4.69%. Высоковольтный сегмент растёт быстрее — 6.54%</div><div class="mkt-src">Mordor Intelligence, 2026</div></div>
+  <div class="mkt-card"><div class="mkt-v">~$2B <span>· 10.5%</span></div><div class="mkt-l">MV switchgear (1–42 кВ) в США, CAGR до 2030 — самый быстрорастущий подсегмент за счёт дата-центров и модернизации сетей</div><div class="mkt-src">PTR / T&D World</div></div>
+  <div class="mkt-card"><div class="mkt-v">70–80 <span>недель</span></div><div class="mkt-l">Лид-таймы LV draw-out switchgear у действующих производителей. ATS: 45–80 недель. Панельные щиты: 20+ недель против 4–6 до 2020</div><div class="mkt-src">Barton Associates, 2026</div></div>
+  <div class="mkt-card"><div class="mkt-v">4 <span>игрока</span></div><div class="mkt-l">Eaton, Schneider (Square D), Siemens, ABB контролируют коммерческий сегмент — и все перегружены. Schneider перенаправил мощности на AI-заказы ($3B+ предпродано Microsoft/Compass)</div><div class="mkt-src">Electrical Trends, 2024–2026</div></div>
+</div>
+
+<div class="note">// Рынок сам сформулировал нишу: «emergency switchboard builds» — срочная сборка щитов региональными UL-панельными цехами стала нормой закупок, а не крайней мерой. Региональный сборщик с UL 891 и складом компонентов сегодня продаёт скорость, а не цену.</div>
+
+<div class="pc">
+  <div class="pc-col good">
+    <div class="pc-t">✓ Аргументы «за»</div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Тот же дефицит, та же логика, что у трансформаторов.</strong> Утилиты уже рассматривают раннюю закупку switchgear как конкурентное преимущество. LIMIK продаёт знакомой аудитории знакомый аргумент — «доступный слот производства».</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Низкий capex и быстрый запуск.</strong> Сборка НКУ — это цех, стеллажи, инструмент, стенд испытаний и обученные руки. Не литейное и не намоточное производство. Реалистичный горизонт до первой отгрузки: 6–12 месяцев с момента решения.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Продукт входит в собственную цепочку.</strong> Щиты идут внутрь модульных ДЦ (направление B), внутрь модульных подстанций и в комплект к будущим трансформаторам. Каждый внутренний заказ — маржа, которая не уходит наружу.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Спрос локализован рядом со Spartanburg.</strong> Кэролины — один из самых горячих коридоров дата-центров и промышленного решоринга. Региональный сборщик «в дне езды» — это ровно тот продукт, который рынок ищет.</div></div>
+  </div>
+  <div class="pc-col bad">
+    <div class="pc-t">✗ Риски и барьеры</div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>IEC → UL/ANSI — это редизайн, а не перевод.</strong> Зазоры, изоляционные расстояния, медные шины, компоненты, корпуса NEMA — всё пересматривается. Плюс аудит и авторизация цеха по UL 891 (для LV switchboards) — процесс на месяцы. Это главная статья скрытых затрат.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Компонентная зависимость от конкурентов.</strong> Автоматические выключатели поставляют те же Eaton/Schneider/ABB/Siemens — и они в дефиците. Без выстроенного канала компонентов (или мульти-брендового склада) лид-тайм LIMIK будет равен лид-тайму чужих выключателей.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Кадровый перенос из Украины не автоматичен.</strong> Визы (E-2/L-1/O-1), релокация семей, зарплатные ожидания США. План «люди Extreme научат» должен быть подтверждён конкретными именами и их готовностью — до подписания JV.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Война как риск непрерывности партнёра.</strong> Инженерное ядро Extreme физически находится в Украине. Нужен план Б: перенос документации, дублирование ключевых компетенций в США в первые 12 месяцев.</div></div>
+  </div>
+</div>
+
+<!-- 03 MARKET B -->
+<div class="sh"><div class="sh-num">03</div><div class="sh-title">Направление B — Рынок модульных дата-центров</div><div class="sh-line"></div></div>
+
+<div class="mkt">
+  <div class="mkt-card"><div class="mkt-v">$42.7B <span>→ $101B</span></div><div class="mkt-l">Глобальный рынок модульных ДЦ: 2026 → 2031, CAGR 18.87%. Десять аналитических агентств сходятся в диапазоне 17–19%</div><div class="mkt-src">Mordor Intelligence, 2026</div></div>
+  <div class="mkt-card"><div class="mkt-v">$30.6B <span>к 2032</span></div><div class="mkt-l">Рынок модульных ДЦ США. Драйверы: AI-инфраструктура, скорость ввода мощностей, дефицит квалифицированных строительных кадров</div><div class="mkt-src">MarketsandMarkets, 2026</div></div>
+  <div class="mkt-card"><div class="mkt-v">0.1–5 <span>МВт</span></div><div class="mkt-l">Недообслуженный сегмент: гиперскейлеры консолидируются вокруг мега-модулей 10+ МВт, оставляя edge, промышленность, оборону и sovereign compute без глубокой кастомизации</div><div class="mkt-src">Отраслевой консенсус 2026</div></div>
+  <div class="mkt-card"><div class="mkt-v">70% <span>к 2027</span></div><div class="mkt-l">Доля AI-объектов на жидкостном охлаждении в модульном исполнении. NVIDIA GB200 — 132 кВт/стойка, Blackwell Ultra — до 240 кВт. Компетенция ModulEdge — прямо в этой точке</div><div class="mkt-src">JLL / Schneider Electric, 2025</div></div>
+</div>
+
+<div class="pc">
+  <div class="pc-col good">
+    <div class="pc-t">✓ Аргументы «за»</div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Самый быстрорастущий смежный рынок из доступных.</strong> CAGR ~19% против ~5% у switchgear. Время ввода мощностей стало главной валютой AI-гонки — модульность продаёт именно время.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>White-label модель ModulEdge = быстрый старт.</strong> Партнёрство встроено в их бизнес-модель: документация, обучение, ко-брендинг. Меньше переговорных трений, чем при классическом JV с нуля.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Прямое усиление DOD-нарратива.</strong> EMP-экранированный модульный ДЦ — продукт для того же покупателя, к которому LIMIK идёт через Section 303. Один канал продаж — два продукта.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>История «power-to-compute» для инвесторов.</strong> LIMIK перестаёт быть «заводом одного продукта через 3 года» и становится платформой энергетической инфраструктуры с выручкой в первый год.</div></div>
+  </div>
+  <div class="pc-col bad">
+    <div class="pc-t">✗ Риски и барьеры</div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Конкуренты — гиганты с заводами в США.</strong> Vertiv (удваивает мощности), Eaton SmartRack, Johnson Controls, Fibrebond, IEM. Выигрывать придётся кастомизацией и скоростью, не ценой.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Компонентный дефицит бьёт по себестоимости.</strong> UPS, чиллеры, генераторы (36–48 недель), switchgear — всё в очередях. Направление А частично закрывает эту дыру — но только частично.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Сервисные обязательства с первого дня.</strong> Модульный ДЦ — не «отгрузил и забыл»: SLA, гарантия, полевая инженерия. Нужна сервисная команда в США до первой продажи, иначе крупный клиент не подпишет контракт.</div></div>
+    <div class="pc-item"><span class="pc-ico">▸</span><div><strong>Сертификационный стек шире, чем у щитов.</strong> UL, NEC, местные строительные нормы, seismic/wind-рейтинги по штатам, для DOD — отдельные требования. Каждый штат добавляет нюансы.</div></div>
+  </div>
+</div>
+
+<!-- 04 COMPARISON -->
+<div class="sh"><div class="sh-num">04</div><div class="sh-title">Сравнение направлений</div><div class="sh-line"></div></div>
+
+<table>
+  <tr><th style="width:22%">Критерий</th><th style="width:31%">А — Щитовое оборудование</th><th style="width:31%">B — Модульные дата-центры</th><th>Вывод</th></tr>
+  <tr><td><strong>Время до выручки</strong></td><td>6–12 мес (сборка проще, но UL-авторизация цеха — критический путь)</td><td>9–15 мес (сложнее продукт, дольше цикл сделки, но white-label ускоряет)</td><td><span class="rk rk-lo">А быстрее</span></td></tr>
+  <tr><td><strong>Capex на запуск</strong></td><td>Низкий: цех, стенд испытаний, склад компонентов, инструмент</td><td>Средний: сборочные боксы, кран, испытательная инфраструктура, полевая команда</td><td><span class="rk rk-lo">А дешевле</span></td></tr>
+  <tr><td><strong>Темп роста рынка</strong></td><td>4.7% общий / 10.5% MV-сегмент</td><td>~19% CAGR, AI-драйвер</td><td><span class="rk rk-lo">B быстрее растёт</span></td></tr>
+  <tr><td><strong>Средний чек</strong></td><td>Десятки–сотни тыс. $ за щит/сборку</td><td>$0.5–1.5M за starter-модуль, $5M+ за AI-конфигурации</td><td><span class="rk rk-lo">B крупнее</span></td></tr>
+  <tr><td><strong>Барьер входа</strong></td><td>UL 891/1558 авторизация + канал компонентов</td><td>Референсы, сервисная сеть, сертификационный стек по штатам</td><td><span class="rk rk-md">Сопоставимо</span></td></tr>
+  <tr><td><strong>Конкурентное давление</strong></td><td>Гиганты перегружены — ниша регионального сборщика открыта</td><td>Гиганты активно инвестируют в этот же сегмент</td><td><span class="rk rk-md">А комфортнее</span></td></tr>
+  <tr><td><strong>Синергия с трансформаторами</strong></td><td>Прямая: комплектная подстанция, общие клиенты-утилиты</td><td>Прямая: общие клиенты-ДЦ, DOD-канал, «power-to-compute»</td><td><span class="rk rk-lo">Обе высокие</span></td></tr>
+  <tr><td><strong>Риск партнёра</strong></td><td>Война в Украине, релокация людей, IEC-база</td><td>Молодой бренд, зависимость от их инженерного ядра</td><td><span class="rk rk-md">А выше</span></td></tr>
+</table>
+
+<!-- 05 SYNERGY -->
+<div class="sh"><div class="sh-num">05</div><div class="sh-title">Стратегическая связка — продуктовая пирамида</div><div class="sh-line"></div></div>
+
+<div class="syn">
+  <div class="syn-t">Не три бизнеса — одна цепочка «от сети до стойки»</div>
+  <div class="syn-flow">
+    <div class="syn-node"><div class="syn-node-t">Щитовое оборудование</div><div class="syn-node-d">выручка: год 1</div></div>
+    <div class="syn-arr">→</div>
+    <div class="syn-node"><div class="syn-node-t">Модульные ДЦ и подстанции</div><div class="syn-node-d">выручка: год 1–2</div></div>
+    <div class="syn-arr">→</div>
+    <div class="syn-node"><div class="syn-node-t">Силовые трансформаторы</div><div class="syn-node-d">выручка: год 3+</div></div>
+  </div>
+  <p><strong style="color:var(--t0)">Вертикальная логика.</strong> НКУ и распределительные щиты — обязательный компонент каждого модульного ДЦ и каждой подстанции. Запуская направление А первым, LIMIK убирает самый дефицитный компонент из себестоимости направления B и будущих комплектных поставок с трансформаторами.</p>
+  <p><strong style="color:var(--t0)">Коммерческая логика.</strong> Все три продукта покупает одна и та же аудитория, на которую уже нацелен сайт: утилиты, операторы дата-центров, DOD, EPC-подрядчики. Заявка на трансформатор 2029 года может конвертироваться в заказ на щиты 2027 года — воронка перестаёт «ждать завод».</p>
+  <p><strong style="color:var(--t0)">Инвесторская логика.</strong> Кривая выручки без «мёртвой зоны» в 3 года радикально меняет профиль риска проекта: ранние направления генерируют cash flow, подтверждают операционную способность команды и де-рискуют главную ставку — трансформаторный завод.</p>
+  <p style="margin-top:12px"><span class="pill pill-blue">ℹ Правило сайта уже готово к этому:</span> действующее правило «никогда не позиционировать LIMIK как компанию только по трансформаторам» было заложено именно под такое расширение.</p>
+</div>
+
+<!-- 06 RISKS -->
+<div class="sh"><div class="sh-num">06</div><div class="sh-title">Сводная карта рисков</div><div class="sh-line"></div></div>
+
+<table>
+  <tr><th style="width:26%">Риск</th><th style="width:10%">Уровень</th><th>Суть и что делать</th></tr>
+  <tr><td><strong>Расфокус до закрытия инвестиций</strong></td><td><span class="rk rk-hi">Высокий</span></td><td>Главная задача момента — заявки и раунд. Два новых направления съедают время фаундеров. <strong>Митигация:</strong> выделенный лидер на каждое направление из людей партнёров; фаундеры не уходят из инвесторского трека.</td></tr>
+  <tr><td><strong>IEC → UL/ANSI адаптация (напр. А)</strong></td><td><span class="rk rk-hi">Высокий</span></td><td>Скрытая стоимость и время: редизайн конструкций, UL 891 авторизация цеха, испытания. <strong>Митигация:</strong> оценить бюджет и сроки адаптации с UL-консультантом до подписания JV; в первый год брать простые конфигурации.</td></tr>
+  <tr><td><strong>Канал компонентов (оба напр.)</strong></td><td><span class="rk rk-hi">Высокий</span></td><td>Выключатели, UPS, чиллеры — в дефиците у тех же 4 гигантов. <strong>Митигация:</strong> мульти-брендовые закупки, ранние рамочные контракты с дистрибьюторами, складской запас критических позиций — это capex, который надо заложить сразу.</td></tr>
+  <tr><td><strong>Непрерывность Extreme (война)</strong></td><td><span class="rk rk-md">Средний</span></td><td>Инженерное ядро в Украине. <strong>Митигация:</strong> перенос полной техдокументации в JV на старте, релокация 2–3 ключевых инженеров, дублирование компетенций в США в первые 12 месяцев.</td></tr>
+  <tr><td><strong>Иммиграционный трек ключевых людей</strong></td><td><span class="rk rk-md">Средний</span></td><td>План «научат люди партнёров» зависит от виз. <strong>Митигация:</strong> юридическая проверка E-2/L-1/O-1 маршрутов до сделки, персональные соглашения с конкретными инженерами.</td></tr>
+  <tr><td><strong>Структура JV и IP</strong></td><td><span class="rk rk-md">Средний</span></td><td>Кому принадлежат адаптированные под UL конструкции? Кто владеет клиентской базой США? <strong>Митигация:</strong> IP на американское юрлицо; чёткие territory rights; опцион на выкуп доли партнёра.</td></tr>
+  <tr><td><strong>Buy American статус при JV</strong></td><td><span class="rk rk-md">Средний</span></td><td>Для DOD/федеральных контрактов важна структура собственности и доля локализации. <strong>Митигация:</strong> сборка и добавленная стоимость в США; проверить соответствие BAA/TAA с юристами до маркетинга «Made in USA» для новых линеек.</td></tr>
+  <tr><td><strong>Сервисные обязательства ДЦ (напр. B)</strong></td><td><span class="rk rk-md">Средний</span></td><td>SLA без полевой команды = репутационная бомба. <strong>Митигация:</strong> первые контракты — с сервисным партнёром-интегратором; собственная полевая команда со 2-го года.</td></tr>
+  <tr><td><strong>Каннибализация нарратива инвесторам</strong></td><td><span class="rk rk-lo">Низкий</span></td><td>Риск что история «усложнится». На практике обратное: выручка год-1 усиливает питч. <strong>Митигация:</strong> подавать как одну пирамиду, а не диверсификацию; трансформаторы остаются центром истории.</td></tr>
+</table>
+
+<!-- 07 DUE DILIGENCE -->
+<div class="sh"><div class="sh-num">07</div><div class="sh-title">Due diligence — что проверить до подписания</div><div class="sh-line"></div></div>
+
+<div class="dd">
+  <div class="dd-box">
+    <div class="dd-box-t">Extreme LTD — направление А</div>
+    <div class="dd-i">Есть ли у команды опыт работы со стандартами UL/ANSI, или база на 100% IEC — это определяет бюджет адаптации</div>
+    <div class="dd-i">Конкретные имена инженеров, готовых к релокации или долгим командировкам в США, и их визовые перспективы</div>
+    <div class="dd-i">Полнота и переносимость конструкторской документации (форматы CAD, права на неё)</div>
+    <div class="dd-i">Оценка UL-консультанта: стоимость и срок авторизации цеха по UL 891 в Южной Каролине</div>
+    <div class="dd-i">Готовность Eaton/ABB/Siemens дистрибьюторов открыть компонентный канал новому сборщику — переговоры до сделки</div>
+    <div class="dd-i">Финансовое состояние компании и обременения военного времени</div>
+  </div>
+  <div class="dd-box">
+    <div class="dd-box-t">ModulEdge — направление B</div>
+    <div class="dd-i">Реальные построенные объекты: сколько модулей введено, у каких клиентов, можно ли получить референсы</div>
+    <div class="dd-i">Условия white-label модели: territory exclusivity на США, права на модификации, роялти vs доля в JV</div>
+    <div class="dd-i">Кто владеет инженерными расчётами liquid cooling и опыт сертификации под UL/NEC</div>
+    <div class="dd-i">Их каналы закупки компонентов и применимость этих каналов в США (или всё строить заново)</div>
+    <div class="dd-i">Способность обучить американскую сборочную команду: программа, сроки, кто едет</div>
+    <div class="dd-i">EMP-экранирование: по каким стандартам (MIL-STD-188-125?), есть ли протоколы испытаний</div>
+  </div>
+</div>
+
+<!-- 08 ROADMAP -->
+<div class="sh"><div class="sh-num">08</div><div class="sh-title">Рекомендуемая последовательность</div><div class="sh-line"></div></div>
+
+<div class="steps">
+  <div class="step"><div class="step-n">0–3 мес</div><div class="step-t"><strong>Параллельно с текущей задачей заявок — тихий due diligence обоих партнёров.</strong> UL-консультант по направлению А, юрист по JV/visa/Buy American, референс-звонки клиентам ModulEdge. Ни одно направление не анонсируется публично. Инвесторский трек и сбор заявок на трансформаторы остаются приоритетом №1.</div></div>
+  <div class="step"><div class="step-n">3–6 мес</div><div class="step-t"><strong>Первым запускается направление А (щиты)</strong> — оно дешевле, быстрее и кормит всё остальное. Подписание JV, старт UL-авторизации цеха, рамочные контракты на компоненты, релокация первых инженеров. Первые продукты — простые LV-щиты и панели для регионального рынка Кэролин, где скорость решает.</div></div>
+  <div class="step"><div class="step-n">6–12 мес</div><div class="step-t"><strong>Направление B стартует на базе А.</strong> Первые модульные ДЦ собираются с собственными щитами внутри — это маржа и контроль лид-тайма. Первый целевой сегмент: edge/промышленный 0.1–1 МВт и DOD-пилот с EMP-модулем через уже наработанный Section 303 канал.</div></div>
+  <div class="step"><div class="step-n">12+ мес</div><div class="step-t"><strong>Пирамида в инвесторском питче.</strong> К моменту серьёзных раундов у LIMIK есть: выручка направлений А/B, подтверждённая операционная команда, заявки на трансформаторы — и трансформаторный завод как масштабируемая вершина, а не единственная ставка. На сайте появляются новые продуктовые разделы (правило «не только трансформаторы» уже это позволяет).</div></div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <h2>Главный вывод</h2>
+  <p>Оба направления проходят стратегическую проверку: они продают в тот же дефицит, тем же клиентам, с той же географией — и превращают трёхлетнюю «мёртвую зону» до запуска завода в период растущей выручки.</p>
+  <p>Порядок имеет значение: <em>щиты первыми</em> — они дешевле в запуске, быстрее до выручки и становятся компонентной базой для модульных ДЦ. Главные условия успеха — честная оценка стоимости IEC→UL адаптации до подписания JV, выделенные лидеры направлений (не фаундеры) и жёсткое сохранение фокуса на заявках и инвестраунде.</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+    <span class="pill pill-green">✓ Запускать: А → B</span>
+    <span class="pill pill-amber">⚠ Сначала DD, потом JV</span>
+    <span class="pill pill-blue">ℹ Трансформаторы остаются центром истории</span>
+  </div>
+</div>
+
+</main>
+</body>
+</html>

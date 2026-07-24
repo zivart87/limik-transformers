@@ -488,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <a href="/request-quote/" class="btn btn-gold btn-lg" style="margin-top: 40px;">Get a Quote</a>
+      <a href="/request-quote/" id="pt-hero-quote-btn" class="btn btn-gold btn-lg" style="margin-top: 40px;">Get a Quote</a>
     </div>
 
     <!-- RIGHT: product photo -->
@@ -791,6 +791,19 @@ document.addEventListener('DOMContentLoaded', function() {
       obs.disconnect();
     }
   }, { threshold: 0.6 }).observe(wrap);
+})();
+
+/* "Get a Quote" под текстом hero — скролл к форме на этой же странице */
+(function() {
+  var btn = document.getElementById('pt-hero-quote-btn');
+  var form = document.querySelector('.pt-sidebar-form');
+  if (!btn || !form) return;
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var offset = 110;
+    var top = form.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
 })();
 </script>
 </body>

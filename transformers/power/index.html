@@ -578,6 +578,41 @@
     .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
     .iti__country-name, .iti__dial-code { font-family: var(--font); font-size: 13px; }
 
+    /* ═══════════════════════════════
+       MOBILE STICKY CTA — только мобайл
+    ═══════════════════════════════ */
+    .pt-mobile-cta { display: none; }
+    @media (max-width: 768px) {
+      .pt-mobile-cta {
+        display: flex;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 40;
+        background: var(--white);
+        border-top: 1px solid rgba(9,25,59,0.12);
+        padding: 16px 24px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        box-shadow: 0 -8px 24px rgba(9,25,59,0.08);
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        pointer-events: none;
+      }
+      .pt-mobile-cta.is-visible {
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .pt-mobile-cta-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--navy-dark);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+      .pt-mobile-cta .btn { flex-shrink: 0; white-space: nowrap; }
+    }
+
   </style>
 </head>
 <body data-hero=".pt-hero">
@@ -760,6 +795,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════
+   MOBILE STICKY CTA
+══════════════════════════════ -->
+<div class="pt-mobile-cta" id="pt-mobile-cta">
+  <div class="pt-mobile-cta-title">Large Power<br>Transformers</div>
+  <a href="/request-quote/" id="pt-mobile-cta-btn" class="btn btn-gold">Get a Quote</a>
+</div>
+
+<!-- ══════════════════════════════
    FOOTER
 ══════════════════════════════ -->
 <div id="site-footer"></div>
@@ -938,17 +981,40 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.6 }).observe(wrap);
 })();
 
-/* "Get a Quote" под текстом hero — скролл к форме на этой же странице */
+/* "Get a Quote" (hero + мобильная плашка) — скролл к форме на этой же странице */
 (function() {
-  var btn = document.getElementById('pt-hero-quote-btn');
   var form = document.querySelector('.pt-sidebar-form');
-  if (!btn || !form) return;
-  btn.addEventListener('click', function (e) {
+  if (!form) return;
+
+  function scrollToForm(e) {
     e.preventDefault();
     var offset = 110;
     var top = form.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: top, behavior: 'smooth' });
-  });
+  }
+
+  var heroBtn = document.getElementById('pt-hero-quote-btn');
+  if (heroBtn) heroBtn.addEventListener('click', scrollToForm);
+
+  var mobileBtn = document.getElementById('pt-mobile-cta-btn');
+  if (mobileBtn) mobileBtn.addEventListener('click', scrollToForm);
+
+  /* Мобильная плашка: появляется ниже первого экрана (hero),
+     пропадает у формы заявки или при возврате к первому экрану */
+  var hero = document.querySelector('.pt-hero');
+  var bar = document.getElementById('pt-mobile-cta');
+  if (hero && bar) {
+    var checkBar = function () {
+      if (window.innerWidth > 768) { bar.classList.remove('is-visible'); return; }
+      var heroBottom = hero.getBoundingClientRect().bottom;
+      var formTop = form.getBoundingClientRect().top;
+      var shouldShow = heroBottom < 0 && formTop > window.innerHeight;
+      bar.classList.toggle('is-visible', shouldShow);
+    };
+    window.addEventListener('scroll', checkBar, { passive: true });
+    window.addEventListener('resize', checkBar);
+    checkBar();
+  }
 })();
 </script>
 </body>

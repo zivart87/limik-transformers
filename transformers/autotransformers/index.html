@@ -102,7 +102,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      align-items: end;
+      align-items: center;
     }
 
     /* ── LEFT: pitch ── */
@@ -116,46 +116,33 @@
       margin-bottom: 28px;
     }
     .pt-pitch > p {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 400;
       line-height: 1.75;
       color: rgba(255,255,255,0.72);
       max-width: 500px;
-      margin-bottom: 56px;
+      margin-bottom: 36px;
     }
 
-    /* specs grid */
-    .pt-specs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid rgba(255,255,255,0.14);
+    /* advantages list */
+    .pt-advantages {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       max-width: 480px;
     }
-    .pt-spec {
-      padding: 24px 32px 24px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.14);
+    .pt-advantage {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-    .pt-spec:nth-child(even) {
-      padding-left: 32px;
-      padding-right: 0;
-      border-left: 1px solid rgba(255,255,255,0.14);
-    }
-    .pt-spec-num {
-      font-size: clamp(20px, 2vw, 30px);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 14px;
-      white-space: nowrap;
-    }
-    .pt-spec-num em { color: var(--white); font-style: normal; }
-    .pt-spec-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+    .pt-advantage-icon { width: 24px; height: 24px; flex-shrink: 0; }
+    .pt-advantage span {
+      font-size: 14px;
+      font-weight: 400;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.4;
     }
 
     /* ── Responsive ── */
@@ -234,20 +221,8 @@
       margin: 0;
     }
 
-    /* ── RIGHT: photo + sidebar form ── */
+    /* ── RIGHT: sidebar form ── */
     .pt-sidebar { display: block; }
-    .pt-sidebar-photo {
-      width: 100%;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      clip-path: polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40px);
-      margin-bottom: 24px;
-    }
-    .pt-sidebar-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
-    }
     .pt-sidebar-form {
       background: var(--navy-dark);
       padding: 36px 32px;
@@ -442,9 +417,6 @@
       .pt-hero { padding-top: 160px; padding-bottom: 40px; }
       .pt-hero-inner { padding: 0 24px; gap: 36px; }
       .pt-pitch > p { margin-bottom: 36px; }
-      .pt-spec { padding: 16px 12px 16px 0; }
-      .pt-spec:nth-child(even) { padding-left: 12px; padding-right: 0; }
-      .pt-spec-num { white-space: normal; }
 
       /* Content */
       .pt-content { padding: 20px 0 60px; }
@@ -505,26 +477,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- LEFT: pitch + specs -->
     <div class="pt-pitch">
       <h1>Auto­<br>transformers</h1>
-      <p>Single-winding design for bulk transmission interconnection. Custom-engineered up to 600 MVA, up to 525/345 kV — built to IEEE C57 family, ANSI, and NEMA standards for grid operators, utilities, and EPC contractors.</p>
+      <p>Where two transmission voltages meet, our autotransformers carry the load — built for regional operators and federal energy infrastructure.</p>
 
-      <div class="pt-specs">
-        <div class="pt-spec">
-          <div class="pt-spec-num">Up to <em>600</em> MVA</div>
-          <div class="pt-spec-label">Capacity Range</div>
+      <div class="pt-advantages">
+        <div class="pt-advantage">
+          <img class="pt-advantage-icon" src="/assets/images/icons/icon-buy-american.svg" alt="">
+          <span>Buy American &amp; BABA Compliant</span>
         </div>
-        <div class="pt-spec">
-          <div class="pt-spec-num">Up to <em>525</em> kV</div>
-          <div class="pt-spec-label">HV Class</div>
+        <div class="pt-advantage">
+          <img class="pt-advantage-icon" src="/assets/images/icons/icon-certified.svg" alt="">
+          <span>Certified to IEEE, ANSI &amp; NEMA Standards</span>
         </div>
-        <div class="pt-spec">
-          <div class="pt-spec-num"><em>48</em> wks</div>
-          <div class="pt-spec-label">Lead Time</div>
-        </div>
-        <div class="pt-spec">
-          <div class="pt-spec-num"><em>100</em>%</div>
-          <div class="pt-spec-label">U.S. Manufactured</div>
+        <div class="pt-advantage">
+          <img class="pt-advantage-icon" src="/assets/images/icons/icon-25-years.svg" alt="">
+          <span>Backed by 25 Years in the Industry</span>
         </div>
       </div>
+
+      <a href="/request-quote/" class="btn btn-gold btn-lg" style="margin-top: 40px;">Get a Quote</a>
     </div>
 
     <!-- RIGHT: product photo -->
@@ -632,14 +602,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div>
 
-      <!-- RIGHT: photo + contact form -->
+      <!-- RIGHT: contact form -->
       <div class="pt-sidebar">
-        <div class="pt-sidebar-photo">
-          <img
-            src="/assets/images/transformer-unit.webp"
-            alt="LIMIK autotransformer"
-          >
-        </div>
         <div class="pt-sidebar-form">
           <h2>Get Started<br>Today</h2>
           <p>Our engineering team will help you select the right voltage ratio, MVA rating, and cooling configuration for your project.</p>

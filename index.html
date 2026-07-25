@@ -1367,6 +1367,26 @@
       .how-steps { grid-template-columns: 1fr; gap: 24px; }
       .how-steps::before { display: none; }
     }
+
+    /* BACK TO TOP — плавающая кнопка */
+    .back-to-top {
+      position: fixed;
+      right: 40px; bottom: 40px;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0; border: none; border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(9,25,59,0.18);
+      cursor: pointer;
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 45;
+    }
+    .back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top img { display: block; width: 100%; height: 100%; }
+    @media (max-width: 768px) {
+      .back-to-top { right: 20px; bottom: 20px; width: 44px; height: 44px; }
+    }
   </style>
 </head>
 <body data-hero=".hero">
@@ -1508,6 +1528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ══════════════════════════════ -->
 <div class="section-transition section-transition--desktop" data-color-to="#09193B" data-height="140" data-blocks="25"></div>
 <div class="section-transition section-transition--mobile" data-color-to="#09193B" data-height="140" data-blocks="10"></div>
+<div data-btt-trigger aria-hidden="true" style="height:0; overflow:hidden;"></div>
 <section class="section bg-dark" id="products-section" style="padding-top: 56px; position: relative; overflow: hidden;">
   <img src="assets/images/logo-product.svg" aria-hidden="true" class="products-bg-logo" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
   <div class="container" style="position:relative; z-index:1;">
@@ -1926,8 +1947,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    8. FOOTER  ← T3-STYLE
 ══════════════════════════════ -->
 <div id="site-footer"></div>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">
+  <img src="/assets/images/icons/up.svg" alt="">
+</button>
+
 <script src="/assets/js/why-loader.js"></script>
 <script src="/assets/js/footer.js"></script>
+<script src="/assets/js/back-to-top.js"></script>
 
 <script>
   // ── Hero: разбивка h1 на слова (clip-reveal как у T3) ──
@@ -2145,6 +2172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   } else {
     // Обычная загрузка: полный опыт с Lenis + GSAP
     const lenis = new Lenis();
+    window.lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);

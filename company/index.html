@@ -523,6 +523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════
    3. STORY SPLIT
 ══════════════════════════════ -->
+<div data-btt-trigger aria-hidden="true" style="height:0; overflow:hidden;"></div>
 <section class="co-story-section">
   <div class="container">
     <div class="co-story">
@@ -640,8 +641,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    9. FOOTER
 ══════════════════════════════ -->
 <div id="site-footer"></div>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">
+  <img src="/assets/images/icons/up.svg" alt="">
+</button>
+
 <script src="/assets/js/why-loader.js"></script>
 <script src="/assets/js/footer.js"></script>
+<script src="/assets/js/back-to-top.js"></script>
 
 <script>
   // Hero h1 word clip-reveal
@@ -709,6 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   gsap.registerPlugin(ScrollTrigger);
 
   const lenis = new Lenis();
+  window.lenis = lenis;
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);

@@ -118,6 +118,50 @@
       .ind-hero-action .btn { width: 100%; justify-content: center; }
     }
 
+    /* ═══════════════════════════════
+       CONTEXT — фото | текст (как co-story-section на company)
+    ═══════════════════════════════ */
+    .dc-context-section { background: var(--white); padding: 120px 0; }
+    .dc-context {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .dc-context-img { position: relative; overflow: hidden; height: 560px; }
+    .dc-context-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+    }
+    .dc-context-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(9,25,59,0.07); pointer-events: none;
+    }
+    .dc-context-text {
+      padding: 0 40px 0 60px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .dc-context-text .eyebrow {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .dc-context-text h2 {
+      font-size: clamp(26px, 2.8vw, 42px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 28px;
+    }
+    .dc-context-text p {
+      font-size: 16px; line-height: 1.75; font-weight: 400;
+      color: #3A5570; margin-bottom: 18px;
+    }
+    .dc-context-text p:last-of-type { margin-bottom: 0; }
+
+    @media (max-width: 900px) {
+      .dc-context { grid-template-columns: 1fr; }
+      .dc-context-img { height: auto; min-height: 320px; }
+      .dc-context-text { padding: 60px 40px; }
+      .dc-context-section { padding: 80px 0; }
+    }
+    @media (max-width: 600px) { .dc-context-text { padding: 48px 24px; } }
+
   </style>
 </head>
 <body data-hero=".ind-hero">
@@ -141,6 +185,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="ind-hero-action">
       <a href="/request-quote/" class="btn btn-gold btn-lg">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   CONTEXT — Why Data Centers Need a New Partner
+══════════════════════════════ -->
+<section class="dc-context-section">
+  <div class="container">
+    <div class="dc-context">
+      <div class="dc-context-img">
+        <img src="/assets/images/ind-data-centers.webp" alt="LIMIK-powered data center campus">
+      </div>
+      <div class="dc-context-text">
+        <div class="eyebrow">Context</div>
+        <h2>Compute Demand Is Rewriting the Power Curve</h2>
+        <p>The rise of AI training clusters, high-density GPU workloads, and always-on cloud infrastructure has shifted data center power profiles from tens of megawatts to hundreds — and now to gigawatt-scale campuses. New facilities are being planned five to seven years out. Substation transformers, autotransformers, and generator step-up units sit at the top of every long-lead procurement list.</p>
+        <p>LIMIK is building American production capacity aligned with this timeline. For owners, developers, and EPC contractors planning their next campus or expansion, that means a manufacturer with slots to allocate — not a queue to join.</p>
+      </div>
     </div>
   </div>
 </section>

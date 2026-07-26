@@ -237,14 +237,20 @@
       .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
     }
     .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      display: flex; gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none; -ms-overflow-style: none;
     }
+    .products-grid::-webkit-scrollbar { display: none; }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
       display: flex; flex-direction: column;
       cursor: pointer;
       transition: transform 0.2s;
+      flex: 0 0 calc(33.333% - 16px);
+      scroll-snap-align: start;
     }
     .product-card:hover { transform: translateY(-4px); }
     .product-card-name {
@@ -305,11 +311,39 @@
     .product-link-icon svg { transition: transform 0.1s ease; }
     .product-card:hover .product-link-icon svg { transform: rotate(-45deg); }
     @media (max-width: 1024px) {
-      .products-grid { grid-template-columns: 1fr 1fr; }
+      .product-card { flex: 0 0 calc(50% - 12px); }
     }
     @media (max-width: 768px) {
-      .products-grid { grid-template-columns: 1fr; }
+      .product-card { flex: 0 0 85%; }
     }
+
+    /* ── Nav: точки + стрелки ── */
+    .products-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 32px;
+    }
+    .products-dots { display: flex; align-items: center; gap: 10px; }
+    .products-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none; padding: 0; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .products-dot.is-active { background: var(--white); }
+    .products-arrows { display: flex; gap: 12px; }
+    .products-arrow {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .products-arrow:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+    .products-arrow:disabled { opacity: 0.35; cursor: default; }
+    .products-arrow:disabled:hover { border-color: rgba(255,255,255,0.3); background: transparent; }
 
   </style>
 </head>
@@ -404,7 +438,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
-    <div class="products-grid">
+    <div class="products-grid" id="dcProductsGrid">
 
       <a href="/transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
@@ -424,10 +458,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">69 kV</span>
           </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Phase</span>
-            <span class="spec-val">1φ &amp; 3φ</span>
-          </div>
         </div>
         <div class="product-link">
           <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -442,20 +472,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
             <span class="spec-lbl">HV Rating</span>
             <span class="spec-val">525 kV</span>
           </div>
           <div class="spec-row">
             <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">345 kV</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Application</span>
-            <span class="spec-val">Grid Interconnect</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Standard</span>
-            <span class="spec-val">IEEE C57 family</span>
           </div>
         </div>
         <div class="product-link">
@@ -471,20 +497,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
-            <span class="spec-lbl">Max LV</span>
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">35 kV</span>
           </div>
+        </div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
+      </a>
+
+      <a href="/transformers/mobile/" class="product-card">
+        <div class="product-card-name">Mobile Transformers</div>
+        <div class="product-card-image">
+          <img src="/assets/images/mobile-product.webp" alt="LIMIK Mobile Transformer">
+        </div>
+        <div class="product-card-specs">
           <div class="spec-row">
-            <span class="spec-lbl">Applications</span>
-            <span class="spec-val">Wind, Solar, Data</span>
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">100</span>
           </div>
           <div class="spec-row">
-            <span class="spec-lbl">Procurement</span>
-            <span class="spec-val">IRA-Eligible</span>
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">230 kV</span>
           </div>
           <div class="spec-row">
-            <span class="spec-lbl">Standard</span>
-            <span class="spec-val">IEEE C57 family / ANSI</span>
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">69 kV</span>
           </div>
         </div>
         <div class="product-link">
@@ -494,12 +541,82 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
     </div>
+    <div class="products-nav">
+      <div class="products-dots" id="dcProductsDots"></div>
+      <div class="products-arrows">
+        <button type="button" class="products-arrow" id="dcProductsPrev" aria-label="Previous product">
+          <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M19 8H3M3 8L10 1M3 8L10 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="products-arrow" id="dcProductsNext" aria-label="Next product">
+          <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
     <a href="/request-quote/" class="btn btn-gold products-bottom-cta">Request a Quote</a>
   </div>
 </section>
 
 <div id="site-footer"></div>
 <script src="../../assets/js/footer.js"></script>
+
+<script>
+  // ── Products carousel: точки + стрелки ──
+  (function () {
+    const grid = document.getElementById('dcProductsGrid') || document.querySelector('.products-grid');
+    const dotsWrap = document.getElementById('dcProductsDots');
+    const prevBtn = document.getElementById('dcProductsPrev');
+    const nextBtn = document.getElementById('dcProductsNext');
+    if (!grid || !dotsWrap || !prevBtn || !nextBtn) return;
+
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    if (!cards.length) return;
+
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'products-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+      dot.addEventListener('click', () => {
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function activeIndex() {
+      const gridLeft = grid.scrollLeft;
+      let closest = 0, minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - gridLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      return closest;
+    }
+
+    function updateUI() {
+      const idx = activeIndex();
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      prevBtn.disabled = grid.scrollLeft <= 4;
+      nextBtn.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 4;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const idx = Math.max(0, activeIndex() - 1);
+      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    nextBtn.addEventListener('click', () => {
+      const idx = Math.min(cards.length - 1, activeIndex() + 1);
+      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+
+    grid.addEventListener('scroll', () => {
+      clearTimeout(grid._dcScrollT);
+      grid._dcScrollT = setTimeout(updateUI, 60);
+    }, { passive: true });
+    window.addEventListener('resize', updateUI);
+    updateUI();
+  })();
+</script>
 
 <script>
   // ── Hero: разбивка h1 на слова (clip-reveal как на главной) ──

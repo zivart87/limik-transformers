@@ -235,10 +235,15 @@
       .products-header h2 { font-size: 36px; }
       .products-header-cta { display: none; }
       .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
+      .products-grid-wrap { padding-left: 24px; }
+    }
+    .products-grid-wrap {
+      padding-left: max(40px, calc((100vw - 1360px) / 2 + 40px));
     }
     .products-grid {
       display: flex; gap: 24px;
       overflow-x: auto;
+      padding-right: 40px;
       scroll-snap-type: x mandatory;
       scrollbar-width: none; -ms-overflow-style: none;
       cursor: grab; user-select: none;
@@ -440,6 +445,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
+  </div>
+  <div class="products-grid-wrap">
     <div class="products-grid" id="dcProductsGrid">
 
       <a href="/transformers/power/" class="product-card">
@@ -543,6 +550,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
     </div>
+  </div>
+  <div class="container" style="position:relative; z-index:1;">
     <div class="products-nav">
       <div class="products-dots" id="dcProductsDots"></div>
       <div class="products-arrows">

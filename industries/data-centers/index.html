@@ -235,21 +235,27 @@
       .products-header h2 { font-size: 36px; }
       .products-header-cta { display: none; }
       .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
-      .products-grid-wrap { padding-left: 24px; }
     }
     .products-grid-wrap {
-      padding-left: max(40px, calc((100vw - 1360px) / 2 + 40px));
+      position: relative; z-index: 1;
     }
     .products-grid {
       display: flex; gap: 24px;
       overflow-x: auto;
-      padding-right: 40px;
-      scroll-snap-type: x mandatory;
+      scroll-snap-type: x proximity;
       scrollbar-width: none; -ms-overflow-style: none;
       cursor: grab; user-select: none;
     }
     .products-grid::-webkit-scrollbar { display: none; }
     .products-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+    .products-grid-spacer {
+      flex: 0 0 max(40px, calc((100vw - 1360px) / 2 + 40px));
+    }
+    .products-grid-spacer--end { flex-basis: 40px; }
+    @media (max-width: 768px) {
+      .products-grid-spacer { flex-basis: 24px; }
+      .products-grid-spacer--end { flex-basis: 24px; }
+    }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
@@ -448,6 +454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="products-grid-wrap">
     <div class="products-grid" id="dcProductsGrid">
+      <div class="products-grid-spacer" aria-hidden="true"></div>
 
       <a href="/transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
@@ -549,6 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
+      <div class="products-grid-spacer products-grid-spacer--end" aria-hidden="true"></div>
     </div>
   </div>
   <div class="container" style="position:relative; z-index:1;">
@@ -582,14 +590,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const cards = Array.from(grid.querySelectorAll('.product-card'));
     if (!cards.length) return;
 
+    // Плавный скролл с easing (без зависимости от порядка загрузки GSAP)
+    let scrollAnim = null;
+    function smoothScrollTo(target) {
+      const clamped = Math.max(0, Math.min(target, grid.scrollWidth - grid.clientWidth));
+      const start = grid.scrollLeft;
+      const change = clamped - start;
+      const startTime = performance.now();
+      const duration = 550;
+      if (scrollAnim) cancelAnimationFrame(scrollAnim);
+      function step(now) {
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        grid.scrollLeft = start + change * eased;
+        if (t < 1) scrollAnim = requestAnimationFrame(step);
+      }
+      scrollAnim = requestAnimationFrame(step);
+    }
+
     cards.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'products-dot' + (i === 0 ? ' is-active' : '');
       dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
-      dot.addEventListener('click', () => {
-        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-      });
+      dot.addEventListener('click', () => smoothScrollTo(cards[i].offsetLeft));
       dotsWrap.appendChild(dot);
     });
     const dots = Array.from(dotsWrap.children);
@@ -613,11 +637,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     prevBtn.addEventListener('click', () => {
       const idx = Math.max(0, activeIndex() - 1);
-      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      smoothScrollTo(cards[idx].offsetLeft);
     });
     nextBtn.addEventListener('click', () => {
       const idx = Math.min(cards.length - 1, activeIndex() + 1);
-      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      smoothScrollTo(cards[idx].offsetLeft);
     });
 
     grid.addEventListener('scroll', () => {
@@ -631,6 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let isDown = false, startX = 0, startScroll = 0, moved = false;
     grid.addEventListener('mousedown', (e) => {
       isDown = true; moved = false;
+      if (scrollAnim) cancelAnimationFrame(scrollAnim);
       grid.classList.add('is-dragging');
       startX = e.pageX;
       startScroll = grid.scrollLeft;

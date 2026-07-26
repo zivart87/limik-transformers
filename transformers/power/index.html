@@ -98,6 +98,32 @@
       animation: pt-drop-in 0.7s ease-in 0.1s both;
     }
 
+    /* ── decorative corner lines (behind product photo) ── */
+    .pt-hero-lines {
+      position: absolute;
+      bottom: -30px; right: 0;
+      transform: scaleY(-1);
+      width: 728px; height: 480px;
+      max-width: 70vw; max-height: 45vw;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .pt-hero-lines path {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 2;
+      opacity: 0.55;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: pt-line-draw 0.6s ease-out forwards;
+    }
+    @keyframes pt-line-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @media (max-width: 768px) {
+      .pt-hero-lines { display: none; }
+    }
+
     /* ── inner grid ── */
     .pt-hero-inner {
       position: relative; z-index: 2;
@@ -629,6 +655,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    HERO
 ══════════════════════════════ -->
 <section class="pt-hero">
+
+  <svg class="pt-hero-lines" viewBox="-330 0 970 640" aria-hidden="true"></svg>
+  <script>
+    (function () {
+      var svg = document.currentScript.previousElementSibling;
+      var NUM = 7;           // количество линий — единственный параметр для изменения
+      var LEAN = 0.6;        // наклон диагонали (влево на единицу вниз)
+      var BEND_X0 = -204.0, BEND_Y0 = 560; // излом самой внешней (нижней) линии
+      var SPACING = 64;      // расстояние между линиями на экране 48px (SPACING в единицах viewBox = px / 0.75)
+      var STEP_Y = SPACING;
+      var STEP_X = SPACING * (Math.sqrt(LEAN * LEAN + 1) + LEAN); // шаг по X, чтобы перпендикулярный зазор диагоналей = SPACING
+      var W = 640;
+      var ns = 'http://www.w3.org/2000/svg';
+      for (var i = 0; i < NUM; i++) {
+        var bendX = BEND_X0 + i * STEP_X;
+        var bendY = BEND_Y0 - i * STEP_Y;
+        var topX = bendX + LEAN * bendY;
+        var path = document.createElementNS(ns, 'path');
+        path.setAttribute('pathLength', '1');
+        path.setAttribute('d', 'M ' + topX.toFixed(1) + ' 0 L ' + bendX.toFixed(1) + ' ' + bendY.toFixed(1) + ' L ' + W + ' ' + bendY.toFixed(1));
+        path.style.animationDelay = (0.9 + i * 0.08).toFixed(2) + 's';
+        svg.appendChild(path);
+      }
+    })();
+  </script>
 
   <div class="pt-hero-inner">
 

@@ -19,7 +19,7 @@
 | 5 | `email` | Email |
 | 6 | `city` | Город |
 | 7 | `state` | Штат |
-| 8 | `productType` | Тип продукта: `power` / `auto` / `gsu` / `unsure` |
+| 8 | `productType` | Тип продукта: `power` / `auto` / `gsu` / `mobile` / `unsure` |
 | 9 | `application` | Назначение (выбор из списка на сайте) |
 | 10 | `quantity` | Количество единиц (число) |
 | 11 | `mvaRange` | Диапазон MVA |
@@ -86,6 +86,7 @@
 - Power Transformers → `Power Transformers — Get Started Today`
 - Autotransformers → `Autotransformers — Get Started Today`
 - GSU → `Generator Step-Up (GSU) — Get Started Today`
+- Mobile Transformers → `Mobile Transformers — Get Started Today`
 
 ---
 

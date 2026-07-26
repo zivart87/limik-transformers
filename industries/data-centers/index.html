@@ -250,6 +250,7 @@
     .products-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; }
     .products-grid-spacer {
       flex: 0 0 max(40px, calc((100vw - 1360px) / 2 + 40px));
+      scroll-snap-align: start;
     }
     .products-grid-spacer--end { flex-basis: 40px; }
     @media (max-width: 768px) {
@@ -589,6 +590,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     const cards = Array.from(grid.querySelectorAll('.product-card'));
     if (!cards.length) return;
+
+    // Точное выравнивание первой карточки по левому краю .container
+    // (CSS-калькуляция через 100vw грубее из-за scrollbar/округлений + не учитывает gap)
+    const leadSpacer = grid.querySelector('.products-grid-spacer:first-child');
+    const refEl = document.querySelector('#products-section .container');
+    function alignLeadSpacer() {
+      if (!leadSpacer || !refEl) return;
+      const prevScroll = grid.scrollLeft;
+      leadSpacer.style.flexBasis = '0px';
+      const gridLeft = grid.getBoundingClientRect().left;
+      const refLeft = refEl.getBoundingClientRect().left + parseFloat(getComputedStyle(refEl).paddingLeft);
+      const gap = parseFloat(getComputedStyle(grid).gap) || 0;
+      const width = Math.max(16, refLeft - gridLeft - gap);
+      leadSpacer.style.flexBasis = width + 'px';
+      grid.scrollLeft = prevScroll;
+    }
+    alignLeadSpacer();
+    window.addEventListener('resize', alignLeadSpacer);
 
     // Плавный скролл с easing (без зависимости от порядка загрузки GSAP)
     let scrollAnim = null;

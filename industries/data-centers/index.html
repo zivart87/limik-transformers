@@ -241,15 +241,17 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none; -ms-overflow-style: none;
+      cursor: grab; user-select: none;
     }
     .products-grid::-webkit-scrollbar { display: none; }
+    .products-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
       display: flex; flex-direction: column;
       cursor: pointer;
       transition: transform 0.2s;
-      flex: 0 0 calc(33.333% - 16px);
+      flex: 0 0 380px;
       scroll-snap-align: start;
     }
     .product-card:hover { transform: translateY(-4px); }
@@ -615,6 +617,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { passive: true });
     window.addEventListener('resize', updateUI);
     updateUI();
+
+    // ── Drag-to-scroll мышью ──
+    let isDown = false, startX = 0, startScroll = 0, moved = false;
+    grid.addEventListener('mousedown', (e) => {
+      isDown = true; moved = false;
+      grid.classList.add('is-dragging');
+      startX = e.pageX;
+      startScroll = grid.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      grid.classList.remove('is-dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 5) moved = true;
+      grid.scrollLeft = startScroll - dx;
+    });
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (moved) e.preventDefault();
+      });
+    });
   })();
 </script>
 

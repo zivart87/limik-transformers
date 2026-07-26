@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RH77HDC');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Custom-engineered power transformers, autotransformers, and GSUs for hyperscale, colocation, and edge data centers across America. Up to 600 MVA / 525 kV. Built to IEEE, ANSI, and NEMA standards.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.limiktransformers.com/industries/data-centers/">
+  <meta property="og:title" content="Power Transformers for Data Centers — LIMIK International">
+  <meta property="og:description" content="Custom-engineered power transformers, autotransformers, and GSUs for hyperscale, colocation, and edge data centers across America. Up to 600 MVA / 525 kV.">
+  <meta property="og:image" content="https://www.limiktransformers.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.limiktransformers.com/industries/data-centers/">
+  <title>Power Transformers for Data Centers — LIMIK International</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/limik.css">
+  <link rel="stylesheet" href="../../assets/css/nav.css">
+  <script src="../../assets/js/nav-loader.js"></script>
+  <style>
+
+    html, body { overflow-x: clip; }
+
+    /* ═══════════════════════════════
+       HERO — full-bleed фото, как на главной (hero-slide)
+    ═══════════════════════════════ */
+    .ind-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 580px;
+      overflow: hidden;
+      background: var(--navy-dark);
+      display: flex;
+      align-items: flex-end;
+    }
+    .ind-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('../../assets/images/ind-data-centers.webp');
+      background-size: cover; background-position: center;
+      background-color: #0A1628;
+      opacity: 0;
+      transform: scale(1.07);
+      animation: indBgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    @keyframes indBgEnter {
+      0%   { opacity: 0; transform: scale(1.07); }
+      100% { opacity: 1; transform: scale(1.0); }
+    }
+    .ind-hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(9,25,59,0.92) 0%,
+        rgba(9,25,59,0.65) 55%,
+        rgba(9,25,59,0.22) 100%
+      );
+    }
+    .ind-hero-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 60px 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    .ind-hero-text { flex: 1; max-width: 860px; }
+    .ind-hero-action { flex-shrink: 0; padding-bottom: 4px; }
+
+    @keyframes indHeroUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .ind-hero-text > * { opacity: 0; animation: indHeroUp 0.70s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .ind-hero-text > h1 { animation-delay: 0.15s; }
+    .ind-hero-text > .ind-hero-sub { animation-delay: 0.55s; }
+    .ind-hero-action { opacity: 0; animation: indHeroUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
+
+    .ind-hero h1 {
+      font-size: clamp(40px, 5.5vw, 84px);
+      font-weight: 600; line-height: 0.90;
+      text-transform: uppercase; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .ind-hero-sub {
+      font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.72);
+      line-height: 1.65; max-width: 500px; margin-bottom: 0;
+    }
+
+    @media (max-width: 991px) {
+      .ind-hero-content { padding: 0 40px 72px; gap: 40px; }
+      .ind-hero h1 { font-size: clamp(36px, 6vw, 68px); }
+    }
+    @media (max-width: 768px) {
+      .ind-hero { height: 100dvh; }
+      .ind-hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        padding: 0 24px 72px;
+      }
+      .ind-hero h1 { font-size: 46px; margin-bottom: 16px; }
+      .ind-hero-sub { font-size: 15px; }
+      .ind-hero-action { width: 100%; }
+      .ind-hero-action .btn { width: 100%; justify-content: center; }
+    }
+
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RH77HDC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="nav-placeholder"></div>
+
+<!-- ══════════════════════════════
+   HERO
+══════════════════════════════ -->
+<section class="ind-hero">
+  <div class="ind-hero-bg"></div>
+  <div class="ind-hero-overlay"></div>
+  <div class="ind-hero-content">
+    <div class="ind-hero-text">
+      <h1>Power Transformers<br>for Data Centers</h1>
+      <p class="ind-hero-sub">Custom-engineered power capacity for hyperscale, colocation, and edge facilities — designed and built in America.</p>
+    </div>
+    <div class="ind-hero-action">
+      <a href="/request-quote/" class="btn btn-gold btn-lg">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="../../assets/js/footer.js"></script>
+
+</body>
+</html>

@@ -84,9 +84,7 @@
       from { opacity: 0; transform: translateY(32px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .ind-hero-text > * { opacity: 0; animation: indHeroUp 0.70s cubic-bezier(0.22,1,0.36,1) forwards; }
-    .ind-hero-text > h1 { animation-delay: 0.15s; }
-    .ind-hero-text > .ind-hero-sub { animation-delay: 0.55s; }
+    .ind-hero-text > .ind-hero-sub { opacity: 0; animation: indHeroUp 0.70s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
     .ind-hero-action { opacity: 0; animation: indHeroUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: 0.55s; }
 
     .ind-hero h1 {
@@ -94,6 +92,22 @@
       font-weight: 600; line-height: 0.90;
       text-transform: uppercase; letter-spacing: -0.02em;
       color: var(--white); margin-bottom: 24px;
+    }
+
+    /* ── Word clip-reveal (как на главной) ── */
+    @keyframes indWordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .ind-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .ind-split-word {
+      display: inline-block;
+      transform: translateY(115%);
+      animation: indWordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
     }
     .ind-hero-sub {
       font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.72);
@@ -282,6 +296,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="site-footer"></div>
 <script src="../../assets/js/footer.js"></script>
+
+<script>
+  // ── Hero: разбивка h1 на слова (clip-reveal как на главной) ──
+  (function () {
+    document.querySelectorAll('.ind-hero h1').forEach(h1 => {
+      const nodes = Array.from(h1.childNodes);
+      h1.innerHTML = '';
+      let wordIndex = 0;
+
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          const parts = node.textContent.split(/(\s+)/);
+          parts.forEach(part => {
+            if (/^\s+$/.test(part)) {
+              h1.appendChild(document.createTextNode(part));
+            } else if (part) {
+              const wrap = document.createElement('span');
+              wrap.className = 'ind-word-wrap';
+              const span = document.createElement('span');
+              span.className = 'ind-split-word';
+              span.style.animationDelay = (0.15 + wordIndex * 0.09) + 's';
+              span.textContent = part;
+              wordIndex++;
+              wrap.appendChild(span);
+              h1.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeName === 'BR') {
+          h1.appendChild(document.createElement('br'));
+        }
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>

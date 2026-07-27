@@ -8,6 +8,28 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5RH77HDC');</script>
   <!-- End Google Tag Manager -->
+  <!-- OpenAI Ads Pixel -->
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () {
+        q.q.push(arguments);
+      };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init", {
+      pixelId: "DDVVFiqsmMZjWmCLRLQDor",
+      debug: true,
+    });
+  </script>
+  <!-- End OpenAI Ads Pixel -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Custom-engineered power transformers, autotransformers, and GSUs for hyperscale, colocation, and edge data centers across America. Up to 600 MVA / 525 kV. Built to IEEE, ANSI, and NEMA standards.">

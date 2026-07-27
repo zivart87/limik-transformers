@@ -8,6 +8,28 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5RH77HDC');</script>
   <!-- End Google Tag Manager -->
+  <!-- OpenAI Ads Pixel -->
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () {
+        q.q.push(arguments);
+      };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init", {
+      pixelId: "DDVVFiqsmMZjWmCLRLQDor",
+      debug: true,
+    });
+  </script>
+  <!-- End OpenAI Ads Pixel -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Privacy Policy — LIMIK International. How we collect, use, and protect your information.">
@@ -140,6 +162,7 @@
           <li><strong>GoHighLevel (LeadConnector)</strong> — CRM platform where submitted form data is stored and managed. <a href="https://www.gohighlevel.com/privacy-policy" target="_blank" rel="noopener">GoHighLevel Privacy Policy</a>.</li>
           <li><strong>Vercel</strong> — website hosting provider. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a>.</li>
           <li><strong>Meta (Facebook/Instagram)</strong> — advertising platform. May collect data via pixel if advertising is active. <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>.</li>
+          <li><strong>OpenAI Ads</strong> — advertising platform. Uses a measurement pixel and Enhanced Matching, which hashes form field data (such as email and phone) in your browser before sending it, to measure ad performance. <a href="https://openai.com/privacy/" target="_blank" rel="noopener">OpenAI Privacy Policy</a>.</li>
         </ul>
       </div>
 
@@ -149,7 +172,7 @@
         <ul>
           <li><strong>Functional cookies</strong> — necessary for the site to work properly</li>
           <li><strong>Analytics cookies</strong> — help us understand how visitors use the site (Google Analytics)</li>
-          <li><strong>Advertising cookies</strong> — used to measure ad performance (Google Ads, Meta)</li>
+          <li><strong>Advertising cookies</strong> — used to measure ad performance (Google Ads, Meta, OpenAI Ads)</li>
         </ul>
         <p>You can disable cookies in your browser settings at any time. This may affect some website functionality.</p>
       </div>

@@ -236,27 +236,18 @@
       .products-header-cta { display: none; }
       .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
     }
-    .products-grid-wrap {
+    .products-carousel {
       position: relative; z-index: 1;
-    }
-    .products-grid {
-      display: flex; gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x proximity;
-      scrollbar-width: none; -ms-overflow-style: none;
+      overflow: hidden;
       cursor: grab; user-select: none;
     }
-    .products-grid::-webkit-scrollbar { display: none; }
-    .products-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; }
-    .products-grid-spacer {
-      flex: 0 0 max(40px, calc((100vw - 1360px) / 2 + 40px));
-      scroll-snap-align: start;
+    .products-carousel.is-dragging { cursor: grabbing; }
+    .products-track {
+      display: flex; gap: 24px;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
     }
-    .products-grid-spacer--end { flex-basis: 40px; }
-    @media (max-width: 768px) {
-      .products-grid-spacer { flex-basis: 24px; }
-      .products-grid-spacer--end { flex-basis: 24px; }
-    }
+    .products-track.is-dragging { transition: none; }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
@@ -452,10 +443,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
-  </div>
-  <div class="products-grid-wrap">
-    <div class="products-grid" id="dcProductsGrid">
-      <div class="products-grid-spacer" aria-hidden="true"></div>
+    <div class="products-carousel" id="dcProductsCarousel">
+    <div class="products-track" id="dcProductsGrid">
 
       <a href="/transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
@@ -557,10 +546,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-      <div class="products-grid-spacer products-grid-spacer--end" aria-hidden="true"></div>
     </div>
-  </div>
-  <div class="container" style="position:relative; z-index:1;">
+    </div>
     <div class="products-nav">
       <div class="products-dots" id="dcProductsDots"></div>
       <div class="products-arrows">
@@ -582,49 +569,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   // ── Products carousel: точки + стрелки ──
   (function () {
-    const grid = document.getElementById('dcProductsGrid') || document.querySelector('.products-grid');
+    const carousel = document.getElementById('dcProductsCarousel');
+    const track = document.getElementById('dcProductsGrid');
     const dotsWrap = document.getElementById('dcProductsDots');
     const prevBtn = document.getElementById('dcProductsPrev');
     const nextBtn = document.getElementById('dcProductsNext');
-    if (!grid || !dotsWrap || !prevBtn || !nextBtn) return;
+    if (!carousel || !track || !dotsWrap || !prevBtn || !nextBtn) return;
 
-    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    const cards = Array.from(track.querySelectorAll('.product-card'));
     if (!cards.length) return;
 
-    // Точное выравнивание первой карточки по левому краю .container
-    // (CSS-калькуляция через 100vw грубее из-за scrollbar/округлений + не учитывает gap)
-    const leadSpacer = grid.querySelector('.products-grid-spacer:first-child');
-    const refEl = document.querySelector('#products-section .container');
-    function alignLeadSpacer() {
-      if (!leadSpacer || !refEl) return;
-      const prevScroll = grid.scrollLeft;
-      leadSpacer.style.flexBasis = '0px';
-      const gridLeft = grid.getBoundingClientRect().left;
-      const refLeft = refEl.getBoundingClientRect().left + parseFloat(getComputedStyle(refEl).paddingLeft);
-      const gap = parseFloat(getComputedStyle(grid).gap) || 0;
-      const width = Math.max(16, refLeft - gridLeft - gap);
-      leadSpacer.style.flexBasis = width + 'px';
-      grid.scrollLeft = prevScroll;
-    }
-    alignLeadSpacer();
-    window.addEventListener('resize', alignLeadSpacer);
+    let currentIndex = 0;
+    let currentTranslate = 0;
 
-    // Плавный скролл с easing (без зависимости от порядка загрузки GSAP)
-    let scrollAnim = null;
-    function smoothScrollTo(target) {
-      const clamped = Math.max(0, Math.min(target, grid.scrollWidth - grid.clientWidth));
-      const start = grid.scrollLeft;
-      const change = clamped - start;
-      const startTime = performance.now();
-      const duration = 550;
-      if (scrollAnim) cancelAnimationFrame(scrollAnim);
-      function step(now) {
-        const t = Math.min(1, (now - startTime) / duration);
-        const eased = 1 - Math.pow(1 - t, 3);
-        grid.scrollLeft = start + change * eased;
-        if (t < 1) scrollAnim = requestAnimationFrame(step);
-      }
-      scrollAnim = requestAnimationFrame(step);
+    function maxTranslate() {
+      return Math.max(0, track.scrollWidth - carousel.clientWidth);
+    }
+
+    // Целевой translate для индекса — card.offsetLeft, но не дальше maxTranslate
+    // (последняя карточка всегда ровно по правому краю карусели/контейнера)
+    function targetFor(idx) {
+      return Math.min(cards[idx].offsetLeft, maxTranslate());
+    }
+
+    function setTranslate(x, animate) {
+      currentTranslate = Math.max(0, Math.min(x, maxTranslate()));
+      track.classList.toggle('is-dragging', !animate);
+      track.style.transform = 'translateX(-' + currentTranslate + 'px)';
+    }
+
+    function goTo(idx) {
+      currentIndex = Math.max(0, Math.min(cards.length - 1, idx));
+      setTranslate(targetFor(currentIndex), true);
+      updateUI();
     }
 
     cards.forEach((_, i) => {
@@ -632,63 +609,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       dot.type = 'button';
       dot.className = 'products-dot' + (i === 0 ? ' is-active' : '');
       dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
-      dot.addEventListener('click', () => smoothScrollTo(cards[i].offsetLeft));
+      dot.addEventListener('click', () => goTo(i));
       dotsWrap.appendChild(dot);
     });
     const dots = Array.from(dotsWrap.children);
 
-    function activeIndex() {
-      const gridLeft = grid.scrollLeft;
-      let closest = 0, minDist = Infinity;
-      cards.forEach((card, i) => {
-        const dist = Math.abs(card.offsetLeft - gridLeft);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-      return closest;
-    }
-
     function updateUI() {
-      const idx = activeIndex();
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-      prevBtn.disabled = grid.scrollLeft <= 4;
-      nextBtn.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 4;
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+      prevBtn.disabled = currentIndex <= 0;
+      nextBtn.disabled = currentIndex >= cards.length - 1;
     }
 
-    prevBtn.addEventListener('click', () => {
-      const idx = Math.max(0, activeIndex() - 1);
-      smoothScrollTo(cards[idx].offsetLeft);
-    });
-    nextBtn.addEventListener('click', () => {
-      const idx = Math.min(cards.length - 1, activeIndex() + 1);
-      smoothScrollTo(cards[idx].offsetLeft);
-    });
-
-    grid.addEventListener('scroll', () => {
-      clearTimeout(grid._dcScrollT);
-      grid._dcScrollT = setTimeout(updateUI, 60);
-    }, { passive: true });
-    window.addEventListener('resize', updateUI);
+    prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+    window.addEventListener('resize', () => goTo(currentIndex));
     updateUI();
 
-    // ── Drag-to-scroll мышью ──
-    let isDown = false, startX = 0, startScroll = 0, moved = false;
-    grid.addEventListener('mousedown', (e) => {
+    // ── Drag мышью — двигаем трек напрямую, на отпускании доезжаем до ближайшей карточки ──
+    let isDown = false, startX = 0, startTranslate = 0, moved = false;
+    carousel.addEventListener('mousedown', (e) => {
       isDown = true; moved = false;
-      if (scrollAnim) cancelAnimationFrame(scrollAnim);
-      grid.classList.add('is-dragging');
+      carousel.classList.add('is-dragging');
       startX = e.pageX;
-      startScroll = grid.scrollLeft;
+      startTranslate = currentTranslate;
     });
     window.addEventListener('mouseup', () => {
       if (!isDown) return;
       isDown = false;
-      grid.classList.remove('is-dragging');
+      carousel.classList.remove('is-dragging');
+      if (moved) {
+        // Ближайшая карточка к текущей позиции трека
+        let closest = 0, minDist = Infinity;
+        cards.forEach((card, i) => {
+          const dist = Math.abs(Math.min(card.offsetLeft, maxTranslate()) - currentTranslate);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        goTo(closest);
+      }
     });
     window.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       const dx = e.pageX - startX;
       if (Math.abs(dx) > 5) moved = true;
-      grid.scrollLeft = startScroll - dx;
+      setTranslate(startTranslate - dx, false);
     });
     cards.forEach(card => {
       card.addEventListener('click', (e) => {

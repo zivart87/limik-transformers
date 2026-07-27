@@ -659,15 +659,28 @@
       .products-header-cta { display: none; }
       .products-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 40px; }
     }
-    .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    .products-carousel {
+      position: relative; z-index: 1;
+      overflow: visible;
+      cursor: grab; user-select: none;
+      touch-action: pan-y;
     }
+    .products-carousel.is-dragging { cursor: grabbing; }
+    .products-track {
+      display: flex; gap: 24px;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .products-track.is-dragging { transition: none; }
+    .products-lead-spacer { flex: 0 0 40px; }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
       display: flex; flex-direction: column;
       cursor: pointer;
       transition: transform 0.2s;
+      flex: 0 0 380px;
+      scroll-snap-align: start;
     }
     .product-card:hover { transform: translateY(-4px); }
     .product-card-name {
@@ -727,6 +740,40 @@
     }
     .product-link-icon svg { transition: transform 0.1s ease; }
     .product-card:hover .product-link-icon svg { transform: rotate(-45deg); }
+    @media (max-width: 1024px) {
+      .product-card { flex: 0 0 calc(50% - 12px); }
+    }
+    @media (max-width: 768px) {
+      .product-card { flex: 0 0 85%; }
+    }
+
+    /* ── Products nav: точки + стрелки ── */
+    .products-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 32px;
+    }
+    .products-dots { display: flex; align-items: center; gap: 10px; }
+    .products-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none; padding: 0; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .products-dot.is-active { background: var(--white); }
+    .products-arrows { display: flex; gap: 12px; }
+    .products-arrow {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .products-arrow:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+    .products-arrow:disabled { opacity: 0.35; cursor: default; }
+    .products-arrow:disabled:hover { border-color: rgba(255,255,255,0.3); background: transparent; }
 
     /* ─────────────────────────────────
        6. INDUSTRIES  (Jacobs-style)
@@ -1536,7 +1583,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
       <a href="request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
-    <div class="products-grid">
+  </div>
+  <div class="products-carousel" id="homeProductsCarousel">
+    <div class="products-track" id="homeProductsGrid">
+      <div class="products-lead-spacer" aria-hidden="true"></div>
 
       <a href="transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
@@ -1556,10 +1606,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">69 kV</span>
           </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Phase</span>
-            <span class="spec-val">1φ &amp; 3φ</span>
-          </div>
         </div>
         <div class="product-link">
           <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1574,20 +1620,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
             <span class="spec-lbl">HV Rating</span>
             <span class="spec-val">525 kV</span>
           </div>
           <div class="spec-row">
             <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">345 kV</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Application</span>
-            <span class="spec-val">Grid Interconnect</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Standard</span>
-            <span class="spec-val">IEEE C57 family</span>
           </div>
         </div>
         <div class="product-link">
@@ -1603,20 +1645,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
-            <span class="spec-lbl">Max LV</span>
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
             <span class="spec-val">35 kV</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Applications</span>
-            <span class="spec-val">Wind, Solar, Data</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Procurement</span>
-            <span class="spec-val">IRA-Eligible</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-lbl">Standard</span>
-            <span class="spec-val">IEEE C57 family / ANSI</span>
           </div>
         </div>
         <div class="product-link">
@@ -1625,6 +1663,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
+      <a href="transformers/mobile/" class="product-card">
+        <div class="product-card-name">Mobile Transformers</div>
+        <div class="product-card-image">
+          <img src="/assets/images/mobile-product.webp" alt="LIMIK Mobile Transformer">
+        </div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">100</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">230 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">69 kV</span>
+          </div>
+        </div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="products-nav">
+      <div class="products-dots" id="homeProductsDots"></div>
+      <div class="products-arrows">
+        <button type="button" class="products-arrow" id="homeProductsPrev" aria-label="Previous product">
+          <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M19 8H3M3 8L10 1M3 8L10 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="products-arrow" id="homeProductsNext" aria-label="Next product">
+          <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
     <a href="request-quote/" class="btn btn-gold products-bottom-cta">Request a Quote</a>
   </div>
@@ -2151,6 +2227,144 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }, { threshold: 0.4 });
     els.forEach(el => observer.observe(el));
+  })();
+</script>
+
+<script>
+  // ── Products carousel: точки + стрелки ──
+  (function () {
+    const carousel = document.getElementById('homeProductsCarousel');
+    const track = document.getElementById('homeProductsGrid');
+    const dotsWrap = document.getElementById('homeProductsDots');
+    const prevBtn = document.getElementById('homeProductsPrev');
+    const nextBtn = document.getElementById('homeProductsNext');
+    if (!carousel || !track || !dotsWrap || !prevBtn || !nextBtn) return;
+
+    const cards = Array.from(track.querySelectorAll('.product-card'));
+    if (!cards.length) return;
+
+    let currentIndex = 0;
+    let currentTranslate = 0;
+
+    // Ведущий отступ трека = левый край .container (карусель full-bleed,
+    // обрезается не сама, а секцией #products-section)
+    const leadSpacer = track.querySelector('.products-lead-spacer');
+    const refEl = document.querySelector('#products-section .container');
+    function alignLeadSpacer() {
+      if (!leadSpacer || !refEl) return;
+      const refLeft = refEl.getBoundingClientRect().left + parseFloat(getComputedStyle(refEl).paddingLeft);
+      const carouselLeft = carousel.getBoundingClientRect().left;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const width = Math.max(0, refLeft - carouselLeft - gap);
+      leadSpacer.style.flexBasis = width + 'px';
+    }
+
+    // На последнем индексе доворачиваем так, чтобы правый край последней
+    // карточки точно совпал с правым краем рабочей зоны (.container).
+    function maxTranslate() {
+      const containerContentRight = refEl.getBoundingClientRect().right
+        - parseFloat(getComputedStyle(refEl).paddingRight);
+      const carouselLeft = carousel.getBoundingClientRect().left;
+      const distanceToContainerRight = containerContentRight - carouselLeft;
+      return Math.max(0, track.scrollWidth - distanceToContainerRight);
+    }
+
+    // Число реальных остановок зависит от того, сколько карточек помещается
+    // в экран: на десктопе почти все карточки видны сразу, на мобайле видна
+    // одна карточка — остановка на каждой. Считаем по факту раскладки.
+    let stops = [0];
+
+    function buildStops() {
+      const maxT = maxTranslate();
+      const raw = [0];
+      for (let i = 1; i < cards.length; i++) {
+        raw.push(Math.min(maxT, Math.max(0, cards[i].offsetLeft - cards[0].offsetLeft)));
+      }
+      raw.push(maxT);
+      stops = [0];
+      raw.forEach((v) => {
+        if (v - stops[stops.length - 1] > 1) stops.push(v);
+      });
+    }
+
+    function setTranslate(x, animate) {
+      currentTranslate = Math.max(0, Math.min(x, maxTranslate()));
+      track.classList.toggle('is-dragging', !animate);
+      track.style.transform = 'translateX(-' + currentTranslate + 'px)';
+    }
+
+    function goTo(idx) {
+      currentIndex = Math.max(0, Math.min(stops.length - 1, idx));
+      setTranslate(stops[currentIndex], true);
+      updateUI();
+    }
+
+    function renderDots() {
+      dotsWrap.innerHTML = '';
+      stops.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'products-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    function updateUI() {
+      Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+      prevBtn.disabled = currentIndex <= 0;
+      nextBtn.disabled = currentIndex >= stops.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+    window.addEventListener('resize', () => {
+      alignLeadSpacer();
+      buildStops();
+      renderDots();
+      goTo(currentIndex);
+    });
+    alignLeadSpacer();
+    buildStops();
+    renderDots();
+    updateUI();
+
+    // ── Drag мышью/пальцем (Pointer Events — работает и на мобайле) ──
+    let isDown = false, startX = 0, startTranslate = 0, moved = false;
+    carousel.addEventListener('pointerdown', (e) => {
+      isDown = true; moved = false;
+      carousel.classList.add('is-dragging');
+      startX = e.clientX;
+      startTranslate = currentTranslate;
+    });
+    carousel.addEventListener('pointerup', endDrag);
+    carousel.addEventListener('pointercancel', endDrag);
+    function endDrag() {
+      if (!isDown) return;
+      isDown = false;
+      carousel.classList.remove('is-dragging');
+      if (moved) {
+        let closest = 0, minDist = Infinity;
+        stops.forEach((s, i) => {
+          const dist = Math.abs(s - currentTranslate);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        goTo(closest);
+      }
+    }
+    carousel.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 5) moved = true;
+      if (moved) e.preventDefault();
+      setTranslate(startTranslate - dx, false);
+    });
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (moved) e.preventDefault();
+      });
+    });
   })();
 </script>
 

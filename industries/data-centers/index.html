@@ -29,7 +29,9 @@
   <link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/limik.css">
   <link rel="stylesheet" href="../../assets/css/nav.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
   <script src="../../assets/js/nav-loader.js"></script>
+  <script src="../../assets/js/utm.js"></script>
   <style>
 
     html, body { overflow-x: clip; }
@@ -142,8 +144,9 @@
     }
     .dc-context-img { position: relative; overflow: hidden; height: 560px; }
     .dc-context-img img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+      position: absolute; left: 0; right: 0; top: -10%;
+      width: 100%; height: 120%; object-fit: cover; object-position: center 30%;
+      will-change: transform;
     }
     .dc-context-img::after {
       content: ''; position: absolute; inset: 0;
@@ -352,6 +355,153 @@
     .products-arrow:disabled { opacity: 0.35; cursor: default; }
     .products-arrow:disabled:hover { border-color: rgba(255,255,255,0.3); background: transparent; }
 
+    /* ═══════════════════════════════
+       SPECIFYING A TRANSFORMER — фото + 5 тезисов (3+2, паттерн dc-mission)
+    ═══════════════════════════════ */
+    .dc-specify { background: var(--white); padding: 0 0 120px; }
+    .dc-specify-head { max-width: 720px; margin-bottom: 56px; }
+    .dc-specify-head .eyebrow { margin-bottom: 20px; }
+    .dc-specify-head h2 { color: var(--navy-dark); margin-bottom: 24px; }
+    .dc-specify-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; }
+    .dc-specify-img { position: relative; width: 100%; height: 460px; overflow: hidden; border-radius: 2px; margin-bottom: 64px; }
+    .dc-specify-img img {
+      position: absolute; left: 0; right: 0; top: -10%;
+      width: 100%; height: 120%; object-fit: cover; display: block;
+      will-change: transform;
+    }
+    .dc-specify-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 56px 48px;
+    }
+    .dc-specify-icon { width: 40px; height: 40px; color: var(--blue); display: block; margin-bottom: 32px; }
+    .dc-specify-card h3 {
+      font-size: 20px; font-weight: 700; color: var(--navy-dark);
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .dc-specify-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
+
+    @media (max-width: 900px) {
+      .dc-specify { padding: 0 0 80px; }
+      .dc-specify-head { margin-bottom: 40px; }
+      .dc-specify-img { height: 320px; margin-bottom: 40px; }
+      .dc-specify-grid { grid-template-columns: 1fr; gap: 40px; }
+      .dc-specify-icon { margin-bottom: 18px; }
+    }
+
+    /* ═══════════════════════════════
+       QUOTE FORM — photo left (sticky) + form right (паттерн careers/request-quote)
+    ═══════════════════════════════ */
+    .dcq-page { display: flex; align-items: flex-start; }
+    .dcq-left {
+      width: 560px; flex-shrink: 0;
+      position: sticky; top: 0; height: 100vh;
+      background: var(--navy-dark); overflow: hidden;
+    }
+    @keyframes dcqBgEnter { from { opacity: 0; transform: scale(1.07); } to { opacity: 1; transform: scale(1.0); } }
+    @keyframes dcqOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes dcqWordReveal { from { transform: translateY(115%); } to { transform: translateY(0%); } }
+    .dcq-word-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .dcq-split-word { display: inline-block; transform: translateY(115%); }
+    .dcq-split-word.dcq-reveal { animation: dcqWordReveal 0.80s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .dcq-left-photo {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+      opacity: 0; transform: scale(1.07);
+    }
+    .dcq-left.dcq-in-view .dcq-left-photo { animation: dcqBgEnter 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+    .dcq-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(9,25,59,0.82) 0%, rgba(9,25,59,0.52) 45%, rgba(9,25,59,0.90) 100%);
+      opacity: 0;
+    }
+    .dcq-left.dcq-in-view .dcq-left-overlay { animation: dcqOverlayIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards; }
+    .dcq-left-content {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 80px;
+    }
+    .dcq-left-title {
+      font-size: clamp(24px, 2vw, 32px); font-weight: 800; color: var(--white);
+      line-height: 1.4; letter-spacing: -0.025em;
+    }
+
+    .dcq-right { flex: 1; min-width: 0; background: var(--off-white); padding: 120px 80px; }
+    .dcq-form-head { margin-bottom: 52px; }
+    .dcq-form-title {
+      font-size: clamp(30px, 3vw, 46px); font-weight: 800; color: var(--navy-dark);
+      letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 14px;
+    }
+    .dcq-form-sub { font-size: 16px; font-weight: 400; color: #3A5570; line-height: 1.75; max-width: 540px; }
+
+    .dcq-row { display: grid; gap: 14px; margin-bottom: 14px; }
+    .dcq-row:last-child { margin-bottom: 0; }
+    .dcq-col-2 { grid-template-columns: 1fr 1fr; }
+    .dcq-col-1 { grid-template-columns: 1fr; }
+
+    .dcq-field { display: flex; flex-direction: column; gap: 6px; }
+    .dcq-field label {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--navy-dark);
+    }
+    .dcq-field label .req { color: var(--blue); }
+    .dcq-field input,
+    .dcq-field textarea {
+      font-family: var(--font);
+      font-size: 14px; font-weight: 400; color: var(--navy-dark);
+      background: var(--white);
+      border: 1.5px solid rgba(9,25,59,0.15);
+      border-radius: 2px;
+      padding: 11px 14px; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      width: 100%; box-sizing: border-box;
+    }
+    .dcq-field input:focus,
+    .dcq-field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(32,108,185,0.10); }
+    .dcq-field input::placeholder,
+    .dcq-field textarea::placeholder { color: #A8B8CC; }
+    .dcq-field textarea { resize: vertical; min-height: 104px; line-height: 1.6; }
+
+    .dcq-field input.dcq-error,
+    .dcq-field textarea.dcq-error { border-color: #D93025; background: rgba(217,48,37,0.04); box-shadow: none; }
+    .dcq-field input.dcq-error:focus,
+    .dcq-field textarea.dcq-error:focus { border-color: #D93025; box-shadow: 0 0 0 3px rgba(217,48,37,0.12); }
+    .dcq-err-msg { font-size: 11px; font-weight: 500; color: #D93025; margin-top: 4px; display: none; }
+    .dcq-field.dcq-has-error .dcq-err-msg { display: block; }
+
+    .dcq-right .iti { display: block; width: 100%; }
+    .dcq-right .iti__selected-country {
+      background: transparent; border-right: 1.5px solid rgba(9,25,59,0.15);
+      padding: 0 10px 0 12px; gap: 6px;
+    }
+    .dcq-right .iti__selected-country:hover,
+    .dcq-right .iti__selected-country[aria-expanded="true"] { background: rgba(9,25,59,0.04); }
+    .dcq-right .iti__selected-dial-code { font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--navy-dark); }
+    .dcq-right .iti__arrow { border-top-color: var(--blue); }
+    .dcq-right .iti__arrow--up { border-bottom-color: var(--blue); }
+    .dcq-right .iti__dropdown-content { border: 1.5px solid rgba(9,25,59,0.15); border-radius: 2px; box-shadow: 0 8px 24px rgba(9,25,59,0.10); }
+    .dcq-right .iti__search-input { font-family: var(--font); font-size: 13px; border-bottom: 1.5px solid rgba(9,25,59,0.10); padding: 8px 12px; outline: none; }
+    .dcq-right .iti__country.iti__highlight { background: rgba(32,108,185,0.07); }
+    .dcq-right .iti__country-name { font-family: var(--font); font-size: 13px; }
+    .dcq-right .iti__dial-code { font-family: var(--font); font-size: 13px; }
+    .dcq-field.dcq-has-error .iti__selected-country { border-right-color: #D93025; }
+
+    .dcq-submit { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(9,25,59,0.10); }
+    .dcq-submit .btn { font-size: 13px; letter-spacing: 0.12em; padding: 18px 52px; }
+    .dcq-submit-note { margin-top: 16px; font-size: 12px; color: #7090B0; line-height: 1.65; }
+
+    @media (max-width: 1100px) {
+      .dcq-left { width: 440px; }
+      .dcq-left-content { padding: 44px 36px; }
+      .dcq-right { padding: 100px 52px; }
+    }
+    @media (max-width: 860px) {
+      .dcq-page { flex-direction: column; }
+      .dcq-left { position: relative; top: auto; width: 100%; height: 320px; }
+      .dcq-left-content { padding: 32px 28px; }
+      .dcq-right { padding: 56px 24px 80px; }
+      .dcq-col-2 { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body data-hero=".ind-hero">
@@ -399,36 +549,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════
-   MISSION-CRITICAL — 6 карточек
+   SPECIFYING A TRANSFORMER — фото + 5 тезисов
 ══════════════════════════════ -->
-<section class="dc-mission">
+<section class="dc-specify">
   <div class="container">
-    <h2>Engineered for Mission-Critical Duty</h2>
-    <div class="dc-mission-grid">
-      <div class="dc-mission-card">
-        <h3>Uptime-Focused Engineering</h3>
-        <p>Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.</p>
+    <div class="dc-specify-head">
+      <div class="eyebrow">What Matters</div>
+      <h2>Specifying a Transformer for a Data Center</h2>
+      <p>Specifying a data center transformer is a matching exercise: matching the unit to the site's load profile, layout, and growth plan. Below is the short list our engineering team walks through with every project.</p>
+    </div>
+    <div class="dc-specify-img">
+      <img src="/assets/images/ind-data-centers.webp" alt="LIMIK-powered data center campus">
+    </div>
+    <div class="dc-specify-grid">
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M4 18a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 18l4-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.3" fill="currentColor"/></svg>
+        <h3>MVA / kVA Rating</h3>
+        <p>Present load, planned expansion, and the timeline over which you expect to phase in capacity. Under-sizing forces early retirement. Over-sizing wastes capital and drives up losses at partial load.</p>
       </div>
-      <div class="dc-mission-card">
-        <h3>Low-Loss Performance</h3>
-        <p>Optimized core and winding designs to minimize no-load and load losses. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics over decades of continuous operation.</p>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M13 3 5 13h6l-1 8 8-11h-6l1-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <h3>Voltage Class</h3>
+        <p>Primary matched to the utility feed voltage (typical utility interconnections: 115 kV, 138 kV, 230 kV, 345 kV, 500 kV). Secondary matched to your medium-voltage distribution — 34.5 kV and 13.8 kV are common in modern hyperscale designs.</p>
       </div>
-      <div class="dc-mission-card">
-        <h3>Harmonic-Tolerant Design</h3>
-        <p>Data center loads generate significant harmonic content through UPS systems, VFDs, and IT power supplies. Our units are engineered with appropriate impedance, insulation systems, and thermal derating to handle non-linear load profiles.</p>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>Cooling Classification</h3>
+        <p>ONAN, ONAF, OFAF, ODAF — each has different footprint, noise, maintenance, and forced-cooling implications. Site constraints often decide this before nameplate rating does.</p>
       </div>
-      <div class="dc-mission-card">
-        <h3>Scalable Capacity</h3>
-        <p>Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Multi-phase deployments and campus master plans can be served from one manufacturer.</p>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M2 12c2 0 2-6 4-6s2 12 4 12 2-12 4-12 2 12 4 12 2-6 4-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Harmonic and Non-Linear Load Handling</h3>
+        <p>Impedance, insulation class, and thermal derating engineered against the specific harmonic spectrum your downstream load profile produces.</p>
       </div>
-      <div class="dc-mission-card">
-        <h3>Standards-Based Compliance</h3>
-        <p>Designed to IEEE, ANSI, NEMA, and IEC standards. Buy American compliant. Documentation packages prepared for the audit trails hyperscale procurement teams require.</p>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Footprint, Termination, and Site Fit</h3>
+        <p>Bushing configuration, radiator layout, oil containment, seismic and wind ratings, transportation clearances. Data centers rarely have room to spare, and everything must fit the site the day it arrives.</p>
       </div>
-      <div class="dc-mission-card">
-        <h3>Custom-Engineered per Site</h3>
-        <p>No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification — not selected from a catalog.</p>
-      </div>
+
     </div>
   </div>
 </section>
@@ -442,7 +606,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="/assets/images/logo-product.svg" aria-hidden="true" class="products-bg-logo" style="position:absolute; bottom:-10px; right:-40px; width:72%; pointer-events:none; user-select:none; opacity:0.6;">
   <div class="container" style="position:relative; z-index:1;">
     <div class="products-header">
-      <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
+      <div>
+        <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">The Transformers Your<br>Data Center Runs On</h2>
+        <p style="font-size:16px; font-weight:400; line-height:1.75; color:rgba(255,255,255,0.72); max-width:640px; margin-top:20px;">Each LIMIK product line serves a specific role in the data center power architecture — from the utility interconnection down through the campus, from behind-the-meter generation, and across the full facility lifecycle.</p>
+      </div>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
   </div>
@@ -568,8 +735,283 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ══════════════════════════════
+   MISSION-CRITICAL — 6 карточек
+══════════════════════════════ -->
+<section class="dc-mission">
+  <div class="container">
+    <h2>Engineered for Mission-Critical Duty</h2>
+    <div class="dc-mission-grid">
+      <div class="dc-mission-card">
+        <h3>Uptime-Focused Engineering</h3>
+        <p>Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.</p>
+      </div>
+      <div class="dc-mission-card">
+        <h3>Low-Loss Performance</h3>
+        <p>Optimized core and winding designs to minimize no-load and load losses. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics over decades of continuous operation.</p>
+      </div>
+      <div class="dc-mission-card">
+        <h3>Harmonic-Tolerant Design</h3>
+        <p>Data center loads generate significant harmonic content through UPS systems, VFDs, and IT power supplies. Our units are engineered with appropriate impedance, insulation systems, and thermal derating to handle non-linear load profiles.</p>
+      </div>
+      <div class="dc-mission-card">
+        <h3>Scalable Capacity</h3>
+        <p>Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Multi-phase deployments and campus master plans can be served from one manufacturer.</p>
+      </div>
+      <div class="dc-mission-card">
+        <h3>Rapid Engineering Response</h3>
+        <p>RFQs get a specification review from LIMIK engineering within 48 hours — not a queue behind a distributor or a sales pipeline. Voltage class, MVA sizing, and site constraints get real answers before you've finished comparing quotes.</p>
+      </div>
+      <div class="dc-mission-card">
+        <h3>Custom-Engineered per Site</h3>
+        <p>No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification — not selected from a catalog.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   QUOTE FORM — photo left + form right
+══════════════════════════════ -->
+<div class="dcq-page">
+
+  <div class="dcq-left">
+    <img class="dcq-left-photo" src="/assets/images/rq-hero.webp" alt="LIMIK manufacturing facility">
+    <div class="dcq-left-overlay"></div>
+    <div class="dcq-left-content">
+      <h2 class="dcq-left-title">Talk to the people who design your transformer</h2>
+    </div>
+  </div>
+
+  <div class="dcq-right">
+
+    <div class="dcq-form-head">
+      <h1 class="dcq-form-title">Ready to Discuss Your<br>Data Center Project?</h1>
+      <p class="dcq-form-sub">LIMIK works with data center owners, developers, and EPC contractors on hyperscale, colocation, and greenfield projects. Our engineering team reviews your load profile and site constraints — before a formal RFQ.</p>
+    </div>
+
+    <form id="dcq-form" novalidate>
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
+
+      <div class="dcq-row dcq-col-2">
+        <div class="dcq-field">
+          <label for="dcq-name">Name <span class="req">*</span></label>
+          <input type="text" id="dcq-name" name="firstName" placeholder="First name" required>
+        </div>
+        <div class="dcq-field">
+          <label for="dcq-company">Company <span class="req">*</span></label>
+          <input type="text" id="dcq-company" name="companyName" placeholder="Company name" required>
+        </div>
+      </div>
+
+      <div class="dcq-row dcq-col-2">
+        <div class="dcq-field">
+          <label for="dcq-email">Email <span class="req">*</span></label>
+          <input type="email" id="dcq-email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="dcq-field">
+          <label for="dcq-phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="dcq-phone" name="phone" placeholder="+1 (000) 000-0000" required>
+        </div>
+      </div>
+
+      <div class="dcq-row dcq-col-1">
+        <div class="dcq-field">
+          <label for="dcq-message">Message</label>
+          <textarea id="dcq-message" name="message" placeholder="How can we help you?"></textarea>
+        </div>
+      </div>
+
+      <div class="dcq-submit">
+        <button type="submit" class="btn btn-gold btn-lg">Send Message</button>
+        <p class="dcq-submit-note">Response within 48 hours. All information handled under NDA on request.</p>
+      </div>
+    </form>
+
+  </div><!-- /dcq-right -->
+
+</div><!-- /dcq-page -->
+
 <div id="site-footer"></div>
 <script src="../../assets/js/footer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInputWithUtils.min.js"></script>
+
+<script>
+/* ── Quote form: word-reveal левой панели при появлении во вьюпорте ── */
+(function() {
+  var left = document.querySelector('.dcq-left');
+  var title = document.querySelector('.dcq-left-title');
+  if (!left || !title) return;
+
+  var words = title.textContent.split(/(\s+)/);
+  title.innerHTML = '';
+  var wordIdx = 0;
+
+  words.forEach(function(part) {
+    if (/^\s+$/.test(part)) {
+      title.appendChild(document.createTextNode(part));
+    } else if (part) {
+      var wrap = document.createElement('span');
+      wrap.className = 'dcq-word-wrap';
+      var span = document.createElement('span');
+      span.className = 'dcq-split-word';
+      span.style.animationDelay = (0.55 + wordIdx * 0.09) + 's';
+      span.textContent = part;
+      wordIdx++;
+      wrap.appendChild(span);
+      title.appendChild(wrap);
+    }
+  });
+
+  var played = false;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !played) {
+        played = true;
+        left.classList.add('dcq-in-view');
+        title.querySelectorAll('.dcq-split-word').forEach(function(s) {
+          s.classList.add('dcq-reveal');
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(left);
+})();
+</script>
+
+<script>
+/* ── Quote form: валидация + отправка ── */
+(function() {
+  var formEl = document.getElementById('dcq-form');
+  if (!formEl) return;
+
+  var _iti = null;
+  var phoneEl = document.getElementById('dcq-phone');
+  if (phoneEl && window.intlTelInput) {
+    _iti = window.intlTelInput(phoneEl, {
+      initialCountry: 'us',
+      countryOrder: ['us','ca','gb','de','au','ae','sa','jp','kr','in'],
+      showSelectedDialCode: true,
+      countrySearch: true,
+      onlyCountries: [
+        'us','ca','mx','gt','sv','hn','ni','cr','pa','jm','tt','do','gy','sr',
+        'co','ve','ec','pe','br','bo','py','uy','ar','cl',
+        'gb','ie','fr','de','at','ch','nl','be','lu','pt','es','it','mt','gr','cy',
+        'tr','hr','si','sk','cz','pl','hu','ro','bg','md','ua',
+        'ee','lv','lt','fi','se','no','dk','is','al','rs','ba','me','mk',
+        'ge','am','az','il','jo','ae','sa','qa','kw','bh','om','eg','tn','dz','ma','iq',
+        'za','ng','ke','gh','tz','ug','rw','zm','bw','na','mz','ao','cm','ci','sn','et','zw',
+        'kz','uz','tm','kg','tj','in','pk','bd','lk','np',
+        'jp','kr','cn','tw','hk','sg','my','th','ph','id','vn','kh','mn',
+        'au','nz','pg','fj','ru'
+      ]
+    });
+  }
+
+  function addErrSpan(field) {
+    if (!field.querySelector('.dcq-err-msg')) {
+      var s = document.createElement('span');
+      s.className = 'dcq-err-msg';
+      s.textContent = 'This field is required.';
+      field.appendChild(s);
+    }
+  }
+  function markErr(field, msg) {
+    field.classList.add('dcq-has-error');
+    var inp = field.querySelector('input, textarea');
+    if (inp) inp.classList.add('dcq-error');
+    if (msg) { var s = field.querySelector('.dcq-err-msg'); if (s) s.textContent = msg; }
+  }
+  function clearErr(field) {
+    field.classList.remove('dcq-has-error');
+    field.querySelectorAll('.dcq-error').forEach(function(el) { el.classList.remove('dcq-error'); });
+    var s = field.querySelector('.dcq-err-msg'); if (s) s.textContent = 'This field is required.';
+  }
+
+  formEl.querySelectorAll('[required]').forEach(function(el) {
+    var field = el.closest('.dcq-field');
+    if (!field) return;
+    addErrSpan(field);
+    el.addEventListener('input', function() { clearErr(field); });
+    if (el.type === 'email') {
+      el.addEventListener('blur', function() {
+        var v = el.value.trim(); if (!v) return;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) markErr(field, 'Enter a valid email address.');
+        else clearErr(field);
+      });
+    }
+  });
+
+  if (phoneEl) {
+    var phoneField = phoneEl.closest('.dcq-field');
+    if (phoneField) addErrSpan(phoneField);
+    phoneEl.addEventListener('input', function() { if (phoneField) clearErr(phoneField); });
+    phoneEl.addEventListener('blur', function() {
+      if (!phoneField) return;
+      var v = phoneEl.value.trim();
+      if (!v) { markErr(phoneField); return; }
+      if (_iti && !_iti.isValidNumber()) markErr(phoneField, 'Enter a valid phone number.');
+      else clearErr(phoneField);
+    });
+  }
+
+  formEl.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if ((formEl.querySelector('[name=website]') || {}).value) return;
+
+    var valid = true, first = null;
+
+    formEl.querySelectorAll('[required]').forEach(function(el) {
+      var field = el.closest('.dcq-field'); if (!field) return;
+      var v = el.value.trim();
+      if (el.type === 'email' && v) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+          markErr(field, 'Enter a valid email address.'); valid = false; if (!first) first = field; return;
+        }
+      }
+      if (!v) { markErr(field); valid = false; if (!first) first = field; }
+      else clearErr(field);
+    });
+
+    if (phoneEl) {
+      var pf = phoneEl.closest('.dcq-field');
+      var pv = phoneEl.value.trim();
+      if (!pv) {
+        markErr(pf); valid = false; if (!first) first = pf;
+      } else if (_iti && !_iti.isValidNumber()) {
+        markErr(pf, 'Enter a valid phone number.'); valid = false; if (!first) first = pf;
+      } else {
+        clearErr(pf);
+        if (_iti) phoneEl.value = _iti.getNumber();
+      }
+    }
+
+    if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+
+    var btn = formEl.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var payload = {
+      firstName:   (formEl.querySelector('[name=firstName]')   || {}).value || '',
+      companyName: (formEl.querySelector('[name=companyName]') || {}).value || '',
+      email:       (formEl.querySelector('[name=email]')       || {}).value || '',
+      phone:       _iti ? _iti.getNumber() : (phoneEl ? phoneEl.value : ''),
+      message:     (formEl.querySelector('[name=message]')     || {}).value || '',
+      formSource:  'Data Centers'
+    };
+    Object.assign(payload, window.getUtmPayload ? window.getUtmPayload() : {});
+
+    fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function() { window.location.href = '/thank-you/'; })
+    .catch(function() { window.location.href = '/thank-you/'; });
+  });
+})();
+</script>
 
 <script>
   // ── Products carousel: точки + стрелки ──
@@ -761,6 +1203,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
+
+  // Parallax — Context photo
+  const dcContextImg = document.querySelector('.dc-context-img img');
+  if (dcContextImg) {
+    gsap.fromTo(dcContextImg, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.dc-context-img', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
+
+  // Parallax — Specify photo
+  const dcSpecifyImg = document.querySelector('.dc-specify-img img');
+  if (dcSpecifyImg) {
+    gsap.fromTo(dcSpecifyImg, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.dc-specify-img', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
 
   // Shutter reveal — section transitions (как на главной)
   (function () {

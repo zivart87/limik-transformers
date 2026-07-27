@@ -238,7 +238,7 @@
     }
     .products-carousel {
       position: relative; z-index: 1;
-      overflow: hidden;
+      overflow: visible;
       cursor: grab; user-select: none;
     }
     .products-carousel.is-dragging { cursor: grabbing; }
@@ -248,6 +248,7 @@
       will-change: transform;
     }
     .products-track.is-dragging { transition: none; }
+    .products-lead-spacer { flex: 0 0 40px; }
     .product-card {
       background: #FFFFFF;
       border-radius: 2px;
@@ -443,8 +444,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">Large-Scale Power Solutions.<br>Custom-Engineered</h2>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
-    <div class="products-carousel" id="dcProductsCarousel">
+  </div>
+  <div class="products-carousel" id="dcProductsCarousel">
     <div class="products-track" id="dcProductsGrid">
+      <div class="products-lead-spacer" aria-hidden="true"></div>
 
       <a href="/transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
@@ -547,7 +550,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
     </div>
-    </div>
+  </div>
+  <div class="container" style="position:relative; z-index:1;">
     <div class="products-nav">
       <div class="products-dots" id="dcProductsDots"></div>
       <div class="products-arrows">
@@ -582,14 +586,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let currentIndex = 0;
     let currentTranslate = 0;
 
-    function maxTranslate() {
-      return Math.max(0, track.scrollWidth - carousel.clientWidth);
+    // Ведущий отступ трека = левый край .container (карусель full-bleed,
+    // обрезается не сама, а секцией #products-section — как overflow:visible
+    // у swiper на ayr.energy, клип идёт по краю секции/экрана)
+    const leadSpacer = track.querySelector('.products-lead-spacer');
+    const refEl = document.querySelector('#products-section .container');
+    function alignLeadSpacer() {
+      if (!leadSpacer || !refEl) return;
+      const refLeft = refEl.getBoundingClientRect().left + parseFloat(getComputedStyle(refEl).paddingLeft);
+      const carouselLeft = carousel.getBoundingClientRect().left;
+      const width = Math.max(0, refLeft - carouselLeft);
+      leadSpacer.style.flexBasis = width + 'px';
     }
 
-    // Целевой translate для индекса — card.offsetLeft, но не дальше maxTranslate
-    // (последняя карточка всегда ровно по правому краю карусели/контейнера)
+    // На последнем индексе доворачиваем так, чтобы правый край последней
+    // карточки точно совпал с правым краем рабочей зоны (.container), а не
+    // просто "последняя карточка стала крайней слева" — иначе после неё
+    // остаётся пустой хвост до кнопки.
+    function maxTranslate() {
+      const containerWidth = refEl.getBoundingClientRect().width
+        - parseFloat(getComputedStyle(refEl).paddingLeft)
+        - parseFloat(getComputedStyle(refEl).paddingRight);
+      return Math.max(0, track.scrollWidth - containerWidth);
+    }
+
     function targetFor(idx) {
-      return Math.min(cards[idx].offsetLeft, maxTranslate());
+      if (idx === cards.length - 1) return maxTranslate();
+      return Math.max(0, cards[idx].offsetLeft);
     }
 
     function setTranslate(x, animate) {
@@ -622,7 +645,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
     nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
-    window.addEventListener('resize', () => goTo(currentIndex));
+    window.addEventListener('resize', () => { alignLeadSpacer(); goTo(currentIndex); });
+    alignLeadSpacer();
     updateUI();
 
     // ── Drag мышью — двигаем трек напрямую, на отпускании доезжаем до ближайшей карточки ──
@@ -640,8 +664,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (moved) {
         // Ближайшая карточка к текущей позиции трека
         let closest = 0, minDist = Infinity;
-        cards.forEach((card, i) => {
-          const dist = Math.abs(Math.min(card.offsetLeft, maxTranslate()) - currentTranslate);
+        cards.forEach((_, i) => {
+          const dist = Math.abs(targetFor(i) - currentTranslate);
           if (dist < minDist) { minDist = dist; closest = i; }
         });
         goTo(closest);

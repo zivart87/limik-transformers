@@ -614,12 +614,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return Math.max(0, track.scrollWidth - distanceToContainerRight);
     }
 
+    // Карусель прокручивается ровно один раз — от начала до конца, без
+    // промежуточных остановок (карточки почти полностью помещаются в
+    // экран). Поэтому состояний всего два: 0 (начало) и 1 (конец).
+    const lastIndex = 1;
+
     function targetFor(idx) {
-      if (idx === 0) return 0; // состояние покоя — spacer сам выравнивает card1 по контейнеру
-      if (idx === cards.length - 1) return maxTranslate();
-      // Смещение относительно card0 — переносит card[idx] ровно в ту же
-      // визуальную позицию (по контейнеру), где в покое стоит card0.
-      return Math.max(0, cards[idx].offsetLeft - cards[0].offsetLeft);
+      return idx === 0 ? 0 : maxTranslate();
     }
 
     function setTranslate(x, animate) {
@@ -629,12 +630,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     function goTo(idx) {
-      currentIndex = Math.max(0, Math.min(cards.length - 1, idx));
+      currentIndex = Math.max(0, Math.min(lastIndex, idx));
       setTranslate(targetFor(currentIndex), true);
       updateUI();
     }
 
-    cards.forEach((_, i) => {
+    [0, 1].forEach((i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'products-dot' + (i === 0 ? ' is-active' : '');
@@ -647,7 +648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function updateUI() {
       dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
       prevBtn.disabled = currentIndex <= 0;
-      nextBtn.disabled = currentIndex >= cards.length - 1;
+      nextBtn.disabled = currentIndex >= lastIndex;
     }
 
     prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
@@ -669,12 +670,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       isDown = false;
       carousel.classList.remove('is-dragging');
       if (moved) {
-        // Ближайшая карточка к текущей позиции трека
-        let closest = 0, minDist = Infinity;
-        cards.forEach((_, i) => {
-          const dist = Math.abs(targetFor(i) - currentTranslate);
-          if (dist < minDist) { minDist = dist; closest = i; }
-        });
+        // Ближайшее из двух состояний (начало/конец) к текущей позиции трека
+        const closest = Math.abs(maxTranslate() - currentTranslate) < Math.abs(currentTranslate)
+          ? 1 : 0;
         goTo(closest);
       }
     });

@@ -595,7 +595,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!leadSpacer || !refEl) return;
       const refLeft = refEl.getBoundingClientRect().left + parseFloat(getComputedStyle(refEl).paddingLeft);
       const carouselLeft = carousel.getBoundingClientRect().left;
-      const width = Math.max(0, refLeft - carouselLeft);
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const width = Math.max(0, refLeft - carouselLeft - gap);
       leadSpacer.style.flexBasis = width + 'px';
     }
 
@@ -604,15 +605,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // просто "последняя карточка стала крайней слева" — иначе после неё
     // остаётся пустой хвост до кнопки.
     function maxTranslate() {
-      const containerWidth = refEl.getBoundingClientRect().width
-        - parseFloat(getComputedStyle(refEl).paddingLeft)
+      // Правый край контейнера (контент, без паддинга) в координатах экрана
+      const containerContentRight = refEl.getBoundingClientRect().right
         - parseFloat(getComputedStyle(refEl).paddingRight);
-      return Math.max(0, track.scrollWidth - containerWidth);
+      // Левый край карусели — начало координат трека (translateX(0))
+      const carouselLeft = carousel.getBoundingClientRect().left;
+      const distanceToContainerRight = containerContentRight - carouselLeft;
+      return Math.max(0, track.scrollWidth - distanceToContainerRight);
     }
 
     function targetFor(idx) {
+      if (idx === 0) return 0; // состояние покоя — spacer сам выравнивает card1 по контейнеру
       if (idx === cards.length - 1) return maxTranslate();
-      return Math.max(0, cards[idx].offsetLeft);
+      // Смещение относительно card0 — переносит card[idx] ровно в ту же
+      // визуальную позицию (по контейнеру), где в покое стоит card0.
+      return Math.max(0, cards[idx].offsetLeft - cards[0].offsetLeft);
     }
 
     function setTranslate(x, animate) {

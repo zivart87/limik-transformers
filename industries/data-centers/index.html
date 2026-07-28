@@ -602,7 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="ind-hero-sub">Custom-engineered power capacity for hyperscale, colocation, and edge facilities — designed and built in America.</p>
     </div>
     <div class="ind-hero-action">
-      <a href="/request-quote/" class="btn btn-gold btn-lg">Talk to Sales</a>
+      <a href="#dcq-form" class="btn btn-gold btn-lg">Talk to Sales</a>
     </div>
   </div>
 </section>
@@ -1347,6 +1347,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
+
+  // Якорные ссылки (#dcq-form и т.п.) — переход через lenis.scrollTo()
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -110 });
+  });
 
   // Parallax — Context photo
   const dcContextImg = document.querySelector('.dc-context-img img');

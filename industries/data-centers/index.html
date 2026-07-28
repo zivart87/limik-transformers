@@ -524,6 +524,62 @@
       .dcq-col-2 { grid-template-columns: 1fr; }
     }
 
+    /* ═══════════════════════════════
+       FAQ — заголовок/текст слева, аккордеон справа
+    ═══════════════════════════════ */
+    .dc-faq { background: var(--white); padding: 120px 0; }
+    .dc-faq-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 72px; align-items: start;
+    }
+    .dc-faq-head .eyebrow {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .dc-faq-head h2 {
+      font-size: clamp(26px, 2.8vw, 42px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
+    }
+    .dc-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; }
+
+    .dc-faq-list { outline: 1px solid var(--border-l); background: var(--white); }
+    .dc-faq-item { border-bottom: 1px solid var(--border-l); transition: background 0.2s; }
+    .dc-faq-item:last-child { border-bottom: none; }
+    .dc-faq-item.is-open { background: var(--off-white); }
+    .dc-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; width: 100%; padding: 28px;
+      background: none; border: none; text-align: left; cursor: pointer;
+      font-family: var(--font);
+    }
+    .dc-faq-q span:first-child {
+      font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--navy-dark);
+    }
+    .dc-faq-toggle { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
+    .dc-faq-toggle::before,
+    .dc-faq-toggle::after {
+      content: ''; position: absolute; background: var(--blue);
+      transition: transform 0.25s ease;
+    }
+    .dc-faq-toggle::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+    .dc-faq-toggle::after { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+    .dc-faq-item.is-open .dc-faq-toggle::after { transform: translateX(-50%) scaleY(0); }
+
+    .dc-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .dc-faq-a p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; padding: 0 28px 28px; }
+    .dc-faq-item.is-open .dc-faq-a { max-height: 300px; }
+
+    @media (max-width: 900px) {
+      .dc-faq { padding: 80px 0; }
+      .dc-faq-grid { grid-template-columns: 1fr; gap: 32px; }
+      .dc-faq-head { margin-bottom: 8px; }
+    }
+    @media (max-width: 600px) {
+      .dc-faq-q { padding: 22px 20px; gap: 16px; }
+      .dc-faq-a p { padding: 0 20px 22px; }
+    }
+
   </style>
 </head>
 <body data-hero=".ind-hero">
@@ -853,6 +909,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div><!-- /dcq-right -->
 
 </div><!-- /dcq-page -->
+
+<!-- ══════════════════════════════
+   FAQ — заголовок/текст слева, аккордеон справа
+══════════════════════════════ -->
+<section class="dc-faq">
+  <div class="container">
+    <div class="dc-faq-grid">
+
+      <div class="dc-faq-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>The future of data centers explained</h2>
+        <p>Answering the key questions behind AI and next-generation data centers, from power and cooling to sustainability and delivery. Understand what's driving design decisions and how facilities are built to perform at scale.</p>
+      </div>
+
+      <div class="dc-faq-list">
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>What is an AI data center?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>An AI data center is a facility purpose-built to support high-density compute for training and running artificial intelligence workloads, with power and cooling infrastructure engineered well beyond traditional facility standards.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>How are AI data centers different from traditional data centers?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>AI data centers operate at significantly higher rack densities and require advanced cooling systems, enhanced power infrastructure and more flexible layouts than traditional facilities.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>What voltage classes does LIMIK support for data center projects?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>LIMIK engineers power transformers up to 600 MVA and 525 kV, covering everything from single-hall colocation sites to gigawatt-scale AI campuses.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>How long does engineering review take before an RFQ?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>LIMIK engineering reviews specifications within 48 hours, giving real answers on voltage class, MVA sizing, and site constraints before a formal quote process begins.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.dc-faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.dc-faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      item.parentElement.querySelectorAll('.dc-faq-item.is-open').forEach(function (open) {
+        open.classList.remove('is-open');
+      });
+      if (!wasOpen) item.classList.add('is-open');
+    });
+  });
+})();
+</script>
 
 <div id="site-footer"></div>
 <script src="../../assets/js/footer.js"></script>

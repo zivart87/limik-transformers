@@ -656,9 +656,6 @@
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .power-marquee-track { animation: none; }
-    }
     @media (max-width: 768px) {
       .power-marquee-section { padding: 60px 0 0; }
       .power-marquee-heading { margin-bottom: 32px; }
@@ -2001,16 +1998,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="power-marquee-viewport">
     <div class="power-marquee-track">
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-1.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
-      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-2.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-label="LIMIK transformer manufacturing"></video></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-2.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-3.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-4.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-5.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-6.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-7.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-1.webp" alt="" loading="lazy"></div>
-      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-2.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-hidden="true"></video></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-2.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-3.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-4.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-5.webp" alt="" loading="lazy"></div>
@@ -2018,6 +2015,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-7.webp" alt="" loading="lazy"></div>
     </div>
   </div>
+  <script>
+    document.querySelectorAll('.power-marquee-item video').forEach(function(v) {
+      var tryPlay = function() { v.play().catch(function(){}); };
+      tryPlay();
+      v.addEventListener('canplay', tryPlay, { once: true });
+    });
+  </script>
 </section>
 
 <!-- ══════════════════════════════

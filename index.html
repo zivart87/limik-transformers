@@ -2016,6 +2016,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-7.webp" alt="" loading="lazy"></div>
     </div>
   </div>
+  <script>
+    (function() {
+      var v = document.querySelector('.power-marquee-item video');
+      if (!v || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) v.play().catch(function(){});
+        });
+      }, { threshold: 0.1 }).observe(v);
+    })();
+  </script>
 </section>
 
 <!-- ══════════════════════════════

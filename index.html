@@ -648,6 +648,8 @@
     .power-marquee-track {
       display: flex; width: max-content; gap: 24px;
       animation: power-marquee-scroll 48s linear infinite;
+      will-change: transform;
+      backface-visibility: hidden;
     }
     .power-marquee-viewport:hover .power-marquee-track { animation-play-state: paused; }
     .power-marquee-item { flex: 0 0 auto; width: 360px; height: 380px; }
@@ -1998,7 +2000,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="power-marquee-viewport">
     <div class="power-marquee-track">
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-1.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
-      <div class="power-marquee-item"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-label="LIMIK transformer manufacturing"></video></div>
+      <div class="power-marquee-item"><video src="assets/video/marquee-loop.mp4" poster="assets/images/marquee/marquee-video-poster.webp" autoplay muted loop playsinline disablepictureinpicture aria-label="LIMIK transformer manufacturing"></video></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-2.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-3.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-4.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
@@ -2006,7 +2008,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-6.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item"><img src="assets/images/marquee/marquee-7.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-1.webp" alt="" loading="lazy"></div>
-      <div class="power-marquee-item" aria-hidden="true"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-hidden="true"></video></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-video-poster.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-2.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-3.webp" alt="" loading="lazy"></div>
       <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-4.webp" alt="" loading="lazy"></div>

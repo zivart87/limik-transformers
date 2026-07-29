@@ -630,6 +630,42 @@
       .why-section { padding-bottom: 80px; }
     }
 
+    /* ── Power Starts Here: лента фото ── */
+    .power-marquee-section {
+      background: var(--white);
+      padding: 120px 0 0;
+      overflow: hidden;
+    }
+    .power-marquee-heading {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--navy-dark);
+      text-align: center;
+      margin: 0 0 48px;
+    }
+    .power-marquee-viewport { overflow: hidden; width: 100%; }
+    .power-marquee-track {
+      display: flex; width: max-content; gap: 24px;
+      animation: power-marquee-scroll 48s linear infinite;
+    }
+    .power-marquee-viewport:hover .power-marquee-track { animation-play-state: paused; }
+    .power-marquee-item { flex: 0 0 auto; width: 322px; height: 340px; }
+    .power-marquee-item img, .power-marquee-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes power-marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .power-marquee-track { animation: none; }
+    }
+    @media (max-width: 768px) {
+      .power-marquee-section { padding: 60px 0 0; }
+      .power-marquee-heading { margin-bottom: 32px; }
+      .power-marquee-item { width: 228px; height: 240px; }
+      .power-marquee-track { gap: 16px; animation-duration: 32s; }
+    }
+
     /* ─────────────────────────────────
        4. PAIN POINT  (dark)
     ───────────────────────────────── */
@@ -1953,6 +1989,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="about-overlay-photo-l">
         <img src="assets/images/about.webp" alt="LIMIK Manufacturing">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   POWER STARTS HERE  ← лента фото
+══════════════════════════════ -->
+<section class="power-marquee-section">
+  <h2 class="power-marquee-heading">Power Starts Here</h2>
+  <div class="power-marquee-viewport">
+    <div class="power-marquee-track">
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-1.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-2.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-label="LIMIK transformer manufacturing"></video></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-3.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-4.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-5.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-6.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="assets/images/marquee/marquee-7.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-1.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-2.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><video src="assets/video/marquee-loop.mp4" autoplay muted loop playsinline disablepictureinpicture aria-hidden="true"></video></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-3.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-4.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-5.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-6.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="assets/images/marquee/marquee-7.webp" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>

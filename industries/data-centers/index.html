@@ -541,7 +541,20 @@
       font-weight: 700; line-height: 1.05;
       letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
     }
-    .dc-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; }
+    .dc-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
+
+    .dc-faq-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--navy-dark);
+    }
+    .dc-faq-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+    }
+    .dc-faq-link-icon svg { transition: transform 0.1s ease; }
+    .dc-faq-link:hover .dc-faq-link-icon svg { transform: rotate(-45deg); }
 
     .dc-faq-list { outline: 1px solid var(--border-l); background: var(--white); }
     .dc-faq-item { border-bottom: 1px solid var(--border-l); transition: background 0.2s; }
@@ -568,7 +581,7 @@
 
     .dc-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
     .dc-faq-a p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; padding: 0 28px 28px; }
-    .dc-faq-item.is-open .dc-faq-a { max-height: 300px; }
+    .dc-faq-item.is-open .dc-faq-a { max-height: 420px; }
 
     @media (max-width: 900px) {
       .dc-faq { padding: 80px 0; }
@@ -921,39 +934,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="eyebrow">FAQ</div>
         <h2>The future of data centers explained</h2>
         <p>Answering the key questions behind AI and next-generation data centers, from power and cooling to sustainability and delivery. Understand what's driving design decisions and how facilities are built to perform at scale.</p>
+        <a href="../../contact/" class="dc-faq-link">
+          <span class="dc-faq-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Contact Us
+        </a>
       </div>
 
       <div class="dc-faq-list">
         <div class="dc-faq-item">
           <button class="dc-faq-q" type="button">
-            <span>What is an AI data center?</span>
+            <span>What types of transformers does a data center actually need?</span>
             <span class="dc-faq-toggle"></span>
           </button>
-          <div class="dc-faq-a"><p>An AI data center is a facility purpose-built to support high-density compute for training and running artificial intelligence workloads, with power and cooling infrastructure engineered well beyond traditional facility standards.</p></div>
+          <div class="dc-faq-a"><p>A modern hyperscale or large colocation facility typically needs three transformer categories: (1) main substation power transformers at the utility handoff to step transmission voltage down to medium voltage, (2) autotransformers where redundant sub-transmission ties are required, and (3) generator step-up transformers for behind-the-meter on-site generation. Downstream from that — dry-type PDU transformers and isolation transformers — is a separate distribution category served by different manufacturers.</p></div>
         </div>
 
         <div class="dc-faq-item">
           <button class="dc-faq-q" type="button">
-            <span>How are AI data centers different from traditional data centers?</span>
+            <span>How does transformer efficiency affect a data center's PUE?</span>
             <span class="dc-faq-toggle"></span>
           </button>
-          <div class="dc-faq-a"><p>AI data centers operate at significantly higher rack densities and require advanced cooling systems, enhanced power infrastructure and more flexible layouts than traditional facilities.</p></div>
+          <div class="dc-faq-a"><p>Transformers run continuously, so no-load and load losses translate directly into wasted energy and additional cooling load. Every kilowatt of transformer loss shows up twice in the PUE calculation: once as consumed energy that did not reach the IT load, and once as heat the cooling system must remove. Low-loss transformer designs contribute meaningfully to facility PUE over decades of operation.</p></div>
         </div>
 
         <div class="dc-faq-item">
           <button class="dc-faq-q" type="button">
-            <span>What voltage classes does LIMIK support for data center projects?</span>
+            <span>What lead times should we expect for new data center transformers?</span>
             <span class="dc-faq-toggle"></span>
           </button>
-          <div class="dc-faq-a"><p>LIMIK engineers power transformers up to 600 MVA and 525 kV, covering everything from single-hall colocation sites to gigawatt-scale AI campuses.</p></div>
+          <div class="dc-faq-a"><p>Industry lead times for large power transformers have stretched well beyond historical norms across most manufacturers, driven by raw material constraints and surging demand — industry averages are now approaching 120 weeks. LIMIK targets a 40 to 72-week lead time for power transformers, autotransformers, and generator step-up units, confirmed with each customer at the RFQ stage against the specific unit's rating and configuration.</p></div>
         </div>
 
         <div class="dc-faq-item">
           <button class="dc-faq-q" type="button">
-            <span>How long does engineering review take before an RFQ?</span>
+            <span>How is LIMIK Buy American compliant, and why does it matter for data centers?</span>
             <span class="dc-faq-toggle"></span>
           </button>
-          <div class="dc-faq-a"><p>LIMIK engineering reviews specifications within 48 hours, giving real answers on voltage class, MVA sizing, and site constraints before a formal quote process begins.</p></div>
+          <div class="dc-faq-a"><p>LIMIK is a U.S.-owned power transformer manufacturer producing in the United States. Buy American compliance matters most for federal data center procurements and for hyperscale operators managing supply-chain and tariff risk. Domestic content compliance is designed into every unit rather than certified after the fact.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>Can LIMIK support N+1 or 2N redundancy schemes?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>Yes. Redundancy is an architectural choice made by the data center design team; LIMIK supplies the transformer, autotransformer, and GSU units that populate that architecture. Common patterns — parallel main transformers with autotransformer ties, isolated redundant feeds — are engineered on a per-project basis.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>What voltage classes and MVA ratings does LIMIK support?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>Power transformers and autotransformers up to 525 kV HV and up to 600 MVA. Generator step-up units up to 525 kV HV and 35 kV LV, up to 600 MVA. Full specifications are available on the individual product pages.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>Does LIMIK support both greenfield builds and capacity expansions?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>Yes. Greenfield hyperscale campuses, colocation expansions adding halls, and retrofit projects upgrading existing substations are all within LIMIK's scope. Each is engineered against the specific site conditions and existing electrical architecture.</p></div>
+        </div>
+
+        <div class="dc-faq-item">
+          <button class="dc-faq-q" type="button">
+            <span>How does the procurement process work with LIMIK?</span>
+            <span class="dc-faq-toggle"></span>
+          </button>
+          <div class="dc-faq-a"><p>Procurement typically begins with a Letter of Interest or Letter of Intent, followed by specification review with LIMIK engineering, then a formal purchase order once specifications are locked. This is the standard long-lead procurement pattern for large power transformers.</p></div>
         </div>
       </div>
 

@@ -315,7 +315,7 @@
     }
 
     /* ═══════════════════════════════
-       MISSION-CRITICAL — 6 карточек, 3×2 (паттерн co-pillars, без иконок/кнопок)
+       MISSION-CRITICAL — список слева, контент справа
     ═══════════════════════════════ */
     .dc-mission { background: var(--off-white); padding: 120px 0; }
     .dc-mission > .container > h2 {
@@ -323,32 +323,45 @@
       letter-spacing: -0.02em; line-height: 1.0;
       color: var(--navy-dark); margin-bottom: 64px;
     }
-    .dc-mission-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0; outline: 1px solid var(--border-l); background: var(--off-white);
+    .dc-mission-tabs {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 72px; align-items: start;
     }
-    .dc-mission-card {
-      padding: 52px 48px;
-      border-right: 1px solid var(--border-l);
-      border-bottom: 1px solid var(--border-l);
+    .dc-mission-tab-list { display: flex; flex-direction: column; }
+    .dc-mission-tab {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; width: 100%; text-align: left;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font); padding: 20px 24px;
+      font-size: 16px; font-weight: 700; color: var(--blue);
+      border-radius: 2px; transition: background 0.2s;
     }
-    .dc-mission-card:nth-child(3n) { border-right: none; }
-    .dc-mission-card:nth-last-child(-n+3) { border-bottom: none; }
-    .dc-mission-card h3 {
-      font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--navy-dark);
+    .dc-mission-tab:hover { background: rgba(255,255,255,0.6); }
+    .dc-mission-tab.is-active { background: var(--white); }
+    .dc-mission-tab-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; flex-shrink: 0;
+      border: 2px solid var(--blue); border-radius: 2px;
+      color: var(--blue); opacity: 0; transform: translateX(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dc-mission-tab.is-active .dc-mission-tab-icon,
+    .dc-mission-tab:hover .dc-mission-tab-icon {
+      opacity: 1; transform: translateX(0);
+    }
+    .dc-mission-panel h3 {
+      font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; color: var(--navy-dark);
       letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
     }
-    .dc-mission-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
+    .dc-mission-panel p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; }
 
     @media (max-width: 900px) {
       .dc-mission { padding: 80px 0; }
       .dc-mission > .container > h2 { margin-bottom: 32px; }
     }
     @media (max-width: 768px) {
-      .dc-mission-grid { grid-template-columns: 1fr; }
-      .dc-mission-card { border-right: none; }
-      .dc-mission-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border-l); }
-      .dc-mission-card:last-child { border-bottom: none; }
+      .dc-mission-tabs { grid-template-columns: 1fr; gap: 8px; }
+      .dc-mission-tab { padding: 18px 20px; }
       .dc-mission > .container > h2 { font-size: 36px; }
     }
 
@@ -511,7 +524,7 @@
     }
     .dc-specify-icon { width: 40px; height: 40px; color: var(--blue); display: block; margin-bottom: 32px; }
     .dc-specify-card h3 {
-      font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--navy-dark);
+      font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; color: var(--navy-dark);
       letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
     }
     .dc-specify-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
@@ -675,7 +688,8 @@
     .dc-faq-list { outline: 1px solid var(--border-l); background: var(--white); }
     .dc-faq-item { border-bottom: 1px solid var(--border-l); transition: background 0.2s; }
     .dc-faq-item:last-child { border-bottom: none; }
-    .dc-faq-item.is-open { background: var(--off-white); }
+    .dc-faq-item.is-open,
+    .dc-faq-item:hover { background: var(--off-white); }
     .dc-faq-q {
       display: flex; align-items: center; justify-content: space-between;
       gap: 24px; width: 100%; padding: 28px;
@@ -978,6 +992,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════
+   MISSION-CRITICAL — список слева, контент справа
+══════════════════════════════ -->
+<section class="dc-mission">
+  <div class="container">
+    <h2>Engineered for Mission-Critical Duty</h2>
+    <div class="dc-mission-tabs">
+      <div class="dc-mission-tab-list" id="dcMissionTabs">
+        <button type="button" class="dc-mission-tab is-active"
+          data-title="Uptime-Focused Engineering"
+          data-body="Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.">
+          <span>Uptime-Focused Engineering</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="dc-mission-tab"
+          data-title="Low-Loss Performance"
+          data-body="Optimized core and winding designs to minimize no-load and load losses. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics over decades of continuous operation.">
+          <span>Low-Loss Performance</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="dc-mission-tab"
+          data-title="Harmonic-Tolerant Design"
+          data-body="Data center loads generate significant harmonic content through UPS systems, VFDs, and IT power supplies. Our units are engineered with appropriate impedance, insulation systems, and thermal derating to handle non-linear load profiles.">
+          <span>Harmonic-Tolerant Design</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="dc-mission-tab"
+          data-title="Scalable Capacity"
+          data-body="Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Multi-phase deployments and campus master plans can be served from one manufacturer.">
+          <span>Scalable Capacity</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="dc-mission-tab"
+          data-title="Rapid Engineering Response"
+          data-body="RFQs get a specification review from LIMIK engineering within 48 hours — not a queue behind a distributor or a sales pipeline. Voltage class, MVA sizing, and site constraints get real answers before you've finished comparing quotes.">
+          <span>Rapid Engineering Response</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button type="button" class="dc-mission-tab"
+          data-title="Custom-Engineered per Site"
+          data-body="No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification — not selected from a catalog.">
+          <span>Custom-Engineered per Site</span>
+          <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+      <div class="dc-mission-panel">
+        <h3 id="dcMissionTitle">Uptime-Focused Engineering</h3>
+        <p id="dcMissionBody">Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
    SPECIFYING A TRANSFORMER — фото + 5 тезисов
 ══════════════════════════════ -->
 <section class="dc-specify">
@@ -1022,41 +1089,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Bushing configuration, radiator layout, oil containment, seismic and wind ratings, transportation clearances. Data centers rarely have room to spare, and everything must fit the site the day it arrives.</p>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-   MISSION-CRITICAL — 6 карточек
-══════════════════════════════ -->
-<section class="dc-mission">
-  <div class="container">
-    <h2>Engineered for Mission-Critical Duty</h2>
-    <div class="dc-mission-grid">
-      <div class="dc-mission-card">
-        <h3>Uptime-Focused Engineering</h3>
-        <p>Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.</p>
-      </div>
-      <div class="dc-mission-card">
-        <h3>Low-Loss Performance</h3>
-        <p>Optimized core and winding designs to minimize no-load and load losses. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics over decades of continuous operation.</p>
-      </div>
-      <div class="dc-mission-card">
-        <h3>Harmonic-Tolerant Design</h3>
-        <p>Data center loads generate significant harmonic content through UPS systems, VFDs, and IT power supplies. Our units are engineered with appropriate impedance, insulation systems, and thermal derating to handle non-linear load profiles.</p>
-      </div>
-      <div class="dc-mission-card">
-        <h3>Scalable Capacity</h3>
-        <p>Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Multi-phase deployments and campus master plans can be served from one manufacturer.</p>
-      </div>
-      <div class="dc-mission-card">
-        <h3>Rapid Engineering Response</h3>
-        <p>RFQs get a specification review from LIMIK engineering within 48 hours — not a queue behind a distributor or a sales pipeline. Voltage class, MVA sizing, and site constraints get real answers before you've finished comparing quotes.</p>
-      </div>
-      <div class="dc-mission-card">
-        <h3>Custom-Engineered per Site</h3>
-        <p>No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification — not selected from a catalog.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1577,6 +1609,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }, { threshold: 0.4 });
     els.forEach(el => observer.observe(el));
+  })();
+</script>
+
+<script>
+  // ── Mission-Critical: переключение табов ──
+  (function () {
+    const tabs = document.querySelectorAll('.dc-mission-tab');
+    const title = document.getElementById('dcMissionTitle');
+    const body = document.getElementById('dcMissionBody');
+    if (!tabs.length || !title || !body) return;
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        title.textContent = tab.dataset.title;
+        body.textContent = tab.dataset.body;
+      });
+    });
   })();
 </script>
 

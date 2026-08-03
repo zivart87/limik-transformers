@@ -353,7 +353,8 @@
       font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; color: var(--navy-dark);
       letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
     }
-    .dc-mission-panel p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; }
+    .dc-mission-panel p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 20px; }
+    .dc-mission-panel p:last-child { margin-bottom: 0; }
 
     @media (max-width: 900px) {
       .dc-mission { padding: 80px 0; }
@@ -653,6 +654,65 @@
     }
 
     /* ═══════════════════════════════
+       §303 — MISSION · VISION · VALUES (как на company)
+    ═══════════════════════════════ */
+    .co-303 {
+      background: var(--navy-dark);
+      padding: 120px 0;
+      position: relative; overflow: hidden;
+    }
+    .co-303-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 96px; align-items: start;
+    }
+    .co-303-left h2 {
+      font-size: clamp(26px, 3.2vw, 48px); font-weight: 700;
+      line-height: 1.05; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .co-303-left h2 em { color: var(--blue); font-style: normal; }
+    .co-303-left p:not(.eyebrow) {
+      font-size: 16px; line-height: 1.78;
+      color: rgba(255,255,255,0.72); margin-bottom: 20px;
+    }
+    .co-303-left p:not(.eyebrow):last-of-type {
+      margin-bottom: 40px;
+    }
+    .co-303-items { display: flex; flex-direction: column; gap: 28px; }
+    .co-303-item {
+      border-left: 2px solid var(--blue);
+      padding: 2px 0 2px 24px;
+    }
+    .co-303-item-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .co-303-item p {
+      font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.6); margin: 0;
+    }
+    .co-303-mark {
+      position: absolute; right: -60px; bottom: -60px;
+      width: 520px; height: 520px;
+      z-index: 0; pointer-events: none;
+    }
+    .co-303-mark img {
+      display: block; width: 100%; height: 100%;
+      object-fit: contain; opacity: 0.16;
+    }
+    .co-303-mark-blocks {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    @media (max-width: 900px) {
+      .co-303 { padding: 80px 0; }
+      .co-303-inner { grid-template-columns: 1fr; gap: 56px; }
+      .co-303-mark { width: 340px; height: 340px; right: -40px; bottom: -40px; }
+    }
+
+    /* ═══════════════════════════════
        FAQ — заголовок/текст слева, аккордеон справа
     ═══════════════════════════════ */
     .dc-faq { background: var(--white); padding: 120px 0; }
@@ -865,7 +925,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:1.0; letter-spacing:-0.02em; color:var(--white);">The Transformers Your<br>Data Center Runs On</h2>
         <p style="font-size:16px; font-weight:400; line-height:1.75; color:rgba(255,255,255,0.72); max-width:640px; margin-top:20px;">Each LIMIK product line serves a specific role in the data center power architecture — from the utility interconnection down through the campus, from behind-the-meter generation, and across the full facility lifecycle.</p>
       </div>
-      <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
+      <a href="#quote-form" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
     </div>
   </div>
   <div class="products-carousel" id="dcProductsCarousel">
@@ -986,7 +1046,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </button>
       </div>
     </div>
-    <a href="/request-quote/" class="btn btn-gold products-bottom-cta">Request a Quote</a>
+    <a href="#quote-form" class="btn btn-gold products-bottom-cta">Request a Quote</a>
   </div>
 </section>
 
@@ -998,46 +1058,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Engineered for Mission-Critical Duty</h2>
     <div class="dc-mission-tabs">
       <div class="dc-mission-tab-list" id="dcMissionTabs">
-        <button type="button" class="dc-mission-tab is-active"
-          data-title="Uptime-Focused Engineering"
-          data-body="Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.">
+        <button type="button" class="dc-mission-tab is-active" data-index="0">
           <span>Uptime-Focused Engineering</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <button type="button" class="dc-mission-tab"
-          data-title="Low-Loss Performance"
-          data-body="Optimized core and winding designs to minimize no-load and load losses. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics over decades of continuous operation.">
+        <button type="button" class="dc-mission-tab" data-index="1">
           <span>Low-Loss Performance</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <button type="button" class="dc-mission-tab"
-          data-title="Harmonic-Tolerant Design"
-          data-body="Data center loads generate significant harmonic content through UPS systems, VFDs, and IT power supplies. Our units are engineered with appropriate impedance, insulation systems, and thermal derating to handle non-linear load profiles.">
+        <button type="button" class="dc-mission-tab" data-index="2">
           <span>Harmonic-Tolerant Design</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <button type="button" class="dc-mission-tab"
-          data-title="Scalable Capacity"
-          data-body="Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Multi-phase deployments and campus master plans can be served from one manufacturer.">
+        <button type="button" class="dc-mission-tab" data-index="3">
           <span>Scalable Capacity</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <button type="button" class="dc-mission-tab"
-          data-title="Rapid Engineering Response"
-          data-body="RFQs get a specification review from LIMIK engineering within 48 hours — not a queue behind a distributor or a sales pipeline. Voltage class, MVA sizing, and site constraints get real answers before you've finished comparing quotes.">
+        <button type="button" class="dc-mission-tab" data-index="4">
           <span>Rapid Engineering Response</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <button type="button" class="dc-mission-tab"
-          data-title="Custom-Engineered per Site"
-          data-body="No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification — not selected from a catalog.">
+        <button type="button" class="dc-mission-tab" data-index="5">
           <span>Custom-Engineered per Site</span>
           <span class="dc-mission-tab-icon"><svg width="20" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
       </div>
       <div class="dc-mission-panel">
         <h3 id="dcMissionTitle">Uptime-Focused Engineering</h3>
-        <p id="dcMissionBody">Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Downtime is not acceptable in this segment — and it is not designed in. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life.</p>
+        <div id="dcMissionBody">
+          <p>Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life, and hot-spot temperatures are calculated with margin rather than run to the limit of the insulation class.</p>
+          <p>A transformer sized to run at its ceiling has no headroom when ambient conditions shift or load steps up unexpectedly. A transformer with designed-in margin absorbs both without aging faster than its rated life.</p>
+          <p>That distinction is what separates a unit that reaches thirty years from one that becomes an unplanned outage in year twelve.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1153,6 +1205,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div><!-- /dcq-right -->
 
 </div><!-- /dcq-page -->
+
+<!-- ══════════════════════════════
+   §303 — MISSION · VISION · VALUES
+══════════════════════════════ -->
+<section class="co-303 bg-dark">
+  <div class="co-303-mark" aria-hidden="true">
+    <img src="/assets/images/mission-mark.png" alt="">
+    <div class="co-303-mark-blocks" data-blocks-reveal></div>
+  </div>
+  <div class="container">
+    <div class="co-303-inner">
+
+      <div class="co-303-left">
+        <p class="eyebrow">Why LIMIK</p>
+        <h2>Why Do Data Center Owners and EPCs <em>Choose LIMIK?</em></h2>
+        <p>American-made, custom-engineered, and delivered faster than the industry average. That combination is rare. That is why owners and EPCs put LIMIK in their specifications.</p>
+        <a href="#quote-form" class="btn btn-gold btn-lg">Request a Quote</a>
+      </div>
+
+      <div class="co-303-items">
+        <div class="co-303-item">
+          <div class="co-303-item-title">01 · American Manufacturer, Buy American Compliant</div>
+          <p>LIMIK is a U.S.-owned power transformer manufacturer serving the American market. Buy American compliance is designed in — not certified after the fact. For federal, secure, and sovereign data center projects, that shortens qualification. For commercial hyperscale, it protects against tariff and trade risk.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">02 · One Manufacturer, Every Point in Your Power Chain</div>
+          <p>Main substation transformer, autotransformer redundancy ties, and generator step-up — sourced from one manufacturer instead of three separate vendor relationships, three documentation packages, and three points of risk in your supply chain.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">03 · Direct Engineering Engagement</div>
+          <p>Your team works directly with LIMIK engineers on your specification, not through a layer of sales representatives. Voltage classes, cooling curves, and impedance targets are discussed by the people who will actually design the unit. Faster answers. Cleaner specifications.</p>
+        </div>
+        <div class="co-303-item">
+          <div class="co-303-item-title">04 · Support That Follows the Unit to Site</div>
+          <p>Commissioning support, complete documentation, and technical consultation follow every unit into the field — the same engineering team that designed your transformer stands behind it after it energizes.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════
    FAQ — заголовок/текст слева, аккордеон справа
@@ -1628,6 +1721,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   // ── Mission-Critical: переключение табов ──
   (function () {
+    const missionContent = [
+      {
+        title: "Uptime-Focused Engineering",
+        body: [
+          "Every unit is designed for continuous, full-load operation with conservative thermal margins and rigorous quality control. Design targets prioritize high mean time between failures (MTBF) over the unit's operating life, and hot-spot temperatures are calculated with margin rather than run to the limit of the insulation class.",
+          "A transformer sized to run at its ceiling has no headroom when ambient conditions shift or load steps up unexpectedly. A transformer with designed-in margin absorbs both without aging faster than its rated life.",
+          "That distinction is what separates a unit that reaches thirty years from one that becomes an unplanned outage in year twelve."
+        ]
+      },
+      {
+        title: "Low-Loss Performance",
+        body: [
+          "Optimized core and winding designs minimize both no-load and load losses. No-load losses run continuously from the moment the unit is energized — twenty-four hours a day for the life of the installation — which is why they carry so much weight in a facility that never powers down.",
+          "Load losses scale with the square of current, so they matter most exactly when your campus is at peak. Lower losses mean less heat, less cooling burden, and better facility-level energy metrics measured in megawatt-hours over decades.",
+          "In loss-evaluated procurement, where owners assign a dollar value per kilowatt of loss over the unit's life, this is often the single largest line item separating two otherwise comparable bids."
+        ]
+      },
+      {
+        title: "Harmonic-Tolerant Design",
+        body: [
+          "UPS rectifiers and IT power supplies inject harmonic currents that overheat and prematurely age a standard transformer. Eddy-current losses in the windings rise sharply with harmonic frequency, concentrating heat where it does the most damage to insulation life.",
+          "LIMIK units are engineered against your specific harmonic profile from the start, with K-factor rating and thermal derating matched to the measured or projected THD of your downstream load.",
+          "The result is that you keep the full capacity you paid for rather than a derated fraction of it, and the unit ages on the curve it was designed for."
+        ]
+      },
+      {
+        title: "Scalable Capacity",
+        body: [
+          "Ratings up to 600 MVA and 525 kV support facility sizes from single-hall colocation up to gigawatt-scale AI campuses. Data center load rarely arrives all at once: a campus is energized in phases, halls come online over years, and the transformer specified today must serve a load profile that will keep growing.",
+          "Units can be specified with future-stage capacity in mind, and cooling can be staged so that a unit rated ONAN at initial load moves to ONAF as the campus fills.",
+          "Multi-phase deployments and campus master plans are served from one manufacturer, which keeps design language, documentation, and spare-parts inventory consistent across every stage of the build."
+        ]
+      },
+      {
+        title: "Rapid Engineering Response",
+        body: [
+          "A 48-hour turnaround on RFQ technical review keeps your specification moving. Voltage class, impedance, and cooling classification are confirmed by the engineers who design the unit — not relayed through a sales layer that has to check and come back.",
+          "In a project where the transformer is the longest-lead item on the schedule, days spent waiting on a technical answer are days added to energization.",
+          "Early-stage feasibility questions, budgetary sizing, and specification review all run through the same engineering team that will carry the project through to factory acceptance testing."
+        ]
+      },
+      {
+        title: "Custom-Engineered per Site",
+        body: [
+          "No two data center sites are identical. Voltage classes, footprint constraints, connection geometries, cooling classifications, and impedance targets are engineered to your specification rather than selected from a catalog.",
+          "Impedance in particular is a system decision, not a line item: it determines short-circuit contribution on both sides of the transformer and has to coordinate with your switchgear ratings and protection scheme.",
+          "Bushing configuration, radiator layout, oil containment, and transport clearances are resolved against the actual site drawing — so the unit fits the pad, the route, and the electrical architecture it was built for."
+        ]
+      }
+    ];
+
     const tabs = document.querySelectorAll('.dc-mission-tab');
     const title = document.getElementById('dcMissionTitle');
     const body = document.getElementById('dcMissionBody');
@@ -1636,8 +1780,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       tab.addEventListener('click', function () {
         tabs.forEach(function (t) { t.classList.remove('is-active'); });
         tab.classList.add('is-active');
-        title.textContent = tab.dataset.title;
-        body.textContent = tab.dataset.body;
+        const data = missionContent[parseInt(tab.dataset.index, 10)];
+        title.textContent = data.title;
+        body.innerHTML = data.body.map(function (p) { return '<p>' + p + '</p>'; }).join('');
       });
     });
   })();
@@ -1711,6 +1856,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (dcSpecifyImg) {
     gsap.fromTo(dcSpecifyImg, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.dc-specify-img', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
+
+  // Block reveal — Mission mark (shutter in reverse: blocks shrink away to reveal the logo)
+  (function () {
+    const wrap = document.querySelector('[data-blocks-reveal]');
+    if (!wrap) return;
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const ROWS = 2, BLOCKS = isMobile ? 10 : 15;
+    for (let r = 0; r < ROWS; r++) {
+      const row = document.createElement('div');
+      Object.assign(row.style, { display: 'flex', width: '100%', height: '51%', marginTop: r > 0 ? '-1px' : '0' });
+      for (let b = 0; b < BLOCKS; b++) {
+        const block = document.createElement('div');
+        Object.assign(block.style, { backgroundColor: '#09193B', flex: '1', height: '100%', marginLeft: '-1px' });
+        gsap.set(block, { scaleX: 1, transformOrigin: r === 0 ? 'right center' : 'left center' });
+        row.appendChild(block);
+      }
+      wrap.appendChild(row);
+    }
+    const rows = wrap.querySelectorAll(':scope > div');
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.co-303-mark', start: 'top 85%', end: 'top 10%', scrub: true } });
+    rows.forEach((row, i) => {
+      tl.to(row.querySelectorAll(':scope > div'), { scaleX: 0, force3D: true, ease: 'power1.inOut', stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' } }, 0);
+    });
+  })();
 
   // Shutter reveal — section transitions (как на главной)
   (function () {

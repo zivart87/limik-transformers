@@ -680,16 +680,19 @@
       margin-bottom: 40px;
     }
     .co-303-items { display: flex; flex-direction: column; gap: 28px; }
-    .co-303-item {
-      border-left: 2px solid var(--blue);
-      padding: 2px 0 2px 24px;
+    .co-303-item { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; }
+    .co-303-item-num {
+      grid-column: 1; grid-row: 1 / 3;
+      font-size: 40px; font-weight: 800; color: var(--blue); line-height: 1;
     }
     .co-303-item-title {
+      grid-column: 2;
       font-size: 13px; font-weight: 700;
       color: var(--white); letter-spacing: 0.06em;
       text-transform: uppercase; margin-bottom: 6px;
     }
     .co-303-item p {
+      grid-column: 2;
       font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.6); margin: 0;
     }
     .co-303-mark {
@@ -1226,19 +1229,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="co-303-items">
         <div class="co-303-item">
-          <div class="co-303-item-title">01 · American Manufacturer, Buy American Compliant</div>
+          <div class="co-303-item-num">01</div>
+          <div class="co-303-item-title">American Manufacturer, Buy American Compliant</div>
           <p>LIMIK is a U.S.-owned power transformer manufacturer serving the American market. Buy American compliance is designed in — not certified after the fact. For federal, secure, and sovereign data center projects, that shortens qualification. For commercial hyperscale, it protects against tariff and trade risk.</p>
         </div>
         <div class="co-303-item">
-          <div class="co-303-item-title">02 · One Manufacturer, Every Point in Your Power Chain</div>
+          <div class="co-303-item-num">02</div>
+          <div class="co-303-item-title">One Manufacturer, Every Point in Your Power Chain</div>
           <p>Main substation transformer, autotransformer redundancy ties, and generator step-up — sourced from one manufacturer instead of three separate vendor relationships, three documentation packages, and three points of risk in your supply chain.</p>
         </div>
         <div class="co-303-item">
-          <div class="co-303-item-title">03 · Direct Engineering Engagement</div>
+          <div class="co-303-item-num">03</div>
+          <div class="co-303-item-title">Direct Engineering Engagement</div>
           <p>Your team works directly with LIMIK engineers on your specification, not through a layer of sales representatives. Voltage classes, cooling curves, and impedance targets are discussed by the people who will actually design the unit. Faster answers. Cleaner specifications.</p>
         </div>
         <div class="co-303-item">
-          <div class="co-303-item-title">04 · Support That Follows the Unit to Site</div>
+          <div class="co-303-item-num">04</div>
+          <div class="co-303-item-title">Support That Follows the Unit to Site</div>
           <p>Commissioning support, complete documentation, and technical consultation follow every unit into the field — the same engineering team that designed your transformer stands behind it after it energizes.</p>
         </div>
       </div>
@@ -1861,23 +1868,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     const wrap = document.querySelector('[data-blocks-reveal]');
     if (!wrap) return;
-    const isMobile = window.matchMedia('(max-width: 900px)').matches;
-    const ROWS = 2, BLOCKS = isMobile ? 10 : 15;
+    const ROWS = 4, BLOCKS = 10;
     for (let r = 0; r < ROWS; r++) {
       const row = document.createElement('div');
-      Object.assign(row.style, { display: 'flex', width: '100%', height: '51%', marginTop: r > 0 ? '-1px' : '0' });
+      Object.assign(row.style, { display: 'flex', width: '100%', height: '25.5%', marginTop: r > 0 ? '-1px' : '0' });
       for (let b = 0; b < BLOCKS; b++) {
         const block = document.createElement('div');
         Object.assign(block.style, { backgroundColor: '#09193B', flex: '1', height: '100%', marginLeft: '-1px' });
-        gsap.set(block, { scaleX: 1, transformOrigin: r === 0 ? 'right center' : 'left center' });
+        gsap.set(block, { scaleX: 1, transformOrigin: r % 2 === 0 ? 'right center' : 'left center' });
         row.appendChild(block);
       }
       wrap.appendChild(row);
     }
     const rows = wrap.querySelectorAll(':scope > div');
-    const tl = gsap.timeline({ scrollTrigger: { trigger: '.co-303-mark', start: 'top 85%', end: 'top 10%', scrub: true } });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.co-303', start: 'top bottom', end: '+=900', scrub: true } });
     rows.forEach((row, i) => {
-      tl.to(row.querySelectorAll(':scope > div'), { scaleX: 0, force3D: true, ease: 'power1.inOut', stagger: { amount: 0.5, from: i === 0 ? 'start' : 'end', ease: 'power1.inOut' } }, 0);
+      tl.to(row.querySelectorAll(':scope > div'), { scaleX: 0, force3D: true, ease: 'power1.inOut', stagger: { amount: 0.5, from: i % 2 === 0 ? 'start' : 'end', ease: 'power1.inOut' } }, 0);
     });
   })();
 

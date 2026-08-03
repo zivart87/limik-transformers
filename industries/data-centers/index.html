@@ -157,25 +157,45 @@
     }
 
     /* ═══════════════════════════════
-       CONTEXT — фото | текст (как co-story-section на company)
+       FACTS BAR (как co-facts на company)
+    ═══════════════════════════════ */
+    .dc-facts { background: var(--white); padding: 120px 0 0; }
+    .dc-facts-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      column-gap: 80px;
+      border-top: 1px solid rgba(9,25,59,0.12);
+      border-bottom: 1px solid rgba(9,25,59,0.12);
+    }
+    .dc-fact { padding: 48px 0; position: relative; }
+    .dc-fact:not(:last-child)::after {
+      content: ''; position: absolute; right: -40px; top: 0; bottom: 0;
+      width: 1px; background: rgba(9,25,59,0.12);
+    }
+    .dc-fact-num {
+      font-size: 96px; font-weight: 500;
+      line-height: 1; color: var(--navy-dark);
+      letter-spacing: -0.02em; margin: 0 0 14px;
+    }
+    .dc-fact-unit { font-size: 40px; }
+    .dc-fact-label {
+      font-size: 18px; font-weight: 400;
+      color: var(--navy-dark); line-height: 1.4; margin: 0;
+    }
+    @media (max-width: 768px) {
+      .dc-facts { padding: 60px 0 0; }
+      .dc-facts-grid { grid-template-columns: 1fr; border-top: none; }
+      .dc-fact { padding: 36px 0; border-right: none; border-top: 1px solid rgba(9,25,59,0.12); }
+      .dc-fact:last-child { padding-left: 0; }
+      .dc-fact-num { font-size: 64px; }
+      .dc-fact-unit { font-size: 28px; }
+    }
+
+    /* ═══════════════════════════════
+       CONTEXT — текст на всю ширину
     ═══════════════════════════════ */
     .dc-context-section { background: var(--white); padding: 120px 0; }
-    .dc-context {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 560px;
-    }
-    .dc-context-img { position: relative; overflow: hidden; height: 560px; }
-    .dc-context-img img {
-      position: absolute; left: 0; right: 0; top: -10%;
-      width: 100%; height: 120%; object-fit: cover; object-position: center 30%;
-      will-change: transform;
-    }
-    .dc-context-img::after {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(9,25,59,0.07); pointer-events: none;
-    }
+    .dc-context { display: block; }
     .dc-context-text {
-      padding: 0 40px 0 60px;
       display: flex; flex-direction: column; justify-content: center;
     }
     .dc-context-text .eyebrow {
@@ -183,8 +203,8 @@
       text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
     }
     .dc-context-text h2 {
-      font-size: clamp(26px, 2.8vw, 42px);
-      font-weight: 700; line-height: 1.05;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 1.0;
       letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 28px;
     }
     .dc-context-text p {
@@ -194,19 +214,85 @@
     .dc-context-text p:last-of-type { margin-bottom: 0; }
 
     @media (max-width: 900px) {
-      .dc-context { grid-template-columns: 1fr; }
-      .dc-context-img { height: auto; min-height: 320px; }
-      .dc-context-text { padding: 60px 40px; }
       .dc-context-section { padding: 80px 0; }
     }
-    @media (max-width: 600px) { .dc-context-text { padding: 48px 24px; } }
+    @media (max-width: 768px) { .dc-context-text h2 { font-size: 36px; } }
+
+    /* ═══════════════════════════════
+       POWER — тёмная карточка + фото внахлёст (паттерн about-overlay с главной)
+    ═══════════════════════════════ */
+    .dc-power-section { background: var(--white); padding: 0 0 120px; }
+    .dc-power-container { max-width: 1360px; margin: 0 auto; padding: 0 60px; }
+    .dc-power-overlay { position: relative; margin-bottom: 220px; overflow: visible; }
+    .dc-power-card {
+      position: relative; width: 80%;
+      background: var(--navy-dark);
+      padding: 120px calc(29% + 72px) 120px 72px;
+      z-index: 1; box-sizing: border-box;
+      display: flex; flex-direction: column;
+    }
+    .dc-power-heading {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; letter-spacing: -0.02em;
+      color: var(--white); margin: 0 0 28px; line-height: 1.0;
+      max-width: 500px;
+    }
+    .dc-power-body {
+      font-size: 16px; font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.72); margin: 0 0 20px; max-width: 500px;
+    }
+    .dc-power-body:last-of-type { margin-bottom: 40px; }
+    .dc-power-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--white);
+      align-self: flex-start;
+    }
+    .dc-power-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+    }
+    .dc-power-link-icon svg { transition: transform 0.1s ease; }
+    .dc-power-link:hover .dc-power-link-icon svg { transform: rotate(-45deg); }
+    .dc-power-photo {
+      position: absolute;
+      right: calc(-12px - max(0px, (100vw - 1360px) / 2));
+      bottom: -220px;
+      width: calc(49% + 12px + max(0px, (100vw - 1360px) / 2));
+      height: 620px; z-index: 2;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .dc-power-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 120%;
+      object-fit: cover; object-position: center 90%;
+      top: -10%; will-change: transform;
+    }
+    @media (max-width: 900px) {
+      .dc-power-section { padding: 0 0 80px; }
+      .dc-power-container { padding: 0 24px; }
+      .dc-power-overlay { height: auto; margin-bottom: 0; }
+      .dc-power-card {
+        position: relative; width: 100%; height: auto;
+        padding: 60px 32px 112px;
+        clip-path: polygon(48px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 48px);
+      }
+      .dc-power-photo {
+        position: relative; right: unset; bottom: unset;
+        width: calc(100% - 8px); height: 380px;
+        margin: -72px auto 0 32px; z-index: 2;
+      }
+    }
+    @media (max-width: 768px) { .dc-power-heading { font-size: 36px; } }
 
     /* ═══════════════════════════════
        MISSION-CRITICAL — 6 карточек, 3×2 (паттерн co-pillars, без иконок/кнопок)
     ═══════════════════════════════ */
     .dc-mission { background: var(--off-white); padding: 120px 0; }
     .dc-mission > .container > h2 {
-      font-size: clamp(26px, 3.5vw, 48px); font-weight: 700;
+      font-size: clamp(28px, 4vw, 52px); font-weight: 700;
       letter-spacing: -0.02em; line-height: 1.0;
       color: var(--navy-dark); margin-bottom: 64px;
     }
@@ -222,8 +308,8 @@
     .dc-mission-card:nth-child(3n) { border-right: none; }
     .dc-mission-card:nth-last-child(-n+3) { border-bottom: none; }
     .dc-mission-card h3 {
-      font-size: 20px; font-weight: 700; color: var(--navy-dark);
-      margin-bottom: 16px; line-height: 1.2;
+      font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--navy-dark);
+      letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
     }
     .dc-mission-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
 
@@ -236,6 +322,7 @@
       .dc-mission-card { border-right: none; }
       .dc-mission-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border-l); }
       .dc-mission-card:last-child { border-bottom: none; }
+      .dc-mission > .container > h2 { font-size: 36px; }
     }
 
     /* ═══════════════════════════════
@@ -397,8 +484,8 @@
     }
     .dc-specify-icon { width: 40px; height: 40px; color: var(--blue); display: block; margin-bottom: 32px; }
     .dc-specify-card h3 {
-      font-size: 20px; font-weight: 700; color: var(--navy-dark);
-      margin-bottom: 16px; line-height: 1.2;
+      font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--navy-dark);
+      letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
     }
     .dc-specify-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
 
@@ -443,16 +530,18 @@
       padding: 0 48px 80px;
     }
     .dcq-left-title {
-      font-size: clamp(24px, 2vw, 32px); font-weight: 800; color: var(--white);
-      line-height: 1.4; letter-spacing: -0.025em;
+      font-size: clamp(28px, 4vw, 52px); font-weight: 700; color: var(--white);
+      line-height: 1.0; letter-spacing: -0.02em;
     }
+    @media (max-width: 768px) { .dcq-left-title { font-size: 36px; } }
 
     .dcq-right { flex: 1; min-width: 0; background: var(--off-white); padding: 120px 80px; }
     .dcq-form-head { margin-bottom: 52px; }
     .dcq-form-title {
-      font-size: clamp(30px, 3vw, 46px); font-weight: 800; color: var(--navy-dark);
-      letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 14px;
+      font-size: clamp(28px, 4vw, 52px); font-weight: 700; color: var(--navy-dark);
+      letter-spacing: -0.02em; line-height: 1.0; margin-bottom: 14px;
     }
+    @media (max-width: 768px) { .dcq-form-title { font-size: 36px; } }
     .dcq-form-sub { font-size: 16px; font-weight: 400; color: #3A5570; line-height: 1.75; max-width: 540px; }
 
     .dcq-row { display: grid; gap: 14px; margin-bottom: 14px; }
@@ -537,8 +626,8 @@
       text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
     }
     .dc-faq-head h2 {
-      font-size: clamp(26px, 2.8vw, 42px);
-      font-weight: 700; line-height: 1.05;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 1.0;
       letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
     }
     .dc-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
@@ -588,6 +677,7 @@
       .dc-faq-grid { grid-template-columns: 1fr; gap: 32px; }
       .dc-faq-head { margin-bottom: 8px; }
     }
+    @media (max-width: 768px) { .dc-faq-head h2 { font-size: 36px; } }
     @media (max-width: 600px) {
       .dc-faq-q { padding: 22px 20px; gap: 16px; }
       .dc-faq-a p { padding: 0 20px 22px; }
@@ -621,23 +711,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════
+   FACTS BAR
+══════════════════════════════ -->
+<section class="dc-facts">
+  <div class="container">
+    <div class="dc-facts-grid">
+      <div class="dc-fact">
+        <div class="dc-fact-num"><span class="count-up" data-target="25">25</span> <span class="dc-fact-unit">yrs</span></div>
+        <p class="dc-fact-label">Engineering Experience</p>
+      </div>
+      <div class="dc-fact">
+        <div class="dc-fact-num"><span class="count-up" data-target="600">600</span> <span class="dc-fact-unit">MVA</span></div>
+        <p class="dc-fact-label">Maximum Unit Capacity</p>
+      </div>
+      <div class="dc-fact">
+        <div class="dc-fact-num"><span class="count-up" data-target="100">100</span><span class="dc-fact-unit">%</span></div>
+        <p class="dc-fact-label">U.S. Manufactured</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
    CONTEXT — Why Data Centers Need a New Partner
 ══════════════════════════════ -->
 <section class="dc-context-section">
   <div class="container">
     <div class="dc-context">
-      <div class="dc-context-img">
-        <img src="/assets/images/ind-data-centers.webp" alt="LIMIK-powered data center campus">
-      </div>
       <div class="dc-context-text">
-        <div class="eyebrow">Context</div>
-        <h2>Compute Demand Is Rewriting the Power Curve</h2>
-        <p>The rise of AI training clusters, high-density GPU workloads, and always-on cloud infrastructure has shifted data center power profiles from tens of megawatts to hundreds — and now to gigawatt-scale campuses. New facilities are being planned five to seven years out. Substation transformers, autotransformers, and generator step-up units sit at the top of every long-lead procurement list.</p>
-        <p>LIMIK is building American production capacity aligned with this timeline. For owners, developers, and EPC contractors planning their next campus or expansion, that means a manufacturer with slots to allocate — not a queue to join.</p>
+        <h2>Why Are Data Center Transformer Lead Times Stretching to Years?</h2>
+        <p>For two decades, sourcing a substation transformer was routine. It no longer is. Three forces are colliding: AI training clusters have pushed data center power profiles from tens of megawatts to gigawatt-scale campuses. The raw materials behind every transformer — grain-oriented electrical steel among them — come from a small number of mills worldwide, stretching lead times industry-wide. And a large share of the grid's transformer fleet is aging into replacement, competing for the same limited capacity as new data center build-out.</p>
+        <p>The result is a procurement queue where a hyperscaler and a utility replacing a decades-old unit are bidding for the same production slot. New facilities are now planned five to seven years out, and substation transformers, autotransformers, and generator step-up units sit at the top of every long-lead procurement list.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════
+   POWER — тёмная карточка + фото (как about-overlay на главной)
+══════════════════════════════ -->
+<section class="dc-power-section">
+  <div class="dc-power-container">
+    <div class="dc-power-overlay">
+      <div class="dc-power-card clip-tl">
+        <h2 class="dc-power-heading">The Two Reasons LIMIK Ships Faster</h2>
+        <p class="dc-power-body">LIMIK holds its 48 to 72-week lead time against an industry average now approaching 120 weeks through two structural choices: engineering decisions are made directly by the people designing the unit, without a layer of sales intermediaries slowing down spec review, and production capacity is allocated to committed projects rather than queued behind a merchant backlog.</p>
+        <p class="dc-power-body">LIMIK is an American manufacturer with capacity to allocate. For owners, developers, and EPC contractors racing that curve, that means a partner with slots open now — not a queue to join.</p>
+        <a href="#quote-form" class="dc-power-link">
+          <span class="dc-power-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Request a Quote
+        </a>
+      </div>
+      <div class="dc-power-photo">
+        <img src="/assets/images/about.jpg" alt="LIMIK Manufacturing">
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ══════════════════════════════
    SPECIFYING A TRANSFORMER — фото + 5 тезисов
@@ -698,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container" style="position:relative; z-index:1;">
     <div class="products-header">
       <div>
-        <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:0.95; letter-spacing:-0.02em; color:var(--white);">The Transformers Your<br>Data Center Runs On</h2>
+        <h2 style="font-size:clamp(28px,4vw,52px); font-weight:700; line-height:1.0; letter-spacing:-0.02em; color:var(--white);">The Transformers Your<br>Data Center Runs On</h2>
         <p style="font-size:16px; font-weight:400; line-height:1.75; color:rgba(255,255,255,0.72); max-width:640px; margin-top:20px;">Each LIMIK product line serves a specific role in the data center power architecture — from the utility interconnection down through the campus, from behind-the-meter generation, and across the full facility lifecycle.</p>
       </div>
       <a href="/request-quote/" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
@@ -877,7 +1010,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="dcq-right">
 
     <div class="dcq-form-head">
-      <h1 class="dcq-form-title">Ready to Discuss Your<br>Data Center Project?</h1>
+      <h2 class="dcq-form-title">Ready to Discuss Your<br>Data Center Project?</h2>
       <p class="dcq-form-sub">LIMIK works with data center owners, developers, and EPC contractors on hyperscale, colocation, and greenfield projects. Our engineering team reviews your load profile and site constraints — before a formal RFQ.</p>
     </div>
 
@@ -1355,6 +1488,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <script>
+  (function () {
+    const els = document.querySelectorAll('.count-up');
+    if (!els.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1800;
+        const start = performance.now();
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(update);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(update);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    els.forEach(el => observer.observe(el));
+  })();
+</script>
+
+<script>
   // ── Hero: разбивка h1 на слова (clip-reveal как на главной) ──
   (function () {
     document.querySelectorAll('.ind-hero h1').forEach(h1 => {
@@ -1411,10 +1570,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     lenis.scrollTo(target, { offset: -110 });
   });
 
-  // Parallax — Context photo
-  const dcContextImg = document.querySelector('.dc-context-img img');
-  if (dcContextImg) {
-    gsap.fromTo(dcContextImg, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.dc-context-img', start: 'top bottom', end: 'bottom top', scrub: true } });
+  // Parallax — Power photo
+  const dcPowerImg = document.querySelector('.dc-power-photo img');
+  if (dcPowerImg) {
+    gsap.fromTo(dcPowerImg, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.dc-power-photo', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
   // Parallax — Specify photo

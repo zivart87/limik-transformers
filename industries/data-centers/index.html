@@ -570,10 +570,9 @@
       padding: 0 48px 80px;
     }
     .dcq-left-title {
-      font-size: clamp(28px, 4vw, 52px); font-weight: 700; color: var(--white);
-      line-height: 1.0; letter-spacing: -0.02em;
+      font-size: clamp(24px, 2vw, 32px); font-weight: 800; color: var(--white);
+      line-height: 1.4; letter-spacing: -0.025em;
     }
-    @media (max-width: 768px) { .dcq-left-title { font-size: 36px; } }
 
     .dcq-right { flex: 1; min-width: 0; background: var(--off-white); padding: 120px 80px; }
     .dcq-form-head { margin-bottom: 52px; }
@@ -1060,31 +1059,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="dc-specify-grid">
 
       <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M4 18a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 18l4-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.3" fill="currentColor"/></svg>
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z"/></svg>
         <h3>MVA / kVA Rating</h3>
         <p>Present load, planned expansion, and the timeline over which you expect to phase in capacity. Under-sizing forces early retirement. Over-sizing wastes capital and drives up losses at partial load.</p>
       </div>
 
       <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M13 3 5 13h6l-1 8 8-11h-6l1-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clip-rule="evenodd"/></svg>
         <h3>Voltage Class</h3>
         <p>Primary matched to the utility feed voltage (typical utility interconnections: 115 kV, 138 kV, 230 kV, 345 kV, 500 kV). Secondary matched to your medium-voltage distribution — 34.5 kV and 13.8 kV are common in modern hyperscale designs.</p>
       </div>
 
       <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 1.25h2v21.5h-2z"/><path d="M11 1.25h2v21.5h-2z" transform="rotate(60 12 12)"/><path d="M11 1.25h2v21.5h-2z" transform="rotate(120 12 12)"/></svg>
         <h3>Cooling Classification</h3>
         <p>ONAN, ONAF, OFAF, ODAF — each has different footprint, noise, maintenance, and forced-cooling implications. Site constraints often decide this before nameplate rating does.</p>
       </div>
 
       <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M2 12c2 0 2-6 4-6s2 12 4 12 2-12 4-12 2 12 4 12 2-6 4-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M5.636 4.575a.75.75 0 0 1 0 1.061 9 9 0 0 0 0 12.728.75.75 0 1 1-1.06 1.06c-4.101-4.1-4.101-10.748 0-14.849a.75.75 0 0 1 1.06 0Zm12.728 0a.75.75 0 0 1 1.06 0c4.101 4.1 4.101 10.75 0 14.85a.75.75 0 1 1-1.06-1.061 9 9 0 0 0 0-12.728.75.75 0 0 1 0-1.06ZM7.757 6.697a.75.75 0 0 1 0 1.06 6 6 0 0 0 0 8.486.75.75 0 0 1-1.06 1.06 7.5 7.5 0 0 1 0-10.606.75.75 0 0 1 1.06 0Zm8.486 0a.75.75 0 0 1 1.06 0 7.5 7.5 0 0 1 0 10.606.75.75 0 0 1-1.06-1.06 6 6 0 0 0 0-8.486.75.75 0 0 1 0-1.06ZM9.879 8.818a.75.75 0 0 1 0 1.06 3 3 0 0 0 0 4.243.75.75 0 1 1-1.061 1.061 4.5 4.5 0 0 1 0-6.364.75.75 0 0 1 1.06 0Zm4.242 0a.75.75 0 0 1 1.061 0 4.5 4.5 0 0 1 0 6.364.75.75 0 0 1-1.06-1.06 3 3 0 0 0 0-4.243.75.75 0 0 1 0-1.061ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd"/></svg>
         <h3>Harmonic and Non-Linear Load Handling</h3>
         <p>Impedance, insulation class, and thermal derating engineered against the specific harmonic spectrum your downstream load profile produces.</p>
       </div>
 
       <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3 6a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3V6ZM3 15.75a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.25Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3v-2.25Z" clip-rule="evenodd"/></svg>
         <h3>Footprint, Termination, and Site Fit</h3>
         <p>Bushing configuration, radiator layout, oil containment, seismic and wind ratings, transportation clearances. Data centers rarely have room to spare, and everything must fit the site the day it arrives.</p>
       </div>
@@ -1258,6 +1257,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 </script>
+
+<!-- ══════════════════════════════
+   CTA BAND
+══════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Ready to Power Your<br>Next Project?</h2>
+      </div>
+      <a href="/request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
+    </div>
+  </div>
+</section>
 
 <div id="site-footer"></div>
 <script src="../../assets/js/footer.js"></script>

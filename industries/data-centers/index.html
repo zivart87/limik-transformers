@@ -288,6 +288,33 @@
     @media (max-width: 768px) { .dc-power-heading { font-size: 36px; } }
 
     /* ═══════════════════════════════
+       WHO IT'S FOR — список с иконками слева
+    ═══════════════════════════════ */
+    .dc-who-section { background: var(--white); padding: 0 0 120px; }
+    .dc-who-section h2 { margin-bottom: 40px; }
+    .dc-who-list {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px;
+    }
+    .dc-who-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(9,25,59,0.12);
+    }
+    .dc-who-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; flex-shrink: 0; color: var(--blue);
+    }
+    .dc-who-icon svg { width: 100%; height: 100%; display: block; }
+    .dc-who-label { font-size: 18px; font-weight: 700; color: var(--navy-dark); line-height: 1.3; }
+    @media (max-width: 900px) {
+      .dc-who-section { padding: 0 0 80px; }
+    }
+    @media (max-width: 700px) {
+      .dc-who-list { grid-template-columns: 1fr; gap: 0; }
+      .dc-who-label { font-size: 16px; }
+    }
+
+    /* ═══════════════════════════════
        MISSION-CRITICAL — 6 карточек, 3×2 (паттерн co-pillars, без иконок/кнопок)
     ═══════════════════════════════ */
     .dc-mission { background: var(--off-white); padding: 120px 0; }
@@ -467,7 +494,7 @@
     /* ═══════════════════════════════
        SPECIFYING A TRANSFORMER — фото + 5 тезисов (3+2, паттерн dc-mission)
     ═══════════════════════════════ */
-    .dc-specify { background: var(--white); padding: 0 0 120px; }
+    .dc-specify { background: var(--white); padding: 120px 0; }
     .dc-specify-head { max-width: 720px; margin-bottom: 56px; }
     .dc-specify-head .eyebrow { margin-bottom: 20px; }
     .dc-specify-head h2 { color: var(--navy-dark); margin-bottom: 24px; }
@@ -490,7 +517,7 @@
     .dc-specify-card p { font-size: 16px; line-height: 1.75; color: #3A5570; }
 
     @media (max-width: 900px) {
-      .dc-specify { padding: 0 0 80px; }
+      .dc-specify { padding: 80px 0; }
       .dc-specify-head { margin-bottom: 40px; }
       .dc-specify-img { height: 320px; margin-bottom: 40px; }
       .dc-specify-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -771,52 +798,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-
 <!-- ══════════════════════════════
-   SPECIFYING A TRANSFORMER — фото + 5 тезисов
+   WHO IT'S FOR
 ══════════════════════════════ -->
-<section class="dc-specify">
+<section class="dc-who-section">
   <div class="container">
-    <div class="dc-specify-head">
-      <div class="eyebrow">What Matters</div>
-      <h2>Specifying a Transformer for a Data Center</h2>
-      <p>Specifying a data center transformer is a matching exercise: matching the unit to the site's load profile, layout, and growth plan. Below is the short list our engineering team walks through with every project.</p>
-    </div>
-    <div class="dc-specify-img">
-      <img src="/assets/images/ind-data-centers.webp" alt="LIMIK-powered data center campus">
-    </div>
-    <div class="dc-specify-grid">
-
-      <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M4 18a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 18l4-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.3" fill="currentColor"/></svg>
-        <h3>MVA / kVA Rating</h3>
-        <p>Present load, planned expansion, and the timeline over which you expect to phase in capacity. Under-sizing forces early retirement. Over-sizing wastes capital and drives up losses at partial load.</p>
+    <h2>Who It's For</h2>
+    <div class="dc-who-list">
+      <div class="dc-who-item">
+        <span class="dc-who-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.08 5.227A3 3 0 0 1 6.979 3H17.02a3 3 0 0 1 2.9 2.227l2.113 7.926A5.228 5.228 0 0 0 18.75 12H5.25a5.228 5.228 0 0 0-3.284 1.153L4.08 5.227Z"/><path fill-rule="evenodd" d="M5.25 13.5a3.75 3.75 0 1 0 0 7.5h13.5a3.75 3.75 0 1 0 0-7.5H5.25Zm10.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm3.75-.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd"/></svg>
+        </span>
+        <span class="dc-who-label">Hyperscale &amp; colocation operators</span>
       </div>
-
-      <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M13 3 5 13h6l-1 8 8-11h-6l1-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
-        <h3>Voltage Class</h3>
-        <p>Primary matched to the utility feed voltage (typical utility interconnections: 115 kV, 138 kV, 230 kV, 345 kV, 500 kV). Secondary matched to your medium-voltage distribution — 34.5 kV and 13.8 kV are common in modern hyperscale designs.</p>
+      <div class="dc-who-item">
+        <span class="dc-who-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 7.5h-9v9h9v-9Z"/><path fill-rule="evenodd" d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21A.75.75 0 0 1 21 9h-.75v2.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75h-2.25V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3A.75.75 0 0 1 3 15h.75v-2.25H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z" clip-rule="evenodd"/></svg>
+        </span>
+        <span class="dc-who-label">AI / HPC data center developers</span>
       </div>
-
-      <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <h3>Cooling Classification</h3>
-        <p>ONAN, ONAF, OFAF, ODAF — each has different footprint, noise, maintenance, and forced-cooling implications. Site constraints often decide this before nameplate rating does.</p>
+      <div class="dc-who-item">
+        <span class="dc-who-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 6.75a5.25 5.25 0 0 1 6.775-5.025.75.75 0 0 1 .313 1.248l-3.32 3.319c.063.475.276.934.641 1.299.365.365.824.578 1.3.64l3.318-3.319a.75.75 0 0 1 1.248.313 5.25 5.25 0 0 1-5.472 6.756c-1.018-.086-1.87.1-2.309.634L7.344 21.3A3.298 3.298 0 1 1 2.7 16.657l8.684-7.151c.533-.44.72-1.291.634-2.309A5.342 5.342 0 0 1 12 6.75ZM4.117 19.125a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Z" clip-rule="evenodd"/></svg>
+        </span>
+        <span class="dc-who-label">Data center EPC contractors</span>
       </div>
-
-      <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M2 12c2 0 2-6 4-6s2 12 4 12 2-12 4-12 2 12 4 12 2-6 4-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Harmonic and Non-Linear Load Handling</h3>
-        <p>Impedance, insulation class, and thermal derating engineered against the specific harmonic spectrum your downstream load profile produces.</p>
+      <div class="dc-who-item">
+        <span class="dc-who-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3 2.25a.75.75 0 0 0 0 1.5v16.5h-.75a.75.75 0 0 0 0 1.5H15v-18a.75.75 0 0 0 0-1.5H3ZM6.75 19.5v-2.25a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h.75a.75.75 0 0 1 0 1.5h-.75A.75.75 0 0 1 6 6.75ZM6.75 9a.75.75 0 0 0 0 1.5h.75a.75.75 0 0 0 0-1.5h-.75ZM6 12.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 0 1.5h-.75a.75.75 0 0 1-.75-.75ZM10.5 6a.75.75 0 0 0 0 1.5h.75a.75.75 0 0 0 0-1.5h-.75Zm-.75 3.75A.75.75 0 0 1 10.5 9h.75a.75.75 0 0 1 0 1.5h-.75a.75.75 0 0 1-.75-.75ZM10.5 12a.75.75 0 0 0 0 1.5h.75a.75.75 0 0 0 0-1.5h-.75ZM16.5 6.75v15h5.25a.75.75 0 0 0 0-1.5H21v-12a.75.75 0 0 0 0-1.5h-4.5Zm1.5 4.5a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Zm.75 2.25a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75v-.008a.75.75 0 0 0-.75-.75h-.008ZM18 17.25a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Z" clip-rule="evenodd"/></svg>
+        </span>
+        <span class="dc-who-label">Real estate &amp; infrastructure developers planning campus builds</span>
       </div>
-
-      <div class="dc-specify-card">
-        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h3>Footprint, Termination, and Site Fit</h3>
-        <p>Bushing configuration, radiator layout, oil containment, seismic and wind ratings, transportation clearances. Data centers rarely have room to spare, and everything must fit the site the day it arrives.</p>
+      <div class="dc-who-item">
+        <span class="dc-who-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clip-rule="evenodd"/></svg>
+        </span>
+        <span class="dc-who-label">Utilities serving data center interconnection loads</span>
       </div>
-
     </div>
   </div>
 </section>
@@ -956,6 +974,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <a href="/request-quote/" class="btn btn-gold products-bottom-cta">Request a Quote</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   SPECIFYING A TRANSFORMER — фото + 5 тезисов
+══════════════════════════════ -->
+<section class="dc-specify">
+  <div class="container">
+    <div class="dc-specify-head">
+      <div class="eyebrow">What Matters</div>
+      <h2>Specifying a Transformer for a Data Center</h2>
+      <p>Specifying a data center transformer is a matching exercise: matching the unit to the site's load profile, layout, and growth plan. Below is the short list our engineering team walks through with every project.</p>
+    </div>
+    <div class="dc-specify-img">
+      <img src="/assets/images/ind-data-centers.webp" alt="LIMIK-powered data center campus">
+    </div>
+    <div class="dc-specify-grid">
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M4 18a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 18l4-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.3" fill="currentColor"/></svg>
+        <h3>MVA / kVA Rating</h3>
+        <p>Present load, planned expansion, and the timeline over which you expect to phase in capacity. Under-sizing forces early retirement. Over-sizing wastes capital and drives up losses at partial load.</p>
+      </div>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M13 3 5 13h6l-1 8 8-11h-6l1-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <h3>Voltage Class</h3>
+        <p>Primary matched to the utility feed voltage (typical utility interconnections: 115 kV, 138 kV, 230 kV, 345 kV, 500 kV). Secondary matched to your medium-voltage distribution — 34.5 kV and 13.8 kV are common in modern hyperscale designs.</p>
+      </div>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>Cooling Classification</h3>
+        <p>ONAN, ONAF, OFAF, ODAF — each has different footprint, noise, maintenance, and forced-cooling implications. Site constraints often decide this before nameplate rating does.</p>
+      </div>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><path d="M2 12c2 0 2-6 4-6s2 12 4 12 2-12 4-12 2 12 4 12 2-6 4-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Harmonic and Non-Linear Load Handling</h3>
+        <p>Impedance, insulation class, and thermal derating engineered against the specific harmonic spectrum your downstream load profile produces.</p>
+      </div>
+
+      <div class="dc-specify-card">
+        <svg class="dc-specify-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Footprint, Termination, and Site Fit</h3>
+        <p>Bushing configuration, radiator layout, oil containment, seismic and wind ratings, transportation clearances. Data centers rarely have room to spare, and everything must fit the site the day it arrives.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 

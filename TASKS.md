@@ -150,7 +150,7 @@ limiktransformers.com/
 - [ ] **Авто-письмо после формы** — клиент отправил заявку, должен получить письмо "получили, ответим в течение 24ч". Настраивается в GHL workflow, не в коде
 - [ ] **Microsoft Clarity** — бесплатный инструмент. Записывает сессии пользователей, показывает тепловые карты. Видишь где люди застревают и уходят
 - [ ] **Open Graph мета-теги** — когда ссылку кидают в LinkedIn или мессенджер, должна появляться красивая карточка с фото и описанием. Сейчас ничего нет
-- [ ] **Сократить длинные meta description (копирайтинг)** — у 8 страниц описание длиннее рекомендуемых ~155–160 символов, Google обрежет их в выдаче: `company/` (180), `industries/data-centers/` (195), `industries/defense/` (176), `industries/epc-contractors/` (173), `industries/renewables/` (175), `industries/utilities/` (181), `transformers/power/` (173), `transformers/mobile/` (174). Нужен копирайтинг-проход, не техническая правка — сократить смысл, не потеряв ключевые слова
+- [x] **Сократить длинные meta description** — все 8 страниц сокращены до 136–150 символов (company/, industries/{data-centers,defense,epc-contractors,renewables,utilities}, transformers/{power,mobile})
 
 ### 🟢 Позже
 

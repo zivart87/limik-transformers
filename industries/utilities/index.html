@@ -508,13 +508,11 @@
       display: flex; align-items: center; justify-content: space-between;
       margin-top: 32px;
     }
-    .products-dots { display: flex; align-items: center; gap: 0; }
+    .products-dots { display: flex; align-items: center; gap: 10px; }
     .products-dot {
-      box-sizing: content-box;
       width: 8px; height: 8px; border-radius: 50%;
       background: rgba(255,255,255,0.3);
-      background-clip: content-box;
-      border: none; padding: 8px; cursor: pointer;
+      border: none; padding: 0; cursor: pointer;
       transition: background 0.2s;
     }
     .products-dot.is-active { background: var(--white); }

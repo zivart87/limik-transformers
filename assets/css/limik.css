@@ -132,6 +132,9 @@ h4 {
   font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
   text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
 }
+/* на тёмном фоне обычный --blue не проходит контраст (3.2:1) —
+   используем уже существующий --blue-lt (тот же, что у иконок в футере) */
+.bg-dark .eyebrow, .bg-mid .eyebrow { color: var(--blue-lt); }
 
 /* ════════════════════════════════
    TAGS

@@ -212,7 +212,7 @@ font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
 text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
 ```
 Образец: `.founder-eyebrow` на главной (секция "From the Founder"). Единый стандарт для всех секций.
-- Цвет всегда `--blue` (синий = акцент). На тёмном фоне — тоже синий, он читается.
+- Цвет всегда синий (акцент). На светлом фоне — `--blue` (#206CB9). **На тёмном фоне (`.bg-dark`/`.bg-mid`) — `--blue-lt` (#4A8FD4), не `--blue`**: обычный `--blue` на `--navy-dark` даёт контраст 3.2:1, ниже минимума WCAG AA (4.5:1); `--blue-lt` даёт 5.1:1. Правило реализовано глобально в limik.css (`.bg-dark .eyebrow, .bg-mid .eyebrow { color: var(--blue-lt); }`) — для нового eyebrow на тёмном фоне ничего дополнительно делать не нужно, просто использовать класс `.eyebrow` как обычно.
 - Не использовать `--text-2`, `--gold` или другие цвета для eyebrow без явного запроса.
 - `margin-bottom: 20px` — стандартный отступ до заголовка.
 

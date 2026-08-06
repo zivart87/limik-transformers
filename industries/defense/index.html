@@ -474,7 +474,7 @@
     .spec-lbl {
       font-size: 11px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.1em;
-      color: #7090B0;
+      color: #4E6F91;
     }
     .spec-val {
       font-size: 13px; font-weight: 700;
@@ -508,11 +508,13 @@
       display: flex; align-items: center; justify-content: space-between;
       margin-top: 32px;
     }
-    .products-dots { display: flex; align-items: center; gap: 10px; }
+    .products-dots { display: flex; align-items: center; gap: 0; }
     .products-dot {
+      box-sizing: content-box;
       width: 8px; height: 8px; border-radius: 50%;
       background: rgba(255,255,255,0.3);
-      border: none; padding: 0; cursor: pointer;
+      background-clip: content-box;
+      border: none; padding: 8px; cursor: pointer;
       transition: background 0.2s;
     }
     .products-dot.is-active { background: var(--white); }
@@ -664,7 +666,8 @@
 
     .dcq-submit { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(9,25,59,0.10); }
     .dcq-submit .btn { font-size: 13px; letter-spacing: 0.12em; padding: 18px 52px; }
-    .dcq-submit-note { margin-top: 16px; font-size: 12px; color: #7090B0; line-height: 1.65; }
+    .dcq-submit-note { margin-top: 16px; font-size: 12px; color: #4E6F91; line-height: 1.65; }
+    .dcq-submit-note a { color: var(--blue); text-decoration: underline; }
     .dcq-submit-error { margin-top: 16px; font-size: 12px; color: #D93025; line-height: 1.65; display: none; }
 
     @media (max-width: 1100px) {
@@ -894,7 +897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </div>
       <div class="dc-power-photo">
-        <img src="/assets/images/defense-substation.webp" alt="Secure U.S. power substation">
+        <img src="/assets/images/defense-substation.webp" width="896" height="1280" alt="Secure U.S. power substation">
       </div>
     </div>
   </div>
@@ -964,7 +967,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/transformers/power/" class="product-card">
         <div class="product-card-name">Power Transformers</div>
         <div class="product-card-image">
-          <img src="/assets/images/transformer-product.png" alt="Large Power Transformer">
+          <img src="/assets/images/transformer-product.webp" width="1088" height="1021" alt="Large Power Transformer">
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
@@ -989,7 +992,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/transformers/autotransformers/" class="product-card">
         <div class="product-card-name">Autotransformers</div>
         <div class="product-card-image">
-          <img src="/assets/images/autotransformer-product.webp" alt="LIMIK Autotransformer">
+          <img src="/assets/images/autotransformer-product.webp" width="1200" height="1032" alt="LIMIK Autotransformer">
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
@@ -1014,7 +1017,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/transformers/gsu/" class="product-card">
         <div class="product-card-name">Generator Step-Up (GSU)</div>
         <div class="product-card-image">
-          <img src="/assets/images/gsu-product.webp" alt="LIMIK Generator Step-Up transformer">
+          <img src="/assets/images/gsu-product.webp" width="1200" height="884" alt="LIMIK Generator Step-Up transformer">
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
@@ -1039,7 +1042,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/transformers/mobile/" class="product-card">
         <div class="product-card-name">Mobile Transformers</div>
         <div class="product-card-image">
-          <img src="/assets/images/mobile-product.webp" alt="LIMIK Mobile Transformer">
+          <img src="/assets/images/mobile-product.webp" width="1200" height="1179" alt="LIMIK Mobile Transformer">
         </div>
         <div class="product-card-specs">
           <div class="spec-row">
@@ -1141,7 +1144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Replacing or expanding power capacity at a federal site requires balancing immediate load demands with long-term resilience and strict procurement compliance. Our engineering team reviews the following core criteria for military and government projects.</p>
     </div>
     <div class="dc-specify-img">
-      <img src="/assets/images/defense-detail.webp" alt="High-voltage transformer equipment at a secure U.S. substation">
+      <img src="/assets/images/defense-detail.webp" width="1408" height="768" alt="High-voltage transformer equipment at a secure U.S. substation">
     </div>
     <div class="dc-specify-grid">
 
@@ -1185,7 +1188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="dcq-page" id="quote-form">
 
   <div class="dcq-left">
-    <img class="dcq-left-photo" src="/assets/images/defense-quote.webp" alt="Secure U.S. power substation behind perimeter fencing">
+    <img class="dcq-left-photo" src="/assets/images/defense-quote.webp" width="896" height="1280" alt="Secure U.S. power substation behind perimeter fencing">
     <div class="dcq-left-overlay"></div>
     <div class="dcq-left-content">
       <h2 class="dcq-left-title">Talk to the people who design your transformer</h2>
@@ -1233,7 +1236,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="dcq-submit">
         <button type="submit" class="btn btn-gold btn-lg">Send Message</button>
-        <p class="dcq-submit-note">Response within 48 hours. All information handled under NDA on request.</p>
+        <p class="dcq-submit-note">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
         <p class="dcq-submit-error">Something went wrong. Please try again.</p>
       </div>
     </form>
@@ -1247,7 +1250,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ══════════════════════════════ -->
 <section class="co-303 bg-dark">
   <div class="co-303-mark" aria-hidden="true">
-    <img src="/assets/images/mission-mark.png" alt="">
+    <img src="/assets/images/mission-mark.png" width="568" height="568" alt="">
     <div class="co-303-mark-blocks" data-blocks-reveal></div>
   </div>
   <div class="container">

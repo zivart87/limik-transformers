@@ -289,7 +289,7 @@
       border-radius: 2px;
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s;
-      color: #7090B0;
+      color: #4E6F91;
       text-align: center;
     }
     .rq-file-zone:hover,
@@ -412,9 +412,10 @@
     }
     .rq-submit-note {
       margin-top: 16px;
-      font-size: 12px; color: #7090B0;
+      font-size: 12px; color: #4E6F91;
       line-height: 1.65;
     }
+    .rq-submit-note a { color: var(--blue); text-decoration: underline; }
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
@@ -659,7 +660,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- FILE UPLOAD — скрыто до подключения серверной обработки
         <div class="rq-row rq-col-1">
           <div class="rq-field">
-            <label for="rq-file">Attach Documents <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#7090B0">(optional — spec sheets, single-line diagrams, RFQs)</span></label>
+            <label for="rq-file">Attach Documents <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#4E6F91">(optional — spec sheets, single-line diagrams, RFQs)</span></label>
             <label class="rq-file-zone" for="rq-file">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               <span class="rq-file-text">Click to upload or drag &amp; drop</span>
@@ -676,7 +677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Submit -->
       <div class="rq-submit">
         <button type="submit" class="btn btn-gold btn-lg">Submit Request</button>
-        <p class="rq-submit-note">Your request goes directly to our engineering team. We respond within one business day. No commitment required.</p>
+        <p class="rq-submit-note">Your request goes directly to our engineering team. We respond within one business day. No commitment required. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
       </div>
 
     </form>

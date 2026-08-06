@@ -51,9 +51,9 @@
 
 ---
 
-## 2. Короткие формы — Contact, и «Get Started Today» на страницах Power / Autotransformers / GSU
+## 2. Короткие формы — Contact, «Get Started Today» на страницах Power / Autotransformers / GSU / Mobile, и формы на страницах ниш (Industries)
 
-Одинаковый набор полей на всех четырёх формах, отличается только текст в `formSource`.
+Одинаковый набор полей на всех формах, отличается только текст в `formSource`.
 
 | № | Поле в запросе | Что это |
 |---|---|---|
@@ -87,6 +87,13 @@
 - Autotransformers → `Autotransformers — Get Started Today`
 - GSU → `Generator Step-Up (GSU) — Get Started Today`
 - Mobile Transformers → `Mobile Transformers — Get Started Today`
+- Utilities & Grid (ниша) → `Utilities & Grid`
+- Renewables (ниша) → `Renewables`
+- EPC Contractors (ниша) → `EPC Contractors`
+- Defense / DOD (ниша) → `Defense / DOD`
+- Data Centers (ниша) → `Data Centers`
+
+Новые кастомные поля под эти 5 форм создавать не нужно — набор полей (1–23) полностью совпадает с уже настроенными короткими формами. Достаточно проверить, что в workflow вебхука значения `formSource`, перечисленные выше, не отфильтровываются и не блокируются никакой логикой ветвления (если такая есть) — просто лягут в то же поле `formSource` у контакта.
 
 ---
 

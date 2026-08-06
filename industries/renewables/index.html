@@ -639,6 +639,7 @@
     .dcq-submit { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(9,25,59,0.10); }
     .dcq-submit .btn { font-size: 13px; letter-spacing: 0.12em; padding: 18px 52px; }
     .dcq-submit-note { margin-top: 16px; font-size: 12px; color: #7090B0; line-height: 1.65; }
+    .dcq-submit-error { margin-top: 16px; font-size: 12px; color: #D93025; line-height: 1.65; display: none; }
 
     @media (max-width: 1100px) {
       .dcq-left { width: 440px; }
@@ -1200,6 +1201,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dcq-submit">
         <button type="submit" class="btn btn-gold btn-lg">Send Message</button>
         <p class="dcq-submit-note">Response within 48 hours. All information handled under NDA on request.</p>
+        <p class="dcq-submit-error">Something went wrong. Please try again.</p>
       </div>
     </form>
 
@@ -1513,6 +1515,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     var btn = formEl.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = 'Sending…';
+    var submitErrEl = formEl.querySelector('.dcq-submit-error');
+    if (submitErrEl) submitErrEl.style.display = 'none';
 
     var payload = {
       firstName:   (formEl.querySelector('[name=firstName]')   || {}).value || '',
@@ -1529,8 +1533,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(function() { window.location.href = '/thank-you/'; })
-    .catch(function() { window.location.href = '/thank-you/'; });
+    .then(function(response) {
+      if (!response.ok) throw new Error('Webhook error: ' + response.status);
+      window.location.href = '/thank-you/';
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      if (submitErrEl) submitErrEl.style.display = 'block';
+    });
   });
 })();
 </script>

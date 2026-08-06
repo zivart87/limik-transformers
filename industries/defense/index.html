@@ -830,7 +830,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ind-hero-overlay"></div>
   <div class="ind-hero-content">
     <div class="ind-hero-text">
-      <h1>Power Transformers<br>for National Defense</h1>
+      <h1>Power Transformers<br class="br-desktop"> for National Defense</h1>
       <p class="ind-hero-sub">Custom-engineered, mission-critical power transformers for U.S. military bases, secure government facilities, and defense contractors. 100% American-made. Fully Buy American Act (BAA) compliant.</p>
     </div>
     <div class="ind-hero-action">
@@ -951,7 +951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container" style="position:relative; z-index:1;">
     <div class="products-header">
       <div>
-        <h2 style="color:var(--white);">The Transformers Securing<br>Military Infrastructure</h2>
+        <h2 style="color:var(--white);">The Transformers Securing<br class="br-desktop"> Military Infrastructure</h2>
         <p style="font-size:16px; font-weight:400; line-height:1.75; color:rgba(255,255,255,0.72); max-width:640px; margin-top:20px;">Each LIMIK product line serves a specific role in securing federal energy architecture — from high-voltage transmission interconnections for large military installations to dedicated generator step-up units for islandable base microgrids and mobile transformers for rapid emergency deployment.</p>
       </div>
       <a href="#quote-form" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
@@ -1195,7 +1195,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="dcq-right">
 
     <div class="dcq-form-head">
-      <h2 class="dcq-form-title">Ready to Discuss Your<br>Federal Project?</h2>
+      <h2 class="dcq-form-title">Ready to Discuss Your<br class="br-desktop"> Federal Project?</h2>
       <p class="dcq-form-sub">LIMIK works directly with USACE, NAVFAC, prime defense contractors, and federal agencies. Our engineering team reviews your one-line diagrams, load profiles, and site constraints under strict confidentiality — before a formal RFQ is ever issued.</p>
     </div>
 
@@ -1398,7 +1398,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="cta-band-inner">
       <div>
-        <h2>Ready to Power Your<br>Next Project?</h2>
+        <h2>Ready to Power Your<br class="br-desktop"> Next Project?</h2>
       </div>
       <a href="/request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
     </div>
@@ -1864,7 +1864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
           });
         } else if (node.nodeName === 'BR') {
-          h1.appendChild(document.createElement('br'));
+          h1.appendChild(node.cloneNode());
         }
       });
     });

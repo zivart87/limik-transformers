@@ -505,7 +505,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   >
   <div class="co-hero-overlay"></div>
   <div class="co-hero-content">
-    <h1>Built for the Grid.<br>Built in America</h1>
+    <h1>Built for the Grid.<br class="br-desktop"> Built in America</h1>
   </div>
 </section>
 
@@ -515,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="co-intro">
   <div class="container">
     <div class="co-intro-inner">
-      <h2>Engineering That<br>Powers the Grid</h2>
+      <h2>Engineering That<br class="br-desktop"> Powers the Grid</h2>
       <p>LIMIK International is an American manufacturer of large power transformers — the equipment at the heart of every substation, generating station, and transmission network. Utilities, independent power producers, EPC contractors, and defense infrastructure across the Americas rely on what we deliver.</p>
     </div>
   </div>
@@ -562,7 +562,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="co-story-text">
         <p class="eyebrow">Our Story</p>
-        <h2>Built on Engineering.<br>Driven by Precision.</h2>
+        <h2>Built on Engineering.<br class="br-desktop"> Driven by Precision.</h2>
         <p>LIMIK builds transformers in the heavy utility class — up to 525 kV: Power Transformers, Autotransformers, and Generator Step-Up units. Equipment at this scale leaves no room for approximation. It demands deep engineering, serious production infrastructure, and absolute discipline in execution — and that is what stands behind every LIMIK unit.</p>
         <p>There is no standard model here. Each unit begins with the customer's specification — power rating, voltage class, impedance, regulation — and is developed as its own project. IEEE C57, ANSI, and NEMA are not claims we advertise; they are the baseline we design from. Buy American and BABA compliance comes with every order.</p>
         <p><strong>We build for the grid. We build at the highest level. And we build in the USA.</strong></p>
@@ -608,7 +608,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="co-303-left">
         <p class="eyebrow">Mission · Vision · Values</p>
-        <h2>What We Stand For<br>Runs Deeper Than<br><em>What We Build</em></h2>
+        <h2>What We Stand For<br class="br-desktop"> Runs Deeper Than<br class="br-desktop"> <em>What We Build</em></h2>
         <p><strong>Our Mission</strong> — To supply the backbone of American energy with transformers held to the highest standard in the industry: designed here, manufactured here, and answered for here.</p>
         <p><strong>Our Vision</strong> — To become the manufacturer America specifies first — the benchmark by which large power transformers are measured.</p>
         <a href="../#products-section" class="btn btn-gold btn-lg">Explore Our Products</a>
@@ -659,7 +659,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="cta-band-inner">
       <div>
-        <h2>Reserve Your<br>Delivery Slot</h2>
+        <h2>Reserve Your<br class="br-desktop"> Delivery Slot</h2>
       </div>
       <a href="../request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Register Interest</a>
     </div>
@@ -704,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
           });
         } else if (node.nodeName === 'BR') {
-          h1.appendChild(document.createElement('br'));
+          h1.appendChild(node.cloneNode());
         }
       });
     });

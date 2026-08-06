@@ -830,7 +830,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ind-hero-overlay"></div>
   <div class="ind-hero-content">
     <div class="ind-hero-text">
-      <h1>Power Transformers<br>for Data Centers</h1>
+      <h1>Power Transformers<br class="br-desktop"> for Data Centers</h1>
       <p class="ind-hero-sub">Custom-engineered power capacity for hyperscale, colocation, and edge facilities — designed and built in America.</p>
     </div>
     <div class="ind-hero-action">
@@ -951,7 +951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container" style="position:relative; z-index:1;">
     <div class="products-header">
       <div>
-        <h2 style="color:var(--white);">The Transformers Your<br>Data Center Runs On</h2>
+        <h2 style="color:var(--white);">The Transformers Your<br class="br-desktop"> Data Center Runs On</h2>
         <p style="font-size:16px; font-weight:400; line-height:1.75; color:rgba(255,255,255,0.72); max-width:640px; margin-top:20px;">Each LIMIK product line serves a specific role in the data center power architecture — from the utility interconnection down through the campus, from behind-the-meter generation, and across the full facility lifecycle.</p>
       </div>
       <a href="#quote-form" class="btn btn-gold products-header-cta" style="flex-shrink:0;">Request a Quote</a>
@@ -1197,7 +1197,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="dcq-right">
 
     <div class="dcq-form-head">
-      <h2 class="dcq-form-title">Ready to Discuss Your<br>Data Center Project?</h2>
+      <h2 class="dcq-form-title">Ready to Discuss Your<br class="br-desktop"> Data Center Project?</h2>
       <p class="dcq-form-sub">LIMIK works with data center owners, developers, and EPC contractors on hyperscale, colocation, and greenfield projects. Our engineering team reviews your load profile and site constraints — before a formal RFQ.</p>
     </div>
 
@@ -1400,7 +1400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="cta-band-inner">
       <div>
-        <h2>Ready to Power Your<br>Next Project?</h2>
+        <h2>Ready to Power Your<br class="br-desktop"> Next Project?</h2>
       </div>
       <a href="/request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
     </div>
@@ -1878,7 +1878,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
           });
         } else if (node.nodeName === 'BR') {
-          h1.appendChild(document.createElement('br'));
+          h1.appendChild(node.cloneNode());
         }
       });
     });

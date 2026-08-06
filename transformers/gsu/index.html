@@ -633,7 +633,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- LEFT: pitch + specs -->
     <div class="pt-pitch">
-      <h1>Generator<br>Step-Up (GSU)<br>Transformers</h1>
+      <h1>Generator<br class="br-desktop"> Step-Up (GSU)<br class="br-desktop"> Transformers</h1>
       <p>Raising generator output to transmission voltage, built for thermal, nuclear, hydro, and utility-scale renewable sites.</p>
 
       <div class="pt-advantages">
@@ -758,7 +758,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- RIGHT: contact form -->
       <div class="pt-sidebar">
         <div class="pt-sidebar-form">
-          <h2>Get Started<br>Today</h2>
+          <h2>Get Started<br class="br-desktop"> Today</h2>
           <p>Our engineering team will help you match the right GSU configuration to your generator output and grid interconnection requirements.</p>
           <form id="sf-form" action="#" method="post" novalidate>
             <div class="sf-field">
@@ -832,7 +832,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       });
     } else if (node.nodeName === 'BR') {
-      h1.appendChild(document.createElement('br'));
+      h1.appendChild(node.cloneNode());
     }
   });
   requestAnimationFrame(function() {

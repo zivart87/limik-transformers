@@ -38,6 +38,36 @@
   </url>
 
   <url>
+    <loc>https://www.limiktransformers.com/industries/data-centers/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.limiktransformers.com/industries/utilities/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.limiktransformers.com/industries/defense/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.limiktransformers.com/industries/epc-contractors/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.limiktransformers.com/industries/renewables/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://www.limiktransformers.com/careers/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

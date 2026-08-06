@@ -101,7 +101,7 @@
       justify-content: space-between;
       gap: 60px;
     }
-    .ind-hero-text { flex: 1; max-width: 860px; }
+    .ind-hero-text { flex: 1; min-width: 0; max-width: 860px; }
     .ind-hero-action { flex-shrink: 0; padding-bottom: 4px; }
 
     @keyframes indHeroUp {
@@ -150,7 +150,7 @@
         gap: 28px;
         padding: 0 24px 72px;
       }
-      .ind-hero h1 { font-size: 46px; margin-bottom: 16px; }
+      .ind-hero h1 { font-size: 36px; margin-bottom: 16px; overflow-wrap: break-word; }
       .ind-hero-sub { font-size: 15px; }
       .ind-hero-action { width: 100%; }
       .ind-hero-action .btn { width: 100%; justify-content: center; }

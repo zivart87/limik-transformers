@@ -356,14 +356,40 @@
     .dc-mission-panel p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 20px; }
     .dc-mission-panel p:last-child { margin-bottom: 0; }
 
+    .dc-mission-select { display: none; }
+
     @media (max-width: 900px) {
       .dc-mission { padding: 80px 0; }
       .dc-mission > .container > h2 { margin-bottom: 32px; }
     }
     @media (max-width: 768px) {
       .dc-mission-tabs { grid-template-columns: 1fr; gap: 8px; }
+      .dc-mission-tab-list { display: none; }
       .dc-mission-tab { padding: 18px 20px; }
       .dc-mission > .container > h2 { font-size: 36px; }
+      .dc-mission-select {
+        display: block;
+        font-family: var(--font);
+        font-size: 14px; font-weight: 400;
+        color: var(--navy-dark);
+        background: var(--white);
+        border: 1.5px solid rgba(9,25,59,0.15);
+        border-radius: 2px;
+        padding: 11px 14px;
+        outline: none;
+        width: 100%; box-sizing: border-box;
+        appearance: none; -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23206CB9' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 38px; cursor: pointer;
+        margin-bottom: 24px;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .dc-mission-select:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(32,108,185,0.10);
+      }
     }
 
     /* ═══════════════════════════════
@@ -1061,6 +1087,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <h2>Engineered for Grid Reliability</h2>
     <div class="dc-mission-tabs">
+      <select class="dc-mission-select" id="dcMissionSelect" aria-label="Choose a topic">
+        <option value="0">Custom Drop-in Replacements</option>
+        <option value="1">High Short-Circuit Withstand</option>
+        <option value="2">Peak Overload Capacity</option>
+        <option value="3">Utility Grid Standardization</option>
+        <option value="4">TOC Optimization</option>
+        <option value="5">Storm &amp; Resiliency Readiness</option>
+      </select>
       <div class="dc-mission-tab-list" id="dcMissionTabs">
         <button type="button" class="dc-mission-tab is-active" data-index="0">
           <span>Custom Drop-in Replacements</span>
@@ -1777,18 +1811,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ];
 
     const tabs = document.querySelectorAll('.dc-mission-tab');
+    const select = document.getElementById('dcMissionSelect');
     const title = document.getElementById('dcMissionTitle');
     const body = document.getElementById('dcMissionBody');
     if (!tabs.length || !title || !body) return;
+
+    function setActive(index) {
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tabs[index].classList.add('is-active');
+      if (select) select.value = String(index);
+      const data = missionContent[index];
+      title.textContent = data.title;
+      body.innerHTML = data.body.map(function (p) { return '<p>' + p + '</p>'; }).join('');
+    }
+
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        tabs.forEach(function (t) { t.classList.remove('is-active'); });
-        tab.classList.add('is-active');
-        const data = missionContent[parseInt(tab.dataset.index, 10)];
-        title.textContent = data.title;
-        body.innerHTML = data.body.map(function (p) { return '<p>' + p + '</p>'; }).join('');
+        setActive(parseInt(tab.dataset.index, 10));
       });
     });
+    if (select) {
+      select.addEventListener('change', function () {
+        setActive(parseInt(select.value, 10));
+      });
+    }
   })();
 </script>
 

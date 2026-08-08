@@ -569,6 +569,39 @@
       background: rgba(255,255,255,0.6);
     }
 
+    /* ═══════════════════════════════
+       OTHER TRANSFORMERS (cross-sell)
+    ═══════════════════════════════ */
+    .pt-related {
+      position: relative;
+      overflow: hidden;
+    }
+    .pt-related-logo {
+      position: absolute; bottom: -10px; right: -40px;
+      width: 38%;
+      pointer-events: none; user-select: none;
+      opacity: 0.6;
+    }
+    .pt-related-header {
+      position: relative; z-index: 1;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .pt-related-header h2 { color: var(--white); margin: 0; }
+    .pt-related-bottom-cta { display: none; }
+    .pt-related-grid {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .pt-related-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+      .pt-related-header-cta { display: none; }
+      .pt-related-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 32px; }
+      .pt-related-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 1000px) {
       .pt-content-grid { grid-template-columns: 1fr; }
       .pt-sidebar { flex-direction: row; flex-wrap: wrap; }
@@ -929,6 +962,98 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   OTHER TRANSFORMERS (cross-sell)
+══════════════════════════════ -->
+<section class="section bg-dark pt-related">
+  <img src="/assets/images/logo-product.svg" alt="" aria-hidden="true" class="pt-related-logo">
+  <div class="container">
+    <div class="pt-related-header">
+      <h2>Other Transformers We Build</h2>
+      <a href="/request-quote/" class="btn btn-gold pt-related-header-cta">Request a Quote</a>
+    </div>
+    <div class="pt-related-grid">
+
+      <a href="/transformers/autotransformers/" class="product-card">
+        <div class="product-card-name">Autotransformers</div>
+        <div class="product-card-image">
+          <img src="/assets/images/autotransformer-product.webp" alt="LIMIK Autotransformer" width="1200" height="1032">
+        </div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">345 kV</span>
+          </div>
+        </div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
+      </a>
+
+      <a href="/transformers/gsu/" class="product-card">
+        <div class="product-card-name">Generator Step-Up (GSU)</div>
+        <div class="product-card-image">
+          <img src="/assets/images/gsu-product.webp" alt="LIMIK Generator Step-Up transformer" width="1200" height="884">
+        </div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">525 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">35 kV</span>
+          </div>
+        </div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
+      </a>
+
+      <a href="/transformers/mobile/" class="product-card">
+        <div class="product-card-name">Mobile Transformers</div>
+        <div class="product-card-image">
+          <img src="/assets/images/mobile-product.webp" alt="LIMIK Mobile Transformer" width="1200" height="1179">
+        </div>
+        <div class="product-card-specs">
+          <div class="spec-row">
+            <span class="spec-lbl">Max MVA</span>
+            <span class="spec-val">100</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">HV Rating</span>
+            <span class="spec-val">230 kV</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl">LV Rating</span>
+            <span class="spec-val">69 kV</span>
+          </div>
+        </div>
+        <div class="product-link">
+          <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Learn More
+        </div>
+      </a>
+
+    </div>
+    <a href="/request-quote/" class="btn btn-gold pt-related-bottom-cta">Request a Quote</a>
   </div>
 </section>
 

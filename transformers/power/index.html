@@ -650,7 +650,13 @@
     @media (min-width: 901px) {
       .pt-related .products-nav { display: none; }
       .pt-related .products-lead-spacer { display: none; }
-      .pt-related .products-carousel { cursor: default; touch-action: auto; user-select: auto; }
+      .pt-related .products-carousel {
+        cursor: default; touch-action: auto; user-select: auto;
+        /* карусель full-bleed (вне .container) заточена под mobile drag —
+           на десктопе без этого сдвига карточки растягиваются на всю ширину
+           секции и расходятся с шапкой/точками, которые внутри .container */
+        max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+      }
       .pt-related .products-track {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

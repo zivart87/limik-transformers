@@ -667,6 +667,78 @@
     }
 
     /* ═══════════════════════════════
+       FAQ — заголовок/текст слева, аккордеон справа
+       (копия .dc-faq с industries/data-centers)
+    ═══════════════════════════════ */
+    .pt-faq { background: var(--white); padding: 120px 0; }
+    .pt-faq-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 72px; align-items: start;
+    }
+    .pt-faq-head .eyebrow {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .pt-faq-head h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
+    }
+    .pt-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
+
+    .pt-faq-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--navy-dark);
+    }
+    .pt-faq-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+    }
+    .pt-faq-link-icon svg { transition: transform 0.1s ease; }
+    .pt-faq-link:hover .pt-faq-link-icon svg { transform: rotate(-45deg); }
+
+    .pt-faq-list { outline: 1px solid var(--border-l); background: var(--white); }
+    .pt-faq-item { border-bottom: 1px solid var(--border-l); transition: background 0.2s; }
+    .pt-faq-item:last-child { border-bottom: none; }
+    .pt-faq-item.is-open,
+    .pt-faq-item:hover { background: var(--off-white); }
+    .pt-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; width: 100%; padding: 28px;
+      background: none; border: none; text-align: left; cursor: pointer;
+      font-family: var(--font);
+    }
+    .pt-faq-q span:first-child {
+      font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--navy-dark);
+    }
+    .pt-faq-toggle { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
+    .pt-faq-toggle::before,
+    .pt-faq-toggle::after {
+      content: ''; position: absolute; background: var(--blue);
+      transition: transform 0.25s ease;
+    }
+    .pt-faq-toggle::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+    .pt-faq-toggle::after { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+    .pt-faq-item.is-open .pt-faq-toggle::after { transform: translateX(-50%) scaleY(0); }
+
+    .pt-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .pt-faq-a p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; padding: 0 28px 28px; }
+    .pt-faq-item.is-open .pt-faq-a { max-height: 420px; }
+
+    @media (max-width: 900px) {
+      .pt-faq { padding: 80px 0; }
+      .pt-faq-grid { grid-template-columns: 1fr; gap: 32px; }
+      .pt-faq-head { margin-bottom: 8px; }
+    }
+    @media (max-width: 768px) { .pt-faq-head h2 { font-size: 36px; } }
+    @media (max-width: 600px) {
+      .pt-faq-q { padding: 22px 20px; gap: 16px; }
+      .pt-faq-a p { padding: 0 20px 22px; }
+    }
+
+    /* ═══════════════════════════════
        COMPARE TABLE
     ═══════════════════════════════ */
     /* та же дистанция h2→p, что и в .pt-desc h2 на этой же странице (24px) */
@@ -939,6 +1011,70 @@
     }
 
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I get aluminum windings instead of copper?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Copper is the standard specification for LIMIK power transformers, but aluminum conductors are available where your project calls for it. Conductor material — copper or aluminum — is set at the specification stage based on your loss targets, weight constraints, and budget."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between a Power Transformer, an Autotransformer, and a GSU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Power Transformer has fully separated primary and secondary windings and is used at utility substations to step transmission voltage down to distribution levels. An Autotransformer shares a portion of the winding between primary and secondary, which makes it more efficient for linking two transmission-level voltages — used at grid interconnection points, not at the customer end of the network. A GSU (Generator Step-Up) does the opposite job of a substation unit: it raises a generator's output voltage up to transmission level. Same engineering standards across all three — the difference is where each one sits in the power chain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can LIMIK match the impedance of a unit we're replacing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Impedance is a design target set at the specification stage, not a fixed catalog value. For a replacement transformer, matching the retiring unit's impedance is often necessary to avoid re-engineering the substation's protection and short-circuit coordination — our engineering team works from your existing system data to hit that target."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you build three-winding units, and when would I need one?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A three-winding transformer adds a tertiary winding, typically used to supply auxiliary station loads, provide a path for reactive power compensation, or interconnect a third voltage level at the same substation. Two-winding is the standard configuration; three-winding is specified when your substation design calls for that third connection point."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the factory test report?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every unit ships with a complete report covering the routine and type tests required under IEEE C57.12.90 — ratio, polarity, resistance, impedance and load loss, induced and applied potential, and excitation current among them. The report is provided before the unit leaves the factory, so your commissioning team has full data in hand before it arrives on site."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I choose OLTC or DETC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OLTC (on-load tap changer) adjusts voltage while the transformer stays energized and under load — standard on transmission-class units where continuous voltage regulation matters. DETC (de-energized tap changer) requires the unit to be taken offline to change taps — a simpler, lower-maintenance option suited to units where voltage conditions are stable and infrequent adjustment is acceptable. Your application and duty cycle determine which one fits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the 48 to 72-week lead time start at order or at finalized specification?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The clock starts once your technical specification is finalized and the order is confirmed. Our engineering team works with you at the RFQ stage to resolve voltage class, impedance, cooling, and configuration before that clock starts — so the lead time you're quoted reflects your actual unit, not a placeholder spec."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body data-hero=".pt-hero">
 <!-- Google Tag Manager (noscript) -->
@@ -1460,6 +1596,102 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="why-block-placeholder"></div>
   </div>
 </section>
+
+<!-- ══════════════════════════════
+   FAQ — заголовок/текст слева, аккордеон справа
+══════════════════════════════ -->
+<section class="pt-faq">
+  <div class="container">
+    <div class="pt-faq-grid">
+
+      <div class="pt-faq-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Power Transformers, Explained</h2>
+        <p>Answering the questions we hear most — from technical specification and testing to compliance, delivery, and procurement. Everything you need before you submit an RFQ.</p>
+        <a href="/contact/" class="pt-faq-link">
+          <span class="pt-faq-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Talk to LIMIK Engineering
+        </a>
+      </div>
+
+      <div class="pt-faq-list">
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Can I get aluminum windings instead of copper?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Yes. Copper is the standard specification for LIMIK power transformers, but aluminum conductors are available where your project calls for it. Conductor material — copper or aluminum — is set at the specification stage based on your loss targets, weight constraints, and budget.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What's the difference between a Power Transformer, an Autotransformer, and a GSU?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>A Power Transformer has fully separated primary and secondary windings and is used at utility substations to step transmission voltage down to distribution levels. An Autotransformer shares a portion of the winding between primary and secondary, which makes it more efficient for linking two transmission-level voltages — used at grid interconnection points, not at the customer end of the network. A GSU (Generator Step-Up) does the opposite job of a substation unit: it raises a generator's output voltage up to transmission level. Same engineering standards across all three — the difference is where each one sits in the power chain.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Can LIMIK match the impedance of a unit we're replacing?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Yes. Impedance is a design target set at the specification stage, not a fixed catalog value. For a replacement transformer, matching the retiring unit's impedance is often necessary to avoid re-engineering the substation's protection and short-circuit coordination — our engineering team works from your existing system data to hit that target.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Do you build three-winding units, and when would I need one?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Yes. A three-winding transformer adds a tertiary winding, typically used to supply auxiliary station loads, provide a path for reactive power compensation, or interconnect a third voltage level at the same substation. Two-winding is the standard configuration; three-winding is specified when your substation design calls for that third connection point.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What's included in the factory test report?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Every unit ships with a complete report covering the routine and type tests required under IEEE C57.12.90 — ratio, polarity, resistance, impedance and load loss, induced and applied potential, and excitation current among them. The report is provided before the unit leaves the factory, so your commissioning team has full data in hand before it arrives on site.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Should I choose OLTC or DETC?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>OLTC (on-load tap changer) adjusts voltage while the transformer stays energized and under load — standard on transmission-class units where continuous voltage regulation matters. DETC (de-energized tap changer) requires the unit to be taken offline to change taps — a simpler, lower-maintenance option suited to units where voltage conditions are stable and infrequent adjustment is acceptable. Your application and duty cycle determine which one fits.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Does the 48 to 72-week lead time start at order or at finalized specification?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>The clock starts once your technical specification is finalized and the order is confirmed. Our engineering team works with you at the RFQ stage to resolve voltage class, impedance, cooling, and configuration before that clock starts — so the lead time you're quoted reflects your actual unit, not a placeholder spec.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.pt-faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.pt-faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      item.parentElement.querySelectorAll('.pt-faq-item.is-open').forEach(function (open) {
+        open.classList.remove('is-open');
+      });
+      if (!wasOpen) item.classList.add('is-open');
+    });
+  });
+})();
+</script>
 
 <!-- ══════════════════════════════
    CTA BAND

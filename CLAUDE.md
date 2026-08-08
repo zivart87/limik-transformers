@@ -108,7 +108,7 @@ Meta:    [Список продуктов] for [применение]. [Диап
 - Декоративным (`aria-hidden="true"`) — всё равно `alt=""`, не пропускать атрибут
 
 **Формы**
-- Рядом с кнопкой submit — обязательная строка со ссылкой на `/privacy-policy/` (нужно для комплаенса Google Ads): `By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.`
+- Рядом с кнопкой submit — обязательная строка-note. Стандарт (утверждён на `industries/*`, см. «Submit-note» в разделе «Формы — стандарт оформления полей» ниже): `Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.` — использовать эту же полную формулировку на всех формах сайта, не укороченную версию.
 
 **Контраст текста — конкретные значения, которые уже один раз были неверными**
 - `#7090B0` (= `var(--text-2)`) — цвет только для **тёмных** фонов (контраст на navy-dark ≈ 5.2:1). На **светлом** фоне (белый/off-white) он проваливает WCAG AA (≈3.3:1) — использовать `#4E6F91` вместо него для мелкого/приглушённого текста на светлом фоне (лейблы в карточках, submit-note у форм)
@@ -150,6 +150,42 @@ CLAUDE.md              — этот файл
 ## SEO/GEO оптимизация товарных страниц (пилот на Power Transformers, 2026-08-08)
 
 По плану `limik-data-centers-seo-ppc-plan.md` (раздел 6, Universal Rules) и чек-листу SEO выше — на `transformers/power/index.html` обновлены title (формула `[Product] — [MVA/kV] | LIMIK`), meta description (150–160 симв. с явным differentiator), og:title/og:description, добавлены BreadcrumbList + Organization JSON-LD (FAQPage уже был), добавлены `width`/`height` картинкам ленты «Power Starts Here». **Остальные 3 товарные страницы (Autotransformers/GSU/Mobile) намеренно не тронуты** — до этой правки title/meta был одинаковым паттерном на всех 4 (короткий, без differentiator); при переносе того же апгрейда на остальные три — сохранить консистентность формулы, не выдумывать новую.
+
+### Чек-лист SEO/GEO для товарной страницы (переносить один в один на Autotransformers/GSU/Mobile)
+
+Полный список того, что сделано на `transformers/power/index.html` в течение аудита 2026-08-08 — использовать как чек-лист при повторении на остальных трёх товарных страницах, не изобретать новый список:
+
+1. **Title/meta по формуле** — см. «Title и meta description — формула» в общем SEO-чек-листе выше. Для Power: `Custom Power Transformers — Up to 600 MVA, 525 kV | LIMIK`.
+2. **og:title/og:description** синхронизированы с title/meta, не оставлены старыми.
+3. **Structured data — 4 блока JSON-LD** перед `</head>`: FAQPage + BreadcrumbList + Organization (см. общие правила выше) + **Product** (см. ниже, новый тип для товарных страниц).
+4. **`<main>`** оборачивает весь контент между nav-placeholder и футером (проверка: `grep -c "<main"`).
+5. **Заголовки h1–h6 без пропуска уровней** — проверить `grep -oE "<h[1-6][^>]*>"`.
+6. **`why-block-placeholder` + fetch → статичная разметка.** Если страница использует `why-loader.js` — заинлайнить `.why-cols` статикой прямо в HTML (см. критический пункт «Контент должен существовать в сыром HTML» выше). На Power уже сделано; на остальных трёх страницах проверить, используют ли они тот же fetch-паттерн, и починить так же.
+7. **Внутритекстовые ссылки в FAQ** — 2–5 ссылок на 1000 слов, только там где есть естественный повод (не форсировать). Стиль — `.pt-faq-a p a` (см. «Внутритекстовые ссылки» в общем чек-листе выше), переиспользовать тот же класс/паттерн, не изобретать новый на каждой странице.
+8. **`.spec-lbl` контраст** — уже пофикшено глобально в `limik.css` (`#4E6F91`), затрагивает все товарные страницы автоматически, ничего дополнительно делать не нужно.
+9. **Submit-note под формой** — полный текст + стиль под фон формы, см. «Submit-note» в разделе «Формы — стандарт оформления полей» ниже.
+10. **Телефон прямо на странице** (не только в fetch-футере) рядом с формой — `.pt-sidebar-call`, `tel:+17867676418`.
+11. **charset — первая строка `<head>`**, до любых GTM/pixel-скриптов (Lighthouse Best Practices требует charset в первых 1024 байтах). Проверка: открыть файл, charset должен быть до всех `<script>`.
+12. **robots.txt** — общий для всего сайта, уже обновлён (явные записи GPTBot/ChatGPT-User/OAI-SearchBot/ClaudeBot/Claude-User/PerplexityBot/Google-Extended) — на уровне отдельной страницы ничего делать не нужно, это sitewide-файл.
+13. **Cross-sell блок «Other Transformers We Build»** — см. отдельный раздел ниже, переносить один в один.
+14. **Таблица сравнения «Compare LIMIK Transformer Types»** — см. отдельный раздел ниже, переносить один в один (менять только «текущую» колонку и данные).
+15. **Lighthouse-прогон (mobile) после всех правок** — ориентир по Power: SEO 100, Accessibility 96, Best Practices ~77 (упирается в сторонние скрипты — GTM/OpenAI/Clarity/Facebook cookies, не наш код), Core Web Vitals с большим запасом (LCP/CLS). Не считать страницу готовой без этого прогона.
+
+**Product JSON-LD (новый тип, добавлен впервые на Power Transformers 2026-08-08)** — обязателен на всех 4 товарных страницах:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "LIMIK [Product Name]",
+  "description": "[то же, что meta description или близко]",
+  "image": "https://www.limiktransformers.com/assets/images/[product]-product.png",
+  "brand": { "@type": "Brand", "name": "LIMIK International" },
+  "manufacturer": { "@type": "Organization", "name": "LIMIK International" },
+  "category": "[Product Category]",
+  "additionalProperty": [ /* PropertyValue: Capacity/HV-LV/Standards/Lead Time — реальные спеки со страницы */ ]
+}
+```
+**Не добавлять** `offers`/`review`/`aggregateRating` — компания B2B custom-manufacturing, реальных цен/отзывов нет, выдуманные данные хуже отсутствия разметки (тот же принцип, что и с Organization `sameAs`).
 
 ---
 
@@ -646,6 +682,29 @@ color: #A8B8CC;
 ```css
 .rq-field { display: flex; flex-direction: column; gap: 6px; }
 ```
+
+### Submit-note (текст под кнопкой Submit)
+
+Утверждённый на `industries/*` (образец: `.dcq-submit-note` на `industries/data-centers/index.html`), с 2026-08-08 — единый стандарт для **всех** форм сайта, включая `contact/index.html` и сайдбар-формы товарных страниц (`transformers/*`).
+
+**Текст (не сокращать):**
+```html
+Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.
+```
+
+**Стиль — светлый фон (форма на белом/off-white):**
+```css
+margin-top: 16px; font-size: 12px; color: #4E6F91; line-height: 1.65;
+```
+ссылка: `color: var(--blue); text-decoration: underline;`
+
+**Стиль — тёмный фон (форма на `--navy-dark`, например `.pt-sidebar-form`):**
+```css
+margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.65;
+```
+ссылка: `color: var(--blue-lt); text-decoration: underline;` (обычный `--blue` на тёмном фоне не проходит контраст — см. правило eyebrow на тёмном фоне, та же логика)
+
+`font-size: 12px` и `line-height: 1.65` — фиксированные независимо от фона, меняется только цвет текста/ссылки по стандартному правилу «текст на тёмном/светлом фоне» (см. раздел «Цвет и насыщенность текста»).
 
 **Правила:**
 - `border-radius: 2px` — всегда, без скруглений

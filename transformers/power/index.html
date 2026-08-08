@@ -591,6 +591,8 @@
     .pt-related-bottom-cta { display: none; }
     .pt-related-grid {
       position: relative; z-index: 1;
+    }
+    .pt-related-track {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
@@ -603,20 +605,24 @@
       .pt-related-header-cta { display: none; }
       .pt-related-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 32px; }
 
-      /* Грид → горизонтальная карусель — тот же механизм (drag + вычисляемые
+      /* Горизонтальная карусель — тот же механизм (drag + вычисляемые
          остановки + transform: translateX), что и у #products-section на
-         главной / industries/data-centers, а не отдельный scroll-snap */
-      .pt-related-grid {
+         главной / industries/data-centers. Важно: overflow:hidden — на
+         НЕПОДВИЖНОМ внешнем .pt-related-grid, transform — на вложенном
+         .pt-related-track. Если и то и другое на одном элементе, при
+         сдвиге уезжает и сама область обрезки (было именно так и ломало
+         раскладку — 2026-08-08). */
+      .pt-related-grid { overflow: hidden; }
+      .pt-related-track {
         grid-template-columns: unset;
         display: flex;
         gap: 16px;
-        overflow: hidden;
         cursor: grab; user-select: none; touch-action: pan-y;
         transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         will-change: transform;
       }
-      .pt-related-grid.is-dragging { cursor: grabbing; transition: none; }
-      .pt-related-grid .product-card { flex: 0 0 82%; }
+      .pt-related-track.is-dragging { cursor: grabbing; transition: none; }
+      .pt-related-track .product-card { flex: 0 0 82%; }
 
       .pt-related-nav {
         display: flex; align-items: center; justify-content: space-between;
@@ -1181,6 +1187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/request-quote/" class="btn btn-gold pt-related-header-cta">Request a Quote</a>
     </div>
     <div class="pt-related-grid" id="ptRelatedGrid">
+    <div class="pt-related-track" id="ptRelatedTrack">
 
       <a href="/transformers/autotransformers/" class="product-card">
         <div class="product-card-name">Autotransformers</div>
@@ -1257,6 +1264,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
+    </div>
     </div>
     <div class="pt-related-nav" id="ptRelatedNav">
       <div class="pt-related-dots" id="ptRelatedDots"></div>
@@ -1636,12 +1644,13 @@ document.addEventListener('DOMContentLoaded', function() {
    т.к. transform на грид не применяется (стопов ровно 1). */
 (function() {
   var grid = document.getElementById('ptRelatedGrid');
+  var track = document.getElementById('ptRelatedTrack');
   var dotsWrap = document.getElementById('ptRelatedDots');
   var prevBtn = document.getElementById('ptRelatedPrev');
   var nextBtn = document.getElementById('ptRelatedNext');
-  if (!grid || !dotsWrap || !prevBtn || !nextBtn) return;
+  if (!grid || !track || !dotsWrap || !prevBtn || !nextBtn) return;
 
-  var cards = Array.from(grid.querySelectorAll('.product-card'));
+  var cards = Array.from(track.querySelectorAll('.product-card'));
   if (!cards.length) return;
 
   var currentIndex = 0;
@@ -1649,7 +1658,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var stops = [0];
 
   function maxTranslate() {
-    return Math.max(0, grid.scrollWidth - grid.clientWidth);
+    return Math.max(0, track.scrollWidth - grid.clientWidth);
   }
 
   function buildStops() {
@@ -1667,8 +1676,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function setTranslate(x, animate) {
     currentTranslate = Math.max(0, Math.min(x, maxTranslate()));
-    grid.classList.toggle('is-dragging', !animate);
-    grid.style.transform = 'translateX(-' + currentTranslate + 'px)';
+    track.classList.toggle('is-dragging', !animate);
+    track.style.transform = 'translateX(-' + currentTranslate + 'px)';
   }
 
   function goTo(idx) {
@@ -1710,7 +1719,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var isDown = false, startX = 0, startTranslate = 0, moved = false;
   grid.addEventListener('pointerdown', function(e) {
     isDown = true; moved = false;
-    grid.classList.add('is-dragging');
+    track.classList.add('is-dragging');
     startX = e.clientX;
     startTranslate = currentTranslate;
   });
@@ -1719,7 +1728,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function endDrag() {
     if (!isDown) return;
     isDown = false;
-    grid.classList.remove('is-dragging');
+    track.classList.remove('is-dragging');
     if (moved) {
       var closest = 0, minDist = Infinity;
       stops.forEach(function(s, i) {

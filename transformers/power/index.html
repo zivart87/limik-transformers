@@ -680,6 +680,62 @@
       .pt-compare-value { font-size: 13px; }
     }
 
+    /* ═══════════════════════════════
+       POWER STARTS HERE — лента фото
+    ═══════════════════════════════ */
+    .power-marquee-section {
+      background: var(--white);
+      /* сразу после .pt-compare (тоже белый) — верх обнулён, чтобы не задваивать 120+120 */
+      padding: 0;
+      overflow: hidden;
+    }
+    .power-marquee-heading {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--navy-dark);
+      text-align: center;
+      margin: 0 0 16px;
+    }
+    .power-marquee-sub {
+      font-size: 16px; line-height: 1.6; color: #3A5570;
+      max-width: 640px; margin: 0 auto 48px;
+      text-align: center;
+    }
+    .power-marquee-viewport { overflow: hidden; width: 100%; }
+    .power-marquee-track {
+      display: flex; width: max-content; gap: 24px;
+      animation: power-marquee-scroll 48s linear infinite;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    .power-marquee-item { flex: 0 0 auto; width: 455px; height: 480px; }
+    .power-marquee-item img, .power-marquee-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes power-marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (max-width: 768px) {
+      .power-marquee-heading { margin-bottom: 12px; }
+      .power-marquee-sub { margin-bottom: 32px; padding: 0 24px; }
+      .power-marquee-item { width: 228px; height: 240px; }
+      .power-marquee-track { gap: 16px; animation-duration: 32s; }
+    }
+
+    /* ═══════════════════════════════
+       WHY LIMIK — Three Reasons We're Different
+    ═══════════════════════════════ */
+    .pt-why { background: var(--white); padding: 120px 0; }
+    .pt-why > .container > h2 {
+      font-size: clamp(26px, 3.5vw, 48px); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.0;
+      color: var(--navy-dark); margin-bottom: 64px;
+    }
+    @media (max-width: 900px) {
+      .pt-why { padding: 80px 0; }
+      .pt-why > .container > h2 { margin-bottom: 32px; }
+    }
+
     @media (max-width: 1000px) {
       .pt-content-grid { grid-template-columns: 1fr; }
       .pt-sidebar { flex-direction: row; flex-wrap: wrap; }
@@ -1243,6 +1299,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════
+   POWER STARTS HERE  ← лента фото
+══════════════════════════════ -->
+<section class="power-marquee-section">
+  <h2 class="power-marquee-heading">Power Starts Here</h2>
+  <p class="power-marquee-sub">What starts as raw steel and copper becomes the machine that carries power across an entire region. Every weld, every winding, every test is done by people who know exactly what they're building and why it matters.</p>
+  <div class="power-marquee-viewport">
+    <div class="power-marquee-track">
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-1.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-2.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-3.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-4.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><video src="/assets/video/marquee-loop.mp4" poster="/assets/images/marquee/marquee-video-poster.webp" autoplay muted loop playsinline disablepictureinpicture aria-label="LIMIK transformer manufacturing"></video></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-5.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-6.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item"><img src="/assets/images/marquee/marquee-7.webp" alt="LIMIK transformer manufacturing" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-1.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-2.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-3.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-4.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-video-poster.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-5.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-6.webp" alt="" loading="lazy"></div>
+      <div class="power-marquee-item" aria-hidden="true"><img src="/assets/images/marquee/marquee-7.webp" alt="" loading="lazy"></div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var v = document.querySelector('.power-marquee-item video');
+      if (!v || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) v.play().catch(function(){});
+        });
+      }, { threshold: 0.1 }).observe(v);
+    })();
+  </script>
+</section>
+
+<!-- ══════════════════════════════
+   WHY LIMIK
+══════════════════════════════ -->
+<section class="pt-why">
+  <div class="container">
+    <div class="eyebrow">Why LIMIK</div>
+    <h2>Three Reasons We're Different</h2>
+    <div id="why-block-placeholder"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   CTA BAND
+══════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Ready to Power Your<br class="br-desktop"> Next Project?</h2>
+      </div>
+      <a href="/request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
    MOBILE STICKY CTA
 ══════════════════════════════ -->
 <div class="pt-mobile-cta" id="pt-mobile-cta">
@@ -1259,6 +1379,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="/assets/images/icons/up.svg" alt="">
 </button>
 
+<script src="/assets/js/why-loader.js"></script>
 <script src="/assets/js/footer.js"></script>
 <script src="/assets/js/utm.js"></script>
 <script src="/assets/js/back-to-top.js"></script>

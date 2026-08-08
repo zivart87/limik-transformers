@@ -603,23 +603,20 @@
       .pt-related-header-cta { display: none; }
       .pt-related-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 32px; }
 
-      /* Грид → горизонтальная карусель со scroll-snap */
+      /* Грид → горизонтальная карусель — тот же механизм (drag + вычисляемые
+         остановки + transform: translateX), что и у #products-section на
+         главной / industries/data-centers, а не отдельный scroll-snap */
       .pt-related-grid {
         grid-template-columns: unset;
         display: flex;
         gap: 16px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        margin: 0 -24px;
-        padding: 0 24px;
+        overflow: hidden;
+        cursor: grab; user-select: none; touch-action: pan-y;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
       }
-      .pt-related-grid::-webkit-scrollbar { display: none; }
-      .pt-related-grid .product-card {
-        flex: 0 0 82%;
-        scroll-snap-align: start;
-      }
+      .pt-related-grid.is-dragging { cursor: grabbing; transition: none; }
+      .pt-related-grid .product-card { flex: 0 0 82%; }
 
       .pt-related-nav {
         display: flex; align-items: center; justify-content: space-between;
@@ -1632,7 +1629,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
-/* "Other Transformers We Build" — точки + стрелки для мобильной карусели (scroll-snap) */
+/* "Other Transformers We Build" — тот же механизм карусели (drag + вычисляемые
+   остановки + точки/стрелки), что и у #products-section на главной /
+   industries/data-centers. Активна только на ≤900px — на десктопе .pt-related-grid
+   остаётся статичной CSS-сеткой (grid), JS выше этой ширины эффективно не влияет,
+   т.к. transform на грид не применяется (стопов ровно 1). */
 (function() {
   var grid = document.getElementById('ptRelatedGrid');
   var dotsWrap = document.getElementById('ptRelatedDots');
@@ -1643,47 +1644,103 @@ document.addEventListener('DOMContentLoaded', function() {
   var cards = Array.from(grid.querySelectorAll('.product-card'));
   if (!cards.length) return;
 
-  cards.forEach(function(_, i) {
-    var dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'pt-related-dot' + (i === 0 ? ' is-active' : '');
-    dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
-    dot.addEventListener('click', function() { scrollToCard(i); });
-    dotsWrap.appendChild(dot);
-  });
+  var currentIndex = 0;
+  var currentTranslate = 0;
+  var stops = [0];
 
-  function scrollToCard(i) {
-    i = Math.max(0, Math.min(cards.length - 1, i));
-    grid.scrollTo({ left: cards[i].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+  function maxTranslate() {
+    return Math.max(0, grid.scrollWidth - grid.clientWidth);
   }
 
-  function currentIndex() {
-    var pos = grid.scrollLeft + grid.offsetLeft;
-    var closest = 0, minDist = Infinity;
-    cards.forEach(function(c, i) {
-      var dist = Math.abs(c.offsetLeft - pos);
-      if (dist < minDist) { minDist = dist; closest = i; }
+  function buildStops() {
+    var maxT = maxTranslate();
+    var raw = [0];
+    for (var i = 1; i < cards.length; i++) {
+      raw.push(Math.min(maxT, Math.max(0, cards[i].offsetLeft - cards[0].offsetLeft)));
+    }
+    raw.push(maxT);
+    stops = [0];
+    raw.forEach(function(v) {
+      if (v - stops[stops.length - 1] > 1) stops.push(v);
     });
-    return closest;
+  }
+
+  function setTranslate(x, animate) {
+    currentTranslate = Math.max(0, Math.min(x, maxTranslate()));
+    grid.classList.toggle('is-dragging', !animate);
+    grid.style.transform = 'translateX(-' + currentTranslate + 'px)';
+  }
+
+  function goTo(idx) {
+    currentIndex = Math.max(0, Math.min(stops.length - 1, idx));
+    setTranslate(stops[currentIndex], true);
+    updateUI();
+  }
+
+  function renderDots() {
+    dotsWrap.innerHTML = '';
+    stops.forEach(function(_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'pt-related-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+      dot.addEventListener('click', function() { goTo(i); });
+      dotsWrap.appendChild(dot);
+    });
   }
 
   function updateUI() {
-    var idx = currentIndex();
-    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('is-active', i === idx); });
-    prevBtn.disabled = idx <= 0;
-    nextBtn.disabled = idx >= cards.length - 1;
+    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('is-active', i === currentIndex); });
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= stops.length - 1;
   }
 
-  prevBtn.addEventListener('click', function() { scrollToCard(currentIndex() - 1); });
-  nextBtn.addEventListener('click', function() { scrollToCard(currentIndex() + 1); });
-
-  var scrollTimer;
-  grid.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateUI, 80);
+  prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); });
+  nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); });
+  window.addEventListener('resize', function() {
+    buildStops();
+    renderDots();
+    goTo(currentIndex);
   });
-  window.addEventListener('resize', updateUI);
+  buildStops();
+  renderDots();
   updateUI();
+
+  /* ── Drag мышью/пальцем (Pointer Events) ── */
+  var isDown = false, startX = 0, startTranslate = 0, moved = false;
+  grid.addEventListener('pointerdown', function(e) {
+    isDown = true; moved = false;
+    grid.classList.add('is-dragging');
+    startX = e.clientX;
+    startTranslate = currentTranslate;
+  });
+  grid.addEventListener('pointerup', endDrag);
+  grid.addEventListener('pointercancel', endDrag);
+  function endDrag() {
+    if (!isDown) return;
+    isDown = false;
+    grid.classList.remove('is-dragging');
+    if (moved) {
+      var closest = 0, minDist = Infinity;
+      stops.forEach(function(s, i) {
+        var dist = Math.abs(s - currentTranslate);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      goTo(closest);
+    }
+  }
+  grid.addEventListener('pointermove', function(e) {
+    if (!isDown) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) moved = true;
+    if (moved) e.preventDefault();
+    setTranslate(startTranslate - dx, false);
+  });
+  cards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (moved) e.preventDefault();
+    });
+  });
 })();
 </script>
 

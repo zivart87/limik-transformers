@@ -605,7 +605,7 @@
     /* ═══════════════════════════════
        COMPARE TABLE
     ═══════════════════════════════ */
-    .pt-compare-header { margin-bottom: 48px; }
+    .pt-compare-header { margin-bottom: 56px; }
     .pt-compare-header h2 { color: var(--navy-dark); margin: 0 0 12px; }
     .pt-compare-header p {
       font-size: 16px; font-weight: 400; line-height: 1.75;
@@ -613,14 +613,15 @@
     }
     .pt-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .pt-compare-table {
-      width: 100%; min-width: 720px;
+      width: 100%; min-width: 640px;
       border-collapse: collapse;
+      table-layout: fixed;
     }
     .pt-compare-table th, .pt-compare-table td {
-      padding: 16px 20px;
+      padding: 22px 40px;
       text-align: center; vertical-align: middle;
     }
-    .pt-compare-table thead th { vertical-align: bottom; padding-bottom: 24px; }
+    .pt-compare-table thead th { vertical-align: bottom; padding-bottom: 28px; }
     .pt-compare-row-label {
       text-align: left;
       font-size: 13px; font-weight: 700;
@@ -628,38 +629,48 @@
       white-space: nowrap;
     }
     .pt-compare-photo {
-      height: 120px; margin: 0 auto 16px;
+      height: 150px; margin: 0 auto 20px;
       display: flex; align-items: flex-end; justify-content: center;
     }
     .pt-compare-photo img {
-      height: 100%; width: auto; max-width: 140px;
+      height: 100%; width: auto; max-width: 170px;
       object-fit: contain; display: block;
     }
     .pt-compare-name {
       display: block;
-      font-size: 15px; font-weight: 800;
+      font-size: 16px; font-weight: 800;
       color: var(--blue);
       letter-spacing: -0.01em;
+      text-decoration: none;
     }
+    a.pt-compare-name:hover { text-decoration: underline; }
     .pt-compare-name--current { color: var(--navy-dark); }
     .pt-compare-value { font-size: 14px; font-weight: 400; color: #3A5570; }
     .pt-compare-table tbody tr { border-bottom: 1px solid rgba(9,25,59,0.1); }
     .pt-compare-table tbody tr:last-child { border-bottom: none; }
-    .pt-compare-table tbody tr:nth-child(even) th,
-    .pt-compare-table tbody tr:nth-child(even) td {
+    .pt-compare-table tbody tr:nth-child(odd) th,
+    .pt-compare-table tbody tr:nth-child(odd) td {
       background: var(--off-white);
     }
-    .pt-compare-table th.pt-compare-col--current,
-    .pt-compare-table td.pt-compare-col--current {
-      background: rgba(32,108,185,0.06);
+    .pt-compare-table tbody tr.pt-compare-details-row td,
+    .pt-compare-table tbody tr.pt-compare-details-row th {
+      padding-top: 28px; padding-bottom: 12px;
+      background: none;
     }
-    .pt-compare-details-row td { padding-top: 24px; padding-bottom: 8px; }
-    .pt-compare-details-row .product-link {
-      display: inline-flex; padding: 0; justify-content: center;
+    .pt-compare-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 40px; padding: 0 28px;
+      background: var(--gold); color: var(--navy-dark);
+      font-family: var(--font);
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+      border-radius: 2px; transition: background 0.18s;
+    }
+    @media (hover: hover) {
+      .pt-compare-btn:hover { background: var(--gold-hover); }
     }
     @media (max-width: 768px) {
-      .pt-compare-header { margin-bottom: 32px; }
-      .pt-compare-table th, .pt-compare-table td { padding: 12px 16px; }
+      .pt-compare-header { margin-bottom: 36px; }
+      .pt-compare-table th, .pt-compare-table td { padding: 14px 20px; }
       .pt-compare-photo { height: 90px; }
       .pt-compare-name { font-size: 13px; }
       .pt-compare-row-label { font-size: 12px; }
@@ -1132,6 +1143,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="pt-compare-scroll">
       <table class="pt-compare-table">
+        <colgroup>
+          <col style="width:22%">
+          <col style="width:26%">
+          <col style="width:26%">
+          <col style="width:26%">
+        </colgroup>
         <thead>
           <tr>
             <th class="pt-compare-row-label"></th>
@@ -1147,10 +1164,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="pt-compare-photo"><img src="/assets/images/gsu-product.webp" alt="LIMIK Generator Step-Up transformer" width="1200" height="884"></div>
               <a href="/transformers/gsu/" class="pt-compare-name">Generator Step-Up (GSU)</a>
             </th>
-            <th>
-              <div class="pt-compare-photo"><img src="/assets/images/mobile-product.webp" alt="LIMIK Mobile Transformer" width="1200" height="1179"></div>
-              <a href="/transformers/mobile/" class="pt-compare-name">Mobile Transformers</a>
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -1159,26 +1172,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <td class="pt-compare-col--current pt-compare-value">20–600 MVA</td>
             <td class="pt-compare-value">Up to 600 MVA</td>
             <td class="pt-compare-value">20–600 MVA</td>
-            <td class="pt-compare-value">Up to 100 MVA</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">HV Rating</th>
             <td class="pt-compare-col--current pt-compare-value">Up to 525 kV</td>
             <td class="pt-compare-value">Up to 525 kV</td>
             <td class="pt-compare-value">Up to 525 kV</td>
-            <td class="pt-compare-value">Up to 230 kV</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">LV Rating</th>
             <td class="pt-compare-col--current pt-compare-value">Up to 69 kV</td>
             <td class="pt-compare-value">Up to 345 kV</td>
             <td class="pt-compare-value">Up to 35 kV</td>
-            <td class="pt-compare-value">Up to 69 kV</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">Phases</th>
             <td class="pt-compare-col--current pt-compare-value">Single-phase and three-phase</td>
-            <td class="pt-compare-value">Single-phase and three-phase</td>
             <td class="pt-compare-value">Single-phase and three-phase</td>
             <td class="pt-compare-value">Single-phase and three-phase</td>
           </tr>
@@ -1187,26 +1196,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <td class="pt-compare-col--current pt-compare-value">OLTC standard; DETC available</td>
             <td class="pt-compare-value">OLTC standard; DETC available</td>
             <td class="pt-compare-value">DETC standard; OLTC available</td>
-            <td class="pt-compare-value">OLTC available</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">Cooling Methods</th>
             <td class="pt-compare-col--current pt-compare-value">ONAN / ONAF / OFAF</td>
             <td class="pt-compare-value">ONAN / ONAF / OFAF</td>
             <td class="pt-compare-value">ONAN / ONAF / OFAF</td>
-            <td class="pt-compare-value">ONAN / ONAF</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">Standards</th>
             <td class="pt-compare-col--current pt-compare-value">IEEE C57.12.00/.10/.90, ANSI, NEMA</td>
             <td class="pt-compare-value">IEEE C57.12.00/.10/.90, ANSI, NEMA</td>
             <td class="pt-compare-value">IEEE C57.12.00/.10/.90, ANSI</td>
-            <td class="pt-compare-value">IEEE C57, ANSI, NEMA</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">Compliance</th>
             <td class="pt-compare-col--current pt-compare-value">BAA, BABA, §303 DPA</td>
-            <td class="pt-compare-value">BAA, BABA, §303 DPA</td>
             <td class="pt-compare-value">BAA, BABA, §303 DPA</td>
             <td class="pt-compare-value">BAA, BABA, §303 DPA</td>
           </tr>
@@ -1215,43 +1220,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <td class="pt-compare-col--current pt-compare-value">IEEE C57.12.90</td>
             <td class="pt-compare-value">IEEE C57.12.90</td>
             <td class="pt-compare-value">IEEE C57.12.90</td>
-            <td class="pt-compare-value">IEEE C57.12.90</td>
           </tr>
           <tr>
             <th scope="row" class="pt-compare-row-label">Lead Time</th>
             <td class="pt-compare-col--current pt-compare-value">48–72 weeks</td>
             <td class="pt-compare-value">48–72 weeks</td>
             <td class="pt-compare-value">48–72 weeks</td>
-            <td class="pt-compare-value">10–12 months</td>
           </tr>
           <tr>
-            <th scope="row" class="pt-compare-row-label">Manufacturing</th>
-            <td class="pt-compare-col--current pt-compare-value">United States</td>
-            <td class="pt-compare-value">United States</td>
-            <td class="pt-compare-value">United States</td>
-            <td class="pt-compare-value">United States</td>
+            <th scope="row" class="pt-compare-row-label">Primary Application</th>
+            <td class="pt-compare-col--current pt-compare-value">Utility substations, transmission interconnection</td>
+            <td class="pt-compare-value">Bulk EHV transmission interconnection</td>
+            <td class="pt-compare-value">Generator-to-grid interconnection</td>
           </tr>
           <tr class="pt-compare-details-row">
             <td class="pt-compare-row-label"></td>
             <td class="pt-compare-col--current"></td>
-            <td>
-              <a href="/transformers/autotransformers/" class="product-link">
-                <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                Details
-              </a>
-            </td>
-            <td>
-              <a href="/transformers/gsu/" class="product-link">
-                <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                Details
-              </a>
-            </td>
-            <td>
-              <a href="/transformers/mobile/" class="product-link">
-                <span class="product-link-icon"><svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                Details
-              </a>
-            </td>
+            <td><a href="/transformers/autotransformers/" class="pt-compare-btn">Details</a></td>
+            <td><a href="/transformers/gsu/" class="pt-compare-btn">Details</a></td>
           </tr>
         </tbody>
       </table>

@@ -487,7 +487,7 @@ h4 {
 .product-card-name {
   font-size: 20px; font-weight: 800;
   color: var(--navy-dark);
-  padding: 28px 28px 20px;
+  padding: 28px 28px 8px;
 }
 .product-card-image {
   margin: 0 28px;

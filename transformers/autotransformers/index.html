@@ -697,6 +697,99 @@
       }
     }
 
+    /* ═══════════════════════════════
+       WHY LIMIK — Three Reasons We're Different
+    ═══════════════════════════════ */
+    /* padding-top: 0 — пока идёт сразу после .pt-compare (тоже белый фон);
+       когда добавится marquee-лента между ними (как на Power Transformers),
+       вернуть стандартные 120px 0 — марки-лента сама даст визуальный разрыв */
+    .pt-why { background: var(--white); padding: 0 0 120px; }
+    .pt-why > .container > h2 {
+      font-size: clamp(26px, 3.5vw, 48px); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.0;
+      color: var(--navy-dark); margin-bottom: 64px;
+    }
+    @media (max-width: 900px) {
+      .pt-why { padding: 0 0 80px; }
+      .pt-why > .container > h2 { margin-bottom: 32px; }
+    }
+
+    /* ═══════════════════════════════
+       FAQ — заголовок/текст слева, аккордеон справа
+       (копия .dc-faq с industries/data-centers)
+    ═══════════════════════════════ */
+    /* padding-top: 0 — идёт сразу после .pt-why (тоже белый фон), иначе
+       отступы складываются (120+120) и получается лишний разрыв */
+    .pt-faq { background: var(--white); padding: 0 0 120px; }
+    .pt-faq-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 72px; align-items: start;
+    }
+    .pt-faq-head .eyebrow {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+    }
+    .pt-faq-head h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
+    }
+    .pt-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
+
+    .pt-faq-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--navy-dark);
+    }
+    .pt-faq-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark); border-radius: 2px;
+    }
+    .pt-faq-link-icon svg { transition: transform 0.1s ease; }
+    .pt-faq-link:hover .pt-faq-link-icon svg { transform: rotate(-45deg); }
+
+    .pt-faq-list { outline: 1px solid var(--border-l); background: var(--white); }
+    .pt-faq-item { border-bottom: 1px solid var(--border-l); transition: background 0.2s; }
+    .pt-faq-item:last-child { border-bottom: none; }
+    .pt-faq-item.is-open,
+    .pt-faq-item:hover { background: var(--off-white); }
+    .pt-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; width: 100%; padding: 28px;
+      background: none; border: none; text-align: left; cursor: pointer;
+      font-family: var(--font);
+    }
+    .pt-faq-q span:first-child {
+      font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--navy-dark);
+    }
+    .pt-faq-toggle { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
+    .pt-faq-toggle::before,
+    .pt-faq-toggle::after {
+      content: ''; position: absolute; background: var(--blue);
+      transition: transform 0.25s ease;
+    }
+    .pt-faq-toggle::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+    .pt-faq-toggle::after { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+    .pt-faq-item.is-open .pt-faq-toggle::after { transform: translateX(-50%) scaleY(0); }
+
+    .pt-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .pt-faq-a p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; padding: 0 28px 28px; }
+    .pt-faq-a p a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .pt-faq-a p a:hover { color: var(--navy-dark); }
+    .pt-faq-item.is-open .pt-faq-a { max-height: 420px; }
+
+    @media (max-width: 900px) {
+      .pt-faq { padding: 0 0 80px; }
+      .pt-faq-grid { grid-template-columns: 1fr; gap: 32px; }
+      .pt-faq-head { margin-bottom: 8px; }
+    }
+    @media (max-width: 768px) { .pt-faq-head h2 { font-size: 36px; } }
+    @media (max-width: 600px) {
+      .pt-faq-q { padding: 22px 20px; gap: 16px; }
+      .pt-faq-a p { padding: 0 20px 22px; }
+    }
+
     @media (max-width: 1000px) {
       .pt-content-grid { grid-template-columns: 1fr; }
     }
@@ -785,6 +878,70 @@
     }
 
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's the difference between an autotransformer and a two-winding power transformer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An autotransformer shares part of its winding between the primary and secondary circuits, while a two-winding transformer keeps them fully separate. That shared winding is why autotransformers run more efficiently and cost less at high MVA — but it also means they don't provide galvanic isolation between the HV and LV sides. For transmission interconnection, where both sides are already part of the same grounded network, that trade-off works in your favor. See our Power Transformers page for the fully isolated alternative."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can an autotransformer be used as a generator step-up (GSU) unit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not typically. A GSU sits between a generator and the grid, and that interface usually calls for the full electrical isolation a two-winding design provides — it keeps a fault on one side from propagating directly to the other. LIMIK autotransformers are engineered for transmission-to-transmission interconnection, not generator interconnection. For generation applications, see our Generator Step-Up Transformers page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a tertiary winding on my autotransformer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on your substation design. A tertiary winding is typically added when you need to supply station auxiliary loads at a third voltage, connect reactive compensation equipment (capacitor banks or reactors), or suppress harmonics from an otherwise wye-wye connected unit. If your interconnection doesn't call for any of those, a two-winding autotransformer without a tertiary is a simpler, lower-cost specification. Our engineering team can confirm which configuration your system needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When would I choose a neutral grounding resistor (NGR) over solid grounding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solid grounding is the standard configuration and keeps ground-fault currents at their natural magnitude, which most transmission protection schemes are built around. An NGR limits that fault current — used where a specific protection coordination study calls for a reduced ground-fault magnitude, or where equipment on the connected system has a lower fault-current withstand rating. This is a system-level decision made with your protection engineer, not a default choice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does LIMIK build phase-shifting transformers (PSTs)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — LIMIK's autotransformer line is built for transmission voltage interconnection, not for controlling power flow direction between parallel paths, which is what a phase-shifting transformer does. If your project needs power-flow control rather than voltage-class bridging, that's a different unit type outside our current product line."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What voltage combinations are most common for a transmission intertie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "345/500 kV, 230/345 kV, 138/230 kV, and 115/230 kV cover most of the interconnections we're asked to engineer, but the unit is built to your actual system voltages, not a preset list. If your combination isn't listed, request a quote and our engineering team will confirm feasibility."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the 48 to 72-week lead time compare across LIMIK's product lines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The same range applies across Power Transformers, Autotransformers, and Generator Step-Up units — all are engineered and built at the same class of manufacturing complexity. The clock starts once your specification is finalized. See the full comparison of LIMIK transformer types for how the three platforms line up side by side."
+        }
+      }
+    ]
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1185,7 +1342,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════
    COMPARE TABLE
 ══════════════════════════════ -->
-<section class="section bg-white pt-compare">
+<section class="section bg-white pt-compare" id="compare">
   <div class="container">
     <div class="sec-header">
       <h2>Compare LIMIK Transformer Types</h2>
@@ -1289,6 +1446,149 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="pt-compare-swipe-hint">
       <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Swipe to see full comparison
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   WHY LIMIK — Three Reasons We're Different
+══════════════════════════════ -->
+<section class="pt-why">
+  <div class="container">
+    <div class="eyebrow">Why LIMIK</div>
+    <h2>Three Reasons We're Different</h2>
+    <!-- Статичная разметка (не через why-loader.js/fetch) — контент должен быть
+         в исходном HTML для краулеров без JS (GEO/AEO-краулеры, см. CLAUDE.md) -->
+    <div class="why-cols">
+
+      <div class="why-col">
+        <img class="why-col-icon" src="/assets/images/icons/icon-anniversary.svg" alt="" aria-hidden="true">
+        <h3>25 Years of Engineering</h3>
+        <p>LIMIK has designed and delivered large power transformers for utilities, power producers, and EPC contractors. Every project starts with your specification — not our catalog.</p>
+      </div>
+
+      <div class="why-col">
+        <img class="why-col-icon" src="/assets/images/icons/icon-usa.svg" alt="" aria-hidden="true">
+        <h3>Made in the USA</h3>
+        <p>Every transformer is designed, engineered, and built on American soil. That means Buy American compliance by default — and a supply chain you can actually track.</p>
+      </div>
+
+      <div class="why-col">
+        <img class="why-col-icon" src="/assets/images/icons/icon-time-management.svg" alt="" aria-hidden="true">
+        <h3>48 Weeks. Not 4 Years</h3>
+        <p>While overseas suppliers quote 2–4 year lead times, LIMIK delivers in 48 weeks. When your project schedule is at stake, that difference is everything.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+   FAQ
+══════════════════════════════ -->
+<section class="pt-faq">
+  <div class="container">
+    <div class="pt-faq-grid">
+
+      <div class="pt-faq-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Autotransformers, Explained</h2>
+        <p>Answering the questions we hear most — from technical specification and testing to compliance, delivery, and procurement. Everything you need before you submit an RFQ.</p>
+        <a href="/contact/" class="pt-faq-link">
+          <span class="pt-faq-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Contact Us
+        </a>
+      </div>
+
+      <div class="pt-faq-list">
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What's the difference between an autotransformer and a two-winding power transformer?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>An autotransformer shares part of its winding between the primary and secondary circuits, while a two-winding transformer keeps them fully separate. That shared winding is why autotransformers run more efficiently and cost less at high MVA — but it also means they don't provide galvanic isolation between the HV and LV sides. For transmission interconnection, where both sides are already part of the same grounded network, that trade-off works in your favor. See our <a href="/transformers/power/">Power Transformers</a> page for the fully isolated alternative.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Can an autotransformer be used as a generator step-up (GSU) unit?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Not typically. A GSU sits between a generator and the grid, and that interface usually calls for the full electrical isolation a two-winding design provides — it keeps a fault on one side from propagating directly to the other. LIMIK autotransformers are engineered for transmission-to-transmission interconnection, not generator interconnection. For generation applications, see our <a href="/transformers/gsu/">Generator Step-Up Transformers</a> page.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Do I need a tertiary winding on my autotransformer?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>It depends on your substation design. A tertiary winding is typically added when you need to supply station auxiliary loads at a third voltage, connect reactive compensation equipment (capacitor banks or reactors), or suppress harmonics from an otherwise wye-wye connected unit. If your interconnection doesn't call for any of those, a two-winding autotransformer without a tertiary is a simpler, lower-cost specification. Our engineering team can confirm which configuration your system needs.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>When would I choose a neutral grounding resistor (NGR) over solid grounding?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Solid grounding is the standard configuration and keeps ground-fault currents at their natural magnitude, which most transmission protection schemes are built around. An NGR limits that fault current — used where a specific protection coordination study calls for a reduced ground-fault magnitude, or where equipment on the connected system has a lower fault-current withstand rating. This is a system-level decision made with your protection engineer, not a default choice.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Does LIMIK build phase-shifting transformers (PSTs)?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>No — LIMIK's autotransformer line is built for transmission voltage interconnection, not for controlling power flow direction between parallel paths, which is what a phase-shifting transformer does. If your project needs power-flow control rather than voltage-class bridging, that's a different unit type outside our current product line.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What voltage combinations are most common for a transmission intertie?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>345/500 kV, 230/345 kV, 138/230 kV, and 115/230 kV cover most of the interconnections we're asked to engineer, but the unit is built to your actual system voltages, not a preset list. If your combination isn't listed, <a href="/request-quote/">request a quote</a> and our engineering team will confirm feasibility.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>How does the 48 to 72-week lead time compare across LIMIK's product lines?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>The same range applies across Power Transformers, Autotransformers, and Generator Step-Up units — all are engineered and built at the same class of manufacturing complexity. The clock starts once your specification is finalized. See the full <a href="#compare">comparison of LIMIK transformer types</a> for how the three platforms line up side by side.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.pt-faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.pt-faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      item.parentElement.querySelectorAll('.pt-faq-item.is-open').forEach(function (open) {
+        open.classList.remove('is-open');
+      });
+      if (!wasOpen) item.classList.add('is-open');
+    });
+  });
+})();
+</script>
+
+<!-- ══════════════════════════════
+   CTA BAND
+══════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Ready to Power Your<br class="br-desktop"> Next Project?</h2>
+      </div>
+      <a href="/request-quote/" class="btn btn-gold btn-lg" style="flex-shrink:0;">Get a Quote</a>
     </div>
   </div>
 </section>

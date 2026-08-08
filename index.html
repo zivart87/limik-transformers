@@ -1208,29 +1208,6 @@
     .form-note { font-size: 12px; color: #7090B0; text-align: center; margin-top: 16px; font-weight: 300; }
 
     /* ─────────────────────────────────
-       FOOTER  (dark)
-    ───────────────────────────────── */
-    .footer { border-top: 1px solid var(--border-d); padding: 64px 0 40px; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 48px;
-    }
-    .footer-brand img { height: 40px; width: auto; margin-bottom: 16px; }
-    .footer-brand p { font-size: 13px; color: var(--text-2); line-height: 1.7; max-width: 260px; }
-    .footer-col h4 {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text-2); margin-bottom: 18px;
-    }
-    .footer-col a { display: block; font-size: 14px; color: var(--text-1); margin-bottom: 10px; transition: color 0.15s; }
-    .footer-col a:hover { color: var(--white); }
-    .footer-bottom {
-      border-top: 1px solid var(--border-d); padding-top: 28px;
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 12px; color: var(--text-2);
-    }
-
-    /* ─────────────────────────────────
        FOOTER T3-STYLE
        Левая колонка (full height) + Правая (верх=фото, низ=ссылки)
     ───────────────────────────────── */
@@ -1239,45 +1216,28 @@
        Строка 1: [58% тёмный бренд] [42% фото]
        Строка 2: [25% тёмный пустой] [75% белые ссылки]
     ══════════════════════════════════════════ */
-    .footer-t3 {
-      display: flex;
-      flex-wrap: wrap;
+    .footer-t3 { display: flex; flex-wrap: wrap; background: var(--navy-dark); }
+
+    /* Row 1 — left dark panel */
+    .footer-left {
+      flex: 0 0 58.33%; height: 364px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 72px 60px; gap: 40px;
       background: var(--navy-dark);
     }
-
-    /* Строка 1, блок A — тёмная панель (58%): два столбца внутри */
-    .footer-left {
-      flex: 0 0 58.33%;
-      height: 364px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 44px 60px;
-      gap: 40px;
-    }
-
-    /* Левый столбец: логотип + текст */
-    .footer-brand-col {
-      display: flex; flex-direction: column;
-      gap: 16px;
-    }
+    .footer-brand-col { display: flex; flex-direction: column; gap: 16px; }
     .footer-logo { height: 44px; width: auto; align-self: flex-start; }
     .footer-contacts { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
-    .footer-tagline {
-      font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400;
-    }
+    .footer-tagline { font-size: 16px; color: var(--text-1); line-height: 1.7; font-weight: 400; }
     .footer-contact-link {
       display: flex; align-items: center; gap: 9px;
-      font-size: 24px; color: var(--white); font-weight: 400;
-      transition: opacity 0.15s;
+      font-size: 24px; color: var(--white); font-weight: 400; transition: opacity 0.15s;
     }
     .footer-contact-link svg { color: var(--blue-lt); flex-shrink: 0; }
     .footer-contact-link:hover { opacity: 0.75; }
-    .footer-copy {
-      font-size: 14px; color: var(--text-2); font-weight: 400; line-height: 1.4;
-    }
+    .footer-copy { font-size: 14px; color: var(--text-2); font-weight: 400; line-height: 1.4; }
 
-    /* Правый столбец: Get in touch + иконки */
+    /* social column */
     .footer-social-col {
       display: flex; flex-direction: column;
       align-items: flex-start; gap: 14px;
@@ -1285,8 +1245,7 @@
     }
     .footer-social-label {
       font-size: 11px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-2);
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2);
     }
     .footer-social { display: flex; gap: 8px; }
     .footer-social a {
@@ -1298,16 +1257,11 @@
     }
     .footer-social a:hover { border-color: var(--white); color: var(--white); }
 
-    /* Строка 1, блок B — фото (42%) */
-    .footer-photo {
-      flex: 0 0 41.67%;
-      height: 364px;
-      position: relative; overflow: hidden;
-    }
+    /* Row 1 — right photo */
+    .footer-photo { flex: 0 0 41.67%; height: 364px; position: relative; overflow: hidden; }
     .footer-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 40%;
-      display: block;
+      object-fit: cover; object-position: center 40%; display: block;
     }
     .footer-photo video {
       position: absolute;
@@ -1317,35 +1271,34 @@
     }
     .footer-photo-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(
-        to left,
-        rgba(9,25,59,0.0) 60%,
-        rgba(9,25,59,0.4) 100%
-      );
+      background: linear-gradient(to left, rgba(9,25,59,0) 60%, rgba(9,25,59,0.4) 100%);
     }
 
-    /* Строка 2, блок A — тёмный spacer (25%) с copyright внизу */
+    /* Row 2 — dark spacer with copyright */
     .footer-spacer {
-      flex: 0 0 25%;
+      flex: 0 0 25%; background: var(--navy-dark);
       display: flex; align-items: flex-end;
       padding: 0 0 24px 60px;
     }
 
-    /* Строка 2, блок B — белый блок со ссылками (75%) */
+    /* Row 2 — off-white nav links */
     .footer-right {
       flex: 0 0 75%;
       background: var(--off-white);
       padding: 56px 60px;
-      display: flex; flex-direction: column;
-      justify-content: space-between;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .footer-cols {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .footer-col {
+      padding: 0 40px;
+      border-right: 1px solid rgba(9,25,59,0.10);
     }
-    .footer-col h4 {
+    .footer-col:first-child { padding-left: 0; }
+    .footer-col:last-child  { padding-right: 0; border-right: none; }
+    .footer-col-title {
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--navy-dark); margin-bottom: 16px;
+      color: var(--navy-dark); margin: 0 0 16px;
     }
     .footer-col a {
       display: block; font-size: 14px; color: #3A5570;
@@ -1354,22 +1307,23 @@
     .footer-col a:hover { color: var(--navy-dark); }
     .footer-certifications {
       display: flex; gap: 16px; flex-wrap: wrap;
-      padding-top: 24px; border-top: 1px solid var(--border-l);
-      margin-top: 32px;
+      padding-top: 24px; border-top: 1px solid var(--border-l); margin-top: 32px;
     }
     .footer-certifications span {
       font-size: 10px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-2);
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2);
     }
 
-    /* Responsive */
+    /* footer responsive */
     @media (max-width: 1024px) {
-      .footer-left  { flex: 0 0 55%; padding: 48px 36px; }
-      .footer-photo { flex: 0 0 45%; }
+      .footer-left   { flex: 0 0 55%; padding: 48px 36px; }
+      .footer-photo  { flex: 0 0 45%; }
       .footer-spacer { flex: 0 0 20%; }
       .footer-right  { flex: 0 0 80%; padding: 48px 40px; }
-      .footer-cols  { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .footer-cols   { grid-template-columns: 1fr 1fr; gap: 0; }
+      .footer-col    { padding: 0 20px; border-right: 1px solid rgba(9,25,59,0.10); }
+      .footer-col:first-child { padding-left: 0; }
+      .footer-col:last-child  { padding-right: 0; border-right: none; }
     }
     @media (max-width: 768px) {
       .footer-left   { flex: 0 0 100%; height: auto; min-height: 0; padding: 48px 24px; flex-direction: column; gap: 32px; }
@@ -1379,7 +1333,7 @@
       .footer-contact-link { font-size: 18px; }
     }
     @media (max-width: 480px) {
-      .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .footer-cols { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 24px; }
     }
 
     /* ── RESPONSIVE ── */
@@ -1387,7 +1341,6 @@
       .pain-inner      { grid-template-columns: 1fr; gap: 48px; }
       .products-grid   { grid-template-columns: 1fr 1fr; }
       .industries-grid { grid-template-columns: repeat(3, 1fr); }
-      .footer-grid     { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 768px) {
       .trust-bar-inner    { grid-template-columns: 1fr; }
@@ -1397,8 +1350,6 @@
       .industries-grid    { grid-template-columns: 1fr 1fr; }
       .timeline-track     { grid-template-columns: 1fr; gap: 32px; }
       .timeline-track::before { display: none; }
-      .footer-grid        { grid-template-columns: 1fr; gap: 24px; }
-      .footer-bottom      { flex-direction: column; gap: 10px; text-align: center; }
     }
     @media (max-width: 480px) {
       .hero-actions    { flex-direction: column; }
@@ -1576,19 +1527,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Строка 1.5: Stats -->
     <div class="about-stats">
       <div class="about-stat-item">
-        <p class="about-stat-num"><span class="count-up" data-target="25">0</span> <span style="font-size:40px">yrs</span></p>
+        <p class="about-stat-num"><span class="count-up" data-target="25">25</span> <span style="font-size:40px">yrs</span></p>
         <p class="about-stat-desc">Of engineering experience</p>
       </div>
       <div class="about-stat-item">
-        <p class="about-stat-num">20–<span class="count-up" data-target="600">0</span> <span style="font-size:40px">MVA</span></p>
+        <p class="about-stat-num">20–<span class="count-up" data-target="600">600</span> <span style="font-size:40px">MVA</span></p>
         <p class="about-stat-desc">Custom power range</p>
       </div>
       <div class="about-stat-item">
-        <p class="about-stat-num"><span class="count-up" data-target="525">0</span> <span style="font-size:40px">kV</span></p>
+        <p class="about-stat-num"><span class="count-up" data-target="525">525</span> <span style="font-size:40px">kV</span></p>
         <p class="about-stat-desc">Maximum voltage class</p>
       </div>
       <div class="about-stat-item">
-        <p class="about-stat-num"><span class="count-up" data-target="48">0</span> <span style="font-size:40px">wks</span></p>
+        <p class="about-stat-num"><span class="count-up" data-target="48">48</span> <span style="font-size:40px">wks</span></p>
         <p class="about-stat-desc">Typical lead time vs. 2–4 years abroad</p>
       </div>
     </div>
@@ -2075,8 +2026,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Tell Us About<br>Your Project</h2>
         <p>Our engineering team reviews every inquiry personally. We typically respond within 2 business days with a preliminary assessment and next steps.</p>
         <div class="contact-details">
-          <a href="mailto:info@limik.com" class="contact-detail-link">info@limik.com</a>
-          <a href="tel:+18645550100" class="contact-detail-link">+1 (864) 555-0100</a>
+          <a href="mailto:info@limik.us" class="contact-detail-link">info@limik.us</a>
+          <a href="tel:+17867676418" class="contact-detail-link">+1 786-767-6418</a>
         </div>
       </div>
       <form class="contact-form" action="request-quote/" method="get">

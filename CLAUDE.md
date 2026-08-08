@@ -118,6 +118,12 @@ CLAUDE.md              — этот файл
 
 ---
 
+## SEO/GEO оптимизация товарных страниц (пилот на Power Transformers, 2026-08-08)
+
+По плану `limik-data-centers-seo-ppc-plan.md` (раздел 6, Universal Rules) и чек-листу SEO выше — на `transformers/power/index.html` обновлены title (формула `[Product] — [MVA/kV] | LIMIK`), meta description (150–160 симв. с явным differentiator), og:title/og:description, добавлены BreadcrumbList + Organization JSON-LD (FAQPage уже был), добавлены `width`/`height` картинкам ленты «Power Starts Here». **Остальные 3 товарные страницы (Autotransformers/GSU/Mobile) намеренно не тронуты** — до этой правки title/meta был одинаковым паттерном на всех 4 (короткий, без differentiator); при переносе того же апгрейда на остальные три — сохранить консистентность формулы, не выдумывать новую.
+
+---
+
 ## Cross-sell блок «Other Transformers We Build» (товарные страницы)
 
 Добавлен 2026-08-08 на `transformers/power/index.html` — блок с карточками остальных продуктов сайта, вставляется между последним контентным блоком страницы и футером. При добавлении такого же блока на `transformers/autotransformers/`, `transformers/gsu/`, `transformers/mobile/` — переиспользовать паттерн один в один, меняя только состав карточек (везде показываются все продукты **кроме** того, на чьей странице находимся).

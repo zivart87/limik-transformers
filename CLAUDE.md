@@ -134,6 +134,36 @@ Nav — `position: fixed`, поэтому **любой контент на ст�
 
 ---
 
+## Обязательные элементы каждой страницы
+
+Три элемента должны присутствовать на **каждой** обычной странице сайта (nav, footer, кнопка «наверх») — проверять при создании новой страницы и при аудите существующих, наравне с чек-листом выше. Исключение — `request-quote/` (лендинг под рекламу, без footer/кнопки намеренно).
+
+1. **Nav** — `nav-loader.js` (см. раздел «Навигация»)
+2. **Footer** — `<div id="site-footer"></div>` + `footer.js`
+3. **Кнопка «наверх» (back-to-top)** — точный паттерн, копировать без изменений:
+
+```html
+<!-- где-то после hero-секции (сразу после закрывающего </section> героя) -->
+<div data-btt-trigger aria-hidden="true" style="height:0; overflow:hidden;"></div>
+
+<!-- ... остальной контент страницы ... -->
+
+<div id="site-footer"></div>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">
+  <img src="/assets/images/icons/up.svg" alt="">
+</button>
+
+<script src="../assets/js/footer.js"></script>
+<script src="/assets/js/back-to-top.js"></script>
+```
+
+- `data-btt-trigger` — невидимый маркер сразу после героя; кнопка появляется, когда пользователь прокрутил дальше этой точки (логика в `assets/js/back-to-top.js`, читает `.getBoundingClientRect()`)
+- Стили кнопки — уже в `limik.css` (`.back-to-top`), ничего дополнительно писать не нужно
+- На страницах без явного hero (например `privacy-policy/`, `disclaimer/`) — ставить `data-btt-trigger` после первого экрана контента (типовое место — сразу под первым `<section>`/заголовком страницы)
+
+---
+
 ## Дизайн-система (`assets/css/limik.css`)
 
 ### Типографическая шкала — глобальная для всего сайта

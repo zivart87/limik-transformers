@@ -615,7 +615,10 @@
       .products-track .product-card { flex: 0 0 calc(50% - 12px); }
     }
     @media (max-width: 768px) {
-      .products-track .product-card { flex: 0 0 85%; }
+      .products-track .product-card { flex: 0 0 70%; }
+      /* фото уменьшено пропорционально сужению карточки (85%→70%, ×0.82) */
+      .products-track .product-card-image { min-height: 214px; }
+      .products-track .product-card-image img { height: 199px; }
     }
     .products-nav {
       display: flex; align-items: center; justify-content: space-between;

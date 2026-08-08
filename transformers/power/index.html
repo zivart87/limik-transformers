@@ -203,7 +203,7 @@
       font-size: 14px;
       font-weight: 400;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
+      color: var(--white);
       line-height: 1.4;
     }
 
@@ -595,11 +595,56 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
+    /* ── Точки + стрелки листания (только мобайл/планшет) ── */
+    .pt-related-nav { display: none; }
+
     @media (max-width: 900px) {
       .pt-related-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
       .pt-related-header-cta { display: none; }
       .pt-related-bottom-cta { display: block; width: 100%; text-align: center; margin-top: 32px; }
-      .pt-related-grid { grid-template-columns: 1fr; }
+
+      /* Грид → горизонтальная карусель со scroll-snap */
+      .pt-related-grid {
+        grid-template-columns: unset;
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin: 0 -24px;
+        padding: 0 24px;
+      }
+      .pt-related-grid::-webkit-scrollbar { display: none; }
+      .pt-related-grid .product-card {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+      }
+
+      .pt-related-nav {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-top: 24px;
+      }
+      .pt-related-dots { display: flex; align-items: center; gap: 10px; }
+      .pt-related-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        border: none; padding: 0; cursor: pointer;
+        transition: background 0.2s;
+      }
+      .pt-related-dot.is-active { background: var(--white); }
+      .pt-related-arrows { display: flex; gap: 12px; }
+      .pt-related-arrow {
+        width: 40px; height: 40px;
+        display: flex; align-items: center; justify-content: center;
+        background: transparent;
+        border: 1.5px solid rgba(255,255,255,0.3);
+        border-radius: 2px;
+        color: var(--white);
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .pt-related-arrow:disabled { opacity: 0.35; cursor: default; }
     }
 
     /* ═══════════════════════════════
@@ -608,6 +653,7 @@
     /* та же дистанция h2→p, что и в .pt-desc h2 на этой же странице (24px) */
     .pt-compare .sec-header h2 { margin-bottom: 24px; }
     .pt-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .pt-compare-swipe-hint { display: none; }
     .pt-compare-table {
       width: 100%; min-width: 640px;
       border-collapse: collapse;
@@ -673,11 +719,33 @@
       .pt-compare-btn:hover { background: var(--gold-hover); }
     }
     @media (max-width: 768px) {
-      .pt-compare-table th, .pt-compare-table td { padding: 14px 20px; }
+      /* Фикс. ширины колонок — только для десктопа. На мобайле пусть
+         table-layout: auto подстраивает ширину под контент — так
+         влезает больше данных, а не режется по произвольным пропорциям */
+      .pt-compare-table { table-layout: auto; }
+      .pt-compare-table th.pt-compare-row-label,
+      .pt-compare-table td.pt-compare-row-label,
+      .pt-compare-table th:not(.pt-compare-row-label),
+      .pt-compare-table td:not(.pt-compare-row-label) {
+        width: auto;
+      }
+      .pt-compare-table th, .pt-compare-table td { padding: 16px 24px; }
+      .pt-compare-row-label { padding-right: 16px; }
       .pt-compare-photo { height: 90px; }
       .pt-compare-name { font-size: 13px; }
       .pt-compare-row-label { font-size: 12px; }
       .pt-compare-value { font-size: 13px; }
+      .pt-compare-swipe-hint {
+        display: flex; align-items: center; gap: 8px;
+        margin-top: 16px;
+        font-size: 12px; font-weight: 600;
+        color: #4E6F91;
+      }
+      .pt-compare-swipe-hint svg { flex-shrink: 0; animation: pt-swipe-nudge 1.6s ease-in-out infinite; }
+      @keyframes pt-swipe-nudge {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+      }
     }
 
     /* ═══════════════════════════════
@@ -763,6 +831,12 @@
       .pt-apps { margin-top: 48px; }
       .pt-features-new { margin-top: 48px; }
       .pt-features { margin-top: 40px; }
+
+      /* h3/форма-заголовок на мобайле — clamp(20,2.5vw,32) даёт 20px минимум,
+         визуально мелко на 390px — увеличено точечно для этих двух мест */
+      .pt-apps h3,
+      .pt-sidebar-form h2,
+      .pt-sidebar-form h3 { font-size: 24px; }
 
       /* App grid — 1 колонка */
       .pt-app-grid { grid-template-columns: 1fr; }
@@ -1106,10 +1180,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="/assets/images/logo-product.svg" alt="" aria-hidden="true" class="pt-related-logo">
   <div class="container">
     <div class="pt-related-header">
-      <h2>Other Transformers We Build</h2>
+      <h2>Other Transformers<br class="br-mobile"> We Build</h2>
       <a href="/request-quote/" class="btn btn-gold pt-related-header-cta">Request a Quote</a>
     </div>
-    <div class="pt-related-grid">
+    <div class="pt-related-grid" id="ptRelatedGrid">
 
       <a href="/transformers/autotransformers/" class="product-card">
         <div class="product-card-name">Autotransformers</div>
@@ -1186,6 +1260,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
+    </div>
+    <div class="pt-related-nav" id="ptRelatedNav">
+      <div class="pt-related-dots" id="ptRelatedDots"></div>
+      <div class="pt-related-arrows">
+        <button type="button" class="pt-related-arrow" id="ptRelatedPrev" aria-label="Previous product">
+          <svg width="16" height="12" viewBox="0 -2 22 20" fill="none"><path d="M19 8H3M3 8L10 1M3 8L10 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="pt-related-arrow" id="ptRelatedNext" aria-label="Next product">
+          <svg width="16" height="12" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
     <a href="/request-quote/" class="btn btn-gold pt-related-bottom-cta">Request a Quote</a>
   </div>
@@ -1294,6 +1379,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="pt-compare-swipe-hint">
+      <svg width="18" height="14" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Swipe to see full comparison
     </div>
   </div>
 </section>
@@ -1540,6 +1629,62 @@ function initFormValidation(formEl, itiKey, fieldClass, errClass, errMsgClass, h
 document.addEventListener('DOMContentLoaded', function() {
   initFormValidation(document.getElementById('sf-form'), '_sf_iti', 'sf-field', 'sf-error', 'sf-err-msg', 'sf-has-error');
 });
+</script>
+
+<script>
+/* "Other Transformers We Build" — точки + стрелки для мобильной карусели (scroll-snap) */
+(function() {
+  var grid = document.getElementById('ptRelatedGrid');
+  var dotsWrap = document.getElementById('ptRelatedDots');
+  var prevBtn = document.getElementById('ptRelatedPrev');
+  var nextBtn = document.getElementById('ptRelatedNext');
+  if (!grid || !dotsWrap || !prevBtn || !nextBtn) return;
+
+  var cards = Array.from(grid.querySelectorAll('.product-card'));
+  if (!cards.length) return;
+
+  cards.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'pt-related-dot' + (i === 0 ? ' is-active' : '');
+    dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+    dot.addEventListener('click', function() { scrollToCard(i); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function scrollToCard(i) {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    grid.scrollTo({ left: cards[i].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+  }
+
+  function currentIndex() {
+    var pos = grid.scrollLeft + grid.offsetLeft;
+    var closest = 0, minDist = Infinity;
+    cards.forEach(function(c, i) {
+      var dist = Math.abs(c.offsetLeft - pos);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    return closest;
+  }
+
+  function updateUI() {
+    var idx = currentIndex();
+    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('is-active', i === idx); });
+    prevBtn.disabled = idx <= 0;
+    nextBtn.disabled = idx >= cards.length - 1;
+  }
+
+  prevBtn.addEventListener('click', function() { scrollToCard(currentIndex() - 1); });
+  nextBtn.addEventListener('click', function() { scrollToCard(currentIndex() + 1); });
+
+  var scrollTimer;
+  grid.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateUI, 80);
+  });
+  window.addEventListener('resize', updateUI);
+  updateUI();
+})();
 </script>
 
 <script>

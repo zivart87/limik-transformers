@@ -71,6 +71,22 @@
       0%   { opacity: 0; transform: scale(1.07); }
       100% { opacity: 1; transform: scale(1.0); }
     }
+    @keyframes wordReveal {
+      from { transform: translateY(115%); }
+      to   { transform: translateY(0%); }
+    }
+    .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .split-word {
+      display: inline-block;
+      transform: translateY(115%);
+    }
+    .co-hero .split-word {
+      animation: wordReveal 0.80s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
     .co-hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
@@ -510,6 +526,37 @@
     .catch(function() { window.location.href = '/thank-you/'; });
   });
 })();
+</script>
+<script>
+  // Hero h1 word clip-reveal
+  (function () {
+    document.querySelectorAll('.co-hero h1').forEach(h1 => {
+      const nodes = Array.from(h1.childNodes);
+      h1.innerHTML = '';
+      let wordIndex = 0;
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach(part => {
+            if (/^\s+$/.test(part)) {
+              h1.appendChild(document.createTextNode(part));
+            } else if (part) {
+              const wrap = document.createElement('span');
+              wrap.className = 'word-wrap';
+              const span = document.createElement('span');
+              span.className = 'split-word';
+              span.style.animationDelay = (wordIndex * 0.09) + 's';
+              span.textContent = part;
+              wordIndex++;
+              wrap.appendChild(span);
+              h1.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeName === 'BR') {
+          h1.appendChild(node.cloneNode());
+        }
+      });
+    });
+  })();
 </script>
 </body>
 </html>

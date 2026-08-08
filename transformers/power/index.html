@@ -682,7 +682,9 @@
        FAQ — заголовок/текст слева, аккордеон справа
        (копия .dc-faq с industries/data-centers)
     ═══════════════════════════════ */
-    .pt-faq { background: var(--white); padding: 120px 0; }
+    /* padding-top: 0 — идёт сразу после .pt-why (тоже белый фон), иначе
+       отступы складываются (120+120) и получается лишний разрыв */
+    .pt-faq { background: var(--white); padding: 0 0 120px; }
     .pt-faq-grid {
       display: grid; grid-template-columns: 1fr 1.6fr;
       gap: 72px; align-items: start;
@@ -740,7 +742,7 @@
     .pt-faq-item.is-open .pt-faq-a { max-height: 420px; }
 
     @media (max-width: 900px) {
-      .pt-faq { padding: 80px 0; }
+      .pt-faq { padding: 0 0 80px; }
       .pt-faq-grid { grid-template-columns: 1fr; gap: 32px; }
       .pt-faq-head { margin-bottom: 8px; }
     }

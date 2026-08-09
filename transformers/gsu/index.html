@@ -495,9 +495,10 @@
       pointer-events: none; user-select: none;
       opacity: 0.6;
     }
-    /* убираем пустое место над фото в карточке (min-height 260px > высоты img 242px
-       создавал ~18px зазора сверху из-за align-items: flex-end) */
-    .pt-related .product-card-image { min-height: 242px; }
+    /* убираем пустое место над фото в карточке: min-height/высота img уменьшены с 260/242px до 200px —
+       меньше "воздуха" от letterbox-эффекта object-fit: contain на почти квадратных фото (Power, Mobile) */
+    .pt-related .product-card-image { min-height: 200px; }
+    .pt-related .product-card-image img { height: 200px; }
     .pt-related .product-card-name { padding-bottom: 0; }
     .products-header {
       display: flex; align-items: flex-end; justify-content: space-between;

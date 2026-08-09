@@ -2148,11 +2148,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Мобильная плашка: появляется ниже первого экрана (hero),
      пропадает у формы заявки и блока "Other Transformers We Build",
-     появляется снова у таблицы сравнения "Compare LIMIK Transformer Types" */
+     появляется снова у таблицы сравнения "Compare LIMIK Transformer Types",
+     пропадает окончательно когда снизу показался футер */
   var hero = document.querySelector('.pt-hero');
   var bar = document.getElementById('pt-mobile-cta');
   var backToTopBtn = document.getElementById('backToTop');
   var crossSellSection = document.querySelector('.pt-related');
+  var footerEl = document.getElementById('site-footer');
   if (hero && bar) {
     var checkBar = function () {
       if (window.innerWidth > 768) {
@@ -2165,7 +2167,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var beforeForm = formTop > window.innerHeight;
       /* появляется снова только когда блок карточек "Other Transformers We Build" полностью проскроллен */
       var pastCrossSell = crossSellSection ? crossSellSection.getBoundingClientRect().bottom < 0 : false;
-      var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell);
+      var footerVisible = footerEl ? footerEl.getBoundingClientRect().top < window.innerHeight : false;
+      var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell) && !footerVisible;
       bar.classList.toggle('is-visible', shouldShow);
       /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
       if (backToTopBtn) {

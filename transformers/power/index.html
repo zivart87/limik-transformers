@@ -597,9 +597,10 @@
       pointer-events: none; user-select: none;
       opacity: 0.6;
     }
-    /* ТЕСТ: убираем пустое место над фото в карточке (min-height 260px > высоты img 242px
-       создавал ~18px зазора сверху из-за align-items: flex-end) — только в этом блоке, пока не подтверждено */
+    /* убираем пустое место над фото в карточке (min-height 260px > высоты img 242px
+       создавал ~18px зазора сверху из-за align-items: flex-end) */
     .pt-related .product-card-image { min-height: 242px; }
+    .pt-related .product-card-name { padding-bottom: 0; }
     .products-header {
       display: flex; align-items: flex-end; justify-content: space-between;
       gap: 48px; margin-bottom: 48px;

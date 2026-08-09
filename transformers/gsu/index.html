@@ -913,6 +913,62 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is DETC standard on a GSU, while OLTC is standard on your Power Transformers and Autotransformers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A generator already regulates its own terminal voltage through its automatic voltage regulator (AVR) and excitation system, which typically covers a ±5% range in real time. That's usually enough to handle normal grid conditions without the GSU needing to adjust taps under load. A DETC still lets you re-tap the unit during planned outages — to correct for seasonal grid voltage shifts or as the generator ages — just not while it's running. If your project's grid interconnection agreement calls for continuous on-load regulation from the transformer itself, OLTC is available as a specified option."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is delta LV winding standard for wind and solar, but wye available for gas and nuclear?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A delta-connected LV winding on the generator side suppresses third-harmonic currents at the source and prevents ground faults on the generator side from propagating onto the transmission network — both matter more on inverter-based wind and solar output, which carries more harmonic content than a synchronous gas or nuclear generator. The HV side stays wye-connected either way, since that's what allows effective grounding at the transmission voltage. Gas and nuclear plants, running synchronous generators with cleaner output, have more flexibility to use wye on the LV side when the plant's grounding design calls for it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between a GSU and a Unit Auxiliary Transformer (UAT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A GSU steps the generator's output up to transmission voltage and sends it to the grid. A UAT does the opposite job at a smaller scale — it steps power down from the generator bus to supply the plant's own auxiliary loads: pumps, fans, control systems, and station lighting. They're both present in most generating plants, but they're different transformers doing different jobs. LIMIK's GSU line is built for the step-up interconnection; if your project's auxiliary supply is part of the scope, talk to our engineering team about what that requires."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a GSU serve a battery storage (BESS) project, and does IRA eligibility carry over?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — a GSU interconnecting a battery storage facility to the grid is engineered the same way as one serving generation, matched to the site's inverter output characteristics. Standalone storage has been independently eligible for the federal investment tax credit under IRA since the 2022 changes, separate from whether it's charged by a co-located renewable asset. LIMIK's domestic-content documentation is prepared the same way regardless of the generation type behind it — but IRA eligibility depends on your specific project structure, so confirm the details with your tax advisor before relying on it in a financial model."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documentation does LIMIK provide for an IRA compliance filing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Manufacturing and domestic-content records showing your unit qualifies under IRA §48 domestic content requirements, prepared alongside your standard factory test report. Exact documentation needs vary by project and by how your tax counsel is structuring the credit claim — our team coordinates directly with your compliance team to make sure what we provide matches what your filing requires."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is a GSU different from an autotransformer — could I use either one?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — they solve different problems. A GSU connects a generator to the grid and needs the electrical isolation a two-winding design provides, since a fault on one side shouldn't propagate straight to the other. An autotransformer links two transmission-level voltages that are already part of the same grounded network, where that isolation isn't required — which is why it can use a shared winding for higher efficiency. If your project is transmission-to-transmission rather than generator-to-grid, see our Autotransformers page instead."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.limiktransformers.com/" },
@@ -1483,6 +1539,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════
+   FAQ
+══════════════════════════════ -->
+<section class="pt-faq">
+  <div class="container">
+    <div class="pt-faq-grid">
+
+      <div class="pt-faq-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Generator Step-Up Transformers, Explained</h2>
+        <p>Answering the questions we hear most — from technical specification and testing to compliance, delivery, and procurement. Everything you need before you submit an RFQ.</p>
+        <a href="/contact/" class="pt-faq-link">
+          <span class="pt-faq-link-icon">
+            <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Contact Us
+        </a>
+      </div>
+
+      <div class="pt-faq-list">
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Why is DETC standard on a GSU, while OLTC is standard on your Power Transformers and Autotransformers?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>A generator already regulates its own terminal voltage through its automatic voltage regulator (AVR) and excitation system, which typically covers a ±5% range in real time. That's usually enough to handle normal grid conditions without the GSU needing to adjust taps under load. A DETC still lets you re-tap the unit during planned outages — to correct for seasonal grid voltage shifts or as the generator ages — just not while it's running. If your project's grid interconnection agreement calls for continuous on-load regulation from the transformer itself, OLTC is available as a specified option.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Why is delta LV winding standard for wind and solar, but wye available for gas and nuclear?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>A delta-connected LV winding on the generator side suppresses third-harmonic currents at the source and prevents ground faults on the generator side from propagating onto the transmission network — both matter more on inverter-based wind and solar output, which carries more harmonic content than a synchronous gas or nuclear generator. The HV side stays wye-connected either way, since that's what allows effective grounding at the transmission voltage. Gas and nuclear plants, running synchronous generators with cleaner output, have more flexibility to use wye on the LV side when the plant's grounding design calls for it.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What's the difference between a GSU and a Unit Auxiliary Transformer (UAT)?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>A GSU steps the generator's output up to transmission voltage and sends it to the grid. A UAT does the opposite job at a smaller scale — it steps power down from the generator bus to supply the plant's own auxiliary loads: pumps, fans, control systems, and station lighting. They're both present in most generating plants, but they're different transformers doing different jobs. LIMIK's GSU line is built for the step-up interconnection; if your project's auxiliary supply is part of the scope, talk to our engineering team about what that requires.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>Can a GSU serve a battery storage (BESS) project, and does IRA eligibility carry over?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Yes — a GSU interconnecting a battery storage facility to the grid is engineered the same way as one serving generation, matched to the site's inverter output characteristics. Standalone storage has been independently eligible for the federal investment tax credit under IRA since the 2022 changes, separate from whether it's charged by a co-located renewable asset. LIMIK's domestic-content documentation is prepared the same way regardless of the generation type behind it — but IRA eligibility depends on your specific project structure, so confirm the details with your tax advisor before relying on it in a financial model.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>What documentation does LIMIK provide for an IRA compliance filing?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>Manufacturing and domestic-content records showing your unit qualifies under IRA §48 domestic content requirements, prepared alongside your standard factory test report. Exact documentation needs vary by project and by how your tax counsel is structuring the credit claim — our team coordinates directly with your compliance team to make sure what we provide matches what your filing requires.</p></div>
+        </div>
+
+        <div class="pt-faq-item">
+          <button class="pt-faq-q" type="button">
+            <span>How is a GSU different from an autotransformer — could I use either one?</span>
+            <span class="pt-faq-toggle"></span>
+          </button>
+          <div class="pt-faq-a"><p>No — they solve different problems. A GSU connects a generator to the grid and needs the electrical isolation a two-winding design provides, since a fault on one side shouldn't propagate straight to the other. An autotransformer links two transmission-level voltages that are already part of the same grounded network, where that isolation isn't required — which is why it can use a shared winding for higher efficiency. If your project is transmission-to-transmission rather than generator-to-grid, see our <a href="/transformers/autotransformers/">Autotransformers</a> page instead.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.pt-faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.pt-faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      item.parentElement.querySelectorAll('.pt-faq-item.is-open').forEach(function (open) {
+        open.classList.remove('is-open');
+      });
+      if (!wasOpen) item.classList.add('is-open');
+    });
+  });
+})();
+</script>
 
 <!-- ══════════════════════════════
    CTA BAND

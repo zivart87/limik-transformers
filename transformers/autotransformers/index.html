@@ -505,6 +505,11 @@
        меньше "воздуха" от letterbox-эффекта object-fit: contain на почти квадратных фото (Power, Mobile) */
     .pt-related .product-card-image { min-height: 200px; }
     .pt-related .product-card-image img { height: 200px; }
+    /* Фото Mobile Transformers — та же правка, что уже сделана для мобильной карусели:
+       почти квадратный файл (1200x1179) с узкой длинной техникой внутри, contain оставляет
+       поля по бокам. width:100% + cover заполняет ширину, object-position: bottom не даёт
+       обрезать колёса трейлера (обрезка уходит сверху, с пустого фона). */
+    .pt-related .product-card-image img[src*="mobile-product"] { width: 100%; object-fit: cover; object-position: center bottom; }
     .pt-related .product-card-name { padding-bottom: 24px; }
     .products-header {
       display: flex; align-items: flex-end; justify-content: space-between;

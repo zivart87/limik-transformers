@@ -315,7 +315,7 @@
       font-size: 14px; color: rgba(255,255,255,0.72);
       text-align: center;
     }
-    .pt-sidebar-call a { color: var(--white); font-weight: 700; text-decoration: none; }
+    .pt-sidebar-call a { color: var(--white); font-weight: 700; text-decoration: none; white-space: nowrap; }
     .pt-sidebar-call a:hover { text-decoration: underline; }
     .pt-sidebar-form input,
     .pt-sidebar-form textarea {
@@ -847,6 +847,13 @@
       .pt-apps { margin-top: 48px; }
       .pt-features-new { margin-top: 48px; }
       .pt-features { margin-top: 40px; }
+
+      /* h3/форма-заголовок на мобайле — clamp(20,2.5vw,32) даёт 20px минимум,
+         визуально мелко на 390px — увеличено точечно для этих двух мест */
+      .pt-apps h3,
+      .pt-features-new h3,
+      .pt-sidebar-form h2,
+      .pt-sidebar-form h3 { font-size: 24px; }
 
       /* App grid — 1 колонка */
       .pt-app-grid { grid-template-columns: 1fr; }
@@ -1980,16 +1987,37 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileBtn) mobileBtn.addEventListener('click', scrollToForm);
 
   /* Мобильная плашка: появляется ниже первого экрана (hero),
-     пропадает у формы заявки или при возврате к первому экрану */
+     пропадает у формы заявки и блока "Other Transformers We Build",
+     появляется снова у таблицы сравнения "Compare LIMIK Transformer Types",
+     пропадает окончательно когда снизу показался футер */
   var hero = document.querySelector('.pt-hero');
   var bar = document.getElementById('pt-mobile-cta');
+  var backToTopBtn = document.getElementById('backToTop');
+  var crossSellSection = document.querySelector('.pt-related');
   if (hero && bar) {
     var checkBar = function () {
-      if (window.innerWidth > 768) { bar.classList.remove('is-visible'); return; }
+      if (window.innerWidth > 768) {
+        bar.classList.remove('is-visible');
+        if (backToTopBtn) backToTopBtn.style.bottom = '';
+        return;
+      }
       var heroBottom = hero.getBoundingClientRect().bottom;
       var formTop = form.getBoundingClientRect().top;
-      var shouldShow = heroBottom < 0 && formTop > window.innerHeight;
+      var beforeForm = formTop > window.innerHeight;
+      /* появляется снова только когда блок карточек "Other Transformers We Build" полностью проскроллен */
+      var pastCrossSell = crossSellSection ? crossSellSection.getBoundingClientRect().bottom < 0 : false;
+      /* footer.js подменяет #site-footer через outerHTML — элемент нужно искать заново каждый раз,
+         кешированная ссылка на исходный div после подмены становится отсоединённым узлом (rect всегда нулевой) */
+      var footerEl = document.querySelector('.footer-t3');
+      var footerVisible = footerEl ? footerEl.getBoundingClientRect().top < window.innerHeight : false;
+      var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell) && !footerVisible;
       bar.classList.toggle('is-visible', shouldShow);
+      /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
+      if (backToTopBtn) {
+        backToTopBtn.style.bottom = shouldShow
+          ? (bar.getBoundingClientRect().height + 20) + 'px'
+          : '20px';
+      }
     };
     window.addEventListener('scroll', checkBar, { passive: true });
     window.addEventListener('resize', checkBar);

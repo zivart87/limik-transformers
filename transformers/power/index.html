@@ -2152,7 +2152,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var hero = document.querySelector('.pt-hero');
   var bar = document.getElementById('pt-mobile-cta');
   var backToTopBtn = document.getElementById('backToTop');
-  var compareSection = document.querySelector('.pt-compare');
+  var crossSellSection = document.querySelector('.pt-related');
   if (hero && bar) {
     var checkBar = function () {
       if (window.innerWidth > 768) {
@@ -2163,8 +2163,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var heroBottom = hero.getBoundingClientRect().bottom;
       var formTop = form.getBoundingClientRect().top;
       var beforeForm = formTop > window.innerHeight;
-      var atCompareOrBelow = compareSection ? compareSection.getBoundingClientRect().top < window.innerHeight : false;
-      var shouldShow = heroBottom < 0 && (beforeForm || atCompareOrBelow);
+      /* появляется снова только когда блок карточек "Other Transformers We Build" полностью проскроллен */
+      var pastCrossSell = crossSellSection ? crossSellSection.getBoundingClientRect().bottom < 0 : false;
+      var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell);
       bar.classList.toggle('is-visible', shouldShow);
       /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
       if (backToTopBtn) {

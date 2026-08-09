@@ -544,6 +544,11 @@
          карточка выглядит непропорционально вытянутой. Шрифты не трогаем. */
       .products-track .product-card-image { margin: 0 23px; min-height: 164px; }
       .products-track .product-card-image img { height: 164px; }
+      /* Фото Mobile Transformers — почти квадратный файл (1200x1179) с длинной узкой техникой
+         внутри, при object-fit: contain оставляет пустые поля по бокам. Только для этой карточки —
+         ширина на всю рамку + cover вместо contain (обрезает лишний воздух сверху/снизу файла).
+         object-position: center bottom — обрезка уходит сверху (фон), не срезает колёса трейлера. */
+      .products-track .product-card-image img[src*="mobile-product"] { width: 100%; object-fit: cover; object-position: center bottom; }
       /* Фикс. высота (под 2 строки заголовка) — чтобы фото/specs/кнопка
          стояли на одном уровне независимо от того, в 1 или 2 строки
          переносится название карточки; разница уходит в отступ до фото. */

@@ -2147,10 +2147,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileBtn) mobileBtn.addEventListener('click', scrollToForm);
 
   /* Мобильная плашка: появляется ниже первого экрана (hero),
-     пропадает у формы заявки или при возврате к первому экрану */
+     пропадает у формы заявки и блока "Other Transformers We Build",
+     появляется снова у таблицы сравнения "Compare LIMIK Transformer Types" */
   var hero = document.querySelector('.pt-hero');
   var bar = document.getElementById('pt-mobile-cta');
   var backToTopBtn = document.getElementById('backToTop');
+  var compareSection = document.querySelector('.pt-compare');
   if (hero && bar) {
     var checkBar = function () {
       if (window.innerWidth > 768) {
@@ -2160,7 +2162,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       var heroBottom = hero.getBoundingClientRect().bottom;
       var formTop = form.getBoundingClientRect().top;
-      var shouldShow = heroBottom < 0 && formTop > window.innerHeight;
+      var beforeForm = formTop > window.innerHeight;
+      var atCompareOrBelow = compareSection ? compareSection.getBoundingClientRect().top < window.innerHeight : false;
+      var shouldShow = heroBottom < 0 && (beforeForm || atCompareOrBelow);
       bar.classList.toggle('is-visible', shouldShow);
       /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
       if (backToTopBtn) {

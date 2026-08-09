@@ -2154,7 +2154,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var bar = document.getElementById('pt-mobile-cta');
   var backToTopBtn = document.getElementById('backToTop');
   var crossSellSection = document.querySelector('.pt-related');
-  var footerEl = document.getElementById('site-footer');
   if (hero && bar) {
     var checkBar = function () {
       if (window.innerWidth > 768) {
@@ -2167,6 +2166,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var beforeForm = formTop > window.innerHeight;
       /* появляется снова только когда блок карточек "Other Transformers We Build" полностью проскроллен */
       var pastCrossSell = crossSellSection ? crossSellSection.getBoundingClientRect().bottom < 0 : false;
+      /* footer.js подменяет #site-footer через outerHTML — элемент нужно искать заново каждый раз,
+         кешированная ссылка на исходный div после подмены становится отсоединённым узлом (rect всегда нулевой) */
+      var footerEl = document.querySelector('.footer-t3');
       var footerVisible = footerEl ? footerEl.getBoundingClientRect().top < window.innerHeight : false;
       var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell) && !footerVisible;
       bar.classList.toggle('is-visible', shouldShow);

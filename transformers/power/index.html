@@ -2150,13 +2150,24 @@ document.addEventListener('DOMContentLoaded', function() {
      пропадает у формы заявки или при возврате к первому экрану */
   var hero = document.querySelector('.pt-hero');
   var bar = document.getElementById('pt-mobile-cta');
+  var backToTopBtn = document.getElementById('backToTop');
   if (hero && bar) {
     var checkBar = function () {
-      if (window.innerWidth > 768) { bar.classList.remove('is-visible'); return; }
+      if (window.innerWidth > 768) {
+        bar.classList.remove('is-visible');
+        if (backToTopBtn) backToTopBtn.style.bottom = '';
+        return;
+      }
       var heroBottom = hero.getBoundingClientRect().bottom;
       var formTop = form.getBoundingClientRect().top;
       var shouldShow = heroBottom < 0 && formTop > window.innerHeight;
       bar.classList.toggle('is-visible', shouldShow);
+      /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
+      if (backToTopBtn) {
+        backToTopBtn.style.bottom = shouldShow
+          ? (bar.getBoundingClientRect().height + 20) + 'px'
+          : '20px';
+      }
     };
     window.addEventListener('scroll', checkBar, { passive: true });
     window.addEventListener('resize', checkBar);

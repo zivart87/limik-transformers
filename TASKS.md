@@ -1,5 +1,91 @@
 # LIMIK — Задачи и дорожная карта
 
+## Новая линейка продуктов и структура сайта (зафиксировано 2026-08-25)
+
+Расширение продуктовой линейки и полный редизайн IA сайта — крупная инициатива, обсуждена и частично решена в сессии 2026-08-25. Ничего из этого раздела ещё не реализовано в коде — это план.
+
+### Новая линейка продуктов
+
+1. **Power Transformers** — Generator Step-Up (34.5–500kV, до 500MVA), Substation (34.5–500kV, до 500MVA), Auto Transformers (34.5–500kV, до 500MVA)
+2. **Distribution Transformers** — Pad-Mounted (до 34.5kV, до 10MVA), Dry-Type (до 34.5kV, до 30MVA), Substation Distribution (до 34.5kV, до 20MVA)
+3. **Special Purpose Transformers** — Inverter Duty (12.4–34.5kV, до 10MVA), Station Service (2.4–34.5kV, до 20MVA), Furnace (12.4–46kV, до 50MVA), Grounding (12.4–34.5kV, до 69kV/20kAmps), Mobile (до 230kV, до 100MVA)
+4. **High Voltage Circuit Breakers** — Dead Tank, 72.5–363kV, 40–63kA
+5. **Medium Voltage Switchgear** — MV Metal Clad Switchgear (5.00–34.5kV, interrupt до 40kV), UL 891 Switchboards (до 480–600V, до 6000A), UL67 Panelboards (до 480–600V, до 1200A)
+6. **Modular Data Centers** — Micro (S, 1–2 стойки, 50–100kW), Compact (M, 3–4 стойки, 100–200kW), Full-size (L, 6–10+ стоек, 300–500+kW), Campus/Whitespace (XL, интеграция с Powered Land)
+7. **Compute** (GPU Rental / Reserved Capacity / Clusters) — **фаза 2, не сейчас.** Сначала строим инфраструктуру и продаём оборудование отдельно, GPU-as-a-Service откладывается на потом.
+
+### Новая структура сайта (nav)
+
+```text
+Home
+Solutions — Data Centers, Renewables & Green Energy, Utilities & Grid, Defense/DOD, EPC Contractors
+Products — Power Transformers, Distribution Transformers, Special Purpose Transformers,
+           High Voltage Circuit Breakers, Medium Voltage Switchgear, Modular Data Centers
+Company — About, Manufacturing Platform (South Carolina), Capital Formation/Investors, Certifications & Compliance
+Resources — Blog, Guides, Warranties, Calculators
+Contact
+```
+
+(Compute как раздел меню — не сейчас, добавится в фазе 2.)
+
+### Решения по структуре продуктовых страниц
+
+Референс: [ayr.energy](https://www.ayr.energy/) — их Products-меню (Power/Distribution/Special Purpose Transformers, HV Circuit Breakers, MV Switchgear) почти 1:1 совпадает с новой линейкой. Проверено на `/products/power-transformers`: **подтипы внутри категории НЕ имеют отдельных URL** — это карточки на одной странице категории (полный шаблон: hero, Why Us, сертификаты, testimonials, FAQ, форма — один на категорию).
+
+**Правило для LIMIK:** одна страница = одна категория, подтипы — карточки внутри неё, кроме явного исключения ниже.
+
+Категории и статус:
+
+- **Power Transformers** — одна страница, GSU + Substation + Auto как карточки. Объединяет 2 текущие отдельные страницы (`/transformers/autotransformers/`, `/transformers/gsu/`) в карточки внутри новой единой страницы.
+- **Special Purpose Transformers** — одна страница, 4 карточки (Inverter Duty, Station Service, Furnace, Grounding). Mobile сюда **не входит**.
+- **Mobile Transformers — исключение, остаётся отдельной полноценной страницей** (решение пользователя 2026-08-25: продукт достаточно значим для бизнеса, чтобы не понижать до карточки — сохраняет текущий полный шаблон с FAQ/compare-table/CTA-логикой).
+- **Distribution Transformers, High Voltage Circuit Breakers, Medium Voltage Switchgear, Modular Data Centers** — новые категории, контента/характеристик/фото под них пока нет.
+
+**Не забыть при реализации:** старые URL `/transformers/power/`, `/transformers/autotransformers/`, `/transformers/gsu/` уже проиндексированы и накопили SEO/GEO-работу (structured data, FAQ, compare-table) — при переезде на новую структуру обязателен план 301-редиректов на новые адреса, а не просто удаление старых страниц.
+
+### Next.js — стартует с Data Centers, не как полная миграция сразу
+
+Решение пользователя 2026-08-25: **новая страница Data Centers (Modular Data Centers) будет первой, сделанной на Next.js**, а не на статическом HTML как весь текущий сайт. Это меняет ранее запланированный сценарий миграции (см. раздел «Миграция на Next.js» ниже — там предполагался отдельный Next.js-проект, переносящий сразу всё разом на Этапе 1–2).
+
+**2026-08-25 — репозиторий `site_limik-next` инициализируется как отдельный Vercel-проект.** Это решение только про инфраструктуру для разработки (превью, отдельный билд) — не ответ на вопрос ниже про финальную доменную/роутинг-стратегию при переключении. Тот вопрос остаётся открытым и решается отдельно, ближе к первому продовому релизу.
+
+Открытые вопросы, которые нужно решить до начала работы над этой страницей (не решены в этой сессии):
+- Next.js-проект живёт рядом со статическим сайтом как отдельный Vercel-проект, или на одном проекте настраивается hybrid-роутинг (часть путей — статика, `/industries/data-centers/` или новый `/products/modular-data-centers/` — Next.js)?
+- Как шарить дизайн-систему (`limik.css`) и nav/footer между статическими страницами и Next.js-страницей, чтобы не разъезжались визуально?
+- Итоговый URL новой страницы — `/products/modular-data-centers/` (по новой IA) или сохраняется текущий `/industries/data-centers/`?
+
+### Apex — лендинг модульных ИИ-ЦОД, отдельная инициатива от каталога выше (решено 2026-09-06)
+
+**Не путать со страницей Data Centers из раздела «Next.js — стартует с Data Centers» выше.** Та страница — часть будущего каталога `Products → Modular Data Centers` из полного IA-редизайна, и решение про Next.js для неё остаётся в силе и открытым (см. три вопроса выше).
+
+**Это — отдельная задача:** маркетинговый лендинг серии LIMIK Apex (полный текст и структура — `limik-landing-FINAL-v2.md`), нужен под PPC/GTM сейчас, не через годы миграции. Решение пользователя 2026-09-06: делаем **на текущем статическом сайте**, тем же стеком (HTML + `limik.css` + nav/footer через fetch), URL `/modular-ai-data-centers/`.
+
+**Навигация:** новый пункт верхнего меню — обычная ссылка (не dropdown, у страницы нет подстраниц), в `nav.html` (`.nav-links`) и в мобильном меню, между «Transformers» и «Industries». Текст пункта меню пока не утверждён.
+
+**Решено 2026-09-06:**
+- Пункт меню — **«Modular Data Centers»** (дублирует по смыслу «Data Centers» из дропдауна Industries, пользователь предупреждён и принял риск)
+- Ассеты с пометкой `[АССЕТ]` (hero-рендер модуля, схема grid-to-chip, фото цеха/FAT, карта климата, og-картинка) — на первую публикацию идут **временные плейсхолдеры + текст** (не реальные фото/рендеры — продукта физически ещё нет, а сток-фото и AI-генерация сюда не годятся по тем же причинам, что и для реальной техники). Заменить на реальные материалы, когда будут готовы
+- Приёмник формы конфигуратора (блок 10, новые поля compute capacity/cooling preference/power source/include transformer) — **CRM/вебхук пока не выбран**, решаем позже. Форму и её UI-состояния верстаем сейчас, финальную интеграцию (какой вебхук, маппинг полей) — отдельным шагом, когда определятся
+
+**Реализовано (первая версия, коммит в работе):**
+- `modular-ai-data-centers/index.html` — все 13 блоков документа (hero → spec strip → what-is-apex → platform → components → choose-your-scale → delivery timeline → us-manufacturing → warranty → standards&climate → trust band → FAQ с JSON-LD/ARIA → project configurator), обязательные элементы (nav, footer, back-to-top, мобильная sticky CTA-плашка)
+- `nav.html` — добавлен пункт «Modular Data Centers» между Transformers и Industries (десктоп + мобайл), без новых CSS-правил (переиспользованы существующие `.nav-links > a` / `.nav-mobile-link`)
+- `sitemap.xml` — добавлен URL
+
+**Временные решения, требуют ревизии позже:**
+- `og:image` указывает на существующий сайтовый `assets/images/og-image.png` (не отдельная 1200×630 картинка под Apex) — заменить, когда появится реальный og-ассет
+- Форма конфигуратора шлёт в **тот же вебхук LeadConnector**, что и `request-quote/`/`transformers/power/` (`.../webhook-trigger/dc39a6cd-...`), с доп. полями (`computeCapacity`, `coolingPreference`, `powerSource`, `includeTransformer`, `leadType`) в JSON-теле — GHL примет их только если workflow их не отбрасывает; проверить у Надежды маппинг под новые поля
+- Успешная отправка ведёт на общий `/thank-you/?src=apex` (не отдельная страница благодарности) — так же засчитывается существующим OpenAI Ads Pixel `lead_created`
+- Все `[АССЕТ]`-места — плейсхолдеры `.mdc-asset-placeholder` (пунктирная рамка + подпись), не финальный визуал
+- Delivery Timeline (блок 5.5) сделан как обычный степпер (горизонтальный на десктопе, вертикальный на мобайле) с текстовым каллаутом трансформаторного трека — без анимации/двух параллельных визуальных дорожек, чтобы не переусложнять; можно доработать позже
+- Не создан визуал для блока 3 (Platform) — диаграмма grid-to-chip из документа опущена, смысл несёт только текст
+
+### Контент, которого пока нет ни для одной новой категории
+
+Distribution Transformers, High Voltage Circuit Breakers, Medium Voltage Switchgear, Modular Data Centers — нет ни характеристик сверх диапазонов выше, ни фото, ни FAQ-материала. Потребуется сбор материала от заказчика по каждой категории до начала копирайтинга (аналогично тому, как для текущих 4 продуктовых страниц использовался Platform Description).
+
+---
+
 ## Статус текущего сайта (v1 — статический HTML)
 
 **Готово:**

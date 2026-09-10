@@ -417,6 +417,20 @@
     }
     .rq-submit-note a { color: var(--blue); text-decoration: underline; }
 
+    /* ── SMS consent checkboxes ── */
+    .rq-consent { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .rq-consent-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+    .rq-consent-item input[type="checkbox"] {
+      width: 16px; height: 16px; margin-top: 2px;
+      padding: 0; border: none; box-shadow: none;
+      accent-color: var(--blue);
+      cursor: pointer; flex-shrink: 0;
+    }
+    .rq-consent-item span { font-size: 12px; color: #4E6F91; line-height: 1.65; }
+    .rq-consent-links { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .rq-consent-links a { font-size: 12px; color: var(--blue); text-decoration: underline; }
+    .rq-consent-links-divider { width: 1px; height: 12px; background: rgba(9,25,59,0.2); display: inline-block; }
+
     /* ── Responsive ── */
     @media (max-width: 1100px) {
       .rq-left { width: 520px; }
@@ -674,10 +688,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
+
+      <!-- SMS Consent -->
+      <div class="rq-consent">
+        <label class="rq-consent-item">
+          <input type="checkbox" name="sms_consent_transactional" value="yes">
+          <span>By checking this box, I consent to receive transactional messages related to my quote request, project, or services I have requested from LIMIK International. These messages may include quote confirmations, project updates, and appointment reminders, among others. Message frequency may vary. Message &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+        </label>
+        <label class="rq-consent-item">
+          <input type="checkbox" name="sms_consent_marketing" value="yes">
+          <span>By checking this box, I consent to receive marketing and promotional messages, including product updates, industry insights, and special offers, among others, from LIMIK International. Message frequency may vary. Message &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+        </label>
+      </div>
+
       <!-- Submit -->
       <div class="rq-submit">
         <button type="submit" class="btn btn-gold btn-lg">Submit Request</button>
         <p class="rq-submit-note">Your request goes directly to our engineering team. We respond within one business day. No commitment required. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+        <div class="rq-consent-links">
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <span class="rq-consent-links-divider"></span>
+          <a href="/terms-of-service/">Terms of Service</a>
+          <span class="rq-consent-links-divider"></span>
+          <a href="/sms-terms/">SMS Terms &amp; Conditions</a>
+        </div>
       </div>
 
     </form>

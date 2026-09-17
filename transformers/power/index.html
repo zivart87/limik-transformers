@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -2182,11 +2182,11 @@ document.addEventListener('DOMContentLoaded', function() {
       var footerVisible = footerEl ? footerEl.getBoundingClientRect().top < window.innerHeight : false;
       var shouldShow = heroBottom < 0 && (beforeForm || pastCrossSell) && !footerVisible;
       bar.classList.toggle('is-visible', shouldShow);
-      /* кнопка "наверх" — 20px от плашки, когда она видна; 20px от низа экрана, когда нет */
+      /* кнопка "наверх" — 92px от плашки / низа экрана, чтобы не перекрывать чат-виджет */
       if (backToTopBtn) {
         backToTopBtn.style.bottom = shouldShow
-          ? (bar.getBoundingClientRect().height + 20) + 'px'
-          : '20px';
+          ? (bar.getBoundingClientRect().height + 92) + 'px'
+          : '92px';
       }
     };
     window.addEventListener('scroll', checkBar, { passive: true });

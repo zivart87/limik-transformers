@@ -30,4 +30,14 @@
         observer.observe(video);
       });
     });
+
+  // LeadConnector Chat Widget (GoHighLevel)
+  if (!document.querySelector('script[data-widget-id="6a6a5260d8d3c072c3757110"]')) {
+    var chatScript = document.createElement('script');
+    chatScript.src = "https://widgets.leadconnectorhq.com/loader.js";
+    chatScript.setAttribute('data-resources-url', "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+    chatScript.setAttribute('data-widget-id', "6a6a5260d8d3c072c3757110");
+    chatScript.setAttribute('data-source', "WEB_USER");
+    document.body.appendChild(chatScript);
+  }
 })();

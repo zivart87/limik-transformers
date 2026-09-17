@@ -40,4 +40,38 @@
     chatScript.setAttribute('data-source', "WEB_USER");
     document.body.appendChild(chatScript);
   }
+
+  // Динамический подъем чата над мобильной плашкой (.pt-mobile-cta / #mdcMobileCta)
+  function adjustChatWidget() {
+    var cw = document.querySelector('chat-widget');
+    if (!cw || !cw.shadowRoot) return;
+
+    var bar = document.querySelector('.pt-mobile-cta.is-visible, #mdcMobileCta.is-visible');
+    var isMobile = window.innerWidth <= 768;
+    var styleEl = cw.shadowRoot.getElementById('limik-chat-pos');
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'limik-chat-pos';
+      cw.shadowRoot.appendChild(styleEl);
+    }
+
+    if (isMobile && bar) {
+      var h = bar.getBoundingClientRect().height || 74;
+      styleEl.textContent =
+        '.chat-widget-button, .chip-container, .chat-widget-wrapper, button[aria-label*="chat" i], div[class*="button"] {' +
+        '  bottom: ' + (h + 16) + 'px !important;' +
+        '  transition: bottom 0.35s ease !important;' +
+        '}';
+    } else {
+      styleEl.textContent =
+        '.chat-widget-button, .chip-container, .chat-widget-wrapper, button[aria-label*="chat" i], div[class*="button"] {' +
+        '  bottom: 20px !important;' +
+        '  transition: bottom 0.35s ease !important;' +
+        '}';
+    }
+  }
+
+  window.addEventListener('scroll', adjustChatWidget, { passive: true });
+  window.addEventListener('resize', adjustChatWidget);
+  setInterval(adjustChatWidget, 500);
 })();

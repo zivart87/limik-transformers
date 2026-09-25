@@ -328,8 +328,11 @@
               <li>Protection, relaying, and primary power distribution</li>
             </ul>
           </div>
-          <a href="#configurator" class="mdc-text-link" id="feature-cta">
-            <span>Configure your infrastructure</span> <span aria-hidden="true">↗</span>
+          <a href="#configurator" class="co-intro-link mdc-feature-link">
+            <span class="co-intro-link-icon" aria-hidden="true">
+              <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span id="feature-cta-label">Configure your infrastructure</span>
           </a>
         </div>
       </div>
@@ -992,11 +995,17 @@
     ];
 
     function selectPlatformTab(index) {
+      let activeTab = null;
       document.querySelectorAll('.mdc-platform-tabs .mdc-tab-btn').forEach((btn, i) => {
         const isActive = (i === index);
         btn.classList.toggle('is-active', isActive);
         btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        if (isActive) activeTab = btn;
       });
+
+      if (activeTab && window.matchMedia('(max-width: 1100px)').matches) {
+        activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
 
       const data = platformData[index];
       if (!data) return;
@@ -1021,8 +1030,7 @@
         pointsList.appendChild(li);
       });
 
-      const cta = document.getElementById('feature-cta');
-      cta.innerHTML = `<span>${data.ctaText}</span> <span aria-hidden="true">↗</span>`;
+      document.getElementById('feature-cta-label').textContent = data.ctaText;
     }
 
     // ── Preselect Scale in Configurator ──

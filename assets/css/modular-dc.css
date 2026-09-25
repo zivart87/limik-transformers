@@ -11,8 +11,9 @@
   --mdc-navy:         #081D2D;
   --mdc-navy-dark:    #04121D;
   --mdc-navy-mid:     #102B3E;
-  --mdc-yellow:       #FFDB19;
-  --mdc-yellow-hover: #E5C400;
+  /* CTA-колір сторінки збігається з усім сайтом LIMIK. */
+  --mdc-yellow:       var(--gold);
+  --mdc-yellow-hover: var(--gold-hover);
   --mdc-yellow-dim:   rgba(255, 219, 25, 0.12);
   --mdc-ink:          #102A3B;
   --mdc-muted:        #586975;
@@ -59,6 +60,17 @@
 .mdc-page a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Верхня смуга навігації лишається ідентичною іншим сторінкам.
+   Загальне правило .mdc-page a не має перезаписувати її білий текст. */
+.mdc-page .nav-top-inner a,
+.mdc-page .nav-top-inner a.active {
+  color: var(--white);
+}
+
+.mdc-page .nav-top-inner a:hover {
+  color: rgba(255,255,255,0.7);
 }
 
 .mdc-page em {
@@ -182,11 +194,21 @@
 
 .mdc-btn-yellow {
   background: var(--mdc-yellow);
-  color: var(--mdc-navy);
+  color: var(--navy-dark);
+  border: 2px solid var(--mdc-yellow);
+  border-radius: 2px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  gap: 8px;
 }
 
 .mdc-btn-yellow:hover {
   background: var(--mdc-yellow-hover);
+  border-color: var(--mdc-yellow-hover);
 }
 
 .mdc-btn-navy {

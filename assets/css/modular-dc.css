@@ -127,11 +127,11 @@
 .mdc-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-family: var(--mdc-font-head);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.07em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 32px;
@@ -140,8 +140,8 @@
 .mdc-eyebrow::before {
   content: '';
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background: var(--mdc-accent);
   flex-shrink: 0;
 }
@@ -1283,7 +1283,7 @@
   gap: 72px; align-items: start;
 }
 .pt-faq-head .eyebrow {
-  font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
 }
 .pt-faq-head h2 {

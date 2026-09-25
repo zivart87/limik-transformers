@@ -61,7 +61,7 @@
   margin: 0;
 }
 
-.mdc-page a {
+.mdc-page a:not(.btn) {
   text-decoration: none;
   color: inherit;
 }
@@ -173,64 +173,6 @@
 .mdc-h4 {
   font-size: clamp(18px, 1.8vw, 22px);
   line-height: 1.25;
-}
-
-/* ── Buttons ── */
-.mdc-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 15px 32px;
-  border: 2px solid transparent;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.18s;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.mdc-btn-arrow {
-  font-size: 14px;
-  line-height: 1;
-}
-
-.mdc-btn-yellow {
-  background: var(--mdc-yellow);
-  color: var(--navy-dark);
-  border: 2px solid var(--mdc-yellow);
-}
-
-.mdc-btn-yellow:hover {
-  background: var(--mdc-yellow-hover);
-  border-color: var(--mdc-yellow-hover);
-}
-
-.mdc-btn-navy {
-  background: transparent;
-  color: var(--navy-dark);
-  border-color: rgba(9, 25, 59, 0.45);
-}
-
-.mdc-btn-navy:hover {
-  border-color: var(--navy-dark);
-  background: var(--navy-mid);
-  color: var(--white);
-}
-
-.mdc-btn-outline {
-  background: transparent;
-  color: var(--mdc-white);
-  border-color: rgba(255, 255, 255, 0.55);
-}
-
-.mdc-btn-outline:hover {
-  border-color: var(--mdc-white);
-  background: rgba(255, 255, 255, 0.06);
 }
 
 /* ═════════════════════════════════════════════════════════════════
@@ -801,32 +743,6 @@
   margin-bottom: 24px;
 }
 
-.mdc-scale-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1;
-  padding: 15px 32px;
-  background: transparent;
-  border: 2px solid rgba(9, 25, 59, 0.45);
-  border-radius: 2px;
-  color: var(--navy-dark);
-  cursor: pointer;
-  transition: all 0.18s;
-}
-
-.mdc-scale-btn:hover {
-  background: var(--navy-dark);
-  border-color: var(--navy-dark);
-  color: var(--white);
-}
-
 @media (max-width: 1100px) {
   .mdc-scale-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1381,7 +1297,7 @@
     flex-direction: column;
     align-items: stretch;
   }
-  .mdc-form-actions .mdc-btn {
+  .mdc-form-actions .btn {
     width: 100%;
     justify-content: center;
   }

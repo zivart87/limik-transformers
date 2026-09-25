@@ -468,8 +468,8 @@
 
 .dc-fact-num {
   font-family: var(--mdc-font-head);
-  font-size: clamp(46px, 4.5vw, 64px);
-  font-size: clamp(46px, 18cqi, 64px);
+  font-size: clamp(44px, 4.5vw, 64px);
+  font-size: clamp(44px, 17.5cqi, 64px);
   font-weight: 500;
   line-height: 1;
   color: var(--navy-dark);
@@ -499,9 +499,30 @@
   align-items: baseline;
 }
 
-.dc-fact-mark {
+.dc-fact-measure > * {
+  flex: 0 0 auto;
+}
+
+.dc-fact-degree {
+  align-self: flex-start;
+  font-size: .32em;
+  line-height: 1;
+  font-weight: 600;
+  margin-left: .08em;
+  vertical-align: baseline;
+}
+
+.dc-fact-sign {
   font-size: .46em;
   font-weight: 600;
+  margin-right: .05em;
+}
+
+.dc-fact-scale {
+  font-size: .42em;
+  line-height: 1;
+  font-weight: 600;
+  margin-left: .14em;
 }
 
 .dc-fact-connector {
@@ -543,7 +564,7 @@
     container-type: normal;
   }
   .dc-fact + .dc-fact { border-left: 0; }
-  .dc-fact-num { font-size: clamp(56px, 17vw, 64px); }
+  .dc-fact-num { font-size: clamp(44px, 14.5vw, 58px); }
 }
 
 /* ═════════════════════════════════════════════════════════════════

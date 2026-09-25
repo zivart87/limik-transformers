@@ -15,6 +15,10 @@
   --mdc-yellow:       var(--gold);
   --mdc-yellow-hover: var(--gold-hover);
   --mdc-yellow-dim:   rgba(255, 219, 25, 0.12);
+  /* Акценти повторюють синю систему головної сторінки LIMIK. */
+  --mdc-accent:       var(--blue);
+  --mdc-accent-light: var(--blue-lt);
+  --mdc-accent-dim:   rgba(32, 108, 185, 0.12);
   --mdc-ink:          #102A3B;
   --mdc-muted:        #586975;
   --mdc-line:         #DCE2E5;
@@ -75,7 +79,7 @@
 
 .mdc-page em {
   font-style: normal;
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
 }
 
 /* ── Sections & Gutters ── */
@@ -95,8 +99,8 @@
 }
 
 .mdc-section-yellow {
-  background: var(--mdc-yellow);
-  color: var(--mdc-navy);
+  background: var(--mdc-accent);
+  color: var(--mdc-white);
 }
 
 @media (min-width: 1700px) {
@@ -139,12 +143,16 @@
   display: inline-block;
   width: 6px;
   height: 6px;
-  background: var(--mdc-yellow);
+  background: var(--mdc-accent);
   flex-shrink: 0;
 }
 
 .mdc-eyebrow.light {
   color: #B5C5D0;
+}
+
+.mdc-eyebrow.light::before {
+  background: var(--mdc-accent-light);
 }
 
 .mdc-eyebrow.navy::before {
@@ -212,12 +220,12 @@
 }
 
 .mdc-btn-navy {
-  background: var(--mdc-navy);
+  background: var(--mdc-accent);
   color: var(--mdc-white);
 }
 
 .mdc-btn-navy:hover {
-  background: var(--mdc-navy-mid);
+  background: var(--navy-mid);
 }
 
 .mdc-btn-outline {
@@ -227,8 +235,8 @@
 }
 
 .mdc-btn-outline:hover {
-  border-color: var(--mdc-yellow);
-  color: var(--mdc-yellow);
+  border-color: var(--mdc-accent-light);
+  color: var(--mdc-accent-light);
 }
 
 /* ═════════════════════════════════════════════════════════════════
@@ -314,7 +322,7 @@
 }
 
 .mdc-hero-bottom a span {
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
 }
 
 @media (max-width: 768px) {
@@ -368,7 +376,7 @@
 }
 
 .mdc-spec-value span {
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
 }
 
 .mdc-spec-label {
@@ -473,7 +481,7 @@
   font-weight: 700;
   line-height: 1.3;
   color: var(--mdc-navy);
-  border-left: 3px solid var(--mdc-yellow);
+  border-left: 3px solid var(--mdc-accent);
   padding-left: 20px;
 }
 
@@ -528,12 +536,12 @@
 }
 
 .mdc-tab-btn.is-active {
-  border-color: var(--mdc-navy);
-  color: var(--mdc-navy);
+  border-color: var(--mdc-accent);
+  color: var(--mdc-accent);
 }
 
 .mdc-tab-btn.is-active span {
-  color: var(--mdc-navy);
+  color: var(--mdc-accent);
   font-weight: 700;
 }
 
@@ -624,7 +632,7 @@
   padding-bottom: 6px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--mdc-navy);
+  color: var(--mdc-accent);
   margin-top: auto;
 }
 
@@ -633,7 +641,7 @@
 }
 
 .mdc-text-link:hover {
-  border-color: var(--mdc-navy);
+  border-color: var(--mdc-accent);
 }
 
 @media (max-width: 991px) {
@@ -814,8 +822,9 @@
 }
 
 .mdc-scale-btn:hover {
-  background: var(--mdc-yellow);
-  border-color: var(--mdc-yellow);
+  background: var(--mdc-accent);
+  border-color: var(--mdc-accent);
+  color: var(--mdc-white);
 }
 
 @media (max-width: 1100px) {
@@ -839,8 +848,8 @@
 }
 
 .mdc-timeline-callout {
-  border: 1px solid rgba(255, 219, 25, 0.4);
-  background: rgba(255, 219, 25, 0.05);
+  border: 1px solid rgba(74, 143, 212, 0.4);
+  background: rgba(74, 143, 212, 0.08);
   padding: 24px 32px;
   margin-bottom: 48px;
   display: flex;
@@ -851,7 +860,7 @@
 
 .mdc-timeline-callout-text h4 {
   font-size: 20px;
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
   margin-bottom: 6px;
 }
 
@@ -878,7 +887,7 @@
   font-family: var(--mdc-font-head);
   font-size: 28px;
   font-weight: 700;
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
   margin-bottom: 12px;
 }
 
@@ -932,7 +941,7 @@
 }
 
 .mdc-mfg-status {
-  border-left: 3px solid var(--mdc-yellow);
+  border-left: 3px solid var(--mdc-accent);
   padding-left: 20px;
   margin: 28px 0;
 }
@@ -1061,7 +1070,7 @@
 .mdc-warranty-cell strong {
   font-family: var(--mdc-font-head);
   font-size: 32px;
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
   display: block;
   margin-bottom: 12px;
 }
@@ -1196,7 +1205,7 @@
 }
 
 .mdc-faq-item.is-open .mdc-faq-icon {
-  background: var(--mdc-navy);
+  background: var(--mdc-accent);
   color: var(--mdc-white);
   transform: rotate(45deg);
 }
@@ -1293,7 +1302,7 @@
 .mdc-field-group input:focus,
 .mdc-field-group select:focus,
 .mdc-field-group textarea:focus {
-  border-color: var(--mdc-yellow);
+  border-color: var(--mdc-accent-light);
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -1308,7 +1317,7 @@
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: var(--mdc-yellow);
+  accent-color: var(--mdc-accent-light);
 }
 
 .mdc-checkbox-group span {
@@ -1334,7 +1343,7 @@
 }
 
 .mdc-form-note a {
-  color: var(--mdc-yellow);
+  color: var(--mdc-accent-light);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

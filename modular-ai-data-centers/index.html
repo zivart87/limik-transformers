@@ -628,85 +628,77 @@
     <!-- ═════════════════════════════════════════════════════════════════
          BLOCK 9: TECHNICAL FAQ
     ═════════════════════════════════════════════════════════════════ -->
-    <section class="mdc-section mdc-faq" id="faq">
-      <div class="mdc-eyebrow">COMMON QUESTIONS</div>
-      <h2 class="mdc-h2">Technical FAQ: Modular AI Data Centers</h2>
-
-      <div class="mdc-faq-list">
-        <!-- Q1 -->
-        <div class="mdc-faq-item is-open">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>What is the typical lead time for a LIMIK Core modular data center?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            The LIMIK Core modular data center module ships in 12 weeks from design approval. Its medium-voltage power transformer is a separately manufactured, long-lead component, but because LIMIK produces it at our own US facility instead of importing it, transformer production runs in parallel with the module build from day one, and skips the 75-to-150-week domestic queues and 2-to-4-year overseas queues that delay competing projects. You get one coordinated schedule from one manufacturer.
+    <section class="pt-faq" id="faq">
+      <div class="container">
+        <div class="pt-faq-grid">
+          <div class="pt-faq-head">
+            <div class="eyebrow">FAQ</div>
+            <h2>Technical FAQ: Modular AI Data Centers</h2>
+            <p>Answering the questions we hear most — from technical specification and testing to compliance, delivery, and procurement. Everything you need before you submit an RFQ.</p>
+            <a href="/contact/" class="pt-faq-link">
+              <span class="pt-faq-link-icon">
+                <svg width="22" height="16" viewBox="0 -2 22 20" fill="none"><path d="M3 8H19M19 8L12 1M19 8L12 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Contact Us
+            </a>
           </div>
-        </div>
 
-        <!-- Q2 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>What site preparation is required before delivery?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            You need a level concrete pad, a medium-voltage power source, and network access. Because our modules arrive pre-tested and pre-commissioned, they connect on-site through the QuickConnect system with minimal field labor.
-          </div>
-        </div>
+          <div class="pt-faq-list">
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>What is the typical lead time for a LIMIK Core modular data center?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>The LIMIK Core modular data center module ships in 12 weeks from design approval. Its medium-voltage power transformer is a separately manufactured, long-lead component, but because LIMIK produces it at our own US facility instead of importing it, transformer production runs in parallel with the module build from day one, and skips the 75-to-150-week domestic queues and 2-to-4-year overseas queues that delay competing projects. You get one coordinated schedule from one manufacturer.</p></div>
+            </div>
 
-        <!-- Q3 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>Can LIMIK Core run on behind-the-meter power instead of a utility connection?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            Yes. LIMIK Core modules are designed to run on grid power, on-site generation, or a hybrid of both. With US grid interconnection queues now measured in years, many AI operators are energizing behind the meter, and the generator step-up transformer that connects on-site generation to your data center is exactly what LIMIK manufactures, up to 600 MVA.
-          </div>
-        </div>
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>What site preparation is required before delivery?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>You need a level concrete pad, a medium-voltage power source, and network access. Because our modules arrive pre-tested and pre-commissioned, they connect on-site through the QuickConnect system with minimal field labor.</p></div>
+            </div>
 
-        <!-- Q4 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>Can these modules handle extreme climates?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            Yes. LIMIK containerized data centers operate from -30°F to +122°F (-34°C to +50°C), with weather-rated enclosure protection and integrated dust, sand, and humidity filtration. Enclosure ratings are specified per site based on your local environment and permitting requirements.
-          </div>
-        </div>
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>Can LIMIK Core run on behind-the-meter power instead of a utility connection?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>Yes. LIMIK Core modules are designed to run on grid power, on-site generation, or a hybrid of both. With US grid interconnection queues now measured in years, many AI operators are energizing behind the meter, and the generator step-up transformer that connects on-site generation to your data center is exactly what LIMIK manufactures, up to 600 MVA.</p></div>
+            </div>
 
-        <!-- Q5 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>Which GPUs and server platforms are compatible?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            The system is chip-agnostic. Direct-to-chip liquid cooling supports every major AI accelerator, including NVIDIA Blackwell (B200, GB200 NVL72, B300, GB300 NVL72) and Vera Rubin NVL144, AMD Instinct, Google TPU, and Cerebras. Rack density is engineered to your specified configuration, from mixed low- and high-density layouts to full direct-to-chip deployments.
-          </div>
-        </div>
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>Can these modules handle extreme climates?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>Yes. LIMIK containerized data centers operate from -30°F to +122°F (-34°C to +50°C), with weather-rated enclosure protection and integrated dust, sand, and humidity filtration. Enclosure ratings are specified per site based on your local environment and permitting requirements.</p></div>
+            </div>
 
-        <!-- Q6 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>Can the data center be relocated later?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            Yes. Every LIMIK Core module is built to standard high-cube enclosure dimensions for transport by US rail and permitted highway routes, and can be decommissioned, moved, and redeployed with minimal downtime.
-          </div>
-        </div>
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>Which GPUs and server platforms are compatible?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>The system is chip-agnostic. Direct-to-chip liquid cooling supports every major AI accelerator, including NVIDIA Blackwell (B200, GB200 NVL72, B300, GB300 NVL72) and Vera Rubin NVL144, AMD Instinct, Google TPU, and Cerebras. Rack density is engineered to your specified configuration, from mixed low- and high-density layouts to full direct-to-chip deployments.</p></div>
+            </div>
 
-        <!-- Q7 -->
-        <div class="mdc-faq-item">
-          <button type="button" class="mdc-faq-trigger" onclick="toggleFaq(this)">
-            <h4>Who manufactures the power transformer?</h4>
-            <div class="mdc-faq-icon">+</div>
-          </button>
-          <div class="mdc-faq-answer">
-            LIMIK does. We have built medium-voltage and high-voltage power transformers up to 600 MVA and 525 kV for utilities, defense, and data centers for 25 years. The LIMIK Core platform is engineered around that capability, which is why we are the only independent modular data center manufacturer that does not outsource its power.
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>Can the data center be relocated later?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>Yes. Every LIMIK Core module is built to standard high-cube enclosure dimensions for transport by US rail and permitted highway routes, and can be decommissioned, moved, and redeployed with minimal downtime.</p></div>
+            </div>
+
+            <div class="pt-faq-item">
+              <button class="pt-faq-q" type="button">
+                <span>Who manufactures the power transformer?</span>
+                <span class="pt-faq-toggle"></span>
+              </button>
+              <div class="pt-faq-a"><p>LIMIK does. We have built medium-voltage and high-voltage power transformers up to 600 MVA and 525 kV for utilities, defense, and data centers for 25 years. The LIMIK Core platform is engineered around that capability, which is why we are the only independent modular data center manufacturer that does not outsource its power.</p></div>
+            </div>
           </div>
         </div>
       </div>
@@ -961,19 +953,19 @@
       }
     }
 
-    // ── FAQ Accordion Toggle ──
-    function toggleFaq(btn) {
-      const item = btn.closest('.mdc-faq-item');
-      if (!item) return;
-      const isOpen = item.classList.contains('is-open');
-      
-      // Close all other items for a clean single-open view
-      document.querySelectorAll('.mdc-faq-item').forEach(el => {
-        if (el !== item) el.classList.remove('is-open');
+    // Same single-open FAQ behavior as the product pages.
+    (function () {
+      document.querySelectorAll('.pt-faq-q').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.pt-faq-item');
+          var wasOpen = item.classList.contains('is-open');
+          item.parentElement.querySelectorAll('.pt-faq-item.is-open').forEach(function (open) {
+            open.classList.remove('is-open');
+          });
+          if (!wasOpen) item.classList.add('is-open');
+        });
       });
-
-      item.classList.toggle('is-open', !isOpen);
-    }
+    })();
 
     // ── Form Validation & GHL Webhook Submission ──
     document.addEventListener('DOMContentLoaded', function () {

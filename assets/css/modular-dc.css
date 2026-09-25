@@ -36,7 +36,6 @@
 
 .mdc-page .nav,
 .mdc-page .footer-t3,
-.mdc-page .eyebrow,
 .mdc-page .mdc-text-link,
 .mdc-page button {
   font-family: var(--mdc-font-head);
@@ -128,12 +127,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mdc-font-head);
+  font-family: var(--mdc-font-body);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--mdc-navy);
   margin-bottom: 32px;
 }
 
@@ -147,7 +146,7 @@
 }
 
 .mdc-eyebrow.light {
-  color: var(--blue-lt);
+  color: var(--mdc-white);
 }
 
 .mdc-eyebrow.light::before {
@@ -1310,8 +1309,9 @@
   gap: 72px; align-items: start;
 }
 .pt-faq-head .eyebrow {
+  font-family: var(--mdc-font-body);
   font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+  text-transform: uppercase; color: var(--mdc-navy); margin-bottom: 20px;
 }
 .pt-faq-head h2 {
   font-size: clamp(28px, 4vw, 52px);

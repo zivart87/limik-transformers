@@ -91,9 +91,7 @@
 }
 
 @media (min-width: 1700px) {
-  .mdc-section,
-  .mdc-hero-inner,
-  .mdc-hero-bottom {
+  .mdc-section {
     padding-left: max(88px, calc((100vw - 1500px) / 2));
     padding-right: max(88px, calc((100vw - 1500px) / 2));
   }
@@ -323,13 +321,6 @@
 @keyframes mdc-scroll-cue {
   0%, 55%, 100% { transform: translateY(0); }
   77% { transform: translateY(4px); }
-}
-
-@media (min-width: 1700px) {
-  .mdc-hero-bottom {
-    left: max(88px, calc((100vw - 1500px) / 2));
-    right: max(88px, calc((100vw - 1500px) / 2));
-  }
 }
 
 @media (max-width: 991px) {

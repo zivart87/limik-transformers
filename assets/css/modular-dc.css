@@ -448,32 +448,28 @@
 .dc-facts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 80px;
   border-top: 1px solid rgba(9,25,59,.12);
   border-bottom: 1px solid rgba(9,25,59,.12);
 }
 
 .dc-fact {
-  padding: 48px 0;
+  padding: 48px 28px;
   position: relative;
   display: grid;
   grid-template-rows: 88px auto;
   align-content: start;
+  min-width: 0;
+  container-type: inline-size;
 }
 
-.dc-fact:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -40px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(9,25,59,.12);
+.dc-fact + .dc-fact {
+  border-left: 1px solid rgba(9,25,59,.12);
 }
 
 .dc-fact-num {
   font-family: var(--mdc-font-head);
-  font-size: clamp(64px, 5vw, 80px);
+  font-size: clamp(46px, 4.5vw, 64px);
+  font-size: clamp(46px, 18cqi, 64px);
   font-weight: 500;
   line-height: 1;
   color: var(--navy-dark);
@@ -485,6 +481,10 @@
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   margin: 0;
+}
+
+.dc-fact-num > * {
+  flex: 0 0 auto;
 }
 
 .dc-fact-unit {
@@ -516,17 +516,18 @@
   font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.4;
+  max-width: 32ch;
+  min-width: 0;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
   margin: 0;
 }
 
-@media (max-width: 1100px) and (min-width: 769px) {
-  .dc-facts-grid { column-gap: 40px; }
-  .dc-fact:not(:last-child)::after { right: -20px; }
+@media (max-width: 1100px) and (min-width: 1025px) {
   .dc-fact { grid-template-rows: 76px auto; }
-  .dc-fact-num { font-size: clamp(52px, 6vw, 68px); gap: 7px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .dc-facts {
     scroll-margin-top: 64px;
     padding: 60px 0 0;
@@ -539,9 +540,10 @@
     padding: 36px 0;
     border-top: 1px solid rgba(9,25,59,.12);
     grid-template-rows: 72px auto;
+    container-type: normal;
   }
-  .dc-fact:not(:last-child)::after { display: none; }
-  .dc-fact-num { font-size: 64px; }
+  .dc-fact + .dc-fact { border-left: 0; }
+  .dc-fact-num { font-size: clamp(56px, 17vw, 64px); }
 }
 
 /* ═════════════════════════════════════════════════════════════════

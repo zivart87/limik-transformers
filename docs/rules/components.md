@@ -11,7 +11,7 @@
 
 - Зразок: `.hero-bottom` у `docs/handoff/index.html` і `docs/handoff/styles.css` (смуга зі скріншота); у поточному кореневому `index.html` цього блока немає.
 - Реалізація: `.mdc-hero-bottom` у `modular-ai-data-centers/index.html` та `assets/css/modular-dc.css`. Збережено тонку верхню лінію, розташування написів по краях і стрілку прокрутки.
-- Адаптація контенту: `LIMIK CORE · MODULAR AI DATA CENTERS` ліворуч; `Power, cooling and compute. Built as one.` праворуч. Посилання веде до наявної смуги характеристик `#specs` після hero; відступ цілі враховує фіксоване меню.
+- Контент: `LIMIK GROUP · ENGINEERING SINCE 1994` ліворуч, як у зразку; `Explore key specifications` праворуч відповідає цільовій смузі характеристик `#specs` після hero. Відступ цілі враховує фіксоване меню; стрілка має короткий рух униз із паузою та не анімується за `prefers-reduced-motion`.
 - На телефоні написи стоять один під одним; стрілка перед текстом посилання, щоб її не перекривав чат-віджет. Звірено вигляд на звичайному десктопі, 900 px і 360 px; перехід до `#specs` працює.
 
 ## Cross-sell блок «Other Transformers We Build» (товарные страницы)

@@ -299,7 +299,17 @@
 }
 
 .mdc-hero-bottom a:hover { color: var(--white); }
-.mdc-hero-bottom a span { margin-left: 22px; font-size: 20px; }
+.mdc-hero-bottom a span {
+  display: inline-block;
+  margin-left: 22px;
+  font-size: 20px;
+  animation: mdc-scroll-cue 2.4s ease-in-out infinite;
+}
+
+@keyframes mdc-scroll-cue {
+  0%, 55%, 100% { transform: translateY(0); }
+  77% { transform: translateY(6px); }
+}
 
 @media (min-width: 1700px) {
   .mdc-hero-bottom {
@@ -363,7 +373,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mdc-hero-bg, .mdc-hero-line > span, .mdc-hero-lead, .mdc-hero-actions { animation: none; }
+  .mdc-hero-bg, .mdc-hero-line > span, .mdc-hero-lead, .mdc-hero-actions, .mdc-hero-bottom a span { animation: none; }
 }
 
 /* ═════════════════════════════════════════════════════════════════

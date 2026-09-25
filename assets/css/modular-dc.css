@@ -299,16 +299,18 @@
 }
 
 .mdc-hero-bottom a:hover { color: var(--white); }
-.mdc-hero-bottom a span {
+.mdc-hero-bottom a svg {
   display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
   margin-left: 22px;
-  font-size: 20px;
   animation: mdc-scroll-cue 2.4s ease-in-out infinite;
 }
 
 @keyframes mdc-scroll-cue {
   0%, 55%, 100% { transform: translateY(0); }
-  77% { transform: translateY(6px); }
+  77% { transform: translateY(4px); }
 }
 
 @media (min-width: 1700px) {
@@ -359,7 +361,7 @@
     margin-top: 8px;
     font-size: 12px;
   }
-  .mdc-hero-bottom a span { order: -1; margin-left: 0; }
+  .mdc-hero-bottom a svg { order: -1; margin-left: 0; }
   .mdc-hero h1 { font-size: clamp(36px, 9vw, 46px); margin-bottom: 16px; }
   .mdc-hero-lead { font-size: 15px; }
   .mdc-hero-actions { width: 100%; }
@@ -373,7 +375,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mdc-hero-bg, .mdc-hero-line > span, .mdc-hero-lead, .mdc-hero-actions, .mdc-hero-bottom a span { animation: none; }
+  .mdc-hero-bg, .mdc-hero-line > span, .mdc-hero-lead, .mdc-hero-actions, .mdc-hero-bottom a svg { animation: none; }
 }
 
 /* ═════════════════════════════════════════════════════════════════

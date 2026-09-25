@@ -456,6 +456,9 @@
 .dc-fact {
   padding: 48px 0;
   position: relative;
+  display: grid;
+  grid-template-rows: 88px auto;
+  align-content: start;
 }
 
 .dc-fact:not(:last-child)::after {
@@ -470,31 +473,42 @@
 
 .dc-fact-num {
   font-family: var(--mdc-font-head);
-  font-size: 96px;
+  font-size: clamp(64px, 5vw, 80px);
   font-weight: 500;
   line-height: 1;
   color: var(--navy-dark);
   letter-spacing: -.02em;
-  margin: 0 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
 }
 
 .dc-fact-unit {
-  font-size: 40px;
+  font-size: .42em;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
 }
 
-.dc-fact-prefix {
-  font-size: 24px;
+.dc-fact-measure {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.dc-fact-mark {
+  font-size: .46em;
+  font-weight: 600;
+}
+
+.dc-fact-connector {
+  font-size: .4em;
+  font-weight: 600;
   letter-spacing: 0;
-  white-space: nowrap;
-}
-
-.dc-fact-num--range {
-  font-size: clamp(46px, 4.5vw, 70px);
-  white-space: nowrap;
-}
-
-.dc-fact-num--range .dc-fact-unit {
-  font-size: .48em;
+  text-transform: lowercase;
 }
 
 .dc-fact-label {
@@ -508,11 +522,8 @@
 @media (max-width: 1100px) and (min-width: 769px) {
   .dc-facts-grid { column-gap: 40px; }
   .dc-fact:not(:last-child)::after { right: -20px; }
-  .dc-fact-num { font-size: clamp(54px, 6vw, 72px); }
-  .dc-fact-unit { font-size: 30px; }
-  .dc-fact-prefix { font-size: 20px; }
-  .dc-fact-num--range { font-size: clamp(40px, 4.5vw, 50px); }
-  .dc-fact-num--range .dc-fact-unit { font-size: .48em; }
+  .dc-fact { grid-template-rows: 76px auto; }
+  .dc-fact-num { font-size: clamp(52px, 6vw, 68px); gap: 7px; }
 }
 
 @media (max-width: 768px) {
@@ -527,13 +538,10 @@
   .dc-fact {
     padding: 36px 0;
     border-top: 1px solid rgba(9,25,59,.12);
+    grid-template-rows: 72px auto;
   }
   .dc-fact:not(:last-child)::after { display: none; }
   .dc-fact-num { font-size: 64px; }
-  .dc-fact-unit { font-size: 28px; }
-  .dc-fact-prefix { font-size: 20px; }
-  .dc-fact-num--range { font-size: clamp(43px, 11vw, 56px); }
-  .dc-fact-num--range .dc-fact-unit { font-size: .48em; }
 }
 
 /* ═════════════════════════════════════════════════════════════════

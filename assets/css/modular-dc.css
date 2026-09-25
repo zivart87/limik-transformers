@@ -58,6 +58,11 @@
   margin: 0;
 }
 
+.mdc-page h2 {
+  font-weight: 500;
+  line-height: 1.05;
+}
+
 .mdc-page p {
   margin: 0;
 }
@@ -167,6 +172,36 @@
 .mdc-h4 {
   font-size: 16px;
   line-height: 1.3;
+}
+
+/* Editorial 2:1 introduction used across Modular's content sections. */
+.mdc-editorial-header {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: flex-end;
+}
+
+.mdc-editorial-header > h2 {
+  max-width: 18ch;
+}
+
+.mdc-section > .mdc-h2 { max-width: 18ch; }
+
+.mdc-editorial-header > p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--mdc-muted);
+  max-width: 36ch;
+  justify-self: end;
+}
+
+.mdc-warranty .mdc-editorial-header > p { color: #A3B8C7; }
+.mdc-config .mdc-editorial-header > p { color: var(--text-1); }
+
+@media (max-width: 991px) {
+  .mdc-editorial-header { grid-template-columns: 1fr; gap: 24px; }
+  .mdc-editorial-header > p { justify-self: start; }
 }
 
 /* ═════════════════════════════════════════════════════════════════
@@ -509,25 +544,7 @@
 }
 
 .mdc-what-header {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: 48px;
   margin-bottom: 50px;
-  align-items: flex-end;
-}
-
-.mdc-what-header .mdc-h2 {
-  max-width: 18ch;
-  font-weight: 500;
-  line-height: 1.05;
-}
-
-.mdc-what-lead {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--mdc-muted);
-  max-width: 36ch;
-  justify-self: end;
 }
 
 .mdc-what-visual {
@@ -583,16 +600,10 @@
 }
 
 @media (max-width: 991px) {
-  .mdc-what-header,
   .mdc-what-footer {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .mdc-what-lead { justify-self: start; }
-}
-
-@media (max-width: 768px) {
-  .mdc-what-header .mdc-h2 { font-size: 36px; }
 }
 
 /* ═════════════════════════════════════════════════════════════════
@@ -1246,7 +1257,7 @@
 }
 .pt-faq-head h2 {
   font-size: clamp(28px, 4vw, 52px);
-  font-weight: 700; line-height: 1.0;
+  font-weight: 500; line-height: 1.05;
   letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
 }
 .pt-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
@@ -1334,7 +1345,6 @@
 
 .mdc-config-header h2 {
   font-size: clamp(28px, 4vw, 52px);
-  margin-bottom: 16px;
 }
 
 .mdc-config-header p {
@@ -1472,4 +1482,5 @@
     width: 100%;
     justify-content: center;
   }
+  .mdc-page h2 { font-size: 36px; }
 }

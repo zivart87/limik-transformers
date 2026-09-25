@@ -824,7 +824,7 @@
   font-size: clamp(10px, 0.75vw, 12px);
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--mdc-muted);
+  color: var(--mdc-ink);
 }
 
 .mdc-feature-content h3 {
@@ -835,7 +835,7 @@
 
 .mdc-feature-content p {
   font-size: 16px;
-  color: var(--mdc-muted);
+  color: var(--mdc-ink);
   line-height: 1.75;
 }
 

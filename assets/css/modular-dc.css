@@ -204,7 +204,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 0 60px 80px;
+  padding: 0 60px 112px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -276,12 +276,42 @@
 }
 
 .mdc-hero-bottom {
-  display: none;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.29);
+  padding: 24px 0 26px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+
+.mdc-hero-bottom a {
+  color: #e0e6e9;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.mdc-hero-bottom a:hover { color: var(--white); }
+.mdc-hero-bottom a span { margin-left: 22px; font-size: 20px; }
+
+@media (min-width: 1700px) {
+  .mdc-hero-bottom {
+    left: max(88px, calc((100vw - 1500px) / 2));
+    right: max(88px, calc((100vw - 1500px) / 2));
+  }
 }
 
 @media (max-width: 991px) {
-  .mdc-hero-inner { padding: 0 40px 72px; gap: 40px; }
+  .mdc-hero-inner { padding: 0 40px 112px; gap: 40px; }
   .mdc-hero h1 { font-size: clamp(36px, 5vw, 68px); }
+  .mdc-hero-bottom { left: 40px; right: 40px; }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
@@ -302,8 +332,24 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 28px;
-    padding: 0 24px 72px;
+    padding: 0 24px 134px;
   }
+  .mdc-hero-bottom {
+    left: 24px;
+    right: 24px;
+    display: block;
+    padding: 18px 0 20px;
+    font-size: 10px;
+  }
+  .mdc-hero-bottom a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .mdc-hero-bottom a span { order: -1; margin-left: 0; }
   .mdc-hero h1 { font-size: clamp(36px, 9vw, 46px); margin-bottom: 16px; }
   .mdc-hero-lead { font-size: 15px; }
   .mdc-hero-actions { width: 100%; }
@@ -312,7 +358,7 @@
 }
 
 @media (max-width: 390px) {
-  .mdc-hero-inner { padding-bottom: 44px; }
+  .mdc-hero-inner { padding-bottom: 118px; }
   .mdc-hero h1 { font-size: 34px; }
 }
 
@@ -324,11 +370,16 @@
    1.5. SPEC STRIP (METRICS)
 ═════════════════════════════════════════════════════════════════ */
 .mdc-spec-strip {
+  scroll-margin-top: 128px;
   background: var(--mdc-navy-dark);
   color: var(--mdc-white);
   padding: 0 var(--mdc-gutter);
   border-top: 1px solid var(--border-d);
   border-bottom: 1px solid var(--border-d);
+}
+
+@media (max-width: 768px) {
+  .mdc-spec-strip { scroll-margin-top: 64px; }
 }
 
 .mdc-spec-grid {

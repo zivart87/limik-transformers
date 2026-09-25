@@ -1,6 +1,7 @@
 /* ═════════════════════════════════════════════════════════════════
    LIMIK MODULAR AI DATA CENTERS (CORE)
-   Uses the site-wide LIMIK palette, REM typography and layout rhythm.
+   Uses the site-wide LIMIK palette and layout rhythm; REM for display/UI,
+   Inter for descriptive copy on this page only.
 ═════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -19,7 +20,7 @@
   --mdc-white:        var(--white);
   --mdc-gutter:       max(40px, calc((100vw - 1360px) / 2 + 40px));
   --mdc-font-head:    var(--font);
-  --mdc-font-body:    var(--font);
+  --mdc-font-body:    'Inter', sans-serif;
 }
 
 /* ── Reset & Base for page scope ── */
@@ -31,6 +32,14 @@
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+.mdc-page .nav,
+.mdc-page .footer-t3,
+.mdc-page .eyebrow,
+.mdc-page .mdc-text-link,
+.mdc-page button {
+  font-family: var(--mdc-font-head);
 }
 
 .mdc-page * {
@@ -114,7 +123,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--mdc-font-body);
+  font-family: var(--mdc-font-head);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.07em;
@@ -299,6 +308,7 @@
   font-size: 12px;
   letter-spacing: 0.06em;
   color: var(--white);
+  font-family: var(--mdc-font-head);
 }
 
 .mdc-hero-bottom a {
@@ -424,6 +434,7 @@
 }
 
 .dc-fact-num {
+  font-family: var(--mdc-font-head);
   font-size: 96px;
   font-weight: 500;
   line-height: 1;
@@ -499,16 +510,24 @@
 
 .mdc-what-header {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 48px;
   margin-bottom: 50px;
   align-items: flex-end;
 }
 
+.mdc-what-header .mdc-h2 {
+  max-width: 18ch;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
 .mdc-what-lead {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--mdc-muted);
+  max-width: 36ch;
+  justify-self: end;
 }
 
 .mdc-what-visual {
@@ -528,6 +547,7 @@
 }
 
 .mdc-what-caption {
+  font-family: var(--mdc-font-head);
   position: absolute;
   bottom: 20px;
   left: 24px;
@@ -568,6 +588,11 @@
     grid-template-columns: 1fr;
     gap: 24px;
   }
+  .mdc-what-lead { justify-self: start; }
+}
+
+@media (max-width: 768px) {
+  .mdc-what-header .mdc-h2 { font-size: 36px; }
 }
 
 /* ═════════════════════════════════════════════════════════════════
@@ -1227,6 +1252,7 @@
 .pt-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
 
 .pt-faq-link {
+  font-family: var(--mdc-font-head);
   display: inline-flex; align-items: center; gap: 16px;
   font-size: 13px; font-weight: 800; letter-spacing: 0.07em;
   text-transform: uppercase; color: var(--navy-dark);

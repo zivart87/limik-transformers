@@ -214,7 +214,7 @@
 .mdc-hero-copy {
   flex: 1;
   min-width: 0;
-  max-width: 860px;
+  max-width: 1080px;
 }
 
 .mdc-hero .mdc-eyebrow {
@@ -284,8 +284,12 @@
   .mdc-hero h1 { font-size: clamp(36px, 5vw, 68px); }
 }
 
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 991px) {
   .mdc-hero h1 { font-size: 40px; }
+}
+
+@media (min-width: 992px) {
+  .mdc-hero h1 { font-size: clamp(40px, calc(7.15vw - 39.3px), 72px); }
 }
 
 @media (max-width: 768px) {

@@ -179,7 +179,7 @@
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 48px;
-  align-items: flex-end;
+  align-items: start;
 }
 
 .mdc-editorial-header > h2 {

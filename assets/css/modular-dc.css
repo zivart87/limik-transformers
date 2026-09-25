@@ -128,12 +128,12 @@
   align-items: center;
   gap: 8px;
   font-family: var(--mdc-font-body);
-  font-size: 12px;
+  font-size: clamp(10px, 0.75vw, 12px);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--mdc-navy);
-  margin-bottom: 32px;
+  margin-bottom: clamp(20px, 2vw, 32px);
 }
 
 .mdc-eyebrow::before {
@@ -188,7 +188,7 @@
 .mdc-section > .mdc-h2 { max-width: 18ch; }
 
 .mdc-editorial-header > p {
-  font-size: 16px;
+  font-size: clamp(14px, 1.05vw, 16px);
   line-height: 1.5;
   color: var(--mdc-muted);
   max-width: 36ch;
@@ -267,7 +267,7 @@
 }
 
 .mdc-hero .mdc-eyebrow {
-  margin-bottom: 24px;
+  margin-bottom: clamp(16px, 1.5vw, 24px);
 }
 
 .mdc-hero h1 {
@@ -277,7 +277,7 @@
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--white);
-  margin: 0 0 24px;
+  margin: 0 0 clamp(16px, 1.5vw, 24px);
 }
 
 .mdc-hero-line {
@@ -309,7 +309,7 @@
 }
 
 .mdc-hero-lead {
-  font-size: 17px;
+  font-size: clamp(14px, 1.1vw, 17px);
   font-weight: 400;
   line-height: 1.65;
   color: rgba(255,255,255,0.72);
@@ -420,7 +420,7 @@
   }
   .mdc-hero-bottom a svg { order: -1; }
   .mdc-hero h1 { font-size: clamp(36px, 9vw, 46px); margin-bottom: 16px; }
-  .mdc-hero-lead { font-size: 15px; }
+  .mdc-hero-lead { font-size: clamp(14px, 4vw, 15px); }
   .mdc-hero-actions { width: 100%; }
   .mdc-hero-actions .btn { width: 100%; justify-content: center; }
   .mdc-hero-actions .btn-lg { padding-left: 24px; padding-right: 24px; }
@@ -1310,15 +1310,15 @@
 }
 .pt-faq-head .eyebrow {
   font-family: var(--mdc-font-body);
-  font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--mdc-navy); margin-bottom: 20px;
+  font-size: clamp(10px, 0.75vw, 12px); font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mdc-navy); margin-bottom: clamp(16px, 1.25vw, 20px);
 }
 .pt-faq-head h2 {
   font-size: clamp(28px, 4vw, 52px);
   font-weight: 500; line-height: 1.05;
   letter-spacing: -0.02em; color: var(--navy-dark); margin-bottom: 24px;
 }
-.pt-faq-head p { font-size: 16px; line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
+.pt-faq-head p { font-size: clamp(14px, 1.05vw, 16px); line-height: 1.75; font-weight: 400; color: #3A5570; margin-bottom: 40px; }
 
 .pt-faq-link {
   font-family: var(--mdc-font-head);

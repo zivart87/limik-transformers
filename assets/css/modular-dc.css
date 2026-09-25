@@ -293,19 +293,31 @@
 }
 
 .mdc-hero-bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: #e0e6e9;
   font-size: 13px;
   letter-spacing: 0;
+  line-height: 1.2;
+  transition: color 0.2s ease;
 }
 
-.mdc-hero-bottom a:hover { color: var(--white); }
+.mdc-hero-bottom a:hover,
+.mdc-hero-bottom a:focus-visible { color: var(--white); }
 .mdc-hero-bottom a svg {
-  display: inline-block;
+  display: block;
   width: 16px;
   height: 16px;
   flex: 0 0 16px;
-  margin-left: 22px;
   animation: mdc-scroll-cue 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.mdc-hero-bottom a:hover svg,
+.mdc-hero-bottom a:focus-visible svg {
+  animation: none;
+  transform: translateY(4px);
 }
 
 @keyframes mdc-scroll-cue {
@@ -357,11 +369,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;
     margin-top: 8px;
     font-size: 12px;
   }
-  .mdc-hero-bottom a svg { order: -1; margin-left: 0; }
+  .mdc-hero-bottom a svg { order: -1; }
   .mdc-hero h1 { font-size: clamp(36px, 9vw, 46px); margin-bottom: 16px; }
   .mdc-hero-lead { font-size: 15px; }
   .mdc-hero-actions { width: 100%; }

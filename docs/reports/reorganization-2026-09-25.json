@@ -1,0 +1,172 @@
+[
+  {
+    "from": "limik-data-centers-page.md",
+    "to": "docs/page-drafts/limik-data-centers-page.md",
+    "sha256": "09941a9d6d7578da45419d4521622b4daa1e17f727af4ddf8e4f02ce17460759"
+  },
+  {
+    "from": "limik-data-centers-seo-ppc-plan.md",
+    "to": "docs/plans/limik-data-centers-seo-ppc-plan.md",
+    "sha256": "9b89f47e461ecc425cfd679e02ba4635d10763a5d8e3b6e34526ad08c7c67ac0"
+  },
+  {
+    "from": "limik-google-ads-launch-plan.md",
+    "to": "docs/plans/limik-google-ads-launch-plan.md",
+    "sha256": "25b818f964f24a5f71c17a04382fec1bc4080ec0e6b5095d42a6dcd5840ac249"
+  },
+  {
+    "from": "limik-google-ads-negative-keywords.md",
+    "to": "docs/plans/limik-google-ads-negative-keywords.md",
+    "sha256": "5b78d250f1bfc62789656136906379ca5df16f77093264f45a6ce57fd12fff8f"
+  },
+  {
+    "from": "limik-landing-FINAL-v2.md",
+    "to": "docs/page-drafts/limik-landing-FINAL-v2.md",
+    "sha256": "8403deeb55e7cac22af0fdd094b0b560fd1a665d6de092aeb63cef703a1ae654"
+  },
+  {
+    "from": "limik-openai-pixel-installation-brief.md",
+    "to": "docs/reference/limik-openai-pixel-installation-brief.md",
+    "sha256": "55464741d5046b7e77a8dc395b230d931648eedf6531a598536d04ac04cf0c59"
+  },
+  {
+    "from": "dc-who-block.png",
+    "to": "_archive/screenshots/dc-who-block.png",
+    "sha256": "53653f69cc85c337e9bceacd471e51f6b52599236b239676db0156f4fd67bd5a"
+  },
+  {
+    "from": "Gemini_Generated_Image_3x8t5o3x8t5o3x8t.png",
+    "to": "_archive/source-assets/Gemini_Generated_Image_3x8t5o3x8t5o3x8t.png",
+    "sha256": "dea2aa2a40e5f728514817361e81e435a21fe84974cebdb77818f7db7508d814"
+  },
+  {
+    "from": "Gemini_Generated_Image_p8f7pkp8f7pkp8f7.jfif",
+    "to": "_archive/source-assets/Gemini_Generated_Image_p8f7pkp8f7pkp8f7.jfif",
+    "sha256": "f327c28ab71394980994599d592f2d09b6e3a4440ea47a4f934bc125151c79fc"
+  },
+  {
+    "from": "Gemini_Generated_Image_th8ya3th8ya3th8y.png",
+    "to": "_archive/source-assets/Gemini_Generated_Image_th8ya3th8ya3th8y.png",
+    "sha256": "e35ad25ccedaebcce2c2ed11e4e81050d2392f7619fd8191c942fab269954c48"
+  },
+  {
+    "from": "LIMIK_Design_Handoff_v2.zip",
+    "to": "_archive/source-assets/LIMIK_Design_Handoff_v2.zip",
+    "sha256": "7e9bbee888bb5abeba808c64d074bc26e078ae5980e76eecdcc96b10d3f76372"
+  },
+  {
+    "from": "magnific__-__21370.png",
+    "to": "_archive/source-assets/magnific__-__21370.png",
+    "sha256": "16ade09524dbcf9050ef5d40020badbbcf747740f9048a6a498600480a6c2f5f"
+  },
+  {
+    "from": "magnific__-__3998 1.png",
+    "to": "_archive/source-assets/magnific__-__3998 1.png",
+    "sha256": "e8bce46a34b30ed302727c43f96375348b11bf0d34e23d506644dfaf243292a7"
+  },
+  {
+    "from": "magnific__delete__44937 1.png",
+    "to": "_archive/source-assets/magnific__delete__44937 1.png",
+    "sha256": "5f289574bbc48aedd02b8f3d9a76338b57394b1ec955f40905d04edad0712180"
+  },
+  {
+    "from": "magnific__delete__44937.png",
+    "to": "_archive/source-assets/magnific__delete__44937.png",
+    "sha256": "078d90d5ef7ca345a875d907a02703f33915f27b8dfc0c4194a75bb843a94b8c"
+  },
+  {
+    "from": "marquee-mask-check.png",
+    "to": "_archive/screenshots/marquee-mask-check.png",
+    "sha256": "7f4ca25348edb4506bf6bdf40ff4a606b9481fd45a959ecf91eaeeec291723da"
+  },
+  {
+    "from": "marquee-preview-1.png",
+    "to": "_archive/screenshots/marquee-preview-1.png",
+    "sha256": "7a44dc7fb9112aed389889be4d3bb0da57d15bcb627310c209c107a8d9e8d935"
+  },
+  {
+    "from": "marquee-preview-2.png",
+    "to": "_archive/screenshots/marquee-preview-2.png",
+    "sha256": "d8ad1b241600627f624f2792f632fc9d29d2bc542dd57cc7fd65a7dd42648516"
+  },
+  {
+    "from": "marquee-spacing-check.png",
+    "to": "_archive/screenshots/marquee-spacing-check.png",
+    "sha256": "24bdcdb8ed1d4e98fca4f3009935329b266de225012e51d514ef1e4f9f02f9ad"
+  },
+  {
+    "from": "marquee-video-1.png",
+    "to": "_archive/screenshots/marquee-video-1.png",
+    "sha256": "886b6bb589bd33b96e2cf2c04daa4fb6044bd7ce0cad14edee8196cd3d9f8fd2"
+  },
+  {
+    "from": "marquee-video-mask-crop2.png",
+    "to": "_archive/screenshots/marquee-video-mask-crop2.png",
+    "sha256": "8a0317d080d93273b90efd29615353ded6aef3de210eff40bdc2a335b9d49f01"
+  },
+  {
+    "from": "marquee-video-position.png",
+    "to": "_archive/screenshots/marquee-video-position.png",
+    "sha256": "bb1832c2f771dcc9560a144606e7d1e014534e4ad7f8423e4ba861f1e0b22573"
+  },
+  {
+    "from": "контент по нишам/Defense  DOD.md",
+    "to": "docs/page-drafts/industries/Defense  DOD.md",
+    "sha256": "e2237a0f9bf7fef7fa3af04f51f3829c461cad91d1fb56058b61ea0c71a45ae7"
+  },
+  {
+    "from": "контент по нишам/EPC Contractors.md",
+    "to": "docs/page-drafts/industries/EPC Contractors.md",
+    "sha256": "c8b5b9c80f7c01493b9ce5ab71189dd5a5846ac1cee8f99dd4672bebadf86623"
+  },
+  {
+    "from": "контент по нишам/Renewables.md",
+    "to": "docs/page-drafts/industries/Renewables.md",
+    "sha256": "036e5e1e51b1cbeb020c96549c38015451778ca91ede265ce57e9cf3a0bafdb7"
+  },
+  {
+    "from": "контент по нишам/Utilities & Grid.md",
+    "to": "docs/page-drafts/industries/Utilities & Grid.md",
+    "sha256": "acd0cc1ab6a3912802ab3ed48012055c757807868303e0300cf09d1942adb7e4"
+  },
+  {
+    "from": "фото для ленты/magnific_animate-this-image-into-a_SOSB4CvUb8.mp4",
+    "to": "_archive/source-assets/marquee/magnific_animate-this-image-into-a_SOSB4CvUb8.mp4",
+    "sha256": "76e70cff995b4a6119b40592439ff49ebd61b06048b75524481057b4fe2cbd04"
+  },
+  {
+    "from": "фото для ленты/Mask group-1.png",
+    "to": "_archive/source-assets/marquee/Mask group-1.png",
+    "sha256": "57e4777eb6cc6165cc522cfc1ee3aa52dd2bfbfeb808b744362dd02a0e49de35"
+  },
+  {
+    "from": "фото для ленты/Mask group-2.png",
+    "to": "_archive/source-assets/marquee/Mask group-2.png",
+    "sha256": "db3c041eecb92769700e24a1c8b5ef471350a585723f97af5bdbaa6e5865006d"
+  },
+  {
+    "from": "фото для ленты/Mask group-3.png",
+    "to": "_archive/source-assets/marquee/Mask group-3.png",
+    "sha256": "045f9ee4dd4645e175ee2474201654c16c13afd0b58d7f319d70ace8799a5535"
+  },
+  {
+    "from": "фото для ленты/Mask group-4.png",
+    "to": "_archive/source-assets/marquee/Mask group-4.png",
+    "sha256": "4dc39372bd72b3936eeff03758e45b05577c1570e640508983871e261252dbff"
+  },
+  {
+    "from": "фото для ленты/Mask group-5.png",
+    "to": "_archive/source-assets/marquee/Mask group-5.png",
+    "sha256": "0a9193ae94989632a669891d0eb7dcdb0d1ab36a470ff7261af175200eb99635"
+  },
+  {
+    "from": "фото для ленты/Mask group-6.png",
+    "to": "_archive/source-assets/marquee/Mask group-6.png",
+    "sha256": "42d516d2c3ad78149e6c6591758d2d852f60e4f9881bb4c9d4edf88b84425949"
+  },
+  {
+    "from": "фото для ленты/Mask group-7.png",
+    "to": "_archive/source-assets/marquee/Mask group-7.png",
+    "sha256": "3eea69cfbc54d399c0e2348c903768803d2f6dccc4c1e1e78f1e05ee08214dd9"
+  }
+]

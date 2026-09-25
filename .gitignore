@@ -1,21 +1,14 @@
-# Временные файлы (скриншоты в корне)
-*.png
-*.jpg
-*.jpeg
-
-# Исключение: production assets
-!assets/images/*.png
-!assets/images/*.jpg
-!assets/images/*.jpeg
-!hero.mp4
-!*.jpg
-
-# Playwright логи
-.playwright-mcp/
-
-# Claude
-.claude/
-
-# VS Code
-.vscode/
-.vercel
+# Local working material, never production assets
+/_archive/
+/docs/handoff/
+/.playwright-mcp/
+/.claude/
+/.codex/
+/.vscode/
+/.vercel/
+# Temporary root images; production assets under assets remain eligible
+/*.png
+/*.jpg
+/*.jpeg
+/*.jfif
+/*.zip

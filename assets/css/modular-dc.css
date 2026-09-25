@@ -440,11 +440,10 @@
    1.5. CLIENT TRUST STRIP
 ═════════════════════════════════════════════════════════════════ */
 .mdc-client-band {
-  background: var(--blue-lt);
-  padding: 18px 0;
+  background: var(--off-white);
+  padding: 28px 0;
   overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,.24);
-  border-bottom: 1px solid rgba(9,25,59,.14);
+  border-bottom: 1px solid var(--border-l);
 }
 
 .mdc-client-band-viewport {
@@ -454,41 +453,39 @@
 .mdc-client-band-track {
   display: flex;
   width: max-content;
-  animation: mdcClientRail 52s linear infinite;
+  animation: mdcClientRail 36s linear infinite;
   will-change: transform;
-}
-
-.mdc-client-band-viewport:hover .mdc-client-band-track {
-  animation-play-state: paused;
 }
 
 .mdc-client-band-group {
   display: flex;
   flex: 0 0 auto;
-  gap: 10px;
-  padding-right: 10px;
+  align-items: center;
+  gap: 64px;
+  padding: 0 32px;
 }
 
 .mdc-client-band-item {
-  width: 140px;
-  height: 68px;
-  flex: 0 0 140px;
+  width: 132px;
+  height: 52px;
+  flex: 0 0 132px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 14px;
-  background: rgba(255,255,255,.94);
-  border: 1px solid rgba(255,255,255,.5);
+  padding: 0;
+  background: transparent;
+  border: 0;
 }
 
 .mdc-client-band-item img {
   display: block;
   width: auto;
   height: auto;
-  max-width: 108px;
-  max-height: 42px;
+  max-width: 126px;
+  max-height: 48px;
   object-fit: contain;
   opacity: 1;
+  mix-blend-mode: multiply;
 }
 
 .mdc-client-band-dow {
@@ -505,24 +502,18 @@
 }
 
 @media (max-width: 768px) {
-  .mdc-client-band { padding: 14px 0; }
+  .mdc-client-band { padding: 22px 0; }
+  .mdc-client-band-group { gap: 40px; padding: 0 24px; }
   .mdc-client-band-item {
-    width: 126px;
-    height: 62px;
-    flex-basis: 126px;
-    padding: 10px 12px;
+    width: 118px;
+    height: 46px;
+    flex-basis: 118px;
   }
-  .mdc-client-band-item img { max-width: 98px; max-height: 38px; }
+  .mdc-client-band-item img { max-width: 112px; max-height: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mdc-client-band-viewport {
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .mdc-client-band-viewport::-webkit-scrollbar { display: none; }
-  .mdc-client-band-track { animation: none; }
-  .mdc-client-band-group[aria-hidden="true"] { display: none; }
+  .mdc-client-band-track { animation-duration: 72s; }
 }
 
 /* ═════════════════════════════════════════════════════════════════

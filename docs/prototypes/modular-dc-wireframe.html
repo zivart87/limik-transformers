@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LIMIK Core Wireframe</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=REM:wght@500;600;700&display=swap">
+<style>
+/* Wireframe: single light look by design. Grid, type scale and spacing follow assets/css/modular-dc.css */
+:root{
+  color-scheme: light;
+  --ink:#1B2230; --muted:#5A6474; --line:rgba(27,34,48,.16); --line-d:rgba(255,255,255,.16);
+  --paper:#F1F3F6; --white:#FFFFFF; --dark:#2B313C; --dark-2:#363D4A;
+  --ph:#DDE1E7; --ph-d:#454C59; --cta:#8C939E;
+  --note:#FFF1C2; --note-ink:#5A4300; --tbc:#FFE08A;
+  --head:'REM', 'Arial Narrow', Arial, sans-serif;
+  --body:'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --gutter:max(40px, calc((100vw - 1360px) / 2 + 40px));
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:inherit;text-wrap:balance}
+h2{font-size:clamp(28px,4vw,52px);font-weight:500;line-height:1.02;max-width:18ch}
+h3{font-size:clamp(20px,2.5vw,32px);font-weight:600;line-height:1.1}
+h4{font-size:16px;font-weight:600;line-height:1.3}
+p{margin:0}
+a{color:inherit}
+.body{font-size:16px;line-height:1.75;color:var(--muted)}
+.dark .body,.dark .intro{color:rgba(255,255,255,.72)}
+ul.sq{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.sq li{position:relative;padding-left:18px;line-height:1.6}
+ul.sq li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;background:currentColor;opacity:.55}
+
+/* sections */
+.sec{padding:120px var(--gutter);position:relative}
+.paper{background:var(--paper)}
+/* Same background as the previous section: keep only one gap (site rule) */
+.sec.flush-top{padding-top:0}
+.dark{background:var(--dark);color:#fff}
+@media (max-width:991px){.sec{padding:80px var(--gutter)}}
+@media (max-width:768px){.sec{padding:60px 24px}:root{--gutter:24px}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;margin-bottom:32px}
+.eyebrow::before{content:'';width:5px;height:5px;background:currentColor;opacity:.6}
+.ed{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start;margin-bottom:64px}
+.ed .intro{font-size:16px;line-height:1.5;color:var(--muted);max-width:36ch;justify-self:end}
+.dark .ed .intro,.hero .micro{color:rgba(255,255,255,.72)}
+@media (max-width:991px){.ed{grid-template-columns:1fr;gap:24px;margin-bottom:48px}.ed .intro{justify-self:start}}
+@media (max-width:768px){h2{font-size:36px}}
+
+/* placeholders */
+.ph{background:var(--ph);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.035) 14px 15px);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;font:700 11px/1.4 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#6B7483;min-width:0;max-width:100%}
+.dark .ph{background-color:var(--ph-d);color:#AEB5C1;background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(255,255,255,.04) 14px 15px)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;height:52px;padding:0 28px;background:var(--cta);color:#fff;font:700 13px/1 var(--head);letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border:0;border-radius:2px;cursor:pointer}
+.ilink{display:inline-flex;align-items:center;gap:16px;font:800 13px/1.2 var(--head);letter-spacing:.07em;text-transform:uppercase;text-decoration:none}
+/* Icon-link standard for Modular: 36x36 square (approved 2026-09-26) */
+.ilink i{width:36px;height:36px;background:var(--cta);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-size:14px;flex-shrink:0;border-radius:2px}
+.micro{font-size:12px;line-height:1.65;color:var(--muted)}
+.dark .micro{color:rgba(255,255,255,.6)}
+
+.tbc{background:var(--tbc);color:#4A3700;padding:0 4px;border-radius:2px;font-weight:700;white-space:nowrap}
+.dark .tbc{color:#4A3700}
+
+/* annotations */
+.note{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;background:var(--note);color:var(--note-ink);font:500 13px/1.5 var(--body);padding:10px var(--gutter);border-top:1px solid rgba(90,67,0,.18)}
+.note b{font-weight:700}
+.note .tag{font:700 10px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border:1px solid currentColor;border-radius:2px}
+@media (max-width:768px){.note{padding:10px 24px}}
+body.clean .note, body.clean .top-note{display:none}
+body.clean .tbc{background:transparent;color:inherit;padding:0;font-weight:inherit}
+
+.top-note{background:#FFF8E0;border-bottom:1px solid rgba(90,67,0,.18);padding:20px var(--gutter);display:grid;gap:10px;font-size:14px;line-height:1.55;color:var(--note-ink)}
+.top-note h1{font:700 18px/1.2 var(--head);letter-spacing:0;text-transform:none;color:var(--note-ink)}
+.top-note .stats{display:flex;flex-wrap:wrap;gap:8px 24px;font-variant-numeric:tabular-nums}
+@media (max-width:768px){.top-note{padding:16px 24px}}
+
+.toggle{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:#1B2230;color:#fff;border:0;border-radius:2px;padding:12px 16px;font:700 12px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.toggle:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid #1B6BD1;outline-offset:2px}
+
+/* nav mock */
+.navmock{height:92px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);background:var(--dark);color:rgba(255,255,255,.7);font:600 12px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line-d)}
+.navmock .links{display:flex;gap:28px}
+@media (max-width:991px){.navmock .links{display:none}}
+
+/* 1 hero */
+.hero{position:relative;min-height:760px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--dark);color:#fff;padding:180px 60px 0}
+.hero .bg{position:absolute;inset:0;background-color:#3B424E}
+.hero .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,24,32,.85),rgba(20,24,32,.2) 60%)}
+.hero-row{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:60px;padding-bottom:112px}
+.hero h1{font-size:clamp(40px,4.4vw,72px);font-weight:600;line-height:.92;text-transform:uppercase;max-width:15ch;margin-bottom:24px}
+.hero .lead{font-size:clamp(14px,1.1vw,17px);line-height:1.65;color:rgba(255,255,255,.78);max-width:52ch}
+.hero-cta{display:grid;gap:18px;justify-items:start;flex-shrink:0;max-width:340px}
+.hero-bottom{position:relative;display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line-d);padding:24px 0 26px;font:700 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+@media (max-width:991px){.hero{padding:160px 40px 0;min-height:680px}.hero-row{flex-direction:column;align-items:flex-start;gap:32px;padding-bottom:64px}}
+@media (max-width:768px){.hero{padding:140px 24px 0;min-height:620px}.hero h1{font-size:clamp(36px,9vw,46px)}.hero-bottom{flex-direction:column}}
+
+
+.hero-logos{position:relative;margin:0 -60px;background:transparent;overflow:hidden;padding:12px 0 40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.lg-track{display:flex;width:max-content;animation:lg-run 40s linear infinite}
+.lg-set{display:flex;gap:72px;padding-right:72px;flex-shrink:0}
+.lg{display:inline-flex;align-items:center;justify-content:center;height:40px;min-width:150px;padding:0 18px;border:1px dashed rgba(255,255,255,.35);color:#fff;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:.85}
+@keyframes lg-run{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.lg-track{animation-duration:80s}}
+@media (max-width:991px){.hero-logos{margin:0 -40px}}
+@media (max-width:768px){.hero-logos{margin:0 -24px;padding:24px 0}.lg-set{gap:40px;padding-right:40px}.lg{min-width:120px;height:34px}}
+
+/* 2 facts */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{padding:36px 28px;border-right:1px solid var(--line);min-width:0;display:grid;gap:12px;align-content:start}
+.fact:last-child{border-right:0}
+.fact .num{font:600 clamp(36px,3.6vw,56px)/1 var(--head);letter-spacing:-.03em;white-space:nowrap}
+.fact .num small{font-size:.45em;letter-spacing:0;margin-left:4px}
+.fact p{font-size:14px;line-height:1.5;color:var(--muted);max-width:24ch}
+.sec-facts{padding-top:0;padding-bottom:0}
+@media (max-width:1024px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:600px){.facts{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid var(--line)}.fact:last-child{border-bottom:0}}
+
+/* split */
+.split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center}
+.split.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.stack{display:grid;gap:24px;align-content:start}
+@media (max-width:991px){.split,.split.rev{grid-template-columns:1fr;gap:40px}}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border-top:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px;line-height:1.5}
+th,td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font:700 11px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tbody th{font:600 15px/1.4 var(--head);width:28%}
+tbody tr:nth-child(odd){background:rgba(0,0,0,.025)}
+.paper tbody tr:nth-child(odd){background:rgba(255,255,255,.6)}
+td{font-variant-numeric:tabular-nums}
+
+
+/* 4 sticky grid (pattern: Modulabs capabilities) */
+.sticky-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.sticky-left{position:sticky;top:120px;height:calc(100vh - 180px);min-height:560px;max-height:820px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:48px;max-width:520px}
+.chain{display:flex;flex-direction:column;width:100%;max-width:280px;border-top:1px solid var(--line)}
+.chain a{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;font:600 10px/1.4 var(--head);letter-spacing:.08em;text-transform:uppercase;color:rgba(27,34,48,.45);transition:padding .4s,color .4s}
+.chain a span{width:5px;height:5px;background:var(--ink);margin-left:-13px;opacity:0;transition:opacity .4s;flex-shrink:0}
+.chain a:hover{color:var(--muted)}
+.chain a.is-current{padding-left:14px;color:var(--ink)}
+.chain a.is-current span{opacity:1}
+.sticky-cards{display:flex;flex-direction:column;gap:16px;min-width:0}
+.pcard{position:relative;height:400px;overflow:hidden;border:1px solid var(--line);border-radius:2px;background:var(--dark);color:#fff;scroll-margin-top:120px}
+.pcard.large{height:640px}
+.pbg{position:absolute;inset:0;background-color:#4A515E;color:#B7BDC8;align-items:flex-start;padding-top:28px;background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(255,255,255,.04) 14px 15px)}
+.pover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:32px 28px;background:linear-gradient(0deg,rgba(20,24,32,.92),rgba(20,24,32,.15) 70%)}
+.picon{width:48px;height:48px;border:1px dashed rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
+.ptext{display:grid;gap:12px}
+.ptext h3{font-size:clamp(20px,2vw,28px)}
+.ptext p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.78);max-width:52ch}
+.pmeta{display:flex;justify-content:space-between;gap:12px;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.ptags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.ptags span{font:600 12px/1 var(--body);padding:8px 10px;border:1px solid rgba(255,255,255,.28);border-radius:2px;white-space:nowrap}
+.ptags .tbc{padding:0 4px;border:0}
+@media (max-width:991px){.sticky-grid{grid-template-columns:1fr;gap:40px}.sticky-left{position:static;height:auto;min-height:0;max-height:none;gap:32px;max-width:none}.chain{display:none}.pcard,.pcard.large{height:460px}}
+
+
+/* 6 expandable cards (pattern: Crusoe .card-hover-trigger) */
+.acc{display:flex;gap:8px;height:640px}
+.acc-card{position:relative;width:calc(100% / 3);max-width:600px;flex-shrink:1;min-width:0;overflow:hidden;border-radius:2px;background:var(--paper);border:1px solid var(--line);color:var(--ink);cursor:pointer;transition:width .5s,background-color .5s,border-color .5s,color .5s}
+.acc-card.is-active{width:100%;max-width:600px;background:var(--dark);border-color:var(--dark);color:#fff;cursor:default}
+.acc-card:focus-visible{outline:2px solid #1B6BD1;outline-offset:2px}
+.acc-dot{position:absolute;top:10px;left:10px;width:5px;height:5px;background:currentColor;opacity:.5;z-index:3;transition:opacity .5s}
+.acc-card.is-active .acc-dot{opacity:1}
+.acc-img{position:absolute;top:0;left:0;width:600px;max-width:100%;bottom:270px;padding:44px 32px 0;opacity:0;transition:opacity 0s}
+.acc-card.is-active .acc-img{opacity:1;transition:opacity .5s ease .5s}
+.acc-img .ph{height:100%;background-color:transparent;color:#AEB5C1;border:1px dashed rgba(255,255,255,.3);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(255,255,255,.04) 14px 15px)}
+.acc-badge{position:absolute;top:14px;right:14px;font:700 10px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:8px 10px;border:1px solid rgba(255,255,255,.3);border-radius:2px}
+.acc-badge .tbc{color:#4A3700}
+.acc-info{position:absolute;left:28px;right:28px;bottom:28px;display:flex;flex-direction:column;gap:8px;padding-right:44px}
+.acc-card.is-active .acc-info{padding-right:170px}
+.acc-kicker{font:700 11px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;opacity:.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .5s,opacity .5s}
+.acc-card.is-active .acc-kicker{color:#8FB8E6;opacity:1}
+.acc-title{font:500 clamp(24px,2.2vw,30px)/1.02 var(--head);letter-spacing:-.02em;white-space:nowrap;transition:font-size .5s}
+.acc-card.is-active .acc-title{font-size:clamp(36px,3.4vw,48px)}
+.acc-more{position:absolute;left:0;right:0;bottom:100%;padding-bottom:20px;opacity:0;transition:opacity .5s}
+.acc-more>div{display:grid;gap:12px;width:520px;max-width:100%}
+.acc-card.is-active .acc-more{opacity:1;transition:opacity .5s ease .5s}
+.acc-more p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);max-width:46ch}
+.acc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.acc-tags span{font:600 11px/1 var(--body);padding:6px 8px;border:1px solid rgba(255,255,255,.28);border-radius:2px;white-space:nowrap}
+.acc-tags .tbc{padding:0 4px;border:0}
+.acc-arrow{position:absolute;right:28px;bottom:26px;font-size:28px;line-height:1;opacity:1;transition:opacity .5s}
+.acc-card.is-active .acc-arrow{opacity:0;transition:opacity 0s}
+.acc-btn{position:absolute;right:28px;bottom:28px;color:#fff;opacity:0;pointer-events:none;transition:opacity .5s}
+.acc-card.is-active .acc-btn{opacity:1;pointer-events:auto;transition:opacity .5s ease .5s}
+@media (max-width:991px){
+  .acc{flex-direction:column;height:auto;gap:16px}
+  .acc-card,.acc-card.is-active{flex:none;width:100%;max-width:none;background:var(--dark);border-color:var(--dark);color:#fff;cursor:default}
+  .acc-img{position:relative;inset:auto;width:auto;height:240px;opacity:1}
+  .acc-info{position:relative;inset:auto;padding:24px 28px 0}
+  .acc-kicker{color:#8FB8E6;opacity:1}
+  .acc-title{font-size:36px}
+  .acc-info,.acc-card.is-active .acc-info{padding:24px 28px 0}
+  .acc-more{position:static;order:3;padding:6px 0 0;opacity:1}
+  .acc-more>div{width:auto}
+  .acc-arrow{display:none}
+  .acc-btn{position:relative;inset:auto;display:inline-flex;margin:20px 28px 28px;opacity:1;pointer-events:auto}
+  .acc-dot{opacity:1}
+}
+@media (max-width:600px){.acc-img{height:200px;padding:40px 20px 0}.acc-info,.acc-card.is-active .acc-info{padding:20px 24px 0}.acc-btn{margin:20px 24px 24px}}
+
+
+/* 7 specs accordion */
+.spx{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:start}
+.spx-media .ph{aspect-ratio:4/3.2;background-color:transparent;border:1px dashed #A9B0BB}
+.spx-list{border-top:1px solid var(--line)}
+.spx-item{border-bottom:1px solid var(--line)}
+.spx-head{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:baseline;gap:12px;padding:22px 0;cursor:pointer}
+.spx-head:focus-visible{outline:2px solid #1B6BD1;outline-offset:2px}
+.spx-num{font:600 14px/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums;transition:color .3s}
+.spx-name{font:500 24px/1.2 var(--head);letter-spacing:-.01em;color:var(--muted);transition:color .3s}
+.spx-key{font:600 14px/1 var(--body);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.spx-head:hover .spx-name{color:var(--ink)}
+.spx-item.is-open .spx-num{color:var(--ink)}
+.spx-num{position:relative;transition:padding .3s,color .3s}
+.spx-num::before{content:'';position:absolute;left:0;top:50%;width:5px;height:5px;margin-top:-3px;background:var(--ink);opacity:0;transition:opacity .3s}
+.spx-item.is-open .spx-num{padding-left:13px}
+.spx-item.is-open .spx-num::before{opacity:1}
+
+.spx-item.is-open .spx-name,.spx-item.is-open .spx-key{color:var(--ink)}
+.spx-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.spx-item.is-open .spx-body{grid-template-rows:1fr}
+.spx-body>div{min-height:0;overflow:hidden}
+.spx-body dl{margin:0 0 24px 60px;padding:18px 24px;display:grid;gap:10px;background:var(--white);border-radius:2px}
+.spx-body dl div{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:16px;font-size:15px;line-height:1.55}
+.spx-body dt{color:var(--muted)}
+.spx-body dd{margin:0;color:var(--ink)}
+@media (max-width:991px){.spx{grid-template-columns:1fr;gap:32px}}
+@media (max-width:600px){.spx-head{grid-template-columns:36px minmax(0,1fr);}.spx-key{grid-column:2;font-size:13px}.spx-body dl{margin-left:48px;padding:16px 18px}.spx-body dl div{grid-template-columns:1fr;gap:2px}}
+
+
+/* 2+3 metrics */
+.mtA .mt-label{margin-bottom:10px}
+.variant-tag{font:600 12px/1.4 var(--body);color:var(--note-ink);background:var(--note);padding:6px 10px;display:inline-block;margin:0 0 16px}
+body.clean .variant-tag{display:none}
+.mt-label{font:700 11px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mt-num{font:500 clamp(28px,2.4vw,38px)/1 var(--head);letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mt-num small{font-size:.4em;letter-spacing:0;margin-left:6px;font-weight:600}
+.mt-cap{font-size:14px;line-height:1.4;color:var(--muted)}
+.is-opt{opacity:.55}
+/* A */
+.mtA{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--white);clip-path:polygon(0 0,calc(100% - 40px) 0,100% 40px,100% 100%,0 100%);margin-bottom:40px}
+.mtA-cell{display:grid;gap:8px;align-content:start;padding:24px 28px;border-right:1px solid var(--line);min-width:0}
+.mtA-cell:last-child{border-right:0}
+.mtA-cell.is-opt{border-left:1px dashed var(--line)}
+@media (max-width:768px){
+  .mtA{grid-template-columns:1fr}
+  .mtA-cell{border-right:0;border-bottom:1px solid var(--line)}
+  .mtA-cell:last-child{border-bottom:0}
+}
+
+
+/* Icon cards: icon on top, text pinned to bottom (reference pattern) */
+.card.icard{min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:48px;background:var(--paper);border:0;padding:32px 28px}
+.icard .icon{width:28px;height:28px}
+.icard-text{display:grid;gap:10px}
+.icard-text h4{font-size:20px;line-height:1.25}
+.icard-text .foot{padding-top:12px}
+@media (max-width:600px){.card.icard{min-height:220px;gap:36px}}
+
+
+/* Contextual in-text links (site standard, see .pt-faq-a p a) */
+.inline-link{color:#206CB9;text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.inline-link:hover{color:#09193B}
+
+
+.wi-img{aspect-ratio:21/9;max-width:100%}
+.wi-text{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;margin-top:48px;align-items:start}
+@media (max-width:991px){.wi-img{aspect-ratio:16/10}.wi-text{grid-template-columns:1fr;gap:24px;margin-top:32px}}
+
+
+/* Text columns with a left rule (block 10) */
+.lcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.lcol{border-left:2px solid #9AA2AE;padding:2px 0 2px 24px;display:grid;gap:10px;align-content:start;min-width:0}
+.lcol h4{font-size:18px;line-height:1.3}
+.lcol .body{font-size:15px;line-height:1.6}
+@media (max-width:991px){.lcols{grid-template-columns:1fr;gap:28px}}
+@media (max-width:600px){.lcols{grid-template-columns:1fr;gap:28px}}
+
+
+/* Timeline reveal: line fills in light blue, squares light up, steps rise in order */
+.steps{position:relative}
+.steps-fill{position:absolute;top:-1px;left:0;height:1px;width:0;background:#4A8FD4;z-index:1}
+.step::before{z-index:2;transition:background-color .3s}
+.steps.js-anim .step>*{opacity:0;transform:translateY(16px)}
+.steps.is-run .steps-fill{width:100%;transition:width 2.4s linear}
+.steps.is-run .step::before{background:#4A8FD4}
+.steps.is-run .step>*{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+.steps.is-run .step:nth-of-type(1)::before,.steps.is-run .step:nth-of-type(1)>*{transition-delay:0s}
+.steps.is-run .step:nth-of-type(2)::before,.steps.is-run .step:nth-of-type(2)>*{transition-delay:.6s}
+.steps.is-run .step:nth-of-type(3)::before,.steps.is-run .step:nth-of-type(3)>*{transition-delay:1.2s}
+.steps.is-run .step:nth-of-type(4)::before,.steps.is-run .step:nth-of-type(4)>*{transition-delay:1.8s}
+@media (max-width:991px){
+  .steps-fill{top:0;left:-1px;width:1px;height:0}
+  .steps.is-run .steps-fill{width:1px;height:100%;transition:height 2.4s linear}
+}
+
+.spx-name{}
+@media (max-width:1200px){.spx-name{font-size:20px}}
+@media (max-width:600px){.spx-name{font-size:18px}}
+
+
+/* Block 6 on dark background */
+.dark .acc-card{background:var(--dark-2);border-color:var(--line-d);color:#fff}
+.dark .acc-card .acc-kicker{color:rgba(255,255,255,.6);opacity:1}
+.dark .acc-card.is-active{background:#1E232C;border-color:#1E232C}
+.dark .acc-card.is-active .acc-kicker{color:#8FB8E6}
+.dark .acc-dot{background:#fff}
+@media (max-width:991px){.dark .acc-card,.dark .acc-card.is-active{background:#1E232C;border-color:#1E232C}.dark .acc-card .acc-kicker{color:#8FB8E6}}
+
+/* 5 chips */
+.chips{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px;align-items:center}
+.chip-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.chip-row .ph{height:88px}
+@media (max-width:991px){.chips{grid-template-columns:1fr;gap:24px}.chip-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* cards */
+.cards{display:grid;gap:24px}
+.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{border:1px solid var(--line);background:var(--white);padding:32px 28px;display:grid;gap:16px;align-content:start;min-width:0}
+.paper .card{background:var(--white)}
+.dark .card{background:var(--dark-2);border-color:var(--line-d)}
+.card .kicker{font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dark .card .kicker{color:rgba(255,255,255,.6)}
+.card dl{margin:0;display:grid;gap:0}
+.card dl div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.card dt{color:var(--muted)} .card dd{margin:0;font-weight:600;text-align:right}
+.card .body{font-size:15px;line-height:1.65}
+.card .icon{width:28px;height:28px;background:var(--ph);border:1px dashed #9AA2AE}
+.card .big{font:600 clamp(32px,3vw,44px)/1 var(--head);letter-spacing:-.03em}
+.card .foot{margin-top:auto;padding-top:8px}
+@media (max-width:1100px){.c4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:991px){.c3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.c4,.c3{grid-template-columns:1fr}}
+
+/* 9 timeline */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-d)}
+.step{padding:28px 28px 0 0;display:grid;gap:10px;align-content:start;position:relative;min-width:0}
+.step::before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;background:#fff}
+.step .when{font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.step p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.72)}
+.track{margin-top:56px;border:1px solid var(--line-d);padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+@media (max-width:991px){.steps{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line-d)}.step{padding:0 0 32px 28px}.step::before{top:4px;left:-5px}.track{grid-template-columns:1fr}}
+
+/* 12 founding */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.person{display:grid;gap:10px}
+.person .ph{aspect-ratio:4/5}
+.person span{font-size:13px;color:var(--muted);line-height:1.4}
+.heritage{margin-top:80px;padding-top:40px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px;align-items:center}
+.logos{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.logos .ph{height:48px;font-size:9px;padding:4px}
+@media (max-width:991px){.heritage{grid-template-columns:1fr;gap:24px}.logos{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:600px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 13 faq */
+.faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(48px,8vw,128px);align-items:start}
+.faq h2{max-width:14ch}
+.faq-list{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:600 18px/1.35 var(--head)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-size:22px;line-height:1;flex-shrink:0}
+details[open] summary::after{content:'–'}
+details p{padding:0 0 24px;max-width:68ch}
+@media (max-width:991px){.faq{grid-template-columns:1fr;gap:40px}}
+
+/* 14 form */
+.cfg{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start}
+.form{display:grid;gap:32px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
+.fgrid .full{grid-column:1/-1}
+.fgroup-title{font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.6);grid-column:1/-1;padding-bottom:4px;border-bottom:1px solid var(--line-d)}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font:800 10px/1.3 var(--body);letter-spacing:.09em;text-transform:uppercase}
+.field input,.field select,.field textarea{font:400 14px/1.4 var(--body);color:var(--ink);background:#fff;border:1.5px solid rgba(27,34,48,.15);border-radius:2px;padding:11px 14px;width:100%}
+.field textarea{min-height:88px;resize:vertical}
+.aside{border:1px solid var(--line-d);padding:32px 28px;display:grid;gap:18px;background:var(--dark-2)}
+@media (max-width:991px){.cfg{grid-template-columns:1fr}}
+@media (max-width:600px){.fgrid{grid-template-columns:1fr}}
+
+.footmock{padding:48px var(--gutter);background:#20252E;color:rgba(255,255,255,.55);font:700 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.mt24{margin-top:24px}.mt40{margin-top:40px}.mt56{margin-top:56px}
+@media (prefers-reduced-motion:reduce){*:not(.lg-track){animation:none!important}}
+
+/* Site standard: 40px from the last text line to the CTA */
+.stack>.cta-gap{margin-top:16px}   /* stack gap 24 + 16 = 40 */
+.cta-gap20{margin-top:20px}        /* parent gap 20 + 20 = 40 */
+</style>
+</head>
+<body>
+
+
+<button class="toggle" id="toggleNotes" type="button" aria-pressed="false">Сховати примітки</button>
+
+<header class="top-note">
+  <h1>LIMIK Core: wireframe сторінки Modular AI Data Centers, версія 1</h1>
+  <p>Сітка, шрифти (REM + Inter), розміри h1/h2, відступи 120/80/60 і вступи 2:1 взяті з <code>modular-dc.css</code>. Сірі прямокутники показують фото, рендери й схеми. Сірі кнопки означають жовті CTA. Темні секції так само темні в дизайні. <span class="tbc">Жовта мітка</span> означає дані, які має підтвердити клієнт: я їх не вигадував.</p>
+  <div class="stats"><span>Поточна сторінка: <b>≈1 780 слів</b>, 13 блоків</span><span>Прототип: <b id="wc">…</b>, 14 блоків</span><span>Приміток по блоках: жовті смуги над кожною секцією</span><span>Тексти звірено на збіги з Giga, Comino, BMarko, ModulEdge, Advanced Giga</span></div>
+</header>
+
+<div class="navmock" aria-hidden="true"><span>LIMIK</span><span class="links"><span>Transformers</span><span>Modular Data Centers</span><span>Industries</span><span>Company</span><span>Contact</span></span><span>[Request a Quote]</span></div>
+
+<main id="page">
+
+<!-- 1 HERO -->
+<div class="note"><span class="tag">Блок 1</span><b>Hero</b><span>Одна кнопка CTA, без datasheet і без «Explore key specifications». Темний фон hero продовжено вниз: під рядком «LIMIK Group · Engineering since 1994» рухома стрічка білих логотипів на темному фоні (безперервний рух, друга копія прихована від скрінрідерів, при reduced-motion вдвічі повільніше). У прототипі логотипи замінено підписами. Важливо: це клієнти інжинірингу LIMIK Group, а не ЦОД, тому треба підтвердити дозвіл на логотипи. Lead переписано без «our own US plant».</span></div>
+<section class="hero">
+  <div class="bg ph" style="position:absolute">[ Рендер модуля LIMIK Core на майданчику · full-bleed · фото анімується, градієнт нерухомий ]</div>
+  <div class="grad"></div>
+  <div class="hero-row">
+    <div>
+      <div class="eyebrow">Modular AI data centers · LIMIK Core</div>
+      <h1>The U.S.-built modular data center for AI</h1>
+      <p class="lead">LIMIK Core is a prefabricated AI data center that ships with its own medium-voltage transformer. One manufacturer engineers the power, the cooling and the racks.</p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="#configure">Configure your project</a>
+      <p class="micro">Response within 48 hours. NDA on request.</p>
+    </div>
+  </div>
+  <div class="hero-bottom"><span>LIMIK Group · Engineering since 1994</span></div>
+  <div class="hero-logos" aria-label="LIMIK Group industrial engineering clients">
+    <div class="lg-track"><div class="lg-set"><span class="lg">[ logo · Metinvest ]</span><span class="lg">[ logo · Danone ]</span><span class="lg">[ logo · Nestlé ]</span><span class="lg">[ logo · PepsiCo ]</span><span class="lg">[ logo · Carlsberg ]</span><span class="lg">[ logo · Kernel ]</span><span class="lg">[ logo · STADA ]</span><span class="lg">[ logo · Lactalis ]</span></div><div class="lg-set" aria-hidden="true"><span class="lg">[ logo · Metinvest ]</span><span class="lg">[ logo · Danone ]</span><span class="lg">[ logo · Nestlé ]</span><span class="lg">[ logo · PepsiCo ]</span><span class="lg">[ logo · Carlsberg ]</span><span class="lg">[ logo · Kernel ]</span><span class="lg">[ logo · STADA ]</span><span class="lg">[ logo · Lactalis ]</span></div></div>
+  </div>
+</section>
+
+<!-- 3 WHAT IS -->
+<div class="note"><span class="tag">Блок 2+3</span><b>What is LIMIK Core + ключові цифри</b><span>Окрему смугу фактів після hero прибрано: цифри тепер доводять заголовок цього блоку. 3 цифри про сам модуль: 12 weeks · XX kW/rack · −30…+122°F. Панель максимально низька (цифри 28–38px, менші відступи). Під нею рендер на всю ширину, під рендером текст зліва на половину і список із 3 тез справа. Обрано варіант A: біла панель зі зрізаним правим верхнім кутом (утиліта .clip-tr з limik.css), вертикальні розділювачі. Фон блоку змінено на світло-сірий, блок 4 став білим, блок 5 світло-сірим, щоб фони чергувались. На сайті цифри рахуються при появі (анімація зі старого блоку фактів).</span></div>
+<section class="sec paper" id="what-is-core">
+  <div class="ed">
+    <div><div class="eyebrow">What is LIMIK Core</div><h2>Your data center arrives ready to connect</h2></div>
+    <p class="intro">A modular data center is IT space, power and cooling assembled off-site as one unit, then set on a prepared pad and connected.</p>
+  </div>
+
+  <div class="mtA"><div class="mtA-cell"><span class="mt-label">Lead time</span><span class="mt-num">12<small>weeks</small></span><span class="mt-cap">Module delivery from design approval</span></div><div class="mtA-cell"><span class="mt-label">Rack density</span><span class="mt-num"><span class="tbc">XX</span><small>kW</small></span><span class="mt-cap">Per rack, direct-to-chip cooling</span></div><div class="mtA-cell"><span class="mt-label">Operating range</span><span class="mt-num">−30…+122<small>°F</small></span><span class="mt-cap">Weather-rated enclosure</span></div></div>
+
+  <div class="ph wi-img">[ Рендер модуля LIMIK Core на майданчику · на всю ширину блоку · 21:9 ]</div>
+  <div class="wi-text">
+    <p class="body">Traditional builds take 18 to 24 months of on-site construction. LIMIK Core moves that work into our factory. Power distribution, liquid cooling and rack space are assembled and tested as one system, then shipped to your pad.</p>
+    <ul class="sq body">
+      <li>High-cube steel enclosure, <span class="tbc">45 ft</span> for full-size configurations</li>
+      <li>Hot aisle containment for mixed rack densities</li>
+      <li>Connects on site without field fabrication</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4 SYSTEM -->
+<div class="note"><span class="tag">Блок 4</span><b>Grid-to-chip system · sticky-скрол</b><span>Механіка як у Modulabs: ліва колонка закріплена (sticky, top 120px): зверху eyebrow, заголовок, опис і кнопка, список-навігація притиснутий донизу. Справа прокручуються 4 картки, перша велика. Пункт списку підсвічується за прокруткою і клікабельний. Об'єднано: Platform (5 вкладок) + Components (6 карток) → 4 картки за шляхом енергії. Таблицю й велику схему прибрано, цифри в блоці 7. До 991px sticky вимикається. У верстці: замінити overflow-x: hidden на clip у .mdc-page, інакше sticky не працює.</span></div>
+<section class="sec" id="platform">
+  <div class="sticky-grid">
+    <div class="sticky-left">
+      <div class="stack" style="gap:0">
+        <div class="eyebrow">The LIMIK platform</div>
+        <h2>One system from the grid to the chip</h2>
+        <p class="intro mt24" style="max-width:40ch;color:var(--muted);line-height:1.5">Most modular vendors buy the transformer, cooling and enclosure from different suppliers. We engineer them as one platform on one schedule.</p>
+        <div class="mt40"><a class="ilink" href="#configure"><i>→</i>Configure your infrastructure</a></div>
+      </div>
+      <nav class="chain" aria-label="Platform components">
+        <a href="#pc-1" class="is-current"><span></span>01 · Grid &amp; transformer</a>
+        <a href="#pc-2"><span></span>02 · Distribution &amp; backup</a>
+        <a href="#pc-3"><span></span>03 · Liquid cooling</a>
+        <a href="#pc-4"><span></span>04 · Compute &amp; controls</a>
+      </nav>
+    </div>
+    <div class="sticky-cards">
+      <article class="pcard large" id="pc-1">
+        <div class="ph pbg">[ Фото / рендер: трансформатор і підстанція · cover ]</div>
+        <div class="pover">
+          <div class="picon" aria-hidden="true"></div>
+          <div class="ptext">
+            
+            <h3>Grid &amp; power transformer</h3>
+            <p>Connects your site to the utility or on-site generation. The medium-voltage transformer is built on our own line, with substation units up to 600 MVA for campus scale.</p>
+            <div class="ptags"><span>Utility or behind-the-meter</span><span>IEEE C57 / ANSI</span><span>Up to 600 MVA</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" id="pc-2">
+        <div class="ph pbg">[ Фото: switchgear / UPS · cover ]</div>
+        <div class="pover">
+          <div class="picon" aria-hidden="true"></div>
+          <div class="ptext">
+            
+            <h3>Distribution &amp; backup power</h3>
+            <p>Switchgear and UPS deliver protected power to every rack, with no single point of failure.</p>
+            <div class="ptags"><span>N+1 or 2N</span><span>Surge protection</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" id="pc-3">
+        <div class="ph pbg">[ Фото / рендер: CDU і контур охолодження · cover ]</div>
+        <div class="pover">
+          <div class="picon" aria-hidden="true"></div>
+          <div class="ptext">
+            
+            <h3>Liquid cooling</h3>
+            <p>Direct-to-chip cooling with CDUs and dual-loop chillers or drycoolers holds temperature steady at full GPU load.</p>
+            <div class="ptags"><span>Direct-to-chip</span><span>Hybrid liquid + air</span><span>PUE <span class="tbc">X.XX</span></span></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" id="pc-4">
+        <div class="ph pbg">[ Рендер: інтер'єр модуля зі стійками · cover ]</div>
+        <div class="pover">
+          <div class="picon" aria-hidden="true"></div>
+          <div class="ptext">
+            
+            <h3>Compute module &amp; controls</h3>
+            <p>A high-cube enclosure for your racks, with hot aisle containment, pre-engineered site connections and DCIM monitoring from grid feed to coolant flow.</p>
+            <div class="ptags"><span><span class="tbc">XX</span> kW per rack</span><span>Leak detection</span><span>Remote operations</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6 SIZES -->
+<div class="note"><span class="tag">Блок 6</span><b>Configurations · розкривні картки за кодом Crusoe</b><span>Блок на темному фоні: згорнуті картки трохи світліші за фон, розкрита темніша. Механіка як у Crusoe: розкриття по кліку (і Enter/пробіл з клавіатури), без наведення. Анімація 1:1 як у Crusoe: змінюється width (1/3 → 100% з обмеженням 600px) з transition .5s ease, сусідні картки стискаються самі. Потім із затримкою 0.5s проявляються рендер, опис і кнопка; при згортанні рендер зникає одразу. Назва і мітка стоять унизу і не зсуваються, опис з'являється над ними без руху верстки. Назва моделі одна й та сама в обох станах і плавно збільшується. Стрілка ↗ у кутку згорнутої картки перетворюється на кнопку-icon-link «Configure» на тому ж місці. Рядок «Typical sites» прибрано, щоб картка була компактною. До 991px картки стоять одна під одною, всі розкриті. На сайті додамо появу карток по черзі при прокрутці (GSAP).</span></div>
+<section class="sec dark" id="scale">
+  <div class="ed">
+    <div><div class="eyebrow">Configurations</div><h2>Sized by the power on your site</h2></div>
+    <p class="intro">Tell us what power you have, or plan to have. Each LIMIK Core model comes with its power path engineered by us.</p>
+  </div>
+  <div class="acc">
+    <article class="acc-card" tabindex="0" aria-expanded="false">
+      <span class="acc-dot" aria-hidden="true"></span>
+      <div class="acc-img"><div class="ph">[ Рендер 20-ft модуля · прозорий фон ]</div><span class="acc-badge">Ships in <span class="tbc">XX</span> weeks</span></div>
+      <div class="acc-info">
+        <span class="acc-kicker">20-ft · site power</span>
+        <h3 class="acc-title">Core 20</h3>
+        <div class="acc-more"><div>
+          <p>For your first GPU racks. Connects to existing site service with no substation work.</p>
+          <div class="acc-tags"><span><span class="tbc">XX racks</span></span><span><span class="tbc">XXX kW</span></span><span>Runs on site power</span></div>
+        </div></div>
+      </div>
+      <span class="acc-arrow" aria-hidden="true">↗</span>
+      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+    </article>
+    <article class="acc-card is-active" tabindex="0" aria-expanded="true">
+      <span class="acc-dot" aria-hidden="true"></span>
+      <div class="acc-img"><div class="ph">[ Рендер 45-ft модуля у розрізі · прозорий фон ]</div><span class="acc-badge">Ships in 12 weeks</span></div>
+      <div class="acc-info">
+        <span class="acc-kicker">45-ft · MV transformer</span>
+        <h3 class="acc-title">Core 45</h3>
+        <div class="acc-more"><div>
+          <p>Our flagship module, delivered with its own medium-voltage transformer from our line.</p>
+          <div class="acc-tags"><span><span class="tbc">XX racks</span></span><span><span class="tbc">XXX kW</span></span><span>Transformer included</span></div>
+        </div></div>
+      </div>
+      <span class="acc-arrow" aria-hidden="true">↗</span>
+      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+    </article>
+    <article class="acc-card" tabindex="0" aria-expanded="false">
+      <span class="acc-dot" aria-hidden="true"></span>
+      <div class="acc-img"><div class="ph">[ Рендер кампусу: модулі + підстанція ]</div><span class="acc-badge">Phased delivery</span></div>
+      <div class="acc-info">
+        <span class="acc-kicker">Campus · substation</span>
+        <h3 class="acc-title">Core Campus</h3>
+        <div class="acc-more"><div>
+          <p>Core 45 modules on a substation we engineer and build, up to 600 MVA.</p>
+          <div class="acc-tags"><span><span class="tbc">XX MW</span></span><span>LIMIK substation</span><span>Grid or on-site</span></div>
+        </div></div>
+      </div>
+      <span class="acc-arrow" aria-hidden="true">↗</span>
+      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+    </article>
+  </div>
+</section>
+
+<!-- 7 SPECS -->
+<div class="note"><span class="tag">Блок 7</span><b>Planning specifications · зображення + акордеон</b><span>Структура за першим референсом: великий заголовок зліва, вступ і посилання на datasheet справа; нижче зображення зліва і список справа. Інтерактив за другим референсом: 5 нумерованих розділів, завжди відкритий один, клік відкриває інший і закриває попередній, плавне розкриття по висоті. Праворуч у рядку ключова цифра розділу (не коди, як у Giga). 11 рядків таблиці згруповано в 5 розділів. Весь текст в HTML. Картинка поки одна; далі можна зробити креслення, на якому підсвічується зона відкритого розділу (живлення, охолодження, стійки, корпус, керування) — у розмітці вже є data-zone для цього.</span></div>
+<section class="sec paper" id="specs-table">
+  <div class="ed">
+    <div><div class="eyebrow">Specifications</div><h2>Planning specifications</h2></div>
+    <div class="stack" style="gap:20px;justify-self:end;max-width:36ch">
+      <p class="intro" style="justify-self:start">Preliminary values for planning. Final figures are set per project after engineering review.</p>
+      <a class="ilink cta-gap20" href="#configure"><i>→</i>Request the technical datasheet</a>
+    </div>
+  </div>
+  <div class="spx">
+    <div class="spx-media"><div class="ph">[ Ізометричне лінійне креслення LIMIK Core на майданчику: модуль, трансформатор, охолодження · пізніше з підсвіткою зон ]</div></div>
+    <div class="spx-list">
+      <div class="spx-item is-open">
+        <button class="spx-head" type="button" aria-expanded="true" aria-controls="spx-1" data-zone="power">
+          <span class="spx-num">01</span><span class="spx-name">Power</span><span class="spx-key"><span class="tbc">XXX kW</span></span>
+        </button>
+        <div class="spx-body" id="spx-1"><div><dl><div><dt>IT load per module</dt><dd><span class="tbc">50 kW – 500+ kW</span></dd></div><div><dt>Power input</dt><dd>Utility MV feed, on-site generation or both</dd></div><div><dt>Redundancy</dt><dd>N+1 or 2N</dd></div></dl></div></div>
+      </div>
+      <div class="spx-item">
+        <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-2" data-zone="cooling">
+          <span class="spx-num">02</span><span class="spx-name">Cooling</span><span class="spx-key">Direct-to-chip</span>
+        </button>
+        <div class="spx-body" id="spx-2"><div><dl><div><dt>Cooling</dt><dd>Direct-to-chip liquid, CDU, drycooler or chillers; hybrid liquid + air available</dd></div><div><dt>Design PUE</dt><dd><span class="tbc">X.XX</span></dd></div><div><dt>Cooling redundancy</dt><dd><span class="tbc">Confirm</span></dd></div></dl></div></div>
+      </div>
+      <div class="spx-item">
+        <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-3" data-zone="racks">
+          <span class="spx-num">03</span><span class="spx-name">Racks &amp; compute</span><span class="spx-key"><span class="tbc">XX kW</span>/rack</span>
+        </button>
+        <div class="spx-body" id="spx-3"><div><dl><div><dt>Rack density</dt><dd><span class="tbc">up to XX kW per rack</span></dd></div><div><dt>Accelerators</dt><dd>NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU, Cerebras</dd></div></dl></div></div>
+      </div>
+      <div class="spx-item">
+        <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-4" data-zone="enclosure">
+          <span class="spx-num">04</span><span class="spx-name">Enclosure &amp; climate</span><span class="spx-key">−30°F…+122°F</span>
+        </button>
+        <div class="spx-body" id="spx-4"><div><dl><div><dt>Enclosure</dt><dd>High-cube welded steel, weather-rated; <span class="tbc">NEMA rating per site</span></dd></div><div><dt>Operating range</dt><dd>−30°F to +122°F (−34°C to +50°C)</dd></div><div><dt>Fire suppression</dt><dd><span class="tbc">Confirm system</span></dd></div></dl></div></div>
+      </div>
+      <div class="spx-item">
+        <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-5" data-zone="controls">
+          <span class="spx-num">05</span><span class="spx-name">Operations</span><span class="spx-key">DCIM</span>
+        </button>
+        <div class="spx-body" id="spx-5"><div><dl><div><dt>Monitoring</dt><dd>Grid-to-coolant telemetry, leak detection, remote operations</dd></div><div><dt>Transport</dt><dd>U.S. rail and permitted highway routes; relocatable</dd></div></dl></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 WHO -->
+<div class="note"><span class="tag">Блок 8</span><b>Who it's for</b><span>Картки за референсом: іконка 28px зверху, заголовок і текст притиснуті донизу картки, між ними повітря; картки на світло-сірій заливці без рамки, мінімальна висота 280px. Новий блок: застосування. Посилання-кнопки з карток прибрано, щоб усі картки були однакової висоти. Замість них контекстні посилання в тексті на сторінки ніш Renewables, Utilities, Defense (стандарт сайту: синій --blue, підкреслення, при наведенні navy).</span></div>
+<section class="sec">
+  <div class="ed">
+    <div><div class="eyebrow">Applications</div><h2>Built for teams that need capacity this year</h2></div>
+    <p class="intro">Where a 12-week module beats an 18-month building.</p>
+  </div>
+  <div class="cards c3">
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>GPU clouds &amp; AI hosting</h4><p class="body">Add rentable capacity in blocks, without waiting for a new building.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Enterprise AI</h4><p class="body">Keep models and data on your own site, under your own control.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Edge inference</h4><p class="body">Put compute next to cameras, sensors and users where latency matters.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Behind-the-meter energy sites</h4><p class="body">Turn on-site gas, <a class="inline-link" href="/industries/renewables/">solar or storage</a> into AI capacity, skipping the interconnection queue.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Utilities &amp; grid operators</h4><p class="body">Host compute at <a class="inline-link" href="/industries/utilities/">substations and grid assets</a> you already operate.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Defense &amp; government</h4><p class="body">U.S.-built infrastructure for <a class="inline-link" href="/industries/defense/">secure and relocatable deployments</a>.</p></div></article>
+  </div>
+</section>
+
+<!-- 9 TIMELINE -->
+<div class="note"><span class="tag">Блок 9</span><b>12-week timeline</b><span>Анімація при доскролі: лінія заливається світло-блакитним (--blue-lt) зліва направо за 2.4s, квадрати по черзі стають блакитними, і під кожним по черзі з\'являються тези (крок 0.6s). Спрацьовує один раз. На мобайлі лінія вертикальна і заливається зверху вниз. Структура збережена, тексти скорочено. Прибрано непідтверджені цифри «75–150 weeks» і «2–4 years». Паралельний трек трансформатора винесено окремою плашкою під кроками.</span></div>
+<section class="sec dark" id="timeline">
+  <div class="ed">
+    <div><div class="eyebrow">How it ships</div><h2>Twelve weeks, week by week</h2></div>
+    <p class="intro">One schedule, one manufacturer, from contract to delivery.</p>
+  </div>
+  <div class="steps">
+    <span class="steps-fill" aria-hidden="true"></span>
+    <div class="step"><span class="when">Week 0</span><h4>Design &amp; contract</h4><p>Design approval and engineering freeze.</p></div>
+    <div class="step"><span class="when">Weeks 1–2</span><h4>Engineering release</h4><p>Long-lead procurement and test plan.</p></div>
+    <div class="step"><span class="when">Weeks 2–9</span><h4>Factory build</h4><p>Enclosure, power distribution and cooling loop assembly.</p></div>
+    <div class="step"><span class="when">Weeks 9–12</span><h4>Testing &amp; shipping</h4><p>Factory acceptance test, then rail or truck to your site.</p></div>
+  </div>
+  <div class="track">
+    <div><h4>Parallel power track</h4><p class="body" style="font-size:15px;margin-top:8px">Your MV transformer enters production on day one on our own line, instead of waiting in a third-party queue.</p></div>
+    <a class="ilink" href="#configure"><i>→</i>Request a schedule</a>
+  </div>
+</section>
+
+<!-- 10 MANUFACTURING -->
+<div class="note"><span class="tag">Блок 10</span><b>Manufacturing, testing, standards</b><span>Три тези під фото (зміст з універсального блоку «Why LIMIK» сайту, текст скорочено) — колонки з вертикальною лінією зліва (2px; у прототипі сіра, на сайті наш синій --blue). Прибрано South Carolina (ми домовлялись не вказувати локацію) і твердження, що завод уже виробляє. Прибрано непідтверджене: DOE/DOD Qualified, DPA §303, Seismic Zone 4, «50 states permitting». «25 Years» виправлено на «32 Years» (з 1994 року; у 2027 оновити на 33).</span></div>
+<section class="sec">
+  <div class="split rev">
+    <div class="stack">
+      <div class="eyebrow">U.S. manufacturing</div>
+      <h2>Built and tested in the United States</h2>
+      <p class="body">LIMIK has engineered power infrastructure since 1994. We design LIMIK Core around our own transformer production, so the longest-lead part of your project stays under one roof. Every module is tested at full load before it ships.</p>
+      <a class="ilink cta-gap" href="#"><i>→</i>Explore LIMIK Transformers</a>
+    </div>
+    <div class="ph" style="aspect-ratio:4/3">[ Фото цеху / FAT-тестування · 4:3 · з'явиться пізніше ]</div>
+  </div>
+  <div class="lcols mt56">
+    <div class="lcol"><h4>32 Years of Engineering</h4><p class="body">Power transformers for utilities, power producers and EPC contractors.</p></div>
+    <div class="lcol"><h4>Made in the USA</h4><p class="body">Designed, engineered and built on American soil, with Buy American compliance by default.</p></div>
+    <div class="lcol"><h4>48 Weeks. Not 4 Years</h4><p class="body">Overseas suppliers quote 2–4 years for a transformer. LIMIK delivers in 48 weeks.</p></div>
+  </div>
+</section>
+
+<!-- 13 FAQ -->
+<div class="note"><span class="tag">Блок 13</span><b>FAQ</b><span>Відповіді скорочено до 2–3 речень. У питанні про трансформатор прибрано «the only independent manufacturer». Зберігаємо JSON-LD FAQPage дослівно з видимим текстом.</span></div>
+<section class="sec paper" id="faq">
+  <div class="faq">
+    <div class="stack">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions before you request a quote</h2>
+      <a class="ilink cta-gap" href="#configure"><i>→</i>Contact an engineer</a>
+    </div>
+    <div class="faq-list">
+      <details open><summary>What is the lead time for LIMIK Core?</summary><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></details>
+      <details><summary>What site preparation is required?</summary><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></details>
+      <details><summary>Can it run on behind-the-meter power?</summary><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></details>
+      <details><summary>Which GPUs are supported?</summary><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></details>
+      <details><summary>Can the module be relocated later?</summary><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></details>
+      <details><summary>Who manufactures the power transformer?</summary><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 14 CONFIGURATOR -->
+<div class="note"><span class="tag">Блок 14</span><b>Configurator + datasheet</b><span>Форма розбита на 2 групи. Додано поля як у ModulEdge: кількість стійок, штат/локація, стадія проєкту, терміни. Справа легкий крок для тих, хто ще не готовий: datasheet за email. Мобільна sticky CTA-плашка лишається.</span></div>
+<section class="sec dark" id="configure">
+  <div class="ed">
+    <div><div class="eyebrow">Project configurator</div><h2>Plan your LIMIK Core project</h2></div>
+    <p class="intro">Share your power, site and timeline. Our engineers reply with a concept, a power estimate and a delivery schedule.</p>
+  </div>
+  <div class="cfg">
+    <form class="form" onsubmit="event.preventDefault()">
+      <div class="fgrid">
+        <div class="fgroup-title">Your project</div>
+        <div class="field"><label for="f1">Target IT capacity *</label><select id="f1"><option>100–500 kW</option><option>500 kW – 2 MW</option><option>2 MW+</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="f2">Number of racks</label><input id="f2" placeholder="e.g. 8"></div>
+        <div class="field"><label for="f3">Cooling preference *</label><select id="f3"><option>Direct-to-chip liquid</option><option>Hybrid liquid + air</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="f4">Power source *</label><select id="f4"><option>Utility grid</option><option>On-site generation</option><option>Hybrid</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="f5">Include a LIMIK transformer? *</label><select id="f5"><option>Yes</option><option>No, site power exists</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="f6">Site location (state)</label><input id="f6" placeholder="e.g. Texas"></div>
+        <div class="field"><label for="f7">Project stage</label><select id="f7"><option>Researching options</option><option>Budget approved</option><option>Site secured</option></select></div>
+        <div class="field"><label for="f8">Target delivery</label><select id="f8"><option>Within 6 months</option><option>6–12 months</option><option>12+ months</option></select></div>
+        <div class="fgroup-title" style="margin-top:12px">Contact</div>
+        <div class="field"><label for="f9">Work email *</label><input id="f9" type="email"></div>
+        <div class="field"><label for="f10">Full name *</label><input id="f10"></div>
+        <div class="field"><label for="f11">Company</label><input id="f11"></div>
+        <div class="field"><label for="f12">Phone</label><input id="f12"></div>
+        <div class="field full"><label for="f13">Anything else we should know?</label><textarea id="f13"></textarea></div>
+      </div>
+      <div class="stack" style="gap:16px"><div><button class="btn" type="submit">Send project details</button></div>
+      <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our Privacy Policy.</p></div>
+    </form>
+    <aside class="aside">
+      <h4>Not ready for a configuration?</h4>
+      <p class="body" style="font-size:15px">Get the technical datasheet with reference specifications and site requirements.</p>
+      <div class="field"><label for="f14">Work email</label><input id="f14" type="email"></div>
+      <div><a class="ilink" href="#configure"><i>→</i>Send me the datasheet</a></div>
+    </aside>
+  </div>
+</section>
+
+</main>
+<div class="footmock">[ Спільний footer сайту ]</div>
+
+<script>
+(function(){
+  var main=document.getElementById('page');
+  var clone=main.cloneNode(true);
+  clone.querySelectorAll('.note,.ph').forEach(function(n){n.remove();});
+  var words=(clone.textContent||'').trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('wc').textContent='≈'+words.toLocaleString('uk-UA')+' слів';
+
+  var links=[].slice.call(document.querySelectorAll('.chain a'));
+  var cards=[].slice.call(document.querySelectorAll('.pcard'));
+  function spy(){
+    var mid=window.innerHeight*0.5, cur=cards[0];
+    cards.forEach(function(c){ if(c.getBoundingClientRect().top<=mid) cur=c; });
+    links.forEach(function(l){ l.classList.toggle('is-current', l.getAttribute('href')==='#'+cur.id); });
+  }
+  if(links.length){ window.addEventListener('scroll',spy,{passive:true}); window.addEventListener('resize',spy); spy(); }
+
+  var accCards=[].slice.call(document.querySelectorAll('.acc-card'));
+  function openCard(c){ if(window.matchMedia('(max-width:991px)').matches) return;
+    accCards.forEach(function(x){ var on=x===c; x.classList.toggle('is-active',on); x.setAttribute('aria-expanded',on?'true':'false'); }); }
+  accCards.forEach(function(c){
+    c.addEventListener('click',function(){openCard(c);});
+    c.addEventListener('keydown',function(e){ if(e.target===c && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openCard(c);} });
+  });
+
+  var spx=[].slice.call(document.querySelectorAll('.spx-item'));
+  spx.forEach(function(it){
+    it.querySelector('.spx-head').addEventListener('click',function(){
+      spx.forEach(function(x){ var on=x===it; x.classList.toggle('is-open',on); x.querySelector('.spx-head').setAttribute('aria-expanded',on?'true':'false'); });
+    });
+  });
+
+  var steps=document.querySelector('.steps');
+  if(steps && 'IntersectionObserver' in window){
+    steps.classList.add('js-anim');
+    var sio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ steps.classList.add('is-run'); sio.disconnect(); } });},{threshold:.35});
+    sio.observe(steps);
+  }
+  var b=document.getElementById('toggleNotes');
+  b.addEventListener('click',function(){
+    var on=document.body.classList.toggle('clean');
+    b.textContent=on?'Показати примітки':'Сховати примітки';
+    b.setAttribute('aria-pressed',on?'true':'false');
+  });
+})();
+</script>
+
+</body>
+</html>

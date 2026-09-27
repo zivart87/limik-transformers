@@ -6,23 +6,24 @@
 
 Образец: `request-quote/index.html` (страница заявки).
 
-### Label (подпись над полем)
+### Label (підпис над полем) — оновлено 2026-09-27 (рішення користувача)
 ```css
-font-size: 10px; font-weight: 800;
-letter-spacing: 0.09em; text-transform: uppercase;
-color: var(--navy-dark);
+font-family: 'Inter'; font-size: 14px; font-weight: 500; line-height: 1.4;
+text-transform: none; letter-spacing: 0;
+color: var(--navy-dark);            /* на темному фоні: #fff */
+display: flex; justify-content: space-between; gap: 8px;
 ```
-Обязательная пометка `*` — цвет `var(--blue)` через `<span class="req">*</span>`.
+Відступ від підпису до поля — 10px. Обов'язкові поля **не позначаються** зірочкою; позначаються лише необов'язкові: `<span class="lopt">Optional</span>` праворуч у рядку підпису, 12px, вага 400, приглушений колір. Біля кнопки відправки — коротка примітка, які поля обов'язкові (12px). Попередній стандарт «10px, 800, uppercase + синя `*`» скасовано; наявні форми сайту переводяться на новий стандарт під час перенесення універсальної форми.
 
 ### Input / Select / Textarea (само поле)
 ```css
 font-family: var(--font);
-font-size: 14px; font-weight: 400;
+font-size: 16px; font-weight: 400; line-height: 1.4;   /* 16px: менше — iOS збільшує сторінку при фокусі */
 color: var(--navy-dark);
 background: var(--white);
 border: 1.5px solid rgba(9,25,59,0.15);
 border-radius: 2px;
-padding: 11px 14px;
+padding: 14px 16px; min-height: 52px;                  /* textarea: min-height 112px */
 outline: none;
 width: 100%; box-sizing: border-box;
 transition: border-color 0.15s, box-shadow 0.15s;
@@ -80,21 +81,19 @@ margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1
 ---
 
 Телефон `.pt-sidebar-call a`: `white-space: nowrap`, посилання `tel:+17867676418`. Сам `.pt-sidebar-form .pt-sidebar-call` має явно задавати `margin-bottom: 0`; не втрачати цей виняток при копіюванні.
-Поля 14px та submit-note 12px/1.65 — винятки з правила основного тексту 16px/1.75.
+Submit-note 12px/1.65 — виняток з правила основного тексту 16px/1.75. Поля форми — 16px (оновлено 2026-09-27).
 
-## Універсальна лід-форма продуктових сторінок (рішення користувача 2026-09-27)
+## Універсальна лід-форма продуктових сторінок (рішення користувача 2026-09-27, патерн Helios)
 
-Зразок: блок `#configure` у прототипі `docs/prototypes/modular-dc-wireframe.html` (`.qform`). Одна форма з однаковими полями, обробником і виглядом для всіх продуктових сторінок; стоїть внизу кожної сторінки, окрема `/request-quote/` лишається для кнопки в меню з тією самою формою. Людей не перекидати з продуктової сторінки на окрему сторінку форми. Замінює попередню форму Modular з 13 полів і проміжний варіант у 2 кроки з кнопками-варіантами.
+Зразок: блок `#configure` у прототипі `docs/prototypes/modular-dc-wireframe.html` (`.lead-grid`, `.lead-form`). Одна форма з однаковими полями, обробником і виглядом для всіх продуктових сторінок; стоїть внизу кожної сторінки; `/request-quote/` лишається для кнопки в меню з тією самою формою. Людей не перекидати з продуктової сторінки на окрему сторінку форми.
 
-- **Один екран, 2 блоки** з підзаголовками `.fgroup-title`: «Your project» і «Contact». Без кроків.
-- **Your project** (усі — випадні списки `select`, не кнопки-варіанти):
-  - What do you need * — вже вибрано за сторінкою (на Modular: «Modular AI data center (LIMIK Core)»); варіанти: LIMIK Core, Power transformer, Autotransformer, GSU transformer, Mobile transformer, Other / not sure. Змінити можна.
-  - Розмір проєкту * — під продукт. Для LIMIK Core: Target IT capacity (Under 500 kW · 0.5–2 MW · 2 MW+ · Not sure yet). Для трансформаторів варіанти ще не узгоджені: не вигадувати діапазони, погодити з користувачем/клієнтом при перенесенні. Поки для інших продуктів поле приховується.
-  - When do you plan to start * — Ready now · Within 6 months · 6–12 months · Just researching. Саме «коли плануєте старт», а не «Timeline»: слово Timeline поруч із «12 weeks» читається як наш строк доставки.
-  - Списки без значення за замовчуванням показують «Select…» (приглушений колір); стрілка — кастомна синя SVG, `appearance: none`.
-- **Contact:** Work email *, Full name * (одним полем, не ім'я + прізвище), Company *, Phone `(optional)`; коментар згорнуто в `<details>` «+ Add details».
-- Не питати у формі: Cooling preference, Number of racks, Power source, штат/локацію, «How did you hear about us» (джерело беремо з прихованих UTM).
-- Кнопка `.btn` з текстом-результатом (на Modular «Get my concept & schedule»), під нею стандартний submit-note. До 600px кнопка на всю ширину.
-- Помилки показуються під полем після спроби відправки, фокус переходить на перше помилкове поле, без alert. Honeypot замість reCAPTCHA; приховані `utm_source/utm_medium/utm_campaign` і `page`. `type`/`autocomplete` у полях обов'язкові.
-- Бічна плашка datasheet (одне поле email) лишається як легкий крок.
-- Перед перенесенням: аудит усіх наявних форм сайту (`/request-quote/`, бічні форми `transformers/*`, форми `industries/*`) і їхнього обробника/CRM; план перенесення погодити з користувачем (зміна архітектури).
+- **Компонування:** зліва eyebrow, h2, вступ і icon-link «Get the technical datasheet» (розкриває поле email + «Send me the datasheet»; окремої бічної плашки немає); ліва колонка sticky на десктопі. Справа форма, ширина до 620px, проміжок колонок `clamp(56px, 7vw, 112px)`. До 991px — одна колонка.
+- **1. «What are you planning?»** (`legend`, 20px, вага 500) + 6 плиток-продуктів у сітці 3×2 (до 600px — 2 колонки), проміжок 8px: Modular AI data center · Power transformer · Autotransformer · GSU transformer · Mobile transformer · Other. Нативні `radio`; плитка тієї ж висоти, що й поля — рівно 52px (padding 0 12px, 14px / line-height 1.2, вміщує до 2 рядків на мобайлі), radius 2px, фон `rgba(255,255,255,.06)` з рамкою; вибрана — `var(--blue)` з заповненим індикатором. Вибрано за сторінкою; параметр `?product=` у посиланні перевизначає.
+- **2. Full name → Work email** в один рядок (проміжок 18px; до 600px одна колонка), під ними **Company** на всю ширину, далі **«What do you need to deploy?» (Optional)** — textarea з підказкою «Target capacity, site and timing.». **Обов'язкові лише Full name, Work email, Company.**
+- **Телефону у формі немає** (рішення 2026-09-27): для ринку США B2B спершу пише, поле телефону знижує кількість заявок, а для SMS/автодзвінків потрібна окрема згода за TCPA. Номер клієнт дає сам у листуванні.
+- **3. «Add project details»** — `<details>` між двома лініями, min-height 58px, «+» праворуч повертається на 45°. Усередині, усе Optional: Target IT capacity (лише для LIMIK Core; для трансформаторів варіанти не узгоджені — не вигадувати), When do you plan to start (Ready now · Within 6 months · 6–12 months · Just researching).
+- **4. Кнопка** `.btn` з текстом-результатом (на Modular «Get my concept & schedule») + поруч «Name, email and company are required.»; під ними стандартний submit-note. До 600px кнопка на всю ширину.
+- Вертикальний ритм форми — 24px між рядками. Поля й підписи — за стандартом вище (14px / 16px / 52px). Фокус — синя рамка + м'яка тінь.
+- Помилки під полем після спроби відправки, фокус на першому помилковому полі, без alert. Honeypot замість reCAPTCHA; приховані `utm_*` і `page`; `type`/`autocomplete` обов'язкові.
+- Не питати у формі: телефон, Cooling preference, Number of racks, Power source, штат, «How did you hear about us».
+- Перед перенесенням: аудит усіх наявних форм сайту (`/request-quote/`, бічні форми `transformers/*`, форми `industries/*`) і їхнього обробника/CRM; план перенесення погодити з користувачем.

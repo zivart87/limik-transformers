@@ -366,24 +366,43 @@ body.clean .variant-tag{display:none}
 @media (max-width:991px){.heritage{grid-template-columns:1fr;gap:24px}.logos{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:600px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* 13 faq */
-.faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(48px,8vw,128px);align-items:start}
-.faq h2{max-width:14ch}
-.faq-list{border-top:1px solid var(--line)}
-details{border-bottom:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:500 18px/1.35 var(--head)}
-summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:22px;line-height:1;flex-shrink:0}
-details[open] summary::after{content:'–'}
-details p{padding:0 0 24px;max-width:68ch}
-@media (max-width:991px){.faq{grid-template-columns:1fr;gap:40px}}
+/* 13 faq (decision 2026-09-27): centered title, category tabs, white cards; motion from Modulabs FAQ (Webflow a-104/a-105):
+   open = height 0->auto 400ms ease-out + icon bar 0->90deg 300ms + answer fade-in 300ms (delay 100ms); close = all 300ms ease-out */
+.fq-title{text-align:center;margin:0 auto;max-width:20ch}
+.fq-tabs{display:flex;justify-content:center;margin:56px auto 48px;max-width:720px;border-bottom:1px solid var(--line)}
+.fq-tab{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;text-align:center;cursor:pointer;padding:0 12px 16px;margin-bottom:-1px;border-bottom:2px solid transparent;font:700 11px/1.5 var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s,border-color .3s}
+.fq-tab:hover{color:var(--ink)}
+.fq-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.fq-tab:focus-visible{outline:2px solid #1B6BD1;outline-offset:2px}
+.fq-panes{max-width:880px;margin:0 auto}
+.fq-pane{display:none;flex-direction:column;gap:12px}
+.fq-pane.is-active{display:flex;animation:fq-in .3s ease both}
+@keyframes fq-in{from{opacity:0}to{opacity:1}}
+.fq-item{background:var(--white);border-radius:2px}
+.fq-h{margin:0;font:inherit}
+.fq-q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:28px 32px;cursor:pointer;font:500 18px/1.35 var(--head);color:var(--ink)}
+.fq-q:focus-visible{outline:2px solid #1B6BD1;outline-offset:-2px}
+.fq-ic{position:relative;width:14px;height:14px;flex-shrink:0}
+.fq-ic::before,.fq-ic::after{content:'';position:absolute;left:0;top:6px;width:14px;height:2px;background:currentColor;border-radius:1px}
+.fq-ic::after{transform:rotate(90deg);transition:transform .3s ease-out}
+.fq-item.is-open .fq-ic::after{transform:rotate(0deg)}
+.fq-a{height:0;overflow:hidden;opacity:0;transition:height .3s ease-out,opacity .3s ease-out}
+.fq-item.is-open .fq-a{height:auto;opacity:1}
+.fq-a p{padding:0 32px 28px;max-width:72ch}
+/* scroll reveal: cards rise in one by one */
+.fq-panes.js-reveal .fq-pane.is-active .fq-item{opacity:0;transform:translateY(16px)}
+.fq-panes.is-in .fq-pane.is-active .fq-item{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+.fq-panes.is-in .fq-pane.is-active .fq-item:nth-child(2){transition-delay:.08s}
+.fq-panes.is-in .fq-pane.is-active .fq-item:nth-child(3){transition-delay:.16s}
+@media (max-width:768px){.fq-tabs{margin:40px auto 32px}.fq-q{padding:22px 20px;gap:20px}.fq-a p{padding:0 20px 22px}}
+@media (max-width:600px){.fq-tab{flex:1 1 auto;white-space:nowrap;padding:0 8px 14px;letter-spacing:.06em}}
 
 /* 14 form */
 .cfg{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start}
 .form{display:grid;gap:32px}
 .fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
 .fgrid .full{grid-column:1/-1}
-.fgroup-title{font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.6);grid-column:1/-1;padding-bottom:4px;border-bottom:1px solid var(--line-d)}
+.fgroup-title{font:500 20px/1.25 var(--head);letter-spacing:-.01em;color:#fff;grid-column:1/-1;margin:0;padding-bottom:12px;border-bottom:1px solid var(--line-d)}
 .field{display:grid;gap:6px;min-width:0}
 .field label{font:800 10px/1.3 var(--body);letter-spacing:.09em;text-transform:uppercase}
 .field input,.field select,.field textarea{font:400 14px/1.4 var(--body);color:var(--ink);background:#fff;border:1.5px solid rgba(27,34,48,.15);border-radius:2px;padding:11px 14px;width:100%}
@@ -391,26 +410,56 @@ details p{padding:0 0 24px;max-width:68ch}
 .aside{border:1px solid var(--line-d);padding:32px 28px;display:grid;gap:18px;background:var(--dark-2)}
 @media (max-width:991px){.cfg{grid-template-columns:1fr}}
 @media (max-width:600px){.fgrid{grid-template-columns:1fr}}
-/* Universal lead form (decision 2026-09-27): one screen, 2 groups, selects; product preselected by page */
-.field select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23206CB9' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center}
-.field select:invalid{color:#6B7483}
-.field select option{color:var(--ink)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#206CB9;box-shadow:0 0 0 3px rgba(32,108,185,.25)}
-.field[hidden]{display:none}
-@media (max-width:600px){.qform .btn{width:100%;justify-content:center}}
-.qerr{font-size:12px;line-height:1.4;color:#FF9A8B}
-.field .req{color:#4A8FD4}
-.field .opt{font-weight:500;letter-spacing:.02em;text-transform:none;opacity:.7}
-.field.is-bad input,.field.is-bad select{border-color:#FF9A8B}
-.qmore summary{cursor:pointer;list-style:none;padding:0;font:600 14px/1.4 var(--body);color:#fff;display:inline-block}
-.qmore summary::-webkit-details-marker{display:none}
-.qmore summary::after{content:none}
-.qmore[open] summary{margin-bottom:12px}
-.qmore{border:0}
-.qmore p{padding:0}
+/* Lead form (decision 2026-09-27, pattern: Helios contact): intro left, form right; product tiles; 3 required fields; details collapsed */
+.lead-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,620px);gap:clamp(56px,7vw,112px);align-items:start}
+.lead-intro{position:sticky;top:120px;display:grid;justify-items:start}
+.lead-intro h2{margin-bottom:24px}
+.lead-intro .intro{font-size:16px;line-height:1.5;color:rgba(255,255,255,.72);max-width:36ch}
+.ds{margin-top:40px;border:0}
+.ds summary::-webkit-details-marker{display:none}
+.ds summary{list-style:none;padding:0;cursor:pointer;font:800 13px/1.2 var(--head)}
+.ds summary::-webkit-details-marker{display:none}
+.ds-body{display:grid;gap:16px;margin-top:20px;max-width:360px}
+.ds-note{font-size:14px;line-height:1.6;color:rgba(255,255,255,.72);padding:0}
+.lead-form{display:flex;flex-direction:column;gap:24px;min-width:0}
+.lf-tiles{border:0;margin:0;padding:0;min-width:0}
+.lf-tiles legend{padding:0;margin-bottom:20px;font:500 20px/1.25 var(--head);letter-spacing:-.01em;color:#fff}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tile{position:relative;cursor:pointer;min-width:0}
+.tile input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.tile span{display:flex;align-items:center;gap:8px;height:52px;padding:0 12px;font:400 14px/1.2 var(--body);color:rgba(255,255,255,.85);background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:2px;transition:background-color .18s,border-color .18s}
+.tile i{width:12px;height:12px;border-radius:50%;border:1.5px solid currentColor;opacity:.6;flex-shrink:0}
+.tile:hover span{background:rgba(255,255,255,.1)}
+.tile input:checked+span{background:#206CB9;border-color:#206CB9;color:#fff}
+.tile input:checked+span i{background:#fff;border-color:#fff;box-shadow:inset 0 0 0 2px #206CB9;opacity:1}
+.tile input:focus-visible+span{outline:2px solid #4A8FD4;outline-offset:2px}
+.lf-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lf{display:grid;gap:10px;min-width:0;align-content:start}
+.lf label{display:flex;justify-content:space-between;gap:8px;font:500 14px/1.4 var(--body);color:#fff}
+.lopt{font-size:12px;font-weight:400;color:rgba(255,255,255,.6)}
+.lf input,.lf select,.lf textarea{display:block;width:100%;min-width:0;min-height:52px;font:400 16px/1.4 var(--body);color:var(--ink);background:#fff;border:1.5px solid rgba(27,34,48,.15);border-radius:2px;padding:14px 16px}
+.lf textarea{min-height:112px;resize:vertical}
+.lf ::placeholder{color:#6B7483}
+.lf select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23206CB9' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 16px center}
+.lf input:focus,.lf select:focus,.lf textarea:focus{outline:none;border-color:#206CB9;box-shadow:0 0 0 3px rgba(74,143,212,.35)}
+.lf.is-bad input{border-color:#FF9A8B}
+.lf[hidden]{display:none}
+.lf-more{border:0;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
+.lf-more summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:0;cursor:pointer;font:400 14px/1.4 var(--body);color:#fff}
+.lf-more summary::-webkit-details-marker{display:none}
+.lf-more summary::after,.lf-more[open] summary::after,.ds summary::after,.ds[open] summary::after{content:none}
+.lf-more summary svg{transition:transform .2s ease-out;flex-shrink:0}
+.lf-more[open] summary svg{transform:rotate(45deg)}
+.lf-more summary:focus-visible{outline:2px solid #4A8FD4;outline-offset:4px}
+.lf-more-body{display:grid;gap:24px;padding:8px 0 26px}
+.lf-submit{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
+.lf-req{font-size:12px;line-height:1.4;color:rgba(255,255,255,.6)}
+.lead-form .micro{color:rgba(255,255,255,.72);margin-top:-8px}
+.lead-form .micro a{color:#4A8FD4;text-decoration:underline}
+@media (max-width:991px){.lead-grid{grid-template-columns:1fr;gap:48px}.lead-intro{position:static}}
+@media (max-width:600px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.lf-row{grid-template-columns:1fr;gap:24px}.lf-submit .btn{width:100%;justify-content:center}}
+.lf .qerr{font-size:12px;line-height:1.4;color:#FF9A8B}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.qform .micro{color:rgba(255,255,255,.72)}
-.qform .micro a{color:#4A8FD4;text-decoration:underline}
 
 .footmock{padding:48px var(--gutter);background:#20252E;color:rgba(255,255,255,.55);font:700 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;text-align:center}
 .mt24{margin-top:24px}.mt40{margin-top:40px}.mt56{margin-top:56px}
@@ -714,57 +763,50 @@ details p{padding:0 0 24px;max-width:68ch}
 </section>
 
 <!-- 13 FAQ -->
-<div class="note"><span class="tag">Блок 13</span><b>FAQ</b><span>Відповіді скорочено до 2–3 речень. У питанні про трансформатор прибрано «the only independent manufacturer». Зберігаємо JSON-LD FAQPage дослівно з видимим текстом.</span></div>
+<div class="note"><span class="tag">Блок 13</span><b>FAQ · категорії + плашки</b><span>Заголовок по центру, без eyebrow і кнопки. Під ним 3 категорії-вкладки (типографіка вкладок сайту: REM 11px uppercase), під ними питання в білих плашках по центру (до 880px). Відкрите лише одне питання. Анімація як у Modulabs: відповідь розгортається по висоті 0.4s ease-out, текст проявляється з затримкою 0.1s, «+» перетворюється на «−»; інша відповідь згортається за 0.3s. Плашки з'являються по черзі при прокрутці. Усі відповіді лежать у HTML (для SEO і FAQPage JSON-LD). Питання ті самі 6, розбиті по 2 на категорію.</span></div>
 <section class="sec paper" id="faq">
-  <div class="faq">
-    <div class="stack">
-      <div class="eyebrow">FAQ</div>
-      <h2>Questions before you request a quote</h2>
-      <a class="ilink cta-gap" href="#configure"><i>→</i>Contact an engineer</a>
-    </div>
-    <div class="faq-list">
-      <details name="faq" open><summary>What is the lead time for LIMIK Core?</summary><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></details>
-      <details name="faq"><summary>What site preparation is required?</summary><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></details>
-      <details name="faq"><summary>Can it run on behind-the-meter power?</summary><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></details>
-      <details name="faq"><summary>Which GPUs are supported?</summary><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></details>
-      <details name="faq"><summary>Can the module be relocated later?</summary><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></details>
-      <details name="faq"><summary>Who manufactures the power transformer?</summary><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></details>
-    </div>
-  </div>
+  <h2 class="fq-title">Questions before you request a quote</h2>
+  <div class="fq-tabs" role="tablist" aria-label="FAQ categories"><button class="fq-tab" type="button" role="tab" id="fq-t-delivery" aria-controls="fq-p-delivery" aria-selected="true">Delivery</button><button class="fq-tab" type="button" role="tab" id="fq-t-site" aria-controls="fq-p-site" aria-selected="false" tabindex="-1">Site</button><button class="fq-tab" type="button" role="tab" id="fq-t-power" aria-controls="fq-p-power" aria-selected="false" tabindex="-1">Power &amp; compute</button></div>
+  <div class="fq-panes"><div class="fq-pane is-active" id="fq-p-delivery" role="tabpanel" aria-labelledby="fq-t-delivery"><div class="fq-item is-open"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="true" aria-controls="fq-a1" id="fq-q1"><span>What is the lead time for LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a1" role="region" aria-labelledby="fq-q1"><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Can the module be relocated later?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a2" role="region" aria-labelledby="fq-q2" inert><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></div></div></div><div class="fq-pane" id="fq-p-site" role="tabpanel" aria-labelledby="fq-t-site"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>What site preparation is required?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a3" role="region" aria-labelledby="fq-q3" inert><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>Can it run on behind-the-meter power?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a4" role="region" aria-labelledby="fq-q4" inert><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></div></div></div><div class="fq-pane" id="fq-p-power" role="tabpanel" aria-labelledby="fq-t-power"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>Who manufactures the power transformer?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a5" role="region" aria-labelledby="fq-q5" inert><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>Which GPUs are supported?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a6" role="region" aria-labelledby="fq-q6" inert><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></div></div></div></div>
 </section>
 
 <!-- 14 CONFIGURATOR -->
-<div class="note"><span class="tag">Блок 14</span><b>Configurator + datasheet · універсальна форма</b><span>Одна форма для всіх продуктових сторінок, один екран, 2 блоки. «Your project»: що потрібно (вже вибрано за сторінкою: LIMIK Core), потужність (лише для LIMIK Core; для трансформаторів свої варіанти узгодимо при перенесенні), коли старт. «Contact»: email, ім'я, компанія обов'язкові, телефон optional, коментар згорнуто в «+ Add details». Списки замість кнопок-варіантів. Прибрано: Cooling, Number of racks, Power source, штат. Помилки під полем, honeypot замість reCAPTCHA, приховані UTM і сторінка-джерело. Справа лишається легкий крок: datasheet за email.</span></div>
+<div class="note"><span class="tag">Блок 14</span><b>Лід-форма · за патерном Helios</b><span>Зліва eyebrow, H2, вступ і посилання «Get the technical datasheet» (розкриває поле email; бічну плашку прибрано); ліва колонка sticky на десктопі. Справа форма: «What are you planning?» + 6 плиток продуктів (вибрано за сторінкою, ?product= у посиланні перевизначає), Full name + Work email, Company, поле «What do you need to deploy?» (optional). Телефону немає. Обов'язкові лише ім'я, email, компанія. «Add project details» згорнуто: потужність (лише для LIMIK Core) і коли старт — optional. Плитки 52px, як поля. Підписи 14px звичайним регістром, поля 16px / 52px, «Optional» праворуч у підписі, без зірочок. Помилки під полем, honeypot, UTM.</span></div>
 <section class="sec dark" id="configure">
-  <div class="ed">
-    <div><div class="eyebrow">Project configurator</div><h2>Plan your LIMIK Core project</h2></div>
-    <p class="intro">Share your power, site and timeline. Our engineers reply with a concept, a power estimate and a delivery schedule.</p>
-  </div>
-  <div class="cfg">
-    <form class="form qform" id="qform" novalidate onsubmit="event.preventDefault()">
-      <div class="fgrid">
-        <div class="fgroup-title">Your project</div>
-        <div class="field full" data-f="product"><label for="q-product">What do you need <span class="req">*</span></label><select id="q-product" name="product" required><option value="limik-core" selected>Modular AI data center (LIMIK Core)</option><option value="power">Power transformer</option><option value="autotransformer">Autotransformer</option><option value="gsu">GSU transformer</option><option value="mobile">Mobile transformer</option><option value="other">Other / not sure</option></select><p class="qerr" hidden>Choose an option.</p></div>
-        <div class="field" data-f="capacity"><label for="q-size">Target IT capacity <span class="req">*</span></label><select id="q-size" name="capacity" required><option value="" disabled selected>Select…</option><option value="lt500">Under 500 kW</option><option value="0.5-2">0.5–2 MW</option><option value="2plus">2 MW+</option><option value="unsure">Not sure yet</option></select><p class="qerr" hidden>Choose an option.</p></div>
-        <div class="field" data-f="start"><label for="q-start">When do you plan to start <span class="req">*</span></label><select id="q-start" name="start" required><option value="" disabled selected>Select…</option><option value="now">Ready now</option><option value="lt6">Within 6 months</option><option value="6-12">6–12 months</option><option value="research">Just researching</option></select><p class="qerr" hidden>Choose an option.</p></div>
-        <div class="fgroup-title" style="margin-top:12px">Contact</div>
-        <div class="field"><label for="q-email">Work email <span class="req">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" required><p class="qerr" hidden>Enter a valid work email.</p></div>
-        <div class="field"><label for="q-name">Full name <span class="req">*</span></label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
-        <div class="field"><label for="q-company">Company <span class="req">*</span></label><input id="q-company" name="company" autocomplete="organization" required><p class="qerr" hidden>Enter your company.</p></div>
-        <div class="field"><label for="q-phone">Phone <span class="opt">(optional)</span></label><input id="q-phone" name="phone" type="tel" autocomplete="tel"></div>
-        <details class="qmore full"><summary>+ Add details</summary><div class="field"><label for="q-msg">Anything else we should know?</label><textarea id="q-msg" name="message"></textarea></div></details>
+  <div class="lead-grid">
+    <div class="lead-intro">
+      <div class="eyebrow">Project configurator</div>
+      <h2>Plan your LIMIK Core project</h2>
+      <p class="intro">Share your power, site and timeline. Our engineers reply with a concept, a power estimate and a delivery schedule.</p>
+      <details class="ds">
+        <summary class="ilink"><i>→</i>Get the technical datasheet</summary>
+        <div class="ds-body"><p class="ds-note">Not ready for a project yet? We will email the datasheet with reference specifications and site requirements.</p>
+        <div class="lf"><label for="ds-email">Work email</label><input id="ds-email" type="email" autocomplete="email"></div>
+        <div><a class="ilink" href="#configure"><i>→</i>Send me the datasheet</a></div></div>
+      </details>
+    </div>
+    <form class="lead-form" id="qform" novalidate onsubmit="event.preventDefault()">
+      <fieldset class="lf-tiles"><legend>What are you planning?</legend><div class="tiles"><label class="tile"><input type="radio" name="product" value="limik-core" checked><span><i aria-hidden="true"></i>Modular AI data center</span></label><label class="tile"><input type="radio" name="product" value="power"><span><i aria-hidden="true"></i>Power transformer</span></label><label class="tile"><input type="radio" name="product" value="autotransformer"><span><i aria-hidden="true"></i>Autotransformer</span></label><label class="tile"><input type="radio" name="product" value="gsu"><span><i aria-hidden="true"></i>GSU transformer</span></label><label class="tile"><input type="radio" name="product" value="mobile"><span><i aria-hidden="true"></i>Mobile transformer</span></label><label class="tile"><input type="radio" name="product" value="other"><span><i aria-hidden="true"></i>Other</span></label></div></fieldset>
+      <div class="lf-row">
+        <div class="lf"><label for="q-name">Full name</label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
+        <div class="lf"><label for="q-email">Work email</label><input id="q-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required><p class="qerr" hidden>Enter a valid work email.</p></div>
       </div>
+      <div class="lf"><label for="q-company">Company</label><input id="q-company" name="company" autocomplete="organization" required><p class="qerr" hidden>Enter your company.</p></div>
+      <div class="lf"><label for="q-msg">What do you need to deploy?<span class="lopt">Optional</span></label><textarea id="q-msg" name="message" rows="4" placeholder="Target capacity, site and timing."></textarea></div>
+      <details class="lf-more">
+        <summary>Add project details<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></summary>
+        <div class="lf-more-body">
+          <div class="lf-row">
+            <div class="lf" data-f="capacity"><label for="q-size">Target IT capacity<span class="lopt">Optional</span></label><select id="q-size" name="capacity"><option value="">Select…</option><option value="lt500">Under 500 kW</option><option value="0.5-2">0.5–2 MW</option><option value="2plus">2 MW+</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="lf" data-f="start"><label for="q-start">When do you plan to start<span class="lopt">Optional</span></label><select id="q-start" name="start"><option value="">Select…</option><option value="now">Ready now</option><option value="lt6">Within 6 months</option><option value="6-12">6–12 months</option><option value="research">Just researching</option></select></div>
+          </div>
+        </div>
+      </details>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="page" value="modular-ai-data-centers">
-      <div class="stack" style="gap:16px"><div><button class="btn" type="submit">Get my concept &amp; schedule</button></div>
-      <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p></div>
+      <div class="lf-submit"><button class="btn" type="submit">Get my concept &amp; schedule</button><span class="lf-req">Name, email and company are required.</span></div>
+      <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
     </form>
-    <aside class="aside">
-      <h3>Not ready for a configuration?</h3>
-      <p class="body">Get the technical datasheet with reference specifications and site requirements.</p>
-      <div class="field"><label for="f14">Work email</label><input id="f14" type="email"></div>
-      <div><a class="ilink" href="#configure"><i>→</i>Send me the datasheet</a></div>
-    </aside>
   </div>
 </section>
 
@@ -809,25 +851,48 @@ details p{padding:0 0 24px;max-width:68ch}
     var sio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ steps.classList.add('is-run'); sio.disconnect(); } });},{threshold:.35});
     sio.observe(steps);
   }
-  // FAQ: one answer open at a time (native name="faq" + fallback for older browsers)
-  var faqs=[].slice.call(document.querySelectorAll('.faq-list details'));
-  faqs.forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open) faqs.forEach(function(x){ if(x!==d) x.open=false; }); }); });
+  // FAQ: category tabs + one answer open at a time, height animation as in Modulabs (open 400ms, close 300ms, ease-out)
+  var fq=document.querySelector('.fq-panes');
+  if(fq){
+    function setOpen(item,on){
+      var a=item.querySelector('.fq-a'), q=item.querySelector('.fq-q');
+      if(item.classList.contains('is-open')===on) return;
+      a.style.transition='none'; a.style.height=on?'0px':a.scrollHeight+'px'; a.offsetHeight;
+      a.style.transition=on?'height .4s ease-out, opacity .3s ease-out .1s':'height .3s ease-out, opacity .3s ease-out';
+      item.classList.toggle('is-open',on); q.setAttribute('aria-expanded',on?'true':'false');
+      if(on){ a.removeAttribute('inert'); a.style.height=a.scrollHeight+'px'; } else { a.setAttribute('inert',''); a.style.height='0px'; }
+      a.addEventListener('transitionend',function te(e){ if(e.propertyName!=='height') return; a.removeEventListener('transitionend',te); if(item.classList.contains('is-open')) a.style.height='auto'; });
+    }
+    fq.querySelectorAll('.fq-q').forEach(function(q){ q.addEventListener('click',function(){
+      var item=q.closest('.fq-item'), on=!item.classList.contains('is-open');
+      if(on) item.parentNode.querySelectorAll('.fq-item.is-open').forEach(function(x){ if(x!==item) setOpen(x,false); });
+      setOpen(item,on);
+    }); });
+    var tabs=[].slice.call(document.querySelectorAll('.fq-tab'));
+    function selectTab(t){ tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-selected',on?'true':'false'); x.tabIndex=on?0:-1; document.getElementById(x.getAttribute('aria-controls')).classList.toggle('is-active',on); }); }
+    tabs.forEach(function(t,i){ t.addEventListener('click',function(){ selectTab(t); });
+      t.addEventListener('keydown',function(e){ var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!d) return; e.preventDefault(); var n=tabs[(i+d+tabs.length)%tabs.length]; selectTab(n); n.focus(); }); });
+    if('IntersectionObserver' in window){ fq.classList.add('js-reveal');
+      var fio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ fq.classList.add('is-in'); fio.disconnect(); } }); },{threshold:.15}); fio.observe(fq); }
+  }
 
-  // Universal lead form: validation under fields; capacity question only for LIMIK Core
+  // Lead form: product preselected by page (?product= overrides), capacity only for LIMIK Core, errors under fields
   var qf=document.getElementById('qform');
   if(qf){
-    var prod=document.getElementById('q-product'), sizeF=qf.querySelector('[data-f="capacity"]'), size=document.getElementById('q-size');
-    function syncSize(){ var on=prod.value==='limik-core'; sizeF.hidden=!on; size.required=on; }
-    prod.addEventListener('change',syncSize); syncSize();
-    qf.querySelectorAll('input,select').forEach(function(el){ el.addEventListener('change',function(){ var f=el.closest('.field'); if(f){ f.classList.remove('is-bad'); var e=f.querySelector('.qerr'); if(e) e.hidden=true; } }); });
+    var qs=new URLSearchParams(location.search), pre=qs.get('product');
+    if(pre){ var r=qf.querySelector('input[name=product][value="'+pre+'"]'); if(r) r.checked=true; }
+    var sizeF=qf.querySelector('[data-f="capacity"]');
+    function syncSize(){ var v=(qf.querySelector('input[name=product]:checked')||{}).value; sizeF.hidden=(v!=='limik-core'); }
+    qf.querySelectorAll('input[name=product]').forEach(function(r){ r.addEventListener('change',syncSize); }); syncSize();
+    qf.querySelectorAll('.lf input').forEach(function(el){ el.addEventListener('input',function(){ var f=el.closest('.lf'); f.classList.remove('is-bad'); var e=f.querySelector('.qerr'); if(e) e.hidden=true; }); });
     qf.addEventListener('submit',function(){
       var bad=null;
-      qf.querySelectorAll('[required]').forEach(function(el){ var f=el.closest('.field'); if(f.hidden) return; var v=(el.value||'').trim();
-        var ok=v && (el.type!=='email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)); f.classList.toggle('is-bad',!ok); var e=f.querySelector('.qerr'); if(e) e.hidden=!!ok; if(!ok && !bad) bad=el; });
+      qf.querySelectorAll('[required]').forEach(function(el){ var f=el.closest('.lf'), v=el.value.trim();
+        var ok=v && (el.type!=='email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)); f.classList.toggle('is-bad',!ok); f.querySelector('.qerr').hidden=!!ok; if(!ok && !bad) bad=el; });
       if(bad){ bad.focus(); return; }
-      qf.innerHTML='<p class="fgroup-title" style="border:0">Sent</p><h3>Thank you. An engineer will reply within 48 hours.</h3>';
+      qf.innerHTML='<h3 style="font-size:20px">Thank you. An engineer will reply within 48 hours.</h3>';
     });
-    var qs=new URLSearchParams(location.search); ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ var el=qf.querySelector('[name='+k+']'); if(el) el.value=qs.get(k)||''; });
+    ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ var el=qf.querySelector('[name='+k+']'); if(el) el.value=qs.get(k)||''; });
   }
 
   var b=document.getElementById('toggleNotes');

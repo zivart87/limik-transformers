@@ -7,7 +7,7 @@
 
 ## Де файли
 - Прототип (джерело правди): `docs/prototypes/modular-dc-wireframe.html` (noindex). Робоча копія в сесії: `/mnt/user-data/outputs/modular-dc-wireframe.html` (без doctype, публікується як Artifact); копія в репо = та сама розмітка, обгорнута в `<!DOCTYPE html><head>…</head><body>`.
-- Artifact (приватна сторінка для перегляду): https://claude.ai/artifact/VxszMb2Dp1BfHWUR5dPu3s (версія 48). Оновлювати, передаючи цей url.
+- Artifact (приватна сторінка для перегляду): https://claude.ai/artifact/VxszMb2Dp1BfHWUR5dPu3s (версія 52). Оновлювати, передаючи цей url.
 - Тексти/ТЗ: `docs/page-drafts/limik-landing-FINAL-v2.md`. Референси конкурентів: Giga (GigaPod), Comino, BMarko, ModulEdge, Advanced Giga; збережені сторінки Modulabs і Crusoe лежать у корені репо (їх варто перенести в `_archive/ref/`).
 
 ## Режим роботи
@@ -28,8 +28,8 @@
 6. **Who it's for** (білий): 6 карток, іконка 28px зверху, текст знизу, заливка без рамки, min-height 240; контекстні посилання в тексті на Renewables / Utilities / Defense.
 7. **Twelve weeks** (темний): 4 етапи; при доскролі лінія 1px заливається --blue-lt, квадрати і тези з'являються по черзі; плашка «Parallel power track».
 8. **U.S. Manufacturing** (білий): текст + фото; 3 тези з лінією 2px зліва (32 Years / Made in the USA / 48 Weeks), по 2 рядки.
-9. **FAQ** (світло-сірий): колонки 5fr/7fr, проміжок до 128px, 6 питань; відкрита лише одна відповідь (`details name="faq"` + JS-fallback).
-10. **Конфігуратор** (темний): універсальна лід-форма, один екран, 2 блоки (Your project: що потрібно — вибрано за сторінкою, потужність, коли старт — усе випадними списками; Contact: email, ім'я, компанія, телефон optional, «+ Add details») + бічна плашка datasheet. Правила в `docs/rules/forms.md`.
+9. **FAQ** (світло-сірий): заголовок по центру (без eyebrow і кнопки), 3 вкладки-категорії (Delivery / Site / Power & compute, по 2 питання), питання в білих плашках до 880px; одне відкрите; анімація за Modulabs. Правила в `components.md`.
+10. **Конфігуратор** (темний): лід-форма за патерном Helios. Зліва заголовок, вступ, посилання на datasheet (sticky); справа «What are you planning?» + 6 плиток продуктів, ім'я/email/компанія (обов'язкові), «What do you need to deploy?» (optional), без телефону; згорнуте «Add project details» (потужність, старт). Плитки 52px, як поля. Правила й стандарт полів у `docs/rules/forms.md`.
 
 Прибрано: окрема смуга фактів, Chip-agnostic, гарантія, Founding customers.
 

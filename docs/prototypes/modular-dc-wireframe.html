@@ -24,8 +24,8 @@
 body{margin:0;background:var(--white);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:inherit;text-wrap:balance}
 h2{font-size:clamp(28px,4vw,52px);font-weight:500;line-height:1.02;max-width:18ch}
-h3{font-size:clamp(20px,2.5vw,32px);font-weight:600;line-height:1.1}
-h4{font-size:16px;font-weight:600;line-height:1.3}
+h3{font-size:clamp(20px,2.5vw,32px);font-weight:500;line-height:1.1}
+h4{font-size:16px;font-weight:500;line-height:1.3}
 p{margin:0}
 a{color:inherit}
 .body{font-size:16px;line-height:1.75;color:var(--muted)}
@@ -91,13 +91,13 @@ body.clean .tbc{background:transparent;color:inherit;padding:0;font-weight:inher
 .hero{position:relative;min-height:760px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--dark);color:#fff;padding:180px 60px 0}
 .hero .bg{position:absolute;inset:0;background-color:#3B424E}
 .hero .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,24,32,.85),rgba(20,24,32,.2) 60%)}
-.hero-row{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:60px;padding-bottom:112px}
+.hero-row{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:60px;padding-bottom:88px}
 .hero h1{font-size:clamp(40px,4.4vw,72px);font-weight:600;line-height:.92;text-transform:uppercase;max-width:15ch;margin-bottom:24px}
 .hero .lead{font-size:clamp(14px,1.1vw,17px);line-height:1.65;color:rgba(255,255,255,.78);max-width:52ch}
 .hero-cta{display:grid;gap:18px;justify-items:start;flex-shrink:0;max-width:340px}
 .hero-bottom{position:relative;display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line-d);padding:24px 0 26px;font:700 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 @media (max-width:991px){.hero{padding:160px 40px 0;min-height:680px}.hero-row{flex-direction:column;align-items:flex-start;gap:32px;padding-bottom:64px}}
-@media (max-width:768px){.hero{padding:140px 24px 0;min-height:620px}.hero h1{font-size:clamp(36px,9vw,46px)}.hero-bottom{flex-direction:column}}
+@media (max-width:768px){.hero-cta{width:100%;max-width:none}.hero-cta .btn{width:100%;justify-content:center}.hero{padding:140px 24px 0;min-height:620px}.hero h1{font-size:clamp(36px,10.8vw,44px)}.hero-bottom{flex-direction:column}}
 
 
 .hero-logos{position:relative;margin:0 -60px;background:transparent;overflow:hidden;padding:12px 0 40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -113,7 +113,7 @@ body.clean .tbc{background:transparent;color:inherit;padding:0;font-weight:inher
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .fact{padding:36px 28px;border-right:1px solid var(--line);min-width:0;display:grid;gap:12px;align-content:start}
 .fact:last-child{border-right:0}
-.fact .num{font:600 clamp(36px,3.6vw,56px)/1 var(--head);letter-spacing:-.03em;white-space:nowrap}
+.fact .num{font:500 clamp(36px,3.6vw,56px)/1 var(--head);letter-spacing:-.03em;white-space:nowrap}
 .fact .num small{font-size:.45em;letter-spacing:0;margin-left:4px}
 .fact p{font-size:14px;line-height:1.5;color:var(--muted);max-width:24ch}
 .sec-facts{padding-top:0;padding-bottom:0}
@@ -131,7 +131,7 @@ body.clean .tbc{background:transparent;color:inherit;padding:0;font-weight:inher
 table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px;line-height:1.5}
 th,td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:top}
 thead th{font:700 11px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-tbody th{font:600 15px/1.4 var(--head);width:28%}
+tbody th{font:500 15px/1.4 var(--head);width:28%}
 tbody tr:nth-child(odd){background:rgba(0,0,0,.025)}
 .paper tbody tr:nth-child(odd){background:rgba(255,255,255,.6)}
 td{font-variant-numeric:tabular-nums}
@@ -154,7 +154,7 @@ td{font-variant-numeric:tabular-nums}
 .picon{width:48px;height:48px;border:1px dashed rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
 .ptext{display:grid;gap:12px}
 .ptext h3{font-size:clamp(20px,2vw,28px)}
-.ptext p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.78);max-width:52ch}
+.ptext p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.78);max-width:52ch}
 .pmeta{display:flex;justify-content:space-between;gap:12px;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .ptags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .ptags span{font:600 12px/1 var(--body);padding:8px 10px;border:1px solid rgba(255,255,255,.28);border-radius:2px;white-space:nowrap}
@@ -183,7 +183,7 @@ td{font-variant-numeric:tabular-nums}
 .acc-more{position:absolute;left:0;right:0;bottom:100%;padding-bottom:20px;opacity:0;transition:opacity .5s}
 .acc-more>div{display:grid;gap:12px;width:520px;max-width:100%}
 .acc-card.is-active .acc-more{opacity:1;transition:opacity .5s ease .5s}
-.acc-more p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);max-width:46ch}
+.acc-more p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.75);max-width:46ch}
 .acc-tags{display:flex;flex-wrap:wrap;gap:6px}
 .acc-tags span{font:600 11px/1 var(--body);padding:6px 8px;border:1px solid rgba(255,255,255,.28);border-radius:2px;white-space:nowrap}
 .acc-tags .tbc{padding:0 4px;border:0}
@@ -197,7 +197,7 @@ td{font-variant-numeric:tabular-nums}
   .acc-img{position:relative;inset:auto;width:auto;height:240px;opacity:1}
   .acc-info{position:relative;inset:auto;padding:24px 28px 0}
   .acc-kicker{color:#8FB8E6;opacity:1}
-  .acc-title{font-size:36px}
+  .acc-title,.acc-card.is-active .acc-title{font-size:30px}
   .acc-info,.acc-card.is-active .acc-info{padding:24px 28px 0}
   .acc-more{position:static;order:3;padding:6px 0 0;opacity:1}
   .acc-more>div{width:auto}
@@ -213,6 +213,7 @@ td{font-variant-numeric:tabular-nums}
 .spx-media .ph{aspect-ratio:4/3.2;background-color:transparent;border:1px dashed #A9B0BB}
 .spx-list{border-top:1px solid var(--line)}
 .spx-item{border-bottom:1px solid var(--line)}
+.spx-item:last-child{border-bottom:0}
 .spx-head{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:baseline;gap:12px;padding:22px 0;cursor:pointer}
 .spx-head:focus-visible{outline:2px solid #1B6BD1;outline-offset:2px}
 .spx-num{font:600 14px/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums;transition:color .3s}
@@ -230,7 +231,7 @@ td{font-variant-numeric:tabular-nums}
 .spx-item.is-open .spx-body{grid-template-rows:1fr}
 .spx-body>div{min-height:0;overflow:hidden}
 .spx-body dl{margin:0 0 24px 60px;padding:18px 24px;display:grid;gap:10px;background:var(--white);border-radius:2px}
-.spx-body dl div{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:16px;font-size:15px;line-height:1.55}
+.spx-body dl div{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:16px;font-size:16px;line-height:1.75}
 .spx-body dt{color:var(--muted)}
 .spx-body dd{margin:0;color:var(--ink)}
 @media (max-width:991px){.spx{grid-template-columns:1fr;gap:32px}}
@@ -262,7 +263,7 @@ body.clean .variant-tag{display:none}
 .card.icard{min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:48px;background:var(--paper);border:0;padding:32px 28px}
 .icard .icon{width:28px;height:28px}
 .icard-text{display:grid;gap:10px}
-.icard-text h4{font-size:20px;line-height:1.25}
+.icard-text h3{font-size:20px;line-height:1.25}
 .icard-text .foot{padding-top:12px}
 @media (max-width:600px){.card.icard{min-height:220px;gap:36px}}
 
@@ -280,11 +281,14 @@ body.clean .variant-tag{display:none}
 /* Text columns with a left rule (block 10) */
 .lcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
 .lcol{border-left:2px solid #9AA2AE;padding:2px 0 2px 24px;display:grid;gap:10px;align-content:start;min-width:0}
-.lcol h4{font-size:18px;line-height:1.3}
-.lcol .body{font-size:15px;line-height:1.6}
+.lcol h3{font-size:20px;line-height:1.25}
+.lcol .body{font-size:16px;line-height:1.75}
 @media (max-width:991px){.lcols{grid-template-columns:1fr;gap:28px}}
 @media (max-width:600px){.lcols{grid-template-columns:1fr;gap:28px}}
 
+
+/* Headings inside blocks (cards, theses, timeline, panels): one size 20px (decision 2026-09-27) */
+.step h3,.track h3,.lcol h3,.aside h3{font-size:20px;line-height:1.25}
 
 /* Timeline reveal: line fills in light blue, squares light up, steps rise in order */
 .steps{position:relative}
@@ -334,9 +338,9 @@ body.clean .variant-tag{display:none}
 .card dl{margin:0;display:grid;gap:0}
 .card dl div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
 .card dt{color:var(--muted)} .card dd{margin:0;font-weight:600;text-align:right}
-.card .body{font-size:15px;line-height:1.65}
+.card .body{font-size:16px;line-height:1.75}
 .card .icon{width:28px;height:28px;background:var(--ph);border:1px dashed #9AA2AE}
-.card .big{font:600 clamp(32px,3vw,44px)/1 var(--head);letter-spacing:-.03em}
+.card .big{font:500 clamp(32px,3vw,44px)/1 var(--head);letter-spacing:-.03em}
 .card .foot{margin-top:auto;padding-top:8px}
 @media (max-width:1100px){.c4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:991px){.c3{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -347,7 +351,7 @@ body.clean .variant-tag{display:none}
 .step{padding:28px 28px 0 0;display:grid;gap:10px;align-content:start;position:relative;min-width:0}
 .step::before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;background:#fff}
 .step .when{font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.step p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.72)}
+.step p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.72)}
 .track{margin-top:56px;border:1px solid var(--line-d);padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
 @media (max-width:991px){.steps{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line-d)}.step{padding:0 0 32px 28px}.step::before{top:4px;left:-5px}.track{grid-template-columns:1fr}}
 
@@ -367,7 +371,7 @@ body.clean .variant-tag{display:none}
 .faq h2{max-width:14ch}
 .faq-list{border-top:1px solid var(--line)}
 details{border-bottom:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:600 18px/1.35 var(--head)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:500 18px/1.35 var(--head)}
 summary::-webkit-details-marker{display:none}
 summary::after{content:'+';font-size:22px;line-height:1;flex-shrink:0}
 details[open] summary::after{content:'–'}
@@ -387,13 +391,40 @@ details p{padding:0 0 24px;max-width:68ch}
 .aside{border:1px solid var(--line-d);padding:32px 28px;display:grid;gap:18px;background:var(--dark-2)}
 @media (max-width:991px){.cfg{grid-template-columns:1fr}}
 @media (max-width:600px){.fgrid{grid-template-columns:1fr}}
+/* Universal lead form (decision 2026-09-27): one screen, 2 groups, selects; product preselected by page */
+.field select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23206CB9' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center}
+.field select:invalid{color:#6B7483}
+.field select option{color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#206CB9;box-shadow:0 0 0 3px rgba(32,108,185,.25)}
+.field[hidden]{display:none}
+@media (max-width:600px){.qform .btn{width:100%;justify-content:center}}
+.qerr{font-size:12px;line-height:1.4;color:#FF9A8B}
+.field .req{color:#4A8FD4}
+.field .opt{font-weight:500;letter-spacing:.02em;text-transform:none;opacity:.7}
+.field.is-bad input,.field.is-bad select{border-color:#FF9A8B}
+.qmore summary{cursor:pointer;list-style:none;padding:0;font:600 14px/1.4 var(--body);color:#fff;display:inline-block}
+.qmore summary::-webkit-details-marker{display:none}
+.qmore summary::after{content:none}
+.qmore[open] summary{margin-bottom:12px}
+.qmore{border:0}
+.qmore p{padding:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.qform .micro{color:rgba(255,255,255,.72)}
+.qform .micro a{color:#4A8FD4;text-decoration:underline}
 
 .footmock{padding:48px var(--gutter);background:#20252E;color:rgba(255,255,255,.55);font:700 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;text-align:center}
 .mt24{margin-top:24px}.mt40{margin-top:40px}.mt56{margin-top:56px}
 @media (prefers-reduced-motion:reduce){*:not(.lg-track){animation:none!important}}
 
+/* Weights: hero h1 600; all other headings (h2-h4, FAQ questions, model names) 500 (decision 2026-09-27) */
+/* Eyebrow 12px and section intro 16px are fixed on all widths (decision 2026-09-27) */
+
 /* Site standard: 40px from the last text line to the CTA */
-.stack>.cta-gap{margin-top:16px}   /* stack gap 24 + 16 = 40 */
+.stack>.cta-gap{margin-top:16px}
+.split .stack>.eyebrow{margin-bottom:8px}   /* stack gap 24 + 8 = 32 */
+.faq .stack{gap:0}
+.faq .stack>.eyebrow{margin-bottom:20px}   /* FAQ exception: 20px */
+.faq .stack>.cta-gap{margin-top:40px}   /* stack gap 24 + 16 = 40 */
 .cta-gap20{margin-top:20px}        /* parent gap 20 + 20 = 40 */
 </style>
 </head>
@@ -634,12 +665,12 @@ details p{padding:0 0 24px;max-width:68ch}
     <p class="intro">Where a 12-week module beats an 18-month building.</p>
   </div>
   <div class="cards c3">
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>GPU clouds &amp; AI hosting</h4><p class="body">Add rentable capacity in blocks, without waiting for a new building.</p></div></article>
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Enterprise AI</h4><p class="body">Keep models and data on your own site, under your own control.</p></div></article>
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Edge inference</h4><p class="body">Put compute next to cameras, sensors and users where latency matters.</p></div></article>
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Behind-the-meter energy sites</h4><p class="body">Turn on-site gas, <a class="inline-link" href="/industries/renewables/">solar or storage</a> into AI capacity, skipping the interconnection queue.</p></div></article>
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Utilities &amp; grid operators</h4><p class="body">Host compute at <a class="inline-link" href="/industries/utilities/">substations and grid assets</a> you already operate.</p></div></article>
-    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h4>Defense &amp; government</h4><p class="body">U.S.-built infrastructure for <a class="inline-link" href="/industries/defense/">secure and relocatable deployments</a>.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>GPU clouds &amp; AI hosting</h3><p class="body">Add rentable capacity in blocks, without waiting for a new building.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>Enterprise AI</h3><p class="body">Keep models and data on your own site, under your own control.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>Edge inference</h3><p class="body">Put compute next to cameras, sensors and users where latency matters.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>Behind-the-meter energy sites</h3><p class="body">Turn on-site gas, <a class="inline-link" href="/industries/renewables/">solar or storage</a> into AI capacity, skipping the interconnection queue.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>Utilities &amp; grid operators</h3><p class="body">Host compute at <a class="inline-link" href="/industries/utilities/">substations and grid assets</a> you already operate.</p></div></article>
+    <article class="card icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>Defense &amp; government</h3><p class="body">U.S.-built infrastructure for <a class="inline-link" href="/industries/defense/">secure and relocatable deployments</a>.</p></div></article>
   </div>
 </section>
 
@@ -652,13 +683,13 @@ details p{padding:0 0 24px;max-width:68ch}
   </div>
   <div class="steps">
     <span class="steps-fill" aria-hidden="true"></span>
-    <div class="step"><span class="when">Week 0</span><h4>Design &amp; contract</h4><p>Design approval and engineering freeze.</p></div>
-    <div class="step"><span class="when">Weeks 1–2</span><h4>Engineering release</h4><p>Long-lead procurement and test plan.</p></div>
-    <div class="step"><span class="when">Weeks 2–9</span><h4>Factory build</h4><p>Enclosure, power distribution and cooling loop assembly.</p></div>
-    <div class="step"><span class="when">Weeks 9–12</span><h4>Testing &amp; shipping</h4><p>Factory acceptance test, then rail or truck to your site.</p></div>
+    <div class="step"><span class="when">Week 0</span><h3>Design &amp; contract</h3><p>Design approval and engineering freeze.</p></div>
+    <div class="step"><span class="when">Weeks 1–2</span><h3>Engineering release</h3><p>Long-lead procurement and test plan.</p></div>
+    <div class="step"><span class="when">Weeks 2–9</span><h3>Factory build</h3><p>Enclosure, power distribution and cooling loop assembly.</p></div>
+    <div class="step"><span class="when">Weeks 9–12</span><h3>Testing &amp; shipping</h3><p>Factory acceptance test, then rail or truck to your site.</p></div>
   </div>
   <div class="track">
-    <div><h4>Parallel power track</h4><p class="body" style="font-size:15px;margin-top:8px">Your MV transformer enters production on day one on our own line, instead of waiting in a third-party queue.</p></div>
+    <div><h3>Parallel power track</h3><p class="body" style="margin-top:8px">Your MV transformer enters production on day one on our own line, instead of waiting in a third-party queue.</p></div>
     <a class="ilink" href="#configure"><i>→</i>Request a schedule</a>
   </div>
 </section>
@@ -676,9 +707,9 @@ details p{padding:0 0 24px;max-width:68ch}
     <div class="ph" style="aspect-ratio:4/3">[ Фото цеху / FAT-тестування · 4:3 · з'явиться пізніше ]</div>
   </div>
   <div class="lcols mt56">
-    <div class="lcol"><h4>32 Years of Engineering</h4><p class="body">Power transformers for utilities, power producers and EPC contractors.</p></div>
-    <div class="lcol"><h4>Made in the USA</h4><p class="body">Designed, engineered and built on American soil, with Buy American compliance by default.</p></div>
-    <div class="lcol"><h4>48 Weeks. Not 4 Years</h4><p class="body">Overseas suppliers quote 2–4 years for a transformer. LIMIK delivers in 48 weeks.</p></div>
+    <div class="lcol"><h3>32 Years of Engineering</h3><p class="body">Power transformers for utilities, power producers and EPC contractors.</p></div>
+    <div class="lcol"><h3>Made in the USA</h3><p class="body">Designed, engineered and built on American soil, with Buy American compliance by default.</p></div>
+    <div class="lcol"><h3>48 Weeks. Not 4 Years</h3><p class="body">Overseas suppliers quote 2–4 years for a transformer. LIMIK delivers in 48 weeks.</p></div>
   </div>
 </section>
 
@@ -692,48 +723,45 @@ details p{padding:0 0 24px;max-width:68ch}
       <a class="ilink cta-gap" href="#configure"><i>→</i>Contact an engineer</a>
     </div>
     <div class="faq-list">
-      <details open><summary>What is the lead time for LIMIK Core?</summary><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></details>
-      <details><summary>What site preparation is required?</summary><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></details>
-      <details><summary>Can it run on behind-the-meter power?</summary><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></details>
-      <details><summary>Which GPUs are supported?</summary><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></details>
-      <details><summary>Can the module be relocated later?</summary><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></details>
-      <details><summary>Who manufactures the power transformer?</summary><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></details>
+      <details name="faq" open><summary>What is the lead time for LIMIK Core?</summary><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></details>
+      <details name="faq"><summary>What site preparation is required?</summary><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></details>
+      <details name="faq"><summary>Can it run on behind-the-meter power?</summary><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></details>
+      <details name="faq"><summary>Which GPUs are supported?</summary><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></details>
+      <details name="faq"><summary>Can the module be relocated later?</summary><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></details>
+      <details name="faq"><summary>Who manufactures the power transformer?</summary><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></details>
     </div>
   </div>
 </section>
 
 <!-- 14 CONFIGURATOR -->
-<div class="note"><span class="tag">Блок 14</span><b>Configurator + datasheet</b><span>Форма розбита на 2 групи. Додано поля як у ModulEdge: кількість стійок, штат/локація, стадія проєкту, терміни. Справа легкий крок для тих, хто ще не готовий: datasheet за email. Мобільна sticky CTA-плашка лишається.</span></div>
+<div class="note"><span class="tag">Блок 14</span><b>Configurator + datasheet · універсальна форма</b><span>Одна форма для всіх продуктових сторінок, один екран, 2 блоки. «Your project»: що потрібно (вже вибрано за сторінкою: LIMIK Core), потужність (лише для LIMIK Core; для трансформаторів свої варіанти узгодимо при перенесенні), коли старт. «Contact»: email, ім'я, компанія обов'язкові, телефон optional, коментар згорнуто в «+ Add details». Списки замість кнопок-варіантів. Прибрано: Cooling, Number of racks, Power source, штат. Помилки під полем, honeypot замість reCAPTCHA, приховані UTM і сторінка-джерело. Справа лишається легкий крок: datasheet за email.</span></div>
 <section class="sec dark" id="configure">
   <div class="ed">
     <div><div class="eyebrow">Project configurator</div><h2>Plan your LIMIK Core project</h2></div>
     <p class="intro">Share your power, site and timeline. Our engineers reply with a concept, a power estimate and a delivery schedule.</p>
   </div>
   <div class="cfg">
-    <form class="form" onsubmit="event.preventDefault()">
+    <form class="form qform" id="qform" novalidate onsubmit="event.preventDefault()">
       <div class="fgrid">
         <div class="fgroup-title">Your project</div>
-        <div class="field"><label for="f1">Target IT capacity *</label><select id="f1"><option>100–500 kW</option><option>500 kW – 2 MW</option><option>2 MW+</option><option>Not sure yet</option></select></div>
-        <div class="field"><label for="f2">Number of racks</label><input id="f2" placeholder="e.g. 8"></div>
-        <div class="field"><label for="f3">Cooling preference *</label><select id="f3"><option>Direct-to-chip liquid</option><option>Hybrid liquid + air</option><option>Not sure yet</option></select></div>
-        <div class="field"><label for="f4">Power source *</label><select id="f4"><option>Utility grid</option><option>On-site generation</option><option>Hybrid</option><option>Not sure yet</option></select></div>
-        <div class="field"><label for="f5">Include a LIMIK transformer? *</label><select id="f5"><option>Yes</option><option>No, site power exists</option><option>Not sure yet</option></select></div>
-        <div class="field"><label for="f6">Site location (state)</label><input id="f6" placeholder="e.g. Texas"></div>
-        <div class="field"><label for="f7">Project stage</label><select id="f7"><option>Researching options</option><option>Budget approved</option><option>Site secured</option></select></div>
-        <div class="field"><label for="f8">Target delivery</label><select id="f8"><option>Within 6 months</option><option>6–12 months</option><option>12+ months</option></select></div>
+        <div class="field full" data-f="product"><label for="q-product">What do you need <span class="req">*</span></label><select id="q-product" name="product" required><option value="limik-core" selected>Modular AI data center (LIMIK Core)</option><option value="power">Power transformer</option><option value="autotransformer">Autotransformer</option><option value="gsu">GSU transformer</option><option value="mobile">Mobile transformer</option><option value="other">Other / not sure</option></select><p class="qerr" hidden>Choose an option.</p></div>
+        <div class="field" data-f="capacity"><label for="q-size">Target IT capacity <span class="req">*</span></label><select id="q-size" name="capacity" required><option value="" disabled selected>Select…</option><option value="lt500">Under 500 kW</option><option value="0.5-2">0.5–2 MW</option><option value="2plus">2 MW+</option><option value="unsure">Not sure yet</option></select><p class="qerr" hidden>Choose an option.</p></div>
+        <div class="field" data-f="start"><label for="q-start">When do you plan to start <span class="req">*</span></label><select id="q-start" name="start" required><option value="" disabled selected>Select…</option><option value="now">Ready now</option><option value="lt6">Within 6 months</option><option value="6-12">6–12 months</option><option value="research">Just researching</option></select><p class="qerr" hidden>Choose an option.</p></div>
         <div class="fgroup-title" style="margin-top:12px">Contact</div>
-        <div class="field"><label for="f9">Work email *</label><input id="f9" type="email"></div>
-        <div class="field"><label for="f10">Full name *</label><input id="f10"></div>
-        <div class="field"><label for="f11">Company</label><input id="f11"></div>
-        <div class="field"><label for="f12">Phone</label><input id="f12"></div>
-        <div class="field full"><label for="f13">Anything else we should know?</label><textarea id="f13"></textarea></div>
+        <div class="field"><label for="q-email">Work email <span class="req">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" required><p class="qerr" hidden>Enter a valid work email.</p></div>
+        <div class="field"><label for="q-name">Full name <span class="req">*</span></label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
+        <div class="field"><label for="q-company">Company <span class="req">*</span></label><input id="q-company" name="company" autocomplete="organization" required><p class="qerr" hidden>Enter your company.</p></div>
+        <div class="field"><label for="q-phone">Phone <span class="opt">(optional)</span></label><input id="q-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <details class="qmore full"><summary>+ Add details</summary><div class="field"><label for="q-msg">Anything else we should know?</label><textarea id="q-msg" name="message"></textarea></div></details>
       </div>
-      <div class="stack" style="gap:16px"><div><button class="btn" type="submit">Send project details</button></div>
-      <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our Privacy Policy.</p></div>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="page" value="modular-ai-data-centers">
+      <div class="stack" style="gap:16px"><div><button class="btn" type="submit">Get my concept &amp; schedule</button></div>
+      <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p></div>
     </form>
     <aside class="aside">
-      <h4>Not ready for a configuration?</h4>
-      <p class="body" style="font-size:15px">Get the technical datasheet with reference specifications and site requirements.</p>
+      <h3>Not ready for a configuration?</h3>
+      <p class="body">Get the technical datasheet with reference specifications and site requirements.</p>
       <div class="field"><label for="f14">Work email</label><input id="f14" type="email"></div>
       <div><a class="ilink" href="#configure"><i>→</i>Send me the datasheet</a></div>
     </aside>
@@ -781,6 +809,27 @@ details p{padding:0 0 24px;max-width:68ch}
     var sio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ steps.classList.add('is-run'); sio.disconnect(); } });},{threshold:.35});
     sio.observe(steps);
   }
+  // FAQ: one answer open at a time (native name="faq" + fallback for older browsers)
+  var faqs=[].slice.call(document.querySelectorAll('.faq-list details'));
+  faqs.forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open) faqs.forEach(function(x){ if(x!==d) x.open=false; }); }); });
+
+  // Universal lead form: validation under fields; capacity question only for LIMIK Core
+  var qf=document.getElementById('qform');
+  if(qf){
+    var prod=document.getElementById('q-product'), sizeF=qf.querySelector('[data-f="capacity"]'), size=document.getElementById('q-size');
+    function syncSize(){ var on=prod.value==='limik-core'; sizeF.hidden=!on; size.required=on; }
+    prod.addEventListener('change',syncSize); syncSize();
+    qf.querySelectorAll('input,select').forEach(function(el){ el.addEventListener('change',function(){ var f=el.closest('.field'); if(f){ f.classList.remove('is-bad'); var e=f.querySelector('.qerr'); if(e) e.hidden=true; } }); });
+    qf.addEventListener('submit',function(){
+      var bad=null;
+      qf.querySelectorAll('[required]').forEach(function(el){ var f=el.closest('.field'); if(f.hidden) return; var v=(el.value||'').trim();
+        var ok=v && (el.type!=='email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)); f.classList.toggle('is-bad',!ok); var e=f.querySelector('.qerr'); if(e) e.hidden=!!ok; if(!ok && !bad) bad=el; });
+      if(bad){ bad.focus(); return; }
+      qf.innerHTML='<p class="fgroup-title" style="border:0">Sent</p><h3>Thank you. An engineer will reply within 48 hours.</h3>';
+    });
+    var qs=new URLSearchParams(location.search); ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ var el=qf.querySelector('[name='+k+']'); if(el) el.value=qs.get(k)||''; });
+  }
+
   var b=document.getElementById('toggleNotes');
   b.addEventListener('click',function(){
     var on=document.body.classList.toggle('clean');

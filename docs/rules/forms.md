@@ -81,3 +81,20 @@ margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1
 
 Телефон `.pt-sidebar-call a`: `white-space: nowrap`, посилання `tel:+17867676418`. Сам `.pt-sidebar-form .pt-sidebar-call` має явно задавати `margin-bottom: 0`; не втрачати цей виняток при копіюванні.
 Поля 14px та submit-note 12px/1.65 — винятки з правила основного тексту 16px/1.75.
+
+## Універсальна лід-форма продуктових сторінок (рішення користувача 2026-09-27)
+
+Зразок: блок `#configure` у прототипі `docs/prototypes/modular-dc-wireframe.html` (`.qform`). Одна форма з однаковими полями, обробником і виглядом для всіх продуктових сторінок; стоїть внизу кожної сторінки, окрема `/request-quote/` лишається для кнопки в меню з тією самою формою. Людей не перекидати з продуктової сторінки на окрему сторінку форми. Замінює попередню форму Modular з 13 полів і проміжний варіант у 2 кроки з кнопками-варіантами.
+
+- **Один екран, 2 блоки** з підзаголовками `.fgroup-title`: «Your project» і «Contact». Без кроків.
+- **Your project** (усі — випадні списки `select`, не кнопки-варіанти):
+  - What do you need * — вже вибрано за сторінкою (на Modular: «Modular AI data center (LIMIK Core)»); варіанти: LIMIK Core, Power transformer, Autotransformer, GSU transformer, Mobile transformer, Other / not sure. Змінити можна.
+  - Розмір проєкту * — під продукт. Для LIMIK Core: Target IT capacity (Under 500 kW · 0.5–2 MW · 2 MW+ · Not sure yet). Для трансформаторів варіанти ще не узгоджені: не вигадувати діапазони, погодити з користувачем/клієнтом при перенесенні. Поки для інших продуктів поле приховується.
+  - When do you plan to start * — Ready now · Within 6 months · 6–12 months · Just researching. Саме «коли плануєте старт», а не «Timeline»: слово Timeline поруч із «12 weeks» читається як наш строк доставки.
+  - Списки без значення за замовчуванням показують «Select…» (приглушений колір); стрілка — кастомна синя SVG, `appearance: none`.
+- **Contact:** Work email *, Full name * (одним полем, не ім'я + прізвище), Company *, Phone `(optional)`; коментар згорнуто в `<details>` «+ Add details».
+- Не питати у формі: Cooling preference, Number of racks, Power source, штат/локацію, «How did you hear about us» (джерело беремо з прихованих UTM).
+- Кнопка `.btn` з текстом-результатом (на Modular «Get my concept & schedule»), під нею стандартний submit-note. До 600px кнопка на всю ширину.
+- Помилки показуються під полем після спроби відправки, фокус переходить на перше помилкове поле, без alert. Honeypot замість reCAPTCHA; приховані `utm_source/utm_medium/utm_campaign` і `page`. `type`/`autocomplete` у полях обов'язкові.
+- Бічна плашка datasheet (одне поле email) лишається як легкий крок.
+- Перед перенесенням: аудит усіх наявних форм сайту (`/request-quote/`, бічні форми `transformers/*`, форми `industries/*`) і їхнього обробника/CRM; план перенесення погодити з користувачем (зміна архітектури).

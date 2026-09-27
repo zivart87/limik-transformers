@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LIMIK Core Wireframe</title>
+<title>LIMIK Core Color Preview</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -496,10 +496,31 @@ body.clean .variant-tag{display:none}
 .wi-img,.split .ph,.spx-media .ph,.pcard,.acc-card,.card.icard,.fq-item,.spx-body dl{border-radius:var(--r-lg)}
 .wi-img,.split .ph,.spx-media .ph{overflow:hidden}
 .track{border-radius:var(--r-xl)}
+
+/* COLOR PREVIEW (proposal, not approved): prototype greys mapped to LIMIK brand tokens */
+:root{
+  --navy-dark:#09193B;--navy-mid:#0F2656;--blue:#206CB9;--blue-lt:#4A8FD4;--gold:#FFCF0B;--gold-hover:#DDB800;--off-white:#F4F6FA;
+  --ink:#09193B;--muted:#3A5570;--line:rgba(9,25,59,.14);--line-d:rgba(255,255,255,.16);
+  --paper:#F4F6FA;--dark:#09193B;--dark-2:rgba(255,255,255,.06);--ph:#E3E9F2;--ph-d:#1A3366;--cta:#FFCF0B;
+}
+.btn{color:#09193B}.btn:hover{background:#DDB800}
+.ilink i{color:#09193B}
+.eyebrow::before{background:#206CB9;opacity:1}.dark .eyebrow::before,.hero .eyebrow::before{background:#4A8FD4}
+.hero,.hero .bg{background-color:#09193B}.navmock{background:#09193B}
+.dark .acc-card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}.dark .acc-card.is-active{background:#0F2656;border-color:#0F2656}
+@media (max-width:991px){.dark .acc-card,.dark .acc-card.is-active{background:#0F2656;border-color:#0F2656}}
+.tile span{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+.lf .qerr{color:#FF858F}.lf.is-bad input{border-color:#DC3545}
+.acc-card.is-active .acc-kicker,.dark .acc-card.is-active .acc-kicker{color:#4A8FD4}
+.lcol{border-left-color:#206CB9}
+.fq-tab{color:#4E6F91}.fq-tab[aria-selected="true"]{color:#09193B;border-bottom-color:#206CB9}
+.chain a.is-current span,.spx-num::before{background:#206CB9}
+.tile input:checked+span{background:#206CB9;border-color:#206CB9}
+.steps-fill,.steps.is-run .step::before{background:#4A8FD4}
+.footmock{background:#09193B}
 </style>
 </head>
 <body>
-
 
 <button class="toggle" id="toggleNotes" type="button" aria-pressed="false">Сховати примітки</button>
 

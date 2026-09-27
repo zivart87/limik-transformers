@@ -395,7 +395,7 @@ body.clean .variant-tag{display:none}
 .fq-panes.is-in .fq-pane.is-active .fq-item:nth-child(2){transition-delay:.08s}
 .fq-panes.is-in .fq-pane.is-active .fq-item:nth-child(3){transition-delay:.16s}
 @media (max-width:768px){.fq-tabs{margin:40px auto 32px}.fq-q{padding:22px 20px;gap:20px}.fq-a p{padding:0 20px 22px}}
-@media (max-width:600px){.fq-tab{flex:1 1 auto;white-space:nowrap;padding:0 8px 14px;letter-spacing:.06em}}
+@media (max-width:600px){.fq-tabs{align-items:flex-end}.fq-tab{flex:1 1 0;padding:0 4px 12px;letter-spacing:.06em;text-wrap:balance}}
 
 /* 14 form */
 .cfg{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start}
@@ -415,12 +415,7 @@ body.clean .variant-tag{display:none}
 .lead-intro{position:sticky;top:120px;display:grid;justify-items:start}
 .lead-intro h2{margin-bottom:24px}
 .lead-intro .intro{font-size:16px;line-height:1.5;color:rgba(255,255,255,.72);max-width:36ch}
-.ds{margin-top:40px;border:0}
-.ds summary::-webkit-details-marker{display:none}
-.ds summary{list-style:none;padding:0;cursor:pointer;font:800 13px/1.2 var(--head)}
-.ds summary::-webkit-details-marker{display:none}
-.ds-body{display:grid;gap:16px;margin-top:20px;max-width:360px}
-.ds-note{font-size:14px;line-height:1.6;color:rgba(255,255,255,.72);padding:0}
+.ds{margin-top:40px}
 .lead-form{display:flex;flex-direction:column;gap:24px;min-width:0}
 .lf-tiles{border:0;margin:0;padding:0;min-width:0}
 .lf-tiles legend{padding:0;margin-bottom:20px;font:500 20px/1.25 var(--head);letter-spacing:-.01em;color:#fff}
@@ -447,12 +442,16 @@ body.clean .variant-tag{display:none}
 .lf-more{border:0;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
 .lf-more summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:0;cursor:pointer;font:400 14px/1.4 var(--body);color:#fff}
 .lf-more summary::-webkit-details-marker{display:none}
-.lf-more summary::after,.lf-more[open] summary::after,.ds summary::after,.ds[open] summary::after{content:none}
-.lf-more summary svg{transition:transform .2s ease-out;flex-shrink:0}
+.lf-more summary::after,.lf-more[open] summary::after,.lf-more summary svg{transition:transform .2s ease-out;flex-shrink:0}
 .lf-more[open] summary svg{transform:rotate(45deg)}
 .lf-more summary:focus-visible{outline:2px solid #4A8FD4;outline-offset:4px}
 .lf-more-body{display:grid;gap:24px;padding:8px 0 26px}
 .lf-submit{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
+.lead-side{min-width:0}
+/* Call line: site standard .pt-sidebar-call (transformers/*), left-aligned here */
+.lf-call{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-d);font-size:14px;line-height:1.6;color:rgba(255,255,255,.72)}
+.lf-call a{color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+.lf-call a:hover{text-decoration:underline}
 .lf-req{font-size:12px;line-height:1.4;color:rgba(255,255,255,.6)}
 .lead-form .micro{color:rgba(255,255,255,.72);margin-top:-8px}
 .lead-form .micro a{color:#4A8FD4;text-decoration:underline}
@@ -475,6 +474,17 @@ body.clean .variant-tag{display:none}
 .faq .stack>.eyebrow{margin-bottom:20px}   /* FAQ exception: 20px */
 .faq .stack>.cta-gap{margin-top:40px}   /* stack gap 24 + 16 = 40 */
 .cta-gap20{margin-top:20px}        /* parent gap 20 + 20 = 40 */
+
+/* Modular radius scale (approved 2026-09-27, rules: docs/rules/components.md): one base, pattern Runware (--radius x0.6/1/1.4/2).
+   Small tags ~4px, controls 6px, cards and photos ~8px, large panels 12px. */
+:root{--radius:6px;--r-sm:calc(var(--radius)*.6);--r-md:var(--radius);--r-lg:calc(var(--radius)*1.4);--r-xl:calc(var(--radius)*2)}
+.tbc,.ptags span,.acc-badge,.acc-tags span{border-radius:var(--r-sm)}
+.btn,.lf input,.lf select,.lf textarea,.tile span,.field input,.field select,.field textarea{border-radius:var(--r-md)}
+.acc-img .ph{border-radius:var(--r-md)}
+.ilink i{border-radius:4px} /* exception: icon-link square = 4px (decision 2026-09-27) */
+.wi-img,.split .ph,.spx-media .ph,.pcard,.acc-card,.card.icard,.fq-item,.spx-body dl{border-radius:var(--r-lg)}
+.wi-img,.split .ph,.spx-media .ph{overflow:hidden}
+.track{border-radius:var(--r-xl)}
 </style>
 </head>
 <body>
@@ -504,7 +514,7 @@ body.clean .variant-tag{display:none}
       <p class="lead">LIMIK Core is a prefabricated AI data center that ships with its own medium-voltage transformer. One manufacturer engineers the power, the cooling and the racks.</p>
     </div>
     <div class="hero-cta">
-      <a class="btn" href="#configure">Configure your project</a>
+      <a class="btn" href="#configure" data-go="form">Configure your project</a>
       <p class="micro">Response within 48 hours. NDA on request.</p>
     </div>
   </div>
@@ -544,7 +554,7 @@ body.clean .variant-tag{display:none}
         <div class="eyebrow">The LIMIK platform</div>
         <h2>One system from the grid to the chip</h2>
         <p class="intro mt24" style="max-width:40ch;color:var(--muted);line-height:1.5">Most modular vendors buy the transformer, cooling and enclosure from different suppliers. We engineer them as one platform on one schedule.</p>
-        <div class="mt40"><a class="ilink" href="#configure"><i>→</i>Configure your infrastructure</a></div>
+        <div class="mt40"><a class="ilink" href="#configure" data-go="form"><i>→</i>Configure your infrastructure</a></div>
       </div>
       <nav class="chain" aria-label="Platform components">
         <a href="#pc-1" class="is-current"><span></span>01 · Grid &amp; transformer</a>
@@ -626,7 +636,7 @@ body.clean .variant-tag{display:none}
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+      <a class="ilink acc-btn" href="#configure" data-go="form"><i>→</i>Configure</a>
     </article>
     <article class="acc-card is-active" tabindex="0" aria-expanded="true">
       <span class="acc-dot" aria-hidden="true"></span>
@@ -640,7 +650,7 @@ body.clean .variant-tag{display:none}
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+      <a class="ilink acc-btn" href="#configure" data-go="form"><i>→</i>Configure</a>
     </article>
     <article class="acc-card" tabindex="0" aria-expanded="false">
       <span class="acc-dot" aria-hidden="true"></span>
@@ -654,7 +664,7 @@ body.clean .variant-tag{display:none}
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="ilink acc-btn" href="#configure"><i>→</i>Configure</a>
+      <a class="ilink acc-btn" href="#configure" data-go="form"><i>→</i>Configure</a>
     </article>
   </div>
 </section>
@@ -666,7 +676,7 @@ body.clean .variant-tag{display:none}
     <div><div class="eyebrow">Specifications</div><h2>Planning specifications</h2></div>
     <div class="stack" style="gap:20px;justify-self:end;max-width:36ch">
       <p class="intro" style="justify-self:start">Preliminary values for planning. Final figures are set per project after engineering review.</p>
-      <a class="ilink cta-gap20" href="#configure"><i>→</i>Request the technical datasheet</a>
+      <a class="ilink cta-gap20" href="#configure" data-go="form"><i>→</i>Request the technical datasheet</a>
     </div>
   </div>
   <div class="spx">
@@ -739,7 +749,7 @@ body.clean .variant-tag{display:none}
   </div>
   <div class="track">
     <div><h3>Parallel power track</h3><p class="body" style="margin-top:8px">Your MV transformer enters production on day one on our own line, instead of waiting in a third-party queue.</p></div>
-    <a class="ilink" href="#configure"><i>→</i>Request a schedule</a>
+    <a class="ilink" href="#configure" data-go="schedule"><i>→</i>Request a schedule</a>
   </div>
 </section>
 
@@ -763,28 +773,73 @@ body.clean .variant-tag{display:none}
 </section>
 
 <!-- 13 FAQ -->
-<div class="note"><span class="tag">Блок 13</span><b>FAQ · категорії + плашки</b><span>Заголовок по центру, без eyebrow і кнопки. Під ним 3 категорії-вкладки (типографіка вкладок сайту: REM 11px uppercase), під ними питання в білих плашках по центру (до 880px). Відкрите лише одне питання. Анімація як у Modulabs: відповідь розгортається по висоті 0.4s ease-out, текст проявляється з затримкою 0.1s, «+» перетворюється на «−»; інша відповідь згортається за 0.3s. Плашки з'являються по черзі при прокрутці. Усі відповіді лежать у HTML (для SEO і FAQPage JSON-LD). Питання ті самі 6, розбиті по 2 на категорію.</span></div>
+<div class="note"><span class="tag">Блок 13</span><b>FAQ · 3 категорії за етапами рішення</b><span>1) LIMIK Core — питання саме про продукт цієї сторінки; 2) Ordering &amp; delivery — ціна, строки, доставка, монтаж, гарантія, відповіді під цей продукт; 3) Working with LIMIK — спільна для всіх продуктових сторінок. Жовта мітка = відповідь дає клієнт; такі питання не публікуються, доки немає відповіді. FAQPage JSON-LD лише з підтверджених питань вкладок 1–2, дослівно; вкладка 3 у розмітку не йде (дубль на кожній сторінці). Дизайн і анімація без змін (Modulabs).</span></div>
 <section class="sec paper" id="faq">
   <h2 class="fq-title">Questions before you request a quote</h2>
-  <div class="fq-tabs" role="tablist" aria-label="FAQ categories"><button class="fq-tab" type="button" role="tab" id="fq-t-delivery" aria-controls="fq-p-delivery" aria-selected="true">Delivery</button><button class="fq-tab" type="button" role="tab" id="fq-t-site" aria-controls="fq-p-site" aria-selected="false" tabindex="-1">Site</button><button class="fq-tab" type="button" role="tab" id="fq-t-power" aria-controls="fq-p-power" aria-selected="false" tabindex="-1">Power &amp; compute</button></div>
-  <div class="fq-panes"><div class="fq-pane is-active" id="fq-p-delivery" role="tabpanel" aria-labelledby="fq-t-delivery"><div class="fq-item is-open"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="true" aria-controls="fq-a1" id="fq-q1"><span>What is the lead time for LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a1" role="region" aria-labelledby="fq-q1"><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Can the module be relocated later?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a2" role="region" aria-labelledby="fq-q2" inert><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></div></div></div><div class="fq-pane" id="fq-p-site" role="tabpanel" aria-labelledby="fq-t-site"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>What site preparation is required?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a3" role="region" aria-labelledby="fq-q3" inert><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>Can it run on behind-the-meter power?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a4" role="region" aria-labelledby="fq-q4" inert><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></div></div></div><div class="fq-pane" id="fq-p-power" role="tabpanel" aria-labelledby="fq-t-power"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>Who manufactures the power transformer?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a5" role="region" aria-labelledby="fq-q5" inert><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>Which GPUs are supported?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a6" role="region" aria-labelledby="fq-q6" inert><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></div></div></div></div>
+  <div class="fq-tabs" role="tablist" aria-label="FAQ categories"><button class="fq-tab" type="button" role="tab" id="fq-t-core" aria-controls="fq-p-core" aria-selected="true">LIMIK Core</button><button class="fq-tab" type="button" role="tab" id="fq-t-ordering" aria-controls="fq-p-ordering" aria-selected="false" tabindex="-1">Ordering &amp; delivery</button><button class="fq-tab" type="button" role="tab" id="fq-t-working" aria-controls="fq-p-working" aria-selected="false" tabindex="-1">Working with LIMIK</button></div>
+  <div class="fq-panes"><div class="fq-pane is-active" id="fq-p-core" role="tabpanel" aria-labelledby="fq-t-core" data-schema="faqpage"><div class="fq-item is-open"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="true" aria-controls="fq-a1" id="fq-q1"><span>Which GPUs are supported?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a1" role="region" aria-labelledby="fq-q1"><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Can it run on behind-the-meter power?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a2" role="region" aria-labelledby="fq-q2" inert><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>Can the module be relocated later?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a3" role="region" aria-labelledby="fq-q3" inert><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></div></div></div><div class="fq-pane" id="fq-p-ordering" role="tabpanel" aria-labelledby="fq-t-ordering" data-schema="faqpage"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>What is the lead time for LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a4" role="region" aria-labelledby="fq-q4" inert><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>What site preparation is required?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a5" role="region" aria-labelledby="fq-q5" inert><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>How is LIMIK Core priced?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a6" role="region" aria-labelledby="fq-q6" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a7" id="fq-q7"><span>Who handles delivery, installation and commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a7" role="region" aria-labelledby="fq-q7" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a8" id="fq-q8"><span>What warranty comes with LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a8" role="region" aria-labelledby="fq-q8" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div></div><div class="fq-pane" id="fq-p-working" role="tabpanel" aria-labelledby="fq-t-working" data-schema="none"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a9" id="fq-q9"><span>Who manufactures the power transformer?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a9" role="region" aria-labelledby="fq-q9" inert><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a10" id="fq-q10"><span>What happens after I send a request?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a10" role="region" aria-labelledby="fq-q10" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a11" id="fq-q11"><span>Do you work under NDA?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a11" role="region" aria-labelledby="fq-q11" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a12" id="fq-q12"><span>What support is available after commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a12" role="region" aria-labelledby="fq-q12" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div></div></div>
+  <!-- FAQPage: only confirmed Q&A from tabs 1-2 (page-specific), verbatim; tab 3 is shared across product pages and stays out of the markup -->
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Which GPUs are supported?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can it run on behind-the-meter power?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can the module be relocated later?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the lead time for LIMIK Core?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What site preparation is required?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects."
+   }
+  }
+ ]
+}
+  </script>
 </section>
 
 <!-- 14 CONFIGURATOR -->
-<div class="note"><span class="tag">Блок 14</span><b>Лід-форма · за патерном Helios</b><span>Зліва eyebrow, H2, вступ і посилання «Get the technical datasheet» (розкриває поле email; бічну плашку прибрано); ліва колонка sticky на десктопі. Справа форма: «What are you planning?» + 6 плиток продуктів (вибрано за сторінкою, ?product= у посиланні перевизначає), Full name + Work email, Company, поле «What do you need to deploy?» (optional). Телефону немає. Обов'язкові лише ім'я, email, компанія. «Add project details» згорнуто: потужність (лише для LIMIK Core) і коли старт — optional. Плитки 52px, як поля. Підписи 14px звичайним регістром, поля 16px / 52px, «Optional» праворуч у підписі, без зірочок. Помилки під полем, honeypot, UTM.</span></div>
+<div class="note"><span class="tag">Блок 14</span><b>Лід-форма · за патерном Helios</b><span>Зліва eyebrow, H2, вступ і icon-link «Contact our team» → /contact/ (поки немає datasheet); ліва колонка sticky на десктопі. Справа форма: «What are you planning?» + 6 плиток продуктів (вибрано за сторінкою, ?product= у посиланні перевизначає), Full name + Work email, Company, поле «What do you need to deploy?» (optional). Телефону немає. Обов'язкові лише ім'я, email, компанія. «Add project details» згорнуто: потужність (лише для LIMIK Core) і коли старт — optional. Плитки 52px, як поля. Підписи 14px звичайним регістром, поля 16px / 52px, «Optional» праворуч у підписі, без зірочок. Помилки під полем, honeypot, UTM.</span></div>
 <section class="sec dark" id="configure">
   <div class="lead-grid">
     <div class="lead-intro">
       <div class="eyebrow">Project configurator</div>
       <h2>Plan your LIMIK Core project</h2>
       <p class="intro">Share your power, site and timeline. Our engineers reply with a concept, a power estimate and a delivery schedule.</p>
-      <details class="ds">
-        <summary class="ilink"><i>→</i>Get the technical datasheet</summary>
-        <div class="ds-body"><p class="ds-note">Not ready for a project yet? We will email the datasheet with reference specifications and site requirements.</p>
-        <div class="lf"><label for="ds-email">Work email</label><input id="ds-email" type="email" autocomplete="email"></div>
-        <div><a class="ilink" href="#configure"><i>→</i>Send me the datasheet</a></div></div>
-      </details>
+      <div class="ds"><a class="ilink" href="/contact/"><i>→</i>Contact our team</a></div>
     </div>
+    <div class="lead-side">
     <form class="lead-form" id="qform" novalidate onsubmit="event.preventDefault()">
       <fieldset class="lf-tiles"><legend>What are you planning?</legend><div class="tiles"><label class="tile"><input type="radio" name="product" value="limik-core" checked><span><i aria-hidden="true"></i>Modular AI data center</span></label><label class="tile"><input type="radio" name="product" value="power"><span><i aria-hidden="true"></i>Power transformer</span></label><label class="tile"><input type="radio" name="product" value="autotransformer"><span><i aria-hidden="true"></i>Autotransformer</span></label><label class="tile"><input type="radio" name="product" value="gsu"><span><i aria-hidden="true"></i>GSU transformer</span></label><label class="tile"><input type="radio" name="product" value="mobile"><span><i aria-hidden="true"></i>Mobile transformer</span></label><label class="tile"><input type="radio" name="product" value="other"><span><i aria-hidden="true"></i>Other</span></label></div></fieldset>
       <div class="lf-row">
@@ -807,6 +862,8 @@ body.clean .variant-tag{display:none}
       <div class="lf-submit"><button class="btn" type="submit">Get my concept &amp; schedule</button><span class="lf-req">Name, email and company are required.</span></div>
       <p class="micro">Response within 48 hours. All information handled under NDA on request. By submitting, you agree to our <a href="/privacy-policy/">Privacy Policy</a>.</p>
     </form>
+    <p class="lf-call">Prefer to talk? Call <a href="tel:+17867676418">+1 786-767-6418</a> or email <a href="mailto:info@limik.us">info@limik.us</a></p>
+    </div>
   </div>
 </section>
 
@@ -894,6 +951,18 @@ body.clean .variant-tag{display:none}
     });
     ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ var el=qf.querySelector('[name='+k+']'); if(el) el.value=qs.get(k)||''; });
   }
+
+  // CTA links: scroll to the form and put the cursor where the visitor continues
+  document.querySelectorAll('a[data-go]').forEach(function(a){ a.addEventListener('click',function(e){
+    var go=a.getAttribute('data-go');
+    var sec=document.getElementById('configure'); if(!sec) return; e.preventDefault();
+    var target=document.getElementById('q-name');
+    if(go==='schedule'){ var d=sec.querySelector('.lf-more'); if(d) d.open=true; }
+    var el=sec;
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){ if(target) target.focus({preventScroll:true}); },500);
+    if(history.replaceState) history.replaceState(null,'','#configure');
+  }); });
 
   var b=document.getElementById('toggleNotes');
   b.addEventListener('click',function(){

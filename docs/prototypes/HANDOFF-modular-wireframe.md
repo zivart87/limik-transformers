@@ -7,7 +7,7 @@
 
 ## Де файли
 - Прототип (джерело правди): `docs/prototypes/modular-dc-wireframe.html` (noindex). Робоча копія в сесії: `/mnt/user-data/outputs/modular-dc-wireframe.html` (без doctype, публікується як Artifact); копія в репо = та сама розмітка, обгорнута в `<!DOCTYPE html><head>…</head><body>`.
-- Artifact (приватна сторінка для перегляду): https://claude.ai/artifact/VxszMb2Dp1BfHWUR5dPu3s (версія 52). Оновлювати, передаючи цей url.
+- Artifact (приватна сторінка для перегляду): https://claude.ai/artifact/VxszMb2Dp1BfHWUR5dPu3s (версія 60). Оновлювати, передаючи цей url.
 - Тексти/ТЗ: `docs/page-drafts/limik-landing-FINAL-v2.md`. Референси конкурентів: Giga (GigaPod), Comino, BMarko, ModulEdge, Advanced Giga; збережені сторінки Modulabs і Crusoe лежать у корені репо (їх варто перенести в `_archive/ref/`).
 
 ## Режим роботи
@@ -28,8 +28,8 @@
 6. **Who it's for** (білий): 6 карток, іконка 28px зверху, текст знизу, заливка без рамки, min-height 240; контекстні посилання в тексті на Renewables / Utilities / Defense.
 7. **Twelve weeks** (темний): 4 етапи; при доскролі лінія 1px заливається --blue-lt, квадрати і тези з'являються по черзі; плашка «Parallel power track».
 8. **U.S. Manufacturing** (білий): текст + фото; 3 тези з лінією 2px зліва (32 Years / Made in the USA / 48 Weeks), по 2 рядки.
-9. **FAQ** (світло-сірий): заголовок по центру (без eyebrow і кнопки), 3 вкладки-категорії (Delivery / Site / Power & compute, по 2 питання), питання в білих плашках до 880px; одне відкрите; анімація за Modulabs. Правила в `components.md`.
-10. **Конфігуратор** (темний): лід-форма за патерном Helios. Зліва заголовок, вступ, посилання на datasheet (sticky); справа «What are you planning?» + 6 плиток продуктів, ім'я/email/компанія (обов'язкові), «What do you need to deploy?» (optional), без телефону; згорнуте «Add project details» (потужність, старт). Плитки 52px, як поля. Правила й стандарт полів у `docs/rules/forms.md`.
+9. **FAQ** (світло-сірий): заголовок по центру; 3 вкладки: LIMIK Core (3 питання) · Ordering & delivery (2 + 3 з відповіддю від клієнта) · Working with LIMIK (1 + 3 від клієнта, спільна для всіх продуктових сторінок, не в JSON-LD); білі плашки, анімація Modulabs. FAQPage JSON-LD лише з підтверджених питань вкладок 1–2. Правила: `seo.md` + `components.md`.
+10. **Конфігуратор** (темний): лід-форма за патерном Helios. Зліва заголовок, вступ, icon-link «Contact our team» → /contact/ (sticky; datasheet поки немає); справа «What are you planning?» + 6 плиток продуктів, ім'я/email/компанія (обов'язкові), «What do you need to deploy?» (optional), без поля телефону (під формою рядок «Prefer to talk? Call … or email info@limik.us»); згорнуте «Add project details» (потужність, старт). Плитки 52px, як поля. Правила й стандарт полів у `docs/rules/forms.md`.
 
 Прибрано: окрема смуга фактів, Chip-agnostic, гарантія, Founding customers.
 
@@ -49,7 +49,12 @@
 - Вага: hero h1 600, решта заголовків 500 (правило в components.md). Eyebrow 12px і вступи 16px фіксовані на всіх ширинах (п.7 закрито); мобільна ієрархія h1 ≈42 → h2 36 → Core 30 → 20/18 (п.10 закрито).
 - Відкладено до рішення користувача: п.9 лівий край hero 60px vs контейнер 40px (на 1920: 60 vs 320). Для перенесення: кнопка .btn на сайті 48px/14px/0.1em (у прототипі 52/13/0.07), h1 на сайті ≈56.5px на 1340 (у прототипі 59).
 
+## Шкала заокруглень (затверджено 2026-09-27, лише Modular)
+`--radius: 6px`; теги ≈4px, квадрат icon-link 4px (виняток), кнопки/поля/плитки 6px, картки й фото ≈8px, великі плашки 12px. Правило в `components.md`; решта сайту поки 2px.
+
 ## Відкриті питання
+- Клієнт: PDF technical datasheet (тоді повернути крок «email → завантаження» замість «Contact our team»).
+- Клієнт (FAQ): як формується ціна; хто робить доставку, монтаж і запуск; гарантія на LIMIK Core; процес після заявки; NDA; підтримка після запуску.
 - Клієнт: kW на стійку, PUE, діапазони стійок/kW для Core 20/45/Campus, строк Core 20, хто робить switchgear/UPS/cooling/DCIM (LIMIK чи партнер), NEMA, PE-stamping, статус заводу, дозвіл на логотипи в hero, реальні гарантії.
 - Користувач: теза «48 Weeks. Not 4 Years» (про трансформатори) у блоці 8 стоїть одразу після блоку 7 «Twelve weeks»: чи уточнювати, що це строк трансформатора.
 - Закрито 2026-09-27: «25 Years» → «32 Years» (з 1994); стандарти підтверджені клієнтом, лишаються там, де вже є (тег «IEEE C57 / ANSI» у картці Grid & transformer), нових не додаємо.

@@ -67,3 +67,12 @@
 4. Графіка (паралельно): перелік зображень і джерел.
 5. Після затвердження й відповідей клієнта — підміна `modular-ai-data-centers/index.html`, SEO/мобайл/форма, публікація.
 Паралельно: список питань клієнту по жовтих мітках; хвости — п.9 (лівий край hero), розмір для трансформаторів у формі, текст «Request the technical datasheet».
+
+## Оновлення 2026-09-28 (чат 2)
+- Палітру змінено за dw.com: темний фон `#000821`, єдиний акцент `#05B2FC` (старі сині прибрано), приглушений текст на темному `#99B5C9`. Все в `docs/rules/design-system-v2.md`.
+- CTA `.btn` 48px; форма: вибрана плитка = рамка + точка, фокус поля = одна тонка рамка, зірочки `#05B2FC` на обов'язкових, без «Optional» і без примітки біля кнопки, стрілка select кольору тексту (`forms.md`).
+- Таймлайн: фінальна точка «Week 12 · Ships», квадрати 12px, мітки тижнів акцентом.
+- CTA-плашки з градієнтним світінням (прийом runware.ai), розширення світіння при hover/фокусі на icon-link; дві плашки: під Configurations («Not sure which LIMIK Core fits your site?») і в таймлайні («Parallel power track»).
+- Іконки: галочки в списках (`assets/images/icons/check-square.svg`, Flaticon через Magnific), стрілка icon-link (`arrow-bottom-right.svg`, → у спокої, ↗ при hover), тонка стрілка карток (`arrow-up-right-thin.svg`, Heroicons). **Відкрите:** атрибуція Flaticon (перевірити план Magnific/Freepik).
+- Artifact прототипу — версія 82 (публікується з `modular-color-preview.html` без тегів html/head/body, title «LIMIK Core Wireframe»).
+- Наступне: крок 3 (сторінка-чернетка v2 з реальними nav/footer, окремий CSS `.mdc-page`) — план уже погоджений за змістом, питання: файл `modular-ai-data-centers/v2-draft.html` (доступний після push) чи `docs/prototypes/`. Паралельно крок 4 (перелік зображень).

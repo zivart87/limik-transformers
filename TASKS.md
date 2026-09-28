@@ -82,6 +82,15 @@ Contact
 - Delivery Timeline (блок 5.5) сделан как обычный степпер (горизонтальный на десктопе, вертикальный на мобайле) с текстовым каллаутом трансформаторного трека — без анимации/двух параллельных визуальных дорожек, чтобы не переусложнять; можно доработать позже
 - Не создан визуал для блока 3 (Platform) — диаграмма grid-to-chip из документа опущена, смысл несёт только текст
 
+### Modular v2 (дизайн-система v2) — переробка сторінки
+
+Handoff: проєкт Claude `claude/modular-wireframe-handoff.md`; правила: `docs/rules/design-system-v2.md`.
+- [x] 1–2. Прототип структури й кольорів затверджено (`docs/prototypes/modular-color-preview.html`).
+- [x] 3. Сторінка-чернетка v2 (2026-09-28): `modular-ai-data-centers/v2-draft.html` + `assets/css/modular-v2.css` + `assets/js/modular-v2.js`. Справжні nav/footer, анімація hero як на головній, заглушки зображень і жовті мітки `.tbc` лишаються. Перевірено Playwright 1340/390/360 (без горизонтального скролу, sticky працює, меню прозоре над hero). Форма поки без відправки (не підключена до вебхука LeadConnector).
+- [ ] Користувач переглядає чернетку (Artifact «LIMIK Core v2 Draft» і після push — `/modular-ai-data-centers/v2-draft`).
+- [ ] 4. Графіка: перелік зображень з пропорціями й джерелами.
+- [ ] 5. Заміна живої сторінки: v2 → `modular-ai-data-centers/index.html`, стара версія (`index.html` + `modular-dc.css`) → `_archive`; SEO/head з живої сторінки (GTM, пікселі, og, JSON-LD), обробник форми, мобільна CTA-плашка — вирішити; прибрати `.tbc` і непідтверджені FAQ.
+
 ### Контент, которого пока нет ни для одной новой категории
 
 Distribution Transformers, High Voltage Circuit Breakers, Medium Voltage Switchgear, Modular Data Centers — нет ни характеристик сверх диапазонов выше, ни фото, ни FAQ-материала. Потребуется сбор материала от заказчика по каждой категории до начала копирайтинга (аналогично тому, как для текущих 4 продуктовых страниц использовался Platform Description).

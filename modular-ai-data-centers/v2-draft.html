@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LIMIK Core Modular AI Data Center | Design v2 draft</title>
-  <!-- DRAFT of the v2 page (design system v2). Not linked from the menu or sitemap; no analytics. -->
+  <!-- DRAFT of the v2 page (design system v2). Not linked from the menu or sitemap; no analytics.
+       [data-benchmark] = market-benchmark values (docs/research/modular-competitors.md), to be confirmed by the client. -->
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=REM:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" type="image/webp" href="/assets/images/modular-dc/hero-core-21370.webp" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="/assets/images/modular-dc/hero-core-21370-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/limik.css">
   <link rel="stylesheet" href="/assets/css/nav.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
@@ -23,7 +26,7 @@
 
 <!-- 1 HERO -->
 <section class="hero">
-  <div class="bg ph">[ Рендер модуля LIMIK Core на майданчику · full-bleed · фото анімується, градієнт нерухомий ]</div>
+  <picture class="bg"><source media="(max-width: 768px)" srcset="/assets/images/modular-dc/hero-core-21370-mobile.webp" width="768" height="1024"><img src="/assets/images/modular-dc/hero-core-21370.webp" width="1920" height="700" alt="LIMIK Core modular AI data center module on a site at dusk" fetchpriority="high" decoding="async"></picture>
   <div class="grad"></div>
   <div class="hero-row">
     <div>
@@ -49,13 +52,13 @@
     <p class="intro">A modular data center is IT space, power and cooling assembled off-site as one unit, then set on a prepared pad and connected.</p>
   </div>
 
-  <div class="mtA"><div class="mtA-cell"><span class="mt-label">Lead time</span><span class="mt-num">12<small>weeks</small></span><span class="mt-cap">Module delivery from design approval</span></div><div class="mtA-cell"><span class="mt-label">Rack density</span><span class="mt-num"><span class="tbc">XX</span><small>kW</small></span><span class="mt-cap">Per rack, direct-to-chip cooling</span></div><div class="mtA-cell"><span class="mt-label">Operating range</span><span class="mt-num">−30…+122<small>°F</small></span><span class="mt-cap">Weather-rated enclosure</span></div></div>
+  <div class="mtA"><div class="mtA-cell"><span class="mt-label">Lead time</span><span class="mt-num"><span data-benchmark>16–24</span><small>weeks</small></span><span class="mt-cap">From design approval, standard configurations</span></div><div class="mtA-cell"><span class="mt-label">Rack density</span><span class="mt-num"><span data-benchmark>150</span><small>kW</small></span><span class="mt-cap">Up to, per rack, with direct-to-chip cooling</span></div><div class="mtA-cell"><span class="mt-label">Operating range</span><span class="mt-num">−30…+122<small>°F</small></span><span class="mt-cap">Weather-rated enclosure</span></div></div>
 
   <div class="ph wi-img">[ Рендер модуля LIMIK Core на майданчику · на всю ширину блоку · 21:9 ]</div>
   <div class="wi-text">
     <p class="body">Traditional builds take 18 to 24 months of on-site construction. LIMIK Core moves that work into our factory. Power distribution, liquid cooling and rack space are assembled and tested as one system, then shipped to your pad.</p>
     <ul class="sq body">
-      <li>High-cube steel enclosure, <span class="tbc">45 ft</span> for full-size configurations</li>
+      <li>High-cube steel enclosure, <span data-benchmark>40 ft</span> for full-size configurations</li>
       <li>Hot aisle containment for mixed rack densities</li>
       <li>Connects on site without field fabrication</li>
     </ul>
@@ -87,7 +90,7 @@
           <div class="ptext">
             
             <h3>Grid &amp; power transformer</h3>
-            <p>Connects your site to the utility or on-site generation. The medium-voltage transformer is built on our own line, with substation units up to 600 MVA for campus scale.</p>
+            <p>Connects your site to the utility or on-site generation. The medium-voltage transformer is built on our own line, and our power transformers up to 600 MVA serve campus-scale substations.</p>
             <div class="ptags"><span>Utility or behind-the-meter</span><span>IEEE C57 / ANSI</span><span>Up to 600 MVA</span></div>
           </div>
         </div>
@@ -99,7 +102,7 @@
           <div class="ptext">
             
             <h3>Distribution &amp; backup power</h3>
-            <p>Switchgear and UPS deliver protected power to every rack, with no single point of failure.</p>
+            <p>Switchgear and UPS deliver protected power to every rack. A 2N design removes single points of failure.</p>
             <div class="ptags"><span>N+1 or 2N</span><span>Surge protection</span></div>
           </div>
         </div>
@@ -112,7 +115,7 @@
             
             <h3>Liquid cooling</h3>
             <p>Direct-to-chip cooling with CDUs and dual-loop chillers or drycoolers holds temperature steady at full GPU load.</p>
-            <div class="ptags"><span>Direct-to-chip</span><span>Hybrid liquid + air</span><span>PUE <span class="tbc">X.XX</span></span></div>
+            <div class="ptags"><span>Direct-to-chip</span><span>Hybrid liquid + air</span><span>Design PUE <span data-benchmark>1.2</span></span></div>
           </div>
         </div>
       </article>
@@ -124,7 +127,7 @@
             
             <h3>Compute module &amp; controls</h3>
             <p>A high-cube enclosure for your racks, with hot aisle containment, pre-engineered site connections and DCIM monitoring from grid feed to coolant flow.</p>
-            <div class="ptags"><span><span class="tbc">XX</span> kW per rack</span><span>Leak detection</span><span>Remote operations</span></div>
+            <div class="ptags"><span><span data-benchmark>Up to 150</span> kW per rack</span><span>Leak detection</span><span>Remote operations</span></div>
           </div>
         </div>
       </article>
@@ -133,7 +136,7 @@
 </section>
 
 <!-- 6 SIZES -->
-<section class="sec dark sec-grid" id="scale">
+<section class="sec dark" id="scale">
   <div class="ed">
     <div><div class="eyebrow">Configurations</div><h2>Sized by the power on your site</h2></div>
     <p class="intro">Tell us what power you have, or plan to have. Each LIMIK Core model comes with its power path engineered by us.</p>
@@ -141,14 +144,13 @@
   <div class="acc">
     <article class="acc-card" tabindex="0" aria-expanded="false">
       <span class="acc-dot" aria-hidden="true"></span>
-      <span class="acc-num" aria-hidden="true">20<small>ft</small></span>
-      <div class="acc-img"><div class="ph">[ Рендер 20-ft модуля · прозорий фон ]</div><span class="acc-badge">Ships in <span class="tbc">XX</span> weeks</span></div>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Ships in <span data-benchmark>16–24</span> weeks</span></div>
       <div class="acc-info">
         <span class="acc-kicker">20-ft · site power</span>
         <h3 class="acc-title">Core 20</h3>
         <div class="acc-more"><div>
           <p>For your first GPU racks. Connects to existing site service with no substation work.</p>
-          <div class="acc-tags"><span><span class="tbc">XX racks</span></span><span><span class="tbc">XXX kW</span></span><span>Runs on site power</span></div>
+          <div class="acc-tags"><span><span data-benchmark>Up to 4 racks</span></span><span><span data-benchmark>Up to 200 kW</span></span><span>Runs on site power</span></div>
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
@@ -156,14 +158,13 @@
     </article>
     <article class="acc-card is-active" tabindex="0" aria-expanded="true">
       <span class="acc-dot" aria-hidden="true"></span>
-      <span class="acc-num" aria-hidden="true">45<small>ft</small></span>
-      <div class="acc-img"><div class="ph">[ Рендер 45-ft модуля у розрізі · прозорий фон ]</div><span class="acc-badge">Ships in 12 weeks</span></div>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Ships in <span data-benchmark>16–24</span> weeks</span></div>
       <div class="acc-info">
-        <span class="acc-kicker">45-ft · MV transformer</span>
-        <h3 class="acc-title">Core 45</h3>
+        <span class="acc-kicker">40-ft · MV transformer</span>
+        <h3 class="acc-title">Core 40</h3>
         <div class="acc-more"><div>
           <p>Our flagship module, delivered with its own medium-voltage transformer from our line.</p>
-          <div class="acc-tags"><span><span class="tbc">XX racks</span></span><span><span class="tbc">XXX kW</span></span><span>Transformer included</span></div>
+          <div class="acc-tags"><span><span data-benchmark>Up to 8 racks</span></span><span><span data-benchmark>Up to 1 MW</span></span><span>Transformer included</span></div>
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
@@ -171,21 +172,20 @@
     </article>
     <article class="acc-card" tabindex="0" aria-expanded="false">
       <span class="acc-dot" aria-hidden="true"></span>
-      <span class="acc-num" aria-hidden="true">600<small>MVA</small></span>
-      <div class="acc-img"><div class="ph">[ Рендер кампусу: модулі + підстанція ]</div><span class="acc-badge">Phased delivery</span></div>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Phased delivery</span></div>
       <div class="acc-info">
-        <span class="acc-kicker">Campus · substation</span>
+        <span class="acc-kicker">Campus · multi-module</span>
         <h3 class="acc-title">Core Campus</h3>
         <div class="acc-more"><div>
-          <p>Core 45 modules on a substation we engineer and build, up to 600 MVA.</p>
-          <div class="acc-tags"><span><span class="tbc">XX MW</span></span><span>LIMIK substation</span><span>Grid or on-site</span></div>
+          <p>Multiple Core 40 modules, with LIMIK power transformers up to 600 MVA for your site substation.</p>
+          <div class="acc-tags"><span><span data-benchmark>10 MW+</span></span><span>LIMIK power transformers</span><span>Grid or on-site</span></div>
         </div></div>
       </div>
       <span class="acc-arrow" aria-hidden="true">↗</span>
       <a class="btn acc-btn" href="#configure" data-go="form">Configure</a>
     </article>
   </div>
-  <div class="track track--accent sub-gap">
+  <div class="track sub-gap">
     <div><h3>Not sure which LIMIK Core fits your site?</h3><p class="body">Share your power source and target capacity, and our engineers will recommend a model within 48 hours.</p></div>
     <a class="ilink" href="#configure" data-go="fit"><i aria-hidden="true">→</i>Check my site fit</a>
   </div>
@@ -204,27 +204,27 @@
     <div class="spx-list">
       <div class="spx-item is-open">
         <button class="spx-head" type="button" aria-expanded="true" aria-controls="spx-1" data-zone="power">
-          <span class="spx-num">01</span><span class="spx-name">Power</span><span class="spx-key"><span class="tbc">XXX kW</span></span>
+          <span class="spx-num">01</span><span class="spx-name">Power</span><span class="spx-key"><span data-benchmark>Up to 1 MW</span></span>
         </button>
-        <div class="spx-body" id="spx-1"><div><dl><div><dt>IT load per module</dt><dd><span class="tbc">50 kW – 500+ kW</span></dd></div><div><dt>Power input</dt><dd>Utility MV feed, on-site generation or both</dd></div><div><dt>Redundancy</dt><dd>N+1 or 2N</dd></div></dl></div></div>
+        <div class="spx-body" id="spx-1"><div><dl><div><dt>IT load per module</dt><dd><span data-benchmark>Up to 200 kW (Core 20) · up to 1 MW (Core 40)</span></dd></div><div><dt>Power input</dt><dd>Core 20: existing 480 V site service · Core 40: utility MV feed, on-site generation or both</dd></div><div><dt>Redundancy</dt><dd>N+1 or 2N</dd></div></dl></div></div>
       </div>
       <div class="spx-item">
         <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-2" data-zone="cooling">
           <span class="spx-num">02</span><span class="spx-name">Cooling</span><span class="spx-key">Direct-to-chip</span>
         </button>
-        <div class="spx-body" id="spx-2"><div><dl><div><dt>Cooling</dt><dd>Direct-to-chip liquid, CDU, drycooler or chillers; hybrid liquid + air available</dd></div><div><dt>Design PUE</dt><dd><span class="tbc">X.XX</span></dd></div><div><dt>Cooling redundancy</dt><dd><span class="tbc">Confirm</span></dd></div></dl></div></div>
+        <div class="spx-body" id="spx-2"><div><dl><div><dt>Cooling</dt><dd>Direct-to-chip liquid, CDU, drycooler or chillers; hybrid liquid + air available</dd></div><div><dt>Design PUE</dt><dd><span data-benchmark>1.2</span>, annualized; depends on site climate</dd></div><div><dt>Cooling redundancy</dt><dd><span data-benchmark>N+1</span></dd></div></dl></div></div>
       </div>
       <div class="spx-item">
         <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-3" data-zone="racks">
-          <span class="spx-num">03</span><span class="spx-name">Racks &amp; compute</span><span class="spx-key"><span class="tbc">XX kW</span>/rack</span>
+          <span class="spx-num">03</span><span class="spx-name">Racks &amp; compute</span><span class="spx-key"><span data-benchmark>150 kW</span>/rack</span>
         </button>
-        <div class="spx-body" id="spx-3"><div><dl><div><dt>Rack density</dt><dd><span class="tbc">up to XX kW per rack</span></dd></div><div><dt>Accelerators</dt><dd>NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU, Cerebras</dd></div></dl></div></div>
+        <div class="spx-body" id="spx-3"><div><dl><div><dt>Rack density</dt><dd><span data-benchmark>Up to 150 kW per rack (Core 40) · up to 50 kW per rack (Core 20)</span></dd></div><div><dt>Accelerators</dt><dd>NVIDIA Blackwell (GB200, GB300), AMD Instinct, Google TPU, Cerebras</dd></div></dl></div></div>
       </div>
       <div class="spx-item">
         <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-4" data-zone="enclosure">
           <span class="spx-num">04</span><span class="spx-name">Enclosure &amp; climate</span><span class="spx-key">−30°F…+122°F</span>
         </button>
-        <div class="spx-body" id="spx-4"><div><dl><div><dt>Enclosure</dt><dd>High-cube welded steel, weather-rated; <span class="tbc">NEMA rating per site</span></dd></div><div><dt>Operating range</dt><dd>−30°F to +122°F (−34°C to +50°C)</dd></div><div><dt>Fire suppression</dt><dd><span class="tbc">Confirm system</span></dd></div></dl></div></div>
+        <div class="spx-body" id="spx-4"><div><dl><div><dt>Enclosure</dt><dd>High-cube welded steel, weather-rated; <span data-benchmark>NEMA 3R standard; higher ratings per site</span></dd></div><div><dt>Operating range</dt><dd>−30°F to +122°F (−34°C to +50°C)</dd></div><div><dt>Fire suppression</dt><dd><span data-benchmark>Clean-agent suppression with early-warning smoke detection</span></dd></div></dl></div></div>
       </div>
       <div class="spx-item">
         <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-5" data-zone="controls">
@@ -240,7 +240,7 @@
 <section class="sec">
   <div class="ed">
     <div><div class="eyebrow">Applications</div><h2>Built for teams that need capacity this year</h2></div>
-    <p class="intro">Where a 12-week module beats an 18-month building.</p>
+    <p class="intro">Where a module delivered in months beats an 18-to-24-month build.</p>
   </div>
   <div class="cards c3">
     <article class="icard"><div class="icon" aria-hidden="true"></div><div class="icard-text"><h3>GPU clouds &amp; AI hosting</h3><p class="body">Add rentable capacity in blocks, without waiting for a new building.</p></div></article>
@@ -255,16 +255,16 @@
 <!-- 9 TIMELINE -->
 <section class="sec dark" id="timeline">
   <div class="ed">
-    <div><div class="eyebrow">How it ships</div><h2>Twelve weeks, week by week</h2></div>
+    <div><div class="eyebrow">How it ships</div><h2>Up to 24 weeks, step by step</h2></div>
     <p class="intro">One schedule, one manufacturer, from contract to delivery.</p>
   </div>
   <div class="steps">
     <span class="steps-fill" aria-hidden="true"></span>
     <div class="step"><span class="when">Week 0</span><h3>Design &amp; contract</h3><p>Design approval and engineering freeze.</p></div>
-    <div class="step"><span class="when">Weeks 1–2</span><h3>Engineering release</h3><p>Long-lead procurement and test plan.</p></div>
-    <div class="step"><span class="when">Weeks 2–9</span><h3>Factory build</h3><p>Enclosure, power distribution and cooling loop assembly.</p></div>
-    <div class="step"><span class="when">Weeks 9–12</span><h3>Testing &amp; shipping</h3><p>Factory acceptance test, then rail or truck to your site.</p></div>
-    <span class="steps-end">Week 12 · Ships</span>
+    <div class="step"><span class="when">Weeks 1–4</span><h3>Engineering release</h3><p>Long-lead procurement and test plan.</p></div>
+    <div class="step"><span class="when">Weeks 4–20</span><h3>Factory build</h3><p>Enclosure, power distribution and cooling loop assembly.</p></div>
+    <div class="step"><span class="when">Weeks 20–24</span><h3>Testing &amp; shipping</h3><p>Factory acceptance test, then rail or truck to your site.</p></div>
+    <span class="steps-end">Week 24 · Ships</span>
   </div>
   <div class="track sub-gap">
     <div><h3>Parallel power track</h3><p class="body">Your MV transformer enters production on day one on our own line, instead of waiting in a third-party queue.</p></div>
@@ -286,7 +286,7 @@
   <div class="lcols sub-gap">
     <div class="lcol"><h3>32 Years of Engineering</h3><p class="body">Power transformers for utilities, power producers and EPC contractors.</p></div>
     <div class="lcol"><h3>Made in the USA</h3><p class="body">Designed, engineered and built on American soil, with Buy American compliance by default.</p></div>
-    <div class="lcol"><h3>48 Weeks. Not 4 Years</h3><p class="body">Overseas suppliers quote 2–4 years for a transformer. LIMIK delivers in 48 weeks.</p></div>
+    <div class="lcol"><h3>48 Weeks. Not 4 Years</h3><p class="body">Overseas suppliers quote 2–4 years for a large power transformer. LIMIK delivers in 48 weeks.</p></div>
   </div>
 </section>
 
@@ -294,7 +294,7 @@
 <section class="sec paper" id="faq">
   <h2 class="fq-title">Questions before you request a quote</h2>
   <div class="fq-tabs" role="tablist" aria-label="FAQ categories"><button class="fq-tab" type="button" role="tab" id="fq-t-core" aria-controls="fq-p-core" aria-selected="true">LIMIK Core</button><button class="fq-tab" type="button" role="tab" id="fq-t-ordering" aria-controls="fq-p-ordering" aria-selected="false" tabindex="-1">Ordering &amp; delivery</button><button class="fq-tab" type="button" role="tab" id="fq-t-working" aria-controls="fq-p-working" aria-selected="false" tabindex="-1">Working with LIMIK</button></div>
-  <div class="fq-panes"><div class="fq-pane is-active" id="fq-p-core" role="tabpanel" aria-labelledby="fq-t-core" data-schema="faqpage"><div class="fq-item is-open"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="true" aria-controls="fq-a1" id="fq-q1"><span>Which GPUs are supported?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a1" role="region" aria-labelledby="fq-q1"><p class="body">The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Which LIMIK Core configuration fits my site?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a2" role="region" aria-labelledby="fq-q2" inert><p class="body">It depends on the power you have. Core 20 connects to existing site service with no substation work. Core 45 ships with its own medium-voltage transformer from our line. Core Campus combines Core 45 modules on a substation we engineer and build, up to 600 MVA.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>Is the power transformer included?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a3" role="region" aria-labelledby="fq-q3" inert><p class="body">Yes, for Core 45 and Core Campus. The medium-voltage transformer is built on our own line and arrives on the same coordinated schedule as the module. Core 20 runs on existing site power.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>Can it run on behind-the-meter power?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a4" role="region" aria-labelledby="fq-q4" inert><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>How is LIMIK Core cooled?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a5" role="region" aria-labelledby="fq-q5" inert><p class="body">Direct-to-chip liquid cooling with CDUs and dual-loop chillers or drycoolers holds temperature steady at full GPU load. Hybrid liquid and air cooling with hot aisle containment is available for mixed rack densities.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>What rack density does LIMIK Core support?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a6" role="region" aria-labelledby="fq-q6" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a7" id="fq-q7"><span>What power redundancy is available?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a7" role="region" aria-labelledby="fq-q7" inert><p class="body">Switchgear and UPS are configured N+1 or 2N, so every rack gets protected power with no single point of failure.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a8" id="fq-q8"><span>Can LIMIK Core operate in extreme climates?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a8" role="region" aria-labelledby="fq-q8" inert><p class="body">Yes. The weather-rated enclosure operates from −30°F to +122°F (−34°C to +50°C). The enclosure rating is specified per site based on local conditions and permitting.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a9" id="fq-q9"><span>How is the module monitored?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a9" role="region" aria-labelledby="fq-q9" inert><p class="body">DCIM covers the full power path, from grid feed to coolant flow, with leak detection and remote operations built in.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a10" id="fq-q10"><span>Can the module be relocated later?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a10" role="region" aria-labelledby="fq-q10" inert><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></div></div></div><div class="fq-pane" id="fq-p-ordering" role="tabpanel" aria-labelledby="fq-t-ordering" data-schema="faqpage"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a11" id="fq-q11"><span>What is the lead time for LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a11" role="region" aria-labelledby="fq-q11" inert><p class="body">The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a12" id="fq-q12"><span>What site preparation is required?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a12" role="region" aria-labelledby="fq-q12" inert><p class="body">A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a13" id="fq-q13"><span>How is LIMIK Core priced?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a13" role="region" aria-labelledby="fq-q13" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a14" id="fq-q14"><span>Who handles delivery, installation and commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a14" role="region" aria-labelledby="fq-q14" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a15" id="fq-q15"><span>What warranty comes with LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a15" role="region" aria-labelledby="fq-q15" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div></div><div class="fq-pane" id="fq-p-working" role="tabpanel" aria-labelledby="fq-t-working" data-schema="none"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a16" id="fq-q16"><span>Who manufactures the power transformer?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a16" role="region" aria-labelledby="fq-q16" inert><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a17" id="fq-q17"><span>What happens after I send a request?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a17" role="region" aria-labelledby="fq-q17" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a18" id="fq-q18"><span>Do you work under NDA?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a18" role="region" aria-labelledby="fq-q18" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a19" id="fq-q19"><span>What support is available after commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a19" role="region" aria-labelledby="fq-q19" inert><p class="body"><span class="tbc">Answer to be confirmed by the client</span></p></div></div></div></div>
+  <div class="fq-panes"><div class="fq-pane is-active" id="fq-p-core" role="tabpanel" aria-labelledby="fq-t-core" data-schema="faqpage"><div class="fq-item is-open"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="true" aria-controls="fq-a1" id="fq-q1"><span>Which GPUs are supported?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a1" role="region" aria-labelledby="fq-q1"><p class="body">The platform is chip-agnostic: NVIDIA Blackwell (GB200 and GB300), AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Which LIMIK Core configuration fits my site?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a2" role="region" aria-labelledby="fq-q2" inert><p class="body">It depends on the power you have. Core 20 connects to existing site service with no substation work. Core 40 ships with its own medium-voltage transformer from our line. Core Campus combines multiple Core 40 modules, with LIMIK power transformers up to 600 MVA for the site substation.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>Is the power transformer included?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a3" role="region" aria-labelledby="fq-q3" inert><p class="body">Yes, for Core 40 and Core Campus. The medium-voltage transformer is built on our own line and arrives on the same coordinated schedule as the module. Core 20 runs on existing site power.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>Can it run on behind-the-meter power?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a4" role="region" aria-labelledby="fq-q4" inert><p class="body">Yes. LIMIK Core runs on grid power, on-site generation or both. We also build the step-up transformers that connect on-site generation.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>How is LIMIK Core cooled?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a5" role="region" aria-labelledby="fq-q5" inert><p class="body">Direct-to-chip liquid cooling with CDUs and dual-loop chillers or drycoolers holds temperature steady at full GPU load. Hybrid liquid and air cooling with hot aisle containment is available for mixed rack densities.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>What rack density does LIMIK Core support?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a6" role="region" aria-labelledby="fq-q6" inert><p class="body"><span data-benchmark>Density ranges from air-cooled racks up to 150 kW per rack with direct-to-chip liquid cooling, enough for GB300 NVL72-class racks. Power and cooling are sized to your hardware.</span></p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a7" id="fq-q7"><span>What power redundancy is available?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a7" role="region" aria-labelledby="fq-q7" inert><p class="body">Switchgear and UPS are configured N+1 or 2N. Every rack gets protected power, and a 2N design with two independent paths removes single points of failure.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a8" id="fq-q8"><span>Can LIMIK Core operate in extreme climates?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a8" role="region" aria-labelledby="fq-q8" inert><p class="body">Yes. The weather-rated enclosure operates from −30°F to +122°F (−34°C to +50°C). The enclosure rating is specified per site based on local conditions and permitting.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a9" id="fq-q9"><span>How is the module monitored?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a9" role="region" aria-labelledby="fq-q9" inert><p class="body">DCIM covers the full power path, from grid feed to coolant flow, with leak detection and remote operations built in.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a10" id="fq-q10"><span>Can the module be relocated later?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a10" role="region" aria-labelledby="fq-q10" inert><p class="body">Yes. Enclosures use standard high-cube dimensions for U.S. rail and highway transport and can be redeployed.</p></div></div></div><div class="fq-pane" id="fq-p-ordering" role="tabpanel" aria-labelledby="fq-t-ordering" data-schema="faqpage"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a11" id="fq-q11"><span>What is the lead time for LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a11" role="region" aria-labelledby="fq-q11" inert><p class="body">The module ships 16 to 24 weeks after design approval, depending on configuration and long-lead equipment. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule.</p></div></div><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a12" id="fq-q12"><span>What site preparation is required?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a12" role="region" aria-labelledby="fq-q12" inert><p class="body">A level concrete pad, power and network access: existing 480 V service for Core 20, a medium-voltage source for Core 40. Modules arrive tested and connect through pre-engineered interconnects.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a13" id="fq-q13"><span>How is LIMIK Core priced?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a13" role="region" aria-labelledby="fq-q13" inert><p class="body"><span data-benchmark>Pricing depends on capacity, cooling, power path and site. Share your target capacity and site power, and we return a budgetary estimate with the concept.</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a14" id="fq-q14"><span>Who handles delivery, installation and commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a14" role="region" aria-labelledby="fq-q14" inert><p class="body"><span data-benchmark>LIMIK coordinates truck or rail delivery, setting on your pad, connection and commissioning with our field team and local partners.</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a15" id="fq-q15"><span>What warranty comes with LIMIK Core?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a15" role="region" aria-labelledby="fq-q15" inert><p class="body"><span data-benchmark>Every module and the LIMIK-built power equipment come with a factory warranty, and extended terms are available. Exact terms are set in your proposal.</span></p></div></div></div><div class="fq-pane" id="fq-p-working" role="tabpanel" aria-labelledby="fq-t-working" data-schema="none"><div class="fq-item"><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a16" id="fq-q16"><span>Who manufactures the power transformer?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a16" role="region" aria-labelledby="fq-q16" inert><p class="body">LIMIK does. We build medium- and high-voltage transformers up to 600 MVA and 525 kV, and LIMIK Core is engineered around them.</p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a17" id="fq-q17"><span>What happens after I send a request?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a17" role="region" aria-labelledby="fq-q17" inert><p class="body"><span data-benchmark>An engineer reviews your details and replies within 48 hours. Then we run a site and power review and send a concept, a budgetary estimate and a schedule.</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a18" id="fq-q18"><span>Do you work under NDA?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a18" role="region" aria-labelledby="fq-q18" inert><p class="body"><span data-benchmark>Yes. We sign a mutual NDA before you share site or load details.</span></p></div></div><div class="fq-item" data-unconfirmed><h3 class="fq-h"><button class="fq-q" type="button" aria-expanded="false" aria-controls="fq-a19" id="fq-q19"><span>What support is available after commissioning?</span><i class="fq-ic" aria-hidden="true"></i></button></h3><div class="fq-a" id="fq-a19" role="region" aria-labelledby="fq-q19" inert><p class="body"><span data-benchmark>DCIM remote monitoring, spare parts and on-site service through LIMIK and partner technicians. Service agreements are available.</span></p></div></div></div></div>
   <!-- FAQPage: only confirmed Q&A from tabs 1-2 (page-specific), verbatim; tab 3 is shared across product pages and stays out of the markup -->
   <script type="application/ld+json">
 {
@@ -306,7 +306,7 @@
    "name": "Which GPUs are supported?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "The platform is chip-agnostic: NVIDIA Blackwell and Vera Rubin, AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration."
+    "text": "The platform is chip-agnostic: NVIDIA Blackwell (GB200 and GB300), AMD Instinct, Google TPU and Cerebras. Rack density is engineered to your configuration."
    }
   },
   {
@@ -314,7 +314,7 @@
    "name": "Which LIMIK Core configuration fits my site?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "It depends on the power you have. Core 20 connects to existing site service with no substation work. Core 45 ships with its own medium-voltage transformer from our line. Core Campus combines Core 45 modules on a substation we engineer and build, up to 600 MVA."
+    "text": "It depends on the power you have. Core 20 connects to existing site service with no substation work. Core 40 ships with its own medium-voltage transformer from our line. Core Campus combines multiple Core 40 modules, with LIMIK power transformers up to 600 MVA for the site substation."
    }
   },
   {
@@ -322,7 +322,7 @@
    "name": "Is the power transformer included?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes, for Core 45 and Core Campus. The medium-voltage transformer is built on our own line and arrives on the same coordinated schedule as the module. Core 20 runs on existing site power."
+    "text": "Yes, for Core 40 and Core Campus. The medium-voltage transformer is built on our own line and arrives on the same coordinated schedule as the module. Core 20 runs on existing site power."
    }
   },
   {
@@ -346,7 +346,7 @@
    "name": "What power redundancy is available?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Switchgear and UPS are configured N+1 or 2N, so every rack gets protected power with no single point of failure."
+    "text": "Switchgear and UPS are configured N+1 or 2N. Every rack gets protected power, and a 2N design with two independent paths removes single points of failure."
    }
   },
   {
@@ -378,7 +378,7 @@
    "name": "What is the lead time for LIMIK Core?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "The module ships 12 weeks after design approval. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule."
+    "text": "The module ships 16 to 24 weeks after design approval, depending on configuration and long-lead equipment. The medium-voltage transformer is built on our own line in parallel, so both arrive on one coordinated schedule."
    }
   },
   {
@@ -386,7 +386,7 @@
    "name": "What site preparation is required?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "A level concrete pad, a medium-voltage power source and network access. Modules arrive tested and connect through pre-engineered interconnects."
+    "text": "A level concrete pad, power and network access: existing 480 V service for Core 20, a medium-voltage source for Core 40. Modules arrive tested and connect through pre-engineered interconnects."
    }
   }
  ]
@@ -416,7 +416,7 @@
         <summary>Add project details<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></summary>
         <div class="lf-more-body">
           <div class="lf-row">
-            <div class="lf" data-f="capacity"><label for="q-size">Target IT capacity</label><select id="q-size" name="capacity"><option value="">Select…</option><option value="lt500">Under 500 kW</option><option value="0.5-2">0.5–2 MW</option><option value="2plus">2 MW+</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="lf" data-f="capacity"><label for="q-size">Target IT capacity</label><select id="q-size" name="capacity"><option value="">Select…</option><option value="lt200">Under 200 kW</option><option value="0.2-1">200 kW–1 MW</option><option value="1-10">1–10 MW</option><option value="10plus">10 MW+</option><option value="unsure">Not sure yet</option></select></div>
             <div class="lf" data-f="start"><label for="q-start">When do you plan to start</label><select id="q-start" name="start"><option value="">Select…</option><option value="now">Ready now</option><option value="lt6">Within 6 months</option><option value="6-12">6–12 months</option><option value="research">Just researching</option></select></div>
           </div>
         </div>

@@ -3,6 +3,33 @@
 (function () {
   var mqMobile = window.matchMedia('(max-width: 991px)');
 
+  // Hero facts: count from zero when the full three-column strip enters view (same 1.8s ease-out as home stats)
+  var facts = document.querySelector('.mdc-page .mtA');
+  var factCounters = facts ? [].slice.call(facts.querySelectorAll('[data-count-to]')) : [];
+  if (facts && factCounters.length && 'IntersectionObserver' in window) {
+    var factObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var duration = 1800;
+        var startedAt = performance.now();
+        function update(now) {
+          var progress = Math.min((now - startedAt) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          factCounters.forEach(function (el) {
+            var target = Number(el.getAttribute('data-count-to'));
+            var value = progress === 1 ? target : Math.round(eased * target);
+            var sign = el.getAttribute('data-count-sign') || '';
+            el.textContent = (el.getAttribute('data-count-prefix') || '') + sign + (sign ? Math.abs(value) : value);
+          });
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+        factObserver.disconnect();
+      });
+    }, { threshold: 0.4 });
+    factObserver.observe(facts);
+  }
+
   // Hero: split h1 into words for the clip-reveal (same as the home page, 0.09s step)
   document.querySelectorAll('.mdc-page .hero h1').forEach(function (h1) {
     var words = h1.textContent.trim().split(/\s+/);

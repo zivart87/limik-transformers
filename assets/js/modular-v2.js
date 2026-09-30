@@ -3,19 +3,24 @@
 (function () {
   var mqMobile = window.matchMedia('(max-width: 991px)');
 
-  // Hero facts: count from zero when the full three-column strip enters view (same 1.8s ease-out as home stats)
+  // Facts: count only when each card is mostly visible (same 1.8s ease-out as home stats).
   var facts = document.querySelector('.mdc-page .mtA');
   var factCounters = facts ? [].slice.call(facts.querySelectorAll('[data-count-to]')) : [];
   if (facts && factCounters.length && 'IntersectionObserver' in window) {
+    factCounters.forEach(function (el) {
+      el.textContent = (el.getAttribute('data-count-prefix') || '') + (el.getAttribute('data-count-sign') || '') + '0';
+    });
     var factObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.6) return;
+        var counters = [].slice.call(entry.target.querySelectorAll('[data-count-to]'));
+        factObserver.unobserve(entry.target);
         var duration = 1800;
         var startedAt = performance.now();
         function update(now) {
           var progress = Math.min((now - startedAt) / duration, 1);
           var eased = 1 - Math.pow(1 - progress, 3);
-          factCounters.forEach(function (el) {
+          counters.forEach(function (el) {
             var target = Number(el.getAttribute('data-count-to'));
             var value = progress === 1 ? target : Math.round(eased * target);
             var sign = el.getAttribute('data-count-sign') || '';
@@ -24,10 +29,11 @@
           if (progress < 1) requestAnimationFrame(update);
         }
         requestAnimationFrame(update);
-        factObserver.disconnect();
       });
-    }, { threshold: 0.4 });
-    factObserver.observe(facts);
+    }, { threshold: 0.6 });
+    facts.querySelectorAll('.mtA-cell').forEach(function (cell) {
+      factObserver.observe(cell);
+    });
   }
 
   // Hero: split h1 into words for the clip-reveal (same as the home page, 0.09s step)

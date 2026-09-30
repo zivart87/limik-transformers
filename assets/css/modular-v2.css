@@ -21,7 +21,7 @@
   --v2-text-muted-on-dark: #99B5C9;
   --v2-accent: #05B2FC;
   --v2-on-accent: #002186;        /* titles and text links on an #05B2FC fill (from dw.com), 5.6:1 */
-  --v2-card-active: #123980;      /* richer blue for collapsed Configurations cards, user refinement (2026-09-30) */
+  --v2-card-active: #061746;      /* dark saturated blue for collapsed Configurations cards, original darkness preserved (2026-09-30) */
   --v2-cta: #FFCF0B;
   --v2-cta-hover: #DDB800;
   --v2-line: rgba(9,25,59,.14);

@@ -1,6 +1,6 @@
 # LIMIK Core — тексти конфігурацій для погодження
 
-Дата: 2026-09-30. Статус: **редакційна пропозиція, не застосована до сайту**. Користувач погодив візуальний напрям CANCOM і підготовку наступного кроку; 100/600 kW, комплектація трансформатора й інші числові параметри ще потребують погодження. Джерела: [матриця](../research/limik-core-concept-matrix-2026-09-30.md), [CANCOM](../research/cancom-analysis-2026-09-30.md), [план](../plans/modular-configurations-update.md).
+Дата: 2026-09-30. Статус: **чернетка контенту, не застосована до сайту**. Користувач погодив текст із зауваженням: не обмежувати застосування корпоративним AI та дослідженнями. Нижче підготовлено ширше позиціонування на цей запит. Візуальний напрям CANCOM погоджено. Числа 100/600 kW залишаються попередніми концепційними орієнтирами; це не підтвердження готової інженерної комплектації. Джерела: [матриця](../research/limik-core-concept-matrix-2026-09-30.md), [CANCOM](../research/cancom-analysis-2026-09-30.md), [план](../plans/modular-configurations-update.md).
 
 Тексти для англомовного сайту нижче готові до перенесення після погодження концепції. Українські пояснення — для обговорення з користувачем. Прихований `data-benchmark` не замінює видимої примітки. Скіл Ogilvy Copywriting застосовано для чіткого позиціонування й конкретного опису без непідтверджених рекламних обіцянок; його загальні рекомендації не змінюють погоджений дизайн та анімацію.
 
@@ -8,11 +8,11 @@
 
 Eyebrow: **Configurations**
 
-Heading: **Choose the scale for your AI deployment**
+Heading: **Choose the scale for your compute and IT infrastructure**
 
 Intro:
 
-> Start with a compact cluster, plan a dedicated AI module, or develop a multi-module campus. Each concept combines IT space, power and cooling around your equipment and site.
+> Plan a compact server deployment, a high-density compute module, or a multi-module campus. Each concept combines IT space, power and cooling around your equipment, workloads and site.
 
 Видима примітка біля параметрів, перед картками:
 
@@ -28,15 +28,15 @@ Intro:
 
 Короткий сценарій:
 
-> A compact cluster for AI on your own site.
+> Compact infrastructure for servers, storage and local computing.
 
 Теги: **2 IT racks** · **100 kW IT target** · **Existing site power**
 
 Розгорнутий опис:
 
-> For enterprise inference, research and a first on-site AI deployment. The proposed two-rack configuration uses existing site power, with UPS backup and liquid cooling supported by a separate heat-rejection unit. Site capacity is reviewed before connection; a dedicated transformer is outside the base scope.
+> For business applications, data storage and processing close to users or equipment, including smaller compute and AI deployments. The proposed two-rack configuration uses existing site power, with UPS backup. Cooling is matched to your hardware; the liquid-cooled base uses a separate heat-rejection unit. A dedicated transformer is outside the base scope.
 
-Українською: компактний модуль для корпоративного AI, досліджень або першого кластера на власному майданчику. Планується дві стійки й 100 kW IT; підключення до придатного наявного живлення, UPS та охолодження. Новий трансформатор у базу не входить. Не обіцяємо відсутність будь-яких електромонтажних робіт.
+Українською: компактна інфраструктура для серверів бізнес-застосунків, сховищ даних та локальної обробки біля користувачів або обладнання; невеликі обчислювальні й AI-кластери також можливі після перевірки. Планується дві стійки й 100 kW IT для попередньої рідинної бази; звичайне повітряне обладнання потребує іншої комплектації охолодження й окремої перевірки доступної потужності. Новий трансформатор у базу не входить. Не обіцяємо відсутність будь-яких електромонтажних робіт.
 
 Кнопка розкриття: **View configuration**; відкритий стан: **Details open**.
 
@@ -48,21 +48,21 @@ Intro:
 
 ## 3. Core 40
 
-Мітка: **AI module · concept**
+Мітка: **High-density · concept**
 
 Назва: **Core 40**
 
 Короткий сценарій:
 
-> A dedicated module for a high-density AI cluster.
+> A dedicated module for high-density computing.
 
 Теги: **6 IT racks** · **600 kW IT target** · **Planned MV transformer**
 
 Розгорнутий опис:
 
-> For a dedicated AI or HPC cluster with four high-density compute positions and two network or storage positions. The proposed configuration combines liquid and air cooling, UPS backup and an external LIMIK medium-voltage transformer. Power and cooling are sized to your rack hardware within the 600 kW total IT target.
+> For scientific computing, engineering simulation, rendering and AI workloads that need dense server infrastructure. The proposed liquid-cooled configuration has four compute positions and two network or storage positions, with UPS backup and an external LIMIK medium-voltage transformer. Power and cooling are matched to your hardware within the 600 kW total IT target.
 
-Українською: основний AI-модуль із чотирма позиціями для потужних обчислювальних стійок та двома для мережі/сховищ. Планується зовнішній трансформатор LIMIK, UPS та комбіноване охолодження. 600 kW — спільний IT-бюджет, не потужність кожної стійки. Порожня стійка може замінюватися готовою OEM-стійкою замовника.
+Українською: основний модуль для щільних обчислювальних систем: наукових розрахунків, інженерного моделювання, рендерингу та AI. Роль визначається вимогами обладнання, а не лише назвою задачі. Чотири обчислювальні позиції та дві для мережі/сховищ, зовнішній трансформатор LIMIK, UPS і комбіноване охолодження. 600 kW — попередній IT-бюджет рідинної бази, не потужність кожної стійки й не гарантія 600 kW для повністю повітряного наповнення. Порожня стійка може замінюватися готовою OEM-стійкою замовника.
 
 Кнопка заявки: **Request Core 40**. Розкриття та відкритий стан — як у Core 20.
 
@@ -86,7 +86,7 @@ Intro:
 
 Розгорнутий опис:
 
-> For operators planning more than one AI module. Core Campus brings multiple Core 40 concepts into a site plan with transformer capacity, power distribution, cooling and backup defined for each phase. Module count and shared infrastructure follow your demand, available grid capacity and expansion plan.
+> For organizations and operators planning a larger computing or IT site. Core Campus brings multiple modules into a site plan with transformer capacity, power distribution, cooling and backup defined for each phase. Module count and equipment configurations follow your workloads, available grid capacity and expansion plan.
 
 Українською: індивідуальний проєкт кількох Core 40. Кількість модулів і спільне живлення/охолодження визначаються для кожної черги. Приклад двох модулів дає 1.2 MW IT, але це не універсальна комплектація Campus. LIMIK не приписуємо будівництво всієї підстанції.
 
@@ -94,7 +94,7 @@ Intro:
 
 Планований підпис під власним візуалом:
 
-> Core Campus concept: multiple AI modules with site power and cooling infrastructure planned in phases.
+> Core Campus concept: multiple data center modules with site power and cooling infrastructure planned in phases.
 
 ## 5. Компактне порівняння
 
@@ -115,6 +115,8 @@ Title: **Compare the planning targets**
 > IT capacity includes servers, networking and storage. Site power must also cover cooling and electrical losses. The 480 V baseline is for U.S. projects; other voltages require a different electrical configuration.
 
 > N+1 refers to specified UPS and cooling components. It does not mean two independent power paths or certified site availability.
+
+> Capacity targets describe the proposed liquid-cooled base. Air-cooled servers or a different equipment mix require a cooling and capacity review.
 
 Не додавати 150 kW до коротких тегів усіх карток. Якщо цей орієнтир буде погоджено, показувати його в технічних деталях Core 40 разом із сумарним лімітом і розподілом стійок.
 
@@ -150,11 +152,11 @@ CTA: **Discuss my site**
 
 ### Hero
 
-H1: **Plan your AI infrastructure with LIMIK Core**
+H1: **LIMIK Core: modular data centers for compute and IT**
 
 Lead:
 
-> Explore a modular AI data center concept that brings IT space, power and cooling into one project. Core 20 uses existing site power; Core 40 proposes an external LIMIK transformer; Core Campus scales through a site-specific multi-module design.
+> Plan infrastructure for business applications, data storage, high-performance computing and AI. LIMIK Core brings IT space, power and cooling into one modular concept, configured around your equipment and site.
 
 CTA: **Discuss your project**. Micro: **Concept planning · Specifications confirmed per project**.
 
@@ -166,7 +168,7 @@ Heading: **IT space, power and cooling planned together**
 
 Body:
 
-> LIMIK Core is a proposed modular infrastructure line for customer-supplied AI equipment. The concept separates IT space from external power and heat-rejection equipment, with the layout and site connections developed around the selected configuration.
+> LIMIK Core is a proposed modular data center line for customer-supplied servers, storage and networking equipment. The concept separates IT space from external power and heat-rejection equipment, with the layout, cooling and site connections developed around your workloads and selected configuration.
 
 Панель орієнтирів: Core 20 — **100 kW IT target**; Core 40 — **600 kW IT target**; Campus — **Project-specific**. Якщо ці числа погоджено, використовувати їх замість неузгоджених показників lead time / climate. Не міняти геометрію або поведінку лічильників до етапу реалізації й відповідної перевірки.
 
@@ -220,7 +222,7 @@ Parallel power track:
 
 **Which LIMIK Core configuration fits my site?**
 
-> Core 20 is the compact concept for existing site power. Core 40 is the high-density AI concept with a planned external transformer. Core Campus is a site-specific design for multiple modules. The starting point is your rack hardware, target IT load and available power.
+> Core 20 is the compact concept for servers, storage and local computing using existing site power. Core 40 is the high-density compute concept with a planned external transformer. Core Campus is a site-specific design for multiple modules. The starting point is your workloads, rack hardware, target IT load and available power.
 
 **Is the power transformer included?**
 
@@ -228,7 +230,11 @@ Parallel power track:
 
 **Which GPUs are supported?**
 
-> The concept is intended for AI and HPC equipment. Compatibility with a specific server or rack system must be confirmed against its power, cooling, dimensions, weight and connection requirements. Compute hardware is customer-supplied.
+> AI and HPC equipment are among the intended applications. Compatibility with a specific GPU server or rack system must be confirmed against its power, cooling, dimensions, weight and connection requirements. Compute hardware is customer-supplied.
+
+**Is LIMIK Core only for AI?**
+
+> No. The concept also addresses business applications, storage, local data processing and high-performance computing. Power, cooling and rack layout must be matched to the equipment; the high-density liquid-cooled base is not automatically suitable for every server configuration.
 
 **How is LIMIK Core cooled?**
 
@@ -273,3 +279,24 @@ Parallel power track:
 Рекомендовано погодити цілісний пакет: назви й сценарії трьох моделей; базу 100 kW / 2 стійки та 600 kW / 6 стійок; трансформатор у планованій базі Core 40; зовнішні технічні блоки; обладнання замовника; видимий статус концепції; CTA-запити; публічний строк «за проєктом». Конкретна ширина, готова BOM, строки першого виробу, PUE, сертифікації, гарантії й сумісність GPU цим погодженням не встановлюються.
 
 Перевірка цього кроку: звірено числа з матрицею, ролі моделей і комплектацію між текстами; збережено точні назви для передачі вибору у форму; перевірено локальні посилання та git diff. Браузер, адаптивність і надсилання форми не тестувалися, оскільки робочий код не змінювався.
+
+## 10. Уточнення позиціонування після зауваження користувача
+
+Користувач погодив текст, але попросив розширити сфери застосування. Рекомендація агента: **модульний дата-центр для обчислень та IT-інфраструктури**, зі спеціалізацією на щільних обчислювальних системах. Продаємо інфраструктуру розміщення обладнання — корпус, живлення, охолодження й контроль; не обчислювальну послугу, готовий AI-продукт або результат дослідження.
+
+Первинні джерела повторно перевірено 2026-09-30 саме щодо позиціонування:
+
+| Джерело | Як позиціонує продукт | Висновок для LIMIK |
+|---|---|---|
+| [CANCOM Mobile](https://physical-infrastructure.cancom.com/mobile-data-centers-from-cancom/) | Додаткові IT-ресурси, обчислювальна потужність і сховища; розширення або тимчасова заміна наявного дата-центру | Назва продукту може охоплювати різні навантаження |
+| [Eaton Modular data center](https://www.eaton.com/us/en-us/catalog/low-voltage-power-distribution-controls-systems/modular-data-center.html) | Модульна інфраструктура під сервери замовника, вимоги IT та майданчика; різні варіанти живлення й охолодження | Основна цінність — інфраструктура під обладнання, не тільки AI |
+| [Module-it](https://www.module-it.com/en/) | Загальні дата-центри; окремі напрямки промисловості, HPC/AI й публічної інфраструктури | Загальна категорія продукту + конкретні сценарії застосування |
+| [ModulEdge](https://www.moduledge.com/) | AI та edge; змішані навантаження; промислові, телекомунікаційні й інші застосування | Навіть AI-акцент не вимагає обмежувати всі сценарії AI |
+
+Це позиціонування конкурентів, не доказ реалізованої підтримки цих навантажень LIMIK. Наш висновок: верхній рівень — **Modular Data Centers**; пояснення — **For enterprise IT, high-performance computing, edge workloads and AI**. AI залишається важливим застосуванням і технічною спеціалізацією Core 40; окрема сторінка або рекламна кампанія може пізніше фокусуватися на AI без звуження всієї лінійки.
+
+Рекомендовані групи сценаріїв для майбутнього контенту: корпоративні сервери/бізнес-застосунки; зберігання даних; наукові розрахунки й інженерне моделювання; рендеринг та обробка даних; локальна/edge-обробка; AI. Це сценарії для проєктування під конкретне обладнання, не шість нових продуктів. Не обіцяємо автоматично аварійний резерв із реплікацією, телекомунікаційні сертифікації, військовий захист чи повітряне охолодження на повній потужності.
+
+Модель визначається масштабом, щільністю стійок і доступним живленням, а не галуззю клієнта. Назва навантаження не встановлює спосіб охолодження: звичайний сервер може потребувати повітря, HPC або AI — повітря чи рідину залежно від OEM. Тому широке позиціонування не змінює автоматично технічну матрицю 100/600 kW; для іншого теплового балансу потрібна перекомплектація й новий розрахунок.
+
+Оновлено саме цю чернетку та план. URL `modular-ai-data-centers/`, меню, SEO, HTML/CSS/JS і публікацію не змінено; ці питання належать до наступної погодженої реалізації. Фінальне широке формулювання представлене користувачу для оцінки; не оголошувати його вже застосованим.

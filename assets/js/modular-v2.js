@@ -77,6 +77,7 @@
       var toggle = c.querySelector('.acc-toggle');
       toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
       toggle.querySelector('span').textContent = on ? 'Details open' : 'View configuration';
+      c.querySelector('.acc-img').inert = !on;
       c.querySelector('.acc-more').inert = !on;
       c.querySelector('.acc-btn').inert = !on;
     });
@@ -89,6 +90,10 @@
     syncCards();
   }
   accCards.forEach(function (c) {
+    c.addEventListener('click', function (e) {
+      if (e.target.closest('a, button') || c.classList.contains('is-active') || mqMobile.matches) return;
+      openCard(c);
+    });
     c.querySelector('.acc-toggle').addEventListener('click', function () {
       openCard(c);
       c.querySelector('.acc-btn').focus({ preventScroll: true });

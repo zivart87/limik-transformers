@@ -21,7 +21,7 @@
   --v2-text-muted-on-dark: #99B5C9;
   --v2-accent: #05B2FC;
   --v2-on-accent: #002186;        /* titles and text links on an #05B2FC fill (from dw.com), 5.6:1 */
-  --v2-card-active: #0A1640;      /* open Configurations card: deep brand blue, darker so the navy module reads with more contrast (2026-09-29) */
+  --v2-card-active: #0A1640;      /* deep brand blue for collapsed Configurations cards (2026-09-30) */
   --v2-cta: #FFCF0B;
   --v2-cta-hover: #DDB800;
   --v2-line: rgba(9,25,59,.14);
@@ -201,60 +201,53 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 @media (max-width: 991px) { .mdc-page .sticky-grid { grid-template-columns: 1fr; gap: 40px; } .mdc-page .sticky-left { position: static; height: auto; min-height: 0; max-height: none; gap: 32px; max-width: none; } .mdc-page .chain { display: none; } .mdc-page .pcard, .mdc-page .pcard.large { height: 460px; } }
 
 /* ── 4 Configurations: expandable cards (Crusoe), on dark ─────── */
-.mdc-page .acc { display: flex; gap: 8px; height: 580px; } /* 640 → 580 (2026-09-29): renders are wide, ~2.2:1; air 84px above, ~50px below the render */
-/* 2026-09-28 (trial): light collapsed cards (#F4F6FA, navy text) + open card in deep brand blue --v2-card-active #0A1640, white text — as the dark open card of the Crusoe reference */
-.mdc-page .acc-card { position: relative; width: calc(100% / 3); max-width: 600px; flex-shrink: 1; min-width: 0; overflow: hidden; border-radius: var(--v2-r-lg); background: var(--v2-bg-light); border: 0; color: var(--v2-text); cursor: pointer; transition: width .5s, background-color .5s; }
-.mdc-page .acc-card:not(.is-active):hover { background: #fff; }
-.mdc-page .acc-card.is-active { width: 100%; max-width: 600px; background: var(--v2-card-active); color: #fff; cursor: default; }
-.mdc-page .acc-card.is-active .acc-dot { background: #fff; }
-.mdc-page .acc-card.is-active .acc-img .ph { background: transparent repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.05) 14px 15px); border-color: rgba(255,255,255,.35); color: rgba(255,255,255,.7); }
-.mdc-page .acc-card.is-active .acc-badge, .mdc-page .acc-card.is-active .acc-tags > span { background: transparent; border-color: rgba(255,255,255,.35); }
-.mdc-page .acc-card.is-active .acc-more p { color: rgba(255,255,255,.8); }
-.mdc-page .acc-card:focus-visible { outline: 2px solid var(--v2-accent); outline-offset: 2px; }
-.mdc-page .acc-dot { position: absolute; top: 10px; left: 10px; z-index: 3; width: 5px; height: 5px; background: var(--v2-text); opacity: .4; transition: opacity .5s; }
-.mdc-page .acc-card.is-active .acc-dot { opacity: 1; }
-.mdc-page .acc-img { position: absolute; top: 0; left: 0; bottom: 262px; width: 600px; max-width: 100%; padding: 84px 32px 0; opacity: 0; transition: opacity 0s; }
-.mdc-page .acc-card.is-active .acc-img { opacity: 1; transition: opacity .5s ease .5s; }
-.mdc-page .acc-img .ph { height: 100%; border-radius: var(--v2-r-md); background: var(--v2-bg-light) repeating-linear-gradient(135deg, transparent 0 14px, rgba(0,0,0,.035) 14px 15px); border: 1px dashed #A9B0BB; color: #6B7483; }
-.mdc-page .acc-img .acc-photo { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
-.mdc-page .acc-badge { position: absolute; top: 14px; right: 14px; padding: 8px 10px; border: 1px solid var(--v2-line); background: #fff; border-radius: var(--v2-r-sm); font: 700 10px/1 var(--v2-body); letter-spacing: .08em; text-transform: uppercase; }
-.mdc-page .acc-info { position: absolute; left: 28px; right: 28px; bottom: 28px; display: flex; flex-direction: column; gap: 8px; padding-right: 44px; }
-.mdc-page .acc-card.is-active .acc-info { padding-right: 170px; }
-.mdc-page .acc-kicker { font: 700 11px/1.3 var(--v2-body); letter-spacing: .08em; text-transform: uppercase; color: var(--v2-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .5s; }
-.mdc-page .acc-card.is-active .acc-kicker { color: var(--v2-accent); } /* 7:1 on #0A1640 */
-.mdc-page .acc-title { font: 500 clamp(24px, 2.2vw, 30px)/1.02 var(--v2-head); letter-spacing: -.02em; white-space: nowrap; transition: font-size .5s; }
-.mdc-page .acc-card.is-active .acc-title { font-size: clamp(36px, 3.4vw, 48px); }
-.mdc-page .acc-more { position: absolute; left: 0; right: 0; bottom: 100%; padding-bottom: 20px; opacity: 0; transition: opacity .5s; }
-.mdc-page .acc-more > div { display: grid; gap: 12px; width: 520px; max-width: 100%; }
-.mdc-page .acc-card.is-active .acc-more { opacity: 1; transition: opacity .5s ease .5s; }
-.mdc-page .acc-more p { font-size: 16px; line-height: 1.75; color: var(--v2-text-muted); max-width: 46ch; }
-.mdc-page .acc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.mdc-page .acc-tags > span { font: 600 11px/1 var(--v2-body); padding: 6px 8px; border: 1px solid var(--v2-line); border-radius: var(--v2-r-sm); white-space: nowrap; }
-.mdc-page .acc-tags .tbc, .mdc-page .ptags .tbc { padding: 0 4px; border: 0; }
-/* Collapsed card arrow: Heroicons arrow-up-right (thin), 30px mask in a 40px box */
-.mdc-page .acc-arrow { position: absolute; right: 20px; bottom: 22px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 0; transition: opacity .5s; }
-.mdc-page .acc-arrow::before { content: ''; width: 30px; height: 30px; background: currentColor; -webkit-mask: var(--v2-ic-arrow-thin) no-repeat center / contain; mask: var(--v2-ic-arrow-thin) no-repeat center / contain; }
-.mdc-page .acc-card.is-active .acc-arrow { opacity: 0; transition: opacity 0s; }
-.mdc-page .acc-btn { position: absolute; right: 28px; bottom: 28px; opacity: 0; /* solid .btn (approved 2026-09-28) */ pointer-events: none; transition: opacity .5s; }
-.mdc-page .acc-card.is-active .acc-btn { opacity: 1; pointer-events: auto; transition: opacity .5s ease .5s; }
+/* Configuration comparison: shared facts remain visible while details expand. */
+.mdc-page .acc { display: flex; align-items: stretch; gap: 8px; }
+.mdc-page .acc-card { display: flex; flex-direction: column; position: relative; flex: 1 1 0; min-width: 0; min-height: 580px; border-radius: var(--v2-r-lg); background: var(--v2-card-active); color: #fff; transition: flex-grow .5s, background-color .5s, color .5s; }
+.mdc-page .acc-card.is-active { flex-grow: 2; background: var(--v2-accent); color: var(--v2-on-accent); }
+.mdc-page .acc-heading { padding: 28px 28px 0; min-width: 0; }
+.mdc-page .acc-kicker { display: block; font: 700 11px/1.4 var(--v2-body); letter-spacing: .08em; text-transform: uppercase; color: var(--v2-text-muted-on-dark); }
+.mdc-page .acc-title { margin-top: 8px; font: 500 clamp(24px, 2.2vw, 30px)/1.08 var(--v2-head); letter-spacing: -.02em; overflow-wrap: break-word; }
+.mdc-page .acc-card.is-active .acc-title { font-size: clamp(30px, 3.4vw, 48px); }
+.mdc-page .acc-summary { margin-top: 12px; font-size: 16px; line-height: 1.5; color: var(--v2-text-muted-on-dark); }
+.mdc-page .acc-card.is-active .acc-kicker { color: var(--v2-on-accent); }
+.mdc-page .acc-card.is-active .acc-summary, .mdc-page .acc-card.is-active .acc-more p { color: rgba(0,8,33,.8); }
+.mdc-page .acc-img { display: none; height: 220px; padding: 24px 28px 0; min-width: 0; }
+.mdc-page .acc-card.is-active .acc-img { display: block; }
+.mdc-page .acc-photo { display: block; width: 100%; height: 100%; object-fit: contain; }
+.mdc-page .acc-info { margin-top: auto; padding: 24px 28px; min-width: 0; }
+.mdc-page .acc-more { display: none; }
+.mdc-page .acc-card.is-active .acc-more { display: block; }
+.mdc-page .acc-more p { font-size: 16px; line-height: 1.5; color: var(--v2-text-muted-on-dark); }
+.mdc-page .acc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+.mdc-page .acc-tags > span { max-width: 100%; font: 600 12px/1.4 var(--v2-body); padding: 6px 8px; border: 1px solid var(--v2-line-dark); border-radius: var(--v2-r-sm); overflow-wrap: anywhere; }
+.mdc-page .acc-card.is-active .acc-tags > span { border-color: rgba(0,33,134,.35); }
+.mdc-page .acc-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 0 28px 28px; }
+.mdc-page .acc-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: 600 14px/1.4 var(--v2-body); text-align: left; cursor: pointer; }
+.mdc-page .acc-toggle i { font: normal 28px/1 var(--v2-body); }
+.mdc-page .acc-card.is-active .acc-toggle { display: none; }
+.mdc-page .acc-card.is-active .acc-toggle i { display: none; }
+.mdc-page .acc-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.mdc-page .acc-btn { display: none; }
+.mdc-page .acc-card.is-active .acc-btn { display: inline-flex; }
 @media (max-width: 991px) {
-  .mdc-page .acc { flex-direction: column; height: auto; gap: 16px; }
-  .mdc-page .acc-card, .mdc-page .acc-card.is-active { flex: none; width: 100%; max-width: none; background: var(--v2-card-active); color: #fff; cursor: default; }
-  .mdc-page .acc-dot { background: #fff; }
-  .mdc-page .acc-img .ph { background: transparent repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.05) 14px 15px); border-color: rgba(255,255,255,.35); color: rgba(255,255,255,.7); }
-  .mdc-page .acc-badge, .mdc-page .acc-tags > span { background: transparent; border-color: rgba(255,255,255,.35); }
-  .mdc-page .acc-more p { color: rgba(255,255,255,.8); }
-  .mdc-page .acc-img { position: relative; inset: auto; width: auto; height: 240px; opacity: 1; }
-  .mdc-page .acc-info, .mdc-page .acc-card.is-active .acc-info { position: relative; inset: auto; padding: 24px 28px 0; }
-  .mdc-page .acc-kicker { color: var(--v2-accent); }
+  .mdc-page .acc { flex-direction: column; gap: 16px; }
+  .mdc-page .acc-card, .mdc-page .acc-card.is-active { flex: none; min-height: 0; background: var(--v2-accent); color: var(--v2-on-accent); }
+  .mdc-page .acc-kicker { color: var(--v2-on-accent); }
+  .mdc-page .acc-summary, .mdc-page .acc-more p { color: rgba(0,8,33,.8); }
   .mdc-page .acc-title, .mdc-page .acc-card.is-active .acc-title { font-size: 30px; }
-  .mdc-page .acc-more { position: static; order: 3; padding: 6px 0 0; opacity: 1; }
-  .mdc-page .acc-more > div { width: auto; }
-  .mdc-page .acc-arrow { display: none; }
-  .mdc-page .acc-btn { position: relative; inset: auto; display: inline-flex; margin: 20px 28px 28px; opacity: 1; pointer-events: auto; }
-  .mdc-page .acc-dot { opacity: 1; }
+  .mdc-page .acc-img, .mdc-page .acc-more { display: block; }
+  .mdc-page .acc-info { margin-top: 0; }
+  .mdc-page .acc-tags > span { border-color: rgba(0,33,134,.35); }
+  .mdc-page .acc-toggle { display: none; }
+  .mdc-page .acc-btn { display: inline-flex; }
 }
-@media (max-width: 600px) { .mdc-page .acc-img { height: 200px; padding: 40px 20px 0; } .mdc-page .acc-info, .mdc-page .acc-card.is-active .acc-info { padding: 20px 24px 0; } .mdc-page .acc-btn { margin: 20px 24px 24px; } }
+@media (max-width: 600px) {
+  .mdc-page .acc-heading { padding: 24px 24px 0; }
+  .mdc-page .acc-img { height: 180px; padding: 20px 24px 0; }
+  .mdc-page .acc-info { padding: 20px 24px; }
+  .mdc-page .acc-actions { padding: 0 24px 24px; }
+}
 
 /* CTA panel on dark (runware.ai technique): corner glow, gradient border, accent title */
 .mdc-page .track { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px; align-items: center; padding: 28px; border-radius: var(--v2-r-xl); border: 1px solid transparent;

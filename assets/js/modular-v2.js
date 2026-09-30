@@ -69,22 +69,33 @@
     spy();
   }
 
-  // Configurations: one card open on desktop (click / Enter / Space); all open below 992px
+  // Configurations: common facts stay visible; one detail panel on desktop, all on mobile.
   var accCards = [].slice.call(document.querySelectorAll('.acc-card'));
+  function syncCards() {
+    accCards.forEach(function (c) {
+      var on = mqMobile.matches || c.classList.contains('is-active');
+      var toggle = c.querySelector('.acc-toggle');
+      toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+      toggle.querySelector('span').textContent = on ? 'Details open' : 'View configuration';
+      c.querySelector('.acc-more').inert = !on;
+      c.querySelector('.acc-btn').inert = !on;
+    });
+  }
   function openCard(c) {
     if (mqMobile.matches) return;
     accCards.forEach(function (x) {
-      var on = x === c;
-      x.classList.toggle('is-active', on);
-      x.setAttribute('aria-expanded', on ? 'true' : 'false');
+      x.classList.toggle('is-active', x === c);
     });
+    syncCards();
   }
   accCards.forEach(function (c) {
-    c.addEventListener('click', function () { openCard(c); });
-    c.addEventListener('keydown', function (e) {
-      if (e.target === c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openCard(c); }
+    c.querySelector('.acc-toggle').addEventListener('click', function () {
+      openCard(c);
+      c.querySelector('.acc-btn').focus({ preventScroll: true });
     });
   });
+  mqMobile.addEventListener('change', syncCards);
+  syncCards();
 
   // Specifications: always one section open
   var spx = [].slice.call(document.querySelectorAll('.spx-item'));
@@ -170,9 +181,15 @@
     var qs = new URLSearchParams(location.search), pre = qs.get('product');
     if (pre) { var r = qf.querySelector('input[name=product][value="' + pre + '"]'); if (r) r.checked = true; }
     var sizeF = qf.querySelector('[data-f="capacity"]');
+    var modelField = document.getElementById('q-model-field');
+    var modelSelect = document.getElementById('q-model');
     var syncSize = function () {
       var v = (qf.querySelector('input[name=product]:checked') || {}).value;
       if (sizeF) sizeF.hidden = (v !== 'limik-core');
+      if (modelField && modelSelect) {
+        modelField.hidden = v !== 'limik-core' || !modelSelect.value;
+        modelSelect.disabled = v !== 'limik-core';
+      }
     };
     qf.querySelectorAll('input[name=product]').forEach(function (r) { r.addEventListener('change', syncSize); });
     syncSize();
@@ -207,6 +224,13 @@
       if (!sec) return;
       e.preventDefault();
       var go = a.getAttribute('data-go'), target = document.getElementById('q-name');
+      var model = a.getAttribute('data-model');
+      if (model && qf) {
+        var product = qf.querySelector('input[name="product"][value="limik-core"]');
+        var selection = qf.querySelector('[name="configuration"]');
+        if (product) { product.checked = true; product.dispatchEvent(new Event('change', { bubbles: true })); }
+        if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').hidden = false; }
+      }
       if (go === 'schedule' || go === 'fit') { var d = sec.querySelector('.lf-more'); if (d) d.open = true; }
       sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(function () { if (target) target.focus({ preventScroll: true }); }, 500);

@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/assets/css/limik.css">
   <link rel="stylesheet" href="/assets/css/nav.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <link rel="stylesheet" href="/assets/css/modular-v2.css">
+  <link rel="stylesheet" href="/assets/css/modular-v2.css?v=20260930-configurations">
 </head>
 <body class="mdc-page" data-hero=".hero">
   <div id="nav-placeholder"></div>
@@ -142,47 +142,53 @@
     <p class="intro">Tell us what power you have, or plan to have. Each LIMIK Core model comes with its power path engineered by us.</p>
   </div>
   <div class="acc">
-    <article class="acc-card" tabindex="0" aria-expanded="false">
-      <span class="acc-dot" aria-hidden="true"></span>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Ships in <span data-benchmark>16–24</span> weeks</span></div>
-      <div class="acc-info">
+    <article class="acc-card" data-model="Core 20">
+      <div class="acc-heading">
         <span class="acc-kicker">20-ft · site power</span>
         <h3 class="acc-title">Core 20</h3>
-        <div class="acc-more"><div>
-          <p>For your first GPU racks. Connects to existing site service with no substation work.</p>
-          <div class="acc-tags"><span><span data-benchmark>Up to 4 racks</span></span><span><span data-benchmark>Up to 200 kW</span></span><span>Runs on site power</span></div>
-        </div></div>
+        <p class="acc-summary">For your first GPU racks.</p>
+        <div class="acc-tags"><span><span data-benchmark>Up to 4 racks</span></span><span><span data-benchmark>Up to 200 kW</span></span><span>Runs on site power</span></div>
       </div>
-      <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="btn acc-btn" href="#configure" data-go="form">Configure</a>
-    </article>
-    <article class="acc-card is-active" tabindex="0" aria-expanded="true">
-      <span class="acc-dot" aria-hidden="true"></span>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Ships in <span data-benchmark>16–24</span> weeks</span></div>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
       <div class="acc-info">
+        <div class="acc-more" id="core-20-details" inert><p>For your first GPU racks. Connects to existing site service with no substation work.</p></div>
+      </div>
+      <div class="acc-actions">
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="core-20-details" aria-label="View Core 20 configuration"><span>View configuration</span><i aria-hidden="true">+</i></button>
+        <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core 20" inert>Configure</a>
+      </div>
+    </article>
+    <article class="acc-card is-active" data-model="Core 40">
+      <div class="acc-heading">
         <span class="acc-kicker">40-ft · MV transformer</span>
         <h3 class="acc-title">Core 40</h3>
-        <div class="acc-more"><div>
-          <p>Our flagship module, delivered with its own medium-voltage transformer from our line.</p>
-          <div class="acc-tags"><span><span data-benchmark>Up to 8 racks</span></span><span><span data-benchmark>Up to 1 MW</span></span><span>Transformer included</span></div>
-        </div></div>
+        <p class="acc-summary">Our flagship module.</p>
+        <div class="acc-tags"><span><span data-benchmark>Up to 8 racks</span></span><span><span data-benchmark>Up to 1 MW</span></span><span>Transformer included</span></div>
       </div>
-      <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="btn acc-btn" href="#configure" data-go="form">Configure</a>
-    </article>
-    <article class="acc-card" tabindex="0" aria-expanded="false">
-      <span class="acc-dot" aria-hidden="true"></span>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"><span class="acc-badge">Phased delivery</span></div>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
       <div class="acc-info">
+        <div class="acc-more" id="core-40-details" ><p>Our flagship module, delivered with its own medium-voltage transformer from our line.</p></div>
+      </div>
+      <div class="acc-actions">
+        <button class="acc-toggle" type="button" aria-expanded="true" aria-controls="core-40-details" aria-label="View Core 40 configuration"><span>Details open</span><i aria-hidden="true">+</i></button>
+        <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core 40" >Configure</a>
+      </div>
+    </article>
+    <article class="acc-card" data-model="Core Campus">
+      <div class="acc-heading">
         <span class="acc-kicker">Campus · multi-module</span>
         <h3 class="acc-title">Core Campus</h3>
-        <div class="acc-more"><div>
-          <p>Multiple Core 40 modules, with LIMIK power transformers up to 600 MVA for your site substation.</p>
-          <div class="acc-tags"><span><span data-benchmark>10 MW+</span></span><span>LIMIK power transformers</span><span>Grid or on-site</span></div>
-        </div></div>
+        <p class="acc-summary">Multiple Core 40 modules.</p>
+        <div class="acc-tags"><span><span data-benchmark>10 MW+</span></span><span>LIMIK power transformers</span><span>Grid or on-site</span></div>
       </div>
-      <span class="acc-arrow" aria-hidden="true">↗</span>
-      <a class="btn acc-btn" href="#configure" data-go="form">Configure</a>
+      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
+      <div class="acc-info">
+        <div class="acc-more" id="core-campus-details" inert><p>Multiple Core 40 modules, with LIMIK power transformers up to 600 MVA for your site substation.</p></div>
+      </div>
+      <div class="acc-actions">
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="core-campus-details" aria-label="View Core Campus configuration"><span>View configuration</span><i aria-hidden="true">+</i></button>
+        <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core Campus" inert>Configure</a>
+      </div>
     </article>
   </div>
   <div class="track sub-gap">
@@ -406,6 +412,7 @@
     <div class="lead-side">
     <form class="lead-form" id="qform" novalidate>
       <fieldset class="lf-tiles"><legend>What are you planning?</legend><div class="tiles"><label class="tile"><input type="radio" name="product" value="limik-core" checked><span><i aria-hidden="true"></i>Modular AI data center</span></label><label class="tile"><input type="radio" name="product" value="power"><span><i aria-hidden="true"></i>Power transformer</span></label><label class="tile"><input type="radio" name="product" value="autotransformer"><span><i aria-hidden="true"></i>Autotransformer</span></label><label class="tile"><input type="radio" name="product" value="gsu"><span><i aria-hidden="true"></i>GSU transformer</span></label><label class="tile"><input type="radio" name="product" value="mobile"><span><i aria-hidden="true"></i>Mobile transformer</span></label><label class="tile"><input type="radio" name="product" value="other"><span><i aria-hidden="true"></i>Other</span></label></div></fieldset>
+      <div class="lf" id="q-model-field" hidden><label for="q-model">Selected configuration</label><select id="q-model" name="configuration"><option value="">Not sure yet</option><option value="Core 20">Core 20</option><option value="Core 40">Core 40</option><option value="Core Campus">Core Campus</option></select></div>
       <div class="lf-row">
         <div class="lf"><label for="q-name">Full name<span class="req" aria-hidden="true">*</span></label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
         <div class="lf"><label for="q-email">Work email<span class="req" aria-hidden="true">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required><p class="qerr" hidden>Enter a valid work email.</p></div>
@@ -438,6 +445,6 @@
   <script src="/assets/js/nav-loader.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/back-to-top.js"></script>
-  <script src="/assets/js/modular-v2.js?v=20260930-counters"></script>
+  <script src="/assets/js/modular-v2.js?v=20260930-configurations"></script>
 </body>
 </html>

@@ -215,7 +215,7 @@
         if (!ok && !bad) bad = el;
       });
       if (bad) { bad.focus(); return; }
-      qf.innerHTML = '<h3 class="lead-thanks">Thank you. An engineer will reply within 48 hours.</h3>';
+      qf.innerHTML = '<h3 class="lead-thanks">Draft preview complete. No request has been sent.</h3>';
     });
     ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
       var el = qf.querySelector('[name=' + k + ']'); if (el) el.value = qs.get(k) || '';

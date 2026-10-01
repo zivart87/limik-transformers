@@ -1,13 +1,13 @@
 (function () {
   // Footer styles live in assets/css/footer.css; attach them here so pages don't need their own <link>
-  if (!document.querySelector('link[href$="/assets/css/footer.css"]')) {
+  if (!document.querySelector('link[href*="/assets/css/footer.css"]')) {
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = '/assets/css/footer.css';
+    css.href = '/assets/css/footer.css?v=20261001-nav-footer';
     document.head.appendChild(css);
   }
 
-  fetch('/footer.html')
+  fetch('/footer.html?v=20261001-nav-footer')
     .then(function (r) { return r.text(); })
     .then(function (html) {
       var el = document.getElementById('site-footer');

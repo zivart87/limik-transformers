@@ -26,13 +26,13 @@
 }
 .nav-top-inner a {
   font-size: 12px; font-weight: 500;
-  color: #000821; padding: 0 14px;
+  color: #002186; padding: 0 14px;
   letter-spacing: 0.05em; transition: color 0.15s;
   display: flex; align-items: center; height: 32px;
 }
-.nav-top-inner a:hover { color: rgba(0,8,33,0.7); }
+.nav-top-inner a:hover { color: rgba(0,33,134,0.7); }
 .nav-top-inner a.active {
-  color: #000821;
+  color: #002186;
   position: relative;
 }
 .nav-top-inner a.active::after {

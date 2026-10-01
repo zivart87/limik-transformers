@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
 /* ════════════════════════════════════════════
    LIMIK FOOTER — единственный источник стилей футера (2026-09-28, дизайн-система v2).
    Структура по примеру jacobs.com: слоган + контакты и 3 колонки / большой логотип / юридическая строка.
@@ -33,7 +35,7 @@
 .sf-brand a { display: block; color: #fff; }
 .sf-brand a:hover { color: #fff; }
 .sf-wordmark { display: block; width: 100%; height: auto; }
-.sf-mark { display: none; width: 160px; height: auto; margin: 0 auto; } /* phones ≤480px: centered brand mark instead of the wordmark (as jacobs.com shows only the J); tablets keep the wordmark */
+.sf-mark { display: none; width: 100%; height: auto; margin: 0 auto; } /* phones ≤480px: centered brand mark instead of the wordmark (as jacobs.com shows only the J); tablets keep the wordmark */
 
 /* Row 3: legal */
 .sf-legal { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 28px 0 32px; font-size: 13px; line-height: 1.5; color: #99B5C9; }

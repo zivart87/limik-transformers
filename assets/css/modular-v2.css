@@ -248,6 +248,8 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 @media (max-width: 1199px) {
   .mdc-page .acc { flex-direction: column; gap: 16px; }
   .mdc-page .acc-card, .mdc-page .acc-card.is-active { flex: none; width: 100%; max-width: none; min-height: 0; background: var(--v2-bg-light); color: var(--v2-text); cursor: default; transition: none; }
+  .mdc-page .acc-card.js-reveal { opacity: 0; transform: translateY(16px); }
+  .mdc-page .acc-card.js-reveal.is-in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
   .mdc-page .acc-kicker { color: var(--v2-text-muted); }
   .mdc-page .acc-summary, .mdc-page .acc-more p { color: var(--v2-text-muted); }
   .mdc-page .acc-title, .mdc-page .acc-card.is-active .acc-title { font-size: 30px; }

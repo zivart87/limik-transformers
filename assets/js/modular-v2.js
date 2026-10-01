@@ -112,6 +112,27 @@
   mqMobile.addEventListener('change', syncCards);
   syncCards();
 
+  // Stacked cards enter individually, with the same fade and lift as the FAQ panels.
+  if (accCards.length && 'IntersectionObserver' in window) {
+    var accObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.15) return;
+        entry.target.classList.add('is-in');
+        accObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    function syncCardReveal() {
+      accObserver.disconnect();
+      accCards.forEach(function (c) {
+        var pending = mqMobile.matches && !c.classList.contains('is-in');
+        c.classList.toggle('js-reveal', pending);
+        if (pending) accObserver.observe(c);
+      });
+    }
+    mqMobile.addEventListener('change', syncCardReveal);
+    syncCardReveal();
+  }
+
   // Specifications: always one section open
   var spx = [].slice.call(document.querySelectorAll('.spx-item'));
   spx.forEach(function (it) {

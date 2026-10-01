@@ -294,6 +294,9 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .spx-item.is-open .spx-body { grid-template-rows: 1fr; }
 .mdc-page .spx-body > div { min-height: 0; overflow: hidden; }
 .mdc-page .spx-body dl { margin: 0 0 24px 60px; padding: 18px 24px; display: grid; gap: 10px; background: var(--v2-bg-white); border-radius: var(--v2-r-lg); }
+.mdc-page .spx-body .micro { margin: 0 0 12px 60px; }
+.mdc-page .spx-body .micro:last-child { margin-bottom: 24px; }
+@media (max-width: 600px) { .mdc-page .spx-body .micro { margin-left: 48px; } }
 .mdc-page .spx-body dl div { display: grid; grid-template-columns: minmax(0,150px) minmax(0,1fr); gap: 16px; font-size: 16px; line-height: 1.75; }
 .mdc-page .spx-body dt { color: var(--v2-text-muted); }
 .mdc-page .spx-body dd { margin: 0; color: var(--v2-text); }
@@ -436,5 +439,5 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 /* Concept copy uses the existing three-column comparison pattern. */
 .mdc-page .core-note { margin-top: 24px; max-width: 900px; font-size: 12px; line-height: 1.65; color: var(--v2-text-muted-on-dark); }
 .mdc-page .core-note strong { font-weight: 600; }
-.mdc-page #scale .lcol .body { font-size: 16px; line-height: 1.5; }
+.mdc-page .lcol .body { font-size: 16px; line-height: 1.5; }
 .mdc-page .mtA-cell:last-child .mt-num { white-space: normal; }

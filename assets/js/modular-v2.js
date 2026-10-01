@@ -83,12 +83,21 @@
       c.querySelector('.acc-btn').inert = !on;
     });
   }
+  // Text (summary + tags) fades out, the cards change width, then the text fades back in.
+  // The text reflows while invisible, so it never jumps during the width animation.
+  var accWrap = document.querySelector('.mdc-page .acc');
+  var accT1, accT2;
   function openCard(c) {
     if (mqMobile.matches) return;
-    accCards.forEach(function (x) {
-      x.classList.toggle('is-active', x === c);
-    });
-    syncCards();
+    clearTimeout(accT1); clearTimeout(accT2);
+    if (accWrap) accWrap.classList.add('is-switching');
+    accT1 = setTimeout(function () {
+      accCards.forEach(function (x) {
+        x.classList.toggle('is-active', x === c);
+      });
+      syncCards();
+      accT2 = setTimeout(function () { if (accWrap) accWrap.classList.remove('is-switching'); }, 520);
+    }, 150);
   }
   accCards.forEach(function (c) {
     c.addEventListener('click', function (e) {

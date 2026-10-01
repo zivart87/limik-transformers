@@ -232,6 +232,8 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .acc-more { position: absolute; left: 28px; right: 28px; bottom: 24px; opacity: 0; transition: opacity .5s; }
 .mdc-page .acc-card.is-active .acc-more { position: static; opacity: 1; transition: opacity .5s ease .3s; }
 .mdc-page .acc-more p { font-size: 16px; line-height: 1.5; color: var(--v2-text-muted-on-dark); }
+.mdc-page .acc-summary, .mdc-page .acc-tags { transition: opacity .35s ease; }
+.mdc-page .acc.is-switching .acc-summary, .mdc-page .acc.is-switching .acc-tags { opacity: 0; transition: opacity .15s ease; }
 .mdc-page .acc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
 .mdc-page .acc-tags > span { max-width: 100%; font: 600 12px/1.4 var(--v2-body); padding: 6px 8px; border: 1px solid var(--v2-line-dark); border-radius: var(--v2-r-sm); overflow-wrap: anywhere; }
 .mdc-page .acc-card.is-active .acc-tags > span { border-color: var(--v2-line); }

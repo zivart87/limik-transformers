@@ -1,14 +1,15 @@
 /* LIMIK Core (design system v2) — page behavior.
    Source: docs/prototypes/modular-color-preview.html. Content stays in the HTML; JS only adds motion and state. */
 (function () {
-  var mqMobile = window.matchMedia('(max-width: 991px)');
+  var mqMobile = window.matchMedia('(max-width: 1199px)'); // Configurations cards stack below 1200px
 
   // Facts: count only when each card is mostly visible (same 1.8s ease-out as home stats).
   var facts = document.querySelector('.mdc-page .mtA');
   var factCounters = facts ? [].slice.call(facts.querySelectorAll('[data-count-to]')) : [];
   if (facts && factCounters.length && 'IntersectionObserver' in window) {
     factCounters.forEach(function (el) {
-      el.textContent = (el.getAttribute('data-count-prefix') || '') + (el.getAttribute('data-count-sign') || '') + '0';
+      var dec0 = Number(el.getAttribute('data-count-decimals')) || 0;
+      el.textContent = (el.getAttribute('data-count-prefix') || '') + (el.getAttribute('data-count-sign') || '') + (0).toFixed(dec0);
     });
     var factObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -22,9 +23,10 @@
           var eased = 1 - Math.pow(1 - progress, 3);
           counters.forEach(function (el) {
             var target = Number(el.getAttribute('data-count-to'));
-            var value = progress === 1 ? target : Math.round(eased * target);
+            var dec = Number(el.getAttribute('data-count-decimals')) || 0;
+            var value = progress === 1 ? target : (dec ? eased * target : Math.round(eased * target));
             var sign = el.getAttribute('data-count-sign') || '';
-            el.textContent = (el.getAttribute('data-count-prefix') || '') + sign + (sign ? Math.abs(value) : value);
+            el.textContent = (el.getAttribute('data-count-prefix') || '') + sign + (sign ? Math.abs(value) : value).toFixed(dec);
           });
           if (progress < 1) requestAnimationFrame(update);
         }

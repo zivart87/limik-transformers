@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* ════════════════════════════════════════════
+   LIMIK FOOTER — единственный источник стилей футера (2026-09-28, дизайн-система v2).
+   Структура по примеру jacobs.com: слоган + контакты и 3 колонки / большой логотип / юридическая строка.
+   Подключается из assets/js/footer.js (вставляет <link>), поэтому страницы править не нужно.
+   Значения v2 — литералами: переменные --v2-* есть только на .mdc-page.
+════════════════════════════════════════════ */
+.site-footer {
+  background: #000821; color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer p { margin: 0; }
+.site-footer a { color: inherit; text-decoration: none; transition: color .2s; }
+.site-footer a:hover { color: #05B2FC; }
+.site-footer a:focus-visible { outline: 2px solid #05B2FC; outline-offset: 3px; }
+.sf-inner { padding: 104px max(40px, calc((100vw - 1360px) / 2 + 40px)) 0; }
+
+/* Row 1: tagline + contacts | link columns */
+.sf-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 64px; align-items: start; padding-bottom: 80px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.sf-intro { display: grid; gap: 32px; justify-items: start; }
+.sf-tagline { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.45; color: #99B5C9; max-width: 22ch; }
+.sf-contact { display: grid; gap: 10px; }
+.sf-contact a { font-size: 15px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
+.sf-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.sf-col { min-width: 0; }
+.site-footer .sf-col-title { margin-bottom: 24px; font-size: 12px; font-weight: 700; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: #99B5C9; }
+.sf-col ul { display: grid; gap: 14px; }
+.sf-col a { font-size: 15px; font-weight: 500; line-height: 1.4; }
+
+/* Row 2: LIMIK wordmark across the full width */
+.sf-brand { padding: 80px 0 96px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.sf-brand a { display: block; color: #fff; }
+.sf-brand a:hover { color: #fff; }
+.sf-wordmark { display: block; width: 100%; height: auto; }
+.sf-mark { display: none; width: 100%; height: auto; margin: 0 auto; } /* phones ≤480px: centered brand mark instead of the wordmark (as jacobs.com shows only the J); tablets keep the wordmark */
+
+/* Row 3: legal */
+.sf-legal { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 28px 0 32px; font-size: 13px; line-height: 1.5; color: #99B5C9; }
+.sf-legal-links { display: flex; flex-wrap: wrap; gap: 8px 32px; }
+.sf-legal-links a:hover { color: #fff; }
+
+@media (max-width: 991px) {
+  .sf-inner { padding-top: 80px; }
+  .sf-top { grid-template-columns: 1fr; gap: 48px; }
+  .sf-tagline { max-width: 32ch; }
+  .sf-top { padding-bottom: 56px; }
+  .sf-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+  .sf-brand { padding: 56px 0 64px; }
+}
+@media (max-width: 768px) {
+  .sf-inner { padding: 64px 24px 0; }
+  .sf-brand { padding: 40px 0 48px; }
+  .sf-legal { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .sf-wordmark { display: none; }
+  .sf-mark { display: block; }
+}

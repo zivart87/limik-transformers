@@ -78,7 +78,6 @@
       toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
       toggle.querySelector('span').textContent = on ? 'Details open' : 'View configuration';
       c.querySelector('.acc-img').inert = !on;
-      c.querySelector('.acc-more').inert = !on;
       c.querySelector('.acc-btn').inert = !on;
     });
   }

@@ -218,7 +218,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .acc-card.is-active .acc-summary, .mdc-page .acc-card.is-active .acc-more p { color: var(--v2-text-muted); }
 .mdc-page .acc-img { display: flex; align-items: center; justify-content: center; flex: 1; min-height: 244px; padding: 24px 28px; min-width: 0; opacity: 0; transition: opacity 0s; }
 .mdc-page .acc-card.is-active .acc-img { opacity: 1; transition: opacity .5s ease .3s; }
-.mdc-page .acc-photo { display: block; width: 100%; height: 196px; object-fit: contain; }
+.mdc-page .acc-photo { display: block; width: 100%; height: 260px; object-fit: contain; }
 .mdc-page .acc-info { position: relative; flex: none; padding: 0 28px 24px; min-width: 0; }
 .mdc-page .acc-more { position: absolute; left: 28px; right: 28px; bottom: 24px; opacity: 0; transition: opacity .5s; }
 .mdc-page .acc-card.is-active .acc-more { position: static; opacity: 1; transition: opacity .5s ease .3s; }
@@ -434,6 +434,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 @media (max-width: 600px) { .mdc-page .tiles { grid-template-columns: repeat(2, minmax(0,1fr)); } .mdc-page .lf-row { grid-template-columns: 1fr; gap: 24px; } .mdc-page .lf-submit .btn { width: 100%; justify-content: center; } }
 
 /* Concept copy uses the existing three-column comparison pattern. */
-.mdc-page .core-note { margin-bottom: 32px; max-width: 900px; }
+.mdc-page .core-note { margin-top: 24px; max-width: 900px; font-size: 12px; line-height: 1.65; color: var(--v2-text-muted-on-dark); }
+.mdc-page .core-note strong { font-weight: 600; }
 .mdc-page #scale .lcol .body { font-size: 16px; line-height: 1.5; }
 .mdc-page .mtA-cell:last-child .mt-num { white-space: normal; }

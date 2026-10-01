@@ -68,7 +68,7 @@
       <div class="sticky-head">
         <div class="eyebrow">The LIMIK platform</div>
         <h2>One system from the grid to the chip</h2>
-        <p class="intro mt24">The proposed platform coordinates site power, rack distribution, cooling and controls. Equipment selection and supplier responsibilities are confirmed during project engineering.</p>
+        <p class="intro mt24">Power, cooling and controls are planned as one system, so the transformer, UPS, coolant units and racks are sized to the same load from the start.</p>
         <div class="mt40"><a class="ilink" href="#configure" data-go="form"><i aria-hidden="true">→</i>Configure your infrastructure</a></div>
       </div>
       <nav class="chain" aria-label="Platform components">
@@ -86,8 +86,8 @@
           <div class="ptext">
             
             <h3>Grid &amp; power transformer</h3>
-            <p>Core 20 starts with a review of existing site power. Core 40 proposes an external LIMIK medium-voltage transformer. Campus transformer capacity and MV distribution are defined for the site; complete substation works are a separate scope.</p>
-            <div class="ptags"><span>Site power review</span><span>Transformer scope per model</span></div>
+            <p>Transformer lead times are a common bottleneck for new AI capacity. LIMIK builds power transformers, so Core 40 plans a <span data-benchmark>1.25 MVA</span> medium-voltage unit sized to its <span data-benchmark>800 kW</span> site budget. Core 20 runs on existing 480 V service; Campus transformers are sized to the site.</p>
+            <div class="ptags"><span data-benchmark>1.25 MVA · Core 40</span><span>480 V · Core 20</span></div>
           </div>
         </div>
       </article>
@@ -98,8 +98,8 @@
           <div class="ptext">
             
             <h3>Distribution &amp; backup power</h3>
-            <p>Rack distribution and UPS backup are planned around the selected hardware. N+1 component redundancy is the base target; independent power paths and longer autonomy require a separate design.</p>
-            <div class="ptags"><span>N+1 component target</span><span>UPS backup</span></div>
+            <p>If one UPS module fails, the IT load keeps running: at least <span data-benchmark>150 kW</span> (Core 20) or <span data-benchmark>750 kW</span> (Core 40) stays available, with about <span data-benchmark>5 minutes</span> of battery for critical loads. Generators connect as an external option.</p>
+            <div class="ptags"><span>N+1 UPS</span><span data-benchmark>5 min battery</span></div>
           </div>
         </div>
       </article>
@@ -110,8 +110,8 @@
           <div class="ptext">
             
             <h3>Liquid cooling</h3>
-            <p>The base concept uses direct-to-chip cooling with coolant distribution units, plus air cooling for remaining components. External heat rejection is sized to site climate and coolant temperatures. PUE is determined by the completed site design.</p>
-            <div class="ptags"><span>Liquid + air</span><span>External heat rejection</span></div>
+            <p>Direct-to-chip cooling supports compute racks up to <span data-benchmark>145 kW</span>. Coolant units and heat rejection are N+1: if one fails, Core 40 still has <span data-benchmark>600 kW</span> of liquid cooling and <span data-benchmark>700 kW</span> of heat rejection. Air cooling handles the remaining components.</p>
+            <div class="ptags"><span data-benchmark>Up to 145 kW per rack</span><span>N+1 cooling</span></div>
           </div>
         </div>
       </article>
@@ -122,8 +122,8 @@
           <div class="ptext">
             
             <h3>Compute module &amp; controls</h3>
-            <p>IT space, service access and monitoring are planned around customer-supplied racks or servers. Hardware compatibility requires a review of dimensions, weight, electrical connections and cooling requirements.</p>
-            <div class="ptags"><span>Customer hardware</span><span>Leak monitoring</span></div>
+            <p>Bring your own servers, GPUs, networking and storage. We check dimensions, weight, power and cooling connections before the layout is fixed. Leak detection and grid-to-coolant telemetry run with remote monitoring.</p>
+            <div class="ptags"><span>Customer hardware</span><span>Leak detection</span><span>Remote monitoring</span></div>
           </div>
         </div>
       </article>
@@ -137,19 +137,15 @@
     <div><div class="eyebrow">Configurations</div><h2>Choose the scale for AI and other compute workloads</h2></div>
     <p class="intro">Start with a compact AI deployment, a dense compute cluster, or a phased campus. Each concept brings IT space, power and cooling into a plan for your hardware and site.</p>
   </div>
-  <p class="body core-note"><strong>Concept configurations.</strong> Capacities and equipment scope are preliminary planning targets. Final specifications, availability and delivery schedules require project engineering and supplier confirmation.</p>
   <div class="acc">
     <article class="acc-card" data-model="Core 20">
       <div class="acc-heading">
-        <span class="acc-kicker">Compact · concept</span>
+        <span class="acc-kicker">Compact</span>
         <h3 class="acc-title">Core 20</h3>
-        <p class="acc-summary">For compact AI, local computing and business servers.</p>
+        <p class="acc-summary">For edge inference, on-site data processing and business servers.</p>
         <div class="acc-tags"><span data-benchmark>2 IT racks</span><span data-benchmark>100 kW IT target</span><span>Existing site power</span></div>
       </div>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
-      <div class="acc-info">
-        <div class="acc-more" id="core-20-details" inert><p>For smaller AI deployments, local data processing and business applications. The proposed two-rack configuration uses existing site power, with UPS backup. Cooling is matched to your hardware; the liquid-cooled base uses separate heat-rejection equipment. A dedicated transformer is outside the base scope.</p></div>
-      </div>
+      <div class="acc-img" id="core-20-details"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
       <div class="acc-actions">
         <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="core-20-details" aria-label="View Core 20 configuration"><span>View configuration</span><i aria-hidden="true">+</i></button>
         <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core 20" inert>Request Core 20</a>
@@ -157,15 +153,12 @@
     </article>
     <article class="acc-card is-active" data-model="Core 40">
       <div class="acc-heading">
-        <span class="acc-kicker">High-density · concept</span>
+        <span class="acc-kicker">High-density</span>
         <h3 class="acc-title">Core 40</h3>
-        <p class="acc-summary">For AI and high-performance compute clusters.</p>
+        <p class="acc-summary">For GPU training and inference, engineering simulation and rendering.</p>
         <div class="acc-tags"><span data-benchmark>6 IT racks</span><span data-benchmark>600 kW IT target</span><span>Planned MV transformer</span></div>
       </div>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
-      <div class="acc-info">
-        <div class="acc-more" id="core-40-details" ><p>For AI, scientific computing, engineering simulation and rendering. The proposed liquid-cooled configuration has four compute positions and two network or storage positions, with UPS backup and an external LIMIK medium-voltage transformer. Power and cooling follow your hardware within the total IT target.</p></div>
-      </div>
+      <div class="acc-img" id="core-40-details"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
       <div class="acc-actions">
         <button class="acc-toggle" type="button" aria-expanded="true" aria-controls="core-40-details" aria-label="View Core 40 configuration"><span>Details open</span><i aria-hidden="true">+</i></button>
         <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core 40" >Request Core 40</a>
@@ -173,22 +166,20 @@
     </article>
     <article class="acc-card" data-model="Core Campus">
       <div class="acc-heading">
-        <span class="acc-kicker">Multi-module · concept</span>
+        <span class="acc-kicker">Multi-module</span>
         <h3 class="acc-title">Core Campus</h3>
-        <p class="acc-summary">For phased AI and compute infrastructure.</p>
+        <p class="acc-summary">Start with one module and add Core 40 units as load and grid capacity grow.</p>
         <div class="acc-tags"><span>Multiple Core 40 modules</span><span>Project-specific capacity</span><span>Site power design</span></div>
       </div>
-      <div class="acc-img"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
-      <div class="acc-info">
-        <div class="acc-more" id="core-campus-details" inert><p>For organizations and operators planning a larger AI, computing or IT site. Core Campus brings multiple modules into a site plan, with power distribution, cooling and backup defined for each phase. Module count follows your workloads, available grid capacity and expansion plan.</p></div>
-      </div>
+      <div class="acc-img" id="core-campus-details"><img class="acc-photo" src="/assets/images/modular-dc/core-40-cutaway.webp" srcset="/assets/images/modular-dc/core-40-cutaway-640.webp 640w, /assets/images/modular-dc/core-40-cutaway.webp 1200w" sizes="(max-width: 991px) 90vw, 540px" width="1200" height="545" alt="LIMIK Core modular data center, cutaway view (concept rendering)" loading="lazy" decoding="async"></div>
       <div class="acc-actions">
         <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="core-campus-details" aria-label="View Core Campus configuration"><span>View configuration</span><i aria-hidden="true">+</i></button>
         <a class="btn acc-btn" href="#configure" data-go="form" data-model="Core Campus" inert>Discuss Core Campus</a>
       </div>
     </article>
   </div>
-  <div class="sub-gap"><h3>Compare the planning targets</h3><div class="lcols mt40"><div class="lcol"><h3>Core 20</h3><p class="body" data-benchmark>IT target: 100 kW · 2 rack positions</p><p class="body" data-benchmark>Power: existing 480 V site service; transformer outside base scope</p><p class="body" data-benchmark>Cooling: liquid + air, external heat rejection</p><p class="body" data-benchmark>Redundancy: N+1 UPS and cooling component target</p></div><div class="lcol"><h3>Core 40</h3><p class="body" data-benchmark>IT target: 600 kW · 4 compute + 2 network/storage positions</p><p class="body" data-benchmark>Power: site MV supply; external LIMIK transformer planned in base</p><p class="body" data-benchmark>Cooling: liquid + air, external heat rejection</p><p class="body" data-benchmark>Redundancy: N+1 UPS and cooling component target</p></div><div class="lcol"><h3>Core Campus</h3><p class="body" data-benchmark>IT target: defined by module count and site design</p><p class="body" data-benchmark>Power: project-specific MV/LV design and LIMIK transformers</p><p class="body" data-benchmark>Cooling: module-level or shared systems</p><p class="body" data-benchmark>Redundancy: defined per project</p></div></div><p class="body mt24">IT targets include servers, networking and storage. Site power also covers cooling and electrical losses. Targets describe the proposed liquid-cooled base; air-cooled equipment requires a capacity review. The 480 V baseline is for U.S. projects.</p><p class="body mt24">N+1 refers to specified UPS and cooling components. It does not mean two independent power paths or certified site availability. Compute hardware is customer-supplied.</p></div><div class="sub-gap"><h3>What the concept includes</h3><div class="lcols mt40"><div class="lcol"><h3>Planned in the base scope</h3><p class="body">Enclosure and rack positions, rack power distribution, UPS and batteries, liquid and air cooling, external heat rejection, monitoring, access control, leak and fire protection. Core 40 also plans an external LIMIK transformer; Campus scope is defined per project.</p></div><div class="lcol"><h3>Optional scope</h3><p class="body">Generator and transfer system, longer battery autonomy, additional redundancy, heat recovery, climate-specific free cooling and service arrangements.</p></div><div class="lcol"><h3>Supplied by the customer</h3><p class="body">Servers and GPUs, networking and storage, software, prepared site, foundations, permits, approved power connection and external network connectivity.</p></div></div><p class="body mt24">Final equipment, responsibilities and site works are defined in the project scope. External equipment needs additional space and service access around the module. Illustrations above show a general concept, not model-specific engineering layouts.</p></div>
+  <p class="core-note"><strong>Concept configurations.</strong> Capacities and equipment scope are preliminary planning targets. Final specifications, availability and delivery schedules require project engineering and supplier confirmation. Illustrations show a general concept, not model-specific engineering layouts.</p>
+  
   <div class="track sub-gap">
     <div><h3>Which LIMIK Core concept fits your site?</h3><p class="body">Share your target IT capacity, rack hardware and available power. These details form the starting point for a configuration and site review.</p></div>
     <a class="ilink" href="#configure" data-go="fit"><i aria-hidden="true">→</i>Discuss my site</a>
@@ -210,7 +201,7 @@
         <button class="spx-head" type="button" aria-expanded="true" aria-controls="spx-1" data-zone="power">
           <span class="spx-num">01</span><span class="spx-name">Power</span><span class="spx-key"><span data-benchmark>100 / 600 kW IT</span></span>
         </button>
-        <div class="spx-body" id="spx-1"><div><dl><div><dt>IT load per module</dt><dd><span data-benchmark>100 kW target (Core 20) · 600 kW target (Core 40); liquid-cooled base</span></dd></div><div><dt>Power input</dt><dd>Core 20: existing 480 V site service · Core 40: site MV feed through a planned external LIMIK transformer; other sources require review</dd></div><div><dt>Redundancy</dt><dd>N+1 UPS and cooling component target; independent power paths require separate design</dd></div></dl></div></div>
+        <div class="spx-body" id="spx-1"><div><dl><div><dt>IT load per module</dt><dd><span data-benchmark>100 kW target (Core 20) · 600 kW target (Core 40); liquid-cooled base</span></dd></div><div><dt>Power input</dt><dd>Core 20: existing 480 V site service · Core 40: site MV feed through a planned external LIMIK transformer; other sources require review</dd></div><div><dt>Redundancy</dt><dd>N+1 UPS and cooling component target; independent power paths require separate design</dd></div></dl><p class="micro">IT targets include servers, networking and storage. Site power also covers cooling and electrical losses. Targets describe the proposed liquid-cooled base; air-cooled equipment requires a capacity review. The 480 V baseline is for U.S. projects.</p><p class="micro">N+1 refers to specified UPS and cooling components. It does not mean two independent power paths or certified site availability. Compute hardware is customer-supplied.</p></div></div>
       </div>
       <div class="spx-item">
         <button class="spx-head" type="button" aria-expanded="false" aria-controls="spx-2" data-zone="cooling">

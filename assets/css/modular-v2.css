@@ -225,7 +225,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .acc-card.is-active .acc-kicker { color: var(--v2-text-muted); }
 .mdc-page .acc-card.is-active .acc-summary, .mdc-page .acc-card.is-active .acc-more p { color: var(--v2-text-muted); }
 .mdc-page .acc-img { display: flex; align-items: center; justify-content: center; flex: none; padding: 32px 28px; min-width: 0; opacity: 0; transition: opacity 0s; }
-@media (min-width: 1200px) { .mdc-page .acc-img { padding-top: 48px; padding-bottom: 48px; } .mdc-page .acc-card:not(.is-active) .acc-img { height: 0; padding-top: 0; padding-bottom: 0; overflow: hidden; } }
+@media (min-width: 1200px) { .mdc-page .acc-img { padding-top: 48px; padding-bottom: 48px; } .mdc-page .acc-photo { width: 100%; height: 218px; max-height: none; } .mdc-page .acc-card { min-height: 586px; } } /* fixed image box on desktop: card height never changes when switching, so the width animation stays smooth */
 .mdc-page .acc-card.is-active .acc-img { opacity: 1; transition: opacity .5s ease .3s; }
 .mdc-page .acc-photo { display: block; width: 80%; max-width: 480px; height: auto; max-height: 260px; object-fit: contain; }
 .mdc-page .acc-info { position: relative; flex: none; padding: 0 28px 24px; min-width: 0; }

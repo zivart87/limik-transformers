@@ -360,6 +360,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .split { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 64px; align-items: center; }
 .mdc-page .split.rev { grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); }
 .mdc-page .split .ph { aspect-ratio: 4/3; border-radius: var(--v2-r-lg); overflow: hidden; }
+.mdc-page .split-photo { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--v2-r-lg); }
 .mdc-page .stack { display: grid; gap: 24px; align-content: start; justify-items: start; }
 .mdc-page .split .stack > .eyebrow { margin-bottom: 8px; }   /* gap 24 + 8 = 32 */
 .mdc-page .stack > .cta-gap { margin-top: 16px; }            /* gap 24 + 16 = 40 */

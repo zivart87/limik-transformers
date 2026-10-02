@@ -215,7 +215,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .acc { display: flex; align-items: stretch; gap: 8px; }
 .mdc-page .acc-card { display: flex; flex-direction: column; position: relative; width: calc(100% / 3); max-width: 600px; flex-shrink: 1; min-width: 0; min-height: 0; border-radius: var(--v2-r-lg); background: var(--v2-card-active); color: #fff; cursor: pointer; transition: width .5s, background-color .5s, color .5s, transform .2s, box-shadow .2s; }
 .mdc-page .acc-card.is-active { width: 100%; background: var(--v2-bg-light); color: var(--v2-text); cursor: default; }
-@media (hover: hover) and (min-width: 992px) {
+@media (hover: hover) and (min-width: 1000px) {
   .mdc-page .acc-card:not(.is-active):hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.24); }
   .mdc-page .acc-card:not(.is-active):hover .acc-toggle { color: var(--v2-accent); }
 }
@@ -227,7 +227,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .acc-card.is-active .acc-kicker { color: var(--v2-text-muted); }
 .mdc-page .acc-card.is-active .acc-summary, .mdc-page .acc-card.is-active .acc-more p { color: var(--v2-text-muted); }
 .mdc-page .acc-img { display: flex; align-items: center; justify-content: center; flex: none; padding: 32px 28px; min-width: 0; opacity: 0; transition: opacity 0s; }
-@media (min-width: 1200px) { .mdc-page .acc-img { padding-top: 48px; padding-bottom: 48px; } .mdc-page .acc-photo { width: 100%; height: 218px; max-height: none; } .mdc-page .acc-card { min-height: 586px; } } /* fixed image box on desktop: card height never changes when switching, so the width animation stays smooth */
+@media (min-width: 1000px) { .mdc-page .acc-img { padding-top: 48px; padding-bottom: 48px; } .mdc-page .acc-photo { width: 100%; height: 218px; max-height: none; } .mdc-page .acc-card { min-height: 586px; } } /* fixed image box on desktop: card height never changes when switching, so the width animation stays smooth */
 .mdc-page .acc-card.is-active .acc-img { opacity: 1; transition: opacity .5s ease .3s; }
 .mdc-page .acc-photo { display: block; width: 80%; max-width: 480px; height: auto; max-height: 260px; object-fit: contain; }
 .mdc-page .acc-info { position: relative; flex: none; padding: 0 28px 24px; min-width: 0; }
@@ -247,7 +247,13 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .acc-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .mdc-page .acc-btn { position: absolute; left: 28px; bottom: 28px; opacity: 0; pointer-events: none; transition: opacity .5s; }
 .mdc-page .acc-card.is-active .acc-btn { opacity: 1; pointer-events: auto; transition: opacity .5s ease .3s; }
-@media (max-width: 1199px) {
+/* Compact desktop: give the two closed cards more room before stacking. */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .mdc-page .acc-card { width: calc((100% - 16px) / 4); flex-shrink: 0; }
+  .mdc-page .acc-card.is-active { width: calc((100% - 16px) / 2); }
+  .mdc-page .acc-img { padding-top: 32px; padding-bottom: 32px; }
+}
+@media (max-width: 999px) {
   .mdc-page .acc { flex-direction: column; gap: 16px; }
   .mdc-page .acc-card, .mdc-page .acc-card.is-active { flex: none; width: 100%; max-width: none; min-height: 0; background: var(--v2-bg-light); color: var(--v2-text); cursor: default; transition: none; }
   .mdc-page .acc-card.js-reveal { opacity: 0; transform: translateY(16px); }

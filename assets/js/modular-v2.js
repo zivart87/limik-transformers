@@ -1,7 +1,7 @@
 /* LIMIK Core (design system v2) — page behavior.
    Source: docs/prototypes/modular-color-preview.html. Content stays in the HTML; JS only adds motion and state. */
 (function () {
-  var mqMobile = window.matchMedia('(max-width: 1199px)'); // Configurations cards stack below 1200px
+  var mqMobile = window.matchMedia('(max-width: 999px)'); // Configurations cards stack below 1000px
 
   // Facts: count only when each card is mostly visible (same 1.8s ease-out as home stats).
   var facts = document.querySelector('.mdc-page .mtA');

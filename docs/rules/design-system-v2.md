@@ -142,7 +142,7 @@ REM — заголовки, кнопки, великі цифри, вкладк�
 
 - **Іконки Applications (рішення користувача 2026-10-02):** шість вибраних користувачем SVG Flaticon, завантажених через Magnific: [Brain](https://www.flaticon.com/free-icon/brain_14752390) → AI training; [CPU](https://www.flaticon.com/free-icon/cpu_840367) → AI inference; [Shield](https://www.flaticon.com/free-icon/shield_14752350) → Private & enterprise AI; [Process diagram](https://www.flaticon.com/free-icon/process-diagram_17732304) → Edge processing; [Digital twin](https://www.flaticon.com/free-icon/digital-twin_18003896) → HPC & simulation; [Share](https://www.flaticon.com/free-icon/share_2839479) → Business IT & storage. Файли `assets/images/icons/applications-{ai-training,ai-inference,private-ai,edge-processing,hpc-simulation,business-it}.svg`; поточний розмір 28×28px збережено, колір `--v2-accent` #05B2FC через CSS mask, без пунктирної рамки чи підкладки, декоративні (`aria-hidden`). Геометрія оригінальних SVG збережена; стиль обраних користувачем іконок має пріоритет над загальним правилом лінійних іконок.
 
-- **Колір іконок Applications (тимчасовий варіант за запитом користувача 2026-10-02):** усі шість іконок — #188BF6, як основний колір чат-віджета. Це замінює попередній #05B2FC лише в цьому блоці; розмір 28×28px збережено. Варіант встановлено для оцінки користувачем, не як новий глобальний акцент.
+- **Колір іконок Applications (рішення користувача 2026-10-02):** після перегляду тимчасового #188BF6 повернуто наш голубий `--v2-accent` #05B2FC для всіх шести іконок; розмір 28×28px збережено.
 
 ## 7. Анімації
 

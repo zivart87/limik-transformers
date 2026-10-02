@@ -338,7 +338,14 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .cards { display: grid; gap: 24px; }
 .mdc-page .c3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .mdc-page .icard { min-width: 0; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 32px 28px; background: var(--v2-bg-light); border-radius: var(--v2-r-lg); }
-.mdc-page .icard .icon { width: 28px; height: 28px; background: var(--v2-ph); border: 1px dashed var(--v2-accent); }
+.mdc-page .icard .icon { width: 28px; height: 28px; flex-shrink: 0; background: var(--v2-accent);
+  -webkit-mask: var(--application-icon) no-repeat center / contain; mask: var(--application-icon) no-repeat center / contain; }
+.mdc-page .icard .icon--ai-training { --application-icon: url("/assets/images/icons/applications-ai-training.svg"); }
+.mdc-page .icard .icon--ai-inference { --application-icon: url("/assets/images/icons/applications-ai-inference.svg"); }
+.mdc-page .icard .icon--private-ai { --application-icon: url("/assets/images/icons/applications-private-ai.svg"); }
+.mdc-page .icard .icon--edge-processing { --application-icon: url("/assets/images/icons/applications-edge-processing.svg"); }
+.mdc-page .icard .icon--hpc-simulation { --application-icon: url("/assets/images/icons/applications-hpc-simulation.svg"); }
+.mdc-page .icard .icon--business-it { --application-icon: url("/assets/images/icons/applications-business-it.svg"); }
 .mdc-page .icard-text { display: grid; gap: 10px; }
 .mdc-page .icard-text h3 { font-size: 20px; line-height: 1.25; }
 @media (max-width: 991px) { .mdc-page .c3 { grid-template-columns: repeat(2, minmax(0,1fr)); } }

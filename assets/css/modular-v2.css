@@ -219,8 +219,8 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 }
 .mdc-page .acc-heading { padding: 28px 28px 0; min-width: 0; }
 .mdc-page .acc-kicker { display: block; font: 700 11px/1.4 var(--v2-body); letter-spacing: .08em; text-transform: uppercase; color: var(--v2-text-muted-on-dark); }
-.mdc-page .acc-title { margin-top: 8px; font: 500 clamp(24px, 2.2vw, 30px)/1.08 var(--v2-head); letter-spacing: -.02em; overflow-wrap: break-word; transition: font-size .5s; }
-.mdc-page .acc-card.is-active .acc-title { font-size: clamp(30px, 3.4vw, 48px); }
+.mdc-page .acc-title { margin-top: 8px; font: 500 clamp(20px, 2.2vw, 24px)/1.08 var(--v2-head); letter-spacing: -.02em; overflow-wrap: break-word; transition: font-size .5s; }
+.mdc-page .acc-card.is-active .acc-title { font-size: clamp(24px, 3.4vw, 32px); }
 .mdc-page .acc-summary { margin-top: 12px; font-size: 16px; line-height: 1.5; color: var(--v2-text-muted-on-dark); }
 .mdc-page .acc-card.is-active .acc-kicker { color: var(--v2-text-muted); }
 .mdc-page .acc-card.is-active .acc-summary, .mdc-page .acc-card.is-active .acc-more p { color: var(--v2-text-muted); }
@@ -252,7 +252,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
   .mdc-page .acc-card.js-reveal.is-in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
   .mdc-page .acc-kicker { color: var(--v2-text-muted); }
   .mdc-page .acc-summary, .mdc-page .acc-more p { color: var(--v2-text-muted); }
-  .mdc-page .acc-title, .mdc-page .acc-card.is-active .acc-title { font-size: 30px; }
+  .mdc-page .acc-title, .mdc-page .acc-card.is-active .acc-title { font-size: clamp(24px, 4vw, 32px); }
   .mdc-page .acc-img, .mdc-page .acc-card.is-active .acc-img { flex: none; min-height: 0; height: auto; padding: 32px 28px; opacity: 1; transition: none; }
   .mdc-page .acc-photo { height: auto; max-height: 260px; }
   .mdc-page .acc-more, .mdc-page .acc-card.is-active .acc-more { position: static; opacity: 1; transition: none; }

@@ -201,7 +201,7 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .pover { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 32px; background: linear-gradient(0deg, rgba(20,24,32,.92), rgba(20,24,32,.15) 70%); }
 .mdc-page .picon { width: 48px; height: 48px; border: 1px dashed var(--v2-accent); background: var(--v2-card-dark); }
 .mdc-page .ptext { display: grid; gap: 8px; }
-.mdc-page .ptext h3 { font-size: clamp(20px, 2vw, 28px); line-height: 1.2; }
+.mdc-page .ptext h3 { font-size: clamp(20px, 2vw, 24px); line-height: 1.2; }
 .mdc-page .ptext p { font-size: 15px; line-height: 1.6; color: var(--v2-text-muted-on-dark); max-width: 52ch; }
 .mdc-page .ptags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .mdc-page .ptags > span { font: 600 12px/1 var(--v2-body); padding: 8px 10px; border: 1px solid rgba(255,255,255,.28); border-radius: var(--v2-r-sm); white-space: nowrap; }

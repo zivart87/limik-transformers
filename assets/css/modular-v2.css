@@ -202,7 +202,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .pcard:has(.pbg-photo) .pover { background: none; }
 .mdc-page .pover { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 32px; background: linear-gradient(0deg, rgba(20,24,32,.92), rgba(20,24,32,.15) 70%); }
 .mdc-page .picon { display: grid; place-items: center; width: 48px; height: 48px; flex-shrink: 0; background: var(--v2-accent); border-radius: var(--v2-r-md); }
-.mdc-page .picon::before { content: ''; width: 32px; height: 32px; background: #fff;
+.mdc-page .picon::before { content: ''; width: 32px; height: 32px; background: var(--v2-bg-dark);
   -webkit-mask: var(--picon) no-repeat center / contain; mask: var(--picon) no-repeat center / contain; }
 .mdc-page .picon--transformer { --picon: url("/assets/images/icons/platform-transformer.svg"); }
 .mdc-page .picon--backup-power { --picon: url("/assets/images/icons/platform-backup-power.svg"); }

@@ -300,13 +300,6 @@
     <div class="lead-side">
     <form class="lead-form" id="qform" novalidate>
       <fieldset class="lf-tiles"><legend>What are you planning?</legend><div class="tiles"><label class="tile"><input type="radio" name="product" value="limik-core" checked><span><i aria-hidden="true"></i>Modular AI data center</span></label><label class="tile"><input type="radio" name="product" value="power"><span><i aria-hidden="true"></i>Power transformer</span></label><label class="tile"><input type="radio" name="product" value="autotransformer"><span><i aria-hidden="true"></i>Autotransformer</span></label><label class="tile"><input type="radio" name="product" value="gsu"><span><i aria-hidden="true"></i>GSU transformer</span></label><label class="tile"><input type="radio" name="product" value="mobile"><span><i aria-hidden="true"></i>Mobile transformer</span></label><label class="tile"><input type="radio" name="product" value="other"><span><i aria-hidden="true"></i>Other</span></label></div></fieldset>
-      <div class="lf" id="q-model-field" hidden><label for="q-model">Selected configuration</label><select id="q-model" name="configuration"><option value="">Not sure yet</option><option value="Core 20">Core 20</option><option value="Core 40">Core 40</option><option value="Core Campus">Core Campus</option></select></div>
-      <div class="lf-row">
-        <div class="lf"><label for="q-name">Full name<span class="req" aria-hidden="true">*</span></label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
-        <div class="lf"><label for="q-email">Work email<span class="req" aria-hidden="true">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required><p class="qerr" hidden>Enter a valid work email.</p></div>
-      </div>
-      <div class="lf"><label for="q-company">Company<span class="req" aria-hidden="true">*</span></label><input id="q-company" name="company" autocomplete="organization" required><p class="qerr" hidden>Enter your company.</p></div>
-      <div class="lf"><label for="q-msg">What do you need to deploy?</label><textarea id="q-msg" name="message" rows="4" placeholder="Target capacity, site and timing."></textarea></div>
       <details class="lf-more">
         <summary>Add project details<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></summary>
         <div class="lf-more-body">
@@ -316,6 +309,13 @@
           </div>
         </div>
       </details>
+      <div class="lf" id="q-model-field" hidden><label for="q-model">Selected configuration</label><select id="q-model" name="configuration"><option value="">Not sure yet</option><option value="Core 20">Core 20</option><option value="Core 40">Core 40</option><option value="Core Campus">Core Campus</option></select></div>
+      <div class="lf-row">
+        <div class="lf"><label for="q-name">Full name<span class="req" aria-hidden="true">*</span></label><input id="q-name" name="name" autocomplete="name" required><p class="qerr" hidden>Enter your name.</p></div>
+        <div class="lf"><label for="q-email">Work email<span class="req" aria-hidden="true">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required><p class="qerr" hidden>Enter a valid work email.</p></div>
+      </div>
+      <div class="lf"><label for="q-company">Company<span class="req" aria-hidden="true">*</span></label><input id="q-company" name="company" autocomplete="organization" required><p class="qerr" hidden>Enter your company.</p></div>
+      <div class="lf"><label for="q-msg">What do you need to deploy?</label><textarea id="q-msg" name="message" rows="4" placeholder="Target capacity, site and timing."></textarea></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="page" value="modular-ai-data-centers">
       <div class="lf-submit"><button class="btn" type="submit">Preview project request</button></div>

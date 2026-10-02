@@ -158,11 +158,25 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .mdc-page .lg-track { display: flex; width: max-content; animation: v2-logos 40s linear infinite; }
 .mdc-page .lg-set { display: flex; gap: 72px; padding-right: 72px; flex-shrink: 0; }
-.mdc-page .lg { display: inline-flex; align-items: center; justify-content: center; height: 40px; min-width: 150px; padding: 0 18px; border: 1px dashed rgba(255,255,255,.35); color: #fff; font: 700 11px/1 var(--v2-body); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: .85; }
+.mdc-page .lg { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: var(--logo-width); min-width: 0; height: 80px; opacity: .85; }
+.mdc-page .lg img { display: block; width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+/* Optical sizes: balance the visible mark, rather than equal bounding boxes. */
+.mdc-page .lg--imperial-tobacco { --logo-width: 112px; }
+.mdc-page .lg--danone { --logo-width: 132px; }
+.mdc-page .lg--jde { --logo-width: 70px; }
+.mdc-page .lg--mondelez { --logo-width: 156px; }
+.mdc-page .lg--pepsico { --logo-width: 172px; }
+.mdc-page .lg--stada { --logo-width: 130px; }
+.mdc-page .lg--guala-closures { --logo-width: 206px; }
+.mdc-page .lg--nestle { --logo-width: 72px; }
+.mdc-page .lg--lactalis { --logo-width: 160px; }
+.mdc-page .lg--sandora { --logo-width: 134px; }
+.mdc-page .lg--carlsberg-group { --logo-width: 118px; }
+.mdc-page .lg--kernel { --logo-width: 142px; }
 @keyframes v2-logos { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .mdc-page .lg-track { animation-duration: 80s; } } /* only endless motion is slowed (§7) */
 @media (max-width: 991px) { .mdc-page .hero-logos { margin: 0 -40px; } }
-@media (max-width: 768px) { .mdc-page .hero-logos { margin: 0 -24px; padding: 24px 0; } .mdc-page .lg-set { gap: 40px; padding-right: 40px; } .mdc-page .lg { min-width: 120px; height: 34px; } }
+@media (max-width: 768px) { .mdc-page .hero-logos { margin: 0 -24px; padding: 24px 0; } .mdc-page .lg-set { gap: 40px; padding-right: 40px; } .mdc-page .lg { width: calc(var(--logo-width) * .8); height: 64px; } }
 
 /* ── 2 What is LIMIK Core: metrics panel + image + text ───────── */
 .mdc-page .mtA { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); margin-bottom: 64px; background: var(--v2-bg-white); clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%); }

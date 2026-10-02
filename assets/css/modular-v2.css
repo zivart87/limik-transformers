@@ -442,6 +442,9 @@ html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
 .mdc-page .lf-more[open] summary svg { transform: rotate(45deg); }
 .mdc-page .lf-more summary:focus-visible { outline: 2px solid var(--v2-accent); outline-offset: 4px; }
 .mdc-page .lf-more-body { display: grid; gap: 24px; padding: 8px 0 26px; }
+.mdc-page .lf-more.js-details .lf-more-panel { height: 0; opacity: 0; overflow: hidden; }
+.mdc-page .lf-more.js-details summary svg { transform: rotate(0deg); transition-duration: .3s; }
+.mdc-page .lf-more.js-details.is-expanded summary svg { transform: rotate(45deg); }
 .mdc-page .lf-submit { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; }
 .mdc-page .lead-form .micro { margin-top: -8px; }
 .mdc-page .lead-form .micro a { color: var(--v2-accent); text-decoration: underline; }

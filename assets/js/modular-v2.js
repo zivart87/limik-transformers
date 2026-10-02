@@ -213,7 +213,61 @@
   // Lead form: product preselected by page (?product= overrides), capacity only for LIMIK Core, errors under fields.
   // Draft: no handler/CRM yet (step 5) — submit only validates and shows the thank-you text.
   var qf = document.getElementById('qform');
+  var setProjectDetails = null;
   if (qf) {
+    // Keep native details as the fallback; animate its panel without snapping shut.
+    var projectDetails = qf.querySelector('.lf-more');
+    var detailsPanel = projectDetails && projectDetails.querySelector('.lf-more-panel');
+    if (detailsPanel && typeof detailsPanel.animate === 'function') {
+      var detailsSummary = projectDetails.querySelector('summary');
+      var detailsExpanded = projectDetails.open, detailsAnimation = null;
+      projectDetails.classList.add('js-details');
+      projectDetails.classList.toggle('is-expanded', detailsExpanded);
+      detailsSummary.setAttribute('aria-controls', detailsPanel.id);
+      detailsSummary.setAttribute('aria-expanded', String(detailsExpanded));
+      detailsPanel.toggleAttribute('inert', !detailsExpanded);
+      if (detailsExpanded) { detailsPanel.style.height = 'auto'; detailsPanel.style.opacity = '1'; }
+      setProjectDetails = function (on) {
+        if (detailsExpanded === on) return;
+        var height = projectDetails.open ? detailsPanel.getBoundingClientRect().height : 0;
+        var opacity = projectDetails.open ? getComputedStyle(detailsPanel).opacity : '0';
+        detailsPanel.style.height = height + 'px';
+        detailsPanel.style.opacity = opacity;
+        if (detailsAnimation) detailsAnimation.cancel();
+        detailsExpanded = on;
+        if (on) projectDetails.open = true;
+        projectDetails.classList.toggle('is-expanded', on);
+        detailsSummary.setAttribute('aria-expanded', String(on));
+        if (!on && detailsPanel.contains(document.activeElement)) detailsSummary.focus({ preventScroll: true });
+        detailsPanel.toggleAttribute('inert', !on);
+        var animation = detailsPanel.animate([
+          { height: height + 'px', opacity: opacity },
+          { height: (on ? detailsPanel.scrollHeight : 0) + 'px', opacity: on ? 1 : 0 }
+        ], { duration: on ? 400 : 300, easing: 'ease-out', fill: 'both' });
+        detailsAnimation = animation;
+        animation.finished.then(function () {
+          if (detailsAnimation !== animation) return;
+          detailsPanel.style.height = on ? 'auto' : '0px';
+          detailsPanel.style.opacity = on ? '1' : '0';
+          if (!on) projectDetails.open = false;
+          animation.cancel();
+          detailsAnimation = null;
+        }).catch(function () { /* A new click reverses the current animation. */ });
+      };
+      detailsSummary.addEventListener('click', function (e) {
+        e.preventDefault();
+        setProjectDetails(!detailsExpanded);
+      });
+      projectDetails.addEventListener('toggle', function () {
+        if (detailsAnimation || projectDetails.open === detailsExpanded) return;
+        detailsExpanded = projectDetails.open;
+        projectDetails.classList.toggle('is-expanded', detailsExpanded);
+        detailsSummary.setAttribute('aria-expanded', String(detailsExpanded));
+        detailsPanel.toggleAttribute('inert', !detailsExpanded);
+        detailsPanel.style.height = detailsExpanded ? 'auto' : '0px';
+        detailsPanel.style.opacity = detailsExpanded ? '1' : '0';
+      });
+    }
     var qs = new URLSearchParams(location.search), pre = qs.get('product');
     if (pre) { var r = qf.querySelector('input[name=product][value="' + pre + '"]'); if (r) r.checked = true; }
     var sizeF = qf.querySelector('[data-f="capacity"]');
@@ -267,7 +321,10 @@
         if (product) { product.checked = true; product.dispatchEvent(new Event('change', { bubbles: true })); }
         if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').hidden = false; }
       }
-      if (go === 'schedule' || go === 'fit') { var d = sec.querySelector('.lf-more'); if (d) d.open = true; }
+      if (go === 'schedule' || go === 'fit') {
+        if (setProjectDetails) setProjectDetails(true);
+        else { var d = sec.querySelector('.lf-more'); if (d) d.open = true; }
+      }
       sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(function () { if (target) target.focus({ preventScroll: true }); }, 500);
       if (history.replaceState) history.replaceState(null, '', '#configure');

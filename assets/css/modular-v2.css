@@ -56,6 +56,8 @@
 
 /* limik.css sets overflow-x:hidden on html/body, which breaks position:sticky */
 html:has(> body.mdc-page), body.mdc-page { overflow-x: clip; }
+/* The floating chat host must not create an inline line box after the footer. */
+body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 
 /* ── Base ─────────────────────────────────────────────────────── */
 .mdc-page main { background: var(--v2-bg-white); color: var(--v2-text); font-family: var(--v2-body); font-size: 16px; line-height: 1.6; }

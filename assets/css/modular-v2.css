@@ -201,8 +201,8 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .pcard:has(.pbg-photo) .ptext p { color: #fff; }
 .mdc-page .pcard:has(.pbg-photo) .pover { background: none; }
 .mdc-page .pover { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 32px; background: linear-gradient(0deg, rgba(20,24,32,.92), rgba(20,24,32,.15) 70%); }
-.mdc-page .picon { display: grid; place-items: center; width: 52px; height: 52px; flex-shrink: 0; }
-.mdc-page .picon::before { content: ''; width: 52px; height: 52px; background: #fff;
+.mdc-page .picon { display: grid; place-items: center; width: 50px; height: 50px; flex-shrink: 0; }
+.mdc-page .picon::before { content: ''; width: 50px; height: 50px; background: #fff;
   -webkit-mask: var(--picon) no-repeat center / contain; mask: var(--picon) no-repeat center / contain; }
 .mdc-page .picon--transformer { --picon: url("/assets/images/icons/platform-transformer.svg"); }
 .mdc-page .picon--backup-power { --picon: url("/assets/images/icons/platform-backup-power.svg"); }

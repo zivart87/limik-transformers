@@ -67,12 +67,12 @@
       <div class="sticky-head">
         <div class="eyebrow">The LIMIK platform</div>
         <h2>One system from the grid to the chip</h2>
-        <p class="intro mt24">Power, cooling and controls are planned as one system, so the transformer, UPS, coolant units and racks are sized to the same load from the start.</p>
+        <p class="intro mt24">Four layers, from the utility feed to the GPU rack. Each is sized to the same IT load, so no single part becomes the bottleneck.</p>
         <div class="mt40"><a class="ilink" href="#configure" data-go="form"><i aria-hidden="true">→</i>Configure your infrastructure</a></div>
       </div>
       <nav class="chain" aria-label="Platform components">
-        <a href="#pc-1" class="is-current"><span></span>01 · Grid &amp; transformer</a>
-        <a href="#pc-2"><span></span>02 · Distribution &amp; backup</a>
+        <a href="#pc-1" class="is-current"><span></span>01 · Grid &amp; power transformer</a>
+        <a href="#pc-2"><span></span>02 · Distribution &amp; backup power</a>
         <a href="#pc-3"><span></span>03 · Liquid cooling</a>
         <a href="#pc-4"><span></span>04 · Compute &amp; controls</a>
       </nav>
@@ -85,7 +85,7 @@
           <div class="ptext">
             
             <h3>Grid &amp; power transformer</h3>
-            <p>Transformer lead times are a common bottleneck for new AI capacity. LIMIK builds power transformers, so Core 40 plans a <span data-benchmark>1.25 MVA</span> medium-voltage unit sized to its <span data-benchmark>800 kW</span> site budget. Core 20 runs on existing 480 V service; Campus transformers are sized to the site.</p>
+            <p>Transformer lead times hold back many AI projects. LIMIK builds its own medium-voltage transformers, so power supply is planned with the module, not ordered separately.</p>
           </div>
         </div>
       </article>
@@ -96,7 +96,7 @@
           <div class="ptext">
             
             <h3>Distribution &amp; backup power</h3>
-            <p>If one UPS module fails, the IT load keeps running: at least <span data-benchmark>150 kW</span> (Core 20) or <span data-benchmark>750 kW</span> (Core 40) stays available, with about <span data-benchmark>5 minutes</span> of battery for critical loads. Generators connect as an external option.</p>
+            <p>Switchgear, UPS and batteries are part of the module and sized to its IT load. Redundant UPS modules keep compute running through a single failure; generators connect as an option.</p>
           </div>
         </div>
       </article>
@@ -107,7 +107,7 @@
           <div class="ptext">
             
             <h3>Liquid cooling</h3>
-            <p>Direct-to-chip cooling supports compute racks up to <span data-benchmark>145 kW</span>. Coolant units and heat rejection are N+1: if one fails, Core 40 still has <span data-benchmark>600 kW</span> of liquid cooling and <span data-benchmark>700 kW</span> of heat rejection. Air cooling handles the remaining components.</p>
+            <p>Direct-to-chip liquid cooling removes heat at the chip, as today's dense GPU racks require. Coolant units and dry coolers include a spare and are sized to your climate.</p>
           </div>
         </div>
       </article>
@@ -117,8 +117,8 @@
           <div class="picon" aria-hidden="true"></div>
           <div class="ptext">
             
-            <h3>IT integration &amp; controls</h3>
-            <p>LIMIK coordinates server, GPU, network and storage selection and supply with IT partners, then integrates the equipment with power, cooling and monitoring. Customer-owned hardware can follow the same installation, testing and commissioning process after a compatibility review.</p>
+            <h3>Compute &amp; controls</h3>
+            <p>LIMIK sources and installs servers, GPUs, networking and storage with IT partners. One monitoring system covers the whole module, from grid to coolant.</p>
           </div>
         </div>
       </article>

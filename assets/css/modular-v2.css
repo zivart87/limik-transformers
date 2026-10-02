@@ -338,7 +338,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .cards { display: grid; gap: 24px; }
 .mdc-page .c3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .mdc-page .icard { min-width: 0; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 32px 28px; background: var(--v2-bg-light); border-radius: var(--v2-r-lg); }
-.mdc-page .icard .icon { width: 28px; height: 28px; flex-shrink: 0; background: var(--v2-accent);
+.mdc-page .icard .icon { width: 28px; height: 28px; flex-shrink: 0; background: #188BF6;
   -webkit-mask: var(--application-icon) no-repeat center / contain; mask: var(--application-icon) no-repeat center / contain; }
 .mdc-page .icard .icon--ai-training { --application-icon: url("/assets/images/icons/applications-ai-training.svg"); }
 .mdc-page .icard .icon--ai-inference { --application-icon: url("/assets/images/icons/applications-ai-inference.svg"); }

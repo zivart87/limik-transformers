@@ -138,6 +138,8 @@ REM — заголовки, кнопки, великі цифри, вкладк�
 
 - **Порядок форми Modular (рішення користувача 2026-10-02):** «Add project details» (`.lf-more`) стоїть одразу після шести плиток вибору продукту, перед Selected configuration (якщо поле показане) та Full name / Work email; початково закритий, поля й поведінка розкриття збережені.
 
+- **Тексти Applications (рішення користувача 2026-10-02):** вступ «LIMIK Core is built for AI first. The same modules run other demanding compute close to where data is created.»; шість карток у порядку AI training, AI inference, Private & enterprise AI, Edge processing, HPC & simulation, Business IT & storage. Заголовки й описи встановлено дослівно з наданого користувачем тексту; заголовок секції та оформлення збережено.
+
 ## 7. Анімації
 
 - **Add project details (рішення користувача 2026-10-02):** розкриття 0.4s, закриття 0.3s ease-out із плавною зміною висоти та opacity, за темпом FAQ. Плюс повертається синхронно; повторний клік плавно змінює напрям. Підтримуються клавіатура й відкриття через CTA schedule/fit; без JS/Web Animations лишається нативний `<details>`. Закриті поля мають inert; після відкриття висота природна, зокрема при зміні ширини чи продукту.

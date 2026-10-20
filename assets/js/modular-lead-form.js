@@ -6,8 +6,16 @@
   var button = form.querySelector('[type="submit"]');
   var status = document.getElementById('q-status');
   var busy = false, sent = false;
+  var testMode = new URLSearchParams(window.location.search).get('form-test') === '1';
   var endpoint = 'https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/jKMX6ff0ycjtE4mD2h3R';
   var products = { 'limik-core': 'limik-core', power: 'power', autotransformer: 'auto', gsu: 'gsu', mobile: 'mobile', other: 'unsure' };
+  if (testMode) {
+    button.textContent = 'Send test request';
+    var note = document.getElementById('q-submit-note');
+    if (note && note.firstChild) note.firstChild.textContent = 'Test mode: submitting sends a test request to CRM. Use test data only. Read our ';
+    var intro = document.querySelector('#configure .lead-intro .intro');
+    if (intro) intro.textContent = intro.textContent.replace('This draft form is a preview and does not send a request.', 'This visit is in test mode and can send a test request.');
+  }
 
   function value(name) {
     var el = form.elements.namedItem(name);
@@ -79,10 +87,11 @@
     var voltageChoice = value('voltageSelection');
     if (voltageChoice && Number.isFinite(Number(voltageChoice)) && Number(voltageChoice) > 0) payload.highSideKv = voltageChoice;
 
-    if (form.dataset.delivery !== 'live') {
+    if (form.dataset.delivery !== 'live' && !testMode) {
       showStatus('Preview complete. No request has been sent. Your details remain available to edit.', false);
       return;
     }
+    if (testMode) payload.message = 'TEST — ' + (payload.message || 'Form integration check; not a commercial inquiry.');
 
     busy = true;
     button.disabled = true;
@@ -100,7 +109,7 @@
       if (!response.ok) throw new Error('Webhook rejected the request');
       sent = true;
       button.textContent = 'Request sent';
-      showStatus('Thank you. Your project request has been submitted.', false);
+      showStatus(testMode ? 'Thank you. Your test request has been submitted.' : 'Thank you. Your project request has been submitted.', false);
     } catch (error) {
       button.textContent = label;
       showStatus('We could not confirm submission. Your details are still here. Please try again, or contact us using the phone or email below.', true);

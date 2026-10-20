@@ -210,8 +210,8 @@
     }
   }
 
-  // Lead form: product preselected by page (?product= overrides), capacity only for LIMIK Core, errors under fields.
-  // Draft: no handler/CRM yet (step 5) — submit only validates and shows the thank-you text.
+  // Lead form: page selection, product-specific details and configuration handoff.
+  // Validation and gated CRM delivery live in modular-lead-form.js.
   var qf = document.getElementById('qform');
   var setProjectDetails = null;
   if (qf) {
@@ -269,42 +269,37 @@
       });
     }
     var qs = new URLSearchParams(location.search), pre = qs.get('product');
-    if (pre) { var r = qf.querySelector('input[name=product][value="' + pre + '"]'); if (r) r.checked = true; }
-    var sizeF = qf.querySelector('[data-f="capacity"]');
+    qf.querySelectorAll('input[name=product]').forEach(function (r) { if (r.value === pre) r.checked = true; });
     var modelField = document.getElementById('q-model-field');
     var modelSelect = document.getElementById('q-model');
+    var previousProduct = null, transformerDetails = {};
     var syncSize = function () {
       var v = (qf.querySelector('input[name=product]:checked') || {}).value;
-      if (sizeF) sizeF.hidden = (v !== 'limik-core');
+      var technical = ['requiredMva', 'requiredVoltage'];
+      if (v !== previousProduct) {
+        if (previousProduct) transformerDetails[previousProduct] = technical.map(function (name) { return qf.elements.namedItem(name).value; });
+        technical.forEach(function (name, index) {
+          var input = qf.elements.namedItem(name);
+          input.value = (transformerDetails[v] || [])[index] || '';
+          input.closest('.lf').classList.remove('is-bad');
+          input.removeAttribute('aria-invalid');
+          var error = input.closest('.lf').querySelector('.qerr');
+          if (error) error.hidden = true;
+        });
+        previousProduct = v;
+      }
+      qf.querySelectorAll('[data-products]').forEach(function (field) {
+        var visible = field.dataset.products.split(' ').indexOf(v) !== -1;
+        field.hidden = !visible;
+        field.querySelectorAll('input, select').forEach(function (el) { el.disabled = !visible; });
+      });
       if (modelField && modelSelect) {
-        modelField.hidden = v !== 'limik-core' || !modelSelect.value;
-        modelSelect.disabled = v !== 'limik-core';
+        modelField.hidden = v !== 'limik-core' || !modelField.dataset.configured;
+        modelSelect.disabled = modelField.hidden;
       }
     };
     qf.querySelectorAll('input[name=product]').forEach(function (r) { r.addEventListener('change', syncSize); });
     syncSize();
-    qf.querySelectorAll('.lf input').forEach(function (el) {
-      el.addEventListener('input', function () {
-        var f = el.closest('.lf'); f.classList.remove('is-bad');
-        var e = f.querySelector('.qerr'); if (e) e.hidden = true;
-      });
-    });
-    qf.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var bad = null;
-      qf.querySelectorAll('[required]').forEach(function (el) {
-        var f = el.closest('.lf'), v = el.value.trim();
-        var ok = v && (el.type !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
-        f.classList.toggle('is-bad', !ok);
-        f.querySelector('.qerr').hidden = !!ok;
-        if (!ok && !bad) bad = el;
-      });
-      if (bad) { bad.focus(); return; }
-      qf.innerHTML = '<h3 class="lead-thanks">Draft preview complete. No request has been sent.</h3>';
-    });
-    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
-      var el = qf.querySelector('[name=' + k + ']'); if (el) el.value = qs.get(k) || '';
-    });
   }
 
   // CTA links: scroll to the form, open details when needed, put the cursor in the first field
@@ -319,7 +314,7 @@
         var product = qf.querySelector('input[name="product"][value="limik-core"]');
         var selection = qf.querySelector('[name="configuration"]');
         if (product) { product.checked = true; product.dispatchEvent(new Event('change', { bubbles: true })); }
-        if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').hidden = false; }
+        if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').dataset.configured = 'true'; selection.closest('.lf').hidden = false; }
       }
       if (go === 'schedule' || go === 'fit') {
         if (setProjectDetails) setProjectDetails(true);

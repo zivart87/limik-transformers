@@ -26,7 +26,7 @@
   }
   form.addEventListener('input', function (event) {
     var el = event.target;
-    if (el.matches('.lf input, .lf textarea, .tile input')) {
+    if (el.matches('.lf input, .lf select, .lf textarea, .tile input')) {
       fieldError(el, false);
       if (!busy && !sent) showStatus('', false);
     }
@@ -41,10 +41,11 @@
     var validProduct = !!(selected && Object.prototype.hasOwnProperty.call(products, selected.value));
     fieldError(firstRadio, !validProduct);
     if (!validProduct) bad = firstRadio;
-    form.querySelectorAll('.lf input, .lf textarea').forEach(function (el) {
+    form.querySelectorAll('.lf input, .lf select, .lf textarea').forEach(function (el) {
       if (el.disabled) return;
       var text = el.value.trim();
       var ok = (!el.required || !!text) && el.validity.valid;
+      if (el.name === 'requiredMva' && text) ok = ok && Number.isFinite(Number(text)) && Number(text) > 0;
       if (el.type === 'email' && text) ok = ok && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(text);
       fieldError(el, !ok);
       if (!ok && !bad) bad = el;
@@ -67,13 +68,16 @@
     var payload = Object.assign({}, attribution, {
       firstName: value('name'), companyName: value('company'), email: value('email'),
       productType: products[selected.value], formSource: 'Modular AI Data Centers',
-      formVersion: 'modular-v1', pageUrl: window.location.href
+      formVersion: 'modular-v2', pageUrl: window.location.href
     });
-    var optional = { message: 'message', capacity: 'itCapacity', start: 'projectStart', configuration: 'configuration', requiredMva: 'requiredMva', requiredVoltage: 'requiredVoltage' };
+    var optional = { message: 'message', capacity: 'itCapacity', start: 'projectStart', configuration: 'configuration', mvaSelection: 'mvaSelection', voltageSelection: 'voltageSelection', requiredMva: 'requiredMva', requiredVoltage: 'requiredVoltage' };
     Object.keys(optional).forEach(function (name) {
       var text = value(name);
       if (text) payload[optional[name]] = text;
     });
+
+    var voltageChoice = value('voltageSelection');
+    if (voltageChoice && Number.isFinite(Number(voltageChoice)) && Number(voltageChoice) > 0) payload.highSideKv = voltageChoice;
 
     if (form.dataset.delivery !== 'live') {
       showStatus('Preview complete. No request has been sent. Your details remain available to edit.', false);

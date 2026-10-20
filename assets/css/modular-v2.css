@@ -469,7 +469,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .lf select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
   background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2309193B' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 16px center; }
 .mdc-page .lf input:focus, .mdc-page .lf select:focus, .mdc-page .lf textarea:focus { outline: none; border-color: var(--v2-accent); box-shadow: none; }
-.mdc-page .lf.is-bad input { border-color: var(--v2-error-border); }
+.mdc-page .lf.is-bad input, .mdc-page .lf.is-bad select { border-color: var(--v2-error-border); }
 .mdc-page .lead-form .qerr { font-size: 12px; line-height: 1.4; color: var(--v2-error); }
 .mdc-page .lf-tiles.is-bad .tile span { border-color: var(--v2-error-border); }
 .mdc-page .lf-tiles > .qerr { margin-top: 10px; }

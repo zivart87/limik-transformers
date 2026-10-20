@@ -275,7 +275,7 @@
     var previousProduct = null, transformerDetails = {};
     var syncSize = function () {
       var v = (qf.querySelector('input[name=product]:checked') || {}).value;
-      var technical = ['requiredMva', 'requiredVoltage'];
+      var technical = ['mvaSelection', 'voltageSelection', 'requiredMva', 'requiredVoltage'];
       if (v !== previousProduct) {
         if (previousProduct) transformerDetails[previousProduct] = technical.map(function (name) { return qf.elements.namedItem(name).value; });
         technical.forEach(function (name, index) {
@@ -290,8 +290,13 @@
       }
       qf.querySelectorAll('[data-products]').forEach(function (field) {
         var visible = field.dataset.products.split(' ').indexOf(v) !== -1;
+        var condition = field.dataset.when && field.dataset.when.split(':');
+        if (condition) visible = visible && qf.elements.namedItem(condition[0]).value === condition[1];
         field.hidden = !visible;
-        field.querySelectorAll('input, select').forEach(function (el) { el.disabled = !visible; });
+        field.querySelectorAll('input, select').forEach(function (el) {
+          el.disabled = !visible;
+          if (condition) el.required = visible;
+        });
       });
       if (modelField && modelSelect) {
         modelField.hidden = v !== 'limik-core' || !modelField.dataset.configured;
@@ -299,6 +304,7 @@
       }
     };
     qf.querySelectorAll('input[name=product]').forEach(function (r) { r.addEventListener('change', syncSize); });
+    qf.querySelectorAll('[data-technical-choice]').forEach(function (el) { el.addEventListener('change', syncSize); });
     syncSize();
   }
 

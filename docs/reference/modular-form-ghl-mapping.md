@@ -6,8 +6,8 @@
 ## Погоджена форма
 
 - Modular вибрано за замовчуванням; `?product=` може вибрати іншу з шести плиток. Вибір обов’язковий.
-- Modular: Target IT capacity + When do you plan to start?; Power / Autotransformer / GSU / Mobile: Required capacity (MVA) + Required voltage (kV); Other / Not sure yet: лише термін старту.
-- Add project details початково закритий; усе всередині необов’язкове. MVA — додатне число без штучного обмеження діапазоном; напруга — текст, наприклад `115 / 13.8` kV. При перемиканні між трансформаторами кожен вибір зберігає свої введені значення локально; приховані поля disabled та виключені із запиту.
+- Modular: Target IT capacity + When do you plan to start?; Power / Autotransformer / GSU / Mobile: Transformer rating (MVA) + High-side nominal voltage (kV); Other / Not sure yet: лише термін старту.
+- Add project details початково закритий; усе всередині необов’язкове. MVA — неперетинні діапазони, конкретне додатне значення або Not sure yet. Напруга — номінальна напруга високої сторони; Other / Specify voltages відкриває текстове поле для повних вимог, наприклад `HV 115 / LV 13.8` kV. Якщо користувач явно обирає введення власного значення, відповідне поле стає обов’язковим; можна повернутися до Select або Not sure yet й залишити технічні деталі невизначеними. При перемиканні між трансформаторами кожен вибір зберігає свої введені значення локально; приховані поля disabled та виключені із запиту.
 - Selected configuration з’являється після Configure з картки; користувач може вибрати Not sure yet, поле залишається видимим. Для іншого продукту воно disabled.
 - Full name, Work email, Company обов’язкові; Tell us about your project — необов’язкове. Телефону немає.
 - Прев’ю перевіряє поля, не надсилає запит і не стирає введення. Реальна відправка має блокування повторного натискання, очікування до 20 секунд, перевірку HTTP status та повідомлення про непідтверджену доставку при помилці. Автоматичних повторних запитів немає. HTTP 2xx означає прийняття webhook, а не підтверджений запис усіх полів CRM.
@@ -23,19 +23,22 @@
 | `email` | Work email | Наявне поле email; перевірити пошук/оновлення повторного контакту без телефону |
 | `productType` | `limik-core`, `power`, `auto`, `gsu`, `mobile`, `unsure` | Збережено старі коди трансформаторів; додати підтримку `limik-core`. UI `autotransformer` → `auto`, `other` → `unsure` |
 | `message` | Довільний текст | Наявне поле; перевірити видимість в картці та сповіщенні |
-| `requiredMva` | Число у MVA як рядок | **Нове** поле Number, за потреби Text; це точне/приблизне значення, а не старий `mvaRange` |
-| `requiredVoltage` | Напруги у kV, довільний рядок | **Нове** поле Text; не записувати цілий рядок в `hvVoltage` чи `lvVoltage` |
+| `mvaSelection` | `lt20`, `20-lt50`, `50-lt100`, `100-lt200`, `200-lt400`, `400plus`, `exact`, `unsure` | **Нове** Text / dropdown: вибір діапазону або способу відповіді; не підміняти ним точне значення MVA |
+| `voltageSelection` | `34.5`, `69`, `115`, `138`, `161`, `230`, `345`, `500`, `custom`, `unsure` | **Нове** Text / dropdown: вибір номінальної напруги високої сторони або власних вимог |
+| `highSideKv` | Числовий варіант voltageSelection, як рядок | **Нове** Number / Text: лише вибрана номінальна напруга високої сторони у kV; не пара напруг, не highest voltage for equipment |
+| `requiredMva` | Число у MVA як рядок | **Нове** поле Number, за потреби Text; лише для `mvaSelection=exact`, це конкретне значення, а не діапазон |
+| `requiredVoltage` | Власні вимоги до напруг у kV, довільний рядок | **Нове** поле Text; лише для `voltageSelection=custom`; не записувати цілий рядок в `hvVoltage` чи `lvVoltage` |
 | `itCapacity` | `lt200`, `0.2-1`, `1-10`, `10plus`, `unsure` | **Нове** поле Text / dropdown із цими значеннями |
 | `projectStart` | `now`, `lt6`, `6-12`, `research` | **Нове** поле Text / dropdown із цими значеннями |
 | `configuration` | `Core 20`, `Core 40`, `Core Campus` | **Нове** поле Text / dropdown; Not sure yet → ключ не передається |
 | `formSource` | `Modular AI Data Centers` | Наявне поле; перевірити фільтри та маршрутизацію |
-| `formVersion` | `modular-v1` | Новий маркер версії запиту для відокремлення логіки цієї форми |
+| `formVersion` | `modular-v2` | Новий маркер версії запиту для відокремлення логіки цієї форми |
 | `pageUrl` | Адреса сторінки | Наявне поле |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` | Поточна рекламна атрибуція, коли доступна | Зберегти наявне зіставлення |
 | `gclid`, `fbclid`, `ga_client_id` | Ідентифікатори, коли доступні | Перевірити `gclid` → `google_click_id`; для `fbclid` у старому звіті залишалася непідтверджена правка `facebook_click_id` |
 | `first_utm_*`, `first_gclid`, `first_fbclid`, `first_ga_client_id` | Перше джерело за логікою `utm.js` | Не перезаписувати вже відоме перше джерело контакту |
 
-Підписи IT capacity: `lt200` → Under 200 kW; `0.2-1` → 200 kW–1 MW; `1-10` → 1–10 MW; `10plus` → 10 MW+; `unsure` → Not sure yet.
+Підписи IT capacity: `lt200` → Under 200 kW; `0.2-1` → 200 kW to <1 MW; `1-10` → 1 to <10 MW; `10plus` → 10 MW or more; `unsure` → Not sure yet.
 
 Підписи projectStart: `now` → Ready now; `lt6` → Within 6 months; `6-12` → 6–12 months; `research` → Just researching.
 
@@ -52,15 +55,17 @@
   "email": "<контрольна адреса команди>",
   "productType": "power",
   "formSource": "Modular AI Data Centers",
-  "formVersion": "modular-v1",
+  "formVersion": "modular-v2",
   "pageUrl": "https://www.limiktransformers.com/modular-ai-data-centers/v2-draft",
+  "mvaSelection": "exact",
+  "voltageSelection": "custom",
   "requiredMva": "100",
-  "requiredVoltage": "115 / 13.8",
+  "requiredVoltage": "HV 115 / LV 13.8",
   "message": "TEST — перевірка інтеграції, не комерційна заявка"
 }
 ```
 
-Для Modular замість `requiredMva` / `requiredVoltage` передаються, наприклад, `itCapacity: "1-10"`, `projectStart: "lt6"` та `configuration: "Core 40"`, якщо вибрана картка. Рекламні ключі додаються, якщо доступні. Приклад не надсилався.
+Для Modular замість трансформаторних полів передаються, наприклад, `itCapacity: "1-10"`, `projectStart: "lt6"` та `configuration: "Core 40"`, якщо вибрана картка. Рекламні ключі додаються, якщо доступні. Приклад не надсилався.
 
 ## Завершення підключення
 
@@ -73,6 +78,16 @@
 ## Локальна перевірка
 
 - Синтаксис обох змінених JS перевірений через `node --check`.
-- 18 сценаріїв обробника із підставним fetch: прев’ю без запиту, обов’язкові поля, email, шість продуктових варіантів і виключення прихованих характеристик, HTTP-помилка, мережевий збій, timeout, повторне натискання, honeypot, необов’язкові порожні поля та помилка доступу до атрибуції. Сценарії не є перевіркою реального DOM чи CRM.
+- 25 сценаріїв обробника із підставним fetch: прев’ю без запиту, обов’язкові поля, email, шість продуктових варіантів і виключення прихованих характеристик, HTTP-помилка, мережевий збій, timeout, повторне натискання, honeypot, необов’язкові порожні поля та помилка доступу до атрибуції. Сценарії не є перевіркою реального DOM чи CRM.
 - Окремо перевірено логіку перемикання продуктів, disabled прихованих полів, незалежне збереження MVA/kV для кожного трансформатора, Not sure yet у конфігурації та невідомий / некоректний параметр product.
 - Локальний браузерний перегляд і адаптивність не перевірені: середовище заборонило з’єднання з локальним HTTP-сервером. Реальні заявки не надсилалися, налаштування GHL не перевірені, live-режим не ввімкнено.
+
+## Списки без неоднозначних інженерних значень — 2026-10-20
+
+- MVA позначає повну потужність трансформатора; kW/MW у полі Modular — IT-навантаження. Автоматичної конвертації між ними немає.
+- Межі MVA: <20; 20 ≤ S <50; 50 ≤ S <100; 100 ≤ S <200; 200 ≤ S <400; S ≥400 MVA. Приклади граничних значень: 20 → другий діапазон; 50 → третій; 62.5 → третій; 100 → четвертий; 400 → останній. Це категорії потреби в заявці, не заявлений асортимент чи гарантовані межі виробництва LIMIK.
+- Той самий нейтральний перелік використовується для чотирьох видів трансформаторів; не встановлюємо непідтверджені межі для окремих продуктів. Enter a specific rating дозволяє будь-яке скінченне додатне значення, включно з дробовим. Значення діапазону не конвертується в його середину чи межу.
+- Напруга списку означає тільки **high-side nominal voltage**, у тому числі для GSU; не називаємо її primary/input, бо напрям підвищення/пониження залежить від застосування. Інші напруги, кілька обмоток або повний набір вимог можна вказати через Other / Specify voltages. Не створюємо фіктивні універсальні пари HV/LV і не прирівнюємо номінальну напругу до максимальної напруги обладнання.
+- Джерела перевірки термінів: [Hitachi Energy — ratings / windings](https://www.hitachienergy.com/content/dam/pg/products-systems-services/products-systems-services-files/power-transformer-abb-energy-efficiency-ecodesign-regulation.pdf.coredownload.pdf), [system intertie transformers](https://www.hitachienergy.com/us/en/products-and-solutions/transformers/power-transformers/system-intertie-transformers/non-autotransformers). Конкретні категорії форми — UX-рішення для первинної заявки, а не таблиця технічних характеристик із цих джерел.
+- IT capacity: видимі підписи уточнено до <200 kW; 200 kW ≤ P <1 MW; 1 ≤ P <10 MW; P ≥10 MW. JSON-коди збережені.
+- Відправка залишається preview. Нові `mvaSelection`, `voltageSelection`, `highSideKv` додати в перевірку GHL до ввімкнення live; приховані власні значення не передаються при поверненні до списку / Not sure yet.

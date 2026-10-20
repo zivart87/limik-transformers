@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/assets/css/limik.css">
   <link rel="stylesheet" href="/assets/css/nav.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <link rel="stylesheet" href="/assets/css/modular-v2.css?v=20261020-form">
+  <link rel="stylesheet" href="/assets/css/modular-v2.css?v=20261020-form-selects">
 </head>
 <body class="mdc-page" data-hero=".hero">
   <div id="nav-placeholder"></div>
@@ -334,10 +334,12 @@
         <div class="lf-more-panel" id="q-project-details">
         <div class="lf-more-body">
           <div class="lf-row">
-            <div class="lf" data-f="capacity" data-products="limik-core"><label for="q-size">Target IT capacity</label><select id="q-size" name="capacity"><option value="">Select…</option><option value="lt200">Under 200 kW</option><option value="0.2-1">200 kW–1 MW</option><option value="1-10">1–10 MW</option><option value="10plus">10 MW+</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="lf" data-f="capacity" data-products="limik-core"><label for="q-size">Target IT capacity</label><select id="q-size" name="capacity"><option value="">Select…</option><option value="lt200">Under 200 kW</option><option value="0.2-1">200 kW to &lt;1 MW</option><option value="1-10">1 to &lt;10 MW</option><option value="10plus">10 MW or more</option><option value="unsure">Not sure yet</option></select></div>
             <div class="lf" data-f="start" data-products="limik-core other"><label for="q-start">When do you plan to start?</label><select id="q-start" name="start"><option value="">Select…</option><option value="now">Ready now</option><option value="lt6">Within 6 months</option><option value="6-12">6–12 months</option><option value="research">Just researching</option></select></div>
-            <div class="lf" data-products="power autotransformer gsu mobile" hidden><label for="q-mva">Required capacity (MVA)</label><input id="q-mva" name="requiredMva" type="number" inputmode="decimal" min="0.000001" step="any" placeholder="e.g. 100" aria-describedby="q-mva-error" disabled><p class="qerr" id="q-mva-error" hidden>Enter a capacity greater than zero, or leave blank.</p></div>
-            <div class="lf" data-products="power autotransformer gsu mobile" hidden><label for="q-voltage">Required voltage (kV)</label><input id="q-voltage" name="requiredVoltage" type="text" maxlength="100" placeholder="e.g. 115 / 13.8" disabled></div>
+            <div class="lf" data-products="power autotransformer gsu mobile" hidden><label for="q-mva-choice">Transformer rating (MVA)</label><select id="q-mva-choice" name="mvaSelection" data-technical-choice disabled><option value="">Select…</option><option value="lt20">Under 20 MVA</option><option value="20-lt50">20 to &lt;50 MVA</option><option value="50-lt100">50 to &lt;100 MVA</option><option value="100-lt200">100 to &lt;200 MVA</option><option value="200-lt400">200 to &lt;400 MVA</option><option value="400plus">400 MVA or more</option><option value="exact">Enter a specific rating…</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="lf" data-products="power autotransformer gsu mobile" hidden><label for="q-voltage-choice">High-side nominal voltage (kV)</label><select id="q-voltage-choice" name="voltageSelection" data-technical-choice disabled><option value="">Select…</option><option value="34.5">34.5 kV</option><option value="69">69 kV</option><option value="115">115 kV</option><option value="138">138 kV</option><option value="161">161 kV</option><option value="230">230 kV</option><option value="345">345 kV</option><option value="500">500 kV</option><option value="custom">Other / Specify voltages…</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="lf" data-products="power autotransformer gsu mobile" data-when="mvaSelection:exact" hidden><label for="q-mva">Specific rating (MVA)<span class="req" aria-hidden="true">*</span></label><input id="q-mva" name="requiredMva" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 62.5" aria-describedby="q-mva-error" disabled><p class="qerr" id="q-mva-error" hidden>Enter a rating greater than zero.</p></div>
+            <div class="lf" data-products="power autotransformer gsu mobile" data-when="voltageSelection:custom" hidden><label for="q-voltage">Voltage requirements (kV)<span class="req" aria-hidden="true">*</span></label><input id="q-voltage" name="requiredVoltage" type="text" maxlength="200" placeholder="e.g. HV 115 / LV 13.8" aria-describedby="q-voltage-error" disabled><p class="qerr" id="q-voltage-error" hidden>Enter your voltage requirements.</p></div>
           </div>
         </div>
         </div>
@@ -367,8 +369,8 @@
   <script src="/assets/js/nav-loader.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/back-to-top.js"></script>
-  <script src="/assets/js/utm.js?v=20261020-form"></script>
-  <script src="/assets/js/modular-v2.js?v=20261020-form"></script>
-  <script src="/assets/js/modular-lead-form.js?v=20261020-form"></script>
+  <script src="/assets/js/utm.js?v=20261020-form-selects"></script>
+  <script src="/assets/js/modular-v2.js?v=20261020-form-selects"></script>
+  <script src="/assets/js/modular-lead-form.js?v=20261020-form-selects"></script>
 </body>
 </html>

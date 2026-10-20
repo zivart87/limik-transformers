@@ -6,7 +6,7 @@
   var button = form.querySelector('[type="submit"]');
   var status = document.getElementById('q-status');
   var busy = false, sent = false;
-  var endpoint = 'https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f';
+  var endpoint = 'https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/jKMX6ff0ycjtE4mD2h3R';
   var products = { 'limik-core': 'limik-core', power: 'power', autotransformer: 'auto', gsu: 'gsu', mobile: 'mobile', other: 'unsure' };
 
   function value(name) {

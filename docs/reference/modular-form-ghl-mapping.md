@@ -14,7 +14,7 @@
 
 ## Таблиця для спеціаліста GHL
 
-Схема наявної інтеграції описана в [ghl-custom-fields.md](ghl-custom-fields.md). Використовується той самий webhook, адресу брати з чинного обробника. Не змінювати глобальні правила workflow без перевірки старих форм.
+Схема наявної інтеграції описана в [ghl-custom-fields.md](ghl-custom-fields.md). Для Modular отримано окремий webhook із закінченням `jKMX6ff0ycjtE4mD2h3R`; його адресу встановлено в modular-lead-form.js. Інші форми продовжують використовувати старий webhook. Не змінювати глобальні правила workflow без перевірки старих форм.
 
 | Поле JSON | Дані | Дія в GHL |
 |---|---|---|
@@ -91,3 +91,15 @@
 - Джерела перевірки термінів: [Hitachi Energy — ratings / windings](https://www.hitachienergy.com/content/dam/pg/products-systems-services/products-systems-services-files/power-transformer-abb-energy-efficiency-ecodesign-regulation.pdf.coredownload.pdf), [system intertie transformers](https://www.hitachienergy.com/us/en/products-and-solutions/transformers/power-transformers/system-intertie-transformers/non-autotransformers). Конкретні категорії форми — UX-рішення для первинної заявки, а не таблиця технічних характеристик із цих джерел.
 - IT capacity: видимі підписи уточнено до <200 kW; 200 kW ≤ P <1 MW; 1 ≤ P <10 MW; P ≥10 MW. JSON-коди збережені.
 - Відправка залишається preview. Нові `mvaSelection`, `voltageSelection`, `highSideKv` додати в перевірку GHL до ввімкнення live; приховані власні значення не передаються при поверненні до списку / Not sure yet.
+
+## Приймання тестових запитів — 2026-10-20
+
+На прямий запит користувача на новий webhook Надії надіслано три окремі JSON POST із явно тестовими даними (контакти example.com):
+
+1. `limik-test-modular@example.com`: `limik-core`, `itCapacity=1-10`, `projectStart=lt6`, `configuration=Core 40`.
+2. `limik-test-power-range@example.com`: `power`, `mvaSelection=50-lt100`, `voltageSelection=115`, `highSideKv=115`.
+3. `limik-test-power-custom@example.com`: `power`, `mvaSelection=exact`, `requiredMva=62.5`, `voltageSelection=custom`, `requiredVoltage=HV 115 / LV 13.8`.
+
+Кожна відповідь: HTTP 200, `{"status":"Success: test request received"}`. Це підтверджує приймання тестового зразка webhook, але не створення контакту, зіставлення полів, повідомлення команді чи опублікований workflow GHL. Ці результати має підтвердити спеціаліст CRM. Передано явно тестові utm_source/medium/campaign; справжні gclid/fbclid/GA identifiers не підставлялися.
+
+Запити виконані окремо від інтерфейсу форми; реальна відправка кнопкою на сторінці лишається вимкнена (`preview`). У коді live-обробника після успішного HTTP-відгуку подяка показується всередині форми: Thank you. Your project request has been submitted. Кнопка Request sent заблокована від повторної відправки. При помилці / timeout дані залишаються, подяка не показується. Сценарії обробника перевірені з mock fetch; реальний браузерний ланцюжок кнопка → GHL → подяка ще потребує контрольного тесту після підтвердження workflow. Окрема thank-you сторінка для Modular не використовується.

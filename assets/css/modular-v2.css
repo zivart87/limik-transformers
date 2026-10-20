@@ -494,6 +494,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .lf-more summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; padding: 0; cursor: pointer; font: 400 14px/1.4 var(--v2-body); color: #fff; }
 .mdc-page .lf-more summary::-webkit-details-marker { display: none; }
 .mdc-page .lf-more summary svg { flex-shrink: 0; transition: transform .2s ease-out; }
+@media (hover: hover) { .mdc-page .lf-more:not([open]) summary:hover svg, .mdc-page .lf-more.js-details:not(.is-expanded) summary:hover svg { color: var(--v2-accent); } }
 .mdc-page .lf-more[open] summary svg { transform: rotate(45deg); }
 .mdc-page .lf-more summary:focus-visible { outline: 2px solid var(--v2-accent); outline-offset: 4px; }
 .mdc-page .lf-more-body { display: grid; gap: 24px; padding: 8px 0 26px; }

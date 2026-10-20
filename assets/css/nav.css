@@ -243,3 +243,8 @@
   .nav-logo img { height: 38px; }
   .nav-mobile { display: flex; }
 }
+
+/* New product link: same treatment in desktop and mobile Products. */
+.nav-dropdown-menu a.nav-new-product, .nav-mobile-sub a.nav-new-product { display: flex; align-items: center; gap: 8px; }
+.nav-new-product > span:first-child { min-width: 0; }
+.nav-new-badge { display: inline-block; flex-shrink: 0; padding: 2px 4px; border-radius: 4px; background: #05B2FC; color: #002186; font: 700 10px/1.4 'Inter', sans-serif; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }

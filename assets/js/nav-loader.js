@@ -104,7 +104,7 @@
       return;
     }
 
-    fetch('/nav.html')
+    fetch('/nav.html?v=20261020-modular-link')
       .then(function (res) { return res.text(); })
       .then(function (html) {
         // Strip live-server injected scripts (they break SVG parsing)

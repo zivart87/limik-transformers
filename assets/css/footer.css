@@ -59,3 +59,8 @@
   .sf-wordmark { display: none; }
   .sf-mark { display: block; }
 }
+
+/* New Modular product, placed after Mobile Transformers. */
+.site-footer .sf-new-product { display: flex; align-items: flex-start; gap: 8px; }
+.sf-new-product > span:first-child { min-width: 0; }
+.sf-new-badge { display: inline-block; flex-shrink: 0; margin-top: 2px; padding: 2px 4px; border-radius: 4px; background: #05B2FC; color: #002186; font: 700 10px/1.4 'Inter', sans-serif; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }

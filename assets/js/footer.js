@@ -3,11 +3,11 @@
   if (!document.querySelector('link[href*="/assets/css/footer.css"]')) {
     var css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = '/assets/css/footer.css?v=20261001-nav-footer';
+    css.href = '/assets/css/footer.css?v=20261020-modular-link';
     document.head.appendChild(css);
   }
 
-  fetch('/footer.html?v=20261001-nav-footer')
+  fetch('/footer.html?v=20261020-modular-link')
     .then(function (r) { return r.text(); })
     .then(function (html) {
       var el = document.getElementById('site-footer');

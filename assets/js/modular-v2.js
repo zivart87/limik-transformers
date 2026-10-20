@@ -320,7 +320,7 @@
         var product = qf.querySelector('input[name="product"][value="limik-core"]');
         var selection = qf.querySelector('[name="configuration"]');
         if (product) { product.checked = true; product.dispatchEvent(new Event('change', { bubbles: true })); }
-        if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').dataset.configured = 'true'; selection.closest('.lf').hidden = false; }
+        if (selection) { selection.value = model; selection.disabled = false; selection.closest('.lf').dataset.configured = 'true'; selection.closest('.lf').hidden = false; selection.dispatchEvent(new Event('change', { bubbles: true })); }
       }
       if (go === 'schedule' || go === 'fit') {
         if (setProjectDetails) setProjectDetails(true);

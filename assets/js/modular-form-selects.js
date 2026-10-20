@@ -1,10 +1,10 @@
-/* Only the transformer selectors use a controlled, downward-opening list. */
+/* All Modular form selects share the same downward-opening list. */
 (function () {
   'use strict';
   var form = document.getElementById('qform');
   if (!form) return;
   var widgets = [];
-  form.querySelectorAll('select[data-technical-choice]').forEach(function (select) {
+  form.querySelectorAll('select').forEach(function (select) {
     var field = select.closest('.lf');
     var label = field.querySelector('label');
     var wrap = document.createElement('div');

@@ -31,7 +31,7 @@
 | `itCapacity` | `lt200`, `0.2-1`, `1-10`, `10plus`, `unsure` | **Нове** поле Text / dropdown із цими значеннями |
 | `projectStart` | `now`, `lt6`, `6-12`, `research` | **Нове** поле Text / dropdown із цими значеннями |
 | `configuration` | `Core 20`, `Core 40`, `Core Campus` | **Нове** поле Text / dropdown; Not sure yet → ключ не передається |
-| `formSource` | `Modular AI Data Centers` | Наявне поле; перевірити фільтри та маршрутизацію |
+| `formSource` | `Modular Data Center` | Наявне поле; перевірити фільтри та маршрутизацію |
 | `formVersion` | `modular-v2` | Новий маркер версії запиту для відокремлення логіки цієї форми |
 | `pageUrl` | Адреса сторінки | Наявне поле |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` | Поточна рекламна атрибуція, коли доступна | Зберегти наявне зіставлення |
@@ -54,7 +54,7 @@
   "companyName": "TEST Company",
   "email": "<контрольна адреса команди>",
   "productType": "power",
-  "formSource": "Modular AI Data Centers",
+  "formSource": "Modular Data Center",
   "formVersion": "modular-v2",
   "pageUrl": "https://www.limiktransformers.com/modular-ai-data-centers/v2-draft",
   "mvaSelection": "exact",

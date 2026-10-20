@@ -67,7 +67,7 @@
     catch (error) { /* Storage restrictions must not prevent a project inquiry. */ }
     var payload = Object.assign({}, attribution, {
       firstName: value('name'), companyName: value('company'), email: value('email'),
-      productType: products[selected.value], formSource: 'Modular AI Data Centers',
+      productType: products[selected.value], formSource: 'Modular Data Center',
       formVersion: 'modular-v2', pageUrl: window.location.href
     });
     var optional = { message: 'message', capacity: 'itCapacity', start: 'projectStart', configuration: 'configuration', mvaSelection: 'mvaSelection', voltageSelection: 'voltageSelection', requiredMva: 'requiredMva', requiredVoltage: 'requiredVoltage' };

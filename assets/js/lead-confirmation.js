@@ -18,6 +18,29 @@
       if (returnFocus && returnFocus.isConnected) returnFocus.focus({ preventScroll: true });
     });
   }
+  // Reuse destinations verified in the site's published GTM container (2026-11-03).
+  // This code owns modal-form conversions; do not also map limik_lead_success to
+  // these same conversions in GTM without removing these direct calls.
+  function trackModalLead(source, formId) {
+    var params = { send_to: 'G-SMY5YWBYT2', form_source: source, form_id: formId };
+    try {
+      window.dataLayer = window.dataLayer || [];
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', params);
+      else (function () { window.dataLayer.push(arguments); })('event', 'generate_lead', params);
+    } catch (error) { /* Analytics must not affect delivery or confirmation. */ }
+    // GTM initializes this existing pixel. Allow a bounded wait if it loads late;
+    // never initialize another copy or retry a conversion after it was called.
+    var attempts = 0;
+    function sendMetaLead() {
+      if (typeof window.fbq === 'function') {
+        try { window.fbq('trackSingle', '4193629684102100', 'Lead'); }
+        catch (error) { /* A blocked pixel must not affect the form. */ }
+      } else if (++attempts < 40) {
+        setTimeout(sendMetaLead, 250);
+      }
+    }
+    sendMetaLead();
+  }
   window.showLeadConfirmation = function (form, options) {
     options = options || {};
     if (!dialog) createDialog();
@@ -29,12 +52,13 @@
     if (!dialog.open) dialog.showModal();
     if (options.test || trackedForms.has(form)) return;
     trackedForms.add(form);
-    // The GTM container must map this event to the intended GA4/Ads conversions.
+    // Diagnostic event only; the current GTM container has no trigger for it.
     // Tracking failures must never change a successful submission into an error.
     try {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'limik_lead_success', form_source: options.source || '', form_id: form.id || '' });
     } catch (error) { /* Analytics is optional. */ }
+    trackModalLead(options.source || '', form.id || '');
     try {
       if (typeof window.oaiq === 'function') window.oaiq('measure', 'lead_created', { type: 'customer_action' });
     } catch (error) { /* Analytics is optional. */ }

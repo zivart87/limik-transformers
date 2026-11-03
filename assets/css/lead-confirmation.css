@@ -1,7 +1,7 @@
 /* Shared confirmation follows Modular v2; scoped to the dialog on v1 pages too. */
 .limik-confirmation {
   position: fixed; inset: 0; margin: auto; box-sizing: border-box;
-  width: min(620px, calc(100% - 32px)); max-height: calc(100dvh - 32px);
+  width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px);
   padding: 32px 48px; border: 0; border-radius: 8px;
   background: #F4F6FA; color: #09193B; text-align: center; overflow: auto;
 }
@@ -12,12 +12,12 @@
   width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #09193B;
 }
 .limik-confirmation .ty-icon {
-  width: 64px; height: 64px; margin: 0 auto 24px; box-sizing: border-box;
+  width: 28px; height: 28px; margin: 0 auto 24px; box-sizing: border-box;
   border: 0; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: #05B2FC; color: #fff;
 }
-.limik-confirmation .ty-icon svg { color: inherit; }
+.limik-confirmation .ty-icon svg { width: 16px; height: 16px; color: inherit; }
 .limik-confirmation h2 {
   margin: 0 0 24px; color: #09193B;
   font: 500 clamp(28px, 4vw, 52px)/1.02 'REM', sans-serif; letter-spacing: 0;
@@ -26,7 +26,6 @@
   margin: 0 0 32px; font: 400 16px/1.75 'Inter', sans-serif; color: #3A5570;
   text-wrap: pretty;
 }
-.limik-confirmation .ty-message span { display: block; }
 .limik-confirmation .ty-actions { display: flex; justify-content: center; }
 .limik-confirmation .limik-confirmation-continue {
   display: inline-flex; align-items: center; gap: 16px; max-width: 100%;

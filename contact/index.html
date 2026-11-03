@@ -274,8 +274,6 @@
     }
 
   </style>
-  <link rel="stylesheet" href="/assets/css/lead-confirmation.css?v=20261103-thanks-air">
-  <script src="/assets/js/lead-confirmation.js?v=20261103-thanks-28"></script>
 </head>
 <body data-hero=".co-hero">
 <!-- Google Tag Manager (noscript) -->
@@ -535,7 +533,7 @@
       formEl.dataset.submitted = 'true';
       submitButton.disabled = true;
       submitButton.textContent = 'Request sent';
-      window.showLeadConfirmation(formEl, { source: payload.formSource });
+      window.location.href = '/thank-you/';
     }).catch(function() {
       submitButton.disabled = false;
       submitButton.textContent = submitLabel;

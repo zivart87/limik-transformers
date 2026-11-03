@@ -176,3 +176,5 @@
 Збережено наявний webhook Get a Quote, formSource `Request a Quote Page`, UTM-збирання, GTM/pixels та redirect на `/thank-you/` тільки після HTTP 2xx. Full Name передається як `firstName`; `lastName`, `phone`, `city`, `state`, `application`, `quantity`, `mvaRange`, `hvVoltage`, `lvVoltage`, `cooling` у запиті взагалі відсутні, а не надіслані порожніми. Не гарантує поведінку стороннього workflow GHL: до перевірки не стверджувати, що існуючі поля контакту не очистяться або що маршрут коректно прийме `limik-core` і повне ім’я без телефону. Потрібне окреме підтвердження Надії й контрольна заявка після погодженого розгортання.
 
 Локальна перевірка з підставним fetch без надсилання в CRM: валідація пустої форми, payload Modular (`firstName` повне ім’я, `productType=limik-core`, повідомлення, відсутність прибраних полів), Power (`productType=power`), помилка HTTP не показує успіх. Компонування перевірено на 1340 / 1024 / 360px по межах форми. Реальний webhook, CRM workflow, сповіщення та конверсії не перевірялися.
+
+Уточнення користувача: у Get a Quote плитка Modular Data Center стоїть після Mobile Transformer і перед Not Sure Yet; код `limik-core` не змінено.

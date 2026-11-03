@@ -109,7 +109,8 @@
       if (!response.ok) throw new Error('Webhook rejected the request');
       sent = true;
       button.textContent = 'Request sent';
-      showStatus(testMode ? 'Thank you. Your test request has been submitted.' : 'Thank you. Your project request has been submitted.', false);
+      showStatus('', false);
+      window.showLeadConfirmation(form, { test: testMode, source: 'Modular Data Center' });
     } catch (error) {
       button.textContent = label;
       showStatus('We could not confirm submission. Your details are still here. Please try again, or contact us using the phone or email below.', true);

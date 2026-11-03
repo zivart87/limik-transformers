@@ -182,3 +182,8 @@ REM — заголовки, кнопки, великі цифри, вкладк�
 - Стрілки всіх списків форми (2026-10-20): при `aria-expanded="true"` шеврон повертається вгору; після вибору чи іншого закриття — вниз. Перехід transform .2s ease-out.
 
 - Назва продукту (2026-10-20, уточнення користувача): без AI — Modular Data Center у title та виборі продукту, Modular data centers у hero. `formSource` у CRM тепер точно `Modular Data Center`. У меню й футері зберігається Modular Data Centers. URL та код продукту `limik-core` не змінені.
+
+
+### Подяка після заявки — 2026-11-03
+
+Рішення користувача: спільне вікно подяки для Modular, Get a Quote і Contact, із хрестиком та кнопкою Continue browsing, яка закриває вікно на поточній сторінці. Escape теж закриває. Реалізація: `assets/css/lead-confirmation.css`, `assets/js/lead-confirmation.js`; біла картка з палітрою й типографікою v2 та жовтою CTA. GTM і наявний OpenAI Ads pixel тепер додані на Modular за поточним запитом; попереднє правило «без GTM/пікселя» для цієї чернетки замінено. Деталі подій та невиконані перевірки — у [Modular / GHL](../reference/modular-form-ghl-mapping.md).

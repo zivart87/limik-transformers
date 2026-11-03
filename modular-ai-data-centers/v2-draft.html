@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RH77HDC');</script>
+  <!-- End Google Tag Manager -->
+  <!-- OpenAI Ads Pixel -->
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () {
+        q.q.push(arguments);
+      };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init", {
+      pixelId: "DDVVFiqsmMZjWmCLRLQDor",
+      debug: true,
+    });
+  </script>
+  <!-- End OpenAI Ads Pixel -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LIMIK Core Modular Data Center | Design v2 draft</title>
@@ -18,6 +47,8 @@
   <link rel="stylesheet" href="/assets/css/nav.css?v=20261020-modular-link">
   <link rel="stylesheet" href="/assets/css/footer.css?v=20261020-modular-link">
   <link rel="stylesheet" href="/assets/css/modular-v2.css?v=20261020-select-arrow">
+  <link rel="stylesheet" href="/assets/css/lead-confirmation.css?v=20261103-confirmation">
+  <script src="/assets/js/lead-confirmation.js?v=20261103-confirmation"></script>
 </head>
 <body class="mdc-page" data-hero=".hero">
   <div id="nav-placeholder"></div>
@@ -371,7 +402,7 @@
   <script src="/assets/js/back-to-top.js"></script>
   <script src="/assets/js/utm.js?v=20261020-selects-unified"></script>
   <script src="/assets/js/modular-v2.js?v=20261020-selects-unified"></script>
-  <script src="/assets/js/modular-lead-form.js?v=20261020-ui-test"></script>
+  <script src="/assets/js/modular-lead-form.js?v=20261103-confirmation"></script>
   <script src="/assets/js/modular-form-selects.js?v=20261020-selects-unified"></script>
 </body>
 </html>

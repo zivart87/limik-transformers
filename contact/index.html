@@ -274,6 +274,8 @@
     }
 
   </style>
+  <link rel="stylesheet" href="/assets/css/lead-confirmation.css?v=20261103-confirmation">
+  <script src="/assets/js/lead-confirmation.js?v=20261103-confirmation"></script>
 </head>
 <body data-hero=".co-hero">
 <!-- Google Tag Manager (noscript) -->
@@ -504,8 +506,14 @@
 
     if (!valid) { if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
-    var btn = formEl.querySelector('button[type=submit]');
-    btn.disabled = true; btn.textContent = 'Sending…';
+    if (formEl.dataset.sending || formEl.dataset.submitted) return;
+    formEl.dataset.sending = 'true';
+    var submitButton = formEl.querySelector('[type="submit"]');
+    var submitLabel = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending…';
+    var previousError = formEl.querySelector('.lead-delivery-error');
+    if (previousError) previousError.remove();
 
     var payload = {
       firstName:   (formEl.querySelector('[name=firstName]')   || {}).value || '',
@@ -522,8 +530,24 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(function() { window.location.href = '/thank-you/'; })
-    .catch(function() { window.location.href = '/thank-you/'; });
+    .then(function(response) {
+      if (!response.ok) throw new Error('Request rejected');
+      formEl.dataset.submitted = 'true';
+      submitButton.disabled = true;
+      submitButton.textContent = 'Request sent';
+      window.showLeadConfirmation(formEl, { source: payload.formSource });
+    }).catch(function() {
+      submitButton.disabled = false;
+      submitButton.textContent = submitLabel;
+      var status = formEl.querySelector('.lead-delivery-error');
+      if (!status) {
+        status = document.createElement('p');
+        status.className = 'lead-delivery-error';
+        status.setAttribute('role', 'alert');
+        submitButton.parentNode.appendChild(status);
+      }
+      status.textContent = 'We could not confirm submission. Your details are still here. Please try again, or contact us by phone or email.';
+    }).finally(function() { delete formEl.dataset.sending; });
   });
 })();
 </script>

@@ -448,6 +448,8 @@
     }
 
   </style>
+  <link rel="stylesheet" href="/assets/css/lead-confirmation.css?v=20261103-confirmation">
+  <script src="/assets/js/lead-confirmation.js?v=20261103-confirmation"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -822,8 +824,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         e.preventDefault();
         if (firstErrorField) firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
-        // Форма валидна — редирект на страницу благодарности
-        // (сработает после отправки на сервер; пока action="#" — редиректим вручную)
+        // Confirm success only after the endpoint accepts the request.
         e.preventDefault();
         var rqIti = window._iti;
         var productType = '';
@@ -848,12 +849,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           formSource:  'Request a Quote Page'
         };
         Object.assign(payload, window.getUtmPayload ? window.getUtmPayload() : {});
+        if (form.dataset.sending || form.dataset.submitted) return;
+        form.dataset.sending = 'true';
+        var submitButton = form.querySelector('[type="submit"]');
+        var submitLabel = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+        var previousError = form.querySelector('.lead-delivery-error');
+        if (previousError) previousError.remove();
         fetch('https://services.leadconnectorhq.com/hooks/J26g7N7tbNqN9LDOAD1K/webhook-trigger/dc39a6cd-9d59-4801-9ebe-de45d72cb78f', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-        }).then(function() { window.location.href = '/thank-you/'; })
-          .catch(function() { window.location.href = '/thank-you/'; });
+        }).then(function(response) {
+          if (!response.ok) throw new Error('Request rejected');
+          form.dataset.submitted = 'true';
+          submitButton.disabled = true;
+          submitButton.textContent = 'Request sent';
+          window.showLeadConfirmation(form, { source: payload.formSource });
+        }).catch(function() {
+          submitButton.disabled = false;
+          submitButton.textContent = submitLabel;
+          var status = form.querySelector('.lead-delivery-error');
+          if (!status) {
+            status = document.createElement('p');
+            status.className = 'lead-delivery-error';
+            status.setAttribute('role', 'alert');
+            submitButton.parentNode.appendChild(status);
+          }
+          status.textContent = 'We could not confirm submission. Your details are still here. Please try again, or contact us by phone or email.';
+        }).finally(function() { delete form.dataset.sending; });
       }
     });
   });

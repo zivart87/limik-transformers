@@ -1,9 +1,93 @@
-/* Shared request confirmation, using the approved LIMIK v2 palette. */
-.limik-confirmation { position: fixed; inset: 0; margin: auto; box-sizing: border-box; width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 48px 32px 32px; border: 0; border-radius: 8px; background: #fff; color: #09193B; text-align: center; overflow: auto; }
+/* Content and styles preserved from thank-you/index.html. */
+.limik-confirmation { position: fixed; inset: 0; margin: auto; box-sizing: border-box; width: min(700px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 48px 40px 40px; border: 0; border-radius: 8px; background: var(--off-white); color: var(--navy-dark); text-align: center; overflow: auto; }
 .limik-confirmation::backdrop { background: rgba(0,8,33,.8); }
-.limik-confirmation h2 { margin: 0 0 24px; font-family: 'REM', sans-serif; font-size: clamp(28px, 4vw, 36px); font-weight: 500; line-height: 1.1; color: #09193B; }
-.limik-confirmation p { margin: 0 0 32px; font: 400 16px/1.75 'Inter', sans-serif; color: #3A5570; }
 .limik-confirmation button { cursor: pointer; }
-.limik-confirmation .limik-confirmation-close { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #09193B; }
-.limik-confirmation .limik-confirmation-continue { max-width: 100%; min-height: 48px; padding: 14px 24px; border: 0; border-radius: 6px; background: #FFCF0B; color: #09193B; font: 700 13px/1.4 'REM', sans-serif; letter-spacing: .07em; text-transform: uppercase; }
+.limik-confirmation .limik-confirmation-close { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--navy-dark); }
+.limik-confirmation .limik-confirmation-continue { padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; }
 .limik-confirmation button:focus-visible { outline: 2px solid #05B2FC; outline-offset: 2px; }
+
+    .limik-confirmation .ty-icon {
+      width: 64px; height: 64px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .limik-confirmation .ty-icon svg { color: var(--white); }
+
+
+    .limik-confirmation .ty-eyebrow {
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 20px;
+    }
+
+    .limik-confirmation h2 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--navy-dark);
+      margin-bottom: 24px;
+    }
+
+    .limik-confirmation p {
+      font-size: 16px; font-weight: 400;
+      line-height: 1.75; color: #3A5570;
+      margin-bottom: 12px;
+    }
+
+    .limik-confirmation .ty-divider {
+      width: 48px; height: 3px;
+      background: var(--blue);
+      margin: 36px auto;
+    }
+
+
+    .limik-confirmation .ty-next {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 48px;
+    }
+    .limik-confirmation .ty-next-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 16px; font-weight: 400;
+      color: #3A5570; line-height: 1.75;
+    }
+    .limik-confirmation .ty-next-num {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      background: var(--navy-dark);
+      color: var(--white);
+      font-size: 11px; font-weight: 800;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+
+
+    .limik-confirmation .ty-actions {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .limik-confirmation .ty-link {
+      display: inline-flex; align-items: center; gap: 16px;
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--navy-dark);
+    }
+    .limik-confirmation .ty-link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy-dark);
+      border-radius: 2px;
+    }
+    .limik-confirmation .ty-link-icon svg { transition: transform 0.1s ease; }
+    .limik-confirmation .ty-link:hover .ty-link-icon svg { transform: rotate(-45deg); }
+
+
+@media (max-width: 600px) {
+  .limik-confirmation { padding: 48px 20px 32px; }
+  .limik-confirmation .ty-next-item { min-width: 0; }
+  .limik-confirmation .ty-actions { flex-direction: column; align-items: flex-start; }
+}

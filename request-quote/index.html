@@ -227,6 +227,8 @@
       transition: border-color 0.15s, box-shadow 0.15s;
       width: 100%; box-sizing: border-box;
     }
+    .rq-field input:not([type="radio"]):not([type="checkbox"]),
+    .rq-field select { height: 46px; }
     .rq-field input:focus,
     .rq-field select:focus,
     .rq-field textarea:focus {
@@ -256,6 +258,7 @@
     }
     .rq-pill {
       display: inline-flex; align-items: center; gap: 8px;
+      min-height: 46px; box-sizing: border-box;
       cursor: pointer;
       font-family: var(--font);
       font-size: 13px; font-weight: 500;

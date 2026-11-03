@@ -178,3 +178,5 @@
 Локальна перевірка з підставним fetch без надсилання в CRM: валідація пустої форми, payload Modular (`firstName` повне ім’я, `productType=limik-core`, повідомлення, відсутність прибраних полів), Power (`productType=power`), помилка HTTP не показує успіх. Компонування перевірено на 1340 / 1024 / 360px по межах форми. Реальний webhook, CRM workflow, сповіщення та конверсії не перевірялися.
 
 Уточнення користувача: у Get a Quote плитка Modular Data Center стоїть після Mobile Transformer і перед Not Sure Yet; код `limik-core` не змінено.
+
+Уточнення користувача: поля Full Name, Work Email, Company і список джерела мають висоту 46px; плитки Product Type — мінімальну висоту 46px із запасом на перенос. Project Description не змінено. Стилі цієї сторінки inline, окремий CSS-файл не змінювався.

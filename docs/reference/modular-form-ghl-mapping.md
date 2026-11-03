@@ -180,3 +180,5 @@
 Уточнення користувача: у Get a Quote плитка Modular Data Center стоїть після Mobile Transformer і перед Not Sure Yet; код `limik-core` не змінено.
 
 Уточнення користувача: поля Full Name, Work Email, Company і список джерела мають висоту 46px; плитки Product Type — мінімальну висоту 46px із запасом на перенос. Project Description не змінено. Стилі цієї сторінки inline, окремий CSS-файл не змінювався.
+
+Уточнення Get a Quote: за зразком Careers ширина фото `.rq-left` — 560px на desktop, 440px при ≤1100px, 100% при ≤860px. Інші стилі та висоту фото не змінювали.

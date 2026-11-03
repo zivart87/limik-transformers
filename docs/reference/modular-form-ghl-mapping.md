@@ -182,3 +182,8 @@
 Уточнення користувача: поля Full Name, Work Email, Company і список джерела мають висоту 46px; плитки Product Type — мінімальну висоту 46px із запасом на перенос. Project Description не змінено. Стилі цієї сторінки inline, окремий CSS-файл не змінювався.
 
 Уточнення Get a Quote: за зразком Careers ширина фото `.rq-left` — 560px на desktop, 440px при ≤1100px, 100% при ≤860px. Інші стилі та висоту фото не змінювали.
+
+
+### Контрольний тест Get a Quote — 2026-11-03
+
+На пряме прохання користувача перевірено публічну спрощену форму. Порожня заявка не відправляється: підсвічені Full Name, Work Email, Company та Product Type. Некоректний email показує Enter a valid email address. Потім одна заявка з адресою `limik-quote-test-20261103@example.com`: Full Name `TEST Get Quote 20261103`, Company `TEST ONLY — LIMIK Quote 20261103`, продукт Modular Data Center (`limik-core`), повідомлення з маркером TEST ONLY і джерело Other. В URL додано `utm_source=limik-test`, `utm_medium=qa`, `utm_campaign=quote-test-20261103`. Форма перейшла на `/thank-you/`, що означає отримання HTTP 2xx від webhook, не підтверджує збереження полів у GHL. Надію потрібно попросити звірити контакт, productType, повідомлення, поточні UTM, formSource, можливе збереження старих полів контакту та сповіщення. Значення first-touch можуть відрізнятися через попередні відвідування. Це реальний маршрут, тому тест міг бути зарахований як конверсія GA4 / Meta / OpenAI; фактичне зарахування в кабінетах не перевірено.

@@ -489,46 +489,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="rq-section">
         <div class="rq-section-label" data-n="1">Contact Information</div>
 
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-fn">First Name <span class="req">*</span></label>
-            <input type="text" id="rq-fn" name="first_name" placeholder="John" required>
-          </div>
-          <div class="rq-field">
-            <label for="rq-ln">Last Name <span class="req">*</span></label>
-            <input type="text" id="rq-ln" name="last_name" placeholder="Smith" required>
-          </div>
-        </div>
-
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-company">Company Name <span class="req">*</span></label>
-            <input type="text" id="rq-company" name="company" placeholder="ACME Utilities" required>
-          </div>
-          <div class="rq-field">
-            <label for="rq-phone">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="rq-phone" name="phone" inputmode="tel" required>
-          </div>
-        </div>
-
         <div class="rq-row rq-col-1">
           <div class="rq-field">
-            <label for="rq-email">Email <span class="req">*</span></label>
-            <input type="email" id="rq-email" name="email" placeholder="john@company.com" required>
+            <label for="rq-fn">Full Name <span class="req">*</span></label>
+            <input type="text" id="rq-fn" name="full_name" autocomplete="name" placeholder="John Smith" required>
           </div>
         </div>
-
         <div class="rq-row rq-col-2">
           <div class="rq-field">
-            <label for="rq-city">City</label>
-            <input type="text" id="rq-city" name="city" placeholder="Houston">
+            <label for="rq-email">Work Email <span class="req">*</span></label>
+            <input type="email" id="rq-email" name="email" autocomplete="email" placeholder="john@company.com" required>
           </div>
           <div class="rq-field">
-            <label for="rq-state">State / Region</label>
-            <input type="text" id="rq-state" name="state" placeholder="Texas">
+            <label for="rq-company">Company <span class="req">*</span></label>
+            <input type="text" id="rq-company" name="company" autocomplete="organization" placeholder="ACME Utilities" required>
           </div>
         </div>
-
       </div>
 
       <!-- 2. Project Requirements -->
@@ -539,6 +515,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="rq-field">
             <label>Product Type <span class="req">*</span></label>
             <div class="rq-radio-group">
+              <label class="rq-pill">
+                <input type="radio" name="product_type" value="limik-core">
+                Modular Data Center
+              </label>
               <label class="rq-pill">
                 <input type="radio" name="product_type" value="power" required>
                 Power Transformer
@@ -563,88 +543,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-app">Application <span class="req">*</span></label>
-            <select id="rq-app" name="application" required>
-              <option value="" disabled selected>Select application…</option>
-              <option>Utility / Substation</option>
-              <option>Generation / GSU</option>
-              <option>Industrial</option>
-              <option>Defense / DOD</option>
-              <option>Renewable Energy / Solar</option>
-              <option>Data Center</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="rq-field">
-            <label for="rq-qty">Quantity</label>
-            <input type="number" id="rq-qty" name="quantity" placeholder="1" min="1" max="999">
-          </div>
-        </div>
       </div>
 
-      <!-- 3. Technical Parameters -->
+      <!-- 3. Additional Information -->
       <div class="rq-section">
-        <div class="rq-section-label" data-n="3">Technical Parameters</div>
-
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-mva">MVA Range</label>
-            <select id="rq-mva" name="mva_range">
-              <option value="" disabled selected>Select range…</option>
-              <option>20–50 MVA</option>
-              <option>51–100 MVA</option>
-              <option>101–200 MVA</option>
-              <option>201–400 MVA</option>
-              <option>401–600 MVA</option>
-              <option>Not yet determined</option>
-            </select>
-          </div>
-          <div class="rq-field">
-            <label for="rq-hv">HV Voltage Class</label>
-            <select id="rq-hv" name="hv_voltage">
-              <option value="" disabled selected>Select class…</option>
-              <option>115 kV</option>
-              <option>138 kV</option>
-              <option>230 kV</option>
-              <option>345 kV</option>
-              <option>500 kV</option>
-              <option>525 kV</option>
-              <option>Not yet determined</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="rq-row rq-col-2">
-          <div class="rq-field">
-            <label for="rq-lv">LV Voltage Class</label>
-            <select id="rq-lv" name="lv_voltage">
-              <option value="" disabled selected>Select class…</option>
-              <option>Up to 15 kV</option>
-              <option>15–35 kV</option>
-              <option>35–69 kV</option>
-              <option>Not yet determined</option>
-            </select>
-          </div>
-          <div class="rq-field">
-            <label for="rq-cooling">Cooling Type</label>
-            <select id="rq-cooling" name="cooling">
-              <option value="" disabled selected>Select type…</option>
-              <option>ONAN</option>
-              <option>ONAF</option>
-              <option>OFAF</option>
-              <option>ODAF</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 4. Additional Information -->
-      <div class="rq-section">
-        <div class="rq-section-label" data-n="4">Additional Information</div>
+        <div class="rq-section-label" data-n="3">Additional Information</div>
 
         <div class="rq-row rq-col-1">
           <div class="rq-field">
@@ -824,24 +727,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       } else {
         // Confirm success only after the endpoint accepts the request.
         e.preventDefault();
-        var rqIti = window._iti;
         var productType = '';
         form.querySelectorAll('[name=product_type]').forEach(function(r) { if (r.checked) productType = r.value; });
         var payload = {
           firstName:   (document.getElementById('rq-fn')      || {}).value || '',
-          lastName:    (document.getElementById('rq-ln')      || {}).value || '',
           companyName: (document.getElementById('rq-company') || {}).value || '',
-          phone:       rqIti ? rqIti.getNumber() : ((document.getElementById('rq-phone') || {}).value || ''),
           email:       (document.getElementById('rq-email')   || {}).value || '',
-          city:        (document.getElementById('rq-city')    || {}).value || '',
-          state:       (document.getElementById('rq-state')   || {}).value || '',
           productType: productType,
-          application: (document.getElementById('rq-app')     || {}).value || '',
-          quantity:    (document.getElementById('rq-qty')     || {}).value || '',
-          mvaRange:    (document.getElementById('rq-mva')     || {}).value || '',
-          hvVoltage:   (document.getElementById('rq-hv')      || {}).value || '',
-          lvVoltage:   (document.getElementById('rq-lv')      || {}).value || '',
-          cooling:     (document.getElementById('rq-cooling') || {}).value || '',
           message:     (document.getElementById('rq-message') || {}).value || '',
           source:      (document.getElementById('rq-source')  || {}).value || '',
           formSource:  'Request a Quote Page'

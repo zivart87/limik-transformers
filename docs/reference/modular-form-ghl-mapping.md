@@ -167,3 +167,12 @@
 Власник цих двох конверсій для modal-форм — цей JS; `limik_lead_success` поки лишається діагностичною подією. Якщо пізніше її зв'яжуть із цими ж конверсіями в GTM, прямі виклики треба прибрати, щоб уникнути дублювання. Один виклик на форму забезпечує наявний WeakSet. `form-test=1` пропускає всі три конверсії (GA4, Meta, OpenAI), звичайне preview також їх не запускає. Contact / Get a Quote та решта форм збережені на старому redirect.
 
 Це підключення коду, а не підтвердження приймання подій кабінетами. Google Ads ID/label у перевіреному контейнері не знайдені; прямий Ads conversion tag не додано. Можливий імпорт з GA4 не перевірений. Реальну заявку з рекламною конверсією під час цієї правки не надсилали.
+
+
+## Спрощення загальної Get a Quote — 2026-11-03
+
+За погодженим користувачем переліком підготовлено локальну зміну `request-quote/index.html`: три розділи Contact Information (Full Name, Work Email, Company — обов’язкові), Project Requirements (Product Type, додано Modular Data Center / `limik-core`) і Additional Information (попередні Project Description та How did you hear about us). Application, Quantity, усі Technical Parameters, телефон, окреме прізвище, місто й регіон прибрані. SMS-згоди та решту розділу Additional Information не змінено.
+
+Збережено наявний webhook Get a Quote, formSource `Request a Quote Page`, UTM-збирання, GTM/pixels та redirect на `/thank-you/` тільки після HTTP 2xx. Full Name передається як `firstName`; `lastName`, `phone`, `city`, `state`, `application`, `quantity`, `mvaRange`, `hvVoltage`, `lvVoltage`, `cooling` у запиті взагалі відсутні, а не надіслані порожніми. Не гарантує поведінку стороннього workflow GHL: до перевірки не стверджувати, що існуючі поля контакту не очистяться або що маршрут коректно прийме `limik-core` і повне ім’я без телефону. Потрібне окреме підтвердження Надії й контрольна заявка після погодженого розгортання.
+
+Локальна перевірка з підставним fetch без надсилання в CRM: валідація пустої форми, payload Modular (`firstName` повне ім’я, `productType=limik-core`, повідомлення, відсутність прибраних полів), Power (`productType=power`), помилка HTTP не показує успіх. Компонування перевірено на 1340 / 1024 / 360px по межах форми. Реальний webhook, CRM workflow, сповіщення та конверсії не перевірялися.

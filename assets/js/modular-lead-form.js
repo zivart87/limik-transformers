@@ -1,4 +1,4 @@
-/* Modular lead delivery. Keep data-delivery="preview" until the GHL mapping is verified. */
+/* Modular lead delivery. The normal page submits; form-test=1 marks CRM tests. */
 (function () {
   'use strict';
   var form = document.getElementById('qform');
@@ -14,7 +14,7 @@
     var note = document.getElementById('q-submit-note');
     if (note && note.firstChild) note.firstChild.textContent = 'Test mode: submitting sends a test request to CRM. Use test data only. Read our ';
     var intro = document.querySelector('#configure .lead-intro .intro');
-    if (intro) intro.textContent = intro.textContent.replace('This draft form is a preview and does not send a request.', 'This visit is in test mode and can send a test request.');
+    if (intro) intro.textContent += ' This visit is in test mode and can send a test request.';
   }
 
   function value(name) {

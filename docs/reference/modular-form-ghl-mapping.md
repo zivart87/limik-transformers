@@ -198,4 +198,4 @@ SEO-рішення користувача 2026-11-03: нова `/modular-ai-data
 
 Повторна заявка Get a Quote за проханням користувача 2026-11-03: `limik-quote-test-20261103-b@example.com`, Full Name `TEST Get Quote 20261103 B`, Company `TEST ONLY — LIMIK Quote 20261103 B`, Product Type Modular Data Center (`limik-core`), Project Description позначено TEST ONLY, How did you hear about us = Other; current UTM source `limik-test`, medium `qa`, campaign `quote-retest-20261103`. Одна заявка через UI, відкрилася `/thank-you/` (HTTP 2xx webhook). CRM-поля і сповіщення очікують підтвердження Надії; тест може потрапити в статистику конверсій.
 
-Уточнення Get a Quote: за запитом користувача обводка текстових полів, списку та Project Description задана 1.2px (уточнення користувача замість 0.75px); плитки Product Type не змінювалися. Значення scoped до цієї сторінки, інші форми не змінено.
+Уточнення Get a Quote: за запитом користувача обводка текстових полів, списку та Project Description задана 1.2px (уточнення користувача замість 0.75px); плитки Product Type також вирівняні до 1.2px за уточненням користувача. Значення scoped до цієї сторінки, інші форми не змінено.

@@ -192,15 +192,17 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 /* Center the module within the section’s content width. */
 .mdc-page .wi-img.wi-photo { aspect-ratio: auto; overflow: visible; border-radius: 0; margin: 0; background: none; }
 .mdc-page .wi-photo img { display: block; width: 960px; max-width: 100%; height: auto; margin: 0 auto; }
-.mdc-page .wi-technologies { margin-top: 48px; padding: 28px 32px; background: #fff; text-align: center; }
+.mdc-page .wi-technologies { margin-top: 24px; padding: 28px 32px; background: #fff; text-align: center; }
 .mdc-page .wi-technologies-title { margin: 0 0 24px; color: #334968; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .mdc-page .wi-technologies-logos { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; align-items: center; margin: 0; padding: 0; list-style: none; }
 .mdc-page .wi-technologies-logos li { display: flex; justify-content: center; align-items: center; min-width: 0; }
-.mdc-page .wi-technologies-logos img { display: block; width: auto; max-width: 100%; max-height: 38px; }
+.mdc-page .wi-technologies-logos img { display: block; width: auto; max-width: 100%; max-height: 50px; }
+.mdc-page .wi-technologies-logos img[alt="NVIDIA"] { max-height: 64px; }
+.mdc-page .wi-technologies-logos img[alt="AMD"] { width: 100%; max-width: 130px; }
+.mdc-page .wi-technologies-logos img[alt="Dell"] { max-height: 64px; }
 .mdc-page .wi-technologies-logos .wi-vertiv { gap: 7px; color: #1b1b1b; font-size: 20px; font-weight: 800; letter-spacing: .02em; }
 .mdc-page .wi-vertiv img { width: 29px; height: 29px; }
-.mdc-page .wi-technologies-note { margin: 24px 0 0; color: #526681; font-size: 12px; line-height: 1.5; }
-@media (max-width: 767px) { .mdc-page .wi-technologies { margin-top: 32px; padding: 24px; } .mdc-page .wi-technologies-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; } }
+@media (max-width: 767px) { .mdc-page .wi-technologies { margin-top: 20px; padding: 24px; } .mdc-page .wi-technologies-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; } }
 @media (max-width: 400px) { .mdc-page .wi-technologies-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .mdc-page .wi-text { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 64px; margin-top: 48px; align-items: start; }
 @media (max-width: 991px) { .mdc-page .wi-img { aspect-ratio: 16/10; } .mdc-page .wi-text { grid-template-columns: 1fr; gap: 24px; margin-top: 32px; } }

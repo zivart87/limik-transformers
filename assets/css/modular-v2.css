@@ -191,7 +191,7 @@ body.mdc-page > chat-widget { position: fixed; z-index: 99999999; }
 .mdc-page .wi-img { aspect-ratio: 21/9; max-width: 100%; border-radius: var(--v2-r-lg); overflow: hidden; }
 /* Center the module within the section’s content width. */
 .mdc-page .wi-img.wi-photo { aspect-ratio: auto; overflow: visible; border-radius: 0; margin: 0; background: none; }
-.mdc-page .wi-photo img { display: block; width: 66.667%; max-width: 100%; height: auto; margin: 0 auto; }
+.mdc-page .wi-photo img { display: block; width: 960px; max-width: 100%; height: auto; margin: 0 auto; }
 .mdc-page .wi-text { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 64px; margin-top: 48px; align-items: start; }
 @media (max-width: 991px) { .mdc-page .wi-img { aspect-ratio: 16/10; } .mdc-page .wi-text { grid-template-columns: 1fr; gap: 24px; margin-top: 32px; } }
 

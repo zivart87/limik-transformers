@@ -79,3 +79,8 @@
 Оновлення рішення користувача 2026-11-03: звичайну форму Modular переведено з preview на реальну відправку; `?form-test=1` лишається тестовим режимом. Індексація й canonical не змінюються.
 
 Уточнення 2026-11-03: favicon Modular v2 використовує стандартні файли сайту `/favicon.ico`, `/assets/images/favicon.svg` і `/assets/images/apple-touch-icon.png`, як Get a Quote та Contact; повний `logo.svg` як favicon не використовувати.
+
+
+## BZI Pilot — окрема сторінка за посиланням, 2026-11-16
+
+За запитом користувача модель із Claude artifact `159b3C9u65joCki4WY67bD` розміщується в `bzi-pilot/index.html`, адреса `/bzi-pilot`. Сторінка публічно доступна за URL, але має `noindex, nofollow`; не додавати її в меню, footer або sitemap. Це не парольний захист. Вигляд, тексти, геометрія та інтерактивна логіка клієнтської моделі збережені. Службовий frame-runtime Claude видалений; карти й логотипи вбудовані у файл, Three.js r128, OrbitControls і Google Fonts завантажуються з чинних CDN. Додано стандартний favicon сайту, метадані та HTML landmark; форми й аналітика інших сторінок не змінюються.

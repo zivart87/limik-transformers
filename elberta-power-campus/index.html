@@ -1,0 +1,610 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Elberta Power Campus Model</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Interactive concept model of the LIMIK gas-powered modular data center campus in Elberta, Utah. For discussion; not for construction.">
+<link rel="canonical" href="https://www.limiktransformers.com/elberta-power-campus">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elberta Power Campus Model">
+<meta property="og:description" content="Interactive concept model of the LIMIK gas-powered modular data center campus in Elberta, Utah. For discussion; not for construction.">
+<meta property="og:url" content="https://www.limiktransformers.com/elberta-power-campus">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed 3D stage on a redrawn site plan; title block with live power balance top-left, toolbar bottom-centre, compass top-right. */
+:root{
+  --panel: rgba(247,248,245,.94);
+  --ink:#1b231f; --muted:#59645d; --rule:#c7cec7; --accent:#1e5d88; --btn:#ffffff; --btn-on:#0f2656; --btn-on-ink:#ffffff;
+  --ok:#15803d; --warn:#b45309; --bad:#b91c1c;
+  --gen:#c2473d; --hall:#3d7dd8; --filt:#6fa8c9; --xfmr:#56704a; --gas:#d4a40c; --line:#2748c7; --steel:#3a4046; --bg:#dfe7ec;
+  --f-ui:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --panel: rgba(20,25,22,.92); --ink:#e3e9e4; --muted:#9ca79f; --rule:#39433d; --accent:#7ab6de; --btn:#232b26; --btn-on:#ffcf0b; --btn-on-ink:#0f1512;
+  --ok:#4ade80; --warn:#fbbf24; --bad:#f87171; --bg:#1a2024; color-scheme:dark}
+  :root:not([data-theme="light"]) .lg-l{display:none}:root:not([data-theme="light"]) .lg-d{display:block}}
+:root[data-theme="dark"]{
+  --panel: rgba(20,25,22,.92); --ink:#e3e9e4; --muted:#9ca79f; --rule:#39433d; --accent:#7ab6de; --btn:#232b26; --btn-on:#ffcf0b; --btn-on-ink:#0f1512;
+  --ok:#4ade80; --warn:#fbbf24; --bad:#f87171; --bg:#1a2024; color-scheme:dark}
+:root[data-theme="dark"] .lg-l{display:none}:root[data-theme="dark"] .lg-d{display:block}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+#stage{position:fixed;inset:0}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none}
+#stage .fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-size:16px;color:var(--ink)}
+#labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;font:600 12px/1.15 var(--f-ui);letter-spacing:.02em;color:#1b231f;background:rgba(255,255,255,.93);border:1px solid rgba(27,35,31,.2);padding:3px 7px 3px 6px;border-radius:3px;display:flex;gap:6px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.lb i{width:9px;height:9px;border-radius:2px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.lb small{font:500 10.5px/1 var(--f-mono);color:#4d5852}
+.lb.ctx{background:rgba(32,38,35,.78);color:#f1f4f1;border-color:transparent}
+.lb.ctx small{color:#d3dad5}
+.lb.site{background:#0f2656;color:#fff;border-color:#09193b;font-size:13.5px;padding:5px 10px}
+.lb.site small{color:#ffcf0b}
+.lb.pwr{background:#fff1ef;border-color:#c2473d;color:#7a1f18}
+.lb.gasl{background:#fff4cf;border-color:#b98a12;color:#5a3a0c}
+.lb.grid{background:#e9edff;border-color:#2748c7;color:#172a7a}
+.lb.ease{background:rgba(255,248,232,.94);border-style:dashed;color:#5a3a0c}
+.lb.par{background:rgba(255,255,255,.86);border-color:#0f2656;color:#0f2656}
+
+#sheet{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));width:min(356px,calc(100vw - 96px));background:var(--panel);border:1px solid var(--rule);border-radius:4px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.12);max-height:calc(100% - 170px);overflow:auto}
+#sheet summary{list-style:none;cursor:pointer;padding:10px 12px 9px;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+#sheet summary::-webkit-details-marker{display:none}
+#sheet summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.lg{height:30px;width:auto;margin:0 0 8px;display:block}
+.lg-d{display:none}
+.eyebrow{font:500 10.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 19px/1.1 var(--f-ui);margin:3px 0 0;text-wrap:balance}
+h2{font:600 11px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.chev{font:500 12px var(--f-mono);color:var(--muted);transition:transform .2s;margin-top:2px}
+#sheet[open] .chev{transform:rotate(180deg)}
+.blk{border-top:1px solid var(--rule);padding:9px 12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:13.5px;margin:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-variant-numeric:tabular-nums}
+.bal{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:14px;margin:0;font-variant-numeric:tabular-nums}
+.bal dt{color:var(--muted)}
+.bal dd{margin:0;font-weight:600;text-align:right}
+.bal .tot{border-top:1px solid var(--rule);padding-top:5px}
+.pill{display:inline-block;font:600 12px/1 var(--f-ui);letter-spacing:.03em;padding:4px 8px;border-radius:999px;border:1px solid currentColor;margin-top:7px}
+.pill.ok{color:var(--ok)}.pill.warn{color:var(--warn)}.pill.bad{color:var(--bad)}
+.why{margin:0;padding-left:17px;font-size:13.5px;line-height:1.3;display:grid;gap:4px}
+.why b{font-weight:600}
+table.pw{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+table.pw th{font:500 10.5px var(--f-mono);color:var(--muted);text-align:left;padding:2px 0 4px;letter-spacing:.04em}
+table.pw th:nth-child(2),table.pw td:nth-child(2){text-align:right;padding-right:10px}
+table.pw td{padding:3px 0;border-top:1px solid var(--rule);vertical-align:top}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px}
+.legend li{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center}
+.legend i{width:12px;height:12px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.legend i.ln{height:0;border-top:3px solid;box-shadow:none;border-radius:0}
+.legend i.dash{height:0;border-top:3px dashed;box-shadow:none;border-radius:0}
+.legend span.n{font:500 11.5px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--muted);margin:0;line-height:1.35}
+.note + .note{margin-top:6px}
+.ask{margin:0;padding-left:17px;font-size:13px;line-height:1.3;display:grid;gap:4px}
+.ask b{font-weight:600}
+
+#bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px;width:max-content;max-width:calc(100vw - 24px);background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:6px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+#bar button{font:600 13px/1 var(--f-ui);letter-spacing:.02em;color:var(--ink);background:var(--btn);border:1px solid var(--rule);border-radius:3px;padding:7px 10px;cursor:pointer}
+#bar button[aria-pressed="true"]{background:var(--btn-on);color:var(--btn-on-ink);border-color:var(--btn-on)}
+#bar button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#bar .sep{width:1px;align-self:stretch;background:var(--rule);margin:2px 3px}
+#bar .grp{display:flex;gap:5px;align-items:center}
+#bar .grp span{font:500 10.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+#compass{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:54px;height:54px;border-radius:50%;background:var(--panel);border:1px solid var(--rule);display:grid;place-items:center;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+#compass span{position:absolute;top:2px;font:600 10px var(--f-mono);color:var(--muted)}
+#hint{position:fixed;right:max(12px,env(safe-area-inset-right,0px));top:calc(74px + env(safe-area-inset-top,0px));font:500 10.5px/1.3 var(--f-mono);color:var(--muted);text-align:right;max-width:150px}
+@media (max-width:640px){#hint{display:none}#bar button{padding:7px 8px;font-size:12.5px}#bar .grp span{display:none}}
+</style>
+
+</head>
+<body>
+<main>
+<div id="stage" aria-label="3D model of a gas-powered modular data center campus at Elberta, Utah"></div>
+<div id="labels"></div>
+
+<details id="sheet" open>
+  <summary>
+    <div>
+      <img class="lg lg-l" id="lgL" alt="LIMiK">
+      <img class="lg lg-d" id="lgD" alt="LIMiK">
+      <div class="eyebrow">Concept · for discussion · not for construction</div>
+      <h1>Gas-powered modular data center campus, Elberta, Utah</h1>
+    </div>
+    <span class="chev" aria-hidden="true">▾</span>
+  </summary>
+  <div class="blk">
+    <dl class="kv">
+      <dt>Site</dt><dd>Elberta, Utah County, on the US-6 corridor</dd>
+      <dt>Offering</dt><dd>5 parcels, 594.37 ac, asking $33.8M (about $56,900 per acre)</dd>
+      <dt>Gas</dt><dd>Kern River and Williams MountainWest pipelines cross the site</dd>
+      <dt>Grid</dt><dd>345 kV line crosses parcel 61:094:0027</dd>
+      <dt>Ground</dt><dd>About 4,895 ft elevation, 3.5% slope</dd>
+    </dl>
+  </div>
+  <div class="blk" aria-live="polite">
+    <h2>Power balance (live)</h2>
+    <dl class="bal">
+      <dt>Gas turbine 1</dt><dd id="pbT1">300 MW</dd>
+      <dt>Gas turbine 2</dt><dd id="pbT2">off</dd>
+      <dt>Gas engines, 67 × 4.5 MW</dt><dd id="pbEng">300 MW</dd>
+      <dt class="tot">On-site generation</dt><dd class="tot" id="pbGen">600 MW</dd>
+      <dt>Gas needed, approx.</dt><dd id="pbGas">122 MMcf/day</dd>
+      <dt>Modular units powered</dt><dd id="pbUnits">240 of 240</dd>
+      <dt>IT load</dt><dd id="pbIT">425 MW</dd>
+    </dl>
+    <span class="pill ok" id="pbStat">Within the 600–700 MW of gas</span>
+    <p class="note" style="margin-top:7px">Switch the turbines and engines with the buttons below. Units are counted at 2.5 MW of design-day draw each, with no reserve margin.</p>
+  </div>
+  <div class="blk">
+    <h2>How the site is used</h2>
+    <ol class="why">
+      <li><b>Power island on 61:094:0027.</b> The turbines sit between the 345 kV line and the Williams pipeline, so the gas lateral and the grid tie are both short.</li>
+      <li><b>Gas engines beside them.</b> On the east edge of 61:095:0010, sharing the gas header and the collector substation.</li>
+      <li><b>Data center on 61:095:0010.</b> 60 blocks of four modular units, east of the Kern River easement.</li>
+      <li><b>Access from US-6.</b> Tunnel Rd on the east; the 35:104:0004 strip gives a second way in from the west.</li>
+      <li><b>Reserve.</b> West of Kern River on 0010, plus parcels 0003, 0004 and 0028, stay free for later phases, water and storage.</li>
+    </ol>
+  </div>
+  <div class="blk">
+    <h2>Parcels</h2>
+    <table class="pw">
+      <thead><tr><th>Parcel</th><th>Acres</th><th>Use here</th></tr></thead>
+      <tbody>
+        <tr><td>61:095:0010</td><td>246.51</td><td>Data center, gas engines</td></tr>
+        <tr><td>61:094:0027</td><td>152.42</td><td>Turbines, substation</td></tr>
+        <tr><td>61:094:0028</td><td>85.17</td><td>US-6 frontage, reserve</td></tr>
+        <tr><td>35:104:0004</td><td>58.45</td><td>Reserve, west access strip</td></tr>
+        <tr><td>35:104:0003</td><td>51.83</td><td>Reserve</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="blk">
+    <h2>Equipment</h2>
+    <dl class="kv">
+      <dt>Turbines</dt><dd>Siemens SGT5-4000F, about 300 MW each in simple cycle. Siemens lists 288 to 329 MW depending on version.</dd>
+      <dt>As drawn</dt><dd>With bypass stack, heat-recovery boiler and main stack, as in the reference renders. Run as a combined cycle, each block gains roughly half again.</dd>
+      <dt>Engines</dt><dd>67 containerized gas engines of 4.5 MW, Jenbacher J624 or MWM TCG 2032 class, about 45% electrical efficiency</dd>
+      <dt>Data center</dt><dd>Modular units of 1.77 MW IT, 119.1 × 44.8 ft, three chillers each</dd>
+    </dl>
+  </div>
+  <div class="blk">
+    <h2>To verify</h2>
+    <ul class="ask">
+      <li><b>Frequency.</b> The SGT5-4000F is a 50 Hz machine and the US grid is 60 Hz. Its 60 Hz sibling is the SGT6-5000F, about 260 MW. Confirm the model with Siemens Energy or the seller.</li>
+      <li><b>Altitude.</b> At about 4,900 ft a gas turbine gives roughly 15% less than its sea-level rating; engines lose less.</li>
+      <li><b>Gas volume.</b> 600 MW needs roughly 120 to 130 million cubic feet a day. Confirm taps and capacity with Kern River and MountainWest.</li>
+      <li><b>Pipeline and line positions.</b> Drawn from the broker flyer. The screening map puts the gas line further east on 61:095:0010, so a survey and an 811 locate are needed.</li>
+      <li><b>Grid.</b> The screening tool shows limited headroom on the 345 kV line, which is why the campus is sized to generate its own power.</li>
+      <li><b>Air permit</b> for this much gas generation, and water for the turbines if run as a combined cycle.</li>
+    </ul>
+  </div>
+  <div class="blk">
+    <h2>Legend</h2>
+    <ul class="legend">
+      <li><i style="background:var(--filt)"></i><span>Turbine air-intake filter house</span><span class="n">per block</span></li>
+      <li><i style="background:var(--steel)"></i><span>Turbine hall, heat-recovery boiler, stacks</span><span class="n">2 blocks</span></li>
+      <li><i style="background:var(--gen)"></i><span>Gas engines, 4.5 MW</span><span class="n">67</span></li>
+      <li><i style="background:var(--hall)"></i><span>Modular data center units</span><span class="n">up to 240</span></li>
+      <li><i style="background:var(--xfmr)"></i><span>Transformers</span><span class="n">schematic</span></li>
+      <li><i class="ln" style="border-color:var(--line)"></i><span>345 kV transmission</span><span class="n">flyer</span></li>
+      <li><i class="dash" style="border-color:var(--gas)"></i><span>Gas pipelines and site header</span><span class="n">flyer</span></li>
+      <li><i class="ln" style="border-color:#0f2656"></i><span>Parcel lines</span><span class="n">flyer</span></li>
+    </ul>
+  </div>
+  <div class="blk">
+    <p class="note">The site plan is redrawn from the broker flyer and scaled so that parcel 61:095:0010 equals its 246.51 acres (about 4,070 × 2,660 ft). North is up. It is not a survey.</p>
+    <p class="note">Turbine block dimensions are indicative, modelled on the Siemens reference renders. Gas, grid and layout figures are planning assumptions by LIMiK.</p>
+    <p class="note">Prepared by LIMiK International LLC · November 16, 2026</p>
+  </div>
+</details>
+
+<div id="compass" aria-label="North arrow"><span>N</span>
+  <svg width="38" height="38" viewBox="-19 -19 38 38"><g id="needle"><path d="M0-14 L5 3 L0 0 L-5 3Z" fill="#d2423a"></path><path d="M0 14 L5 3 L0 0 L-5 3Z" fill="#8b958f"></path></g></svg>
+</div>
+<div id="hint">drag to orbit · scroll to zoom · right-drag to pan</div>
+
+<div id="bar" role="toolbar" aria-label="View and equipment controls">
+  <div class="grp" role="group" aria-label="Generation"><span>Power</span>
+    <button id="bt1" type="button" aria-pressed="true" title="Siemens SGT5-4000F block 1, about 300 MW">Turbine 1</button>
+    <button id="bt2" type="button" aria-pressed="false" title="Siemens SGT5-4000F block 2, about 300 MW">Turbine 2</button>
+    <button id="beng" type="button" aria-pressed="true" title="67 gas engines of 4.5 MW">Gas engines</button>
+  </div>
+  <span class="sep" aria-hidden="true"></span>
+  <button id="vsite" type="button" aria-pressed="true">Whole site</button>
+  <button id="vpwr" type="button" aria-pressed="false">Power island</button>
+  <button id="vdc" type="button" aria-pressed="false">Data center</button>
+  <button id="vtop" type="button" aria-pressed="false">Top view</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button id="blab" type="button" aria-pressed="true">Labels</button>
+</div>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+const stage=document.getElementById('stage');
+function fail(msg){stage.innerHTML='<div class="fail">'+msg+'</div>';}
+if(!window.THREE||!THREE.OrbitControls){fail('The 3D library did not load. Check the connection and reload.');return;}
+let renderer;
+try{renderer=new THREE.WebGLRenderer({antialias:true,logarithmicDepthBuffer:true});}catch(e){fail('This browser could not start WebGL, so the 3D model cannot be shown.');return;}
+
+const SRC={logoW:"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTg1IiBoZWlnaHQ9IjE2NCIgdmlld0JveD0iMCAwIDU4NSAxNjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTgzLjI1ODggMTYzLjQ5QzEyOS4yNDEgMTYzLjQ5IDE2Ni41MTggMTI2Ljg5MSAxNjYuNTE4IDgxLjc0NUMxNjYuNTE4IDM2LjU5ODUgMTI5LjI0MSAwIDgzLjI1ODggMEMzNy4yNzYyIDAgMCAzNi41OTg1IDAgODEuNzQ1QzAgMTI2Ljg5MSAzNy4yNzYyIDE2My40OSA4My4yNTg4IDE2My40OVoiIGZpbGw9IiNGRkNGMEIiLz48cGF0aCBkPSJNMTQ1LjMyNiA4MS4xODg0QzE0NS4zNTUgOTEuODgxMiAxNDIuNzgyIDEwMi40MTEgMTM3Ljg0MiAxMTEuODE0QzEzMi45MDMgMTIxLjIxOCAxMjUuNzU0IDEyOS4xOTUgMTE3LjA1IDEzNS4wMTZDMTA4LjM0NiAxNDAuODM3IDk4LjM2NDMgMTQ0LjMxNyA4OC4wMTg0IDE0NS4xMzZDNzcuNjcyNSAxNDUuOTU2IDY3LjI5MjIgMTQ0LjA4OSA1Ny44MjcgMTM5LjcwOEM0OC4zNjE4IDEzNS4zMjYgNDAuMTEzNyAxMjguNTY4IDMzLjgzNzIgMTIwLjA1NEMyNy41NjA2IDExMS41MzkgMjMuNDU1OSAxMDEuNTM4IDIxLjg5ODQgOTAuOTY2NkMyMC4zNDEgODAuMzk0OSAyMS4zODA0IDY5LjU4OTYgMjQuOTIxOCA1OS41Mzg4QzI4LjQ2MzIgNDkuNDg4IDM0LjM5MzQgNDAuNTEyNiA0Mi4xNzAxIDMzLjQzMzRDMzguOTg3MiA1Ni44NjgxIDM1LjgwNDQgMTA3LjA2NyA2Ny4yNTA5IDEwNy4wNjdDMTA1LjYwNCAxMDcuMDY3IDk2LjQ1MzYgNDYuMjQxMyA3OS45ODI0IDE4LjE2NTZDOTYuMjc4NiAyNS4zNDg1IDEyMy4xMSA0NC45MTMgMTE1Ljk2NCA5MC42MDE3QzExNS45NjQgOTAuNjAxNyAxMzUuMDYyIDg2LjQwMzQgMTM1LjM0OCA0Ni41MzY1QzE0MS44NjYgNTYuODQ1MSAxNDUuMzMzIDY4Ljg4NDkgMTQ1LjMyNiA4MS4xODg0Wk02NC4wNTIyIDI1LjExODlDNjQuMDUyMiAyNS4xMTg5IDQ4LjY0NzIgNjUuMjY0NiA2Ny4wNDQxIDkzLjY1MTlDNjcuMDQ0MSA5My42NTE5IDg5LjM3MTggNzMuNTYyNyA2NC4wNTIyIDI1LjExODlaIiBmaWxsPSIjMDkxOTNCIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwyOC4yNSkiPjxwYXRoIGQ9Ik0yMDcuMzkzIDE4LjUxMjdWODguNTQ3MUgyODEuMTA2VjcwLjcwODFIMjMyLjIxNFYxOC41MTI3SDIwNy4zOTNaIiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0zMTYuNzI0IDE4LjUxMjdIMjkyLjAwOFY4OC41NDcxSDMxNi43MjRWMTguNTEyN1oiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTQ0Ni45MTIgODguNTQ3MVYxOC41MTI3SDQxMi42MTZMMzg4Ljg5MSA2MS4yNDgxTDM2NS41NzEgMTguNTEyN0gzMjkuNzEzVjg4LjU0NzFIMzUzLjg0NFYzOC41NzRMMzgxLjg0OCA4OC41NDcxSDM5NC4yODFMNDIyLjM5MSAzOC41ODlWODguNTQ3MUg0NDYuOTEyWiIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNNDgxLjk5MiAzOC4yNzM2Vjg4LjU0N0g0NTkuMDc4VjQ5Ljk4Nkw0NzUuNDMgMzguMjczNkg0ODEuOTkyWiIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNNDgxLjk5MiAxOC41MTI3SDQ1OS4wNzhWMzIuNzkyOEg0ODEuOTkyVjE4LjUxMjdaIiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik01ODQuOTk3IDg4LjU0NzFWODIuMTIwMkw1NDcuNzQzIDUwLjQ2NjZMNTg0Ljk5NyAyMy41MjhWMTguNTEyN0g1NTkuNzdMNTE5Ljc1MyA0OC4yMTQyVjE4LjUxMjdINDk0LjkzMlY4OC41NDcxSDUxOS43NTNWNTQuNzMxMUw1NTkuNTQ1IDg4LjU0NzFINTg0Ljk5N1oiIGZpbGw9IndoaXRlIi8+PC9nPjwvc3ZnPg==",logoN:"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU4IiBoZWlnaHQ9IjQ1IiB2aWV3Qm94PSIwIDAgMTU4IDQ1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0yMi40ODcgNDQuMTU2MkMzNC45MDYyIDQ0LjE1NjIgNDQuOTc0IDM0LjI3MTUgNDQuOTc0IDIyLjA3ODFDNDQuOTc0IDkuODg0NzEgMzQuOTA2MiAwIDIyLjQ4NyAwQzEwLjA2NzggMCAwIDkuODg0NzEgMCAyMi4wNzgxQzAgMzQuMjcxNSAxMC4wNjc4IDQ0LjE1NjIgMjIuNDg3IDQ0LjE1NjJaIiBmaWxsPSIjRkZDRjBCIi8+PHBhdGggZD0iTTM5LjI1MDYgMjEuOTI3OEMzOS4yNTg0IDI0LjgxNTggMzguNTYzNCAyNy42NTk2IDM3LjIyOTMgMzAuMTk5NEMzNS44OTUxIDMyLjczOTEgMzMuOTY0MyAzNC44OTM2IDMxLjYxMzUgMzYuNDY1OEMyOS4yNjI3IDM4LjAzOCAyNi41NjY4IDM4Ljk3NzggMjMuNzcyNiAzOS4xOTkyQzIwLjk3ODMgMzkuNDIwNSAxOC4xNzQ3IDM4LjkxNjQgMTUuNjE4MyAzNy43MzNDMTMuMDYxOSAzNi41NDk1IDEwLjgzNDIgMzQuNzI0NSA5LjEzOSAzMi40MjQ3QzcuNDQzNzkgMzAuMTI1IDYuMzM1MTcgMjcuNDI0IDUuOTE0NTIgMjQuNTY4N0M1LjQ5Mzg2IDIxLjcxMzUgNS43NzQ2MSAxOC43OTUxIDYuNzMxMDggMTYuMDgwNkM3LjY4NzU1IDEzLjM2NiA5LjI4OTIxIDEwLjk0MTkgMTEuMzg5NiA5LjAyOTg3QzEwLjUyOTkgMTUuMzU5MiA5LjY3MDMgMjguOTE3MSAxOC4xNjM2IDI4LjkxNzFDMjguNTIyMyAyOC45MTcxIDI2LjA1MDggMTIuNDg5MSAyMS42MDIxIDQuOTA2MjVDMjYuMDAzNSA2Ljg0NjI2IDMzLjI1MDMgMTIuMTMwMyAzMS4zMjA0IDI0LjQ3MDJDMzEuMzIwNCAyNC40NzAyIDM2LjQ3ODIgMjMuMzM2MyAzNi41NTU2IDEyLjU2ODhDMzguMzE1OSAxNS4zNTMgMzkuMjUyMyAxOC42MDQ4IDM5LjI1MDYgMjEuOTI3OFpNMTcuMjk5NiA2Ljc4NDI1QzE3LjI5OTYgNi43ODQyNSAxMy4xMzkgMTcuNjI3IDE4LjEwNzcgMjUuMjk0QzE4LjEwNzcgMjUuMjk0IDI0LjEzODEgMTkuODY4MiAxNy4yOTk2IDYuNzg0MjVaIiBmaWxsPSIjMEYyNjU2Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCw3LjYzKSI+PHBhdGggZD0iTTU2LjAxMzcgNVYyMy45MTUzSDc1LjkyMjZWMTkuMDk3Mkg2Mi43MTc2VjVINTYuMDEzN1oiIGZpbGw9IiMwRjI2NTYiLz48cGF0aCBkPSJNODUuNTQyNyA1SDc4Ljg2NzJWMjMuOTE1M0g4NS41NDI3VjVaIiBmaWxsPSIjMEYyNjU2Ii8+PHBhdGggZD0iTTEyMC43MDUgMjMuOTE1M1Y1SDExMS40NDJMMTA1LjAzNCAxNi41NDIyTDk4LjczNTUgNUg4OS4wNTA4VjIzLjkxNTNIOTUuNTY4MVYxMC40MTgzTDEwMy4xMzIgMjMuOTE1M0gxMDYuNDlMMTE0LjA4MiAxMC40MjIzVjIzLjkxNTNIMTIwLjcwNVoiIGZpbGw9IiMwRjI2NTYiLz48cGF0aCBkPSJNMTMwLjE3OSAxMC4zMzcxVjIzLjkxNTJIMTIzLjk5VjEzLjUwMDVMMTI4LjQwNyAxMC4zMzcxSDEzMC4xNzlaIiBmaWxsPSIjMEYyNjU2Ii8+PHBhdGggZD0iTTEzMC4xNzkgNUgxMjMuOTlWOC44NTY4N0gxMzAuMTc5VjVaIiBmaWxsPSIjMEYyNjU2Ii8+PHBhdGggZD0iTTE1Ny45OTkgMjMuOTE1M1YyMi4xNzk1TDE0Ny45MzcgMTMuNjMwM0wxNTcuOTk5IDYuMzU0NTdWNUgxNTEuMTg2TDE0MC4zNzggMTMuMDIyVjVIMTMzLjY3NFYyMy45MTUzSDE0MC4zNzhWMTQuNzgyMUwxNTEuMTI1IDIzLjkxNTNIMTU3Ljk5OVoiIGZpbGw9IiMwRjI2NTYiLz48L2c+PC9zdmc+"};
+document.getElementById('lgL').src=SRC.logoN;document.getElementById('lgD').src=SRC.logoW;
+const PI=Math.PI, FT=3.28084;
+
+renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+stage.appendChild(renderer.domElement);
+const ANISO=renderer.capabilities.getMaxAnisotropy();
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,8,90000);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;controls.dampingFactor=.08;
+controls.maxPolarAngle=PI/2-.04;controls.minDistance=120;controls.maxDistance=30000;
+controls.screenSpacePanning=false;
+
+scene.add(new THREE.HemisphereLight(0xffffff,0x8f948a,.56));
+const sun=new THREE.DirectionalLight(0xffffff,.62);
+scene.add(sun);scene.add(sun.target);
+
+/* ---------- helpers: plan coordinates (x east, y north, feet) -> three (x, h, -y) ---------- */
+const std=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85,metalness:.05},o||{}));
+const basic=(c,o)=>new THREE.MeshBasicMaterial(Object.assign({color:c},o||{}));
+const V=(x,y,h)=>new THREE.Vector3(x,h||0,-y);
+function box(p,a,b,y,la,lb,h,m,shadow){const g=new THREE.Mesh(new THREE.BoxGeometry(la,h,lb),m);g.position.set(a+la/2,y+h/2,-(b+lb/2));if(shadow!==false){g.castShadow=true;}g.receiveShadow=true;p.add(g);return g;}
+function cyl(p,a,b,y,r,h,m,seg,r2){const g=new THREE.Mesh(new THREE.CylinderGeometry(r2==null?r:r2,r,h,seg||18),m);g.position.set(a,y+h/2,-b);g.castShadow=true;p.add(g);return g;}
+function hcylA(p,a,b,yc,r,len,m){const g=new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,20),m);g.rotation.z=PI/2;g.position.set(a+len/2,yc,-b);g.castShadow=true;p.add(g);return g;}
+function hcylB(p,a,b,yc,r,len,m){const g=new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,16),m);g.rotation.x=PI/2;g.position.set(a,yc,-b);g.castShadow=true;p.add(g);return g;}
+function strip(p,a1,b1,a2,b2,w,m,y){const dx=a2-a1,dz=-(b2-b1),L=Math.hypot(dx,dz);if(L<.01)return null;const g=new THREE.Mesh(new THREE.BoxGeometry(L,.3,w),m);g.position.set((a1+a2)/2,(y||0)+.15,-(b1+b2)/2);g.rotation.y=Math.atan2(-dz,dx);g.receiveShadow=true;p.add(g);return g;}
+function path(p,pts,w,m,y){for(let i=0;i<pts.length-1;i++)strip(p,pts[i][0],pts[i][1],pts[i+1][0],pts[i+1][1],w,m,y);}
+function line(p,pts,m){const g=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),m);p.add(g);return g;}
+const UB=new THREE.BoxGeometry(1,1,1), dummy=new THREE.Object3D();
+// items: [a, yCentre, b, sizeA, sizeY, sizeB]
+function inst(p,geo,mat,items,shadow){const m=new THREE.InstancedMesh(geo,mat,Math.max(1,items.length));items.forEach((t,i)=>{dummy.position.set(t[0],t[1],-t[2]);dummy.scale.set(t[3],t[4],t[5]);dummy.rotation.set(0,0,0);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);});m.count=items.length;m.instanceMatrix.needsUpdate=true;if(shadow!==false)m.castShadow=true;m.receiveShadow=true;p.add(m);return m;}
+
+/* ---------- materials ---------- */
+const M={
+  steel:std('#3a4046',{roughness:.6,metalness:.35}), slab:std('#d9d6cc',{roughness:1}), gravel:std('#cbc5b3',{roughness:1}), road:std('#6c7174',{roughness:.95}),
+  conc:std('#bdbfb9',{roughness:.9}), white:std('#f2f3f0',{roughness:.7}), silver:std('#b9bec2',{roughness:.35,metalness:.6}), hrsg:std('#4a5056',{roughness:.6,metalness:.3}),
+  stackG:std('#5d6368',{roughness:.5,metalness:.4}), red:std('#c8102e',{roughness:.5}), bandW:std('#f4f4f2',{roughness:.5}),
+  filt:std('#6fa8c9',{roughness:.6}), filtDk:std('#4f86a8',{roughness:.6}), crane:std('#e3b51c',{roughness:.6}), genr:std('#8b9296',{roughness:.5,metalness:.3}), gtEnc:std('#d5d9d8',{roughness:.6}),
+  duct:std('#9aa1a5',{roughness:.5,metalness:.4}), xf:std('#56704a'), fin:std('#46603c'), pipeY:std('#d4a40c',{roughness:.6}), gasSkid:std('#d9b12a'),
+  eng:std('#c2473d',{roughness:.6}), engRoof:std('#8d9296',{roughness:.6}), engStack:std('#a7adb0',{metalness:.5,roughness:.4}),
+  body:std('#2a2e32',{roughness:.7}), deck:std('#70777b',{roughness:.7,metalness:.2}), me:std('#1f9e8f'), chill:std('#dfe3e1',{roughness:.6}), fan:std('#3a4144'),
+  ops:std('#e9e4d6'), opsRoof:std('#8d9296'), door:std('#3c464c'),
+  feeder:basic('#26221e'), gasFlat:basic('#d4a40c'), fence:basic('#4b5257'),
+  wire:new THREE.LineBasicMaterial({color:'#20252a'}), tower:new THREE.MeshBasicMaterial({color:'#4a5157',wireframe:true})
+};
+
+/* ---------- LIMiK logo decals ---------- */
+function logoTex(src){const t=new THREE.Texture();t.encoding=THREE.sRGBEncoding;t.anisotropy=ANISO;const im=new Image();
+  im.onload=()=>{const c=document.createElement('canvas');c.width=1170;c.height=328;c.getContext('2d').drawImage(im,0,0,1170,328);t.image=c;t.needsUpdate=true;};im.src=src;return t;}
+const LOGO_R=585/164;
+const decalOpts={transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2};
+const logoW=new THREE.MeshBasicMaterial(Object.assign({map:logoTex(SRC.logoW)},decalOpts));
+const logoN=new THREE.MeshBasicMaterial(Object.assign({map:logoTex(SRC.logoN)},decalOpts));
+// face: 's' looks toward -b, 'n' toward +b, 'w' toward -a, 'e' toward +a
+function decal(p,m,w,a,b,y,face){const g=new THREE.Mesh(new THREE.PlaneGeometry(w,w/LOGO_R),m);const o=.3;
+  if(face==='s'){g.position.set(a,y,-b+o);}
+  else if(face==='n'){g.position.set(a,y,-b-o);g.rotation.y=PI;}
+  else if(face==='w'){g.position.set(a-o,y,-b);g.rotation.y=-PI/2;}
+  else{g.position.set(a+o,y,-b);g.rotation.y=PI/2;}
+  g.renderOrder=3;p.add(g);return g;}
+
+/* ---------- geography, in feet from the SW corner of parcel 61:095:0010 (read off the broker flyer at 6 ft per pixel) ---------- */
+const EXT={x0:-2400,x1:9000,y0:-2400,y1:6600};
+const PAR={
+  p10:[[0,0],[4068,0],[4068,2658],[0,2658]],
+  p27:[[4068,0],[6138,0],[6696,1170],[6696,2688],[4068,2658]],
+  p28:[[5298,5382],[6918,5400],[7458,2760],[6696,1170],[6696,4050],[5298,4050]],
+  p03:[[-1392,612],[-102,612],[-102,-30],[-342,-30],[-342,-1320],[-1302,-1320]],
+  p04:[[-282,-30],[1488,-30],[1488,-1350],[-282,-1350]],
+  p04s:[[-1392,5250],[-1074,5250],[-1074,5190],[-1332,5190],[-1332,672],[-42,672],[-42,-30],[-102,-30],[-102,612],[-1392,612]]
+};
+const KERN=[[1530,6600],[1068,2640],[798,-30],[558,-1740],[466,-2400]];
+const WILL=[[4612,6600],[4908,4080],[5268,1740],[5568,-180],[6828,-1740],[7300,-2400]];
+const L345=[[4850,6600],[5178,4080],[5508,2280],[5838,-120],[6908,-1740],[7430,-2400]];
+const L138=[[-2400,3833],[9000,2844]];
+const HWY6=[[-2400,5245],[9000,5485]];
+const TUNNEL=[[7188,5440],[6900,4400],[6648,3480],[6228,1740],[5808,780],[5200,-300],[4428,-1080],[3700,-1700]];
+
+/* ---------- redrawn site plan (canvas texture) ---------- */
+const K=.4, CW=Math.round((EXT.x1-EXT.x0)*K), CH=Math.round((EXT.y1-EXT.y0)*K);
+const baseCanvas=document.createElement('canvas');baseCanvas.width=CW;baseCanvas.height=CH;
+function drawBase(){const g=baseCanvas.getContext('2d');const X=x=>(x-EXT.x0)*K,Y=y=>(EXT.y1-y)*K;
+  const F='"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif';
+  const pth=(pts,close)=>{g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(X(x),Y(y)):g.moveTo(X(x),Y(y)));if(close)g.closePath();};
+  let sd=20261116;const rnd=()=>{sd=sd+0x6D2B79F5|0;let t=Math.imul(sd^sd>>>15,1|sd);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+  g.fillStyle='#e9e3d0';g.fillRect(0,0,CW,CH);
+  // dry-wash texture
+  g.lineCap='round';for(let i=0;i<2600;i++){const x=rnd()*CW,y=rnd()*CH,l=20+rnd()*90,a=-.5+rnd()*.5;g.strokeStyle='rgba(126,112,74,'+(.03+rnd()*.05)+')';g.lineWidth=1+rnd()*2.5;g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke();}
+  // quarter-mile grid
+  g.strokeStyle='rgba(90,84,58,.13)';g.lineWidth=1.2;for(let x=-2640;x<=EXT.x1;x+=1320){g.beginPath();g.moveTo(X(x),0);g.lineTo(X(x),CH);g.stroke();}for(let y=-1320;y<=EXT.y1;y+=1320){g.beginPath();g.moveTo(0,Y(y));g.lineTo(CW,Y(y));g.stroke();}
+  // irrigated pivots
+  [[2556,-1162,1136],[462,-2358,1150],[3950,-2750,900],[8350,-1450,1150],[8500,1500,900]].forEach(([x,y,r])=>{g.beginPath();g.arc(X(x),Y(y),r*K,0,2*PI);g.fillStyle='#bcd1a3';g.fill();g.strokeStyle='#9db886';g.lineWidth=3;g.stroke();
+    g.strokeStyle='rgba(120,150,100,.5)';g.lineWidth=1.5;for(let q=.25;q<1;q+=.25){g.beginPath();g.arc(X(x),Y(y),r*K*q,0,2*PI);g.stroke();}g.beginPath();g.moveTo(X(x),Y(y));g.lineTo(X(x)+r*K*.86,Y(y)-r*K*.5);g.stroke();});
+  // existing farm buildings and Elberta
+  g.fillStyle='#cfcec7';g.strokeStyle='#a9a89f';g.lineWidth=1.5;for(let i=0;i<6;i++){g.fillRect(X(6850),Y(180-i*160),900*K,70*K);g.strokeRect(X(6850),Y(180-i*160),900*K,70*K);}
+  for(let i=0;i<5;i++)for(let j=0;j<7;j++){if((i+j)%3===0)continue;g.fillRect(X(8050+i*190),Y(6350-j*300),110*K,150*K);}
+  // gas compressor station north of US-6
+  g.fillStyle='#d8d4c6';g.strokeStyle='#8e897a';g.lineWidth=3;g.fillRect(X(468),Y(6300),1080*K,740*K);g.strokeRect(X(468),Y(6300),1080*K,740*K);
+  g.fillStyle='#b9b6aa';[[700,6050,260,90],[700,5900,260,90],[1050,6000,160,220],[1280,5750,140,120]].forEach(([x,y,w,h])=>g.fillRect(X(x),Y(y),w*K,h*K));
+  // roads
+  const road=(pts,w,fill,dash)=>{pth(pts);g.lineJoin='round';g.strokeStyle='#7d776a';g.lineWidth=w*K+5;g.stroke();pth(pts);g.strokeStyle=fill;g.lineWidth=w*K;g.stroke();if(dash){pth(pts);g.setLineDash([26,22]);g.strokeStyle='#d9a400';g.lineWidth=2.5;g.stroke();g.setLineDash([]);}};
+  road(TUNNEL,36,'#f1ede0');road(HWY6,76,'#f6f3e9',true);
+  // parcels
+  const fills={p10:'rgba(30,93,136,.13)',p27:'rgba(194,71,61,.11)',p28:'rgba(15,38,86,.07)',p03:'rgba(21,128,61,.10)',p04:'rgba(15,38,86,.07)',p04s:'rgba(15,38,86,.07)'};
+  Object.keys(PAR).forEach(k=>{pth(PAR[k],true);g.fillStyle=fills[k];g.fill();});
+  Object.keys(PAR).forEach(k=>{pth(PAR[k],true);g.lineJoin='miter';g.strokeStyle='#0f2656';g.lineWidth=k==='p04s'?3:6;g.stroke();});
+  // easements, pipelines, transmission
+  const band=(pts,w,col)=>{pth(pts);g.lineJoin='round';g.strokeStyle=col;g.lineWidth=w*K;g.stroke();};
+  band(KERN,110,'rgba(212,164,12,.20)');band(WILL,110,'rgba(212,164,12,.20)');band(L345,190,'rgba(39,72,199,.10)');
+  [KERN,WILL].forEach(p=>{pth(p);g.setLineDash([30,16]);g.strokeStyle='#c2920a';g.lineWidth=7;g.stroke();g.setLineDash([]);});
+  [-26,26].forEach(o=>{pth(L345.map(([x,y])=>[x+o,y]));g.strokeStyle='#2748c7';g.lineWidth=4;g.stroke();});
+  pth(L138);g.strokeStyle='#58a6d6';g.lineWidth=3;g.setLineDash([40,10,6,10]);g.stroke();g.setLineDash([]);
+  // text
+  const along=(s,x1,y1,x2,y2,col,size,bg)=>{const ax=X(x1),ay=Y(y1),bx=X(x2),by=Y(y2);let ang=Math.atan2(by-ay,bx-ax);if(ang>PI/2||ang<-PI/2)ang+=PI;g.save();g.translate((ax+bx)/2,(ay+by)/2);g.rotate(ang);g.font='700 '+size+'px '+F;g.textAlign='center';g.textBaseline='middle';
+    if(bg){const w=g.measureText(s).width+26;g.fillStyle=bg;g.fillRect(-w/2,-size*.72,w,size*1.44);}g.fillStyle=col;g.fillText(s,0,2);g.restore();};
+  const tag=(l1,l2,x,y,al)=>{g.font='700 46px '+F;g.textAlign=al||'left';g.textBaseline='alphabetic';g.fillStyle='#0f2656';g.fillText(l1,X(x),Y(y));g.font='600 36px '+F;g.fillStyle='#3d4a63';g.fillText(l2,X(x),Y(y)+42);};
+  along('US HIGHWAY 6',1900,5205,3900,5247,'#3a372f',54);
+  along('TUNNEL RD',6790,4000,6540,3050,'#5b574c',34);
+  along('KERN RIVER PIPELINE',1440,5860,1140,3260,'#5a3a0c',40,'rgba(255,236,170,.92)');
+  along('WILLIAMS MOUNTAINWEST PIPELINE',4660,6200,4860,4480,'#5a3a0c',36,'rgba(255,236,170,.92)');
+  along('345 kV TRANSMISSION',5010,5900,5200,4380,'#172a7a',36,'rgba(226,232,255,.92)');
+  along('138 kV',-1700,3772,-900,3703,'#1f6c9c',32,'rgba(226,242,252,.9)');
+  tag('61:095:0010','246.51 ac',200,2330);tag('61:094:0027','152.42 ac',4130,160);tag('61:094:0028','85.17 ac',5380,5180);
+  tag('35:104:0003','51.83 ac',-1290,-1120);tag('35:104:0004','58.45 ac',-200,-1150);
+  g.font='600 30px '+F;g.fillStyle='#3d4a63';g.textAlign='left';g.save();g.translate(X(-1420),Y(2600));g.rotate(-PI/2);g.fillText('35:104:0004 access strip',0,0);g.restore();
+  g.font='600 34px '+F;g.fillStyle='#5b574c';g.textAlign='center';g.fillText('GAS COMPRESSOR STATION',X(1008),Y(6340));g.fillText('EXISTING FARM BUILDINGS',X(7300),Y(330));
+  g.font='700 54px '+F;g.fillStyle='#5b574c';g.fillText('ELBERTA',X(8480),Y(6480));
+  // scale bar, north arrow, title
+  const sx=X(-2150),sy=Y(-2130);g.fillStyle='#1b231f';g.fillRect(sx,sy,2000*K,9);g.fillStyle='#fff';g.fillRect(sx+500*K,sy+2,500*K,5);g.fillRect(sx+1500*K,sy+2,500*K,5);
+  g.font='600 30px '+F;g.fillStyle='#1b231f';g.textAlign='left';g.fillText('0',sx,sy-12);g.textAlign='center';g.fillText('1,000',sx+1000*K,sy-12);g.fillText('2,000 ft',sx+2000*K,sy-12);
+  g.save();g.translate(X(-1150),Y(-1500));g.beginPath();g.moveTo(0,-70);g.lineTo(22,20);g.lineTo(0,4);g.lineTo(-22,20);g.closePath();g.fillStyle='#1b231f';g.fill();g.font='700 40px '+F;g.textAlign='center';g.fillText('N',0,-84);g.restore();
+  g.font='700 62px '+F;g.fillStyle='#0f2656';g.textAlign='left';g.fillText('ELBERTA, UTAH',X(-2150),Y(-1620));g.font='600 34px '+F;g.fillStyle='#3d4a63';g.fillText('US-6 corridor · 5 parcels · 594.37 ac',X(-2150),Y(-1620)+46);
+}
+drawBase();
+const baseTex=new THREE.CanvasTexture(baseCanvas);baseTex.encoding=THREE.sRGBEncoding;baseTex.anisotropy=ANISO;
+const baseMat=basic(0xffffff,{map:baseTex});
+const baseMesh=new THREE.Mesh(new THREE.PlaneGeometry(EXT.x1-EXT.x0,EXT.y1-EXT.y0),baseMat);baseMesh.rotation.x=-PI/2;baseMesh.position.copy(V((EXT.x0+EXT.x1)/2,(EXT.y0+EXT.y1)/2,0));scene.add(baseMesh);
+const skirtMat=basic(0xdfe7ec);const skirt=new THREE.Mesh(new THREE.PlaneGeometry(200000,200000),skirtMat);skirt.rotation.x=-PI/2;skirt.position.y=-4;scene.add(skirt);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{drawBase();baseTex.needsUpdate=true;});
+
+const site=new THREE.Group();scene.add(site);
+
+/* ---------- 345 kV line: towers and conductors ---------- */
+(function(){const pts=[];let carry=300;for(let i=0;i<L345.length-1;i++){const [x1,y1]=L345[i],[x2,y2]=L345[i+1],L=Math.hypot(x2-x1,y2-y1);let d=carry;while(d<L){pts.push([x1+(x2-x1)*d/L,y1+(y2-y1)*d/L,Math.atan2(y2-y1,x2-x1)]);d+=880;}carry=d-L;}
+  const arms=[[80,24],[100,30],[118,22]],cond=arms.map(()=>[[],[]]);
+  pts.forEach(([x,y,ang])=>{const t=new THREE.Mesh(new THREE.CylinderGeometry(2.4,13,124,4,5,true),M.tower);t.position.copy(V(x,y,62));t.rotation.y=ang+PI/4;site.add(t);
+    const nx=-Math.sin(ang),ny=Math.cos(ang);arms.forEach(([h,w],k)=>{strip(site,x-nx*w,y-ny*w,x+nx*w,y+ny*w,1.4,M.steel,h);cond[k][0].push(V(x-nx*w,y-ny*w,h-3));cond[k][1].push(V(x+nx*w,y+ny*w,h-3));});});
+  cond.forEach(c=>{line(site,c[0],M.wire);line(site,c[1],M.wire);});})();
+// 138 kV poles
+(function(){const [a,b]=L138,L=Math.hypot(b[0]-a[0],b[1]-a[1]),p=[];for(let d=200;d<L;d+=520){const x=a[0]+(b[0]-a[0])*d/L,y=a[1]+(b[1]-a[1])*d/L;cyl(site,x,y,0,1.3,68,M.steel,8).castShadow=false;p.push(V(x,y,66));}line(site,p,M.wire);})();
+
+/* ---------- internal roads ---------- */
+const RD=.5;
+path(site,[[150,2470],[6404,2470]],30,M.road,RD);                                             // spine to Tunnel Rd
+path(site,[[-1362,5215],[-1362,642],[-72,642],[-72,330],[150,330],[150,2470]],24,M.road,RD);     // west access along the 35:104:0004 strip
+[4150,4930,3300].forEach(x=>path(site,[[x,1180],[x,2470]],26,M.road,RD));
+path(site,[[4560,1240],[4560,2075]],22,M.road,RD);path(site,[[3300,1195],[4930,1195]],26,M.road,RD);
+
+/* ---------- gas turbine power block (indicative, modelled on the Siemens reference renders) ---------- */
+function frame(p,a0,b0,y0,la,lb,h,na,nb,lv){const it=[],t=1;
+  for(let i=0;i<=na;i++)for(let j=0;j<=nb;j++)it.push([a0+la*i/na,y0+h/2,b0+lb*j/nb,t,h,t]);
+  for(let l=1;l<=lv;l++){const y=y0+h*l/lv;for(let j=0;j<=nb;j++)it.push([a0+la/2,y,b0+lb*j/nb,la,t,t]);for(let i=0;i<=na;i++)it.push([a0+la*i/na,y,b0+lb/2,t,t,lb]);}
+  return inst(p,UB,M.steel,it);}
+function stack(p,a,b,y0,r,h,body){const hb=h*.78,bh=h*.055;cyl(p,a,b,y0,r,hb,body,24);
+  for(let i=0;i<4;i++)cyl(p,a,b,y0+hb+i*bh,r,bh,i%2?M.bandW:M.red,24);
+  for(let k=1;k<=5;k++){const g=cyl(p,a,b,y0+h*k/5.6,r+3.2,.9,M.steel,24);g.castShadow=false;}
+  cyl(p,a,b,y0+hb+4*bh,r+.6,1.2,M.steel,24);}
+function gantry(p,a,b1,b2,h){box(p,a-.9,b1-.9,.7,1.8,1.8,h,M.steel);box(p,a-.9,b2-.9,.7,1.8,1.8,h,M.steel);box(p,a-.9,b1,h-1.2,1.8,b2-b1,1.8,M.steel,false);}
+// local plan: a runs along the gas path (north to south once placed), b runs across
+function powerBlock(X0,Y0){const g=new THREE.Group();g.position.set(X0,0,-Y0);g.rotation.y=-PI/2;site.add(g);
+  box(g,-240,-8,.2,725,196,.5,M.slab,false);
+  // turbine hall: generator, gas turbine enclosure, crane rails
+  frame(g,0,30,.7,190,110,86,6,3,3);
+  box(g,12,66,.7,56,38,26,M.genr);box(g,78,60,.7,84,50,32,M.gtEnc);box(g,100,70,32.7,36,30,30,M.duct);
+  box(g,4,34,79,182,4,4,M.crane,false);box(g,4,132,79,182,4,4,M.crane,false);box(g,60,34,83,8,102,5,M.crane,false);
+  decal(g,logoN,44,120,60,17,'s');decal(g,logoN,44,120,110,17,'n');
+  // air-intake filter house: three stepped blue tiers above the compressor end
+  for(let i=0;i<3;i++){box(g,70-i*4,34,62+i*14,78+i*8,102,10,M.filt);box(g,67-i*4,30,72+i*14,84+i*8,110,2,M.filtDk,false);}
+  box(g,62,30,104,98,110,3,M.filtDk,false);
+  // exhaust: diffuser, diverter with bypass stack, heat-recovery boiler, main stack
+  hcylA(g,190,85,24,13,56,M.silver);box(g,244,67,.7,34,36,46,M.silver);stack(g,261,85,46.7,10,150,M.silver);
+  box(g,278,64,.7,22,42,62,M.silver);
+  frame(g,298,42,.7,138,86,120,5,3,5);box(g,302,52,.7,130,66,104,M.hrsg);
+  for(let i=0;i<3;i++)hcylB(g,326+i*40,85,112,5,72,M.silver);
+  frame(g,300,130,.7,22,22,114,1,1,8);
+  box(g,436,72,.7,12,26,42,M.hrsg);stack(g,458,85,.7,12.5,212,M.stackG);
+  // pipe rack
+  frame(g,-10,2,.7,440,22,30,16,1,2);box(g,-10,6,24.7,440,3,3,M.silver,false);box(g,-10,14,24.7,440,3,3,M.silver,false);box(g,-10,10,31.7,440,2.4,2.4,M.pipeY,false);
+  // control building, fin-fan cooler, fuel-gas skid
+  box(g,10,150,.7,96,30,22,M.white);decal(g,logoN,40,58,180,12.5,'n');
+  frame(g,300,140,.7,110,40,22,4,1,1);box(g,300,140,22.7,110,40,6,M.silver);for(let i=0;i<5;i++)cyl(g,311+i*22,160,28.7,8,.8,M.steel,16).castShadow=false;
+  box(g,196,146,.7,40,24,10,M.gasSkid);
+  // generator step-up transformer with fire walls, 345 kV bay
+  box(g,-58,60,.7,46,50,2,M.conc,false);box(g,-52,70,2.7,32,30,24,M.xf);box(g,-50,64,4.7,28,5,18,M.fin);box(g,-50,101,4.7,28,5,18,M.fin);
+  box(g,-59,60,2.7,3,50,30,M.conc);box(g,-16,60,2.7,3,50,30,M.conc);for(let i=0;i<3;i++)cyl(g,-46+i*10,85,26.7,1.1,12,M.bandW,8);
+  box(g,-14,79,12,26,12,6,M.silver,false);
+  gantry(g,-110,40,130,62);gantry(g,-200,40,130,62);for(let i=0;i<3;i++){box(g,-158,58+i*24,.7,7,7,20,M.xf);cyl(g,-135,62+i*24,.7,1.2,26,M.bandW,8);cyl(g,-178,62+i*24,.7,1.2,26,M.bandW,8);}
+  for(let i=0;i<3;i++){const b=62+i*24;line(g,[new THREE.Vector3(-36,38.7,-b),new THREE.Vector3(-110,60,-b),new THREE.Vector3(-200,60,-b),new THREE.Vector3(-252,64,-b)],M.wire);}
+  return g;}
+const T1={x:4290,y:1780},T2={x:4650,y:1780};
+const blk1=powerBlock(T1.x,T1.y), blk2=powerBlock(T2.x,T2.y);
+
+/* ---------- 345 kV collector substation and tie to the line ---------- */
+box(site,4270,2090,.2,570,310,.5,M.gravel,false);
+[[4270,2090,4840,2090],[4840,2090,4840,2400],[4840,2400,4270,2400],[4270,2400,4270,2090]].forEach(s=>strip(site,s[0],s[1],s[2],s[3],.8,M.fence,8));
+[4330,4480,4630,4780].forEach(a=>gantry(site,a,2130,2360,66));
+[2180,2300].forEach(b=>box(site,4300,b,38,500,1.4,1.4,M.silver,false));
+for(let i=0;i<6;i++)for(let j=0;j<2;j++){box(site,4355+i*75,2205+j*70,.7,9,9,16,M.xf);cyl(site,4359.5+i*75,2228+j*70,.7,1.2,30,M.bandW,8);}
+box(site,4285,2100,.7,64,26,16,M.white);decal(site,logoN,30,4317,2100,9.5,'s');
+const TAP=[5486,2400];
+(function(){const t=new THREE.Mesh(new THREE.CylinderGeometry(2.4,12,110,4,5,true),M.tower);t.position.copy(V(5170,2330,55));t.rotation.y=PI/4;site.add(t);
+  [-18,0,18].forEach(o=>line(site,[V(4780,2245+o,64),V(4840,2245+o,62),V(5170,2330+o,96),V(TAP[0]-26,TAP[1]+o*.6,100)],M.wire));})();
+
+/* ---------- gas: metering station at the Williams pipeline, site header ---------- */
+box(site,4990,1540,.2,100,100,.5,M.gravel,false);box(site,5005,1560,.7,30,18,9,M.gasSkid);box(site,5045,1580,.7,34,22,12,M.white);
+hcylA(site,5000,1612,4,2,80,M.pipeY);hcylA(site,5000,1624,4,2,80,M.pipeY);
+path(site,[[5290,1600],[5090,1600]],5,M.gasFlat,.9);
+path(site,[[5040,1540],[5040,1225],[3320,1225]],5,M.gasFlat,.9);
+[[4500,1225,4500,1560],[4862,1225,4862,1560]].forEach(s=>path(site,[[s[0],s[1]],[s[2],s[3]]],4,M.gasFlat,.9));
+path(site,[[4500,1560],[4470,1560]],4,M.gasFlat,.9);path(site,[[4862,1560],[4832,1560]],4,M.gasFlat,.9);
+
+/* ---------- gas engine plant: 67 x 4.5 MW ---------- */
+const engG=new THREE.Group();site.add(engG);
+box(engG,3325,1280,.2,680,480,.5,M.slab,false);
+(function(){const body=[],roof=[],st=[],xf=[];let n=0;
+  for(let i=0;i<6;i++){for(let j=0;j<12;j++){if(n>=67)break;const x=3340+i*110,y=1300+j*30;body.push([x+31,6.7,y+6.5,62,12,13]);roof.push([x+24,15.2,y+6.5,34,5,12]);st.push([x+56,20,y+6.5,3.6,26,3.6]);n++;}
+    xf.push([3340+i*110+31,5.7,1672,14,10,12]);}
+  inst(engG,UB,M.eng,body);inst(engG,UB,M.engRoof,roof);inst(engG,new THREE.CylinderGeometry(.5,.5,1,10),M.engStack,st);inst(engG,UB,M.xf,xf);})();
+box(engG,3400,1700,.7,300,46,24,M.white);decal(engG,logoN,60,3550,1700,13,'s');decal(engG,logoN,60,3550,1746,13,'n');
+path(engG,[[3320,1225],[3320,1290]],4,M.gasFlat,.9);
+
+/* ---------- modular data center: 60 blocks of 4 units ---------- */
+const U={L:36.3*FT,W:13.66*FT,sL:18*FT,mG:1.605*FT,meW:3.1*FT,cW:3.1*FT,cG:1.4337*FT,cL:10.56*FT,deck:1.3*FT,H:3.6*FT,cH:2.8*FT};
+const COLS=9,ROWS=7,BX=1350,BY=380,PX=200,PY=280,UP=65;
+const blocks=[];for(let c=COLS-1;c>=0;c--)for(let r=ROWS-1;r>=0;r--){if(r===ROWS-1&&c<3)continue;blocks.push([BX+c*PX,BY+r*PY]);}
+const units=[];blocks.forEach(([bx,by])=>{for(let k=3;k>=0;k--)units.push([bx+60,by+k*UP]);});
+const MAXU=units.length;
+// lanes and pads (always shown)
+for(let c=0;c<COLS;c++)path(site,[[BX+c*PX+13,368],[BX+c*PX+13,(c===1||c===2)?2052:2455]],24,M.road,RD);
+path(site,[[BX+COLS*PX+13,368],[BX+COLS*PX+13,2455]],24,M.road,RD);path(site,[[BX,368],[BX+COLS*PX+26,368]],24,M.road,RD);
+for(let r=0;r<ROWS-1;r++)path(site,[[BX,BY+r*PY+262],[BX+COLS*PX+26,BY+r*PY+262]],20,M.road,RD);
+inst(site,UB,M.gravel,blocks.map(([bx,by])=>[bx+107,.35,by+120,158,.4,252]),false);
+// unit parts, instanced; instance order = power-up order (east first)
+const roofTex=(function(){const c=document.createElement('canvas');c.width=32;c.height=160;const g=c.getContext('2d');g.fillStyle='#2a2e32';g.fillRect(0,0,32,160);
+  [['#b3a88f',0,30],['#3d7dd8',32,62],['#e0a11c',96,30],['#b3a88f',128,30]].forEach(([col,y,h])=>{g.fillStyle=col;g.fillRect(2,y+2,28,h-2);});const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t;})();
+const mx=U.sL+U.mG, dl=mx+U.meW+4.9;
+const uI={
+  deck:inst(site,UB,M.deck,units.map(([x,y])=>[x-4.9+dl/2,U.deck/2,y+U.W/2,dl,U.deck,U.W]),false),
+  body:inst(site,UB,M.body,units.map(([x,y])=>[x+U.sL/2,U.deck+U.H/2,y+U.W/2,U.sL,U.H,U.W]),false),
+  roof:inst(site,UB,std('#ffffff',{map:roofTex,roughness:.7}),units.map(([x,y])=>[x+U.sL/2,U.deck+U.H+.2,y+U.W/2,U.sL-4,.4,U.W-2]),false),
+  mech:inst(site,UB,M.body,units.map(([x,y])=>[x+mx+U.meW/2,U.deck+U.H/2,y+U.W/2,U.meW,U.H,U.W]),false),
+  mechR:inst(site,UB,M.me,units.map(([x,y])=>[x+mx+U.meW/2,U.deck+U.H+.2,y+U.W/2,U.meW-2,.4,U.W-2.4]),false),
+  xf:inst(site,UB,M.xf,units.map(([x,y])=>[x-21.5,4,y+U.W/2,9,7,9]),false)
+};
+const chl=[],fanT=[];units.forEach(([x,y])=>{for(let k=0;k<3;k++){const cx=x+mx+U.meW+U.cG+k*(U.cW+U.cG)+U.cW/2;chl.push([cx,.5+(U.cH-.5)/2,y+U.cL/2,U.cW,U.cH-.5,U.cL]);fanT.push([cx,U.cH+.2,y+U.cL/2,U.cW-2.4,.4,U.cL-2.4]);}});
+uI.ch=inst(site,UB,M.chill,chl,false);uI.fan=inst(site,UB,M.fan,fanT,false);
+const logoGeo=new THREE.PlaneGeometry(30,30/LOGO_R);
+uI.logo=new THREE.InstancedMesh(logoGeo,logoW,MAXU);units.forEach(([x,y],i)=>{dummy.position.set(x+U.sL/2,U.deck+U.H/2,-y+.3);dummy.scale.set(1,1,1);dummy.rotation.set(0,0,0);dummy.updateMatrix();uI.logo.setMatrixAt(i,dummy.matrix);});uI.logo.instanceMatrix.needsUpdate=true;uI.logo.renderOrder=3;site.add(uI.logo);
+// operations building and warehouse in the north-west corner of the campus
+box(site,1380,2110,.2,560,240,.4,M.gravel,false);
+box(site,1400,2130,.7,200,90,26,M.ops);box(site,1398,2128,26.7,204,94,1.4,M.opsRoof,false);decal(site,logoN,70,1500,2130,15,'s');decal(site,logoN,70,1500,2220,15,'n');
+box(site,1640,2120,.7,260,130,32,M.white);box(site,1638,2118,32.7,264,134,1.4,M.opsRoof,false);decal(site,logoN,90,1770,2120,18,'s');
+// medium-voltage feeders from the power island to the campus (schematic)
+path(site,[[4270,2250],[4190,2250],[4190,2440],[1350,2440]],4,M.feeder,.9);path(site,[[3700,1746],[3700,2440]],4,M.feeder,.9);
+path(site,[[3325,1500],[3215,1500],[3215,345],[1350,345]],4,M.feeder,.9);
+
+/* ---------- camera ---------- */
+const T_PWR=V(4470,1700,0), T_DC=V(2250,1380,0), T_SITE=V(3300,1500,0), T_ALL=V((EXT.x0+EXT.x1)/2,(EXT.y0+EXT.y1)/2,0);
+sun.position.copy(T_PWR).add(new THREE.Vector3(-1500,2300,900));sun.target.position.copy(T_PWR);
+sun.castShadow=true;sun.shadow.mapSize.set(4096,4096);
+const sc=sun.shadow.camera;sc.left=-1300;sc.right=1300;sc.top=1300;sc.bottom=-1300;sc.near=400;sc.far=6000;sc.updateProjectionMatrix();sun.shadow.bias=-.0008;
+
+function fac(){const a=camera.aspect;return a<.7?1.9:a<1.1?1.35:1;}
+const off=(t,x,y,z)=>[t.clone().add(new THREE.Vector3(x*fac(),y*fac(),z*fac())),t.clone()];
+const VIEWS={site:()=>off(T_SITE,-2600,3900,5200),pwr:()=>off(T_PWR,-900,620,1050),dc:()=>off(T_DC,-1500,1250,1900),top:()=>off(T_ALL,0,15500,2)};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let anim=null;
+function go([p,t]){if(reduce){camera.position.copy(p);controls.target.copy(t);controls.update();return;}anim={p0:camera.position.clone(),t0:controls.target.clone(),p1:p,t1:t,s:performance.now()};}
+const VB={site:'vsite',pwr:'vpwr',dc:'vdc',top:'vtop'};
+function setView(v,instant){Object.keys(VB).forEach(k=>document.getElementById(VB[k]).setAttribute('aria-pressed',k===v));const pt=VIEWS[v]();if(instant){camera.position.copy(pt[0]);controls.target.copy(pt[1]);controls.update();}else go(pt);}
+Object.keys(VB).forEach(k=>{document.getElementById(VB[k]).onclick=()=>setView(k);});
+controls.addEventListener('start',()=>{anim=null;});
+
+/* ---------- labels ---------- */
+const labelsEl=document.getElementById('labels'),LBL=[];
+// g: equipment group that must be on ('' | 't1' | 't2' | 'eng'); [min,max]: camera distance in ft; pr: low wins
+function label(pos,html,cls,min,max,pr,g){const e=document.createElement('div');e.className='lb'+(cls?' '+cls:'');e.innerHTML=html;e.hidden=true;labelsEl.appendChild(e);LBL.push({e,pos,min,max,pr,g:g||''});}
+const sw=c=>'<i style="background:'+c+'"></i>';
+const bl=(T,a,b,h)=>V(T.x+b,T.y-a,h);                      // a point in a turbine block's local plan
+label(V(2250,1500,150),'LIMiK Elberta campus <small>modular data center</small>','site',1500,60000,0);
+label(bl(T1,90,85,150),'Turbine 1 <small>SGT5-4000F · ≈300 MW</small>','pwr',0,14000,1,'t1');
+label(bl(T2,90,85,150),'Turbine 2 <small>SGT5-4000F · ≈300 MW</small>','pwr',0,14000,1,'t2');
+label(V(3665,1470,60),sw('#c2473d')+'Gas engines <small>67 × 4.5 MW ≈ 300 MW</small>','pwr',0,14000,2,'eng');
+label(V(4555,2245,90),'345 kV collector substation','grid',0,9000,3);
+label(V(TAP[0],TAP[1],140),'Tie to the 345 kV line <small>interconnection point to be set</small>','grid',0,7000,4);
+label(V(5040,1590,30),'Gas metering station <small>Williams tap</small>','gasl',0,6000,4);
+label(V(2250,2300,60),sw('#3d7dd8')+'Modular units <small>60 blocks · up to 240 units</small>','',0,9000,2);
+label(V(1640,2180,60),sw('#e9e4d6')+'Operations and warehouse','',0,5000,5);
+label(V(350,1300,20),'Expansion reserve <small>west of the Kern River easement</small>','ease',1500,16000,4);
+label(V(5330,3300,150),'345 kV line','grid',2500,60000,3);
+label(V(940,1900,20),'Kern River Pipeline','gasl',2500,60000,5);
+label(V(5330,1400,20),'Williams MountainWest Pipeline','gasl',1200,60000,5);
+label(V(6330,2100,20),'Tunnel Rd <small>site access from US-6</small>','ctx',1500,20000,5);
+label(V(-1362,3000,20),'West access strip <small>35:104:0004</small>','ctx',3000,30000,6);
+label(V(3200,5330,20),'US Highway 6','ctx',3000,60000,4);
+label(V(6200,4700,20),'61:094:0028 <small>85.17 ac · reserve</small>','par',4000,60000,6);
+label(V(-760,-600,20),'35:104:0003 <small>51.83 ac · reserve</small>','par',4000,60000,7);
+label(V(600,-700,20),'35:104:0004 <small>58.45 ac · reserve</small>','par',4000,60000,7);
+label(V(5600,500,20),'61:094:0027 <small>152.42 ac · power island</small>','par',4000,60000,6);
+// close-up labels on turbine 1
+label(bl(T1,110,85,112),sw('#6fa8c9')+'Air-intake filter house','',0,2600,5,'t1');
+label(bl(T1,366,85,126),'Heat-recovery boiler','',0,2600,6,'t1');
+label(bl(T1,458,85,218),'Main stack <small>≈210 ft</small>','',0,3200,5,'t1');
+label(bl(T1,261,85,200),'Bypass stack','',0,2600,7,'t1');
+label(bl(T1,40,85,34),'Generator','',0,1800,8,'t1');
+label(bl(T1,-36,85,44),sw('#56704a')+'Step-up transformer','',0,2200,7,'t1');
+LBL.sort((a,b)=>a.pr-b.pr);
+const st={t1:true,t2:false,eng:true,lab:true};
+let sized=false;const tmp=new THREE.Vector3();
+function placeLabels(){const Wd=innerWidth,Hd=innerHeight,d=camera.position.distanceTo(controls.target)/fac(),placed=[];
+  if(!sized){LBL.forEach(l=>{l.e.hidden=false;l.w=l.e.offsetWidth;l.h=l.e.offsetHeight;l.e.hidden=true;});sized=true;}
+  for(const l of LBL){if(!st.lab||(l.g&&!st[l.g])||d<l.min||d>l.max){l.e.hidden=true;continue;}
+    tmp.copy(l.pos).project(camera);if(tmp.z>1||tmp.x<-1.05||tmp.x>1.05||tmp.y<-1.05||tmp.y>1.05){l.e.hidden=true;continue;}
+    const x=(tmp.x+1)/2*Wd-l.w/2,y=(1-tmp.y)/2*Hd-l.h-4;const r={x,y,w:l.w,h:l.h};
+    if(placed.some(q=>r.x<q.x+q.w+3&&r.x+r.w+3>q.x&&r.y<q.y+q.h+3&&r.y+r.h+3>q.y)){l.e.hidden=true;continue;}
+    placed.push(r);l.e.hidden=false;l.e.style.transform='translate('+Math.round(x)+'px,'+Math.round(y)+'px)';}}
+
+/* ---------- power balance ---------- */
+const $=id=>document.getElementById(id);
+function sync(){blk1.visible=st.t1;blk2.visible=st.t2;engG.visible=st.eng;
+  const gen=(st.t1?300:0)+(st.t2?300:0)+(st.eng?300:0), gas=(st.t1?64:0)+(st.t2?64:0)+(st.eng?58:0);
+  const n=Math.min(MAXU,Math.floor(gen/2.5));
+  ['deck','body','roof','mech','mechR','xf','logo'].forEach(k=>{uI[k].count=n;});uI.ch.count=n*3;uI.fan.count=n*3;
+  $('pbT1').textContent=st.t1?'300 MW':'off';$('pbT2').textContent=st.t2?'300 MW':'off';$('pbEng').textContent=st.eng?'300 MW':'off';
+  $('pbGen').textContent=gen+' MW';$('pbGas').textContent=gas?gas+' MMcf/day':'none';
+  $('pbUnits').textContent=n+' of '+MAXU;$('pbIT').textContent=Math.round(n*1.77)+' MW';
+  const s=$('pbStat');
+  if(gen===0){s.className='pill warn';s.textContent='No generation selected';}
+  else if(gen<=600){s.className='pill ok';s.textContent=gen<600?'Gas to spare: '+(600-gen)+' MW of the 600 unused':'Within the 600–700 MW of gas';}
+  else if(gen<=700){s.className='pill warn';s.textContent='At the limit of the gas supply';}
+  else{s.className='pill bad';s.textContent='Needs more gas than the 600–700 MW available';}}
+function toggle(id,key){const b=$(id);b.onclick=()=>{st[key]=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',st[key]);sync();};}
+toggle('bt1','t1');toggle('bt2','t2');toggle('beng','eng');toggle('blab','lab');
+sync();
+
+/* ---------- theme ---------- */
+function applyTheme(){const cs=getComputedStyle(document.documentElement),bg=cs.getPropertyValue('--bg').trim()||'#dfe7ec';
+  const t=document.documentElement.getAttribute('data-theme'),dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  scene.background=new THREE.Color(bg);skirtMat.color.set(bg);baseMat.color.set(dark?'#a9afb2':'#ffffff');}
+applyTheme();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
+new MutationObserver(applyTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+/* ---------- run ---------- */
+const sheet=document.getElementById('sheet');if(innerWidth<700)sheet.open=false;
+const needle=document.getElementById('needle');
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);}
+addEventListener('resize',resize);
+setView('site',true);
+function loop(now){requestAnimationFrame(loop);
+  if(anim){const k=Math.min(1,(now-anim.s)/1100),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;camera.position.lerpVectors(anim.p0,anim.p1,e);controls.target.lerpVectors(anim.t0,anim.t1,e);if(k>=1)anim=null;}
+  controls.update();
+  needle.setAttribute('transform','rotate('+(Math.atan2(camera.position.x-controls.target.x,camera.position.z-controls.target.z)*180/PI).toFixed(1)+')');
+  renderer.render(scene,camera);placeLabels();}
+requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>

@@ -89,3 +89,8 @@
 ## Arkansas Ln Leviathan — сторінка за посиланням, 2026-11-17
 
 Користувач погодив `/arkansas-ln-leviathan` для моделі Claude `HGTcfBGMWqLjxKYRhu6is7`. Та сама схема, що для BZI Pilot: окремий `arkansas-ln-leviathan/index.html`, `noindex, nofollow`, без меню/footer/sitemap, стандартний favicon. Сторінка публічна за URL; користувач поінформований про позначку confidential та відсутність парольного захисту й погодив публікацію. Зберігати дизайн, тексти й інтерактивну логіку моделі; видаляти лише службову оболонку Claude. Наявну `/bzi-pilot` не перейменовувати.
+
+
+## Elberta Power Campus — сторінка за посиланням, 2026-11-17
+
+Користувач погодив `/elberta-power-campus` для моделі Claude `9EcnVuJ5qZyb1Qsm4WRGne`: окремий `elberta-power-campus/index.html`, `noindex, nofollow`, без меню/footer/sitemap, стандартний favicon. Публічний доступ за URL за тією ж логікою, що BZI та Arkansas. Дизайн, тексти, геометрію й логіку моделі збережено; службову оболонку Claude видалено. Технічні та комерційні твердження залишаються вихідним концептуальним матеріалом клієнта, перенесення не є їх перевіркою.

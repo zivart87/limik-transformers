@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arkansas Ln Leviathan Model</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Interactive Arkansas Ln Leviathan concept model in Fort Worth, Texas. Review build for discussion; not for construction.">
+<link rel="canonical" href="https://www.limiktransformers.com/arkansas-ln-leviathan">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arkansas Ln Leviathan Model">
+<meta property="og:description" content="Interactive Arkansas Ln Leviathan concept model in Fort Worth, Texas. Review build for discussion; not for construction.">
+<meta property="og:url" content="https://www.limiktransformers.com/arkansas-ln-leviathan">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: full-bleed 3D stage; survey-style title block top-left, view toolbar bottom-centre, compass top-right. */
+:root{
+  --panel: rgba(247,248,245,.93);
+  --ink:#1b231f; --muted:#59645d; --rule:#c7cec7; --accent:#1e5d88; --btn:#ffffff; --btn-on:#1e5d88; --btn-on-ink:#ffffff;
+  --gen:#d2423a; --bess:#2f6fd6; --hall:#2f9e44; --chill:#e3861b; --xfmr:#56704a; --gas:#e0b11c; --feeder:#26221e; --bg:#dfe7ec;
+  --f-ui:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --panel: rgba(20,25,22,.9); --ink:#e3e9e4; --muted:#9ca79f; --rule:#39433d; --accent:#7ab6de; --btn:#232b26; --btn-on:#7ab6de; --btn-on-ink:#0f1512; --feeder:#d9d3c9; --bg:#1a2024; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --panel: rgba(20,25,22,.9); --ink:#e3e9e4; --muted:#9ca79f; --rule:#39433d; --accent:#7ab6de; --btn:#232b26; --btn-on:#7ab6de; --btn-on-ink:#0f1512; --feeder:#d9d3c9; --bg:#1a2024; color-scheme:dark}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+#stage{position:fixed;inset:0}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none}
+#labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;font:600 12px/1.15 var(--f-ui);letter-spacing:.02em;color:#1b231f;background:rgba(255,255,255,.9);border:1px solid rgba(27,35,31,.18);padding:3px 7px 3px 6px;border-radius:3px;display:flex;gap:6px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.lb i{width:9px;height:9px;border-radius:2px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.lb small{font:500 10.5px/1 var(--f-mono);color:#4d5852}
+.lb.ctx{background:rgba(32,38,35,.72);color:#f1f4f1;border-color:transparent}
+.lb.ctx small{color:#d3dad5}
+.lb.ease{background:rgba(255,248,232,.93);border-style:dashed;color:#5a3a0c}
+.lb.warn{background:#fff2c7;border-color:#c9921b;color:#5a3a0c}
+.lb.ug{background:rgba(255,255,255,.82);border-style:dotted;color:#3a4540;font-weight:500}
+.lb.newf{background:#e3f4f1;border-color:#1f9e8f;color:#0f4f47}
+.lb.setb{background:rgba(255,236,236,.94);border-color:#c81e1e;color:#7f1212}
+.lb.bld{background:rgba(232,248,236,.95);border-color:#15803d;color:#14532d}
+.lb.wet{background:rgba(228,242,252,.95);border-color:#0b5fa5;border-style:dashed;color:#0b3a66}
+.lb.setp{background:rgba(243,236,255,.94);border-color:#7c3aed;color:#4c1d95}
+.lb.fire{background:rgba(255,240,241,.95);border-color:#c8102e;color:#7f0d1d}
+#leaders{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#leaders line{stroke:rgba(20,26,23,.55);stroke-width:1}
+#leaders circle{fill:#fff;stroke:rgba(20,26,23,.7);stroke-width:1}
+
+#sheet{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));width:min(330px,calc(100vw - 96px));background:var(--panel);border:1px solid var(--rule);border-radius:4px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.12);max-height:calc(100% - 130px);overflow:auto}
+#sheet summary{list-style:none;cursor:pointer;padding:10px 12px 9px;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+#sheet summary::-webkit-details-marker{display:none}
+#sheet summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.eyebrow{font:500 10.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 19px/1.1 var(--f-ui);margin:3px 0 0;text-wrap:balance}
+.chev{font:500 12px var(--f-mono);color:var(--muted);transition:transform .2s;margin-top:2px}
+#sheet[open] .chev{transform:rotate(180deg)}
+.blk{border-top:1px solid var(--rule);padding:9px 12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:13px;margin:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-variant-numeric:tabular-nums}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px}
+.legend li{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center}
+.legend i{width:12px;height:12px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.legend i.ln{height:3px;border-radius:0;box-shadow:none}
+.legend i.dash{height:0;border-top:3px dashed #b8402f;box-shadow:none;border-radius:0}
+.legend b{font-weight:600}
+.legend span.n{font:500 11.5px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--muted);margin:0;line-height:1.35}
+
+#bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:6px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.14);width:max-content;max-width:calc(100vw - 24px)}
+#bar .sep{width:1px;background:var(--rule);margin:2px 2px}
+button{font:600 13.5px/1 var(--f-ui);letter-spacing:.02em;color:var(--ink);background:var(--btn);border:1px solid var(--rule);border-radius:4px;padding:8px 11px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button[aria-pressed="true"]{background:var(--btn-on);color:var(--btn-on-ink);border-color:var(--btn-on)}
+#compass{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:52px;height:52px;border-radius:50%;background:var(--panel);border:1px solid var(--rule);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+#compass svg{width:40px;height:40px}
+#loading{position:fixed;inset:0;display:grid;place-items:center;font:500 13px var(--f-mono);color:var(--muted);pointer-events:none}
+/* measure tool */
+:root{--meas:#d6336c}
+.lb.meas{background:var(--meas);color:#fff;border-color:rgba(0,0,0,.15);font-family:var(--f-mono);font-weight:500;font-size:11.5px;font-variant-numeric:tabular-nums}
+.lb.meas small{color:#ffe1ea}
+.lb.meas.tot{background:#3a0a1c;font-weight:600}
+.lb.meas.live{background:rgba(214,51,108,.85)}
+#measure{position:fixed;top:calc(74px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:min(250px,calc(100vw - 24px));background:var(--panel);border:1px solid var(--rule);border-top:3px solid var(--meas);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:10px 12px;display:grid;gap:8px;font-size:13px}
+#measure .mhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#measure .mhint{font-size:11.5px;color:var(--muted)}
+#measure .mtot{font:600 24px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+#measure .mtot small{display:block;font:500 11.5px var(--f-mono);color:var(--muted);margin-top:5px}
+#mlist{margin:0;padding:0;list-style:none;max-height:120px;overflow:auto;font:500 12px/1.5 var(--f-mono);font-variant-numeric:tabular-nums;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+#mlist:empty{display:none}
+#mlist li{display:flex;justify-content:space-between;gap:8px;padding:1px 0}
+#mlist li span{color:var(--muted)}
+#measure .mrow{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+#measure .mrow label{display:flex;gap:5px;align-items:center;cursor:pointer}
+#measure .mrow button{flex:1 1 0;padding:7px 8px;font-size:13px}
+#measure input{accent-color:var(--meas);margin:0}
+#bmeas[aria-pressed="true"]{background:var(--meas);border-color:var(--meas);color:#fff}
+@media (max-width:560px){h1{font-size:17px}button{padding:8px 8px;font-size:12.5px}#bar .sep{display:none}}
+@media (prefers-reduced-motion: reduce){.chev{transition:none}}
+/* Armada Rev 1 additions */
+.eyebrow{text-transform:none;letter-spacing:.04em}
+.lb.unit{background:rgba(232,248,236,.96);border-color:#15803d;color:#14532d}
+.lb.six{background:#ffe3e3;border-color:#c81e1e;color:#7f1212}
+.callout{border-left:3px solid #c9921b;background:rgba(255,242,199,.55);padding:7px 9px;font-size:12.5px;line-height:1.35;margin:0;color:var(--ink)}
+.callout b{font-weight:700}
+:root[data-theme="dark"] .callout{background:rgba(120,90,20,.28)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .callout{background:rgba(120,90,20,.28)}}
+.et{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.et th{font:500 10.5px/1.2 var(--f-mono);color:var(--muted);text-align:right;padding:2px 0 4px 6px;border-bottom:1px solid var(--rule)}
+.et th:first-child,.et td:first-child{text-align:left;padding-left:0}
+.et td{padding:4px 0 4px 6px;text-align:right;border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:11.5px}
+.et td:first-child{font-family:var(--f-ui);font-size:12.5px;font-weight:600}
+.et tr.on td{background:rgba(30,93,136,.12)}
+.et tr.no td:first-child{color:#b3261e}
+.blk h2{font:600 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+#bar .grp{display:flex;gap:0}
+#bar .grp button{border-radius:0;margin-left:-1px}
+#bar .grp button:first-child{border-radius:4px 0 0 4px;margin-left:0}
+#bar .grp button:last-child{border-radius:0 4px 4px 0}
+#bt[aria-pressed="true"]{background:#c81e1e;border-color:#c81e1e;color:#fff}
+
+/* ---- Leviathan review build additions ---- */
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:12.5px;line-height:1.3}
+.checks li{display:grid;grid-template-columns:56px 1fr;gap:8px;align-items:start}
+.checks b{font-weight:600}
+.checks small{display:block;color:var(--muted);font-size:12px}
+.chip{font:500 10px/1.55 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;text-align:center;border:1px solid currentColor;border-radius:2px;margin-top:1px}
+.chip.ok{color:#2e7d4f}.chip.tight{color:#a85f00}.chip.bad{color:#fff;background:#b3261e;border-color:#b3261e}.chip.info{color:var(--muted)}
+:root[data-theme="dark"] .chip.ok{color:#6fcf97}:root[data-theme="dark"] .chip.tight{color:#f2c94c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.ok{color:#6fcf97}:root:not([data-theme="light"]) .chip.tight{color:#f2c94c}}
+#bar .ctl{display:flex;align-items:center;gap:2px;font:600 13px var(--f-ui);color:var(--ink);background:var(--btn);border:1px solid var(--rule);border-radius:4px;padding:0 3px 0 9px}
+#bar .ctl button{border:0;background:transparent;box-shadow:none;padding:5px 8px;min-width:0;font:600 15px/1 var(--f-mono);color:var(--ink)}
+#bar .ctl button:disabled{opacity:.3}
+#bar .ctl output{min-width:1.3em;text-align:center;font:600 13px var(--f-mono)}
+#bar .ctl select{border:0;background:transparent;font:600 13px var(--f-ui);color:var(--ink);padding:6px 2px;cursor:pointer}
+#bar .ctl select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+body.cmp #bar .ctl{opacity:.4;pointer-events:none}
+.lb.dimk{background:#101418;color:#fff;border-color:#101418;font-family:var(--f-mono);font-weight:500;font-size:11.5px}
+.lb.dimk small{color:#cfd6d2}
+.et td.over{color:#b3261e;font-weight:600}.et td.fit{color:#2e7d4f}
+.src{font:600 10.5px/1.2 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+body.cmp #lvChecks{opacity:.45}
+</style>
+</head><body>
+<main>
+<div id="stage"></div>
+<div id="labels"></div>
+<div id="loading" hidden="">Building site model…</div>
+
+<details id="sheet" open="">
+  <summary>
+    <div>
+      <div class="eyebrow">Review build on the GoGo Rev 2g scene · confidential · not for construction</div>
+      <h1>Arkansas Ln · Leviathan units per the Armada flyer</h1>
+    </div>
+    <span class="chev" aria-hidden="true">▾</span>
+  </summary>
+  <div class="blk">
+    <dl class="kv">
+      <dt>Site</dt><dd>1125 Arkansas Ln, Fort Worth TX</dd>
+      <dt>Legal</dt><dd>Lot 2R-1, Tract 3, Lake Arlington Ind. Park</dd>
+      <dt>Area</dt><dd>4.59 ac · 199,843 sf</dd>
+      <dt>Utility</dt><dd>12,000 kW contracted with Oncor (FEA 12785) · 12.47 kV · one point of delivery energized · 6 + 6 MW split unverified</dd>
+      <dt>IT block</dt><dd id="lvUnits">3 Leviathan units · 119.1 × 44.8 ft each</dd>
+      <dt>Each unit</dt><dd>zones 01 to 04 on a raised deck · 05 mechanical module · three chillers, N+1 · closed loop</dd>
+      <dt>IT load</dt><dd><span id="lvN">3</span> × 1.77 = <span id="lvIT">5.31 MW</span> IT envelope · design-day draw about <span id="lvFac">6.6 to 7.5 MW</span></dd>
+      <dt>Cooling</dt><dd id="lvCool">9 chillers, three per unit, N+1</dd>
+      <dt>Transformers</dt><dd>one pad-mount per unit, rating per Armada · 12.47 kV duct <span id="lvDuct">A · B</span> · 480 V runs <span id="lvRun"></span></dd>
+      <dt>Backup</dt><dd>10 gensets as proposed in the permit set, not installed · row sits inside the pipeline easement · tie not designed</dd>
+      <dt>Office</dt><dd>Optional permanent Ops Office / Receiving &amp; Staging · 60 × 80 ft · Office toggle</dd>
+      <dt>Fire access</dt><dd>FA-1 · 20 ft lanes · 14 ft overhead · 150 ft reach · TA-1 hammerhead · FH-1/FH-2 · Knox</dd>
+    </dl>
+  </div>
+  <div class="blk">
+    <h2>Layout checks</h2>
+    <ul class="checks" id="lvChecks"></ul>
+    <p class="note" style="margin-top:7px">Review screens against the printed footprint, not code compliance. Change Units or Aisle in the toolbar to see what breaks. Rev 2g block swaps in the six-hall block Rev 2g drew.</p>
+  </div>
+  <div class="blk">
+    <h2>12 MW limit · units at the 1.77 MW envelope</h2>
+    <table class="et" aria-label="Power cases">
+      <thead><tr><th>Units</th><th>IT MW</th><th>Design-day MW</th><th>Busier feeder</th><th>12 MW</th></tr></thead>
+      <tbody id="lvCases">
+        <tr data-n="1"><td>1</td><td>1.77</td><td>2.2–2.5</td><td>2.2–2.5</td><td class="fit">fits</td></tr>
+        <tr data-n="2"><td>2</td><td>3.54</td><td>4.4–5.0</td><td>2.2–2.5</td><td class="fit">fits</td></tr>
+        <tr data-n="3"><td>3</td><td>5.31</td><td>6.6–7.5</td><td>4.4–5.0</td><td class="fit">fits</td></tr>
+        <tr data-n="4"><td>4</td><td>7.08</td><td>8.8–10.0</td><td>4.4–5.0</td><td class="fit">fits</td></tr>
+        <tr data-n="5"><td>5</td><td>8.85</td><td>11.0–12.5</td><td>6.6–7.5</td><td class="over">marginal</td></tr>
+        <tr data-n="6"><td>6</td><td>10.62</td><td>13.2–15.0</td><td>6.6–7.5</td><td class="over">over</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:7px">Estimate: PUE 1.24 to 1.41 on a 100 to 110°F day for a chiller-cooled unit. The flyer gives no input power or PUE. Rev 2g needed PUE ≤ 1.130 to hold six units under 12 MW.</p>
+  </div>
+  <div class="blk">
+    <h2>What each unit is built from</h2>
+    <p class="note"><span class="src">Printed in the flyer</span> Baseline 36,300 × 13,660 mm (119.1 × 44.8 ft). Zones 01 to 08. N+1 chiller-driven cooling on a closed loop. 1.77 MW IT envelope: 8 compute racks at 200 kW, 4 network racks. 2.2 MW cooling. 480 V service.</p>
+    <p class="note" style="margin-top:6px"><span class="src">Scaled from its diagram</span> Zones 01 to 04 about 18.0 m long, five module widths across. Mechanical module about 3.1 m wide. Chillers about 3.1 × 10.6 m, 1.4 m apart. Headers on the zone 04 edge.</p>
+    <p class="note" style="margin-top:6px"><span class="src">Assumed</span> Heights (deck 1.3 m, modules 3.6 m, chillers 2.8 m), door landing and stairs, the rack row, transformer and switch positions. Module length is open with Armada: the rendering would also suit 45 ft ISO modules inside the same footprint.</p>
+  </div>
+  <div class="blk">
+    <ul class="legend">
+      <li><i style="background:#3d7dd8"></i><b>02 IT infrastructure</b><span class="n">roof band · 2 modules</span></li>
+      <li><i style="background:#e0a11c"></i><b>03 Electrical</b><span class="n">roof band</span></li>
+      <li><i style="background:#b3a88f"></i><b>01 Mechanical UPS · 04 UPS</b><span class="n">roof band</span></li>
+      <li><i style="background:#1f9e8f"></i><b>05 Mechanical module</b><span class="n">roof band</span></li>
+      <li><i style="background:#dfe3e1"></i><b>06 to 08 Chillers</b><span class="n">three per unit · N+1</span></li>
+      <li><i class="ln" style="background:#2f6fd6"></i><b>Coolant supply / <span style="color:#b8860b">return</span></b><span class="n">closed loop</span></li>
+      <li><i style="background:var(--xfmr)"></i><b>Pad-mount xfmrs · VFI A/B</b><span class="n">one per unit · assumed</span></li>
+      <li><i class="ln" style="background:#7c3aed"></i><b>Feeder A (UG) / <span style="color:#db2777">Feeder B (UG)</span></b><span class="n">conceptual</span></li>
+      <li><i class="ln" style="background:#b8402f"></i><b>480 V: xfmr → Electrical zone</b><span class="n">conceptual</span></li>
+      <li><i class="ln" style="background:var(--feeder)"></i><b>Oncor feeders A/B (overhead)</b><span class="n">as-built unverified</span></li>
+      <li><i style="background:var(--gen)"></i><b>NatGas gensets, proposed</b><span class="n">not installed</span></li>
+      <li><i style="background:var(--gas)"></i><b>Gas tie-in &amp; conditioning</b><span class="n">concept</span></li>
+      <li><i style="background:#b9c2c6"></i><b>Ops Office / Receiving &amp; Staging (Office)</b><span class="n">optional · 60×80 ft</span></li>
+      <li><i class="ln" style="background:#9a3412"></i><b>Existing UG gas pipeline</b><span class="n">Underground</span></li>
+      <li><i style="background:rgba(224,123,19,.4)"></i><b>Pipeline easement</b><span class="n">Easements</span></li>
+      <li><i style="background:rgba(47,127,214,.45)"></i><b>Flood-plain easement, survey courses</b><span class="n">Easements · ± 8 ft</span></li>
+      <li><i class="ln" style="background:#8fb7e6"></i><b>Flood-plain limit as Rev 2g drew it</b><span class="n">dashed</span></li>
+      <li><i style="background:rgba(58,154,58,.45)"></i><b>Sanitary sewer easement</b><span class="n">Easements · scaled</span></li>
+      <li><i style="background:rgba(29,143,216,.45)"></i><b>Wetland / flood zone trace</b><span class="n">Wetland · rough</span></li>
+      <li><i style="background:rgba(200,30,30,.45)"></i><b>Gas well setback</b><span class="n">≈ 330 ft · unsourced</span></li>
+      <li><i class="ln" style="background:#3a3f42;height:6px"></i><b>10 ft privacy fence &amp; gate G-1</b><span class="n" id="lgExFence">≈ 990 ft</span></li>
+      <li><i class="ln" style="background:#5b6366"></i><b>Existing chain-link fence</b><span class="n" id="lgEastFence">≈ 701 ft · unchanged</span></li>
+      <li><i class="ln" style="background:#1f9e8f"></i><b>Yard fence + gates A/B, man gates</b><span class="n" id="lgNewFence">≈ 695 ft fence</span></li>
+      <li><i style="background:#cfd0cb;box-shadow:inset 0 0 0 2px #c8102e"></i><b>Fire lanes FL-1/2/3 + TA-1 hammerhead</b><span class="n" id="lgLane">20 ft · ≈ 19,800 sf</span></li>
+      <li><i style="background:rgba(200,16,46,.3)"></i><b>150 ft reach offset</b><span class="n">straight line</span></li>
+      <li><i class="ln" style="background:#c8102e"></i><b>Red stripe, stencils, fire lane signs</b><span class="n" id="lgMark">≈ 1,799 lf</span></li>
+    </ul>
+  </div>
+  <div class="blk">
+    <p class="note">Drag to orbit, scroll or pinch to zoom, right-drag to pan. Press Labels for the full set. The terrain, roads, fences, fire access, office, gensets and neighbouring plant are GoGo Technologies' Rev 2g scene, captured 11 Nov 2026. The Leviathan units, the easements re-plotted from the 2013 survey and the checks are this review's. Nothing here is evidenced as installed except the parcel and what the survey shows. Not for construction.</p>
+  </div>
+</details>
+
+<div id="compass" title="North">
+  <svg viewBox="-20 -20 40 40" aria-label="North arrow"><g id="needle" transform="rotate(-41.9)"><path d="M0-16 L6 4 L0 0 L-6 4Z" fill="#d2423a"></path><path d="M0 16 L6 4 L0 0 L-6 4Z" fill="#8b958f"></path></g></svg>
+</div>
+
+<div id="bar" role="toolbar" aria-label="View controls">
+  <button id="b34" type="button" aria-pressed="true">3/4 view</button>
+  <button id="btop" type="button" aria-pressed="false">Top view</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button id="bug" type="button" aria-pressed="false">Underground</button>
+  <button id="bease" type="button" aria-pressed="false">Easements</button>
+  <button id="bset" type="button" aria-pressed="false">Setback</button>
+  <button id="bwet" type="button" aria-pressed="false">Wetland</button>
+  <button id="bfire" type="button" aria-pressed="true" title="FA-1 fire lanes, hammerhead, hydrants, signs and Knox box">Fire access</button>
+  <button id="breach" type="button" aria-pressed="false" title="150 ft straight-line offset from the fire lane clear limits">150 ft reach</button>
+  <button id="blab" type="button" aria-pressed="false">Labels</button>
+  <button id="boff" type="button" aria-pressed="true" title="Optional permanent ops office / receiving &amp; staging building">Office</button>
+  <span class="sep" aria-hidden="true"></span>
+  <span class="ctl" role="group" aria-label="Number of Leviathan units"><span>Units</span><button id="nminus" type="button" aria-label="One unit fewer">&minus;</button><output id="nout">3</output><button id="nplus" type="button" aria-label="One unit more">+</button></span>
+  <label class="ctl" for="aisle">Aisle <select id="aisle"><option value="0">touching</option><option value="10">10 ft</option><option value="15" selected>15 ft</option><option value="20">20 ft</option></select></label>
+  <button id="bunit" type="button" aria-pressed="false" title="Fly to one unit and show its zones and dimensions">Unit close-up</button>
+  <button id="brack" type="button" aria-pressed="false" title="Cut away zone 02 to show the rack row (arrangement indicative)">IT racks</button>
+  <button id="bcmp" type="button" aria-pressed="false" title="Swap in the six-hall block Rev 2g drew, for comparison">Rev 2g block</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button id="bmeas" type="button" aria-pressed="false">Measure</button>
+</div>
+
+<div id="measure" role="region" aria-label="Measure" hidden="">
+  <div class="mhead"><b>Measure</b><span class="mhint">Click to add · drag to orbit</span></div>
+  <div class="mtot"><span id="mtotal">0.0</span> ft<small id="mcount">0 segments</small></div>
+  <ol id="mlist"></ol>
+  <div class="mrow" role="radiogroup" aria-label="Distance type">
+    <label><input type="radio" name="mmode" id="mmode-h" value="h" checked=""> Horizontal</label>
+    <label><input type="radio" name="mmode" id="mmode-3" value="3"> 3D</label>
+  </div>
+  <label class="mrow"><input type="checkbox" id="msnap" checked=""> Snap to object centre, corner, edge</label>
+  <div class="mrow"><button id="mundo" type="button">Undo last point</button><button id="mclear" type="button">Clear</button></div>
+</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" integrity="sha384-wagZhIFgY4hD+7awjQjR4e2E294y6J2HSnd8eTNc15ZubTeQeVRZwhQJ+W6hnBsf" crossorigin="anonymous"></script>
+<script>
+(function(){
+"use strict";
+/* Units: 1 scene unit = 1 ft. Plan coords (x east, y north) from the lot's SW survey corner; world z = -y. */
+const PI=Math.PI;
+const stage=document.getElementById('stage');
+const isSmall=Math.min(innerWidth,innerHeight)<700;
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.02;
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+stage.appendChild(renderer.domElement);
+const ANISO=renderer.capabilities.getMaxAnisotropy();
+
+const scene=new THREE.Scene();
+const HORIZON=new THREE.Color('#e2e9ee');
+scene.fog=new THREE.Fog(HORIZON,2800,10000);
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,2,30000);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;controls.dampingFactor=0.08;
+controls.maxPolarAngle=PI/2-0.04;controls.minDistance=30;controls.maxDistance=5000;
+controls.screenSpacePanning=false;
+
+/* ---------- helpers ---------- */
+let seed=20261021;
+function rnd(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
+const R=(a,b)=>a+(b-a)*rnd();
+function canvas(w,h){const c=document.createElement('canvas');c.width=Math.max(2,Math.round(w));c.height=Math.max(2,Math.round(h));return [c,c.getContext('2d')];}
+function tex(c,rep){const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=ANISO;if(rep){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep[0],rep[1]);}return t;}
+function std(o){return new THREE.MeshStandardMaterial(Object.assign({roughness:.8,metalness:.05},o));}
+function add(m,cast=true,recv=true,parent){m.castShadow=cast;m.receiveShadow=recv;(parent||scene).add(m);return m;}
+function box(w,h,d,mat,x,y,base=0,rotY=0,geo,parent){const m=new THREE.Mesh(geo||new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,base+h/2,-y);m.rotation.y=rotY;return add(m,true,true,parent);}
+function cyl(r,h,mat,x,y,base=0,seg=16,r2,parent){const m=new THREE.Mesh(new THREE.CylinderGeometry(r2==null?r:r2,r,h,seg),mat);m.position.set(x,base+h/2,-y);return add(m,true,true,parent);}
+function pipe(r,mat,a,b,seg=10,parent){const A=new THREE.Vector3(a[0],a[2],-a[1]),B=new THREE.Vector3(b[0],b[2],-b[1]);
+  const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,A.distanceTo(B),seg),mat);m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());return add(m,true,true,parent);}
+function shapeOf(pts){const s=new THREE.Shape();pts.forEach((p,i)=>i?s.lineTo(p[0],p[1]):s.moveTo(p[0],p[1]));return s;}
+function flat(pts,mat,h){const g=new THREE.ShapeGeometry(shapeOf(pts));g.rotateX(-PI/2);const m=new THREE.Mesh(g,mat);m.position.y=h;m.receiveShadow=true;return m;}
+function strip(a,b,w,mat,h){const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy);const g=new THREE.PlaneGeometry(L,w);g.rotateX(-PI/2);
+  const m=new THREE.Mesh(g,mat);m.position.set((a[0]+b[0])/2,h,-(a[1]+b[1])/2);m.rotation.y=Math.atan2(dy,dx);m.receiveShadow=true;return m;}
+function slabPoly(pts,t,mat){const g=new THREE.ExtrudeGeometry(shapeOf(pts),{depth:t,bevelEnabled:false});g.rotateX(-PI/2);const m=new THREE.Mesh(g,mat);m.receiveShadow=true;scene.add(m);return m;}
+function inPoly(p,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])c=!c;}return c;}
+function segDist(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1];let t=((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy);t=Math.max(0,Math.min(1,t));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);}
+
+/* ---------- site geometry (survey bearings/distances; closes within 1% of 199,843 sf) ---------- */
+// Exact boundary (rev 3): corner coordinates computed from all 15 survey courses, closure 0.14 ft, area 199,852 sf (survey 199,843 sf).
+const LOT=[[0,0],[1.65,211.06],[6.46,210.86],[6.97,399.76],[16.38,406.27],[87.23,379.93],[283.41,342.70],[383.45,334.61],
+           [558.43,301.71],[555.52,143.01],[504.69,93.94],[611.69,91.97],[611.47,39.35],[662.86,37.65],[662.86,-3.59]];
+const roadS=x=>432-0.158*x;                 // E Rosedale south carriageway centreline
+const DRIVE={y0:70,y1:91,x0:-18,x1:615};    // existing E-W gravel drive (ingress/egress easement)
+const WOODS=[[4,110],[4,410],[89,386],[286,346],[386,338],[372,300],[352,230],[335,160],[322,110]];
+/* ---------- OPTIONAL PERMANENT OPS OFFICE / RECEIVING & STAGING (v7 / rev 11; owner markup 2026-10-28, red box on the top view) ----------
+   Single-story pre-engineered metal building, 80 ft E-W × 60 ft N-S = 4,800 sf, 18 ft eave, 1:12 gable (ridge ≈ 20.5 ft).
+   West half: ops/control room, offices, break room, restrooms (windows). East half: receiving & staging, 2 × 12×14 ft roll-up doors
+   on the south wall onto a concrete truck apron that ties into the existing gravel drive. Permanent structure → must sit WEST of the
+   gas-well/compressor setback line (x 335): east wall at x 320 = 15 ft clear. Pulled ≈ 15 ft north of the red-box centre so the wall
+   stays ≈ 18 ft from the Feeder B overhead span along y 104. Outside the wetland / flood-zone trace and the 100-yr flood plain easement. */
+// v8 §9.4 (owner 1:16 PM): whole office package shifted 10.0 ft west so the moved FL-3 clears it (east wall x 310, 6.7 ft from the lane)
+const OFFICE={x0:230,x1:310,y0:122,y1:182,eave:18,ridge:20.5,
+  apron:[270,314,91,122],          // concrete truck apron (x0,x1,y0,y1) → drive edge y 91; NE corner overlapped by F-1 / FL-3 (striped as fire lane)
+  lot:[213,270,91,117],            // §10: asphalt court x 213–270; head-in stalls y 99–117: P-1 x 215–224, P-2 x 224–233, pole island x 233–239 (Oncor pole (236,104)), P-3 van x 239–250, aisle x 250–255, P-4 x 255–264, no-parking x 264–270
+  walk:[230,270,117,122],          // entry walk along the office front
+  clear:[213,320,91,194],          // tree clearing (§10: x 213–320): footprint + court + apron + yard
+  fenceGap:[213,310]};             // §10: drive-north chain-link on its original line ends at x 213 with the office; with Office off it runs on to x 310 (stops short of F-1 / FL-3)
+const officeClear=p=>{const c=OFFICE.clear,dx=Math.max(c[0]-p[0],0,p[0]-c[1]),dy=Math.max(c[2]-p[1],0,p[1]-c[3]);return Math.hypot(dx,dy)<(p[2]||0)*0.85;};
+const offG=new THREE.Group(),offTreesG=new THREE.Group(),offFenceG=new THREE.Group();offTreesG.visible=false;offFenceG.visible=false;scene.add(offG,offTreesG,offFenceG);
+// v8: Fire access layer (lanes, marking, signs, hydrants) + Knox box (also needs the office) + trees cleared for the lanes
+const fireG=new THREE.Group(),knoxG=new THREE.Group(),fireTreesG=new THREE.Group(),bothTreesG=new THREE.Group();fireTreesG.visible=false;bothTreesG.visible=false;scene.add(fireG,knoxG,fireTreesG,bothTreesG);   // Office toggle groups
+const PAD=[[430,92],[434,236],[462,286],[556,306],[660,262],[1110,200],[1110,-300],[662,-300],[662,-14],[560,-14],[540,0],[496,92]];
+
+/* ---------- PLANT LAYOUT (compact, pushed to the east line; 5 ft minimum spacing from the 15 MW reference) ---------- */
+const P={
+  // power modules, data hall and cooling plant are laid out in F (see the reference block below)
+  gen:{cx0:426.2,y0:25,n:10,pitch:16.6,w:10},   // 10th unit added in the next free slot west (centre 426.2), same 16.6 ft pitch  // rev 10: 9 × 1.4 MW, 40 × 10 ft enclosures on the east-most 9 rev 9 slots (centres 442.8 … 575.6), x 437.8–580.6, 6.6 ft gaps
+  gas:{x0:618,x1:658,y0:6,y1:30},            // conditioning pad in the lot's SE pocket (south of the x 612 jog)
+  tie:[560,10.45]                            // rev 7: pipeline east end per 2013 survey, at the filling station / equipment pad (meter + valve skid)
+};
+// Perimeter (rev 3): reuse the EXISTING chain-link and the EXISTING survey gate; add new fence only to close the loop.
+// Existing west fence line: straight line seen in the aerials along the woods' east edge, crossing the drive at the survey GATE.
+const DIAG=y=>318+(y-6)*0.187;
+const GATE={s:[DIAG(DRIVE.y0-0.5),DRIVE.y0-0.5],n:[DIAG(DRIVE.y1+0.5),DRIVE.y1+0.5]};   // existing double swing gate across the drive (≈ x 330–334)
+// EXISTING chain-link (rev 5, from the owner's marked aerial; snapped to the lot polygon where they follow it)
+const XS=y=>329.9+(y-69.5)*(2.9/71.25);              // west line south of the gate (near-vertical in the aerial)
+const SL=x=>-3.59*x/662.86;                          // south property line P1→P15
+const FENCE_EXIST=[
+  {n:'North line (Rosedale side → lot NE corner)',pl:[[DIAG(335),335],[383.45,334.61],[558.43,301.71]]},
+  {n:'North line beside the sound wall (left original)',pl:[[558.43,301.71],[662.86,282.1]]},
+  {n:'East line beside the compressor plant (opening to the plant left as is)',pl:[[662.86,SL(662.86)],[662.86,216]]},
+  {n:'East line, north of the opening',pl:[[662.86,234],[662.86,282.1]]},
+  {n:'South property line, west of the gate line (left original)',pl:[[0,0],[327,SL(327)]]},
+  {n:'South property line, gate line → SE corner',pl:[[327,SL(327)],[662.86,SL(662.86)]]},
+  {n:'Diagonal west line along the woods',pl:[[DIAG(105),105],[DIAG(335),335]]},   // v8 §9.2: original diagonal fence restored over its full length
+  {n:'West line, gate → drive north edge',pl:[GATE.n,[DIAG(105),105]]},
+  {n:'North edge of the drive (west)',pl:[[60,113],[DIAG(105),105]]},
+  {n:'West line, gate → south line',pl:[GATE.s,[327,SL(327)]]}];
+// NEW fence (rev 5): only what closes the two enclosures; the drive between them stays open from the existing gate east.
+// (A) gensets + gas conditioning yard, south of the drive; (B) datacenter block, north of the drive. Each has a 20 ft vehicle gate (rev 8: on the east side of each enclosure, see below).
+// rev 8: both gates moved to the owner's marked spots (screenshot red boxes), 20 ft each.
+// Gate A: on A's lot-line run (x ≈ 611.5) at the east end of the genset row, beside the light pole at (605,64); y 47–67.
+// Gate B: on B's x = 533 run, between the battery bank (N edge y 143) and the first Feeder B transformer (y 165.5),
+//         centred on the blue-striped accessible aisle of the parking row (y 152–157); y 144.5–164.5.
+const GATE_A=[[611.49,67],[611.48,47]],GATE_B=[[533,164.5],[533,144.5]];
+const B_NOTCH=[533,93.94+(533-504.69)*49.07/50.83],B_NORTH=[533,334.61-(533-383.45)*32.9/174.98];
+/* ---------- v8: FA-1 FIRE ACCESS GEOMETRY (FIRE-ACCESS-BRIEF 2026-10-30, §2) ----------
+   Clear-limit outline (20 ft) of FL-1 / FL-2 / FL-3, fillets F-1…F-4 (R25) and TA-1 (R28), traced CCW as five
+   striped edge runs. Transverse ends (TA-1 stem end, FL-1 east end, FL-2 / FL-3 north ends, Arkansas Ln mouth) are not striped. */
+const arcPts=(cx,cy,r,a0,a1,n)=>{const o=[];for(let k=0;k<=n;k++){const a=(a0+(a1-a0)*k/n)*PI/180;o.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}return o;};
+const dedupe=pl=>pl.filter((p,i)=>!i||Math.hypot(p[0]-pl[i-1][0],p[1]-pl[i-1][1])>1e-6);
+const FA={
+  runs:[[[-18,70.5],...arcPts(356,42.5,28,90,0,16),[384,39]],                                   // FL-1 S edge → TA-1 W fillet → stem W edge
+        [[404,39],...arcPts(432,42.5,28,180,90,16),[611,70.5]],                                 // stem E edge → TA-1 E fillet → FL-1 S edge (east arm)
+        [[611,90.5],...arcPts(580.5,115.5,25,270,180,16),[555.5,238]],                          // FL-1 N edge → F-4 → FL-2 E edge
+        [[535.5,238],...arcPts(510.5,115.5,25,0,-90,16),[331.30,90.5],[358.51,236]],            // FL-2 W → F-3 → FL-1 N → FL-3 E (§9.3: no F-2, 2.5 ft W of the diagonal fence)
+        [[338.16,236],...arcPts(290.20,115.5,25,Math.atan2(110.90-115.5,314.77-290.20)*180/PI,-90,16),[-18,90.5]]].map(dedupe), // FL-3 W → F-1 (§9.3) → FL-1 N edge
+  // [id, x, y, steamer faces the lane, bollards]. v8 owner change 2026-10-30: FH-1 moved from (300, 62.5) to (122, 64) by Meter A
+  // v8.1 §8c: steamer flanked by two posts 4 ft o.c. (was one post in front of it)
+  hyd:[['FH-1',122,64,[0,1],[[117,64],[127,64],[122,59],[120,68.6],[124,68.6]]],['FH-2',545.5,246,[0,-1],[[540.5,246],[550.5,246],[545.5,251],[543.5,241],[547.5,241]]]],
+  // water service (owner 2026-10-30): city main extension, tap TP-1, 6 in branch + gate valve to FH-1, backflow vault BF-1, domestic meter MW-1, 8 in private fire line
+  // v8.1 §8d: FS-1 8 in fire service TP-1 → BF-1 inlet, fire line starts at the BF-1 outlet x 105.5, DS-1 2 in domestic service → MW-1, DC-1 customer line → office
+  water:{main:[[-18,74],[112,74]],tap:[112,74],branch:[[112,74],[122,74],[122,64]],gv:[118,74],bf:[104,112,57,63],mw:[100,64],
+         fs:[[112,74],[110.5,72.5],[110.5,63]],fire:[[105.5,63],[105.5,76],[545.5,76],[545.5,246]],
+         corp:[100,74],ds:[[100,74],[100,65.5]],dc:[[98.5,64],[96,64],[96,100],[233,100],[233,119],[240,119],[240,122]]},   // §9.4: DC-1 to the moved office wall
+  knox:[324,66.5],                                                                               // KB-1 on a post at gate G-1 (no building on site)
+  // §9.2: G-1 is the original survey gate, posts (329.87, 69.5) / (333.99, 91.5); 2 × 11.2 ft leaves swing east and are held open outside the lane
+  g1:[[329.87,69.5],[333.99,91.5]],g1Open:[[341.0,68.6],[345.0,93.3]],
+  selfPoles:[[368,64],[356,104]],                                                                // Feeder A / B corner poles, self-supporting (no guys)
+  // §9.1–9.2: MG-1 on the new fence A west line; MG-5 / MG-6 moved onto the restored diagonal fence
+  mg:[['MG-1',419.75,45],['MG-2',590,68],['MG-3',372,94],['MG-4',495,94],['MG-5',341.19,130],['MG-6',350.16,178],['MG-7',533,250],
+      ['MG-8',DIAG(230),230],['MG-9',533,200],['MG-10',451.1,68],['MG-11',500.9,68],['MG-12',550.7,68],['MG-13',413.9,94],['MG-14',454.6,94]],
+  // v8.1 §8a: stall 1 x 105.5–114.5, stalls 2–13 x 121.5–229.5 (clear of Meter B pole (118, 94) and pole (236, 104))
+  // §10: north parking row deleted; parking is the 4-stall office court
+  };
+FA.outline=dedupe([].concat(...FA.runs));
+FA.area=Math.abs(FA.outline.reduce((t,p,i)=>{const q=FA.outline[(i+1)%FA.outline.length];return t+p[0]*q[1]-q[0]*p[1];},0))/2;
+// fence A jog around TA-1 at a 2 ft offset (R26 about the R28 arc centres; leaves y 68 at x 361.1, south end y 37.0, rejoins at x 426.9)
+const FENCE_NEW=[
+  // §9.1: fence A finishes at the genset row — west line x 419.75 from the south lot line, chamfer to y 68 (TA-1 outside the enclosure).
+  // Extra vertices at y 9.7 / 19.7 keep fence posts ≥ 5 ft from the pipeline (y ≈ 14.7 here).
+  {n:'A · west line x 419.75 → chamfer → along the drive → lot-line corner → Gate A',pl:[[419.75,-2.27],[419.75,9.7],[419.75,19.7],[419.75,66],[424.75,68],[611.5,68],GATE_A[0]]},
+  {n:'A · Gate A → lot line → SE pocket jog',pl:[GATE_A[1],[611.47,39.35],[662.86,37.65]]},
+  {n:'B · east side, north line → Gate B',pl:[B_NORTH,GATE_B[0]]},
+  {n:'B · east side, Gate B → notch → drive',pl:[GATE_B[1],B_NOTCH,[504.69,94]]},
+  {n:'B · south side along the drive → existing diagonal (§9.2, as v7)',pl:[[504.69,94],[DIAG(94),94]]}];
+/* ---------- sky ---------- */
+{const g=new THREE.SphereGeometry(16000,32,16);
+ const m=new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,uniforms:{top:{value:new THREE.Color('#4f8cc9')},mid:{value:new THREE.Color('#a6c8e6')},hor:{value:HORIZON}},
+  vertexShader:'varying vec3 vP;void main(){vP=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+  fragmentShader:'uniform vec3 top;uniform vec3 mid;uniform vec3 hor;varying vec3 vP;void main(){float h=max(vP.y,0.0);vec3 c=mix(hor,mid,smoothstep(0.0,0.12,h));c=mix(c,top,smoothstep(0.12,0.65,h));gl_FragColor=vec4(c,1.0);}'});
+ const s=new THREE.Mesh(g,m);s.position.set(400,0,-200);s.userData.noPick=true;scene.add(s);
+ const [c,x]=canvas(1024,512);x.clearRect(0,0,1024,512);for(let i=0;i<70;i++){x.strokeStyle='rgba(255,255,255,'+R(.05,.16)+')';x.lineWidth=R(6,22);x.beginPath();const sx=R(-200,1024),sy=R(40,470);x.moveTo(sx,sy);x.bezierCurveTo(sx+R(80,200),sy-R(10,60),sx+R(200,360),sy+R(-30,30),sx+R(300,520),sy-R(20,90));x.stroke();}
+ const cm=new THREE.Mesh(new THREE.PlaneGeometry(26000,26000),new THREE.MeshBasicMaterial({map:tex(c),transparent:true,depthWrite:false,fog:false,opacity:.9}));cm.rotation.x=PI/2;cm.userData.noPick=true;cm.position.set(400,3800,-200);scene.add(cm);}
+
+/* ---------- lights ---------- */
+scene.add(new THREE.HemisphereLight('#dcebf7','#857a5c',0.62));
+const sun=new THREE.DirectionalLight('#fff3df',1.55);
+const SC=new THREE.Vector3(380,0,-140);
+sun.position.set(SC.x+480,900,SC.z+640);sun.target.position.copy(SC);
+sun.castShadow=true;sun.shadow.mapSize.set(isSmall?2048:4096,isSmall?2048:4096);
+Object.assign(sun.shadow.camera,{left:-720,right:720,top:560,bottom:-560,near:200,far:2600});
+sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.5;sun.shadow.radius=3;
+scene.add(sun,sun.target);
+
+/* ---------- ground (painted in plan feet; July conditions: dry grass, crushed-limestone pad) ---------- */
+const GX0=-420,GY0=-560,GS=1600,GN=isSmall?2048:3072,K=GN/GS;
+const gx=x=>(x-GX0)*K,gy=y=>(GY0+GS-y)*K;
+function noiseCanvas(){const [c,x]=canvas(256,256);const d=x.createImageData(256,256);for(let i=0;i<d.data.length;i+=4){const v=rnd();const l=v<.5?0:255;d.data[i]=d.data[i+1]=d.data[i+2]=l;d.data[i+3]=Math.abs(v-.5)*80;}x.putImageData(d,0,0);return c;}
+{
+  const [c,x]=canvas(GN,GN);const noise=x.createPattern(noiseCanvas(),'repeat');
+  const path=pts=>{x.beginPath();pts.forEach((p,i)=>i?x.lineTo(gx(p[0]),gy(p[1])):x.moveTo(gx(p[0]),gy(p[1])));x.closePath();};
+  function region(pts,base,pal,n,rmax,stones){x.save();if(pts){path(pts);x.clip();}x.fillStyle=base;x.fillRect(0,0,GN,GN);
+    for(let i=0;i<n;i++){x.globalAlpha=R(.12,.34);x.fillStyle=pal[(rnd()*pal.length)|0];x.beginPath();x.ellipse(rnd()*GN,rnd()*GN,R(4,rmax),R(4,rmax),rnd()*PI,0,2*PI);x.fill();}
+    if(stones){x.globalAlpha=.55;for(let i=0;i<stones;i++){x.fillStyle=rnd()<.5?'#efeadf':'#9d9583';x.fillRect(rnd()*GN,rnd()*GN,R(1,2.6),R(1,2.6));}}
+    x.globalAlpha=1;x.fillStyle=noise;x.fillRect(0,0,GN,GN);x.restore();}
+  region(null,'#a7a26b',['#8f9658','#b8b07a','#c4ba8b','#7f8b4d','#9fa365','#b3a979'],3000,70);
+  region(WOODS,'#4b5631',['#3d4728','#5a6538','#6a6942'],500,40);
+  x.save();x.fillStyle='#a99470';x.beginPath();x.ellipse(gx(-215),gy(270),95*K,80*K,0,0,2*PI);x.fill();x.fillStyle='#7f8a52';x.beginPath();x.ellipse(gx(-215),gy(270),70*K,58*K,0,0,2*PI);x.fill();x.fillStyle='#c0ab83';x.beginPath();x.ellipse(gx(-205),gy(275),52*K,44*K,0,0,2*PI);x.fill();x.restore();
+  region(PAD,'#cdc6b5',['#c0b8a6','#dad4c6','#b6ae9b','#d3cbb9'],700,45,9000);
+  region([[376,90],[560,90],[561,276],[376,276]],'#c9c2b1',['#bdb5a2','#d6d0c1'],200,30,4000);
+  region([[380,2],[614,2],[614,70],[380,70]],'#c9c2b1',['#bdb5a2','#d6d0c1'],120,30,2500);
+  region([[662,-300],[1110,-300],[1110,205],[662,262]],'#d4cbb5',['#cdc2a7','#e0d7c1','#bfb497'],400,40,4000);
+  region([[128,-6],[496,-6],[496,-272],[200,-272],[150,-220],[128,-120]],'#c8bd9f',['#b9a985','#d6caad','#ad9f7f'],300,40,2000);
+  x.save();path(PAD);x.clip();x.strokeStyle='rgba(120,108,88,.28)';x.lineWidth=1.3*K;
+  for(let i=0;i<34;i++){x.beginPath();const sx=R(560,660),sy=R(90,280);x.moveTo(gx(sx),gy(sy));x.bezierCurveTo(gx(sx+R(-80,80)),gy(sy+R(-60,60)),gx(sx+R(-80,80)),gy(sy+R(-60,60)),gx(sx+R(-120,120)),gy(sy+R(-90,90)));x.stroke();}x.restore();
+  x.fillStyle='#c4bca9';x.fillRect(gx(DRIVE.x0),gy(DRIVE.y1),(DRIVE.x1-DRIVE.x0)*K,(DRIVE.y1-DRIVE.y0)*K);
+  x.globalAlpha=.6;for(let i=0;i<2500;i++){x.fillStyle=rnd()<.5?'#e7e2d6':'#968e7c';x.fillRect(gx(R(DRIVE.x0,DRIVE.x1)),gy(R(DRIVE.y0,DRIVE.y1)),R(1,2.4),R(1,2.4));}x.globalAlpha=1;
+  x.strokeStyle='rgba(120,108,88,.35)';x.lineWidth=2*K;[75.5,85.5].forEach(t=>{x.beginPath();x.moveTo(gx(-18),gy(t));x.lineTo(gx(612),gy(t));x.stroke();});
+  // v8 / FA-1: FL-1 paving — the drive becomes 21 ft reinforced concrete, y 70–91, x −18 → 611 (85,000 lb)
+  x.fillStyle='#cfd0cb';x.fillRect(gx(-18),gy(91),629*K,21*K);x.strokeStyle='rgba(96,98,94,.4)';x.lineWidth=1;
+  for(let xx=-18+20;xx<611;xx+=20){x.beginPath();x.moveTo(gx(xx),gy(91));x.lineTo(gx(xx),gy(70));x.stroke();}
+  x.beginPath();x.moveTo(gx(-18),gy(80.5));x.lineTo(gx(611),gy(80.5));x.stroke();
+  const xs=[-430,1190];
+  function carriage(off,w){x.beginPath();x.moveTo(gx(xs[0]),gy(roadS(xs[0])+off-w/2));x.lineTo(gx(xs[1]),gy(roadS(xs[1])+off-w/2));x.lineTo(gx(xs[1]),gy(roadS(xs[1])+off+w/2));x.lineTo(gx(xs[0]),gy(roadS(xs[0])+off+w/2));x.closePath();x.fillStyle='#5c5f61';x.fill();}
+  function line(off,col,w,dash){x.save();x.strokeStyle=col;x.lineWidth=w*K;x.setLineDash(dash?dash.map(d=>d*K):[]);x.beginPath();x.moveTo(gx(xs[0]),gy(roadS(xs[0])+off));x.lineTo(gx(xs[1]),gy(roadS(xs[1])+off));x.stroke();x.restore();}
+  carriage(0,38);carriage(68,38);
+  [0,68].forEach(o=>{line(o-17.5,'#e9e9e2',.6);line(o+17.5,'#e3c34a',.6);line(o-6,'#e9e9e2',.5,[10,30]);line(o+6,'#e9e9e2',.5,[10,30]);});
+  x.fillStyle='#bdb39b';x.fillRect(gx(-42),gy(roadS(-30)+20),24*K,(roadS(-30)+20+560)*K);
+  x.globalAlpha=.5;for(let i=0;i<2500;i++){x.fillStyle=rnd()<.5?'#e3ddcf':'#8f8774';x.fillRect(gx(R(-42,-18)),gy(R(-560,roadS(-30))),R(1,2.4),R(1,2.4));}x.globalAlpha=1;
+  x.fillStyle='#646769';x.fillRect(gx(-3),gy(roadS(0)+150),20*K,80*K);
+  x.save();x.strokeStyle='#8c8274';x.lineWidth=14*K;x.beginPath();x.moveTo(gx(150),gy(560-0.158*(150-697)));x.lineTo(gx(1190),gy(560-0.158*(1190-697)));x.stroke();
+  x.strokeStyle='#4a4440';x.lineWidth=.6*K;[-2.4,2.4].forEach(o=>{x.beginPath();x.moveTo(gx(150),gy(560-0.158*(150-697)+o));x.lineTo(gx(1190),gy(560-0.158*(1190-697)+o));x.stroke();});x.restore();
+  const g=new THREE.PlaneGeometry(GS,GS);g.rotateX(-PI/2);
+  const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({map:tex(c),roughness:1,metalness:0}));
+  m.position.set(GX0+GS/2,0,-(GY0+GS/2));m.receiveShadow=true;scene.add(m);
+  const fg=new THREE.Mesh(new THREE.CircleGeometry(14000,48),new THREE.MeshStandardMaterial({color:'#9a9862',roughness:1}));
+  fg.rotation.x=-PI/2;fg.position.set(400,-0.4,-200);fg.receiveShadow=true;scene.add(fg);
+}
+
+/* ---------- lot boundary ---------- */
+{const mat=new THREE.MeshBasicMaterial({color:'#d8352c',transparent:true,opacity:.9,depthWrite:false});
+ for(let i=0;i<LOT.length;i++){const a=LOT[i],b=LOT[(i+1)%LOT.length];scene.add(strip(a,b,1.4,mat,0.9));}
+ const pm=std({color:'#d8352c'});LOT.forEach(p=>cyl(.4,2.5,pm,p[0],p[1],0,8));}
+
+/* ---------- ISO container textures ---------- */
+const PPF=12,WHITE='#eceeec';
+function face(wFt,hFt,draw){const [c,x]=canvas(wFt*PPF,hFt*PPF);const W=c.width,H=c.height;
+  const r=(x0,x1,y0,y1,col)=>{x.fillStyle=col;x.fillRect(x0*PPF,H-y1*PPF,(x1-x0)*PPF,(y1-y0)*PPF);};
+  const s=(x0,x1,y0,y1,col,lw)=>{x.strokeStyle=col;x.lineWidth=lw||1.5;x.strokeRect(x0*PPF+.5,H-y1*PPF+.5,(x1-x0)*PPF-1,(y1-y0)*PPF-1);};
+  draw(x,W,H,r,s);return tex(c);}
+function corrugate(r,x0,x1,y0,y1,pitch){for(let q=x0;q<x1;q+=pitch){r(q,Math.min(q+pitch*.42,x1),y0,y1,'rgba(255,255,255,.42)');r(q+pitch*.5,Math.min(q+pitch*.56,x1),y0,y1,'rgba(0,0,0,.10)');r(q+pitch*.92,Math.min(q+pitch,x1),y0,y1,'rgba(0,0,0,.06)');}}
+function isoFrame(r,w,h){const rail='#b9c0c2',cast='#6f777a';r(0,w,h-.42,h,rail);r(0,w,0,.42,rail);r(0,.38,0,h,rail);r(w-.38,w,0,h,rail);
+  [[0,0],[w-.55,0],[0,h-.45],[w-.55,h-.45]].forEach(([a,b])=>r(a,a+.55,b,b+.45,cast));}
+function isoSide(base,extra){return face(40,9.5,(x,W,H,r,s)=>{r(0,40,0,9.5,base);corrugate(r,.4,39.6,.42,9.08,.83);if(extra)extra(x,W,H,r,s);isoFrame(r,40,9.5);});}
+function isoDoors(base,extra){return face(8,9.5,(x,W,H,r,s)=>{r(0,8,0,9.5,base);corrugate(r,.4,7.6,.5,8.9,.42);
+  r(3.95,4.05,.5,8.9,'rgba(60,66,70,.55)');[1.15,2.75,5.25,6.85].forEach(b=>{r(b-.06,b+.06,.45,9.05,'#8d9497');r(b-.12,b+.12,3.8,4.6,'#7b8285');});
+  [1.7,5,8.2].forEach(hh=>{r(.38,.62,hh,hh+.35,'#7b8285');r(7.38,7.62,hh,hh+.35,'#7b8285');});
+  if(extra)extra(x,W,H,r,s);isoFrame(r,8,9.5);});}
+function isoRoof(base,extra){return face(40,8,(x,W,H,r,s)=>{r(0,40,0,8,base);for(let q=.4;q<39.6;q+=1.2)r(q,q+.5,.3,7.7,'rgba(0,0,0,.05)');if(extra)extra(x,W,H,r,s);
+  r(0,40,0,.3,'#c3c9cb');r(0,40,7.7,8,'#c3c9cb');[[0,0],[39.45,0],[0,7.55],[39.45,7.55]].forEach(([a,b])=>r(a,a+.55,b,b+.45,'#6f777a'));});}
+function louver(x,r,x0,x1,y0,y1,col){r(x0,x1,y0,y1,col||'#4a5154');x.fillStyle='rgba(255,255,255,.18)';for(let y=y0+.25;y<y1;y+=.35){x.fillRect(x0*PPF,x.canvas.height-y*PPF,(x1-x0)*PPF,1.4);}}
+function pdoor(x,r,s,x0,w,y0,h){r(x0,x0+w,y0,y0+h,'#e2e5e4');s(x0,x0+w,y0,y0+h,'rgba(70,78,84,.6)',1.6);r(x0+w-.7,x0+w-.5,y0+h*.45,y0+h*.55,'#555c60');}
+const plain=std({color:'#cfd3d1'});
+const CGEO=new THREE.BoxGeometry(39.82,9.42,7.84);   // slight inset so every container seam reads
+function container(mats,x,y,base,rotY){return box(39.82,9.5,7.84,mats,x,y,base,rotY,CGEO);}
+
+// Generator container (radiator end south, control doors north)
+function genSide(radLeft){return isoSide(WHITE,(x,W,H,r,s)=>{const Q=(a,b)=>radLeft?[a,b]:[40-b,40-a];
+  let [a,b]=Q(1,8.5);louver(x,r,a,b,1.4,7.8);[a,b]=Q(12,15.5);pdoor(x,r,s,a,3.5,.5,7);[a,b]=Q(18,24);louver(x,r,a,b,5,8.2,'#5a6164');
+  [a,b]=Q(27,30.5);pdoor(x,r,s,a,3.5,.5,7);[a,b]=Q(33.5,38.5);louver(x,r,a,b,5.2,8.2,'#5a6164');[a,b]=Q(20.5,23.5);r(a,b,2.2,3.4,'#e04f2d');});}
+const genRad=face(8,9.5,(x,W,H,r)=>{r(0,8,0,9.5,WHITE);r(.5,7.5,.6,8.9,'#2f3436');x.fillStyle='rgba(200,206,208,.35)';for(let y=.8;y<8.9;y+=.28)x.fillRect(.6*PPF,H-y*PPF,6.8*PPF,1.3);isoFrame(r,8,9.5);});
+const genMats=[std({map:isoDoors(WHITE,(x,W,H,r)=>r(2.6,5.4,8.6,9,'#2d3436'))}),std({map:genRad}),std({map:isoRoof('#e5e8e6')}),plain,std({map:genSide(true)}),std({map:genSide(false)})];
+// Chiller container: coil sides, fan deck roof
+const chSide=isoSide(WHITE,(x,W,H,r)=>{const n=6,seg=(40-.8)/n;for(let i=0;i<n;i++){const a=.4+i*seg+.25,b=.4+(i+1)*seg-.25;r(a,b,2.6,8.9,'#6c7772');x.fillStyle='rgba(30,40,36,.35)';for(let q=a;q<b;q+=.16)x.fillRect(q*PPF,H-8.9*PPF,1,6.3*PPF);}});
+const chEnd=isoDoors(WHITE,(x,W,H,r)=>r(3.3,4.7,6,6.8,'#e3861b'));
+const FAN_U=[...Array(6)].map((_,i)=>(i+.5)*40/6),FAN_V=[2.05,5.95],FAN_R=1.6;
+const chRoof=isoRoof('#dde1df',(x,W,H)=>{FAN_U.forEach(u=>FAN_V.forEach(v=>{const cx=u*PPF,cy=v*PPF,rr=FAN_R*PPF;x.fillStyle='#24292b';x.beginPath();x.arc(cx,cy,rr,0,2*PI);x.fill();
+  x.fillStyle='#59616a';for(let k=0;k<5;k++){const a=k*2*PI/5;x.beginPath();x.moveTo(cx,cy);x.arc(cx,cy,rr*.92,a,a+.55);x.closePath();x.fill();}
+  x.fillStyle='#8f979b';x.beginPath();x.arc(cx,cy,rr*.18,0,2*PI);x.fill();x.strokeStyle='rgba(170,178,182,.55)';x.lineWidth=1;for(let q=.35;q<1;q+=.2){x.beginPath();x.arc(cx,cy,rr*q,0,2*PI);x.stroke();}}));});
+const chMats=[std({map:chEnd}),std({map:chEnd}),std({map:chRoof}),plain,std({map:chSide}),std({map:chSide})];
+// Battery container: personnel door bank on long sides, HVAC louvre on ends
+const bSide=isoSide('#eef0ee',(x,W,H,r,s)=>{for(let i=0;i<5;i++){const c=(i+.5)*40/5;s(c-2.4,c+2.4,.5,8,'rgba(70,78,84,.6)',1.6);r(c-.04,c+.04,.5,8,'rgba(70,78,84,.6)');r(c-.5,c-.3,4,4.8,'#596066');r(c+.3,c+.5,4,4.8,'#596066');r(c-1.5,c+1.5,8.3,8.85,'#7d868a');}
+  r(3.4,4.3,5.6,6.5,'#c9302c');r(35.8,36.7,5.6,6.5,'#f1c40f');});
+const bEnd=isoDoors('#eef0ee',(x,W,H,r)=>louver(x,r,1.6,6.4,5.8,8.4,'#6a7276'));
+const bMats=[std({map:bEnd}),std({map:bEnd}),std({map:isoRoof('#e6e9e7')}),plain,std({map:bSide}),std({map:bSide})];
+// Data-hall module: plain white ISO container, cargo doors on the ends (as in the 15 MW rendering)
+const hSide=isoSide('#eff1f0');
+const hEnd=isoDoors('#eff1f0');
+const hMats=[std({map:hEnd}),std({map:hEnd}),std({map:isoRoof('#e4e7e5')}),plain,std({map:hSide}),std({map:hSide})];
+
+const steel=std({color:'#3b3f42',roughness:.55,metalness:.45});
+const galv=std({color:'#9aa2a6',roughness:.5,metalness:.4});
+const yellowPipe=std({color:'#e2b51e',roughness:.5,metalness:.2});
+const concreteTex=(()=>{const [c,x]=canvas(256,256);x.fillStyle='#d3d5d1';x.fillRect(0,0,256,256);for(let i=0;i<2500;i++){x.fillStyle=rnd()<.5?'rgba(0,0,0,.05)':'rgba(255,255,255,.08)';x.fillRect(rnd()*256,rnd()*256,2,2);}x.strokeStyle='rgba(0,0,0,.14)';x.lineWidth=1;x.strokeRect(0,0,256,256);return c;})();
+function concreteMat(rx,ry){return std({map:tex(concreteTex,[rx,ry]),roughness:.95});}
+function slab(x0,x1,y0,y1,t=0.5){const w=x1-x0,d=y1-y0;const m=box(w,t,d,concreteMat(w/20,d/20),(x0+x1)/2,(y0+y1)/2,0);m.castShadow=false;return m;}
+slab(P.gen.cx0-P.gen.w/2-2,P.gen.cx0+(P.gen.n-1)*P.gen.pitch+P.gen.w/2+2,23,67);   // rev 10: genset slab trimmed to the 9-unit rowslab(P.gas.x0,P.gas.x1,P.gas.y0,P.gas.y1);slab(549,572,4.5,17);
+
+/* ---------- 9 × 1.4 MW natural-gas generators (rev 10) ----------
+   Enclosure sized on a 1.4 MW gas engine in "Type 4" container: 40 ft long × 10 ft wide × 9 ft 6 in tall,
+   with a roof-mounted table cooler and exhaust silencer/stack. The east-most 9 slots of the rev 9 row are kept in place (same
+   centres, 16.6 ft pitch); the 3 west-most units are removed. Wider enclosures leave 6.6 ft side gaps (was 8.6 ft at 8 ft wide). */
+function isoDoorsW(w,base,extra){return face(w,9.5,(x,W,H,r,s)=>{r(0,w,0,9.5,base);corrugate(r,.4,w-.4,.5,8.9,.42);
+  r(w/2-.05,w/2+.05,.5,8.9,'rgba(60,66,70,.55)');[.14,.34,.66,.86].forEach(f=>{const b=w*f;r(b-.06,b+.06,.45,9.05,'#8d9497');r(b-.12,b+.12,3.8,4.6,'#7b8285');});
+  if(extra)extra(x,W,H,r,s);isoFrame(r,w,9.5);});}
+function isoRoofW(w,base){return face(40,w,(x,W,H,r)=>{r(0,40,0,w,base);for(let q=.4;q<39.6;q+=1.2)r(q,q+.5,.3,w-.3,'rgba(0,0,0,.05)');
+  r(0,40,0,.3,'#c3c9cb');r(0,40,w-.3,w,'#c3c9cb');[[0,0],[39.45,0],[0,w-.45],[39.45,w-.45]].forEach(([a,b])=>r(a,a+.55,b,b+.45,'#6f777a'));});}
+const GEN_W=P.gen.w,GGEO=new THREE.BoxGeometry(39.82,9.42,GEN_W-.16);
+const genRad10=face(GEN_W,9.5,(x,W,H,r)=>{r(0,GEN_W,0,9.5,WHITE);r(.5,GEN_W-.5,.6,8.9,'#2f3436');x.fillStyle='rgba(200,206,208,.35)';for(let y=.8;y<8.9;y+=.28)x.fillRect(.6*PPF,H-y*PPF,(GEN_W-1.2)*PPF,1.3);isoFrame(r,GEN_W,9.5);});
+const genMats10=[std({map:isoDoorsW(GEN_W,WHITE,(x,W,H,r)=>r(GEN_W/2-1.4,GEN_W/2+1.4,8.6,9,'#2d3436'))}),std({map:genRad10}),std({map:isoRoofW(GEN_W,'#e5e8e6')}),plain,std({map:genSide(true)}),std({map:genSide(false)})];
+const coolMat=std({color:'#d9dddb',roughness:.6}),fanMat=std({color:'#2a2f31',roughness:.7});
+const genCX=i=>P.gen.cx0+i*P.gen.pitch;     // unit centre x (i = 0 west … n-1 east)
+for(let i=0;i<P.gen.n;i++){const cx=genCX(i),cy=P.gen.y0+20;
+  box(39.82,9.5,GEN_W-.16,genMats10,cx,cy,0.5,PI/2,GGEO);
+  box(1.2,.8,6,steel,cx,cy-4,10);
+  const s=new THREE.Mesh(new THREE.CylinderGeometry(1.35,1.35,11,14),steel);s.rotation.x=PI/2;s.position.set(cx,10+.8+1.35,-(cy-4));add(s);
+  cyl(.72,8.5,steel,cx,cy-9,11.5,12);
+  const cap=new THREE.Mesh(new THREE.CylinderGeometry(.95,.95,.18,12),steel);cap.position.set(cx,20.3,-(cy-9.4));cap.rotation.x=-.5;add(cap);
+  // roof-mounted table cooler (engine jacket + intercooler), 9 × 16 ft on short legs, 3 fans
+  [[-3.8,3.6],[3.8,3.6],[-3.8,18.4],[3.8,18.4]].forEach(([dx,dy])=>box(.4,.9,.4,galv,cx+dx,cy+dy,10));
+  box(9,3,15.6,coolMat,cx,cy+11,10.9);[5.6,11,16.4].forEach(dy=>cyl(2.3,.25,fanMat,cx,cy+dy,13.9,16));
+  box(6,.5,1.4,galv,cx,cy+20.9,0.5);
+  pipe(.22,yellowPipe,[cx+2.5,P.gen.y0-1.6,0],[cx+2.5,P.gen.y0-1.6,3.2],8);pipe(.22,yellowPipe,[cx+2.5,P.gen.y0-1.6,3.2],[cx+2.5,P.gen.y0+.2,3.2],8);}
+const GEN_X0=genCX(0)-GEN_W/2,GEN_X1=genCX(P.gen.n-1)+GEN_W/2;   // row x 437.8–580.6
+/* ---------- gas: pipeline tie-in, meter/valve skid, conditioning pad ---------- */
+{const [tx,ty]=P.tie;const vessel=std({color:'#dfe2df',roughness:.5,metalness:.25}),dark=std({color:'#4b5255'}),red=std({color:'#b8332c'});
+ pipe(.45,yellowPipe,[tx,ty,0],[tx,ty,3.6]);pipe(.45,yellowPipe,[tx,ty,3.6],[tx,ty+3,3.6]);
+ box(1.6,1.6,1.2,dark,tx,ty+3.6,2.8);const hw=new THREE.Mesh(new THREE.TorusGeometry(.9,.1,6,18),red);hw.position.set(tx,5.6,-(ty+3.6));add(hw);
+ pipe(.38,yellowPipe,[tx-7,ty+.8,3.2],[tx+7,ty+.8,3.2]);for(let k=-6;k<=6;k+=4)box(.5,3,.5,galv,tx+k,ty+.8,.5);
+ box(2,1.6,1.6,std({color:'#c9cdca'}),tx-1.5,ty+.8,2.4);box(2.2,4.5,1.4,std({color:'#a7aeab'}),tx+5.5,ty-3.2,.5);
+ box(1.6,1.4,1.6,dark,tx+3,ty+.8,2.5);
+ [[-9,-4.5],[9,-4.5],[-9,5],[9,5]].forEach(([dx,dy])=>cyl(.33,4,yellowPipe,tx+dx,ty+dy,0,10));
+ pipe(.38,yellowPipe,[tx+7,ty+.8,3.2],[619,ty+.8,3.2]);   // short above-ground spool from the meter run onto the conditioning pad
+ // conditioning pad (SE pocket): 2 inlet tanks, 2 scrubbers, TEG dehy skid with reboiler, still column and contactor tower
+ [11,24].forEach(y=>{cyl(4,15,vessel,624,y,.5,26);cyl(4.1,.4,vessel,624,y,15.5,26,3.2);});
+ [11,24].forEach(y=>{cyl(1.75,10,vessel,633.5,y,.5,18);cyl(.6,.5,dark,633.5,y,10.5,10);});
+ box(18,1,9,galv,647,12.5,.5);const rb=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.6,10,16),vessel);rb.rotation.z=PI/2;rb.position.set(645,4.6,-12.5);add(rb);
+ cyl(.45,9,steel,640.5,12.5,6,10);cyl(.35,7,vessel,650,15,1.5,10);box(4.5,4,4,std({color:'#c3c8c6'}),653.5,11,1.5);
+ cyl(1.3,22,vessel,652,24.5,.5,16);for(let h=4;h<22;h+=6)box(3.4,.2,3.4,galv,652,24.5,h);
+ pipe(.28,galv,[633.5,17.5,6],[652,17.5,6],8);pipe(.28,galv,[652,17.5,6],[652,24.5,6],8);pipe(.28,galv,[624,17.5,6],[633.5,17.5,6],8);
+ [[628,17.5],[638,17.5],[646,17.5]].forEach(([x,y])=>box(.5,6,.5,galv,x,y,.5));}
+
+/* ---------- feeders A/B: the only overhead lines (Oncor 12.47 kV, one per 6 MW hall/transformer group) ---------- */
+const ARK_X=-52;
+// Meters at the west entry (rev 3): Meter A just south of the drive, Meter B on the drive's north edge.
+// Routes never cross: A stays south of the drive until x 368, B stays north and loops west/north of the plant.
+const RISER={A:[366,173],B:[354,167]};          // v6 (user markup 2026-10-28): riser/dip poles at the WEST end of the aisle between the IT PM row and the hall; OH stops here, UG from here
+const METER={A:RISER.A,B:RISER.B};               // primary metering moved onto the riser poles
+// Final routing: overhead from the Arkansas Ln line through each meter pole, side by side to the riser poles beside the
+// west access lane (Feeder A's riser location carried forward from rev 2), then underground to the transformer rows.
+const FEED={A:[[ARK_X,64],[4,64],[130,64],[250,64],[368,64],RISER.A],     // v6: last span (368,64)→riser A; old riser A (368,108) removed     // ex-meter poles at x 130 / 118 stay as plain line poles
+            B:[[ARK_X,94],[4,94],[118,94],[236,104],[356,104],RISER.B]};
+const poleMat=std({color:'#6e5a45',roughness:.95}),insMat=std({color:'#d8d4c8'});
+const wireMat=new THREE.LineBasicMaterial({color:'#262626',transparent:true,opacity:.75});
+const guyMat=new THREE.LineBasicMaterial({color:'#5a5a5a',transparent:true,opacity:.6});
+const steelPoleM=std({color:'#5f6567',roughness:.5,metalness:.55});   // v8: self-supporting (guyless) tubular steel corner poles
+function poleAt(p,perp,opt){const [x,y]=p,st=!!(opt&&opt.steel);cyl(st?.95:.42,40,st?steelPoleM:poleMat,x,y,0,st?16:10,st?.5:.34);
+  if(st)cyl(1.8,1.2,concreteMat(1,1),x,y,-0.6,18);                  // drilled-pier foundation collar
+  const ang=Math.atan2(perp[1],perp[0]);box(9,.45,.45,st?steelPoleM:poleMat,x,y,37,ang);
+  [-3.6,3.6].forEach(o=>cyl(.12,.8,insMat,x+perp[0]*o,y+perp[1]*o,37.45,6));cyl(.12,.8,insMat,x,y,40,6);
+  if(opt&&opt.xfmr){cyl(1,3.2,std({color:'#8f9799'}),x+perp[1]*1.2,y-perp[0]*1.2,30,12);}
+  if(opt&&opt.meter){box(6,.4,.4,poleMat,x,y,30.5,ang);[-2.2,0,2.2].forEach(o=>cyl(.5,1.6,std({color:'#7b8285'}),x+perp[0]*o,y+perp[1]*o,30.9,10)); // primary metering CT/PT units
+    pipe(.12,std({color:'#8f979a'}),[x-.5,y-.5,7.5],[x-.5,y-.5,30.5],6);                                                          // secondary conduit down the pole
+    box(2,3,1.2,std({color:'#b5bcbf'}),x-.9,y-.9,4.5,ang);box(1,1,.3,std({color:'#f2f2ef'}),x-.9,y-1.6,8.2,ang);}            // meter cabinet + ID plate
+  if(opt&&opt.riser){[-2.2,0,2.2].forEach(o=>cyl(.22,1.4,std({color:'#c9c3b3'}),x+perp[0]*o,y+perp[1]*o,34.2,6));             // cutouts/arresters
+    pipe(.3,std({color:'#9ca3a6'}),[x+.6,y+.6,0],[x+.6,y+.6,33]);}}                                                         // conduit riser to underground
+function wiresBetween(a,b,pa,pb,hb){hb=hb||0;[[-3.6,38],[0,40.6],[3.6,38],[0,33]].forEach(([o,h])=>{const pts=[];const A=[a[0]+pa[0]*o,a[1]+pa[1]*o],B=[b[0]+pb[0]*o,b[1]+pb[1]*o];const L=Math.hypot(B[0]-A[0],B[1]-A[1]);const sag=Math.min(2.2,L/90);
+  for(let i=0;i<=12;i++){const t=i/12;pts.push(new THREE.Vector3(A[0]+(B[0]-A[0])*t,h+hb*t-4*sag*t*(1-t),-(A[1]+(B[1]-A[1])*t)));}scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),wireMat));});}
+function guy(p,dir){scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(p[0],36,-p[1]),new THREE.Vector3(p[0]+dir[0]*22,0.2,-(p[1]+dir[1]*22))]),guyMat));cyl(.3,.6,galv,p[0]+dir[0]*22,p[1]+dir[1]*22,0,6);}
+function perpOf(pts,i){const n=pts.length;let d;
+  if(i===0)d=[pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]];else if(i===n-1)d=[pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]];
+  else{const a=[pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]],b=[pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]];const la=Math.hypot(a[0],a[1]),lb=Math.hypot(b[0],b[1]);d=[a[0]/la+b[0]/lb,a[1]/la+b[1]/lb];}
+  const l=Math.hypot(d[0],d[1]);return [-d[1]/l,d[0]/l];}
+const un=(a,b)=>{const d=[a[0]-b[0],a[1]-b[1]],l=Math.hypot(d[0],d[1]);return [d[0]/l,d[1]/l];};
+const selfS=p=>FA.selfPoles.some(q=>Math.hypot(q[0]-p[0],q[1]-p[1])<0.5);
+function feeder(pts,name,meterAt,sharedEnd){const perps=pts.map((_,i)=>perpOf(pts,i));for(let i=2;i<perps.length;i++){if(perps[i][0]*perps[i-1][0]+perps[i][1]*perps[i-1][1]<0)perps[i]=[-perps[i][0],-perps[i][1]];}
+  const n=pts.length;
+  for(let i=1;i<n;i++){if(i===n-1&&sharedEnd){ // second circuit dead-ends on a lower crossarm of the existing riser pole
+      const [x,y]=pts[i],pr=perps[i],ang=Math.atan2(pr[1],pr[0]);box(9,.45,.45,poleMat,x,y,31,ang);
+      [-3.6,3.6].forEach(o=>cyl(.12,.8,insMat,x+pr[0]*o,y+pr[1]*o,31.45,6));[-2.2,0,2.2].forEach(o=>cyl(.22,1.4,std({color:'#c9c3b3'}),x+pr[0]*o,y+pr[1]*o,28.2,6));
+      pipe(.3,std({color:'#9ca3a6'}),[x-.6,y-.6,0],[x-.6,y-.6,27.5]);continue;}
+    let po=i===n-1?{riser:true,meter:pts[i]===meterAt?name:null}:pts[i]===meterAt?{meter:name}:null;if(selfS(pts[i]))po=Object.assign({},po,{steel:true});
+    poleAt(pts[i],perps[i],po);}
+  for(let i=1;i<n;i++)wiresBetween(pts[i-1],pts[i],i===1?[0,1]:perps[i-1],perps[i],(i===n-1&&sharedEnd)?-6:0);
+  guy(pts[1],un(pts[1],pts[2]));guy(pts[pts.length-1],un(pts[pts.length-1],pts[pts.length-2]));
+  for(let i=2;i<pts.length-1;i++){if(selfS(pts[i]))continue;   // v8/FA-1 §2.8: corner guys deleted (were anchored in FL-1 / TA-1)
+    const a=un(pts[i],pts[i-1]),b=un(pts[i],pts[i+1]);if(a[0]*b[0]+a[1]*b[1]>-0.9){const d=[a[0]+b[0],a[1]+b[1]],l=Math.hypot(d[0],d[1]);guy(pts[i],[d[0]/l,d[1]/l]);}}}
+// existing Oncor line on the west side of Arkansas Ln (feeder source), pole-mount transformers as in the videos
+{const ark=[-520,-380,-240,-100,64,94,230,360].map(y=>[ARK_X,y]);ark.forEach((p,i)=>poleAt(p,[1,0],(i%3===1)?{xfmr:true}:null));
+ for(let i=1;i<ark.length;i++)wiresBetween(ark[i-1],ark[i],[1,0],[1,0]);}
+feeder(FEED.A,'A',METER.A);feeder(FEED.B,'B',METER.B);
+
+/* ---------- underground runs: subtle ground markings, handholes and marker posts only ---------- */
+const ugG=new THREE.Group();ugG.visible=false;scene.add(ugG);   // all layer toggles start OFF
+const UGC={E:'#b8402f',GAS:'#d9a90f',CHW:'#2e7fbf',HVA:'#7c3aed',HVB:'#db2777',GEN:'#ea580c'};
+const ugMat={};Object.keys(UGC).forEach(k=>ugMat[k]=new THREE.MeshBasicMaterial({color:UGC[k],transparent:true,opacity:.55,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-3}));
+const dashMat=new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.35,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4});
+const hhMat=concreteMat(1,1),lidMat=std({color:'#3e4446',roughness:.7,metalness:.3});
+function run(kind,pts,w){w=w||2.2;for(let i=1;i<pts.length;i++){ugG.add(strip(pts[i-1],pts[i],w,ugMat[kind],0.62));
+    const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=4;t<L-2;t+=8){const f=t/L,f2=Math.min(1,(t+3.5)/L);ugG.add(strip([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f],[a[0]+(b[0]-a[0])*f2,a[1]+(b[1]-a[1])*f2],w*.45,dashMat,0.64));}}}
+function handhole(x,y,big){const w=big?4:2.6,d=big?3:2;box(w,.35,d,hhMat,x,y,0.5,0,null,ugG);box(w-.6,.08,d-.6,lidMat,x,y,0.85,0,null,ugG);}
+const mk={E:std({color:'#d9531e'}),GAS:std({color:'#e2b51e'}),CHW:std({color:'#2e7fbf'})};
+function marker(x,y,kind){cyl(.15,3.2,mk[kind],x,y,0,6,null,ugG);}
+const plen=pl=>pl.reduce((t,p,i)=>i?t+Math.hypot(p[0]-pl[i-1][0],p[1]-pl[i-1][1]):0,0);
+// Existing genset row: gas header as before (Underground layer)
+run('GAS',[[P.gas.x0+.5,22],[genCX(0),22]],1.8);
+for(let i=0;i<P.gen.n;i++){const cx=genCX(i)+2.5;run('GAS',[[cx,22],[cx,P.gen.y0-1.6]],1);}
+[[432,20],[490,20],[545,20],[600,20],[614,20]].forEach(p=>marker(p[0],p[1],'GAS'));
+
+/* ---------- ARMADA IT BLOCK (Rev 2d, owner layout) ----------
+   One compact block north of the E-W drive, inside the existing yard (east of the existing diagonal fence):
+     south  6 power / battery containers, one per hall, 45 × 8 ft, long axis E-W, in one group 2 wide × 3 rows at x 393–483,
+            y 99–135 (rows y 99–107, 113–121, 127–135) with 6 ft service gaps. Rows three containers wide would cross the lot
+            line at the notch east of x 505, so the group is two wide.
+     middle 6 IT halls, 3 + 3, tight side by side, 44.6 × 45 ft each: rows y 141–186 and y 206–251, 20 ft central aisle y 186–206
+     north  12 dry coolers, two per hall, 30 × 9 ft, long axis E-W, three rows of four: 6.5 ft between rows, 4.3 ft end to end, y 257–297
+   Block envelope x 393–527 (134 ft) × y 99–297 (198 ft). No numbers, colour codes or other markings on the equipment or in the labels.
+   Sizes are assumptions to be confirmed with Armada. Each 6 MW feeder: 3 transformers → 3 containers → 3 halls (A south row, B north row). */
+function ribSide(L,H,base,extra){return face(L,H,(x,W,Hp,r,s)=>{r(0,L,0,H,base);corrugate(r,.3,L-.3,.35,H-.35,.83);if(extra)extra(x,W,Hp,r,s);
+  r(0,L,H-.35,H,'#b9c0c2');r(0,L,0,.35,'#b9c0c2');r(0,.3,0,H,'#b9c0c2');r(L-.3,L,0,H,'#b9c0c2');});}
+function roofTex(L,w,base){return face(L,w,(x,W,H,r)=>{r(0,L,0,w,base);for(let q=.4;q<L-.4;q+=1.2)r(q,q+.5,.3,w-.3,'rgba(0,0,0,.05)');r(0,L,0,.3,'#c3c9cb');r(0,L,w-.3,w,'#c3c9cb');});}
+const LV={L:119.1,W:44.6,IT:1.77};
+const BLK={x0:393,pw:44.6,pl:45,rowS:141,rowN:206,aisle:[186,206],cool:[257,297],plat:3,hall:9.5};
+BLK.x1=BLK.x0+3*BLK.pw;
+const PODS=[];[0,1,2].forEach(i=>PODS.push({f:'A',x0:BLK.x0+i*BLK.pw,y0:BLK.rowS,door:1}));[0,1,2].forEach(i=>PODS.push({f:'B',x0:BLK.x0+i*BLK.pw,y0:BLK.rowN,door:-1}));
+// containers [x0, y0], in the order of the hall each one feeds (south row west → east, then north row). One 2 × 3 group.
+const PCXY=[[393,127],[438,113],[438,127],[393,113],[393,99],[438,99]];
+const PCS=PCXY.map(([x0,y0],i)=>({f:i<3?'A':'B',x0,y0,cx:x0+22.5,cy:y0+4}));
+// dry coolers: rows south → north, west pair / east pair per row
+const CROW=[257,272.5,288],COOL=[];
+CROW.forEach(y=>[0,1,2,3].forEach(c=>COOL.push({x0:394+c*34.33,y0:y})));
+const XFY=[144.6,156.8,169,132.4,120.2,108];                                                    // pad centres (x 381): first three on Feeder A beside riser A, last three on Feeder B
+const XF={x:381};const VFI={A:[378,180],B:[360.5,181]};
+const blkG=new THREE.Group();scene.add(blkG);
+const LVW='#eef0ee',LVB='#1f3b57';
+// yard slabs under the block (no room is left for a gravel road south or north of the block in this revision)
+{const m=box(BLK.x1-BLK.x0+4,.4,BLK.cool[1]-BLK.rowS+4,concreteMat(7,7),(BLK.x0+BLK.x1)/2,(BLK.rowS+BLK.cool[1])/2,0,0,null,blkG);m.castShadow=false;
+ const p=box(94,.4,40,concreteMat(5,2),438,117,0,0,null,blkG);p.castShadow=false;}
+// IT pod: five 45 ft modules side by side on a 3 ft platform; doors + stair toward the central aisle
+const podRoof=std({map:face(44.6,45,(x,W,H,r)=>{r(0,44.6,0,45,'#eceeec');for(let k=0;k<5;k++){const a=k*8.92;r(a,a+.25,0,45,'#b4babc');for(let q=a+.8;q<a+8.4;q+=1.1)r(q,q+.45,.4,44.6,'rgba(0,0,0,.045)');}r(44.35,44.6,0,45,'#b4babc');r(0,44.6,0,.3,'#b4babc');r(0,44.6,44.7,45,'#b4babc');})});
+const podSide=std({map:ribSide(45,9.5,LVW,(x,W,H,r)=>{r(0,45,7.4,8.4,LVB);})});
+const podDoor=std({map:face(44.6,9.5,(x,W,H,r,s)=>{r(0,44.6,0,9.5,LVW);for(let k=0;k<5;k++){const a=k*8.92;corrugate(r,a+.3,a+8.62,.4,9.1,.42);s(a+.9,a+8.02,.5,8.7,'rgba(70,78,84,.6)',1.6);r(a+4.41,a+4.51,.5,8.7,'rgba(70,78,84,.6)');r(a,a+.2,0,9.5,'#9aa2a5');}r(0,44.6,9.15,9.5,'#b9c0c2');})});
+const podEnd=std({map:face(44.6,9.5,(x,W,H,r,s)=>{r(0,44.6,0,9.5,LVW);for(let k=0;k<5;k++){const a=k*8.92;corrugate(r,a+.3,a+8.62,.4,9.1,.42);louver(x,r,a+2,a+6.9,5.6,8.4,'#5a6164');r(a,a+.2,0,9.5,'#9aa2a5');}r(0,44.6,9.15,9.5,'#b9c0c2');})});
+const platM=std({color:'#3b3f42',roughness:.6,metalness:.4}),railM=std({color:'#2f3335',roughness:.5,metalness:.5});
+const podGeo=new THREE.BoxGeometry(44.44,9.5,44.84);
+function pod(p){const cx=p.x0+BLK.pw/2,cy=p.y0+BLK.pl/2,B=.4,d=p.door;
+  box(44.6,BLK.plat,45,platM,cx,cy,B,0,null,blkG);
+  box(44.6,9.5,45,d>0?[podSide,podSide,podRoof,plain,podEnd,podDoor]:[podSide,podSide,podRoof,plain,podDoor,podEnd],cx,cy,B+BLK.plat,0,podGeo,blkG);
+  const ya=d>0?p.y0+BLK.pl:p.y0;                                                             // aisle-side face
+  box(30,.3,4,platM,cx,ya+d*2,B+BLK.plat-.3,0,null,blkG);                                    // landing along the doors
+  [-15,15].forEach(o=>{for(let k=0;k<4;k++)box(4,.25,1,platM,cx+o,ya+d*(4.5+k),B+BLK.plat-.3-(k+1)*.72,0,null,blkG);});
+  pipe(.08,railM,[cx-15,ya+d*3.9,B+BLK.plat+3.3],[cx+15,ya+d*3.9,B+BLK.plat+3.3],4,blkG);}
+PODS.forEach(pod);
+// power / battery containers: one per hall, 8 × 45 × 9.5 ft, long axis N-S, beside the drive
+const pcSide=std({map:ribSide(45,9.5,LVW,(x,W,H,r,s)=>{for(let i=0;i<4;i++){const c=6+i*7.4;s(c-2.4,c+2.4,.5,8,'rgba(70,78,84,.6)',1.6);r(c-.04,c+.04,.5,8,'rgba(70,78,84,.6)');}pdoor(x,r,s,34,3.4,.5,7.4);louver(x,r,39,43.5,4.6,8.2,'#5a6164');r(31.2,32.1,5.6,6.5,'#c9302c');r(0,45,8.5,9.15,'#2f6fd6');})});
+const pcEnd=std({map:face(8,9.5,(x,W,H,r)=>{r(0,8,0,9.5,LVW);corrugate(r,.4,7.6,.5,8.9,.42);louver(x,r,1.6,6.4,5.8,8.4,'#6a7276');isoFrame(r,8,9.5);})});
+const pcMats=[pcEnd,pcEnd,std({map:roofTex(45,8,'#e3e6e4')}),plain,pcSide,pcSide],pcGeo=new THREE.BoxGeometry(44.84,9.42,7.84);
+PCS.forEach(c=>{box(45,9.5,8,pcMats,c.cx,c.cy,.4,0,pcGeo,blkG);[-12,12].forEach(o=>box(4,1.2,3,std({color:'#c9cdca'}),c.cx+o,c.cy,9.9,0,null,blkG));});
+// dry coolers: two per hall, 9 × 30 × 8.5 ft, 5 × 2 fans, long axis N-S, one row north of the halls
+const coS=std({map:face(30,8.5,(x,W,H,r)=>{r(0,30,0,8.5,'#e8ebe9');r(.3,26.6,.9,8,'#6c7772');x.fillStyle='rgba(30,40,36,.35)';for(let q=.3;q<26.6;q+=.16)x.fillRect(q*PPF,H-8*PPF,1,7.1*PPF);
+  for(let k=1;k<5;k++)r(.3+k*5.26-.06,.3+k*5.26+.06,.9,8,'#e8ebe9');r(27,29.7,.6,7.8,'#d4d8d6');r(27.8,28.8,4.8,5.6,'#e3861b');r(0,30,0,.5,'#8d9497');})});
+const coE=std({map:face(9,8.5,(x,W,H,r,s)=>{r(0,9,0,8.5,'#e8ebe9');s(.5,8.5,.6,7.8,'rgba(70,78,84,.6)',1.6);r(3.9,5.1,4.4,5.2,'#3a4044');})});
+const coMats=[coE,coE,std({color:'#cfd4d2',roughness:.6}),plain,coS,coS],coGeo=new THREE.BoxGeometry(29.9,8.5,8.9),coFan=std({color:'#2a2f31',roughness:.7});
+const lvSup=std({color:'#2f6fd6',roughness:.45,metalness:.3}),lvRet=std({color:'#e6b422',roughness:.45,metalness:.3});
+COOL.forEach(c=>{const cx=c.x0+15,cy=c.y0+4.5;box(30,8.5,9,coMats,cx,cy,.9,0,coGeo,blkG);
+  for(let k=0;k<5;k++)[-2.25,2.25].forEach(v=>cyl(1.7,.7,coFan,c.x0+.3+(k+.5)*5.26,cy+v,9.4,16,null,blkG));});
+// coolant manifolds in the three N-S gaps between cooler columns and a header along the north halls (above ground, conceptual)
+[426.2,460.5,494.8].forEach(x=>{pipe(.35,lvSup,[x-.8,253,5],[x-.8,296,5],8,blkG);pipe(.35,lvRet,[x+.8,253,3.8],[x+.8,296,3.8],8,blkG);});
+pipe(.5,lvSup,[BLK.x0+4,252.6,5],[BLK.x1-4,252.6,5],10,blkG);pipe(.5,lvRet,[BLK.x0+4,254,3.8],[BLK.x1-4,254,3.8],10,blkG);
+// conceptual site electrical
+const eGreen=std({color:'#56704a',roughness:.6,metalness:.25}),eGreenD=std({color:'#455c3b',roughness:.6,metalness:.25}),eFin=std({color:'#4c6442',roughness:.55,metalness:.3}),
+      eSign=std({color:'#f2c230'}),ePad=concreteMat(1,1);
+function padXfmr(G,x,y){box(10.2,.5,8.2,ePad,x,y,0,0,null,G);box(5,7.5,6.4,eGreen,x-.6,y,.5,0,null,G);box(1.6,3.4,7.6,eGreen,x+2.6,y,.5,0,null,G);box(1.7,.25,7.7,eGreenD,x+2.6,y,3.9,0,null,G);
+  for(let q=-2.6;q<=2.6;q+=.65)box(.9,5.8,.18,eFin,x-3.55,y+q,1.2,0,null,G);[-2,0,2].forEach(o=>cyl(.28,1.1,std({color:'#7a4a2a'}),x-.6,y+o,8,8,null,G));box(.05,.8,1.1,eSign,x+3.45,y-2.2,2.8,0,null,G);}
+function vfiSw(G,x,y){box(7.2,.5,6.2,ePad,x,y,0,0,null,G);box(6,5.5,5,eGreen,x,y,.5,0,null,G);box(6.1,.25,5.1,eGreenD,x,y,6,0,null,G);
+  [-1.5,1.5].forEach(o=>{box(2.6,4.4,.08,eGreenD,x+o,y-2.53,1.0,0,null,G);box(1,.7,.05,eSign,x+o,y-2.6,4.6,0,null,G);});}
+const ductCol={A:'#7c3aed',B:'#db2777',G:'#ea580c'},ductBase={},
+      ductDash=new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.85,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-6}),
+      ductCover=new THREE.MeshBasicMaterial({color:'#8c867a',transparent:true,opacity:.75,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}),
+      lvRunM=new THREE.MeshBasicMaterial({color:'#b8402f',transparent:true,opacity:.9,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-7});
+Object.keys(ductCol).forEach(k=>ductBase[k]=new THREE.MeshBasicMaterial({color:ductCol[k],transparent:true,opacity:.9,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-5}));
+function duct(G,pl,k,h){h=h||0;for(let i=1;i<pl.length;i++){const a=pl[i-1],b=pl[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.5)continue;
+  const at=(t0,t1)=>[[a[0]+(b[0]-a[0])*t0/L,a[1]+(b[1]-a[1])*t0/L],[a[0]+(b[0]-a[0])*Math.min(L,t1)/L,a[1]+(b[1]-a[1])*Math.min(L,t1)/L]];
+  G.add(strip(a,b,3.2,ductCover,0.66+h));
+  for(let t=0;t<L;t+=6){const [p,q]=at(t,t+3.6);G.add(strip(p,q,1.3,ductBase[k],0.68+h));}
+  for(let t=3.6;t<L;t+=6){const [p,q]=at(t,t+2.4);G.add(strip(p,q,.5,ductDash,0.69+h));}}return plen(pl);}
+function lv(G,pl,w){for(let i=1;i<pl.length;i++)G.add(strip(pl[i-1],pl[i],w||1.1,lvRunM,0.72));return plen(pl);}
+const E={mv:{A:0,B:0},lvXf:[],lvPod:[],tie:0};
+// 12.47 kV: riser pole → VFI → three pad-mounts. Six pads in one column at x 381, 6.9 ft west of the container / hall line.
+XFY.forEach(y=>padXfmr(blkG,XF.x,y));vfiSw(blkG,VFI.A[0],VFI.A[1]);vfiSw(blkG,VFI.B[0],VFI.B[1]);
+['A','B'].forEach(k=>{const r=RISER[k];box(4,.35,3,hhMat,r[0]+.6,r[1]-1.6,0.5,0,null,blkG);box(3.4,.08,2.4,lidMat,r[0]+.6,r[1]-1.6,0.85,0,null,blkG);});
+E.mv.A+=duct(blkG,[[RISER.A[0]+.6,RISER.A[1]+.6],[RISER.A[0]+.6,180],[375,180]],'A');
+E.mv.A+=duct(blkG,[[376,177.5],[373.5,177.5],[373.5,144.6]],'A');XFY.slice(0,3).forEach(y=>{E.mv.A+=duct(blkG,[[373.5,y],[375.9,y]],'A');});
+E.mv.B+=duct(blkG,[[RISER.B[0]+.6,RISER.B[1]+.6],[RISER.B[0]+.6,181],[357.5,181]],'B');                            // riser B → VFI B (north of the risers, clear of both overhead spans)
+E.mv.B+=duct(blkG,[[360.5,178.5],[360.5,138],[371,138],[371,108]],'B');XFY.slice(3).forEach(y=>{E.mv.B+=duct(blkG,[[371,y],[375.9,y]],'B');});
+// 480 V: each transformer to its own container (conceptual duct runs in the 6.9 ft strip west of the block and the 6 ft gaps between container rows)
+const T=i=>[386.1,XFY[i]];
+E.lvXf=[lv(blkG,[T(0),[389.5,XFY[0]],[389.5,137.5],[395,137.5],[395,135]]),
+        lv(blkG,[T(1),[390.6,XFY[1]],[390.6,124],[440,124],[440,121]]),
+        lv(blkG,[T(2),[388.4,XFY[2]],[388.4,138.6],[440,138.6],[440,135]]),
+        lv(blkG,[T(3),[391.8,XFY[3]],[391.8,117],[393,117]]),
+        lv(blkG,[T(4),[390.9,XFY[4]],[390.9,103],[393,103]]),
+        lv(blkG,[T(5),[388,XFY[5]],[388,109.2],[440,109.2],[440,107]])];
+// 480 V: each container to its own hall. South-row runs go straight north; north-row runs pass 45 ft below a south-row platform (not drawn through the hall) to the aisle.
+const pcx=p=>p.x0+BLK.pw/2,hx=i=>pcx(PODS[i]);
+E.lvPod=[lv(blkG,[[415.5,135],[415.5,141]]),
+         lv(blkG,[[460.5,121],[460.5,124.2],[485.5,124.2],[485.5,139.8],[hx(1),139.8],[hx(1),141]]),            // out along the row 2 / row 3 gap, round the east end of row 3
+         lv(blkG,[[460.5,135],[460.5,137.4],[hx(2),137.4],[hx(2),141]]),                                         // along the 6 ft gap south of the halls
+         lv(blkG,[[415.5,121],[415.5,124.6],[391.6,124.6],[391.6,138.3],[397,138.3],[397,141]])+45+lv(blkG,[[397,186],[397,196],[hx(3),196],[hx(3),206]]),
+         lv(blkG,[[420,107],[420,111.6],[487.2,111.6],[487.2,138.8],[479.5,138.8],[479.5,141]])+45+lv(blkG,[[479.5,186],[479.5,197.5],[hx(4),197.5],[hx(4),206]]),
+         lv(blkG,[[475,107],[475,110.4],[489.2,110.4],[489.2,141]])+45+lv(blkG,[[489.2,186],[489.2,200],[hx(5),200],[hx(5),206]])];
+// genset tie (backup only): collector along the genset row, one duct bank under the drive at x 492, header along row 1, branch along the row 2 / row 3 gap
+E.tie+=duct(blkG,[[genCX(0),67],[genCX(P.gen.n-1),67]],'G',.02);E.tie+=duct(blkG,[[492,67],[492,125.8],[430,125.8]],'G',.02);
+E.tie+=duct(blkG,[[492,97.7],[430,97.7]],'G',.02);
+[[492,66],[492,94.6]].forEach(p=>{box(4,.35,3,hhMat,p[0],p[1],0.5,0,null,blkG);box(3.4,.08,2.4,lidMat,p[0],p[1],0.85,0,null,blkG);});
+function reachOfRect(x0,y0,x1,y1){let m=0;const Pp=FA.outline,d=p=>{let b=1e9;for(let i=0;i<Pp.length;i++)b=Math.min(b,segDist(p,Pp[i],Pp[(i+1)%Pp.length]));return b;};
+  for(let t=x0;t<=x1;t+=2){m=Math.max(m,d([t,y0]),d([t,y1]));}for(let t=y0;t<=y1;t+=2){m=Math.max(m,d([x0,t]),d([x1,t]));}return m;}
+E.reach=Math.round(Math.max(reachOfRect(BLK.x0,BLK.rowS,BLK.x1,BLK.rowN+BLK.pl),reachOfRect(394,BLK.cool[0],527,BLK.cool[1]),reachOfRect(393,99,483,135)));
+window.__armada=E;
+// 150 ft straight-line offset from the fire-lane clear limits (round-joined stroke of the lane outline)
+const reachG=new THREE.Group();reachG.visible=false;scene.add(reachG);
+{const X0=-180,Y0=-130,Wf=1000,Hf=540,S=2;const [c,x]=canvas(Wf*S,Hf*S);
+ x.beginPath();FA.outline.forEach((p,i)=>{const u=(p[0]-X0)*S,v=(Y0+Hf-p[1])*S;i?x.lineTo(u,v):x.moveTo(u,v);});x.closePath();
+ x.lineJoin='round';x.lineWidth=300*S;x.strokeStyle='#c8102e';x.stroke();x.fillStyle='#c8102e';x.fill();
+ const g=new THREE.PlaneGeometry(Wf,Hf);g.rotateX(-PI/2);
+ const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:tex(c),transparent:true,opacity:.17,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}));
+ m.position.set(X0+Wf/2,1.15,-(Y0+Hf/2));m.userData.noPick=true;reachG.add(m);}
+/* ---------- fences (chain link with 3-strand barbed wire, as in the videos) ---------- */
+const meshMat=new THREE.MeshStandardMaterial({color:'#7c8486',transparent:true,opacity:.26,side:THREE.DoubleSide,depthWrite:false});
+const wire2=new THREE.LineBasicMaterial({color:'#6b7174',transparent:true,opacity:.7});
+const newMesh=new THREE.MeshStandardMaterial({color:'#1f9e8f',transparent:true,opacity:.36,side:THREE.DoubleSide,depthWrite:false}),newPost=std({color:'#178074',roughness:.5,metalness:.3});
+// privacy fence: opaque slatted screening, neutral dark, 10 ft tall, posts visible (owner rule: north, west and south perimeter)
+const PRIV_H=10;
+const privMat=(()=>{const [c,x]=canvas(128,160);x.fillStyle='#3a3f42';x.fillRect(0,0,128,160);for(let i=0;i<128;i+=8){x.fillStyle='rgba(0,0,0,.28)';x.fillRect(i,0,1.5,160);x.fillStyle='rgba(255,255,255,.05)';x.fillRect(i+3,0,2,160);}x.fillStyle='rgba(0,0,0,.25)';[6,78,150].forEach(y=>x.fillRect(0,y,128,3));
+  const t=tex(c);t.wrapS=THREE.RepeatWrapping;return new THREE.MeshStandardMaterial({map:t,roughness:.85,metalness:.1,side:THREE.DoubleSide});})(),privPost=std({color:'#2b2f31',roughness:.6,metalness:.4});
+function privPanel(L,h){const g=new THREE.PlaneGeometry(L,h),uv=g.attributes.uv;for(let i=0;i<uv.count;i++)uv.setX(i,uv.getX(i)*L/8);return g;}
+function fenceSeg(a,b,h=7,barb=true,isNew,priv){if(priv){h=PRIV_H;barb=false;}const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy);if(L<1)return;const pm=priv?privPost:isNew?newPost:galv;const p=new THREE.Mesh(priv?privPanel(L,h):new THREE.PlaneGeometry(L,h),priv?privMat:isNew?newMesh:meshMat);p.position.set((a[0]+b[0])/2,h/2,-(a[1]+b[1])/2);p.rotation.y=Math.atan2(dy,dx);if(priv){p.castShadow=true;p.receiveShadow=true;}scene.add(p);
+  const n=Math.ceil(L/10);for(let k=0;k<=n;k++){const t=k/n;cyl(priv?.2:.16,h+(barb?1.1:priv?.4:.2),pm,a[0]+dx*t,a[1]+dy*t,0,6);}pipe(.1,pm,[a[0],a[1],h],[b[0],b[1],h],5);
+  if(barb)[h+.4,h+.75,h+1.05].forEach(z=>scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a[0],z,-a[1]),new THREE.Vector3(b[0],z,-b[1])]),wire2)));}
+function fence(pts,gate){for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];
+  if(gate&&gate[0]===i){const L=Math.hypot(b[0]-a[0],b[1]-a[1]),u=[(b[0]-a[0])/L,(b[1]-a[1])/L];fenceSeg(a,[a[0]+u[0]*gate[1],a[1]+u[1]*gate[1]]);fenceSeg([a[0]+u[0]*gate[2],a[1]+u[1]*gate[2]],b);}else fenceSeg(a,b);}}
+const newLine=new THREE.MeshBasicMaterial({color:'#1f9e8f',transparent:true,opacity:.85,depthWrite:false});
+const exLine=new THREE.MeshBasicMaterial({color:'#5b6366',transparent:true,opacity:.75,depthWrite:false});
+// v8/FA-1 §2.3: 6 ft man gates MG-1…MG-14 (Knox padlock) cut into the fence runs they sit on
+const knoxPadM=std({color:'#c8102e',roughness:.5,metalness:.3});window.__mgPlaced=[];
+function manGate(c,u,isNew,id,priv){const pm=priv?privPost:isNew?newPost:galv,lm=priv?privMat:isNew?newMesh:meshMat,a=[c[0]-u[0]*3,c[1]-u[1]*3],b=[c[0]+u[0]*3,c[1]+u[1]*3];
+  [a,b].forEach(p=>cyl(.22,priv?PRIV_H+.6:8,pm,p[0],p[1],0,8));
+  const leaf=new THREE.Mesh(priv?privPanel(5.4,PRIV_H-.4):new THREE.PlaneGeometry(5.4,6.4),lm);leaf.position.set(c[0],priv?PRIV_H/2+.2:3.6,-c[1]);leaf.rotation.y=Math.atan2(u[1],u[0]);scene.add(leaf);
+  [.4,priv?PRIV_H:6.8].forEach(h=>pipe(.08,pm,[a[0]+u[0]*.3,a[1]+u[1]*.3,h],[b[0]-u[0]*.3,b[1]-u[1]*.3,h],5));
+  box(.4,.55,.4,knoxPadM,b[0]-u[0]*.55,b[1]-u[1]*.55,3.4);window.__mgPlaced.push(id);}
+function fenceRun(pl,isNew,priv){const lm=isNew?newLine:exLine,w=isNew?1.4:1.1,hh=isNew?.75:.74;
+  for(let i=1;i<pl.length;i++){const a=pl[i-1],b=pl[i],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy);if(L<1e-6)continue;const u=[dx/L,dy/L],at=t=>[a[0]+u[0]*t,a[1]+u[1]*t];
+    const cuts=FA.mg.filter(g=>segDist([g[1],g[2]],a,b)<0.6).map(g=>[(g[1]-a[0])*u[0]+(g[2]-a[1])*u[1],g[0]]).filter(([t])=>t>2.9&&t<L-2.9).sort((p,q)=>p[0]-q[0]);
+    let t0=0;cuts.forEach(([t,id])=>{fenceSeg(at(t0),at(t-3),7,true,isNew,priv);t0=t+3;manGate(at(t),u,isNew,id,priv);});
+    fenceSeg(at(t0),b,7,true,isNew,priv);scene.add(strip(a,b,w,lm,hh));}}
+const isPriv=f=>!/^East line|left original/.test(f.n);   // north, west and south existing runs become the 10 ft privacy fence; the east line stays chain-link
+FENCE_EXIST.filter(f=>f.n!=='North edge of the drive (west)').forEach(f=>fenceRun(f.pl,false,isPriv(f)));
+// v7/rev 11: drive-north chain-link — segment between x 230 and 328 is removed when the office is built (shown again with Office off)
+{const f=FENCE_EXIST.find(f=>f.n==='North edge of the drive (west)'),a=f.pl[0],b=f.pl[1],at=x=>[x,a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])];
+ const g0=at(OFFICE.fenceGap[0]),g1=at(OFFICE.fenceGap[1]);
+ const seg=(p,q,grp)=>{const n0=scene.children.length;fenceSeg(p,q,PRIV_H,false,false,true);scene.add(strip(p,q,1.1,exLine,0.74));if(grp){scene.children.splice(n0).forEach(o=>{o.parent=null;grp.add(o);});}};
+ // §10: back on its original line, stopping at x 213 (60, 113) → (213, 108.57); the moved y 111 run is deleted. Stub x 328–336.5 stays removed.
+ seg(a,g0);seg(g0,g1,offFenceG);
+ window.__driveNorthFence=plen([a,g0]);}
+FENCE_NEW.forEach(f=>fenceRun(f.pl,true));
+// new 20 ft double-swing vehicle gates (teal = new); rev 8 positions per owner
+function vgate(a,b,postM,leafM){const mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];[a,b].forEach(p=>cyl(.32,8.2,postM,p[0],p[1],0,10));cyl(.18,7,postM,mid[0],mid[1],0,8);
+  [[a,mid],[mid,b]].forEach(([p,q])=>{const L=Math.hypot(q[0]-p[0],q[1]-p[1]);const leaf=new THREE.Mesh(new THREE.PlaneGeometry(L-.4,6.4),leafM);leaf.position.set((p[0]+q[0])/2,3.6,-(p[1]+q[1])/2);leaf.rotation.y=Math.atan2(q[1]-p[1],q[0]-p[0]);scene.add(leaf);
+    [.4,6.8].forEach(h=>pipe(.1,postM,[p[0],p[1],h],[q[0],q[1],h],6));});}
+vgate(GATE_A[0],GATE_A[1],newPost,newMesh);vgate(GATE_B[0],GATE_B[1],newPost,newMesh);
+[GATE_A,GATE_B].forEach(([a,b])=>box(.4,.55,.4,knoxPadM,(a[0]+b[0])/2-.5,(a[1]+b[1])/2,3.4));   // v8: Knox padlocks (Fort Worth FD)
+// v8 §9.2: G-1 = the original survey gate, restored. 22 ft clear; 2 × 11.2 ft leaves swing east and are held open outside the lane
+// (south leaf along y ≈ 68.5–69.5, north leaf along y ≈ 92–93.5) on drop rods / cane bolts; Fort Worth FD Knox padlock. The 24 ft gate at x 12 is deleted.
+{const gm=privPost,gmesh=privMat;   // G-1 is now a 10 ft privacy gate: same posts, same 22 ft clear width, still held open and Knox-padlocked
+ FA.g1.forEach((a,i)=>{const b=FA.g1Open[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]),ang=Math.atan2(b[1]-a[1],b[0]-a[0]);cyl(.32,PRIV_H+.6,gm,a[0],a[1],0,10);
+   const leaf=new THREE.Mesh(privPanel(L-.4,PRIV_H-.4),gmesh);leaf.castShadow=true;leaf.position.set((a[0]+b[0])/2,PRIV_H/2+.2,-(a[1]+b[1])/2);leaf.rotation.y=ang;scene.add(leaf);
+   [.4,PRIV_H].forEach(h=>pipe(.1,gm,[a[0],a[1],h],[b[0],b[1],h],6));pipe(.1,gm,[b[0],b[1],.4],[b[0],b[1],PRIV_H],6);
+   cyl(.07,1.2,steel,b[0]-.3*Math.cos(ang),b[1]-.3*Math.sin(ang),-.4,6);});                       // drop rod at the held-open position
+ box(.4,.55,.4,knoxPadM,FA.g1[1][0]+.5,FA.g1[1][1],3.4);}
+{const x=338.5,y=99;   // v8 §9: light pole stays at (338.5, 99), 5.5 ft east of the moved FL-3
+cyl(.3,26,galv,x,y,0,8);[-1,1].forEach(o=>box(1.4,.9,1,steel,x+o,y,25.6));box(.6,.6,1,std({color:'#e8e8e4'}),x,y+.5,22);
+ cyl(.18,4.5,galv,x+3,y,0,6);box(2.4,3,1.2,std({color:'#b8bfc2'}),x+3,y-.4,3.5);[[x-2.5,y-2],[x+5.5,y-2]].forEach(p=>cyl(.33,3.6,yellowPipe,p[0],p[1],0,10));}
+// v8 §9.2: swing-arm posts at x 0 kept (arms Knox-padlocked, held open)
+{const gm=std({color:'#8a9194',metalness:.4,roughness:.5});[[0,DRIVE.y0-1],[0,DRIVE.y1+1]].forEach((p,i)=>{cyl(.3,5,gm,p[0],p[1],0,8);const g=new THREE.Mesh(new THREE.BoxGeometry(10,.25,.25),gm);g.position.set(p[0]+3.8,4.2,-(p[1]+(i?3:-3)));g.rotation.y=i?-.7:.7;add(g);
+  box(.4,.55,.4,knoxPadM,p[0]+.5,p[1],3.4);});}
+// (rev 3) no gate at the east end of the drive: the drive is closed there by the new east-line fence
+[[364,96],[498,95.5],[367,250],[551,297],[384,4],[655,3.5],[360,66],[605,64],[530.5,212]].forEach(p=>{cyl(.3,26,galv,p[0],p[1],0,8);box(2.4,.6,1.2,steel,p[0],p[1],26);});
+
+/* ---------- PARKING (§10): the north row at y 91–109 is deleted; all parking is the 4-stall office court (see the office block). */
+
+/* ---------- gas compressor plant and neighbours (context) ---------- */
+{const tan=std({color:'#cdb994'}),roofG=std({color:'#a7aba7'}),dark=std({color:'#3d4446'}),maroon=std({color:'#7b3a2e'});
+ const fanTex=face(22,60,(x,W,H)=>{x.fillStyle='#3d4446';x.fillRect(0,0,W,H);for(let k=0;k<3;k++){const cy=(k+.5)*20*PPF;x.fillStyle='#1f2425';x.beginPath();x.arc(W/2,cy,8.5*PPF,0,2*PI);x.fill();x.strokeStyle='rgba(150,158,160,.5)';x.lineWidth=2;for(let q=.3;q<1;q+=.18){x.beginPath();x.arc(W/2,cy,8.5*PPF*q,0,2*PI);x.stroke();}}});
+ const coolerMats=[dark,dark,std({map:fanTex}),dark,dark,dark],cGeo=new THREE.BoxGeometry(22,13,60);
+ [740,782,826,868,910,1000].forEach((xx,i)=>{box(26,17,30,i%3===2?maroon:tan,xx,96,0);box(27,1,31,roofG,xx,96,17);box(22,13,60,coolerMats,xx,40,0,0,cGeo);cyl(1,10,steel,xx+8,104,18,10);});
+ box(30,14,18,tan,754,176,0);box(44,14,20,tan,841,172,0);box(30,12,20,maroon,1005,170,0);
+ box(26,12,22,tan,640,186,0);box(26,.6,24,roofG,640,186,12);
+ box(24,11,40,maroon,690,10,0);box(22,18,70,std({color:'#eceeec'}),690,-60,0);
+ box(8,10,58,std({color:'#f0f1ef'}),617,144,0);
+ ['#7a2e24','#8a8f93','#8fa88a','#5d7a96','#e6e6e2','#4f5d4a','#7a2e24'].forEach((c,i)=>box(8,8.6,40,std({color:c}),584+i*9,232,0));
+ [[580,206],[586,206],[592,206],[598,206]].forEach(p=>cyl(2.6,7,std({color:'#eeeeea'}),p[0],p[1],0,14));
+ for(let xx=690;xx<=1040;xx+=25){box(.8,14,.8,galv,xx,140,0);box(.6,.6,8,galv,xx,140,14);}
+ [[-2,.9],[0,1.1],[2.2,.7]].forEach(([o,r])=>pipe(r,galv,[688,140+o,15.2],[1042,140+o,15.2],10));
+ for(let yy=-240;yy<=140;yy+=25)box(.8,12,.8,galv,710,yy,0);pipe(.9,galv,[710,-240,12.6],[710,140,12.6],10);
+ box(56,1,125,std({color:'#b9653b'}),575,-173,0);
+ [[56,4,1.5,575,-111],[56,4,1.5,575,-235],[1.5,4,125,547,-173],[1.5,4,125,603,-173]].forEach(p=>box(p[0],p[1],p[2],std({color:'#b0532a'}),p[3],p[4],0));
+ [-125,-148,-171,-194,-217].forEach(y=>cyl(7.5,22,std({color:'#dcd7cc'}),575,y,1,28));
+ pipe(.6,std({color:'#e0a21c'}),[760,60,0],[800,70,95],6);
+ const fm=new THREE.MeshStandardMaterial({color:'#7c8486',transparent:true,opacity:.25,side:THREE.DoubleSide,depthWrite:false});
+ [[[665,-290],[665,-4]],[[665,-290],[1105,-290]]].forEach(([a,b])=>{const p=new THREE.Mesh(new THREE.PlaneGeometry(Math.hypot(b[0]-a[0],b[1]-a[1]),8),fm);p.position.set((a[0]+b[0])/2,4,-(a[1]+b[1])/2);p.rotation.y=Math.atan2(b[1]-a[1],b[0]-a[0]);scene.add(p);});
+ box(40,16,38,std({color:'#eceeec'}),456,-34,0);
+ for(let k=0;k<7;k++)box(60,2.4,6,std({color:'#8a6a4a'}),220+k*8,-40-k*9,0,.05);
+ for(let xx=190;xx<=390;xx+=25)box(.6,10,.6,galv,xx,-118,0);pipe(.7,galv,[188,-118,10.5],[392,-118,10.5],8);
+ [0,1,2].forEach(i=>box(5,5,9,std({color:'#b8332c'}),362+i*9,-96,0));
+ const hg=std({color:'#9aa1a5',roughness:.9});[[-1500,-2250],[-1380,-2330],[-1260,-2410]].forEach(([x,y])=>{box(70,150,60,hg,x,y,0,.5);cyl(7,230,std({color:'#b4b8b9'}),x+30,y+25,0,16);});
+ for(let k=0;k<6;k++)pipe(1.2,std({color:'#8b9196'}),[-1100+k*70,-2050-k*40,0],[-1100+k*70,-2050-k*40,120],4);}
+
+/* ---------- sound wall along Rosedale (brown corrugated steel, taller west end, per videos) ---------- */
+{const [c,x]=canvas(512,128);x.fillStyle='#7a5a4a';x.fillRect(0,0,512,128);for(let i=0;i<512;i+=8){x.fillStyle='rgba(0,0,0,.14)';x.fillRect(i,0,3,128);x.fillStyle='rgba(255,255,255,.06)';x.fillRect(i+4,0,2,128);}
+ x.fillStyle='#b39d7f';x.fillRect(0,0,512,20);x.fillStyle='rgba(0,0,0,.25)';for(let i=0;i<512;i+=64)x.fillRect(i,0,2,128);
+ const a=[575,299],b=[1180,299-0.158*(1180-575)];const len=Math.hypot(b[0]-a[0],b[1]-a[1]);
+ const wt=tex(c,[len/40,1]);const w=new THREE.Mesh(new THREE.BoxGeometry(len,30,1.6),std({map:wt,roughness:.7,metalness:.25}));w.position.set((a[0]+b[0])/2,15,-(a[1]+b[1])/2);w.rotation.y=Math.atan2(b[1]-a[1],b[0]-a[0]);add(w);
+ const tm=std({map:tex(c,[.5,1]),roughness:.7,metalness:.25});
+ box(17,38,1.6,tm,566.5,300.5,0,Math.atan2(b[1]-a[1],b[0]-a[0]));
+ box(1.6,30,36,tm,562,283,0);}
+
+/* ---------- vehicles (static, low-poly), rail, Rosedale pole line ---------- */
+{const th=Math.atan(0.158);
+ const ty=x=>560-0.158*(x-697);for(let k=0;k<9;k++){const xx=700+k*58;box(54,13,10,std({color:k%3===1?'#8d97a0':'#c9ccc6'}),xx,ty(xx),1.6,-th);}
+ const pp=[Math.sin(th),Math.cos(th)];const ros=[];for(let x=-380;x<=1150;x+=170)ros.push([x,roadS(x)-26]);ros.forEach(p=>poleAt(p,pp,null));
+ for(let i=1;i<ros.length;i++)wiresBetween(ros[i-1],ros[i],pp,pp);
+
+ // shared geometry/materials keep this light: one unit box + one unit wheel, scaled per part
+ const UB=new THREE.BoxGeometry(1,1,1),UW=new THREE.CylinderGeometry(1,1,1,14);UW.rotateX(PI/2);
+ const MC={};const paintM=c=>MC[c]||(MC[c]=std({color:c,roughness:.32,metalness:.45}));
+ const glass=std({color:'#1d2933',roughness:.12,metalness:.7}),tire=std({color:'#1b1c1d',roughness:.9}),rim=std({color:'#9aa1a5',metalness:.6,roughness:.35}),
+       trim=std({color:'#2a2d30',roughness:.6}),chrome=std({color:'#cfd4d8',metalness:.8,roughness:.25}),
+       head=new THREE.MeshStandardMaterial({color:'#f6f3e4',emissive:'#5a5848',roughness:.3}),tail=new THREE.MeshStandardMaterial({color:'#b3261e',emissive:'#3a0a08',roughness:.4});
+ // part in vehicle-local feet: x forward, z lateral, b = bottom height
+ const P=(g,m,lx,h,lz,x,b,z)=>{const o=new THREE.Mesh(UB,m);o.scale.set(lx,h,lz);o.position.set(x,b+h/2,z||0);o.castShadow=true;g.add(o);return o;};
+ const W=(g,r,w,x,z)=>{const t=new THREE.Mesh(UW,tire);t.scale.set(r,r,w);t.position.set(x,r,z);t.castShadow=true;g.add(t);
+   const h=new THREE.Mesh(UW,rim);h.scale.set(r*.55,r*.55,w+.06);h.position.set(x,r,z);g.add(h);};
+ function car(c){const g=new THREE.Group(),m=paintM(c);
+   P(g,m,15,2.1,6.2,0,1.0);P(g,glass,7,1.7,5.6,-.8,3.05);P(g,m,6.2,.3,5.8,-1,4.7);
+   P(g,trim,.4,.8,6.1,7.55,1.0);P(g,trim,.4,.8,6.1,-7.55,1.0);
+   [-2.2,2.2].forEach(z=>{P(g,head,.2,.45,1.2,7.55,2.2,z);P(g,tail,.2,.45,1.1,-7.55,2.2,z);});
+   [4.8,-4.8].forEach(x=>[-2.95,2.95].forEach(z=>W(g,1.1,.8,x,z)));return g;}
+ function pickup(c){const g=new THREE.Group(),m=paintM(c);
+   P(g,m,19,2.4,6.8,0,1.4);P(g,glass,6.2,2,6.4,1.6,3.8);P(g,m,6.4,.35,6.6,1.5,5.8);
+   [-3.22,3.22].forEach(z=>P(g,m,7.6,1.5,.35,-5.3,3.8,z));P(g,m,.35,1.5,6.8,-9.3,3.8);P(g,trim,7.2,.1,6.1,-5.3,3.78);
+   P(g,trim,.3,1.6,5.4,9.55,2.0);P(g,chrome,.5,.9,6.9,9.6,1.2);P(g,trim,.5,.9,6.9,-9.6,1.2);
+   [-2.5,2.5].forEach(z=>{P(g,head,.2,.5,1.2,9.6,3.0,z);P(g,tail,.2,.9,.6,-9.55,3.8,z*1.25);});
+   [6.3,-6].forEach(x=>[-3.1,3.1].forEach(z=>W(g,1.45,1,x,z)));return g;}
+ function semi(cab,trl){const g=new THREE.Group(),mc=paintM(cab),mt=std({color:trl,roughness:.55,metalness:.2});
+   P(g,mt,53,9.2,8.4,-9.5,4.4);[-3,3].forEach(z=>P(g,trim,.4,3,.4,12,1.4,z));P(g,trim,.15,8.6,.15,-36.02,4.7);
+   P(g,trim,23,1.2,7.6,22.5,2.0);
+   P(g,mc,6,6.8,8,17,3.2);P(g,mc,6.5,7.4,8,23.2,3.2);P(g,glass,.25,2.4,7.2,26.5,7.2);P(g,glass,3,2.2,8.06,24.5,7.2);
+   P(g,mc,6.5,3.8,7.4,29.7,3.2);P(g,chrome,.3,3,4,33,3.5);P(g,chrome,.6,1,8,33.2,2.0);
+   [-3.2,3.2].forEach(z=>P(g,head,.2,.6,1.3,33.45,4.6,z));[-3.6,3.6].forEach(z=>P(g,tail,.2,.6,.8,-36.05,5,z));
+   [-4.25,4.25].forEach(z=>{const s=new THREE.Mesh(UW,chrome);s.rotation.x=PI/2;s.scale.set(.3,.3,9);s.position.set(20.2,8,z);g.add(s);});
+   [-3.6,3.6].forEach(z=>W(g,1.75,1,30.5,z));[16.5,12.5,-28,-32].forEach(x=>[-3.2,3.2].forEach(z=>W(g,1.75,2,x,z)));return g;}
+ function place(g,x,y,heading){g.position.set(x,0,-y);g.rotation.y=heading;scene.add(g);}
+ const hE=-th,hW=PI-th,hN=PI/2,hS=-PI/2;           // heading in plan; eastbound uses the south carriageway (drive on the right)
+ const E=(x,o)=>[x,roadS(x)+o],Wb=(x,o)=>[x,roadS(x)+68+o];
+ // E Rosedale eastbound (south carriageway: lanes at −12 right, 0, +12 left)
+ [[car('#f0f0ee'),E(-260,0)],[semi('#b22222','#f2f2f0'),E(-60,-12)],[car('#2c3e57'),E(140,12)],[pickup('#1e1f21'),E(330,0)],
+  [car('#9aa6ad'),E(560,-12)],[semi('#1f4e8c','#d9dcdf'),E(800,-12)],[car('#8b1e1e'),E(1000,0)],[pickup('#f3f3f1'),E(1120,12)]]
+  .forEach(([g,p])=>place(g,p[0],p[1],hE));
+ // E Rosedale westbound (north carriageway: lanes at +80 right, +68, +56 left)
+ [[car('#3a3f44'),Wb(-330,0)],[pickup('#7a1f1f'),Wb(-120,12)],[car('#c8ccd0'),Wb(100,-12)],[semi('#f3f3f1','#c9ccc6'),Wb(380,12)],
+  [car('#f0f0ee'),Wb(620,0)],[car('#2f5d3a'),Wb(900,-12)]]
+  .forEach(([g,p])=>place(g,p[0],p[1],hW));
+ // Arkansas Ln (two-lane gravel): northbound on the east half, southbound on the west half
+ place(pickup('#f3f3f1'),-24,-260,hN);place(car('#9aa6ad'),-36,200,hS);
+ // white pickup parked on the gravel drive (videos), facing east
+ {const g=pickup('#f3f3f1');g.position.set(228.5,0,-108.0);g.rotation.y=hN;offG.add(g);}}   // §10: white pickup centred in court stall P-2 (x 224–233), facing north
+
+/* ---------- trees (instanced; full July canopy) ---------- */
+{const pts=[];const allLines=[];['A','B'].forEach(k=>{for(let i=1;i<FEED[k].length;i++)allLines.push([FEED[k][i-1],FEED[k][i]]);});
+ const clearOfLines=p=>allLines.every(([a,b])=>segDist(p,a,b)>16);
+ const clearOfPlant=p=>!(p[0]>376&&p[0]<620&&p[1]>0&&p[1]<300);
+ function scatter(n,x0,x1,y0,y1,rmin,rmax,test){let k=0,guard=0;while(k<n&&guard++<n*40){const p=[R(x0,x1),R(y0,y1)];if(test&&!test(p))continue;if(!clearOfLines(p)||!clearOfPlant(p))continue;pts.push([p[0],p[1],R(rmin,rmax)]);k++;}}
+ scatter(isSmall?280:400,4,390,110,412,8,16,p=>inPoly(p,WOODS)&&p[1]<roadS(p[0])-22);
+ scatter(80,-150,-60,-480,380,5,11,null);
+ scatter(26,14,110,-60,34,7,13,null);
+ scatter(18,108,150,-260,-10,7,12,null);
+ scatter(isSmall?60:110,200,1180,0,700,6,12,p=>{const yn=roadS(p[0])+68+24;const ty=560-0.158*(p[0]-697);return p[1]>yn&&Math.abs(p[1]-ty)>16;});
+ scatter(50,-420,-60,roadS(-200)+95,1000,7,13,null);
+ scatter(40,-420,-160,-560,100,7,13,p=>Math.hypot(p[0]+215,p[1]-270)>100);
+ // Trees over the fire lanes go to fireTreesG (shown with Fire access off); all other trees are retained.
+ const laneCut=p=>inPoly(p,FA.outline)||FA.outline.some((q,i)=>segDist(p,q,FA.outline[(i+1)%FA.outline.length])<p[2]*0.85+1);
+ const bucket=pts.map(p=>{const o=officeClear(p),f=laneCut(p);return o&&f?3:o?1:f?2:0;}),cnt=[0,0,0,0];bucket.forEach(b=>cnt[b]++);
+ const crownGeo=new THREE.IcosahedronGeometry(1,1),crownMat=std({roughness:.95,flatShading:true}),trunkGeo=new THREE.CylinderGeometry(.16,.24,1,6),trunkMat=std({color:'#5a4a38'});
+ const mk=n=>{const s=[new THREE.InstancedMesh(crownGeo,crownMat,Math.max(n,1)),new THREE.InstancedMesh(trunkGeo,trunkMat,Math.max(n,1))];s[0].count=s[1].count=n;return s;};
+ const sets=cnt.map(mk),idx=[0,0,0,0];
+ const greens=['#3b5a29','#466631','#52703a','#4b6b36','#5e763c','#3f5130','#567a3c'].map(c=>new THREE.Color(c));
+ const o=new THREE.Object3D();
+ pts.forEach((p,j)=>{const b=bucket[j],[cr,tr]=sets[b],i=idx[b]++;
+   const r=p[2],tH=r*R(.45,.75);o.position.set(p[0],tH+r*.55,-p[1]);o.scale.set(r*R(.9,1.15),r*R(.7,.9),r*R(.9,1.15));o.rotation.set(0,rnd()*PI,0);o.updateMatrix();cr.setMatrixAt(i,o.matrix);
+   cr.setColorAt(i,greens[(rnd()*greens.length)|0].clone().multiplyScalar(R(.85,1.12)));
+   o.position.set(p[0],tH/2+.2,-p[1]);o.scale.set(r*.9,tH+.5,r*.9);o.rotation.set(0,0,0);o.updateMatrix();tr.setMatrixAt(i,o.matrix);});
+ sets.forEach(([cr,tr])=>{cr.castShadow=tr.castShadow=true;cr.receiveShadow=true;tr.receiveShadow=false;if(cr.instanceColor)cr.instanceColor.needsUpdate=true;});
+ scene.add(...sets[0]);offTreesG.add(...sets[1]);fireTreesG.add(...sets[2]);bothTreesG.add(...sets[3]);
+ window.__officeTreesCleared=cnt[1]+cnt[3];window.__fireTreesCleared=cnt[2]+cnt[3];}
+/* ---------- v7 / rev 11: OPTIONAL PERMANENT OPS OFFICE / RECEIVING & STAGING (toggle: Office, default ON) ---------- */
+{const O=OFFICE,W=O.x1-O.x0,D=O.y1-O.y0,cx=(O.x0+O.x1)/2,cy=(O.y0+O.y1)/2,B=0.6;
+ const PX=16;
+ // wall face texture: ribbed light-grey PEMB panel, dark wainscot, features drawn in ft from the left/bottom of the face
+ function wallFace(wFt,hFt,feats){const [c,x]=canvas(wFt*PX,hFt*PX);const H=c.height;
+   const R=(x0,x1,y0,y1,col)=>{x.fillStyle=col;x.fillRect(x0*PX,H-y1*PX,(x1-x0)*PX,(y1-y0)*PX);};
+   R(0,wFt,0,hFt,'#dde1df');for(let u=0;u<wFt;u+=1)R(u+.62,u+.78,0,hFt,'rgba(0,0,0,.07)');
+   R(0,wFt,0,3,'#6f777b');R(0,wFt,3,3.25,'#c4c9c8');R(0,wFt,hFt-.5,hFt,'#9aa2a5');
+   feats.forEach(f=>{if(f.t==='win'){R(f.x0-.25,f.x1+.25,f.y0-.25,f.y1+.25,'#4e565a');R(f.x0,f.x1,f.y0,f.y1,'#7fa6bf');
+       const g=x.createLinearGradient(0,H-f.y1*PX,0,H-f.y0*PX);g.addColorStop(0,'rgba(255,255,255,.45)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(f.x0*PX,H-f.y1*PX,(f.x1-f.x0)*PX,(f.y1-f.y0)*PX);
+       for(let u=f.x0+4;u<f.x1-.5;u+=4)R(u-.1,u+.1,f.y0,f.y1,'#4e565a');}
+     else if(f.t==='store'){R(f.x0-.3,f.x1+.3,0,f.y1+.3,'#3f4649');R(f.x0,f.x1,0,f.y1,'#6f97b1');R((f.x0+f.x1)/2-.08,(f.x0+f.x1)/2+.08,0,f.y1,'#3f4649');R(f.x0,f.x1,7,7.2,'#3f4649');}
+     else if(f.t==='door'){R(f.x0,f.x1,0,7.2,'#8e979b');R(f.x1-.6,f.x1-.4,3.2,3.6,'#3d4346');}
+     else if(f.t==='roll'){R(f.x0-.4,f.x1+.4,0,f.y1+.4,'#5d6569');R(f.x0,f.x1,0,f.y1,'#c9ced0');for(let v=.5;v<f.y1;v+=.5)R(f.x0,f.x1,v,v+.07,'rgba(0,0,0,.16)');R(f.x0,f.x1,0,.35,'#33393c');}
+     else if(f.t==='sign'){R(f.x0,f.x1,f.y0,f.y1,'#1f3b57');x.fillStyle='#f4f6f6';x.font='bold '+Math.round((f.y1-f.y0)*.55*PX)+'px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(f.txt,(f.x0+f.x1)/2*PX,H-(f.y0+f.y1)/2*PX);}});
+   return std({map:tex(c),roughness:.55,metalness:.15});}
+ const win=(x0,x1)=>({t:'win',x0,x1,y0:3.5,y1:8});
+ // south face (seen from the south, west → east): office storefront + windows, then 2 roll-ups + man door in the receiving half
+ const south=wallFace(W,O.eave,[win(3,11),win(13,17),{t:'store',x0:18.5,x1:24.5,y1:9},win(26,34),win(35.5,38.5),{t:'sign',x0:15,x1:28,y0:11.5,y1:14,txt:'OPERATIONS'},
+   {t:'door',x0:41,x1:44},{t:'roll',x0:46,x1:58,y1:14},{t:'roll',x0:64,x1:76,y1:14}]);
+ // north face (seen from the north, east → west): receiving half plain + man door, office half windows
+ const north=wallFace(W,O.eave,[{t:'door',x0:20,x1:23},win(44,52),win(54,62),win(64,72),{t:'door',x0:74,x1:77}]);
+ const west=wallFace(D,O.eave,[win(6,14),win(16,24),win(36,44),win(46,54)]);       // seen from the west: north → south
+ const east=wallFace(D,O.eave,[{t:'door',x0:28,x1:31}]);                           // seen from the west of the facility plant side
+ const top=std({color:'#c8cdcf',roughness:.5,metalness:.3});
+ box(W,O.eave,D,[east,west,top,top,south,north],cx,cy,B,0,null,offG);
+ // 1:12 gable roof, ridge E-W, 1.5 ft eave overhang, standing-seam texture
+ {const ov=1.5,hw=D/2+ov,rise=(O.ridge-O.eave)*hw/(D/2);
+  const sh=new THREE.Shape();sh.moveTo(-hw,0);sh.lineTo(hw,0);sh.lineTo(hw,.35);sh.lineTo(0,rise+.35);sh.lineTo(-hw,.35);sh.lineTo(-hw,0);
+  const [c,x]=canvas(512,512);x.fillStyle='#cfd4d6';x.fillRect(0,0,512,512);x.fillStyle='rgba(0,0,0,.10)';for(let i=0;i<512;i+=16)x.fillRect(i,0,3,512);
+  const rt=tex(c,[W/32,1]);
+  const g=new THREE.ExtrudeGeometry(sh,{depth:W+1,bevelEnabled:false});g.rotateY(PI/2);
+  const m=new THREE.Mesh(g,[std({color:'#dde1df',roughness:.6}),std({map:rt,roughness:.42,metalness:.45})]);m.position.set(O.x0-.5,B+O.eave-.2,-cy);
+  add(m,true,true,offG);}
+ // graded / seeded yard over the cleared footprint (replaces the dark wooded floor)
+ {const c=O.clear,[gc,gx]=canvas(256,256);gx.fillStyle='#a7a676';gx.fillRect(0,0,256,256);let q=7;const lr=()=>(q=(q*16807)%2147483647)/2147483647;for(let i=0;i<2600;i++){gx.fillStyle=['#9b9b68','#b3b082','#8f925f','#bdb98c'][i%4];gx.fillRect(lr()*256,lr()*256,2,2);}
+  const yard=flat([[c[0],c[2]],[c[1],c[2]],[c[1],c[3]],[c[0],c[3]]],std({map:tex(gc,[(c[1]-c[0])/40,(c[3]-c[2])/40]),roughness:1}),.22);offG.add(yard);}
+ // slab edge, entry canopy, roll-up bollards, condensing units, dumpster pad
+ box(W+1,B,D+1,concreteMat(4,3),cx,cy,0,0,null,offG);
+ box(10,.6,6,std({color:'#3f4649',roughness:.5,metalness:.4}),O.x0+21.5,O.y0-3,10,0,null,offG);
+ [[O.x0+21.5-4.6,O.y0-4.6],[O.x0+21.5+4.6,O.y0-4.6]].forEach(p=>cyl(.25,10,std({color:'#3f4649'}),p[0],p[1],0,8,null,offG));
+ const yel=std({color:'#e8b923',roughness:.5});
+ [45.4,58.6,63.4,76.6].forEach(u=>cyl(.5,4,yel,O.x0+u,O.y0-1.2,0,10,null,offG));
+ [[O.x0+8,O.y1+5],[O.x0+20,O.y1+5]].forEach(p=>{box(9,.4,6,concreteMat(1,1),p[0],p[1],0,0,null,offG);box(6,4.2,4,std({color:'#e6e8e6',roughness:.5,metalness:.2}),p[0],p[1],.4,0,null,offG);
+   cyl(1.3,.3,std({color:'#2c3134'}),p[0],p[1],4.6,16,null,offG);});
+ box(12,.4,10,concreteMat(1,1),O.x1-8,O.y1+7,0,0,null,offG);box(8,5,5.5,std({color:'#2f5d3a',roughness:.6}),O.x1-8,O.y1+7,.4,0,null,offG);
+ // concrete truck apron + asphalt parking court + walk (flatwork)
+ {const [ax0,ax1,ay0,ay1]=O.apron;box(ax1-ax0,.5,ay1-ay0,concreteMat((ax1-ax0)/20,(ay1-ay0)/20),(ax0+ax1)/2,(ay0+ay1)/2,0,0,null,offG).castShadow=false;
+  const [lx0,lx1,ly0,ly1]=O.lot;const asph=std({color:'#4a4d4f',roughness:.95});const lm=box(lx1-lx0,.42,ly1-ly0,asph,(lx0+lx1)/2,(ly0+ly1)/2,0,0,null,offG);lm.castShadow=false;
+  const paint=new THREE.MeshBasicMaterial({color:'#f2f2ee'}),blue=new THREE.MeshBasicMaterial({color:'#2f6fd6'});
+  // §9.4 court: pole island x 233–239 (Oncor pole (236, 104)), van-accessible stall x 239–250 + 5 ft aisle x 250–255, 1 stall x 255–264
+  box(6,.6,ly1-.5-(ly0+8),concreteMat(1,1),236,(ly0+8+ly1-.5)/2,0,0,null,offG);
+  [215,224,233,255,264].forEach(xx=>offG.add(strip([xx,ly0+8],[xx,ly1-.5],.35,paint,.47)));                   // §10: P-1, P-2, P-4 + no-parking edges
+  [239,250].forEach(xx=>offG.add(strip([xx,ly0+8],[xx,ly1-.5],.35,blue,.47)));                                  // P-3 van-accessible
+  for(let yy=ly0+9;yy<ly1-2;yy+=2.5)offG.add(strip([264.3,yy],[269.7,yy+2],.25,paint,.47));                  // striped no-parking x 264–270
+  offG.add(flat([[239.4,ly0+8.5],[249.6,ly0+8.5],[249.6,ly1-.7],[239.4,ly1-.7]],blue,.46));
+  for(let yy=ly0+9;yy<ly1-2;yy+=2.5)offG.add(strip([250.3,yy],[254.7,yy+2],.25,blue,.47));                 // aisle hatch
+  cyl(.1,7,galv,244.5,ly1-.4,0,6,null,offG);box(1.2,1.5,.1,std({color:'#2563eb'}),244.5,ly1-.45,5.2,0,null,offG);
+  const [wx0,wx1,wy0,wy1]=O.walk;box(wx1-wx0,.6,wy1-wy0,concreteMat(2,1),(wx0+wx1)/2,(wy0+wy1)/2,0,0,null,offG).castShadow=false;
+  // apron edge paint + dock bumpers
+  offG.add(strip([ax0+.5,ay0+.5],[ax0+.5,ay1-.5],.35,new THREE.MeshBasicMaterial({color:'#e8b923'}),.52));}
+ // vehicles: box truck backed to the east roll-up, 3 cars in the stalls
+ {const tm=std({color:'#f3f3f1',roughness:.5,metalness:.15}),cab=std({color:'#1f4e8c',roughness:.4,metalness:.4}),tyre=std({color:'#1b1b1b',roughness:.9}),gl=std({color:'#2b3940',roughness:.2,metalness:.6});
+  const tx=O.x0+70,ty=O.y0;box(8,10.5,22,tm,tx,ty-12.5,1.6,0,null,offG);box(8,6.5,7,cab,tx,ty-27,1.4,0,null,offG);box(7.4,2.2,.1,gl,tx,ty-30.55,4.8,0,null,offG);
+  [[ty-6],[ty-19],[ty-28]].forEach(([yy])=>[-3.6,3.6].forEach(dx=>{const w=cyl(1.6,1,tyre,tx+dx,yy,1.6,14,null,offG);w.rotation.z=PI/2;w.position.y=1.6;}));
+  // §9.4: 2 court stalls (van-accessible x 239–250, standard x 255–264)
+  const cars=['#9aa6ad','#2c3e57'];[244.5,259.5].forEach((xx,i)=>{const m=std({color:cars[i],roughness:.35,metalness:.5});
+    box(6,2.1,15,m,xx,O.lot[3]-9,.7,0,null,offG);box(5,1.5,7.5,gl,xx,O.lot[3]-9.8,2.8,0,null,offG);});}
+}
+/* ---------- v8: FIRE ACCESS LAYER — FA-1 (toggle: Fire access, default ON) ----------
+   Concrete lanes at the 20 ft clear limits, 6 in red edge stripes, 4 in "NO PARKING FIRE LANE" stencils every 25 ft,
+   "FIRE LANE" pavement legends, 12 × 18 in signs + TOW AWAY plates (bottom 6 ft 6 in, ≤ 50 ft apart), private hydrants
+   FH-1 / FH-2 with 4 bollards each, and Knox KB-1 at the office entrance (KB-1 shows only with the office). */
+{const RED='#c8102e',G=fireG;
+ // lane slab (FL-1/2/3 + F-1…F-4 + TA-1); UVs are plan feet → 20 ft joint grid
+ G.add(flat(FA.outline,std({map:tex(concreteTex,[1/20,1/20]),roughness:.92,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}),0.3));
+ const walk=run=>{const seg=[];let tot=0;for(let i=1;i<run.length;i++){const a=run[i-1],b=run[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<1e-6)continue;seg.push({a,b,L,s:tot});tot+=L;}
+   return {tot,at:s=>{const g=seg.find(g=>s<=g.s+g.L)||seg[seg.length-1],t=(s-g.s)/g.L,u=[(g.b[0]-g.a[0])/g.L,(g.b[1]-g.a[1])/g.L];
+     return {p:[g.a[0]+(g.b[0]-g.a[0])*t,g.a[1]+(g.b[1]-g.a[1])*t],u,n:[-u[1],u[0]]};}};};   // n = inward (lane side)
+ // 6 in red edge stripes
+ const redM=new THREE.MeshBasicMaterial({color:RED,polygonOffset:true,polygonOffsetFactor:-3});let stripeLf=0;
+ FA.runs.forEach(run=>{for(let i=1;i<run.length;i++){const a=run[i-1],b=run[i],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy);if(L<1e-6)continue;const n=[-dy/L,dx/L];
+   G.add(strip([a[0]+n[0]*.25,a[1]+n[1]*.25],[b[0]+n[0]*.25,b[1]+n[1]*.25],.5,redM,.34));stripeLf+=L;}});
+ // stencils on the stripe, every 25 ft, reading from the lane
+ const [sc,sx]=canvas(768,64);sx.fillStyle=RED;sx.fillRect(0,0,768,64);sx.fillStyle='#ffffff';sx.font='bold 44px Arial,sans-serif';sx.textAlign='center';sx.textBaseline='middle';sx.fillText('NO PARKING FIRE LANE',384,34);
+ const stM=new THREE.MeshBasicMaterial({map:tex(sc),polygonOffset:true,polygonOffsetFactor:-4}),stG=new THREE.PlaneGeometry(6,.5);stG.rotateX(-PI/2);let stencils=0;
+ FA.runs.forEach(run=>{const w=walk(run);for(let s=12.5;s<w.tot-3;s+=25){const {p,u,n}=w.at(s),m=new THREE.Mesh(stG,stM);m.position.set(p[0]+n[0]*.25,.36,-(p[1]+n[1]*.25));m.rotation.y=Math.atan2(-u[1],-u[0]);G.add(m);stencils++;}});
+ // FIRE LANE pavement legends (top of the letters toward the direction of travel)
+ const [lc,lx]=canvas(1024,256);lx.clearRect(0,0,1024,256);lx.fillStyle='rgba(255,255,255,.92)';lx.font='bold 190px Arial,sans-serif';lx.textAlign='center';lx.textBaseline='middle';lx.fillText('FIRE LANE',512,136);
+ const lgM=new THREE.MeshBasicMaterial({map:tex(lc),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}),lgG=new THREE.PlaneGeometry(16,4);lgG.rotateX(-PI/2);
+ [[40,80.5,-PI/2],[160,80.5,-PI/2],[300,80.5,-PI/2],[470,80.5,-PI/2],[588,80.5,-PI/2],[545.5,135,0],[545.5,205,0],[321.13+44.5/145.5*27.21,135,-Math.atan2(27.21,145.5)],[321.13+114.5/145.5*27.21,205,-Math.atan2(27.21,145.5)],[394,52,PI]]
+   .forEach(([x,y,r])=>{const m=new THREE.Mesh(lgG,lgM);m.position.set(x,.35,-y);m.rotation.y=r;G.add(m);});
+ // NO PARKING FIRE LANE signs: 12 × 18 in + 12 × 6 in TOW AWAY ZONE plate, red on white, bottom at 6 ft 6 in, 0.8 ft outside the lane edge
+ const face=(w,h,lines,fs)=>{const [c,x]=canvas(w*120,h*120);x.fillStyle='#ffffff';x.fillRect(0,0,c.width,c.height);x.strokeStyle=RED;x.lineWidth=8;x.strokeRect(6,6,c.width-12,c.height-12);
+   x.fillStyle=RED;x.font='bold '+fs+'px Arial,sans-serif';x.textAlign='center';x.textBaseline='middle';lines.forEach((t,i)=>x.fillText(t,c.width/2,c.height*(i+.5)/lines.length+3));return std({map:tex(c),roughness:.5});};
+ const back=std({color:'#c9cdce',roughness:.5,metalness:.4}),sgnM=face(1,1.5,['NO','PARKING','FIRE','LANE'],30),towM=face(1,.5,['TOW AWAY ZONE'],20);
+ const sgnMats=[back,back,back,back,sgnM,back],towMats=[back,back,back,back,towM,back],sgnGeo=new THREE.BoxGeometry(1,1.5,.06),towGeo=new THREE.BoxGeometry(1,.5,.06);
+ const avoid=[...FA.hyd.flatMap(h=>h[4].map(b=>[b[0],b[1],2])),...FA.mg.map(g=>[g[1],g[2],4]),[533,154.5,11.5],...FA.g1.map(q=>[q[0],q[1],2]),[335.4,69,6.5],[339.5,92.4,6.5],[0,69,2],[0,92,2]];   // + G-1 posts and held-open leaves, swing-arm posts              // man gates, Gate B swing, G-1 posts
+ const inOffice=p=>p[0]>211&&p[0]<316&&p[1]>90&&p[1]<123;                                          // office lot + truck apron frontage
+ const signs=[];
+ FA.runs.forEach(run=>{const w=walk(run),n=Math.ceil(w.tot/42),sp=w.tot/n;
+   for(let i=0;i<n;i++){let hit=null;for(const d of [0,6,-6,12,-12]){const s=Math.min(w.tot-1,Math.max(1,(i+.5)*sp+d)),q=w.at(s),pp=[q.p[0]-q.n[0]*.8,q.p[1]-q.n[1]*.8];
+       if(avoid.some(([ax,ay,ar])=>Math.hypot(pp[0]-ax,pp[1]-ay)<ar))continue;hit={p:pp,n:q.n};break;}
+     if(!hit||inOffice(hit.p))continue;
+     signs.push(hit);}});
+ {const c=[290.2,115.5],x=309.4,p=[x,c[1]-Math.sqrt(24.2*24.2-(x-c[0])**2)];                      // office frontage (§10): court W end, pole-island nose, court/apron line, on F-1 E of door 2
+  signs.push({p:[212.75,91.3],n:[0,-1]},{p:[236,99.5],n:[0,-1]},{p:[270,91.3],n:[0,-1]},{p,n:[(p[0]-c[0])/24.2,(p[1]-c[1])/24.2]});}
+ signs.forEach(({p,n})=>{const r=Math.atan2(n[0],-n[1]),fx=p[0]+n[0]*.12,fy=p[1]+n[1]*.12;
+   cyl(.08,8.6,galv,p[0],p[1],0,6,null,G);box(1,1.5,.06,sgnMats,fx,fy,7.0,r,sgnGeo,G);box(1,.5,.06,towMats,fx,fy,6.5,r,towGeo,G);});
+ // private hydrants: red, 3-way (4.5 in steamer to the lane at 21 in AFG + two 2.5 in hose nozzles), 4 yellow bollards each
+ const hydM=std({color:RED,roughness:.42,metalness:.25}),capM=std({color:'#e9e6df',roughness:.4,metalness:.3});
+ FA.hyd.forEach(([id,x,y,f,bol])=>{const s=[f[1],-f[0]];
+   cyl(1.4,.3,concreteMat(1,1),x,y,0,18,null,G);cyl(.62,.18,hydM,x,y,.3,16,null,G);cyl(.42,2.3,hydM,x,y,.48,16,null,G);
+   cyl(.5,.22,hydM,x,y,2.78,16,null,G);cyl(.12,.45,hydM,x,y,3.0,16,.46,G);cyl(.1,.25,capM,x,y,3.45,6,null,G);
+   pipe(.3,hydM,[x,y,1.75],[x+f[0]*.95,y+f[1]*.95,1.75],14,G);pipe(.34,capM,[x+f[0]*.95,y+f[1]*.95,1.75],[x+f[0]*1.1,y+f[1]*1.1,1.75],14,G);
+   [-1,1].forEach(k=>{pipe(.17,hydM,[x,y,2.15],[x+s[0]*k*.8,y+s[1]*k*.8,2.15],10,G);pipe(.2,capM,[x+s[0]*k*.8,y+s[1]*k*.8,2.15],[x+s[0]*k*.92,y+s[1]*k*.92,2.15],10,G);});
+   bol.forEach(([bx,by])=>{cyl(.33,3.6,yellowPipe,bx,by,0,10,null,G);cyl(.34,.2,hydM,bx,by,3.1,10,null,G);});});
+ // water service, drawn as underground lines on grade (dashed) + surface fittings
+ {const W=FA.water,ugW=(pl,col,w,h,P)=>{P=P||G;const base=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.85,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-5}),
+     dash=new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.6,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-6});
+     for(let i=1;i<pl.length;i++){const a=pl[i-1],b=pl[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);P.add(strip(a,b,w,base,h));
+       for(let t=2;t<L-1;t+=7){const f=t/L,f2=Math.min(1,(t+3)/L);P.add(strip([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f],[a[0]+(b[0]-a[0])*f2,a[1]+(b[1]-a[1])*f2],w*.4,dash,h+.02));}}};
+  ugW(W.main,'#1d4ed8',1.4,.62);ugW(W.branch,'#2563eb',.9,.64);ugW(W.fs,'#b91c1c',1.2,.66);ugW(W.fire,'#b91c1c',1.2,.66);
+  ugW(W.ds,'#0ea5e9',.6,.65);ugW(W.dc,'#38bdf8',.6,.65,knoxG);                                                     // DC-1 shows only with the office
+  const lidM=std({color:'#3e4446',roughness:.7,metalness:.3}),vM=concreteMat(1,1);
+  box(1.6,.3,1.6,vM,W.tap[0],W.tap[1],.3,0,null,G);cyl(.45,.12,lidM,W.tap[0],W.tap[1],.6,12,null,G);                    // TP-1 tapping sleeve box
+  cyl(.42,.5,vM,W.gv[0],W.gv[1],.3,12,null,G);cyl(.3,.1,lidM,W.gv[0],W.gv[1],.8,12,null,G);                          // gate valve box
+  {const [x0,x1,y0,y1]=W.bf;box(x1-x0,.6,y1-y0,vM,(x0+x1)/2,(y0+y1)/2,0,0,null,G);box(3,.08,2.4,lidM,(x0+x1)/2-1.8,(y0+y1)/2,.6,0,null,G);box(3,.08,2.4,lidM,(x0+x1)/2+1.8,(y0+y1)/2,.6,0,null,G);}  // BF-1 vault
+  cyl(.3,.4,vM,W.corp[0],W.corp[1],.3,10,null,G);cyl(.2,.08,lidM,W.corp[0],W.corp[1],.7,10,null,G);                // DS-1 corporation stop / curb box
+  box(2,.4,1.4,vM,W.mw[0],W.mw[1],0,0,null,G);box(1.5,.06,.9,lidM,W.mw[0],W.mw[1],.4,0,null,G);                     // MW-1 meter box
+  window.__water={mainFt:plen(W.main),branchFt:plen(W.branch),fsFt:plen(W.fs),fireFt:plen(W.fire),dsFt:plen(W.ds),dcFt:plen(W.dc)};}
+ // Knox KB-1 on a galvanised post beside gate G-1, outside the lane
+ {const [kx,ky]=FA.knox,km=std({color:'#2b2d2f',roughness:.45,metalness:.55});cyl(.18,6.2,galv,kx,ky,0,8,null,G);box(.75,.9,.5,km,kx,ky,5.6,0,null,G);box(.5,.14,.05,hydM,kx,ky+.28,6.25,0,null,G);}
+ window.__fire={stripeLf,stencils,signs:signs.length,laneSf:FA.area,hydrants:FA.hyd.length,manGates:window.__mgPlaced.slice()};
+ {const e=document.getElementById('lgLane');if(e)e.textContent='20 ft · concrete · ≈ '+(Math.round(FA.area/100)*100).toLocaleString()+' sf';
+  const m=document.getElementById('lgMark');if(m)m.textContent='≈ '+Math.round(stripeLf).toLocaleString()+' lf · '+stencils+' stencils · '+signs.length+' signs';}}
+/* ---------- easements (toggle group) ---------- */
+const easeG=new THREE.Group();easeG.visible=false;scene.add(easeG);
+function overlay(group,pts,color,op,h){group.add(flat(pts,new THREE.MeshBasicMaterial({color,transparent:true,opacity:op,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2}),h));
+  const lm=new THREE.MeshBasicMaterial({color,transparent:true,opacity:.95,depthWrite:false});for(let i=0;i<pts.length;i++)group.add(strip(pts[i],pts[(i+1)%pts.length],1.3,lm,h+.05));}
+const FLOOD=[[1.5,192],[122,210],[231,245],[340,269],[399,312],[400,331.9],[383.45,334.61],[283.41,342.70],[87.23,379.93],[16.38,406.27],[6.97,399.76],[6.46,210.86],[1.65,211.06]];
+const LVD={"FLOOD_SURVEY":[[1.65,211.06],[6.46,210.86],[6.97,399.76],[16.38,406.27],[87.23,379.93],[283.41,342.7],[383.45,334.61],[410.4,329.54],[406.35,283.42],[367.31,249.25],[345.29,235.51],[299.85,232.09],[252.29,229.25],[187.19,211.25],[128.41,187.2],[90.76,129.0],[0.74,94.12]],"FLOOD_LINE":[[0.74,94.12],[90.76,129.0],[128.41,187.2],[187.19,211.25],[252.29,229.25],[299.85,232.09],[345.29,235.51],[367.31,249.25],[406.35,283.42],[411.0,336.41]]};
+overlay(easeG,LVD.FLOOD_SURVEY,'#2f7fd6',.3,1.0);
+{const bm=new THREE.MeshBasicMaterial({color:'#2f7fd6',transparent:true,opacity:.16,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}),dm=new THREE.MeshBasicMaterial({color:'#8fb7e6',transparent:true,opacity:.95,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-3});
+ for(let i=1;i<LVD.FLOOD_LINE.length;i++)easeG.add(strip(LVD.FLOOD_LINE[i-1],LVD.FLOOD_LINE[i],16,bm,1.02));
+ for(let i=1;i<6;i++){const a=FLOOD[i-1],b=FLOOD[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]),q=u=>[a[0]+(b[0]-a[0])*u/L,a[1]+(b[1]-a[1])*u/L];for(let t=0;t<L;t+=14)easeG.add(strip(q(t),q(Math.min(L,t+8)),1.4,dm,1.08));}
+ overlay(easeG,[[628,-4],[679,-4],[679,92],[628,92]],'#3a9a3a',.22,1.05);}
+overlay(easeG,[[0.6,64],[507,64],[507,100],[0.8,100]],'#d8b51e',.3,1.05);
+overlay(easeG,[[365,94],[504.69,93.94],[555.52,143.01],[558.43,301.71],[401,331.3],[365,300]],'#8e5bd6',.14,1.15);
+/* existing underground gas pipeline along the south line (survey: "UNDER GROUND PIPELINE", easement D210237214, N89°41'23"W 662.72').
+   Centreline and variable-width easement scaled from the survey; ends at the pipeline tie-in riser. The buried pipe (centreline + marker posts) belongs to the Underground layer; the easement strip shows ONLY with Easements. */
+const pipeG=ugG,pipeEaseG=easeG;
+// rev 7, scaled from the survey (1"=60', S line 662.72'): centreline starts at x 176.5 (23.0 ft N of the S line) and runs straight,
+// converging slightly on the S line, to the filling station / equipment pad at x 560 (13.5 ft N of the S line).
+const PIPE=[[176.5,SL(176.5)+23.0],[P.tie[0],P.tie[1]]];   // straight, no turn; ends at the termination riser
+// easement D210237214: x 150.5 → 560 (pad); south edge = the south lot line; north edge 40.0 ft N of and parallel to the S line
+const PIPE_EASE=[[150.5,SL(150.5)],[560,SL(560)],[560,SL(560)+40],[150.5,SL(150.5)+40]];
+{pipeEaseG.add(flat(PIPE_EASE,new THREE.MeshBasicMaterial({color:'#e07b13',transparent:true,opacity:.2,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2}),1.0));
+ const edge=new THREE.MeshBasicMaterial({color:'#c25a0c',transparent:true,opacity:.9,depthWrite:false});
+ for(let i=0;i<PIPE_EASE.length;i++){const a=PIPE_EASE[i],b=PIPE_EASE[(i+1)%PIPE_EASE.length];if(i===0)continue;   // south edge coincides with the property line / existing fence
+   const L=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=0;t<L;t+=10){const f=t/L,f2=Math.min(1,(t+6)/L);pipeEaseG.add(strip([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f],[a[0]+(b[0]-a[0])*f2,a[1]+(b[1]-a[1])*f2],1.1,edge,1.05));}}
+ const cl=new THREE.MeshBasicMaterial({color:'#9a3412',transparent:true,opacity:.85,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4});
+ const cl2=new THREE.MeshBasicMaterial({color:'#fde68a',transparent:true,opacity:.7,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-5});
+ for(let i=1;i<PIPE.length;i++){pipeG.add(strip(PIPE[i-1],PIPE[i],2,cl,1.12));
+   const a=PIPE[i-1],b=PIPE[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=3;t<L-2;t+=12){const f=t/L,f2=Math.min(1,(t+4)/L);pipeG.add(strip([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f],[a[0]+(b[0]-a[0])*f2,a[1]+(b[1]-a[1])*f2],.8,cl2,1.14));}}
+ // pipeline warning marker posts (yellow body, orange cap, sign plate) about every 100 ft and at both ends
+ const postM=std({color:'#f2c230',roughness:.6}),capM=std({color:'#e2621b',roughness:.5}),plateM=std({color:'#fbfbf7'});
+ const at=x=>{for(let i=1;i<PIPE.length;i++){const a=PIPE[i-1],b=PIPE[i];if(x<=b[0]){const t=(x-a[0])/(b[0]-a[0]);return [x,a[1]+(b[1]-a[1])*t];}}return PIPE[PIPE.length-1];};
+ [179,280,380,480,548].forEach(x=>{const [px,py]=at(x),yy=py-3;cyl(.22,5,postM,px,yy,0,8,null,pipeG);cyl(.26,.6,capM,px,yy,5,8,null,pipeG);box(1.4,1,.08,plateM,px,yy-.25,3.6,0,null,pipeG);});}
+
+/* ---------- SETBACKS (rev 4, informational; permanent structures only — modular equipment not affected). Toggle: Setback ----------
+   Gas well / compressor setback: rounded offset of the compressor facility outline. The source map gives no distance; matched to modelled
+   features (plant outline, Rosedale, tank battery, gravel drive) it is ≈ 330 ft. */
+const setG=new THREE.Group();setG.visible=false;scene.add(setG);
+const PLANT_OUTLINE=[[665,-291],[1227,-291],[1108,194],[665,285]];           // CCW, from the setback map's facility outline
+const WELL_SETBACK=330;
+function offsetPoly(poly,d,arcSeg){const n=poly.length,out=[];
+  const nrm=(a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy);return Math.atan2(-dx/l,dy/l);};
+  for(let i=0;i<n;i++){const p=poly[i],t1=nrm(poly[(i-1+n)%n],p);let t2=nrm(p,poly[(i+1)%n]);while(t2<t1)t2+=2*PI;
+    for(let k=0;k<=arcSeg;k++){const t=t1+(t2-t1)*k/arcSeg;out.push([p[0]+d*Math.cos(t),p[1]+d*Math.sin(t)]);}}return out;}
+{const ring=offsetPoly(PLANT_OUTLINE,WELL_SETBACK,10);
+ const sh=shapeOf(ring);sh.holes.push(new THREE.Path(PLANT_OUTLINE.slice().reverse().map(p=>new THREE.Vector2(p[0],p[1]))));
+ const g=new THREE.ShapeGeometry(sh);g.rotateX(-PI/2);
+ const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:'#c81e1e',transparent:true,opacity:.24,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-6}));m.position.y=1.6;setG.add(m);
+ const edge=new THREE.MeshBasicMaterial({color:'#a51515',transparent:true,opacity:.9,depthWrite:false});
+ for(let i=0;i<ring.length;i++)setG.add(strip(ring[i],ring[(i+1)%ring.length],1.6,edge,1.65));
+ const fac=new THREE.MeshBasicMaterial({color:'#1e3a8a',transparent:true,opacity:.9,depthWrite:false});
+ for(let i=0;i<PLANT_OUTLINE.length;i++)setG.add(strip(PLANT_OUTLINE[i],PLANT_OUTLINE[(i+1)%PLANT_OUTLINE.length],1.4,fac,1.7));}
+const wetG=new THREE.Group();wetG.visible=false;scene.add(wetG);
+// wetland / flood zone: the pixel-stepped blue + teal shading on the map, traced and simplified (≈121 vertices, ±2 ft),
+// limited to x −80…700, y −40… Rosedale's south shoulder. NOT included: the straight-edged light-blue polygon around the
+// well symbol east of the sketch, and the straight 40 ft blue strip carrying the magenta pipeline along the south line.
+const WETLAND=[[392,328],[383.5,333.5],[382.5,338.5],[374.5,339.5],[372,343.5],[340.5,343.5],[337.5,348.5],[319.5,354],[317,360],[304,360.5],[290.5,359.5],[288.5,354],[278,353.5],[276.5,349.5],[239.5,349],[238.5,340],[234.5,339.5],[232,334],[185,334],[182.5,329.5],[170.5,329.5],[164,321],[144,323],[142,319],[119,318.5],[117,314],[98.5,314.5],[97.5,310.5],[88.5,309.5],[88,306],[83.5,304.5],[79,284.5],[69.5,279.5],[68.5,273.5],[42,275],[39,268],[33,268],[32.5,274],[29.5,274.5],[28,266],[23.5,265],[23,261],[13.5,260],[13.5,252],[8.5,250.5],[5.5,226.5],[-16,208],[-16.5,196.5],[-22,192],[-27.5,192],[-28.5,199],[-38,206],[-41.5,229.5],[-56,239],[-57,254],[-65,257.5],[-72,268.5],[-80,268.5],[-79.5,-39.5],[32,-39.5],[32,-15.5],[37,-12.5],[36.5,4.5],[47.5,9],[49.5,24],[57.5,27],[57.5,49],[62.5,52],[61.5,79.5],[56.5,85],[48.5,85.5],[47,90],[38,94],[37,109.5],[42,111],[43,120.5],[51,120.5],[51.5,124],[56.5,126.5],[57.5,135],[62.5,135],[64.5,141],[83,145.5],[87,154.5],[99.5,162.5],[104,170],[112,170.5],[112.5,174],[117,175.5],[117,188],[122,190.5],[123,220],[98.5,220.5],[98,234],[108.5,236],[117,245],[138.5,246],[147,260],[182.5,259.5],[189,249.5],[221.5,249.5],[228.5,260],[257,260],[258,241.5],[273,240.5],[277,235],[293.5,234.5],[294,238.5],[303,239],[304.5,244],[351.5,240],[352.5,244.5],[363.5,246],[369,254.5],[376,255],[377,263],[382.5,266],[383,276.5],[388.5,280.5],[388,302.5],[393,306]];
+{wetG.add(flat(WETLAND,new THREE.MeshBasicMaterial({color:'#1d8fd8',transparent:true,opacity:.3,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-6}),1.25));
+ const ed=new THREE.MeshBasicMaterial({color:'#0b5fa5',transparent:true,opacity:.9,depthWrite:false});
+ for(let i=0;i<WETLAND.length;i++)wetG.add(strip(WETLAND[i],WETLAND[(i+1)%WETLAND.length],1.1,ed,1.3));}
+
+/* ---------- labels ---------- */
+const labelsEl=document.getElementById('labels');const LBL=[];
+const SVGNS='http://www.w3.org/2000/svg';const leaders=document.createElementNS(SVGNS,'svg');leaders.id='leaders';labelsEl.appendChild(leaders);
+const PRI={'':1,warn:2,meter:2,ease:3,setb:3,setp:3,newf:4,ctx:4,ug:5};
+function label(html,x,y,h,cls,group,pri){const e=document.createElement('div');e.className='lb '+(cls||'');e.innerHTML=html;labelsEl.appendChild(e);
+  const ln=document.createElementNS(SVGNS,'line'),dot=document.createElementNS(SVGNS,'circle');dot.setAttribute('r','2.2');leaders.appendChild(ln);leaders.appendChild(dot);
+  LBL.push({e,ln,dot,p:new THREE.Vector3(x,h,-y),g:group||'main',pri:pri||PRI[cls||'']||3,w:0,h:0,i:LBL.length});}
+const sw=c=>'<i style="background:'+c+'"></i>';
+const northLine=x=>334.61-(x-383.45)*32.9/174.98;
+label(sw('#d2423a')+'NatGas gensets, proposed · BACKUP ONLY <small>10 × 1.4 MW as Rev 2g draws them · permit set: 10 × Cat XQ1475 · not installed</small>',(genCX(0)+genCX(P.gen.n-1))/2,45,26,'',null,1);
+label(sw('#e0b11c')+'Gas conditioning <small>dehy · scrubbers · tanks</small>',638,18,28);
+label(sw('#e0b11c')+'Pipeline termination <small>meter + valve skid</small>',P.tie[0],P.tie[1],10);
+{const L=v=>Math.round(plen(v)),ohA=L(FEED.A),ohB=L(FEED.B);
+ label('Feeder A overhead <small>'+ohA+' ft → riser/dip pole A</small>',250,64,44,'',null,3);
+ label('Feeder B overhead <small>'+ohB+' ft → riser/dip pole B</small>',236,104,44,'',null,3);
+ label('Riser/dip pole A <small>meter · OH → UG · 6 MW</small>',RISER.A[0],RISER.A[1],44,'',null,2);
+ label('Riser/dip pole B <small>meter · OH → UG · 6 MW</small>',RISER.B[0],RISER.B[1],44,'',null,2);}
+// IT block (Rev 2g; shown only with the Rev 2g block toggle)
+const __lv0=LBL.length;
+const R0=v=>Math.round(v);
+PODS.forEach(p=>label(sw('#2f9e44')+'IT hall <small>1.77 MW IT · 44.6 × 45 ft · Feeder '+p.f+'</small>',p.x0+BLK.pw/2,p.y0+BLK.pl/2,14,'unit',null,1));
+PCS.forEach(c=>label(sw('#2f6fd6')+'Power/battery container <small>45 × 8 ft</small>',c.cx,c.cy,11,'',null,3));
+COOL.forEach(c=>label(sw('#e3861b')+'Dry cooler <small>30 × 9 ft</small>',c.x0+15,c.y0+4.5,10,'',null,4));
+label(sw('#2f6fd6')+'6 power/battery containers, one per hall <small>45 × 8 ft · E–W · one group 2 wide × 3 rows · 6 ft service gaps · size assumed</small>',438,117,18,'',null,1);
+label(sw('#e3861b')+'12 dry coolers, two per hall <small>30 × 9 ft · 3 rows of 4 · 6.5 ft between rows · 4.3 ft end to end · size assumed</small>',460.5,277,16,'',null,1);
+XFY.forEach(y=>label('Pad-mount xfmr',XF.x,y,9,'',null,5));
+label(sw('#56704a')+'3 pad-mount xfmrs · Feeder A <small>12.47 kV–480 V · ratings per Armada</small>',XF.x,156.8,12,'',null,1);
+label(sw('#56704a')+'3 pad-mount xfmrs · Feeder B <small>12.47 kV–480 V · ratings per Armada</small>',XF.x,120.2,12,'',null,1);
+['A','B'].forEach(k=>{label('VFI '+k+' <small>pad-mount switch</small>',VFI[k][0],VFI[k][1],6,'',null,3);
+  label('Feeder '+k+' 12.47 kV duct <small>'+R0(E.mv[k])+' ft · riser → VFI → 3 xfmrs · 5.31 MW IT of 6 MW</small>',k==='A'?373.5:360.5,k==='A'?162:150,1,'',null,2);});
+label('480 V xfmr → container <small>6 runs · '+R0(Math.min(...E.lvXf))+'–'+R0(Math.max(...E.lvXf))+' ft · ≈ 2,400 A class each · sizing + voltage drop to be engineered</small>',389.5,150,1,'warn',null,2);
+label('480 V container → hall <small>6 runs · '+R0(Math.min(...E.lvPod))+'–'+R0(Math.max(...E.lvPod))+' ft · north-row runs pass 45 ft below a south-row platform</small>',470,139.8,1,'',null,3);
+label('Genset tie → all 6 power/battery containers <small>'+R0(E.tie)+' ft · collector + one duct bank under the drive at x 492 + header and branch · backup only</small>',492,81,3,'',null,1);
+label('Central service aisle <small>20 ft · hall doors face it</small>',(BLK.x0+BLK.x1)/2,196,3,'',null,2);
+label('CONDITIONAL POWER CAP · 6 × 1.77 = 10.62 MW IT <small>only if all non-IT load ≤ 1.38 MW (PUE ≤ 1.130), else cap IT so the site stays ≤ 12 MW</small>',(BLK.x0+BLK.x1)/2,224,40,'warn',null,1);
+label('Verify with Armada <small>container + dry-cooler sizing per hall · sizes assumed · clearances · full-load draw</small>',(BLK.x0+BLK.x1)/2,240,26,'warn',null,1);
+label('Dry coolers 6.5 ft apart between rows, 4.3 ft end to end <small>was 2.2 ft · end gap is under the 5 ft target: the row cannot widen past the wetland trace (W) or the yard fence (E)</small>',445,269,3,'warn',null,2);
+label('NE dry cooler 5.6 ft from the Oncor easement <small>10.4 ft from the lot line · 6.0 ft from the yard fence</small>',527,297,3,'warn',null,2);
+label('NW dry cooler 5.7 ft from the wetland trace <small>9.2 ft from the flood-plain easement · trace is rough, ±2 ft</small>',394,297,3,'warn',null,2);
+label('Open yard east of the container group <small>x 483–528 · no equipment · rows three wide would cross the lot line at the notch</small>',506,122,3,'',null,3);
+label('East face of the halls 6.2 ft from the yard fence <small>8.7 ft from FL-2 · Gate B opens onto this strip</small>',527,163,6,'warn',null,2);
+label('No service road fits around the block <small>needs about 20 ft more depth · 6 ft gaps · access by the drive, FL-2 and FL-3</small>',470,254,3,'warn',null,2);
+label('Transformers 8.6 ft from the Feeder A overhead span <small>6.9 ft from the container line · VFI B 6.0 ft · Oncor + working clearance to confirm</small>',381,132,14,'warn',null,2);
+label('Row 1 containers 5.0 ft from the yard fence <small>8.5 ft from FL-1 · group 22.3 ft from the lot line</small>',438,99,3,'warn',null,3);
+label('Farthest block wall from a fire lane ≈ '+E.reach+' ft <small>straight line · hose route to be measured</small>',445,297,2,'fire','fire',2);
+for(let i=__lv0;i<LBL.length;i++)LBL[i].g=LBL[i].g==='main'?'rev2g':LBL[i].g+'+rev2g';
+// underground / electrical
+label('Gas header <small>'+Math.round(P.gas.x0+.5-genCX(0))+' ft + '+P.gen.n+' stubs</small>',500,22,2,'ug','ug');
+label('Existing UG gas pipeline <small>384 ft · survey D210237214</small>',300,18.2,3,'ug','ug',3);
+// context
+label('E Rosedale St · SH 303',120,roadS(120)+34,6,'ctx');
+label('Arkansas Ln <small>gravel · Oncor line</small>',-30,-150,6,'ctx');
+label('Existing E–W drive <small>kept clear · FL-1</small>',150,81,4,'ctx');
+label('Wooded flood plain <small>trees retained</small>',170,300,46,'ctx');
+label('Gas compressor plant',860,60,32,'ctx');
+label('Sound wall <small>~30 ft</small>',820,299-0.158*245,34,'ctx');
+label('10 ft privacy fence <small>west line · existing fence line</small>',DIAG(290),290,9,'ctx');
+label('Existing fence <small>south line</small>',200,-1,9,'ctx');
+label('10 ft privacy fence <small>south line, east of the gate line · existing fence line</small>',500,-2.7,9,'ctx');
+label('Existing fence <small>east line · chain-link, unchanged</small>',662.86,140,9,'ctx');
+label('Existing fence <small>north line</small>',610,292,9,'ctx');
+label('10 ft privacy fence <small>north line, west of the sound wall · existing fence line</small>',470,318.3,9,'ctx');
+label('10 ft privacy fence <small>drive north edge · existing fence line</small>',180,109,9,'ctx');
+{const L=f=>f.pl.reduce((t,p,i)=>i?t+Math.hypot(p[0]-f.pl[i-1][0],p[1]-f.pl[i-1][1]):0,0),R=Math.round;
+ label('Yard fence A <small>gensets + gas · '+R(L(FENCE_NEW[0])+L(FENCE_NEW[1])+20)+' ft incl. gate</small>',470,68,9,'newf',null,5);
+ label('Yard fence B <small>IT block yard · east '+R(L(FENCE_NEW[2])+L(FENCE_NEW[3])+20)+' ft · south '+R(L(FENCE_NEW[4]))+' ft</small>',533,215,9,'newf',null,5);
+ const ORIG=/^East line|left original/,pv=FENCE_EXIST.filter(f=>f.n!=='North edge of the drive (west)'&&!ORIG.test(f.n)).reduce((t,f)=>t+L(f),0)+window.__driveNorthFence,ea=FENCE_EXIST.filter(f=>ORIG.test(f.n)).reduce((t,f)=>t+L(f),0),nw=FENCE_NEW.reduce((t,f)=>t+L(f),0);
+ const a=document.getElementById('lgExFence'),b=document.getElementById('lgNewFence');if(a)a.textContent='≈ '+R(pv).toLocaleString()+' ft · 10 ft tall';{const e=document.getElementById('lgEastFence');if(e)e.textContent='≈ '+R(ea).toLocaleString()+' ft · unchanged';}if(b)b.textContent='≈ '+R(nw).toLocaleString()+' ft fence';}
+label('Gate A <small>gensets + gas yard</small>',611.5,57,9,'newf',null,5);
+label('Gate B <small>IT block yard</small>',533,154.5,9,'newf',null,5);
+// fire access (shown with Labels + Fire access)
+label('FL-1 main fire lane <small>20 ft clear · concrete · 629 ft · drive kept clear</small>',90,80.5,3,'fire','fire',2);
+label('TA-1 T-hammerhead <small>W end of genset row · 60 + 60 ft crossbar · 31.5 ft stem · R28</small>',394,50,3,'fire','fire',1);
+label('FL-3 west spur <small>148 ft dead end · R25</small>',321.13+84.5/145.5*27.21,175,3,'fire','fire',3);
+label('FL-2 east spur <small>147.5 ft · ≈ 990 sf off-site easement</small>',545.5,175,3,'fire','fire',3);
+label('14 ft min. overhead clearance on all lanes <small>two crossings: Feeder A at x ≈ 367 and Feeder B over FL-3 at y 104 · ≈ 31 ft as modelled · field-verify</small>',367,80.5,31,'fire','fire',2);
+FA.hyd.forEach(([id,x,y])=>label('<i style="background:#c8102e;border-radius:50%"></i>'+id+' private hydrant',x,y,4,'fire','fire',2));
+label('KB-1 Knox box on post at G-1 <small>Fort Worth FD · Knox padlocks on every gate</small>',FA.knox[0],FA.knox[1],6,'fire','fire',2);
+label('City main extension <small>'+Math.round(plen(FA.water.main))+' ft · UG</small>',50,74,1,'ug','fire',4);
+label('8 in private fire line <small>'+Math.round(plen(FA.water.fire))+' ft · BF-1 → FH-2 · UG</small>',250,76,1,'ug','fire',4);
+label('G-1 existing survey gate <small>10 ft privacy gate · 22 ft clear · held open · Knox padlock</small>',332,81,9,'fire','fire',3);
+FA.mg.forEach(([id,x,y])=>label(id+' <small>6 ft man gate</small>',x,y,8,'fire','fire',6));
+label('150 ft offset from fire-lane clear limits <small>straight line only · hose-lay route to be measured on site</small>',200,215,3,'fire','reach',1);
+// easements / setback / wetland
+label('Pipeline easement <small>D210237214 · 40 ft from S line</small>',250,34,2,'ease','ease');
+label('Ingress/egress easement <small>drive stays open</small>',240,96,3,'ease','ease');
+label('Flood-plain limit as Rev 2g drew it <small>dashed · 21 to 31 ft north-west of the survey courses</small>',231,247,3,'ease','ease');
+label('Gas well pad tract',580,270,6,'ease','ease');
+label('Gas well setback, permanent structures only (approx.) <small>≈ 330 ft</small>',760,560,4,'setb','setback',2);
+label('IT block inside gas-well setback <small>info only · modular, relocatable equipment</small>',460,185,30,'warn','setback+rev2g',2);label('Leviathan units inside the 330 ft gas-well line <small>info only · distance and origin unsourced</small>',460,185,30,'warn','setback+lv',2);
+label('Compressor facility outline <small>setback map</small>',940,-60,3,'setb','setback',3);
+label(sw('#1d8fd8')+'Wetland / flood zone <small>rough · parcel map</small>',250,300,2,'wet','wet',2);
+label('Wetland / flood zone',35,150,2,'wet','wet',3);
+// optional ops office (shown with Labels + Office)
+const SB_X=335;
+label(sw('#b9c2c6')+'Ops Office / Receiving & Staging (optional, permanent) <small>PEMB 60×80 ft · 4,800 sf · 18 ft eave · ops/control + offices W, 2 roll-ups E</small>',(OFFICE.x0+OFFICE.x1)/2,(OFFICE.y0+OFFICE.y1)/2,24,'','office',1);
+label('Truck apron <small>concrete · ties to the drive</small>',(OFFICE.apron[0]+OFFICE.apron[1])/2,(OFFICE.apron[2]+OFFICE.apron[3])/2-6,2,'','office',4);
+label('Office court <small>4 stalls · 1 van-accessible · pole island</small>',(OFFICE.lot[0]+OFFICE.lot[1])/2,(OFFICE.lot[2]+OFFICE.lot[3])/2,2,'','office',4);
+label('Office east wall '+(SB_X-OFFICE.x1)+' ft W of setback line <small>permanent building outside setback</small>',OFFICE.x1,OFFICE.y1-8,3,'setb','office+setback',2);
+label('Office 6.7 ft from FL-3 <small>83 ft from the IT block · 47.5 ft from VFI B</small>',OFFICE.x1,150,3,'','office',3);
+label('Domestic water line to the office <small>'+Math.round(plen(FA.water.dc))+' ft · UG</small>',165,100,1,'ug','fireoff',4);
+const vis={main:false,ease:false,ug:false,setback:false,wet:false,fire:true,reach:false,office:true,fireoff:true};
+const tmp=new THREE.Vector3();
+const ORDER=LBL.slice().sort((a,b)=>a.pri-b.pri||a.i-b.i);
+let sizeDirty=true;addEventListener('resize',()=>{sizeDirty=true;});if(document.fonts)document.fonts.ready.then(()=>{sizeDirty=true;});
+
+/* ====================================================================================================================
+   LEVIATHAN REVIEW BUILD. Added to the Rev 2g scene; the Rev 2g Armada block (blkG) is kept, hidden, for comparison.
+   Units follow Armada's Leviathan Technical Summary, page 2: baseline 36,300 x 13,660 mm, zones 01-08, N+1 chillers.
+   Printed: overall footprint. Scaled from the flyer diagram: zone sizes and gaps. Assumed: heights, stairs, racks.
+   ==================================================================================================================== */
+blkG.visible=false;vis.rev2g=false;vis.lv=true;vis.unit=false;
+const LVX=(function(){
+const FT=3.28084;
+const LU={L:36.3*FT,W:13.66*FT,sL:18.0*FT,mW:2.642*FT,zG:.15*FT,mG:1.605*FT,meW:3.1*FT,cW:3.1*FT,cG:1.4337*FT,cL:10.56*FT,hS:11.03*FT,hR:11.49*FT,jS:3.85*FT,jR:4.31*FT,
+          deck:1.3*FT,H:3.6*FT,cH:2.8*FT,land:1.5*FT,run:6.4,sW:4,IT:1.77};
+const LZ=[{id:'01',n:'Mechanical UPS',k:'ups',z0:0,m:1},{id:'02',n:'IT infrastructure',k:'it',z0:LU.mW+LU.zG,m:2},
+          {id:'03',n:'Electrical',k:'el',z0:3*LU.mW+2*LU.zG,m:1},{id:'04',n:'UPS',k:'ups',z0:4*LU.mW+3*LU.zG,m:1}];
+const LMX=LU.sL+LU.mG, LCX=k=>LMX+LU.meW+LU.cG+k*(LU.cW+LU.cG);
+const PUE=[1.24,1.31,1.41], CAP=12, FEEDER=6;
+const ST={n:3,aisle:15,racks:false,cmp:false};
+
+/* ---------- textures: dark corrugated modules, as in the flyer rendering; a colour band and zone number on each roof ---------- */
+const C={body:'#2a2e32',frame:'#474d52',roof:'#383c40',it:'#3d7dd8',el:'#e0a11c',ups:'#b3a88f',me:'#1f9e8f',case:'#dfe3e1',coil:'#5d6763'};
+function corrD(r,x0,x1,y0,y1,p){for(let q=x0;q<x1;q+=p){r(q,Math.min(q+p*.4,x1),y0,y1,'rgba(255,255,255,.06)');r(q+p*.5,Math.min(q+p*.58,x1),y0,y1,'rgba(0,0,0,.32)');r(q+p*.9,Math.min(q+p,x1),y0,y1,'rgba(0,0,0,.15)');}}
+function frameD(r,w,h){r(0,w,h-.42,h,C.frame);r(0,w,0,.42,C.frame);r(0,.38,0,h,C.frame);r(w-.38,w,0,h,C.frame);[[0,0],[w-.55,0],[0,h-.45],[w-.55,h-.45]].forEach(([a,b])=>r(a,a+.55,b,b+.45,'#6a7176'));}
+const txt=(x,H,s,px,ftx,fty,col,al)=>{x.fillStyle=col;x.font='700 '+Math.round(px*PPF)+'px "Barlow Semi Condensed","Arial Narrow",Arial,sans-serif';x.textBaseline='middle';x.textAlign=al||'left';x.fillText(s,ftx*PPF,H-fty*PPF);};
+const sideM=std({map:face(LU.sL,LU.H,(x,W,H,r)=>{r(0,LU.sL,0,LU.H,C.body);corrD(r,.4,LU.sL-.4,.45,LU.H-.45,.92);frameD(r,LU.sL,LU.H);}),roughness:.72,metalness:.25});
+const endW=std({map:face(LU.mW,LU.H,(x,W,H,r,s)=>{r(0,LU.mW,0,LU.H,C.body);corrD(r,.4,LU.mW-.4,.45,LU.H-.45,.46);
+    r(2.55,5.95,.45,7.7,'#3d4349');s(2.55,5.95,.45,7.7,'rgba(190,198,204,.55)',1.6);r(5.25,5.5,3.7,4.3,'#c9ced2');r(3.2,5.3,5.6,7.1,'rgba(0,0,0,.25)');
+    r(6.3,7.7,5.1,6.2,'#e9ecea');r(6.45,7.55,5.25,5.6,'#c8102e');r(3.5,5,8.2,8.5,'#f3e7ad');louver(x,r,1.2,7.45,9.3,10.9,'#3a4044');frameD(r,LU.mW,LU.H);}),roughness:.72,metalness:.25});
+const endE=std({map:face(LU.mW,LU.H,(x,W,H,r)=>{r(0,LU.mW,0,LU.H,C.body);corrD(r,.4,LU.mW-.4,.45,LU.H-.45,.46);louver(x,r,1.4,7.2,7.6,10.6,'#3a4044');r(2.6,6.1,1,2.3,'#5c6368');frameD(r,LU.mW,LU.H);}),roughness:.72,metalness:.25});
+function roofM(len,w,col,num){return std({map:face(len,w,(x,W,H,r)=>{r(0,len,0,w,C.roof);for(let q=.5;q<len-.5;q+=1.25)r(q,q+.5,.35,w-.35,'rgba(255,255,255,.035)');
+    r(0,len,w-1.5,w-.35,col);r(0,len,0,.3,C.frame);r(0,len,w-.3,w,C.frame);r(0,.3,0,w,C.frame);r(len-.3,len,0,w,C.frame);if(num)txt(x,H,num,Math.min(4.6,w*.5),2.2,w*.42,'#eef1ef');}),roughness:.8});}
+const ROOF={ups1:roofM(LU.sL,LU.mW,C.ups,'01'),it:roofM(LU.sL,LU.mW,C.it,'02'),el:roofM(LU.sL,LU.mW,C.el,'03'),ups4:roofM(LU.sL,LU.mW,C.ups,'04')};
+const mechRoof=std({map:face(LU.meW,LU.W,(x,W,H,r)=>{r(0,LU.meW,0,LU.W,C.roof);for(let q=.5;q<LU.W-.5;q+=1.25)r(.35,LU.meW-.35,q,q+.5,'rgba(255,255,255,.035)');r(LU.meW-1.5,LU.meW-.35,0,LU.W,C.me);
+    r(0,LU.meW,0,.3,C.frame);r(0,LU.meW,LU.W-.3,LU.W,C.frame);txt(x,H,'05',4.4,LU.meW*.42,LU.W-3.6,'#eef1ef','center');}),roughness:.8});
+const mechSideW=std({map:face(LU.W,LU.H,(x,W,H,r)=>{r(0,LU.W,0,LU.H,C.body);corrD(r,.4,LU.W-.4,.45,LU.H-.45,.92);frameD(r,LU.W,LU.H);}),roughness:.72,metalness:.25});
+const mechSideE=std({map:face(LU.W,LU.H,(x,W,H,r)=>{r(0,LU.W,0,LU.H,C.body);corrD(r,.4,LU.W-.4,.45,LU.H-.45,.92);[6,17,28].forEach(a=>louver(x,r,a,a+7,6.4,10.6,'#3a4044'));
+    r(36.2,38.6,1,2.6,'#5c6368');frameD(r,LU.W,LU.H);}),roughness:.72,metalness:.25});
+const mechDoor=std({map:face(LU.meW,LU.H,(x,W,H,r,s)=>{const w=LU.meW;r(0,w,0,LU.H,C.body);corrD(r,.4,w-.4,.5,LU.H-.5,.46);r(w/2-.05,w/2+.05,.5,LU.H-.5,'rgba(0,0,0,.5)');
+    [.16,.36,.64,.84].forEach(f=>{r(w*f-.07,w*f+.07,.5,LU.H-.5,'#8d9497');r(w*f-.14,w*f+.14,4,4.9,'#7b8285');});frameD(r,w,LU.H);}),roughness:.72,metalness:.25});
+const mechEndS=std({map:face(LU.meW,LU.H,(x,W,H,r)=>{const w=LU.meW;r(0,w,0,LU.H,C.body);corrD(r,.4,w-.4,.5,LU.H-.5,.46);louver(x,r,1.4,w-1.4,7.4,10.6,'#3a4044');frameD(r,w,LU.H);}),roughness:.72,metalness:.25});
+const chSide=std({map:face(LU.cL,LU.cH,(x,W,H,r)=>{const L=LU.cL,h=LU.cH;r(0,L,0,h,C.case);r(.4,L-4.6,1.1,h-.7,C.coil);x.fillStyle='rgba(25,34,30,.38)';for(let q=.4;q<L-4.6;q+=.17)x.fillRect(q*PPF,H-(h-.7)*PPF,1,(h-1.8)*PPF);
+    for(let k=1;k<6;k++){const a=.4+k*(L-5)/6;r(a-.07,a+.07,1.1,h-.7,C.case);}r(L-4.2,L-.4,.7,h-.8,'#d2d6d4');r(L-3.1,L-1.5,5.2,6.1,'#e3861b');r(0,L,0,.6,'#8d9497');r(0,L,h-.35,h,'#b9c0c2');})});
+const chEndN=std({map:face(LU.cW,LU.cH,(x,W,H,r,s)=>{const w=LU.cW,h=LU.cH;r(0,w,0,h,C.case);s(.6,w-.6,.7,h-.7,'rgba(70,78,84,.6)',1.6);r(w/2-.03,w/2+.03,.7,h-.7,'rgba(70,78,84,.6)');
+    r(w/2-2.6,w/2-1,5,6.2,'#1f3b57');r(w/2+1.2,w/2+2.3,5.2,6,'#f2c230');r(w/2-.5,w/2-.3,3.8,4.6,'#555c60');r(0,w,0,.6,'#8d9497');})});
+const chEndS=std({map:face(LU.cW,LU.cH,(x,W,H,r,s)=>{const w=LU.cW,h=LU.cH;r(0,w,0,h,C.case);s(.6,w-.6,.7,h-.7,'rgba(70,78,84,.6)',1.6);r(0,w,0,.6,'#8d9497');})});
+function chTopM(num){return std({map:face(LU.cW,LU.cL,(x,W,H,r)=>{r(0,LU.cW,0,LU.cL,'#cdd2d0');for(let k=0;k<6;k++)[.26,.74].forEach(f=>{x.fillStyle='#8f9699';x.beginPath();x.arc(LU.cW*f*PPF,H-LU.cL*(k+.5)/6*PPF,2.25*PPF,0,7);x.fill();
+      x.fillStyle='#22272a';x.beginPath();x.arc(LU.cW*f*PPF,H-LU.cL*(k+.5)/6*PPF,1.95*PPF,0,7);x.fill();});r(0,LU.cW,0,.25,'#aab1b4');r(0,LU.cW,LU.cL-.25,LU.cL,'#aab1b4');txt(x,H,num,1.5,LU.cW/2,LU.cL-.95,'#3a4044','center');}),roughness:.6});}
+const CHTOP=[chTopM('06'),chTopM('07'),chTopM('08')];
+const deckM=(()=>{const [c,x]=canvas(64,64);x.fillStyle='#474c50';x.fillRect(0,0,64,64);x.strokeStyle='rgba(0,0,0,.45)';x.lineWidth=2;for(let i=0;i<=64;i+=8){x.beginPath();x.moveTo(i,0);x.lineTo(i,64);x.stroke();x.beginPath();x.moveTo(0,i);x.lineTo(64,i);x.stroke();}
+  return std({map:tex(c,[26,12]),roughness:.6,metalness:.45});})();
+const fanBlade=std({color:'#15191b',roughness:.6}), sleeperM=std({color:'#6b6f72',roughness:.7,metalness:.3}), floorM=std({color:'#d7dbd8',roughness:.9}),
+      rackC=std({color:'#17191b',roughness:.5,metalness:.3}), rackN=std({color:'#8b9499',roughness:.5,metalness:.3}), ledM=new THREE.MeshBasicMaterial({color:'#4fd18b'}), edgeM=new THREE.LineBasicMaterial({color:'#1f3b57'});
+const UB=new THREE.BoxGeometry(1,1,1), UCY=new THREE.CylinderGeometry(1,1,1,18);
+const modGeo=new THREE.BoxGeometry(LU.sL-.06,LU.H,LU.mW-.1), mechGeo=new THREE.BoxGeometry(LU.meW-.06,LU.H,LU.W-.06), chGeo=new THREE.BoxGeometry(LU.cW,LU.cH-.5,LU.cL);
+function inst(geo,mat,list,parent,cast){const im=new THREE.InstancedMesh(geo,mat,list.length),o=new THREE.Object3D();list.forEach((p,i)=>{o.position.set(p[0],p[1],p[2]);o.scale.set(p[3],p[4],p[5]);o.updateMatrix();im.setMatrixAt(i,o.matrix);});
+  im.instanceMatrix.needsUpdate=true;im.castShadow=cast!==false;im.receiveShadow=true;parent.add(im);return im;}
+
+/* ---------- one unit, local frame: lx along the length from the door end, lz across the width from the zone 01 edge (helpers take y = -lz) ---------- */
+function unit(){const g=new THREE.Group(),d=LU.deck,legs=[],fans=[],hubs=[],tr=[],posts=[],it=[],edges=[],racks=new THREE.Group();racks.visible=false;g.add(racks);
+  const dx0=-LU.land,dx1=LMX+LU.meW,dl=dx1-dx0;
+  box(dl,.5,LU.W,deckM,(dx0+dx1)/2,-LU.W/2,d-.5,0,null,g);
+  [0.25,LU.W-.25].forEach(z=>box(dl,1,.5,platM,(dx0+dx1)/2,-z,d-1.2,0,null,g));[dx0+.25,dx1-.25].forEach(x=>box(.5,1,LU.W,platM,x,-LU.W/2,d-1.2,0,null,g));
+  for(let i=0;i<=8;i++)for(let k=0;k<6;k++){legs.push([dx0+.6+i*(dl-1.2)/8,(d-.5)/2,.6+k*(LU.W-1.2)/5,.62,d-.5,.62]);}
+  for(let i=0;i<=8;i++)legs.push([dx0+.6+i*(dl-1.2)/8,.1,LU.W/2,1.6,.2,LU.W+.6]);                      // ground skids, no slab
+  inst(UB,platM,legs,g);
+  LZ.forEach(z=>{for(let i=0;i<z.m;i++){const cz=z.z0+i*LU.mW+LU.mW/2, rf=z.id==='01'?ROOF.ups1:z.id==='04'?ROOF.ups4:ROOF[z.k];
+      const m=box(LU.sL,LU.H,LU.mW,[endE,endW,rf,plain,sideM,sideM],LU.sL/2,-cz,d,0,modGeo,g);
+      if(z.k==='it'){it.push(m);const e=new THREE.LineSegments(new THREE.EdgesGeometry(modGeo),edgeM);e.position.copy(m.position);e.visible=false;g.add(e);edges.push(e);}}});
+  box(LU.meW,LU.H,LU.W,[mechSideE,mechSideW,mechRoof,plain,mechEndS,mechDoor],LMX+LU.meW/2,-LU.W/2,d,0,mechGeo,g);
+  for(let k=0;k<3;k++){const cx=LCX(k)+LU.cW/2;[3.5,LU.cL/2,LU.cL-3.5].forEach(z=>box(LU.cW+.8,.5,1,sleeperM,cx,-z,0,0,null,g));
+    box(LU.cW,LU.cH-.5,LU.cL,[chSide,chSide,CHTOP[k],plain,chEndS,chEndN],cx,-LU.cL/2,.5,0,chGeo,g);
+    for(let r=0;r<6;r++)[.26,.74].forEach(f=>{const fx=LCX(k)+LU.cW*f,fz=LU.cL*(r+.5)/6;fans.push([fx,LU.cH+.28,fz,2.2,.56,2.2]);hubs.push([fx,LU.cH+.5,fz,.5,.3,.5]);});}
+  const ring=new THREE.CylinderGeometry(1,1,1,20,1,true);inst(ring,std({color:'#aeb5b8',roughness:.5,metalness:.4,side:THREE.DoubleSide}),fans,g,false);inst(UCY,fanBlade,hubs,g,false);
+  // closed loop: jumper zone 02 <-> mechanical; supply and return headers along the zone 04 edge with a branch pair to each chiller
+  pipe(.42,lvSup,[LU.sL,-LU.jS,d+3.2],[LMX,-LU.jS,d+3.2],10,g);pipe(.42,lvRet,[LU.sL,-LU.jR,d+3.2],[LMX,-LU.jR,d+3.2],10,g);
+  const xe=LCX(2)+LU.cW*.72;pipe(.5,lvSup,[dx1,-LU.hS,2.9],[xe,-LU.hS,2.9],10,g);pipe(.5,lvRet,[dx1,-LU.hR,1.7],[xe-LU.cW*.44,-LU.hR,1.7],10,g);
+  for(let k=0;k<3;k++){const xs=LCX(k)+LU.cW*.72,xr=LCX(k)+LU.cW*.28;pipe(.36,lvSup,[xs,-LU.hS,2.9],[xs,-LU.cL,2.9],8,g);pipe(.36,lvRet,[xr,-LU.hR,1.7],[xr,-LU.cL,1.7],8,g);
+    cyl(.6,.5,sleeperM,xs,-(LU.cL+.2),2.65,12,null,g).rotation.x=PI/2;cyl(.6,.5,sleeperM,xr,-(LU.cL+.2),1.45,12,null,g).rotation.x=PI/2;}
+  for(let x=dx1+4;x<xe;x+=11)box(.5,2.2,2.6,sleeperM,x,-(LU.hS+LU.hR)/2,0,0,null,g);
+  // access, assumed from the flyer rendering: landing at the door end with a stair off its zone 04 corner; a stair at the stack / mechanical cross-walk on the zone 01 side
+  const ry=d+3.5,zs=LU.W-LU.sW;
+  [[ [dx0,0],[dx0,-zs] ],[ [dx0,0],[0,0] ],[ [dx0,-LU.W],[0,-LU.W] ]].forEach(([a,b])=>{pipe(.09,railM,[a[0],a[1],ry],[b[0],b[1],ry],6,g);pipe(.06,railM,[a[0],a[1],d+1.8],[b[0],b[1],d+1.8],6,g);});
+  for(let k=0;k<=8;k++)posts.push([dx0,d+1.75,k*zs/8,.14,3.5,.14]);[0,LU.W].forEach(z=>posts.push([dx0/2,d+1.75,z,.14,3.5,.14]));
+  const n=7,rise=d/n,run=LU.run/n;
+  for(let i=0;i<n;i++){tr.push([dx0-run*(i+.5),d-rise*(i+1)+.12,LU.W-LU.sW/2,run,.24,LU.sW]);tr.push([LU.sL+LU.mG/2,d-rise*(i+1)+.12,-run*(i+.5),Math.min(LU.sW,LU.mG-.7),.24,run]);}
+  inst(UB,platM,tr,g);inst(UB,railM,posts,g,false);
+  [zs,LU.W].forEach(z=>{pipe(.08,railM,[dx0,-z,ry],[dx0-LU.run,-z,3.5],6,g);pipe(.08,railM,[dx0-LU.run,-z,3.5],[dx0-LU.run,-z,0],6,g);});
+  [LU.sL+.5,LU.sL+LU.mG-.5].forEach(x=>{pipe(.08,railM,[x,0,ry],[x,LU.run,3.5],6,g);pipe(.08,railM,[x,LU.run,3.5],[x,LU.run,0],6,g);});
+  // indicative rack row in zone 02 (counts from the flyer: 8 compute, 4 network; arrangement assumed), shown by the IT racks cut-away
+  const rz=LZ[1].z0+LU.mW,rw=2,rd=3.6,rh=7.4,x0=LU.sL/2-6*(rw+.14);
+  box(LU.sL-.5,.14,2*LU.mW-.5,floorM,LU.sL/2,-rz,d,0,null,racks).castShadow=false;
+  for(let i=0;i<12;i++){const net=i<2||i>9,cx=x0+(i+.5)*(rw+.14);box(rw,rh,rd,net?rackN:rackC,cx,-rz,d+.14,0,null,racks);if(!net)box(rw*.72,.1,rd*.82,ledM,cx,-rz,d+.14+rh,0,null,racks).castShadow=false;}
+  [8,LU.sL-8].forEach(x=>box(3,6.6,3.2,rackN,x,-(rz+5.2),d+.14,0,null,racks));                                                // CDU positions, indicative
+  g.traverse(o=>{if(o.isMesh)o.userData.lv=1;});g.userData={it,edges,racks};return g;}
+function cut(g,on){g.userData.racks.visible=on;g.userData.it.forEach(m=>{m.visible=!on;});g.userData.edges.forEach(e=>{e.visible=on;});}
+
+/* ---------- layout: units long axis E-W, door end and stack west beside the transformers, chillers east beside FL-2 ---------- */
+const G=new THREE.Group(), DYN=new THREE.Group(), DIM=new THREE.Group();DIM.visible=false;scene.add(G);G.add(DYN,DIM);
+const POOL=[], LAY={x0:406,y0:100,fx:533,fs:94}, diagX=y=>y<143.01?504.69+(y-93.94)*50.83/49.07:1e9;
+const VF={A:[373,192],B:[362,192]};
+function rects(){const o=[];for(let k=0;k<ST.n;k++){const y0=LAY.y0+k*(LU.W+ST.aisle),x0=Math.min(LAY.x0,diagX(y0)-10-LU.L);o.push({k,x0,x1:x0+LU.L,y0,y1:y0+LU.W,f:k%2?'B':'A',xf:Math.max(x0-25,366.4),ty:y0+LU.W-(LZ[2].z0+LU.mW/2)});}return o;}
+['A','B'].forEach(k=>{const r=RISER[k];box(4,.35,3,hhMat,r[0]+.6,r[1]-1.6,.5,0,null,G);box(3.4,.08,2.4,lidMat,r[0]+.6,r[1]-1.6,.85,0,null,G);});
+const outOK=new THREE.MeshBasicMaterial({color:'#1f3b57',transparent:true,opacity:.9,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-6}),
+      outBad=new THREE.MeshBasicMaterial({color:'#c8102e',transparent:true,opacity:.95,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-6}),
+      dimM=new THREE.MeshBasicMaterial({color:'#101418',depthWrite:false,polygonOffset:true,polygonOffsetFactor:-8});
+function wipe(g){for(let i=g.children.length-1;i>=0;i--){const c=g.children[i];c.traverse(o=>{if(o.geometry&&o.geometry!==UB&&o.geometry!==UCY)o.geometry.dispose();});g.remove(c);}}
+function LL(html,x,y,h,cls,grp,pri,own){label(html,x,y,h,cls,grp,pri);const l=LBL[LBL.length-1];l.tag='lv';l.own=!!own;}
+function dropLL(){for(let i=LBL.length-1;i>=0;i--){const l=LBL[i];if(l.tag==='lv'){l.e.remove();l.ln.remove();l.dot.remove();LBL.splice(i,1);}}}
+function resort(){ORDER.length=0;LBL.slice().sort((a,b)=>a.pri-b.pri||a.i-b.i).forEach(l=>ORDER.push(l));sizeDirty=true;}
+const f1=(v,dp)=>v.toFixed(dp===undefined?1:dp), $=id=>document.getElementById(id);
+const dLine=(p,pl,cl)=>{let m=1e9;for(let i=1;i<pl.length;i++)m=Math.min(m,segDist(p,pl[i-1],pl[i]));if(cl)m=Math.min(m,segDist(p,pl[pl.length-1],pl[0]));return m;};
+function dash(g,a,b,w,mat,h,on,off){const L=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=0;t<L;t+=on+off){const t2=Math.min(L,t+on),q=u=>[a[0]+(b[0]-a[0])*u/L,a[1]+(b[1]-a[1])*u/L];g.add(strip(q(t),q(t2),w,mat,h));}}
+
+const pLeg=std({color:'#27313a'}),pVest=[std({color:'#f08a24'}),std({color:'#c9d42a'})],pHat=std({color:'#f2f2ef'}),pHead=new THREE.SphereGeometry(.42,10,8);
+function person(g,x,y,base,k){cyl(.5,2.9,pLeg,x,y,base,8,.42,g);cyl(.6,2.1,pVest[k%2],x,y,base+2.9,8,.48,g);const h=new THREE.Mesh(pHead,pHat);h.position.set(x,base+5.45,-y);h.castShadow=true;g.add(h);}
+function relayout(){
+  const R_=rects();
+  while(POOL.length<ST.n){const u=unit();G.add(u);POOL.push(u);}
+  POOL.forEach((u,i)=>{u.visible=i<ST.n;if(i<ST.n){u.position.set(R_[i].x0,0,-R_[i].y1);cut(u,ST.racks);}});
+  wipe(DYN);wipe(DIM);dropLL();
+  const E2={A:0,B:0,lv:[]};
+  vfiSw(DYN,VF.A[0],VF.A[1]);vfiSw(DYN,VF.B[0],VF.B[1]);
+  E2.A+=duct(DYN,[[RISER.A[0]+.6,RISER.A[1]+.6],[RISER.A[0]+.6,VF.A[1]],[VF.A[0]-3,VF.A[1]]],'A');
+  E2.B+=duct(DYN,[[RISER.B[0]+.6,RISER.B[1]+.6],[RISER.B[0]+.6,VF.B[1]+5.2],[VF.B[0],VF.B[1]+5.2],[VF.B[0],VF.B[1]+2.5]],'B');
+  const env=r=>[[r.x0-LU.land,r.y0],[r.x1,r.y0],[r.x1,r.y1],[r.x0-LU.land,r.y1],[r.x0-LU.land,(r.y0+r.y1)/2],[(r.x0+r.x1)/2,r.y1],[r.x0+LU.L*.25,r.y1],[r.x1,(r.y0+r.y1)/2]];
+  let lotC=1e9,floodC=1e9,wetC=1e9,northC=1e9,reach=0;
+  R_.forEach(r=>{let bad=false;env(r).forEach(p=>{const inL=inPoly(p,LOT),dl=dLine(p,LOT,true)*(inL?1:-1);lotC=Math.min(lotC,dl);if(!inL)bad=true;
+      const inF=inPoly(p,LVD.FLOOD_SURVEY),df=dLine(p,LVD.FLOOD_LINE)*(inF?-1:1);floodC=Math.min(floodC,df);if(inF)bad=true;
+      const inW=inPoly(p,WETLAND),dw=dLine(p,WETLAND,true)*(inW?-1:1);wetC=Math.min(wetC,dw);});
+    [[r.x0,r.y1],[r.x1,r.y1]].forEach(p=>{northC=Math.min(northC,(northLine(p[0])-p[1])*Math.cos(Math.atan(32.9/174.98)));});
+    reach=Math.max(reach,reachOfRect(r.x0,r.y0,r.x1,r.y1));r.bad=bad;
+    const c=[[r.x0,r.y0],[r.x1,r.y0],[r.x1,r.y1],[r.x0,r.y1]];c.forEach((p,i)=>dash(DYN,p,c[(i+1)%4],.9,bad?outBad:outOK,.74,bad?400:5,bad?0:3.5));
+    // one pad-mount transformer per unit; 12.47 kV from its feeder's VFI; 480 V straight into the Electrical zone (03)
+    padXfmr(DYN,r.xf,r.ty);const v=VF[r.f],tx=r.f==='A'?371.2:368.6;
+    E2[r.f]+=duct(DYN,[[v[0]-(r.f==='A'?0:0),v[1]-2.6],[tx,v[1]-2.6],[tx,r.ty],[r.xf+(r.xf>tx?-5.1:5.1),r.ty]],r.f);
+    E2.lv.push(lv(DYN,[[r.xf+5.1,r.ty],[r.x0,r.ty]]));
+    LL(sw(r.bad?'#c8102e':'#1f3b57')+'Leviathan '+(r.k+1)+' <small>1.77 MW IT · 119.1 × 44.8 ft · Feeder '+r.f+(r.bad?' · does not fit':'')+'</small>',r.x0+LU.sL*.55,(r.y0+r.y1)/2,LU.deck+LU.H+3,r.bad?'six':'unit','lv',1,true);
+    LL(sw('#56704a')+'Pad-mount xfmr <small>Feeder '+r.f+' · rating per Armada · 480 V run '+Math.round(E2.lv[E2.lv.length-1])+' ft</small>',r.xf,r.ty,10,'','lv',4);
+    LL(sw('#e3861b')+'Chillers 06 to 08 <small>N+1 · two duty, one standby</small>',r.x0+LCX(1)+LU.cW/2,r.y1-LU.cL/2,LU.cH+3,'','lv',4);});
+  person(DYN,R_[0].x0-LU.land/2,R_[0].y0+LU.W*.55,LU.deck,0);person(DYN,R_[0].x1-22,R_[0].y0-3,0,1);person(DYN,R_[R_.length-1].x0+LU.sL+LU.mG/2+3,R_[R_.length-1].y1+LU.run+2.5,0,1);
+  const top=R_[R_.length-1],eastU=R_.filter(r=>r.y0>=121.27),east=eastU.length?Math.min.apply(null,eastU.map(r=>LAY.fx-r.x1)):lotC,south=R_[0].y0-LAY.fs;
+  const it=ST.n*LU.IT,fac=PUE.map(p=>it*p),nF=Math.ceil(ST.n/2),perF=nF*LU.IT,Cx=[];
+  const add=(st,t,dd)=>Cx.push('<li><span class="chip '+st+'">'+({ok:'OK',tight:'Tight',bad:'Conflict',info:'Note'})[st]+'</span><div><b>'+t+'</b><small>'+dd+'</small></div></li>');
+  const sLot=lotC<0?'bad':lotC<5?'tight':'ok',sFl=floodC<0?'bad':floodC<8?'tight':'ok',sWet=wetC<0?'bad':wetC<10?'tight':'ok',sAis=ST.aisle===0&&ST.n>1?'bad':ST.aisle<15&&ST.n>1?'tight':'ok';
+  add(sLot,'Inside Lot 2R-1',lotC<0?'A unit crosses the lot line by '+f1(-lotC)+' ft.':'Nearest lot line '+f1(lotC)+' ft. The 5 ft Oncor easement is '+f1(northC-5)+' ft north of the top unit.');
+  add(sFl,'Flood-plain easement, survey courses',floodC<0?'A unit or its door landing sits '+f1(-floodC)+' ft inside the easement.':f1(floodC)+' ft clear'+(floodC<8?', inside the survey scan uncertainty of about 8 ft.':'. Rev 2g drew this limit 21 to 31 ft further north-west.'));
+  add(sWet,'Wetland trace',wetC<0?'A unit overlaps the trace by '+f1(-wetC)+' ft.':f1(wetC)+' ft clear of the trace Rev 2g carries; its source map is not in the data room.');
+  add(sAis,'Aisles between units',ST.n<2?'Single unit.':ST.aisle===0?'Units touch. The cross-walk stair needs '+f1(LU.run)+' ft and the chillers get no airflow gap.':ST.aisle+' ft aisles leave '+f1(ST.aisle-LU.run)+' ft past the cross-walk stair. Armada has not stated a minimum.');
+  add(east<5||south<5?'tight':'ok','Yard fence and fire lane',(eastU.length?f1(east)+' ft to the east fence, '+f1(east+2.5)+' ft to FL-2, ':'')+f1(south)+' ft to the south fence. Farthest unit wall is about '+Math.round(reach)+' ft from a lane, straight line.');
+  add(fac[1]>CAP?'bad':fac[2]>CAP?'tight':'ok','12 MW contract',f1(it,2)+' MW IT at the envelope draws about '+f1(fac[0])+' to '+f1(fac[2])+' MW on a design day.');
+  add(perF*PUE[1]>FEEDER?'bad':perF*PUE[2]>FEEDER?'tight':'ok','6 MW per feeder, as claimed',nF+' unit'+(nF>1?'s':'')+' on the busier feeder: about '+f1(perF*PUE[0])+' to '+f1(perF*PUE[2])+' MW. The 6 + 6 MW split is not in FEA 12785.');
+  add('info','Gas-well line','Every unit lies inside the 330 ft line Rev 2g draws. Its distance and origin are unsourced; the City decides whether modules count as structures.');
+  $('lvChecks').innerHTML=Cx.join('');$('lvN').textContent=ST.n;$('lvIT').textContent=f1(it,2)+' MW';$('lvFac').textContent=f1(fac[0])+' to '+f1(fac[2])+' MW';
+  $('lvUnits').textContent=ST.n+' Leviathan unit'+(ST.n>1?'s':'')+' · 119.1 × 44.8 ft each · '+(ST.aisle?ST.aisle+' ft aisles':'touching');
+  $('lvCool').textContent=(ST.n*3)+' chillers, three per unit, N+1 · '+f1(ST.n*2.2)+' MW thermal nameplate';
+  $('lvDuct').textContent='A '+Math.round(E2.A)+' ft · B '+Math.round(E2.B)+' ft';$('lvRun').textContent=E2.lv.length?Math.round(Math.min.apply(null,E2.lv))+' to '+Math.round(Math.max.apply(null,E2.lv))+' ft':'none';
+  $('nout').textContent=ST.n;$('nminus').disabled=ST.n<=1;$('nplus').disabled=ST.n>=6;
+  [...$('lvCases').rows].forEach(tr=>tr.classList.toggle('on',+tr.dataset.n===ST.n));
+  // labels that summarise the layout
+  LL('VFI A <small>Feeder A switch · conceptual</small>',VF.A[0],VF.A[1],7,'','lv',4);LL('VFI B <small>Feeder B switch · conceptual</small>',VF.B[0],VF.B[1],7,'','lv',4);
+  LL('Top unit '+(floodC<0?f1(-floodC)+' ft inside':f1(floodC)+' ft from')+' the flood-plain easement <small>survey courses · about ± 8 ft</small>',top.x0-LU.land,top.y1,3,sFl==='ok'?'':'warn','lv',2,sFl!=='ok');
+  LL('South unit '+f1(Math.max(0,(diagX(R_[0].y0)-R_[0].x1)*.695))+' ft from the lot line at the notch <small>set west of the others to clear it</small>',R_[0].x1,R_[0].y0,3,'','lv',3);
+  if(eastU.length)LL('Chiller ends '+f1(east)+' ft from the yard fence <small>'+f1(east+2.5)+' ft from FL-2</small>',eastU[0].x1,(eastU[0].y0+eastU[0].y1)/2,4,east<5?'warn':'','lv',3);
+  if(ST.n>1)LL(ST.aisle?ST.aisle+' ft aisle <small>'+f1(ST.aisle-LU.run)+' ft past the cross-walk stair</small>':'Units touch <small>no service or airflow aisle</small>',R_[0].x0+LU.L*.5,R_[0].y1+ST.aisle/2,2,sAis==='ok'?'':'warn','lv',3);
+  LL('Farthest unit wall from a fire lane ≈ '+Math.round(reach)+' ft <small>straight line · hose route to be measured</small>',top.x0+LU.sL*.5,top.y1,2,'fire','fire+lv',2);
+  // unit close-up: zone labels and dimensions on the southern unit, seen from the south-west
+  const u=R_[0],oy=u.y1,ox=u.x0,tp=LU.deck+LU.H+1.5,fx={'01':.22,'02':.45,'03':.68,'04':.88};
+  LZ.forEach(z=>LL(z.id+' '+z.n,ox+LU.sL*fx[z.id],oy-(z.z0+z.m*LU.mW/2),tp,'unit','unit',1,true));
+  LL('05 Mechanical',ox+LMX+LU.meW/2,oy-LU.W*.62,tp,'unit','unit',1,true);
+  ['06 Chiller 1','07 Chiller 2','08 Chiller 3'].forEach((t,k)=>LL(t,ox+LCX(k)+LU.cW/2,oy-LU.cL*.14,LU.cH+2,'unit','unit',1,true));
+  LL('N+1 chillers <small>two duty, one standby</small>',ox+LCX(2)+LU.cW/2,oy-LU.cL*.72,LU.cH+9,'','unit',2,true);
+  LL('Door landing and stairs <small>assumed from the flyer rendering</small>',ox-LU.land-2,oy-LU.W*.5,LU.deck+5,'','unit',2,true);
+  LL('Heights assumed <small>deck 1.3 m · modules 3.6 m · chillers 2.8 m</small>',ox+LU.sL*.5,u.y0-.5,LU.deck+LU.H*.45,'','unit',2,true);
+  const dm=(a,b,html,lx,ly)=>{DIM.add(strip(a,b,.4,dimM,.8));const dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy),nn=[-dy/l*1.1,dx/l*1.1];[a,b].forEach(p=>DIM.add(strip([p[0]-nn[0],p[1]-nn[1]],[p[0]+nn[0],p[1]+nn[1]],.4,dimM,.8)));LL(html,lx,ly,1.2,'dimk','unit',1,true);};
+  dm([ox,u.y0-2.2],[ox+LU.sL,u.y0-2.2],'about 18.0 m · 59 ft <small>zones 01 to 04 · scaled from the diagram</small>',ox+LU.sL*.35,u.y0-2.2);
+  dm([ox,u.y0-4.6],[ox+LU.L,u.y0-4.6],'36,300 mm · 119.1 ft <small>printed</small>',ox+LU.L*.72,u.y0-4.6);
+  dm([ox+LU.L+3.5,oy-LU.W],[ox+LU.L+3.5,oy],'13,660 mm · 44.8 ft <small>printed</small>',ox+LU.L+3.5,oy-LU.W*.5);
+  resort();
+  try{for(let i=PICK.length-1;i>=0;i--)if(PICK[i].userData.lv)PICK.splice(i,1);G.traverse(o=>{if(o.isMesh&&!o.userData.noPick){o.userData.lv=1;if(!o.geometry.boundingSphere)o.geometry.computeBoundingSphere();PICK.push(o);}});}catch(e){}
+  API.rects=R_;}
+const API={G,DIM,ST,relayout,LU,rects:[]};
+
+/* ---------- static labels for the corrected layers ---------- */
+label('100-yr flood plain easement, re-plotted from the survey courses <small>starts 94 ft up the west line · about ± 8 ft</small>',150,250,3,'ease','ease',1);
+label('Sanitary sewer easement <small>50 ft · D213345495 · scaled from the survey · not in Rev 2g</small>',654,60,3,'ease','ease',2);
+label('Genset row 12 to 13 ft inside the pipeline easement <small>as Rev 2g places it · operator consent needed</small>',470,30,3,'warn','ease',2);
+label('Gas conditioning pad on the sewer easement <small>about 720 of 960 sf</small>',640,24,3,'warn','ease',3);
+
+/* ---------- controls ---------- */
+$('nminus').onclick=()=>{if(ST.n>1){ST.n--;relayout();}};$('nplus').onclick=()=>{if(ST.n<6){ST.n++;relayout();}};
+$('aisle').onchange=e=>{ST.aisle=+e.target.value;relayout();};
+toggle('brack',on=>{ST.racks=on;POOL.forEach(u=>cut(u,on));});
+toggle('bcmp',on=>{ST.cmp=on;blkG.visible=on;G.visible=!on;vis.rev2g=on;vis.lv=!on;if(on)setUnit(false);document.body.classList.toggle('cmp',on);
+  document.querySelector('#sheet .eyebrow').textContent=on?'Showing the Rev 2g block for comparison · confidential':'Review build on the GoGo Rev 2g scene · confidential · not for construction';});
+
+function setUnit(on){if(vis.unit===on)return;vis.unit=on;DIM.visible=on;$('bunit').setAttribute('aria-pressed',on);sizeDirty=true;}
+$('bunit').onclick=()=>{if(ST.cmp)$('bcmp').click();const r=API.rects[0];if(!r)return;setUnit(true);b34.setAttribute('aria-pressed','false');btop.setAttribute('aria-pressed','false');
+  const cx=(r.x0+r.x1)/2,cy=(r.y0+r.y1)/2,a=camera.aspect,f=a<.8?1.9:a<1.2?1.35:1;go([new THREE.Vector3(cx-72*f,92*f,-cy+152*f),new THREE.Vector3(cx+6,6,-cy-6)]);};
+['b34','btop'].forEach(id=>$(id).addEventListener('click',()=>setUnit(false)));
+relayout();
+return API;})();
+// Declutter: higher-priority labels claim screen space first; others try staggered offsets (with a leader line) or hide.
+function placeLabels(){const W=innerWidth,H=innerHeight,placed=placeMeasure(),pad=3;
+  if(sizeDirty){LBL.forEach(l=>{const hid=l.e.hidden;l.e.hidden=false;l.w=l.e.offsetWidth;l.h=l.e.offsetHeight;l.e.hidden=hid;});sizeDirty=false;}
+  const hit=r=>placed.some(q=>r.x<q.x+q.w+pad&&r.x+r.w+pad>q.x&&r.y<q.y+q.h+pad&&r.y+r.h+pad>q.y);
+  for(const l of ORDER){const hide=()=>{l.e.hidden=true;l.ln.style.display='none';l.dot.style.display='none';};
+    if((!vis.main&&!l.own)||!l.g.split('+').every(k=>vis[k])||(vis.unit&&l.g!=='unit')){hide();continue;}
+    tmp.copy(l.p).project(camera);if(tmp.z>1||tmp.x<-1.1||tmp.x>1.1||tmp.y<-1.1||tmp.y>1.1){hide();continue;}
+    const ax=(tmp.x+1)/2*W,ay=(1-tmp.y)/2*H,w=l.w,h=l.h,dy=h+8,dx=w/2+10;
+    const cands=[[0,0],[0,-dy],[0,dy],[dx,-dy*.6],[-dx,-dy*.6],[dx,dy*.6],[-dx,dy*.6],[0,-2*dy],[0,2*dy],[w+14,0],[-(w+14),0]];
+    let r=null,c=null;for(const k of cands){const t={x:ax+k[0]-w/2,y:ay+k[1]-h/2,w,h};if(!hit(t)){r=t;c=k;break;}}
+    if(!r){hide();continue;}
+    placed.push(r);l.e.hidden=false;l.e.style.transform='translate('+r.x.toFixed(1)+'px,'+r.y.toFixed(1)+'px)';
+    if(c[0]||c[1]){const ex=Math.max(r.x,Math.min(ax,r.x+w)),ey=Math.max(r.y,Math.min(ay,r.y+h));
+      l.ln.setAttribute('x1',ax.toFixed(1));l.ln.setAttribute('y1',ay.toFixed(1));l.ln.setAttribute('x2',ex.toFixed(1));l.ln.setAttribute('y2',ey.toFixed(1));
+      l.dot.setAttribute('cx',ax.toFixed(1));l.dot.setAttribute('cy',ay.toFixed(1));l.ln.style.display='';l.dot.style.display='';}
+    else{l.ln.style.display='none';l.dot.style.display='none';}}}
+
+/* ---------- views ---------- */
+const TGT=new THREE.Vector3(445,0,-165);
+function view34Pos(){const a=camera.aspect,f=a<.8?1.75:a<1.2?1.3:1;return [new THREE.Vector3(TGT.x-430*f,500*f,TGT.z+480*f),TGT.clone()];}
+function topPos(){const vt=2*Math.tan(camera.fov*PI/360);const H=Math.max(500/vt,760/(vt*camera.aspect));const t=new THREE.Vector3(300,0,-170);return [new THREE.Vector3(t.x,H,t.z+0.5),t];}
+let anim=null;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function go([p,t]){if(reduce){camera.position.copy(p);controls.target.copy(t);controls.update();return;}anim={p0:camera.position.clone(),t0:controls.target.clone(),p1:p,t1:t,s:performance.now()};}
+const b34=document.getElementById('b34'),btop=document.getElementById('btop');
+function setView(v){b34.setAttribute('aria-pressed',v==='34');btop.setAttribute('aria-pressed',v==='top');go(v==='34'?view34Pos():topPos());}
+b34.onclick=()=>setView('34');btop.onclick=()=>setView('top');
+function toggle(id,fn){const b=document.getElementById(id);b.onclick=()=>{const on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);fn(on);};}
+toggle('bug',on=>{ugG.visible=on;vis.ug=on;});
+toggle('bease',on=>{easeG.visible=on;vis.ease=on;});
+toggle('bset',on=>{setG.visible=on;vis.setback=on;});
+toggle('bwet',on=>{wetG.visible=on;vis.wet=on;});
+toggle('blab',on=>{vis.main=on;});
+function syncVis(){offG.visible=vis.office;offTreesG.visible=!vis.office;offFenceG.visible=!vis.office;
+  fireG.visible=vis.fire;fireTreesG.visible=!vis.fire;bothTreesG.visible=!vis.office&&!vis.fire;knoxG.visible=vis.fireoff=vis.fire&&vis.office;}
+toggle('boff',on=>{vis.office=on;syncVis();});
+toggle('bfire',on=>{vis.fire=on;syncVis();});
+syncVis();
+toggle('breach',on=>{vis.reach=on;reachG.visible=on;});
+{const E=window.__armada,R=Math.round,set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t;};
+ set('kvDuct','A '+R(E.mv.A)+' ft · B '+R(E.mv.B)+' ft');set('kvTie',R(E.tie)+' ft');set('lgFeed','A '+R(E.mv.A)+' ft · B '+R(E.mv.B)+' ft');set('lgTie','≈ '+R(E.tie)+' ft');set('lgLv','conceptual');}
+controls.addEventListener('start',()=>{anim=null;b34.setAttribute('aria-pressed','false');btop.setAttribute('aria-pressed','false');});
+const [p0,t0]=view34Pos();camera.position.copy(p0);controls.target.copy(t0);controls.update();
+/* ---------- MEASURE TOOL (feet). Click = add point; drag = orbit. Raycast with optional snap to object centre / corner / edge. ---------- */
+const M={on:false,pts:[],mode:'h',snap:true,group:new THREE.Group(),labels:[],tot:null,live:null};scene.add(M.group);
+const MCOL='#d6336c';
+const mLine=new THREE.LineBasicMaterial({color:MCOL,depthTest:false,transparent:true});
+const mDot=new THREE.MeshBasicMaterial({color:MCOL,depthTest:false,transparent:true});
+const mDrop=new THREE.LineDashedMaterial({color:MCOL,dashSize:1.2,gapSize:1,depthTest:false,transparent:true,opacity:.7});
+const DOT=new THREE.SphereGeometry(1,16,10);
+const ghost=new THREE.Mesh(DOT,new THREE.MeshBasicMaterial({color:'#ffffff',depthTest:false,transparent:true,opacity:.95}));ghost.renderOrder=12;ghost.visible=false;scene.add(ghost);
+const rubber=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineDashedMaterial({color:MCOL,dashSize:2.5,gapSize:1.5,depthTest:false,transparent:true}));rubber.renderOrder=11;rubber.visible=false;rubber.frustumCulled=false;scene.add(rubber);
+let ghostP=null,ghostKind=null;
+// pickable objects: everything visible in the scene except sky/clouds and the measure helpers themselves
+const PICK=[];scene.traverse(o=>{if((o.isMesh||o.isLine)&&!o.userData.noPick&&o!==ghost&&o!==rubber){if(o.isMesh&&o.geometry){if(!o.geometry.boundingSphere)o.geometry.computeBoundingSphere();if(o.geometry.boundingSphere&&o.geometry.boundingSphere.radius>5000)return;}PICK.push(o);}});
+const ray=new THREE.Raycaster();ray.params.Line.threshold=0.6;
+const ndc=new THREE.Vector2(),m4=new THREE.Matrix4(),bb=new THREE.Box3(),vA=new THREE.Vector3(),vB=new THREE.Vector3(),GROUND=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+const visibleChain=o=>{while(o){if(!o.visible)return false;o=o.parent;}return true;};
+const toScreen=v=>{vA.copy(v).project(camera);return [(vA.x+1)/2*innerWidth,(1-vA.y)/2*innerHeight];};
+function pick(cx,cy){const r=renderer.domElement.getBoundingClientRect();ndc.set((cx-r.left)/r.width*2-1,-((cy-r.top)/r.height)*2+1);ray.setFromCamera(ndc,camera);
+  const hits=ray.intersectObjects(PICK,false);
+  for(const h of hits){if(!visibleChain(h.object))continue;return snapHit(h,cx,cy);}
+  const g=new THREE.Vector3();return ray.ray.intersectPlane(GROUND,g)?{p:g,kind:null}:null;}
+function snapHit(h,cx,cy){const p=h.point.clone();
+  if(!M.snap||!h.object.isMesh)return {p,kind:null};
+  const o=h.object;
+  if(o.isInstancedMesh&&h.instanceId!=null){if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();o.getMatrixAt(h.instanceId,m4);bb.copy(o.geometry.boundingBox).applyMatrix4(m4).applyMatrix4(o.matrixWorld);}
+  else bb.setFromObject(o);
+  const sx=bb.max.x-bb.min.x,sz=bb.max.z-bb.min.z,sy=bb.max.y-bb.min.y;
+  if(Math.max(sx,sz)>220||(sy<1.5&&Math.max(sx,sz)>30))return {p,kind:null};   // ground, slabs and ground markings: no snap
+  const c=new THREE.Vector3((bb.min.x+bb.max.x)/2,p.y,(bb.min.z+bb.max.z)/2);
+  const corners=[[bb.min.x,bb.min.z],[bb.max.x,bb.min.z],[bb.min.x,bb.max.z],[bb.max.x,bb.max.z]].map(([x,z])=>new THREE.Vector3(x,p.y,z));
+  let ex=Math.min(Math.max(p.x,bb.min.x),bb.max.x),ez=Math.min(Math.max(p.z,bb.min.z),bb.max.z);
+  const dl=ex-bb.min.x,dr=bb.max.x-ex,dn=ez-bb.min.z,ds=bb.max.z-ez,md=Math.min(dl,dr,dn,ds);
+  if(md===dl)ex=bb.min.x;else if(md===dr)ex=bb.max.x;else if(md===dn)ez=bb.min.z;else ez=bb.max.z;
+  const edge=new THREE.Vector3(ex,p.y,ez);
+  const near=(v,px)=>{const [x,y]=toScreen(v);return Math.hypot(x-cx,y-cy)<=px;};
+  if(near(c,16))return {p:c,kind:'centre'};
+  for(const k of corners)if(near(k,14))return {p:k,kind:'corner'};
+  if(near(edge,10))return {p:edge,kind:'edge'};
+  return {p,kind:null};}
+const dist=(a,b)=>M.mode==='h'?Math.hypot(b.x-a.x,b.z-a.z):a.distanceTo(b);
+const fmt=v=>v.toLocaleString(undefined,{minimumFractionDigits:1,maximumFractionDigits:1});
+const mTotalEl=document.getElementById('mtotal'),mCountEl=document.getElementById('mcount'),mListEl=document.getElementById('mlist');
+function mLabel(cls){const e=document.createElement('div');e.className='lb meas '+(cls||'');labelsEl.appendChild(e);e.hidden=true;return e;}
+M.tot=mLabel('tot');M.live=mLabel('live');
+function rebuild(){M.group.clear();M.labels.forEach(l=>l.e.remove());M.labels=[];
+  const pts=M.pts;let total=0;mListEl.textContent='';
+  pts.forEach(p=>{const d=new THREE.Mesh(DOT,mDot);d.position.copy(p);d.renderOrder=12;M.group.add(d);
+    if(p.y>1.5){const dl=new THREE.Line(new THREE.BufferGeometry().setFromPoints([p,new THREE.Vector3(p.x,0,p.z)]),mDrop);dl.computeLineDistances();dl.renderOrder=10;M.group.add(dl);}});
+  if(pts.length>1){const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),mLine);ln.renderOrder=11;ln.frustumCulled=false;M.group.add(ln);}
+  for(let i=1;i<pts.length;i++){const d=dist(pts[i-1],pts[i]);total+=d;const e=mLabel();e.innerHTML=fmt(d)+' ft';
+    M.labels.push({e,p:pts[i-1].clone().add(pts[i]).multiplyScalar(.5)});
+    const li=document.createElement('li');li.innerHTML='<span>'+i+'→'+(i+1)+'</span>'+fmt(d)+' ft';mListEl.appendChild(li);}
+  mListEl.scrollTop=mListEl.scrollHeight;
+  M.total=total;mTotalEl.textContent=fmt(total);mCountEl.textContent=(Math.max(0,pts.length-1))+' segment'+(pts.length===2?'':'s')+' · '+(M.mode==='h'?'horizontal':'3D');
+  M.tot.innerHTML=pts.length>2?'Σ '+fmt(total)+' ft':'';}
+function addPoint(p){M.pts.push(p.clone());rebuild();}
+document.getElementById('mundo').onclick=()=>{M.pts.pop();rebuild();};
+document.getElementById('mclear').onclick=()=>{M.pts=[];rebuild();};
+document.getElementById('mmode-h').onchange=()=>{M.mode='h';rebuild();};
+document.getElementById('mmode-3').onchange=()=>{M.mode='3';rebuild();};
+document.getElementById('msnap').onchange=e=>{M.snap=e.target.checked;};
+const mPanel=document.getElementById('measure');
+function setMeasure(on){M.on=on;mPanel.hidden=!on;M.group.visible=on;ghost.visible=false;rubber.visible=false;M.live.hidden=true;renderer.domElement.style.cursor=on?'crosshair':'';
+  if(on&&innerWidth<640)sheet.open=false;rebuild();}
+const bmeas=document.getElementById('bmeas');
+toggle('bmeas',on=>setMeasure(on));
+// click vs drag: only a short, still press adds a point, so orbit/pan/zoom keep working while measuring
+let down=null,lastMove=0;
+renderer.domElement.addEventListener('pointerdown',e=>{if(!M.on||!e.isPrimary||e.button!==0){down=null;return;}down={x:e.clientX,y:e.clientY,t:performance.now()};});
+renderer.domElement.addEventListener('pointerup',e=>{if(!M.on||!down||!e.isPrimary)return;const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y),dt=performance.now()-down.t;down=null;
+  if(moved<6&&dt<700){const h=pick(e.clientX,e.clientY);if(h)addPoint(h.p);}});
+renderer.domElement.addEventListener('pointermove',e=>{if(!M.on||e.buttons||e.pointerType==='touch'){return;}const now=performance.now();if(now-lastMove<45)return;lastMove=now;
+  const h=pick(e.clientX,e.clientY);ghostP=h?h.p:null;ghostKind=h?h.kind:null;ghost.visible=!!h;if(h){ghost.position.copy(h.p);ghost.material.color.set(h.kind?'#ffd43b':'#ffffff');}
+  if(h&&M.pts.length){const a=M.pts[M.pts.length-1];rubber.geometry.setFromPoints([a,h.p]);rubber.computeLineDistances();rubber.visible=true;}else rubber.visible=false;});
+renderer.domElement.addEventListener('pointerleave',()=>{ghost.visible=false;rubber.visible=false;ghostP=null;});
+addEventListener('keydown',e=>{const ae=document.activeElement;if(!M.on||(ae&&(ae.tagName==='TEXTAREA'||(ae.tagName==='INPUT'&&/text|search|number/.test(ae.type)))))return;
+  if(e.key==='Escape'){bmeas.click();}
+  else if(e.key==='Backspace'||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z')){e.preventDefault();M.pts.pop();rebuild();}});
+// per-frame: constant-size dots and measure labels (placed before the scene labels so nothing covers them)
+function placeMeasure(){const placed=[];
+  const sc=o=>{const s=Math.max(.35,camera.position.distanceTo(o.position)*.0065);o.scale.setScalar(s);};
+  M.group.children.forEach(o=>{if(o.isMesh)sc(o);});if(ghost.visible)sc(ghost);
+  const put=(e,v,dy)=>{if(!M.on||!e.innerHTML){e.hidden=true;return;}vB.copy(v).project(camera);if(vB.z>1){e.hidden=true;return;}e.hidden=false;
+    const x=(vB.x+1)/2*innerWidth,y=(1-vB.y)/2*innerHeight+(dy||0),w=e.offsetWidth,h=e.offsetHeight;e.style.transform='translate('+(x-w/2).toFixed(1)+'px,'+(y-h/2).toFixed(1)+'px)';placed.push({x:x-w/2,y:y-h/2,w,h});};
+  M.labels.forEach(l=>put(l.e,l.p,0));
+  if(M.pts.length>2)put(M.tot,M.pts[M.pts.length-1],-22);else M.tot.hidden=true;
+  if(M.on&&rubber.visible&&ghostP&&M.pts.length){const a=M.pts[M.pts.length-1],d=dist(a,ghostP);M.live.innerHTML=fmt(d)+' ft'+(ghostKind?' <small>'+ghostKind+'</small>':'')+(M.pts.length>1?' <small>Σ '+fmt(M.total+d)+'</small>':'');put(M.live,ghostP,-20);}else M.live.hidden=true;
+  return placed;}
+
+const sheet=document.getElementById('sheet');if(innerWidth<640)sheet.open=false;
+const needle=document.getElementById('needle');
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+document.getElementById('loading').hidden=true;
+function loop(now){requestAnimationFrame(loop);
+  if(anim){let k=Math.min(1,(now-anim.s)/1300);k=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;camera.position.lerpVectors(anim.p0,anim.p1,k);controls.target.lerpVectors(anim.t0,anim.t1,k);if(k>=1)anim=null;}
+  controls.update();
+  const fx=controls.target.x-camera.position.x,fz=controls.target.z-camera.position.z;needle.setAttribute('transform','rotate('+(-Math.atan2(fx,-fz)*180/PI).toFixed(1)+')');
+  renderer.render(scene,camera);placeLabels();}
+requestAnimationFrame(loop);
+})();
+</script>
+</body></html>
